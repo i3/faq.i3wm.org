@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1308/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 06 Mar 2013 15:09:48 +0000</lastBuildDate><item><title>Start an app using non-interactive shell</title><link>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/</link><description>Hello,
+
+I am using i3 for some time and I am happy. Today I have discovered one interesting thing - I have a script i3/autostart which I start using the following method:
+
+    exec ~/.i3/autostart
+
+The script has /bin/sh shebang, because I do not want to load up my environment at this point. And my $SHELL variable is /bin/bash of course.
+
+Now there is one issue, because i3 tries to load using $SHELL or /bin/sh. I do have my shell set to bash (I use Bash as the main shell), but I want to autostart via /bin/sh (or bash --norc - that is the same thing). And I think I am unable to do it. I am thinking about a workaround, but can't find anything.
+
+The issue I have is I am not able to completely exit the environment, e.g. when I close my terminal and I want to start over with freshly modified .bashrc, I can't do it, because my new forked shell will inherit all the variables from this ueber-shell.
+
+Also when I do things like
+
+    PATH=$PATH:/xyz/xyz
+
+it is added twice then.
+
+Do you know about any solution? Thanks.</description><pubDate>Tue, 05 Mar 2013 10:43:29 +0000</pubDate><guid>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/</guid></item><item><title>Comment by lzap for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I am using i3 for some time and I am happy. Today I have discovered one interesting thing - I have a script i3/autostart which I start using the following method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec ~/.i3/autostart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script has /bin/sh shebang, because I do not want to load up my environment at this point. And my $SHELL variable is /bin/bash of course.&lt;/p&gt;
+
+&lt;p&gt;Now there is one issue, because i3 tries to load using $SHELL or /bin/sh. I do have my shell set to bash (I use Bash as the main shell), but I want to autostart via /bin/sh (or bash --norc - that is the same thing). And I think I am unable to do it. I am thinking about a workaround, but can't find anything.&lt;/p&gt;
+
+&lt;p&gt;The issue I have is I am not able to completely exit the environment, e.g. when I close my terminal and I want to start over with freshly modified .bashrc, I can't do it, because my new forked shell will inherit all the variables from this ueber-shell.&lt;/p&gt;
+
+&lt;p&gt;Also when I do things like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PATH=$PATH:/xyz/xyz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;it is added twice then.&lt;/p&gt;
+
+&lt;p&gt;Do you know about any solution? Thanks.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/?comment=1311#comment-1311</link><description>I dont set it of course, I just mean it is set to /bin/bash (but I am not setting it).</description><pubDate>Tue, 05 Mar 2013 11:32:48 +0000</pubDate><guid>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/?comment=1311#comment-1311</guid></item><item><title>Comment by lzap for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I am using i3 for some time and I am happy. Today I have discovered one interesting thing - I have a script i3/autostart which I start using the following method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec ~/.i3/autostart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script has /bin/sh shebang, because I do not want to load up my environment at this point. And my $SHELL variable is /bin/bash of course.&lt;/p&gt;
+
+&lt;p&gt;Now there is one issue, because i3 tries to load using $SHELL or /bin/sh. I do have my shell set to bash (I use Bash as the main shell), but I want to autostart via /bin/sh (or bash --norc - that is the same thing). And I think I am unable to do it. I am thinking about a workaround, but can't find anything.&lt;/p&gt;
+
+&lt;p&gt;The issue I have is I am not able to completely exit the environment, e.g. when I close my terminal and I want to start over with freshly modified .bashrc, I can't do it, because my new forked shell will inherit all the variables from this ueber-shell.&lt;/p&gt;
+
+&lt;p&gt;Also when I do things like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PATH=$PATH:/xyz/xyz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;it is added twice then.&lt;/p&gt;
+
+&lt;p&gt;Do you know about any solution? Thanks.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/?comment=1332#comment-1332</link><description>This is strange, something is not correct and I don't know what. I need to investigate if bash -c parameter reads my profile or not.</description><pubDate>Wed, 06 Mar 2013 14:56:06 +0000</pubDate><guid>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/?comment=1332#comment-1332</guid></item><item><title>Comment by Michael for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I am using i3 for some time and I am happy. Today I have discovered one interesting thing - I have a script i3/autostart which I start using the following method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec ~/.i3/autostart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script has /bin/sh shebang, because I do not want to load up my environment at this point. And my $SHELL variable is /bin/bash of course.&lt;/p&gt;
+
+&lt;p&gt;Now there is one issue, because i3 tries to load using $SHELL or /bin/sh. I do have my shell set to bash (I use Bash as the main shell), but I want to autostart via /bin/sh (or bash --norc - that is the same thing). And I think I am unable to do it. I am thinking about a workaround, but can't find anything.&lt;/p&gt;
+
+&lt;p&gt;The issue I have is I am not able to completely exit the environment, e.g. when I close my terminal and I want to start over with freshly modified .bashrc, I can't do it, because my new forked shell will inherit all the variables from this ueber-shell.&lt;/p&gt;
+
+&lt;p&gt;Also when I do things like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PATH=$PATH:/xyz/xyz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;it is added twice then.&lt;/p&gt;
+
+&lt;p&gt;Do you know about any solution? Thanks.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/?comment=1309#comment-1309</link><description>Why do you set the SHELL environment variable to bash when all you need is an entry in /etc/passwd to make bash the login shell for your user account?</description><pubDate>Tue, 05 Mar 2013 10:52:09 +0000</pubDate><guid>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/?comment=1309#comment-1309</guid></item><item><title>Comment by Michael for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I am using i3 for some time and I am happy. Today I have discovered one interesting thing - I have a script i3/autostart which I start using the following method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec ~/.i3/autostart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script has /bin/sh shebang, because I do not want to load up my environment at this point. And my $SHELL variable is /bin/bash of course.&lt;/p&gt;
+
+&lt;p&gt;Now there is one issue, because i3 tries to load using $SHELL or /bin/sh. I do have my shell set to bash (I use Bash as the main shell), but I want to autostart via /bin/sh (or bash --norc - that is the same thing). And I think I am unable to do it. I am thinking about a workaround, but can't find anything.&lt;/p&gt;
+
+&lt;p&gt;The issue I have is I am not able to completely exit the environment, e.g. when I close my terminal and I want to start over with freshly modified .bashrc, I can't do it, because my new forked shell will inherit all the variables from this ueber-shell.&lt;/p&gt;
+
+&lt;p&gt;Also when I do things like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PATH=$PATH:/xyz/xyz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;it is added twice then.&lt;/p&gt;
+
+&lt;p&gt;Do you know about any solution? Thanks.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/?comment=1331#comment-1331</link><description>Then set it to /bin/sh explicitly?</description><pubDate>Wed, 06 Mar 2013 14:00:32 +0000</pubDate><guid>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/?comment=1331#comment-1331</guid></item><item><title>Answer by lzap for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I am using i3 for some time and I am happy. Today I have discovered one interesting thing - I have a script i3/autostart which I start using the following method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec ~/.i3/autostart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script has /bin/sh shebang, because I do not want to load up my environment at this point. And my $SHELL variable is /bin/bash of course.&lt;/p&gt;
+
+&lt;p&gt;Now there is one issue, because i3 tries to load using $SHELL or /bin/sh. I do have my shell set to bash (I use Bash as the main shell), but I want to autostart via /bin/sh (or bash --norc - that is the same thing). And I think I am unable to do it. I am thinking about a workaround, but can't find anything.&lt;/p&gt;
+
+&lt;p&gt;The issue I have is I am not able to completely exit the environment, e.g. when I close my terminal and I want to start over with freshly modified .bashrc, I can't do it, because my new forked shell will inherit all the variables from this ueber-shell.&lt;/p&gt;
+
+&lt;p&gt;Also when I do things like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PATH=$PATH:/xyz/xyz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;it is added twice then.&lt;/p&gt;
+
+&lt;p&gt;Do you know about any solution? Thanks.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/?answer=1333#post-id-1333</link><description>Ok I think I need to fix my bash profiles :-)
+
+http://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html
+
+I had everything in my .bashrc file while I want to setup PATHs and that kind of stuff only in .bash_profile :-)</description><pubDate>Wed, 06 Mar 2013 15:09:48 +0000</pubDate><guid>https://faq.i3wm.org/question/1308/start-an-app-using-non-interactive-shell/?answer=1333#post-id-1333</guid></item></channel></rss>

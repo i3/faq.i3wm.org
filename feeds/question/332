@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/332/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 18 Apr 2013 11:19:28 +0000</lastBuildDate><item><title>Custom status_command text update</title><link>https://faq.i3wm.org/question/332/custom-status_command-text-update/</link><description>I have an interest to write own status command, replacement to i3status.
+Program make the text, dedode it to json and print. Text shows on i3bar, but not update.
+
+Tried to print json in while-cycle with delay - text not shows al all. 
+Tried all with simple text - similar.
+
+Writing in python.
+Cant't use i3status sources becose bad in C, sorry.</description><pubDate>Sat, 11 Aug 2012 21:07:20 +0000</pubDate><guid>https://faq.i3wm.org/question/332/custom-status_command-text-update/</guid></item><item><title>Answer by Michael for &lt;p&gt;I have an interest to write own status command, replacement to i3status.
+Program make the text, dedode it to json and print. Text shows on i3bar, but not update.&lt;/p&gt;
+
+&lt;p&gt;Tried to print json in while-cycle with delay - text not shows al all. 
+Tried all with simple text - similar.&lt;/p&gt;
+
+&lt;p&gt;Writing in python.
+Cant't use i3status sources becose bad in C, sorry.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/332/custom-status_command-text-update/?answer=357#post-id-357</link><description>Sorry, I must have missed your question, or I’d have replied earlier.
+
+Please read this document to understand how to send JSON to i3bar:
+http://i3wm.org/docs/i3bar-protocol.html (pay attention to the header part: unless you are using a recent git "next" version, you need to send it *exactly* as `{"version":1}`).
+
+It also contains a link to a simple shell script (for illustrational purposes only!) which demonstrates how to put an (updating) clock into i3bar:
+http://code.stapelberg.de/git/i3/tree/contrib/trivial-bar-script.sh?h=next
+
+Since you are using python, there also is a wrapper script which reads i3status’s JSON and adds the current CPU governor: http://code.stapelberg.de/git/i3status/tree/contrib/wrapper.py
+
+In case these resources don’t help, please post your code so we can tell you what’s wrong. Without the code, we can’t do anything.</description><pubDate>Tue, 21 Aug 2012 13:14:25 +0000</pubDate><guid>https://faq.i3wm.org/question/332/custom-status_command-text-update/?answer=357#post-id-357</guid></item><item><title>Answer by Privan for &lt;p&gt;I have an interest to write own status command, replacement to i3status.
+Program make the text, dedode it to json and print. Text shows on i3bar, but not update.&lt;/p&gt;
+
+&lt;p&gt;Tried to print json in while-cycle with delay - text not shows al all. 
+Tried all with simple text - similar.&lt;/p&gt;
+
+&lt;p&gt;Writing in python.
+Cant't use i3status sources becose bad in C, sorry.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/332/custom-status_command-text-update/?answer=1653#post-id-1653</link><description>I made something very simple and hacky. However, I think it is efficient and sufficient. I've been using it instead of i3status or conky.
+    
+    #!/bin/sh
+    
+    echo '{ "version": 1 }'
+    
+    echo '['
+    
+    echo '[],'
+    
+    readonly PRE='{ "full_text": "'
+    readonly COL='", "color": "'
+    readonly CER='" }'
+    
+    KERNELV=$PRE"K: $(uname -sr)"$COL'#bbaacc'$CER
+    
+    i=5
+    
+    while :
+    do
+    
+    if [ "$i" -eq "5" ]; then 
+    BATERIA=$PRE"B: $(acpi -b | awk '{print $NF}')"$COL'#ccbbaa'$CER
+    DISK=$PRE"D: $(df -h | awk '/sda1/ {print $5 " ("$4" Disp.)" }')"$COL'#ccaabb'$CER
+    UPTIME=$PRE"🕐: $(awk  '{printf "%.2f", $0/3600;}' /proc/uptime)h"$COL'#ccaabb'$CER
+    let i=0
+    fi
+    
+    let i="$i+1"
+    CALOR=$PRE"T: $(acpi -t | awk '{print $(NF-2)}')°C"$COL'#ccbbaa'$CER
+    
+    LOAD=$PRE"L: $(cat /proc/loadavg)"$COL'#ccbbaa'$CER
+    VOL=$PRE"♪: $(pactl list sinks | awk '/Volume: 0:/{print $NF}')"$COL'#bbccaa'$CER
+    FECHA=$PRE"$(date +'%A,%_d %B %Y  %H:%M:%S')"$COL'#aaccbb'$CER
+    
+    echo "[$KERNELV,$UPTIME,$CALOR,$BATERIA,$LOAD,$DISK,$VOL,$FECHA]," || exit 1
+    sleep 5s;
+    done
+
+
+</description><pubDate>Thu, 18 Apr 2013 11:19:28 +0000</pubDate><guid>https://faq.i3wm.org/question/332/custom-status_command-text-update/?answer=1653#post-id-1653</guid></item></channel></rss>

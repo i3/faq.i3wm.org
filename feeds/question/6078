@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6078/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 19 Aug 2015 06:00:33 +0000</lastBuildDate><item><title>xrandr commands not running when i3 starts</title><link>https://faq.i3wm.org/question/6078/xrandr-commands-not-running-when-i3-starts/</link><description>Hi all,
+
+I have two monitors. When I restart my PC, it duplicates the vlew from one monitor to the other. I have these commands near the beginning of my .i3/config:
+
+    exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --left-of DVI-I-2
+    exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --primary
+
+although they don't seem to execute. If I copy-paste them into a terminal, it works properly. Is there something wrong with the commands and if not, what can I do to fix it? Is there additional logging I should look at? 
+
+Thanks!
+
+EDIT: To answer Airblader's question, using i3-dump-log | grep xrandr only seems to echo out the config, and not mention the execution of xrandr:
+
+    ❯ i3-dump-log | grep xrandr
+    06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  38):         #xrandr -q                                  &lt;-- list of monitors
+    06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  39):         #xrandr --output DVI-I-3 --left-of DVI-I-2  &lt;-- moves DVI-I-3
+    06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  40):     exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --left-of DVI-I-2
+    06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  41):     exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --primary
+
+</description><pubDate>Sun, 07 Jun 2015 18:23:20 +0000</pubDate><guid>https://faq.i3wm.org/question/6078/xrandr-commands-not-running-when-i3-starts/</guid></item><item><title>Comment by winpat for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I have two monitors. When I restart my PC, it duplicates the vlew from one monitor to the other. I have these commands near the beginning of my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --left-of DVI-I-2
+exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --primary
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;although they don't seem to execute. If I copy-paste them into a terminal, it works properly. Is there something wrong with the commands and if not, what can I do to fix it? Is there additional logging I should look at? &lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;EDIT: To answer Airblader's question, using i3-dump-log | grep xrandr only seems to echo out the config, and not mention the execution of xrandr:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;❯ i3-dump-log | grep xrandr
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  38):         #xrandr -q                                  &amp;lt;-- list of monitors
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  39):         #xrandr --output DVI-I-3 --left-of DVI-I-2  &amp;lt;-- moves DVI-I-3
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  40):     exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --left-of DVI-I-2
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  41):     exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --primary
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6078/xrandr-commands-not-running-when-i3-starts/?comment=6463#comment-6463</link><description>I've the very same problem... did found a solution for this?</description><pubDate>Wed, 19 Aug 2015 06:00:33 +0000</pubDate><guid>https://faq.i3wm.org/question/6078/xrandr-commands-not-running-when-i3-starts/?comment=6463#comment-6463</guid></item><item><title>Comment by Airblader for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I have two monitors. When I restart my PC, it duplicates the vlew from one monitor to the other. I have these commands near the beginning of my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --left-of DVI-I-2
+exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --primary
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;although they don't seem to execute. If I copy-paste them into a terminal, it works properly. Is there something wrong with the commands and if not, what can I do to fix it? Is there additional logging I should look at? &lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;EDIT: To answer Airblader's question, using i3-dump-log | grep xrandr only seems to echo out the config, and not mention the execution of xrandr:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;❯ i3-dump-log | grep xrandr
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  38):         #xrandr -q                                  &amp;lt;-- list of monitors
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  39):         #xrandr --output DVI-I-3 --left-of DVI-I-2  &amp;lt;-- moves DVI-I-3
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  40):     exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --left-of DVI-I-2
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  41):     exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --primary
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6078/xrandr-commands-not-running-when-i3-starts/?comment=6132#comment-6132</link><description>Given your edit, can you please restart i3 in-place with no windows or anything up and then save the output of i3-dump-log somewhere (just to keep the file small) and upload it?</description><pubDate>Sun, 14 Jun 2015 19:27:30 +0000</pubDate><guid>https://faq.i3wm.org/question/6078/xrandr-commands-not-running-when-i3-starts/?comment=6132#comment-6132</guid></item><item><title>Comment by Airblader for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I have two monitors. When I restart my PC, it duplicates the vlew from one monitor to the other. I have these commands near the beginning of my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --left-of DVI-I-2
+exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --primary
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;although they don't seem to execute. If I copy-paste them into a terminal, it works properly. Is there something wrong with the commands and if not, what can I do to fix it? Is there additional logging I should look at? &lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;EDIT: To answer Airblader's question, using i3-dump-log | grep xrandr only seems to echo out the config, and not mention the execution of xrandr:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;❯ i3-dump-log | grep xrandr
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  38):         #xrandr -q                                  &amp;lt;-- list of monitors
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  39):         #xrandr --output DVI-I-3 --left-of DVI-I-2  &amp;lt;-- moves DVI-I-3
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  40):     exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --left-of DVI-I-2
+06/14/2015 03:10:12 PM - config_parser.c:parse_config:313 - CONFIG(line  41):     exec --no-startup-id /usr/bin/xrandr --output DVI-I-3 --primary
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6078/xrandr-commands-not-running-when-i3-starts/?comment=6095#comment-6095</link><description>You talk about additional logging – what logging *have* you looked at and what did you see? By the way, specifying the full path to xrandr isn't necessary (usually) because exec will be passed to a shell.</description><pubDate>Tue, 09 Jun 2015 05:58:48 +0000</pubDate><guid>https://faq.i3wm.org/question/6078/xrandr-commands-not-running-when-i3-starts/?comment=6095#comment-6095</guid></item></channel></rss>

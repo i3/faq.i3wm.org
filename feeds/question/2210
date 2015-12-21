@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2210/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 18 Jul 2013 05:29:10 +0000</lastBuildDate><item><title>hook on output change</title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/</link><description>Hi,
+
+I have another sound card for my external monitor and I'd like to change my default output sink when switching from one monitor to the other:
+
+  echo set-default-sink 0 | pacmd  (laptop)
+  echo set-default-sink 3 | pacmd  (ext. monitor)
+
+What I need is a hook where I can issue these commands when I change to a workspace which is on the other monitor. Is this possible (4.5.1)?
+
+Best regards
+</description><pubDate>Sun, 14 Jul 2013 06:05:02 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/</guid></item><item><title>Comment by grml for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have another sound card for my external monitor and I'd like to change my default output sink when switching from one monitor to the other:&lt;/p&gt;
+
+&lt;p&gt;echo set-default-sink 0 | pacmd  (laptop)
+  echo set-default-sink 3 | pacmd  (ext. monitor)&lt;/p&gt;
+
+&lt;p&gt;What I need is a hook where I can issue these commands when I change to a workspace which is on the other monitor. Is this possible (4.5.1)?&lt;/p&gt;
+
+&lt;p&gt;Best regards&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2218#comment-2218</link><description>Actually my commands are wrong but the should be issued on **output** change. The correct command is 'move-sink-input index sink-index'. Sink 0 is my laptop and sink 3 is my monitor.</description><pubDate>Sun, 14 Jul 2013 18:25:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2218#comment-2218</guid></item><item><title>Answer by joepd for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have another sound card for my external monitor and I'd like to change my default output sink when switching from one monitor to the other:&lt;/p&gt;
+
+&lt;p&gt;echo set-default-sink 0 | pacmd  (laptop)
+  echo set-default-sink 3 | pacmd  (ext. monitor)&lt;/p&gt;
+
+&lt;p&gt;What I need is a hook where I can issue these commands when I change to a workspace which is on the other monitor. Is this possible (4.5.1)?&lt;/p&gt;
+
+&lt;p&gt;Best regards&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/?answer=2211#post-id-2211</link><description>New answer: 
+Yes this is possible, but you'll have to cross the line between configuration and writing code. You could subscribe to the [workspace event](http://i3wm.org/docs/ipc.html#_workspace_event) with some [IPC-library](http://i3wm.org/docs/ipc.html#_see_also_existing_libraries). Feel free to post your solution :) 
+
+Old answer:
+AFAIK, this is not possible. But there is also a more correct level to address this wish: `udev`. Then you can have your machine react to the hardware event 'new sound card', instead of some unrelated but correlated change in a user application. 
+
+Someone with a very similar wish has written about it: http://stavrakisblog.blogspot.de/2012/03/pulseaudio-usb-sound-device-hotplug.html</description><pubDate>Sun, 14 Jul 2013 06:52:29 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/?answer=2211#post-id-2211</guid></item><item><title>Comment by grml for &lt;p&gt;New answer: 
+Yes this is possible, but you'll have to cross the line between configuration and writing code. You could subscribe to the &lt;a href="http://i3wm.org/docs/ipc.html#_workspace_event"&gt;workspace event&lt;/a&gt; with some &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;IPC-library&lt;/a&gt;. Feel free to post your solution :) &lt;/p&gt;
+
+&lt;p&gt;Old answer:
+AFAIK, this is not possible. But there is also a more correct level to address this wish: &lt;code&gt;udev&lt;/code&gt;. Then you can have your machine react to the hardware event 'new sound card', instead of some unrelated but correlated change in a user application. &lt;/p&gt;
+
+&lt;p&gt;Someone with a very similar wish has written about it: &lt;a href="http://stavrakisblog.blogspot.de/2012/03/pulseaudio-usb-sound-device-hotplug.html"&gt;http://stavrakisblog.blogspot.de/2012...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2223#comment-2223</link><description>A toggle command has to know the pulse audio index of the program in question. I also need another running server process for the IPC callback, right? What I really miss is a possibility to issue shell commands on callback in the i3 config file, or an integrated extension language to do such things.</description><pubDate>Mon, 15 Jul 2013 03:49:26 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2223#comment-2223</guid></item><item><title>Comment by grml for &lt;p&gt;New answer: 
+Yes this is possible, but you'll have to cross the line between configuration and writing code. You could subscribe to the &lt;a href="http://i3wm.org/docs/ipc.html#_workspace_event"&gt;workspace event&lt;/a&gt; with some &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;IPC-library&lt;/a&gt;. Feel free to post your solution :) &lt;/p&gt;
+
+&lt;p&gt;Old answer:
+AFAIK, this is not possible. But there is also a more correct level to address this wish: &lt;code&gt;udev&lt;/code&gt;. Then you can have your machine react to the hardware event 'new sound card', instead of some unrelated but correlated change in a user application. &lt;/p&gt;
+
+&lt;p&gt;Someone with a very similar wish has written about it: &lt;a href="http://stavrakisblog.blogspot.de/2012/03/pulseaudio-usb-sound-device-hotplug.html"&gt;http://stavrakisblog.blogspot.de/2012...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2219#comment-2219</link><description>The sink should change depending on which screen my app (mplayer) is. If the window is on my laptop I'd like to hear the sound from it. If I move the window to the ext. monitor the sound should "follow". The necessary commands are in my above comment of the original question.</description><pubDate>Sun, 14 Jul 2013 18:34:13 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2219#comment-2219</guid></item><item><title>Comment by joepd for &lt;p&gt;New answer: 
+Yes this is possible, but you'll have to cross the line between configuration and writing code. You could subscribe to the &lt;a href="http://i3wm.org/docs/ipc.html#_workspace_event"&gt;workspace event&lt;/a&gt; with some &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;IPC-library&lt;/a&gt;. Feel free to post your solution :) &lt;/p&gt;
+
+&lt;p&gt;Old answer:
+AFAIK, this is not possible. But there is also a more correct level to address this wish: &lt;code&gt;udev&lt;/code&gt;. Then you can have your machine react to the hardware event 'new sound card', instead of some unrelated but correlated change in a user application. &lt;/p&gt;
+
+&lt;p&gt;Someone with a very similar wish has written about it: &lt;a href="http://stavrakisblog.blogspot.de/2012/03/pulseaudio-usb-sound-device-hotplug.html"&gt;http://stavrakisblog.blogspot.de/2012...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2212#comment-2212</link><description>Oops, did not read your question properly. You really want to change the default sound based on which workspace is active? </description><pubDate>Sun, 14 Jul 2013 06:54:14 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2212#comment-2212</guid></item><item><title>Comment by joepd for &lt;p&gt;New answer: 
+Yes this is possible, but you'll have to cross the line between configuration and writing code. You could subscribe to the &lt;a href="http://i3wm.org/docs/ipc.html#_workspace_event"&gt;workspace event&lt;/a&gt; with some &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;IPC-library&lt;/a&gt;. Feel free to post your solution :) &lt;/p&gt;
+
+&lt;p&gt;Old answer:
+AFAIK, this is not possible. But there is also a more correct level to address this wish: &lt;code&gt;udev&lt;/code&gt;. Then you can have your machine react to the hardware event 'new sound card', instead of some unrelated but correlated change in a user application. &lt;/p&gt;
+
+&lt;p&gt;Someone with a very similar wish has written about it: &lt;a href="http://stavrakisblog.blogspot.de/2012/03/pulseaudio-usb-sound-device-hotplug.html"&gt;http://stavrakisblog.blogspot.de/2012...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2225#comment-2225</link><description>There is no integrated language extension, but there is an IPC interface for external libraries. A few of the latter have been created. that make it not too difficult to do exactly that. Yes, you would need to start another process that listens to the events. </description><pubDate>Mon, 15 Jul 2013 09:10:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2225#comment-2225</guid></item><item><title>Comment by joepd for &lt;p&gt;New answer: 
+Yes this is possible, but you'll have to cross the line between configuration and writing code. You could subscribe to the &lt;a href="http://i3wm.org/docs/ipc.html#_workspace_event"&gt;workspace event&lt;/a&gt; with some &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;IPC-library&lt;/a&gt;. Feel free to post your solution :) &lt;/p&gt;
+
+&lt;p&gt;Old answer:
+AFAIK, this is not possible. But there is also a more correct level to address this wish: &lt;code&gt;udev&lt;/code&gt;. Then you can have your machine react to the hardware event 'new sound card', instead of some unrelated but correlated change in a user application. &lt;/p&gt;
+
+&lt;p&gt;Someone with a very similar wish has written about it: &lt;a href="http://stavrakisblog.blogspot.de/2012/03/pulseaudio-usb-sound-device-hotplug.html"&gt;http://stavrakisblog.blogspot.de/2012...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2220#comment-2220</link><description>It should be possible to fix this with IPC, but it will take time. Have a look at the links I provided. Guess it would be faster to write a toggle script for pacmd which sends the sound to the other device, though. </description><pubDate>Sun, 14 Jul 2013 19:03:23 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2220#comment-2220</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have another sound card for my external monitor and I'd like to change my default output sink when switching from one monitor to the other:&lt;/p&gt;
+
+&lt;p&gt;echo set-default-sink 0 | pacmd  (laptop)
+  echo set-default-sink 3 | pacmd  (ext. monitor)&lt;/p&gt;
+
+&lt;p&gt;What I need is a hook where I can issue these commands when I change to a workspace which is on the other monitor. Is this possible (4.5.1)?&lt;/p&gt;
+
+&lt;p&gt;Best regards&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/?answer=2213#post-id-2213</link><description>If you are talking about getting the sound output to change dynamically, you might get answers on different forums. For i3, considering you know which one to trigger this change, you can make the keybind do something else:
+
+    bindsym Mod4+1 exec ~/.i3/workspace 1
+
+And for the workspace script:
+    
+    #!/bin/bash
+    
+    #
+    # do whatever you want
+    #    
+    
+    i3-msg "workspace $1"
+</description><pubDate>Sun, 14 Jul 2013 11:11:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/?answer=2213#post-id-2213</guid></item><item><title>Answer by grml for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have another sound card for my external monitor and I'd like to change my default output sink when switching from one monitor to the other:&lt;/p&gt;
+
+&lt;p&gt;echo set-default-sink 0 | pacmd  (laptop)
+  echo set-default-sink 3 | pacmd  (ext. monitor)&lt;/p&gt;
+
+&lt;p&gt;What I need is a hook where I can issue these commands when I change to a workspace which is on the other monitor. Is this possible (4.5.1)?&lt;/p&gt;
+
+&lt;p&gt;Best regards&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/?answer=2239#post-id-2239</link><description>I can start mplayer and redirect sound directly with the -ao option:
+
+    mplayer -ao pulse::$([ "$output" == "VGA1" ] &amp;&amp; echo 3 || echo 1) myvideo.mp4
+
+But how can I find out on which **output** the window will open? I'm still looking for a simple way to switch sound depending on the monitor where mplayer is started.</description><pubDate>Wed, 17 Jul 2013 13:37:08 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/?answer=2239#post-id-2239</guid></item><item><title>Comment by joepd for &lt;p&gt;I can start mplayer and redirect sound directly with the -ao option:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mplayer -ao pulse::$([ "$output" == "VGA1" ] &amp;amp;&amp;amp; echo 3 || echo 1) myvideo.mp4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But how can I find out on which &lt;strong&gt;output&lt;/strong&gt; the window will open? I'm still looking for a simple way to switch sound depending on the monitor where mplayer is started.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2241#comment-2241</link><description>As said before, look into the IPC. `i3-msg -t get_tree | json_pp` should get you going. </description><pubDate>Thu, 18 Jul 2013 05:29:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2210/hook-on-output-change/?comment=2241#comment-2241</guid></item></channel></rss>

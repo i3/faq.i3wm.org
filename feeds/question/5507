@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5507/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 22 Feb 2015 22:53:50 +0000</lastBuildDate><item><title>move non floating window to front of floating window</title><link>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/</link><description>I have a rule that says pidin should be always floating and on workspace 5. When I am in a conversation I would like to run a terminal sometimes to check something, and paste to a friend, or co worker. 
+
+But, the terminal window is shown under pidin and I can focus it but pidgin is always on the top. I cannot bring the terminal to the front neither with mouse nor with the keyboard. 
+
+This is my rule for pidgin:
+
+    assign [class="Pidgin"] 5
+    for_window [class="^Pidgin$"] floating enable
+
+Edit: only pidgin windows are floating, terminal is not. </description><pubDate>Fri, 20 Feb 2015 09:50:19 +0000</pubDate><guid>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/</guid></item><item><title>Comment by tdi for &lt;p&gt;I have a rule that says pidin should be always floating and on workspace 5. When I am in a conversation I would like to run a terminal sometimes to check something, and paste to a friend, or co worker. &lt;/p&gt;
+
+&lt;p&gt;But, the terminal window is shown under pidin and I can focus it but pidgin is always on the top. I cannot bring the terminal to the front neither with mouse nor with the keyboard. &lt;/p&gt;
+
+&lt;p&gt;This is my rule for pidgin:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Pidgin"] 5
+for_window [class="^Pidgin$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit: only pidgin windows are floating, terminal is not. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/?comment=5509#comment-5509</link><description>@Adaephon no terminal is not floating. </description><pubDate>Fri, 20 Feb 2015 12:19:29 +0000</pubDate><guid>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/?comment=5509#comment-5509</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I have a rule that says pidin should be always floating and on workspace 5. When I am in a conversation I would like to run a terminal sometimes to check something, and paste to a friend, or co worker. &lt;/p&gt;
+
+&lt;p&gt;But, the terminal window is shown under pidin and I can focus it but pidgin is always on the top. I cannot bring the terminal to the front neither with mouse nor with the keyboard. &lt;/p&gt;
+
+&lt;p&gt;This is my rule for pidgin:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Pidgin"] 5
+for_window [class="^Pidgin$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit: only pidgin windows are floating, terminal is not. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/?comment=5508#comment-5508</link><description>Is the terminal also a floating window? </description><pubDate>Fri, 20 Feb 2015 12:17:53 +0000</pubDate><guid>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/?comment=5508#comment-5508</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I have a rule that says pidin should be always floating and on workspace 5. When I am in a conversation I would like to run a terminal sometimes to check something, and paste to a friend, or co worker. &lt;/p&gt;
+
+&lt;p&gt;But, the terminal window is shown under pidin and I can focus it but pidgin is always on the top. I cannot bring the terminal to the front neither with mouse nor with the keyboard. &lt;/p&gt;
+
+&lt;p&gt;This is my rule for pidgin:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Pidgin"] 5
+for_window [class="^Pidgin$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit: only pidgin windows are floating, terminal is not. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/?answer=5511#post-id-5511</link><description>Floating windows are always on top of tiled windows. The only way to get a window in front of a floating window is to make it a floating window itself. You can do that with the `floating enable` or `floating toggle` (by default bound to **Mod1**+**Shift**+**space**) commands.
+
+----
+
+That being said, *i3* is a tiling window manager and is designed to be used as such. Support for floating windows is rather rudimentary and mainly exists for only two reasons: dialog windows and applications that just can not handle being resized. 
+
+So my real suggestion is, not to run *pidgin* in floating mode. I am also using `pidgin` and have yet to encounter any problems that would require it to run in floating mode. </description><pubDate>Fri, 20 Feb 2015 13:30:19 +0000</pubDate><guid>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/?answer=5511#post-id-5511</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Floating windows are always on top of tiled windows. The only way to get a window in front of a floating window is to make it a floating window itself. You can do that with the &lt;code&gt;floating enable&lt;/code&gt; or &lt;code&gt;floating toggle&lt;/code&gt; (by default bound to &lt;strong&gt;Mod1&lt;/strong&gt;+&lt;strong&gt;Shift&lt;/strong&gt;+&lt;strong&gt;space&lt;/strong&gt;) commands.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;That being said, &lt;em&gt;i3&lt;/em&gt; is a tiling window manager and is designed to be used as such. Support for floating windows is rather rudimentary and mainly exists for only two reasons: dialog windows and applications that just can not handle being resized. &lt;/p&gt;
+
+&lt;p&gt;So my real suggestion is, not to run &lt;em&gt;pidgin&lt;/em&gt; in floating mode. I am also using &lt;code&gt;pidgin&lt;/code&gt; and have yet to encounter any problems that would require it to run in floating mode. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/?comment=5520#comment-5520</link><description>No. I just use stacked layout and after opening the first conversation window, I move the roster to the right and resize it manually. Any conversation windows I then keep in the left container. I usually keep my machine running, so there is really no benefit in automating the layout.</description><pubDate>Sun, 22 Feb 2015 22:53:50 +0000</pubDate><guid>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/?comment=5520#comment-5520</guid></item><item><title>Comment by tdi for &lt;p&gt;Floating windows are always on top of tiled windows. The only way to get a window in front of a floating window is to make it a floating window itself. You can do that with the &lt;code&gt;floating enable&lt;/code&gt; or &lt;code&gt;floating toggle&lt;/code&gt; (by default bound to &lt;strong&gt;Mod1&lt;/strong&gt;+&lt;strong&gt;Shift&lt;/strong&gt;+&lt;strong&gt;space&lt;/strong&gt;) commands.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;That being said, &lt;em&gt;i3&lt;/em&gt; is a tiling window manager and is designed to be used as such. Support for floating windows is rather rudimentary and mainly exists for only two reasons: dialog windows and applications that just can not handle being resized. &lt;/p&gt;
+
+&lt;p&gt;So my real suggestion is, not to run &lt;em&gt;pidgin&lt;/em&gt; in floating mode. I am also using &lt;code&gt;pidgin&lt;/code&gt; and have yet to encounter any problems that would require it to run in floating mode. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/?comment=5512#comment-5512</link><description>@Adaephon ok thank you. btw do you enforce piding starting up in some sane manner, i.e. roster on one side, and smaller than the conversation windows ?</description><pubDate>Fri, 20 Feb 2015 17:35:02 +0000</pubDate><guid>https://faq.i3wm.org/question/5507/move-non-floating-window-to-front-of-floating-window/?comment=5512#comment-5512</guid></item></channel></rss>

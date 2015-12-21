@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6421/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 11 Aug 2015 19:32:52 +0000</lastBuildDate><item><title>Conditional Monitor Cofiguration</title><link>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/</link><description>I use Dell Sputnik for development with i3wm.  When I travel, I use the laptop monitor, but while in the office, I connect a desktop monitor.  Below is my configuration when the desktop monitor connected.
+
+    ~$ xrandr
+        Screen 0: minimum 8 x 8, current 2560 x 1440, maximum 32767 x 32767
+    eDP1 connected primary (normal left inverted right x axis y axis)
+       1920x1080      60.0 +   59.9     48.0  
+       1680x1050      60.0     59.9  
+       1600x1024      60.2  
+       1400x1050      60.0  
+       1280x1024      60.0  
+       1440x900       59.9  
+       1280x960       60.0  
+       1360x768       59.8     60.0  
+       1152x864       60.0  
+       1024x768       60.0  
+       800x600        60.3     56.2  
+       640x480        59.9  
+    DP1 connected 2560x1440+0+0 (normal left inverted right x axis y axis) 597mm x 336mm
+       2560x1440      60.0*+
+       1920x1200      59.9  
+       1920x1080      60.0     60.0     50.0     59.9     24.0     24.0  
+       1920x1080i     60.1     50.0     60.0  
+       1600x1200      60.0  
+       1680x1050      60.0  
+       1280x1024      75.0     60.0  
+       1280x800       59.8  
+       1152x864       75.0  
+       1280x720       60.0     50.0     59.9  
+       1024x768       75.1     60.0  
+       800x600        75.0     60.3  
+       720x576        50.0  
+       720x480        60.0     59.9  
+       640x480        75.0     60.0     59.9  
+       720x400        70.1  
+    HDMI1 disconnected (normal left inverted right x axis y axis)
+    VIRTUAL1 disconnected (normal left inverted right x axis y axis)
+    
+Is it possible to have the system turn off the laptop monitor when the desktop monitor is connected?  I know that I can enter `xrandr --output DP1 --off` to do it by hand, but is it possible to have the system do it automatically?
+Thanks...</description><pubDate>Tue, 11 Aug 2015 15:31:17 +0000</pubDate><guid>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/</guid></item><item><title>Answer by gurkensalat for &lt;p&gt;I use Dell Sputnik for development with i3wm.  When I travel, I use the laptop monitor, but while in the office, I connect a desktop monitor.  Below is my configuration when the desktop monitor connected.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~$ xrandr
+    Screen 0: minimum 8 x 8, current 2560 x 1440, maximum 32767 x 32767
+eDP1 connected primary (normal left inverted right x axis y axis)
+   1920x1080      60.0 +   59.9     48.0  
+   1680x1050      60.0     59.9  
+   1600x1024      60.2  
+   1400x1050      60.0  
+   1280x1024      60.0  
+   1440x900       59.9  
+   1280x960       60.0  
+   1360x768       59.8     60.0  
+   1152x864       60.0  
+   1024x768       60.0  
+   800x600        60.3     56.2  
+   640x480        59.9  
+DP1 connected 2560x1440+0+0 (normal left inverted right x axis y axis) 597mm x 336mm
+   2560x1440      60.0*+
+   1920x1200      59.9  
+   1920x1080      60.0     60.0     50.0     59.9     24.0     24.0  
+   1920x1080i     60.1     50.0     60.0  
+   1600x1200      60.0  
+   1680x1050      60.0  
+   1280x1024      75.0     60.0  
+   1280x800       59.8  
+   1152x864       75.0  
+   1280x720       60.0     50.0     59.9  
+   1024x768       75.1     60.0  
+   800x600        75.0     60.3  
+   720x576        50.0  
+   720x480        60.0     59.9  
+   640x480        75.0     60.0     59.9  
+   720x400        70.1  
+HDMI1 disconnected (normal left inverted right x axis y axis)
+VIRTUAL1 disconnected (normal left inverted right x axis y axis)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is it possible to have the system turn off the laptop monitor when the desktop monitor is connected?  I know that I can enter &lt;code&gt;xrandr --output DP1 --off&lt;/code&gt; to do it by hand, but is it possible to have the system do it automatically?
+Thanks...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?answer=6422#post-id-6422</link><description>Name my script to e.g. "xrandr_daemon" and let it run on startup. I haven't test this to its full extend yet, but it should work.
+
+    #!/bin/bash
+    
+    onConnection() {
+    	echo onConnection
+    	xrandr --output eDP1 --auto
+        xrandr --output DP1 --off
+    }
+    onDisconnection() {
+    	echo onDisconnection
+    	xrandr --output eDP1 --off
+        xrandr --output DP1 --auto
+    }
+    
+    #########################
+        
+    statefile="`mktemp`"
+    
+    quit() {
+    	rm "$statefile"
+    	exit 1
+    }
+    trap quit SIGINT SIGTERM
+    
+    getstate() {
+    	state="`xrandr -q | wc -l`"
+    }
+    savestate() {
+    	echo "$state" &gt; "$statefile"
+    }
+    getstate
+    savestate
+    
+    xev -root -event randr | grep --line-buffered XRROutputChangeNotifyEvent | \
+    while IFS= read -r line; do
+    	getstate
+    	old="`cat "$statefile"`"
+    	if [ "$state" -gt "$old" ]; then
+    		onConnection
+    	elif [ "$state" -lt "$old" ]; then
+    		onDisconnection
+    	fi
+    	savestate
+    done
+
+EDIT:
+What works is
+
+    # onConnection
+    xrandr --output eDP1 --auto
+    xrandr --output DP1 --primary --left-of eDP1
+    # onDisconnection
+    xrandr --output eDP1 --off
+
+i3 seems to log out automatically as soon as both monitors are set off (xrandr ... --off) which makes the original script unusable...
+
+EDIT2:
+The next release with [this commit](https://github.com/hwangcc23/i3/commit/2c77d7ceed298caf17a78b382e23af2e48377021) will fix this (EDIT3: tested already)</description><pubDate>Tue, 11 Aug 2015 17:51:41 +0000</pubDate><guid>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?answer=6422#post-id-6422</guid></item><item><title>Comment by SilverDiamond for &lt;p&gt;Name my script to e.g. "xrandr_daemon" and let it run on startup. I haven't test this to its full extend yet, but it should work.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+onConnection() {
+    echo onConnection
+    xrandr --output eDP1 --auto
+    xrandr --output DP1 --off
+}
+onDisconnection() {
+    echo onDisconnection
+    xrandr --output eDP1 --off
+    xrandr --output DP1 --auto
+}
+
+#########################
+
+statefile="`mktemp`"
+
+quit() {
+    rm "$statefile"
+    exit 1
+}
+trap quit SIGINT SIGTERM
+
+getstate() {
+    state="`xrandr -q | wc -l`"
+}
+savestate() {
+    echo "$state" &amp;gt; "$statefile"
+}
+getstate
+savestate
+
+xev -root -event randr | grep --line-buffered XRROutputChangeNotifyEvent | \
+while IFS= read -r line; do
+    getstate
+    old="`cat "$statefile"`"
+    if [ "$state" -gt "$old" ]; then
+        onConnection
+    elif [ "$state" -lt "$old" ]; then
+        onDisconnection
+    fi
+    savestate
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;EDIT:
+What works is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# onConnection
+xrandr --output eDP1 --auto
+xrandr --output DP1 --primary --left-of eDP1
+# onDisconnection
+xrandr --output eDP1 --off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;i3 seems to log out automatically as soon as both monitors are set off (xrandr ... --off) which makes the original script unusable...&lt;/p&gt;
+
+&lt;p&gt;EDIT2:
+The next release with &lt;a href="https://github.com/hwangcc23/i3/commit/2c77d7ceed298caf17a78b382e23af2e48377021"&gt;this commit&lt;/a&gt; will fix this (EDIT3: tested already)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?comment=6427#comment-6427</link><description>I tried it and got the errors below.  Also, when I unplugged the monitor, the system logged out.</description><pubDate>Tue, 11 Aug 2015 18:16:17 +0000</pubDate><guid>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?comment=6427#comment-6427</guid></item><item><title>Answer by SilverDiamond for &lt;p&gt;I use Dell Sputnik for development with i3wm.  When I travel, I use the laptop monitor, but while in the office, I connect a desktop monitor.  Below is my configuration when the desktop monitor connected.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~$ xrandr
+    Screen 0: minimum 8 x 8, current 2560 x 1440, maximum 32767 x 32767
+eDP1 connected primary (normal left inverted right x axis y axis)
+   1920x1080      60.0 +   59.9     48.0  
+   1680x1050      60.0     59.9  
+   1600x1024      60.2  
+   1400x1050      60.0  
+   1280x1024      60.0  
+   1440x900       59.9  
+   1280x960       60.0  
+   1360x768       59.8     60.0  
+   1152x864       60.0  
+   1024x768       60.0  
+   800x600        60.3     56.2  
+   640x480        59.9  
+DP1 connected 2560x1440+0+0 (normal left inverted right x axis y axis) 597mm x 336mm
+   2560x1440      60.0*+
+   1920x1200      59.9  
+   1920x1080      60.0     60.0     50.0     59.9     24.0     24.0  
+   1920x1080i     60.1     50.0     60.0  
+   1600x1200      60.0  
+   1680x1050      60.0  
+   1280x1024      75.0     60.0  
+   1280x800       59.8  
+   1152x864       75.0  
+   1280x720       60.0     50.0     59.9  
+   1024x768       75.1     60.0  
+   800x600        75.0     60.3  
+   720x576        50.0  
+   720x480        60.0     59.9  
+   640x480        75.0     60.0     59.9  
+   720x400        70.1  
+HDMI1 disconnected (normal left inverted right x axis y axis)
+VIRTUAL1 disconnected (normal left inverted right x axis y axis)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is it possible to have the system turn off the laptop monitor when the desktop monitor is connected?  I know that I can enter &lt;code&gt;xrandr --output DP1 --off&lt;/code&gt; to do it by hand, but is it possible to have the system do it automatically?
+Thanks...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?answer=6426#post-id-6426</link><description>Thank you @gurkensalat, I tried it and go the following errors:
+
+    ~/.i3$ ./xrandr_deamon.sh 
+    onDisconnection
+    onDisconnection
+    XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
+          after 29 requests (29 known processed) with 0 events remaining.
+    Can't open display :0
+    Can't open display :0
+    ~/.i3$ Invalid MIT-MAGIC-COOKIE-1 keyCan't open display :0
+    Traceback (most recent call last):
+      File "./connect_screen.py", line 33, in &lt;module&gt;
+        xr2 = count_screens(get(["xrandr"]))
+      File "./connect_screen.py", line 21, in get
+        def get(cmd): return subprocess.check_output(cmd).decode("utf-8")
+      File "/usr/lib/python3.4/subprocess.py", line 620, in check_output
+        raise CalledProcessError(retcode, process.args, output=output)
+    subprocess.CalledProcessError: Command '['xrandr']' returned non-zero exit status 1
+</description><pubDate>Tue, 11 Aug 2015 18:14:59 +0000</pubDate><guid>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?answer=6426#post-id-6426</guid></item><item><title>Comment by gurkensalat for &lt;p&gt;Thank you &lt;a href="/users/24916/gurkensalat/"&gt;@gurkensalat&lt;/a&gt;, I tried it and go the following errors:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/.i3$ ./xrandr_deamon.sh 
+onDisconnection
+onDisconnection
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
+      after 29 requests (29 known processed) with 0 events remaining.
+Can't open display :0
+Can't open display :0
+~/.i3$ Invalid MIT-MAGIC-COOKIE-1 keyCan't open display :0
+Traceback (most recent call last):
+  File "./connect_screen.py", line 33, in &amp;lt;module&amp;gt;
+    xr2 = count_screens(get(["xrandr"]))
+  File "./connect_screen.py", line 21, in get
+    def get(cmd): return subprocess.check_output(cmd).decode("utf-8")
+  File "/usr/lib/python3.4/subprocess.py", line 620, in check_output
+    raise CalledProcessError(retcode, process.args, output=output)
+subprocess.CalledProcessError: Command '['xrandr']' returned non-zero exit status 1
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?comment=6428#comment-6428</link><description>This is strange... Playing around with 2 monitors turned on works fine (--left-of / disabling one), but if only 1 is enabled and then this one disconnects, running xrandr crashes my X server... EDIT: i3 seems to automatically exit if all the monitors are not in use</description><pubDate>Tue, 11 Aug 2015 19:32:52 +0000</pubDate><guid>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?comment=6428#comment-6428</guid></item><item><title>Answer by i3convert for &lt;p&gt;I use Dell Sputnik for development with i3wm.  When I travel, I use the laptop monitor, but while in the office, I connect a desktop monitor.  Below is my configuration when the desktop monitor connected.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~$ xrandr
+    Screen 0: minimum 8 x 8, current 2560 x 1440, maximum 32767 x 32767
+eDP1 connected primary (normal left inverted right x axis y axis)
+   1920x1080      60.0 +   59.9     48.0  
+   1680x1050      60.0     59.9  
+   1600x1024      60.2  
+   1400x1050      60.0  
+   1280x1024      60.0  
+   1440x900       59.9  
+   1280x960       60.0  
+   1360x768       59.8     60.0  
+   1152x864       60.0  
+   1024x768       60.0  
+   800x600        60.3     56.2  
+   640x480        59.9  
+DP1 connected 2560x1440+0+0 (normal left inverted right x axis y axis) 597mm x 336mm
+   2560x1440      60.0*+
+   1920x1200      59.9  
+   1920x1080      60.0     60.0     50.0     59.9     24.0     24.0  
+   1920x1080i     60.1     50.0     60.0  
+   1600x1200      60.0  
+   1680x1050      60.0  
+   1280x1024      75.0     60.0  
+   1280x800       59.8  
+   1152x864       75.0  
+   1280x720       60.0     50.0     59.9  
+   1024x768       75.1     60.0  
+   800x600        75.0     60.3  
+   720x576        50.0  
+   720x480        60.0     59.9  
+   640x480        75.0     60.0     59.9  
+   720x400        70.1  
+HDMI1 disconnected (normal left inverted right x axis y axis)
+VIRTUAL1 disconnected (normal left inverted right x axis y axis)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is it possible to have the system turn off the laptop monitor when the desktop monitor is connected?  I know that I can enter &lt;code&gt;xrandr --output DP1 --off&lt;/code&gt; to do it by hand, but is it possible to have the system do it automatically?
+Thanks...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?answer=6423#post-id-6423</link><description>You could subscribe to [i3 events](https://i3wm.org/docs/ipc.html#events). The output event means that the configuration of screens, outputs, etc. has changed. You could then run a script to check what outputs are available and modify the xrandr configuration.</description><pubDate>Tue, 11 Aug 2015 17:51:55 +0000</pubDate><guid>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?answer=6423#post-id-6423</guid></item><item><title>Comment by SilverDiamond for &lt;p&gt;You could subscribe to &lt;a href="https://i3wm.org/docs/ipc.html#events"&gt;i3 events&lt;/a&gt;. The output event means that the configuration of screens, outputs, etc. has changed. You could then run a script to check what outputs are available and modify the xrandr configuration.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?comment=6424#comment-6424</link><description>Wow, this looks awesome, is there an event that detects plugging/unplugging of the screen?</description><pubDate>Tue, 11 Aug 2015 17:56:53 +0000</pubDate><guid>https://faq.i3wm.org/question/6421/conditional-monitor-cofiguration/?comment=6424#comment-6424</guid></item></channel></rss>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6157/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 19 Jul 2015 02:31:22 +0000</lastBuildDate><item><title>Proper system tray icon scaling for HiDPI?</title><link>https://faq.i3wm.org/question/6157/proper-system-tray-icon-scaling-for-hidpi/</link><description> I just setup my Dell XPS 13 2015 with archlinux and i3 and have had some issues with proper scaling and HiDPI. I've set my DPI to it's proper value via this config for xorg:
+
+ https://raw.githubusercontent.com/mpalourdio/xps13/master/A02_01/90-eDP1.conf
+
+This as my gtkrc-2.0 http://pastebin.com/raw.php?i=gaMKY9be
+
+Additionally I've set Xft.dpi: 277 set in my Xresources
+
+While this has solved most of my issues, I'm still experiencing issues with getting icons to scale properly. My system tray icons are tiny regardless of how large my i3bar is and other applications like PCManFM have tiny icons in the GUI. Does anyone know how to force these icons to properly scale with i3?
+
+A lesser issue but perhaps something that may help resolving my issue is that Google Chrome is also tiny unless launched with the --force-device-scale-factor=2 flag raised.
+
+I'm sure there's a simple solution, but this has been driving me mad. Thank you ahead of time!
+
+
+Edit: I've managed to configure my gtk applications further in my gtkrc and get the icons to scale properly! Now I just can't figure out how to get the system tray icons to get larger</description><pubDate>Sun, 21 Jun 2015 06:30:47 +0000</pubDate><guid>https://faq.i3wm.org/question/6157/proper-system-tray-icon-scaling-for-hidpi/</guid></item><item><title>Comment by andy for &lt;p&gt;I just setup my Dell XPS 13 2015 with archlinux and i3 and have had some issues with proper scaling and HiDPI. I've set my DPI to it's proper value via this config for xorg:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://raw.githubusercontent.com/mpalourdio/xps13/master/A02_01/90-eDP1.conf"&gt;https://raw.githubusercontent.com/mpa...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This as my gtkrc-2.0 &lt;a href="http://pastebin.com/raw.php?i=gaMKY9be"&gt;http://pastebin.com/raw.php?i=gaMKY9be&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Additionally I've set Xft.dpi: 277 set in my Xresources&lt;/p&gt;
+
+&lt;p&gt;While this has solved most of my issues, I'm still experiencing issues with getting icons to scale properly. My system tray icons are tiny regardless of how large my i3bar is and other applications like PCManFM have tiny icons in the GUI. Does anyone know how to force these icons to properly scale with i3?&lt;/p&gt;
+
+&lt;p&gt;A lesser issue but perhaps something that may help resolving my issue is that Google Chrome is also tiny unless launched with the --force-device-scale-factor=2 flag raised.&lt;/p&gt;
+
+&lt;p&gt;I'm sure there's a simple solution, but this has been driving me mad. Thank you ahead of time!&lt;/p&gt;
+
+&lt;p&gt;Edit: I've managed to configure my gtk applications further in my gtkrc and get the icons to scale properly! Now I just can't figure out how to get the system tray icons to get larger&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6157/proper-system-tray-icon-scaling-for-hidpi/?comment=6321#comment-6321</link><description>Can you post what you did to solve the GTK issue?</description><pubDate>Sun, 19 Jul 2015 02:31:22 +0000</pubDate><guid>https://faq.i3wm.org/question/6157/proper-system-tray-icon-scaling-for-hidpi/?comment=6321#comment-6321</guid></item><item><title>Answer by oberon for &lt;p&gt;I just setup my Dell XPS 13 2015 with archlinux and i3 and have had some issues with proper scaling and HiDPI. I've set my DPI to it's proper value via this config for xorg:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://raw.githubusercontent.com/mpalourdio/xps13/master/A02_01/90-eDP1.conf"&gt;https://raw.githubusercontent.com/mpa...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This as my gtkrc-2.0 &lt;a href="http://pastebin.com/raw.php?i=gaMKY9be"&gt;http://pastebin.com/raw.php?i=gaMKY9be&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Additionally I've set Xft.dpi: 277 set in my Xresources&lt;/p&gt;
+
+&lt;p&gt;While this has solved most of my issues, I'm still experiencing issues with getting icons to scale properly. My system tray icons are tiny regardless of how large my i3bar is and other applications like PCManFM have tiny icons in the GUI. Does anyone know how to force these icons to properly scale with i3?&lt;/p&gt;
+
+&lt;p&gt;A lesser issue but perhaps something that may help resolving my issue is that Google Chrome is also tiny unless launched with the --force-device-scale-factor=2 flag raised.&lt;/p&gt;
+
+&lt;p&gt;I'm sure there's a simple solution, but this has been driving me mad. Thank you ahead of time!&lt;/p&gt;
+
+&lt;p&gt;Edit: I've managed to configure my gtk applications further in my gtkrc and get the icons to scale properly! Now I just can't figure out how to get the system tray icons to get larger&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6157/proper-system-tray-icon-scaling-for-hidpi/?answer=6165#post-id-6165</link><description>Have you checked if the icons in question are availabe in different sizes at all? ;)
+I keep playing around with the dropbox icon because it tends to not use the color of my bar, so I convert them after every update... ;) In this particular case I see that they are supplied in /opt/dropbox/images/hicolor/16x16/ So, 16x16 only. For font-sizes up to 16px the scaling works, but if I'd set the font size to something like 20px the icon would stay at max 16px. With a very high resolution maybe the icon size could simply not be sufficient.</description><pubDate>Sun, 21 Jun 2015 12:38:33 +0000</pubDate><guid>https://faq.i3wm.org/question/6157/proper-system-tray-icon-scaling-for-hidpi/?answer=6165#post-id-6165</guid></item></channel></rss>

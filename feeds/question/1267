@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1267/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 01 Jul 2014 13:43:33 +0000</lastBuildDate><item><title>Desktop numbers beyond 10</title><link>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/</link><description>I'd love to be able to number desktops beyond 10 (the current maximum). Is there a way to do this?
+
+thanks!</description><pubDate>Wed, 27 Feb 2013 23:17:56 +0000</pubDate><guid>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;I'd love to be able to number desktops beyond 10 (the current maximum). Is there a way to do this?&lt;/p&gt;
+
+&lt;p&gt;thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?answer=1271#post-id-1271</link><description>I guess the principle here is to reach a workspace with a single shortcut command ($mod+{number}), so you can't simply hit $mod+11 because the $mod+1 will be triggered first.
+
+A nicer way to overcome this is to use a second auxiliary key:
+    
+    # workspaces from 1-10
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+    
+    # workspaces from 11-20
+    bindsym $mod+Control+1 workspace 11
+    bindsym $mod+Control+2 workspace 12
+    bindsym $mod+Control+3 workspace 13
+    bindsym $mod+Control+4 workspace 14
+    bindsym $mod+Control+5 workspace 15
+    bindsym $mod+Control+6 workspace 16
+    bindsym $mod+Control+7 workspace 17
+    bindsym $mod+Control+8 workspace 18
+    bindsym $mod+Control+9 workspace 19
+    bindsym $mod+Control+0 workspace 20
+
+Works fine for me!
+
+(Note that you must adapt this if you are already using the $mod+Control for something else)...</description><pubDate>Wed, 27 Feb 2013 23:54:08 +0000</pubDate><guid>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?answer=1271#post-id-1271</guid></item><item><title>Comment by i3er for &lt;p&gt;I guess the principle here is to reach a workspace with a single shortcut command ($mod+{number}), so you can't simply hit $mod+11 because the $mod+1 will be triggered first.&lt;/p&gt;
+
+&lt;p&gt;A nicer way to overcome this is to use a second auxiliary key:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# workspaces from 1-10
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# workspaces from 11-20
+bindsym $mod+Control+1 workspace 11
+bindsym $mod+Control+2 workspace 12
+bindsym $mod+Control+3 workspace 13
+bindsym $mod+Control+4 workspace 14
+bindsym $mod+Control+5 workspace 15
+bindsym $mod+Control+6 workspace 16
+bindsym $mod+Control+7 workspace 17
+bindsym $mod+Control+8 workspace 18
+bindsym $mod+Control+9 workspace 19
+bindsym $mod+Control+0 workspace 20
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Works fine for me!&lt;/p&gt;
+
+&lt;p&gt;(Note that you must adapt this if you are already using the $mod+Control for something else)...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?comment=1274#comment-1274</link><description>Awesome! Thanks a bunch.</description><pubDate>Thu, 28 Feb 2013 19:00:11 +0000</pubDate><guid>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?comment=1274#comment-1274</guid></item><item><title>Comment by emckenna for &lt;p&gt;I guess the principle here is to reach a workspace with a single shortcut command ($mod+{number}), so you can't simply hit $mod+11 because the $mod+1 will be triggered first.&lt;/p&gt;
+
+&lt;p&gt;A nicer way to overcome this is to use a second auxiliary key:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# workspaces from 1-10
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# workspaces from 11-20
+bindsym $mod+Control+1 workspace 11
+bindsym $mod+Control+2 workspace 12
+bindsym $mod+Control+3 workspace 13
+bindsym $mod+Control+4 workspace 14
+bindsym $mod+Control+5 workspace 15
+bindsym $mod+Control+6 workspace 16
+bindsym $mod+Control+7 workspace 17
+bindsym $mod+Control+8 workspace 18
+bindsym $mod+Control+9 workspace 19
+bindsym $mod+Control+0 workspace 20
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Works fine for me!&lt;/p&gt;
+
+&lt;p&gt;(Note that you must adapt this if you are already using the $mod+Control for something else)...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?comment=4081#comment-4081</link><description>hardest part to this was figuring out how to find it.  Finally found by searching 'workspace 11' ;)</description><pubDate>Tue, 01 Jul 2014 13:43:33 +0000</pubDate><guid>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?comment=4081#comment-4081</guid></item><item><title>Answer by olafurw for &lt;p&gt;I'd love to be able to number desktops beyond 10 (the current maximum). Is there a way to do this?&lt;/p&gt;
+
+&lt;p&gt;thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?answer=1374#post-id-1374</link><description>Here is my way of doing this. I use 20 workspaces, and I use 1 through 0 as the left screen and q through p as the left one (numbered 11 to 20)
+
+    # switch to workspace
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+
+    # switch to workspace
+    bindsym $mod+q workspace 11
+    bindsym $mod+w workspace 12
+    bindsym $mod+e workspace 13
+    bindsym $mod+r workspace 14
+    bindsym $mod+t workspace 15
+    bindsym $mod+y workspace 16
+    bindsym $mod+u workspace 17
+    bindsym $mod+i workspace 18
+    bindsym $mod+o workspace 19
+    bindsym $mod+p workspace 20
+
+This way I can still use the same behavior for moving stuff between workspaces. For the keys that are used in the top row, I just rebound, for example quit is now Z not Q.</description><pubDate>Tue, 12 Mar 2013 10:47:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?answer=1374#post-id-1374</guid></item><item><title>Answer by Michael for &lt;p&gt;I'd love to be able to number desktops beyond 10 (the current maximum). Is there a way to do this?&lt;/p&gt;
+
+&lt;p&gt;thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?answer=1270#post-id-1270</link><description>1. copy the line saying “bindsym $mod+0 workspace 10”
+2. paste the line
+3. change 10 to 11
+4. change “$mod+0” to something else.
+
+Repeat for the number of workspaces you want to have.</description><pubDate>Wed, 27 Feb 2013 23:30:42 +0000</pubDate><guid>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?answer=1270#post-id-1270</guid></item><item><title>Answer by Rasi for &lt;p&gt;I'd love to be able to number desktops beyond 10 (the current maximum). Is there a way to do this?&lt;/p&gt;
+
+&lt;p&gt;thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?answer=1269#post-id-1269</link><description>who told you there is a maximum? because there isn't And even if there is, its definately not at 10 :) A friend of mine uses i3 with 14 workspaces</description><pubDate>Wed, 27 Feb 2013 23:27:09 +0000</pubDate><guid>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?answer=1269#post-id-1269</guid></item><item><title>Answer by maks_ua for &lt;p&gt;I'd love to be able to number desktops beyond 10 (the current maximum). Is there a way to do this?&lt;/p&gt;
+
+&lt;p&gt;thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?answer=1289#post-id-1289</link><description>Just find an alternative way to do this task in Vim like style (or like in screen):
+
+    mode "wswitch" {
+    	# You entering in mode where you can choose additional workspaces
+    bindsym 1 workspace 11; mode "default"
+    bindsym 2 workspace 12; mode "default"
+    bindsym 3 workspace 13; mode "default"
+    bindsym 4 workspace 14; mode "default"
+    # .....
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    }
+    
+    bindsym $mod+Mod1+space mode "wswitch"
+
+By pressing Win+Alt+space (in my case) we entering mode that allow us to switch workspaces with single key.</description><pubDate>Sun, 03 Mar 2013 03:00:40 +0000</pubDate><guid>https://faq.i3wm.org/question/1267/desktop-numbers-beyond-10/?answer=1289#post-id-1289</guid></item></channel></rss>

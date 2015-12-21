@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3554/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 01 Apr 2014 08:45:47 +0000</lastBuildDate><item><title>[debian]Not able to get the reboot/suspend script work.</title><link>https://faq.i3wm.org/question/3554/debiannot-able-to-get-the-rebootsuspend-script-work/</link><description>Hi, I am trying to get the reboot/suspend script work from i3 control mode as follows.
+I have created a script called i3exit , and placed it in ~/bin/ directory, this directory is my PATH. 
+
+Here are the contents of the script.
+
+    #!/bin/sh
+    lock() {
+        i3lock
+    }
+    
+    case "$1" in
+        lock)
+            i3lock -d -i /home/neo1691/.i3/i3lock_screen.png -n
+            ;;
+        logout)
+            i3-msg exit
+            ;;
+        suspend)
+            sudo pm-suspend
+            ;;
+        hibernate)
+            sudo pm-hibernate
+            ;;
+        reboot)
+            sudo reboot
+            ;;
+        shutdown)
+            sudo halt
+            ;;
+        *)
+            echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+            exit 2
+    esac
+
+Next in .i3/config I have added these lines, 
+
+    set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+    mode "$mode_system" {
+        bindsym l exec --no-startup-id i3exit lock, mode "default"
+        bindsym e exec --no-startup-id i3exit logout, mode "default"
+        bindsym s exec --no-startup-id i3exit suspend, mode "default"
+        bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+        bindsym r exec --no-startup-id i3exit reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"  
+    
+        # back to normal: Enter or Escape
+             bindsym Return mode "default"
+                 bindsym Escape mode "default"
+                 }
+                 bindsym $mod+Pause mode "$mode_system"
+
+Now if I run i3exit suspend, then my laptop suspends properly. [After asking the password]. If I run i3exit lock, then my laptop gets locked, without asking for the password. 
+
+But when I press $mod+pause the control mod popups appears on the i3statusbar and if I press l (lock) nothing happens and the dialogue box disappears!
+
+If I open up a terminal and `echo $PATH`, then my folder, ~/bin is seen there. 
+But if I run this specific command:
+ `tr '\0' '\n' &lt;/proc/$(pidof i3)/environ | grep PATH` then the $PATH doesn't have the concerned folder. 
+
+Also, will adding this line :
+`neo1691 ALL=(ALL) ALL, NOPASSWD: /home/neo1691/bin/i3exit` will stop asking passwords if I run i3exit. I just want to make sure of the syntax!
+
+Any ideas will be appreciated. Thanks
+</description><pubDate>Sun, 23 Mar 2014 12:42:07 +0000</pubDate><guid>https://faq.i3wm.org/question/3554/debiannot-able-to-get-the-rebootsuspend-script-work/</guid></item><item><title>Answer by joepd for &lt;p&gt;Hi, I am trying to get the reboot/suspend script work from i3 control mode as follows.
+I have created a script called i3exit , and placed it in ~/bin/ directory, this directory is my PATH. &lt;/p&gt;
+
+&lt;p&gt;Here are the contents of the script.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+lock() {
+    i3lock
+}
+
+case "$1" in
+    lock)
+        i3lock -d -i /home/neo1691/.i3/i3lock_screen.png -n
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        sudo pm-suspend
+        ;;
+    hibernate)
+        sudo pm-hibernate
+        ;;
+    reboot)
+        sudo reboot
+        ;;
+    shutdown)
+        sudo halt
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next in .i3/config I have added these lines, &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"  
+
+    # back to normal: Enter or Escape
+         bindsym Return mode "default"
+             bindsym Escape mode "default"
+             }
+             bindsym $mod+Pause mode "$mode_system"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now if I run i3exit suspend, then my laptop suspends properly. [After asking the password]. If I run i3exit lock, then my laptop gets locked, without asking for the password. &lt;/p&gt;
+
+&lt;p&gt;But when I press $mod+pause the control mod popups appears on the i3statusbar and if I press l (lock) nothing happens and the dialogue box disappears!&lt;/p&gt;
+
+&lt;p&gt;If I open up a terminal and &lt;code&gt;echo $PATH&lt;/code&gt;, then my folder, ~/bin is seen there. 
+But if I run this specific command:
+ &lt;code&gt;tr '\0' '\n' &amp;lt;/proc/$(pidof i3)/environ | grep PATH&lt;/code&gt; then the $PATH doesn't have the concerned folder. &lt;/p&gt;
+
+&lt;p&gt;Also, will adding this line :
+&lt;code&gt;neo1691 ALL=(ALL) ALL, NOPASSWD: /home/neo1691/bin/i3exit&lt;/code&gt; will stop asking passwords if I run i3exit. I just want to make sure of the syntax!&lt;/p&gt;
+
+&lt;p&gt;Any ideas will be appreciated. Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3554/debiannot-able-to-get-the-rebootsuspend-script-work/?answer=3555#post-id-3555</link><description>That was a long way of saying that the path set in the config file of your shell is not picked up by ``i3``;) Depending on a few things with Debian and your setup, one of the following could help: 
+
+ - Export your newly set ``$PATH`` in the bash profile file, that also gets executed with a non-login shell
+ - Maybe however the Shell that executes ``i3`` is ``dash`` and not ``bash``, not sure which config files it uses
+ - Export it in ``~/.xinitrc``, before you launch ``i3``, if your login manager uses that file. That would make this PATH available to all graphical applications as well. 
+ - Set the full path of the executable in your ``i3`` config file. 
+
+Good luck! </description><pubDate>Sun, 23 Mar 2014 20:10:36 +0000</pubDate><guid>https://faq.i3wm.org/question/3554/debiannot-able-to-get-the-rebootsuspend-script-work/?answer=3555#post-id-3555</guid></item><item><title>Comment by neo1691 for &lt;p&gt;That was a long way of saying that the path set in the config file of your shell is not picked up by &lt;code&gt;i3&lt;/code&gt;;) Depending on a few things with Debian and your setup, one of the following could help: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Export your newly set &lt;code&gt;$PATH&lt;/code&gt; in the bash profile file, that also gets executed with a non-login shell&lt;/li&gt;
+&lt;li&gt;Maybe however the Shell that executes &lt;code&gt;i3&lt;/code&gt; is &lt;code&gt;dash&lt;/code&gt; and not &lt;code&gt;bash&lt;/code&gt;, not sure which config files it uses&lt;/li&gt;
+&lt;li&gt;Export it in &lt;code&gt;~/.xinitrc&lt;/code&gt;, before you launch &lt;code&gt;i3&lt;/code&gt;, if your login manager uses that file. That would make this PATH available to all graphical applications as well. &lt;/li&gt;
+&lt;li&gt;Set the full path of the executable in your &lt;code&gt;i3&lt;/code&gt; config file. &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Good luck! &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3554/debiannot-able-to-get-the-rebootsuspend-script-work/?comment=3561#comment-3561</link><description>I tried exporting the PATH variable as export PATH=${PATH}:/home/neo1691/bin in .xinitrc, .bash_profile as well as /etc/profile. But nothing seem to work. $SHELL says /bin/bash! </description><pubDate>Mon, 24 Mar 2014 21:33:13 +0000</pubDate><guid>https://faq.i3wm.org/question/3554/debiannot-able-to-get-the-rebootsuspend-script-work/?comment=3561#comment-3561</guid></item><item><title>Answer by neo1691 for &lt;p&gt;Hi, I am trying to get the reboot/suspend script work from i3 control mode as follows.
+I have created a script called i3exit , and placed it in ~/bin/ directory, this directory is my PATH. &lt;/p&gt;
+
+&lt;p&gt;Here are the contents of the script.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+lock() {
+    i3lock
+}
+
+case "$1" in
+    lock)
+        i3lock -d -i /home/neo1691/.i3/i3lock_screen.png -n
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        sudo pm-suspend
+        ;;
+    hibernate)
+        sudo pm-hibernate
+        ;;
+    reboot)
+        sudo reboot
+        ;;
+    shutdown)
+        sudo halt
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next in .i3/config I have added these lines, &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"  
+
+    # back to normal: Enter or Escape
+         bindsym Return mode "default"
+             bindsym Escape mode "default"
+             }
+             bindsym $mod+Pause mode "$mode_system"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now if I run i3exit suspend, then my laptop suspends properly. [After asking the password]. If I run i3exit lock, then my laptop gets locked, without asking for the password. &lt;/p&gt;
+
+&lt;p&gt;But when I press $mod+pause the control mod popups appears on the i3statusbar and if I press l (lock) nothing happens and the dialogue box disappears!&lt;/p&gt;
+
+&lt;p&gt;If I open up a terminal and &lt;code&gt;echo $PATH&lt;/code&gt;, then my folder, ~/bin is seen there. 
+But if I run this specific command:
+ &lt;code&gt;tr '\0' '\n' &amp;lt;/proc/$(pidof i3)/environ | grep PATH&lt;/code&gt; then the $PATH doesn't have the concerned folder. &lt;/p&gt;
+
+&lt;p&gt;Also, will adding this line :
+&lt;code&gt;neo1691 ALL=(ALL) ALL, NOPASSWD: /home/neo1691/bin/i3exit&lt;/code&gt; will stop asking passwords if I run i3exit. I just want to make sure of the syntax!&lt;/p&gt;
+
+&lt;p&gt;Any ideas will be appreciated. Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3554/debiannot-able-to-get-the-rebootsuspend-script-work/?answer=3603#post-id-3603</link><description>The problem was indeed related to the PATH variable, and in case of lightdm it so happens that the ~/.xsessionrc file is read.
+
+So the simple solution was to export my $PATH in ~/.profile and source it in ~/.xsessionrc
+</description><pubDate>Tue, 01 Apr 2014 08:45:47 +0000</pubDate><guid>https://faq.i3wm.org/question/3554/debiannot-able-to-get-the-rebootsuspend-script-work/?answer=3603#post-id-3603</guid></item></channel></rss>

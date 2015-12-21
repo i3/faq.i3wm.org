@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/793/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 19 May 2013 05:05:39 +0000</lastBuildDate><item><title>Window as desktop</title><link>https://faq.i3wm.org/question/793/window-as-desktop/</link><description>Does i3 support any way for a window to be managed as if it was the desktop?
+Plasma-desktop (from KDE) is an example of an application that creates it's own window for the desktop. Trying to start such programs results in i3 trying to tile them like normal windows.</description><pubDate>Thu, 22 Nov 2012 19:10:00 +0000</pubDate><guid>https://faq.i3wm.org/question/793/window-as-desktop/</guid></item><item><title>Answer by Marius for &lt;p&gt;Does i3 support any way for a window to be managed as if it was the desktop?
+Plasma-desktop (from KDE) is an example of an application that creates it's own window for the desktop. Trying to start such programs results in i3 trying to tile them like normal windows.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/793/window-as-desktop/?answer=953#post-id-953</link><description>The following patch makes desktop windows to be mapped but not managed by i3, resulting in the behaviour you are looking for.
+
+    diff --git a/include/atoms.xmacro b/include/atoms.xmacro
+
+    index 7cfef82..5d2d2db 100644
+    --- a/include/atoms.xmacro
+    +++ b/include/atoms.xmacro
+    @@ -14,6 +14,7 @@ xmacro(_NET_WM_STRUT_PARTIAL)
+     xmacro(_NET_CLIENT_LIST_STACKING)
+     xmacro(_NET_CURRENT_DESKTOP)
+     xmacro(_NET_ACTIVE_WINDOW)
+    +xmacro(_NET_WM_WINDOW_TYPE_DESKTOP)
+     xmacro(_NET_WORKAREA)
+     xmacro(_NET_STARTUP_ID)
+     xmacro(_NET_WM_ICON)
+    diff --git a/src/manage.c b/src/manage.c
+    index b3c43d5..990ffc8 100644
+    --- a/src/manage.c
+    +++ b/src/manage.c
+    @@ -214,6 +214,18 @@ void manage_window(xcb_window_t window, xcb_get_window_attributes_cookie_t cooki
+         Con *search_at = croot;
+     
+         xcb_get_property_reply_t *reply = xcb_get_property_reply(conn, wm_type_cookie, NULL);
+    +
+    +    /* Don't manage desktop type windows, just map them */
+    +    if (xcb_reply_contains_atom(reply, A__NET_WM_WINDOW_TYPE_DESKTOP)) {
+    +        LOG("Ignoring window of type desktop\n");
+    +        xcb_map_window(conn, window);
+    +
+    +        uint32_t values[] = { XCB_STACK_MODE_BELOW };
+    +        xcb_configure_window (conn, window, XCB_CONFIG_WINDOW_STACK_MODE, values);
+    +
+    +        goto geom_out;
+    +    }
+    +
+         if (xcb_reply_contains_atom(reply, A__NET_WM_WINDOW_TYPE_DOCK)) {
+             LOG("This window is of type dock\n");
+             Output *output = get_output_containing(geom-&gt;x, geom-&gt;y);
+
+</description><pubDate>Mon, 31 Dec 2012 02:13:26 +0000</pubDate><guid>https://faq.i3wm.org/question/793/window-as-desktop/?answer=953#post-id-953</guid></item><item><title>Comment by Michael for &lt;p&gt;The following patch makes desktop windows to be mapped but not managed by i3, resulting in the behaviour you are looking for.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;diff --git a/include/atoms.xmacro b/include/atoms.xmacro
+
+index 7cfef82..5d2d2db 100644
+--- a/include/atoms.xmacro
++++ b/include/atoms.xmacro
+@@ -14,6 +14,7 @@ xmacro(_NET_WM_STRUT_PARTIAL)
+ xmacro(_NET_CLIENT_LIST_STACKING)
+ xmacro(_NET_CURRENT_DESKTOP)
+ xmacro(_NET_ACTIVE_WINDOW)
++xmacro(_NET_WM_WINDOW_TYPE_DESKTOP)
+ xmacro(_NET_WORKAREA)
+ xmacro(_NET_STARTUP_ID)
+ xmacro(_NET_WM_ICON)
+diff --git a/src/manage.c b/src/manage.c
+index b3c43d5..990ffc8 100644
+--- a/src/manage.c
++++ b/src/manage.c
+@@ -214,6 +214,18 @@ void manage_window(xcb_window_t window, xcb_get_window_attributes_cookie_t cooki
+     Con *search_at = croot;
+
+     xcb_get_property_reply_t *reply = xcb_get_property_reply(conn, wm_type_cookie, NULL);
++
++    /* Don't manage desktop type windows, just map them */
++    if (xcb_reply_contains_atom(reply, A__NET_WM_WINDOW_TYPE_DESKTOP)) {
++        LOG("Ignoring window of type desktop\n");
++        xcb_map_window(conn, window);
++
++        uint32_t values[] = { XCB_STACK_MODE_BELOW };
++        xcb_configure_window (conn, window, XCB_CONFIG_WINDOW_STACK_MODE, values);
++
++        goto geom_out;
++    }
++
+     if (xcb_reply_contains_atom(reply, A__NET_WM_WINDOW_TYPE_DOCK)) {
+         LOG("This window is of type dock\n");
+         Output *output = get_output_containing(geom-&amp;gt;x, geom-&amp;gt;y);
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/793/window-as-desktop/?comment=955#comment-955</link><description>Note that I believe this patch is incorrect and (aside from that) should not be merged: https://github.com/i3/i3/issues/903</description><pubDate>Mon, 31 Dec 2012 19:44:26 +0000</pubDate><guid>https://faq.i3wm.org/question/793/window-as-desktop/?comment=955#comment-955</guid></item><item><title>Comment by Marius for &lt;p&gt;The following patch makes desktop windows to be mapped but not managed by i3, resulting in the behaviour you are looking for.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;diff --git a/include/atoms.xmacro b/include/atoms.xmacro
+
+index 7cfef82..5d2d2db 100644
+--- a/include/atoms.xmacro
++++ b/include/atoms.xmacro
+@@ -14,6 +14,7 @@ xmacro(_NET_WM_STRUT_PARTIAL)
+ xmacro(_NET_CLIENT_LIST_STACKING)
+ xmacro(_NET_CURRENT_DESKTOP)
+ xmacro(_NET_ACTIVE_WINDOW)
++xmacro(_NET_WM_WINDOW_TYPE_DESKTOP)
+ xmacro(_NET_WORKAREA)
+ xmacro(_NET_STARTUP_ID)
+ xmacro(_NET_WM_ICON)
+diff --git a/src/manage.c b/src/manage.c
+index b3c43d5..990ffc8 100644
+--- a/src/manage.c
++++ b/src/manage.c
+@@ -214,6 +214,18 @@ void manage_window(xcb_window_t window, xcb_get_window_attributes_cookie_t cooki
+     Con *search_at = croot;
+
+     xcb_get_property_reply_t *reply = xcb_get_property_reply(conn, wm_type_cookie, NULL);
++
++    /* Don't manage desktop type windows, just map them */
++    if (xcb_reply_contains_atom(reply, A__NET_WM_WINDOW_TYPE_DESKTOP)) {
++        LOG("Ignoring window of type desktop\n");
++        xcb_map_window(conn, window);
++
++        uint32_t values[] = { XCB_STACK_MODE_BELOW };
++        xcb_configure_window (conn, window, XCB_CONFIG_WINDOW_STACK_MODE, values);
++
++        goto geom_out;
++    }
++
+     if (xcb_reply_contains_atom(reply, A__NET_WM_WINDOW_TYPE_DOCK)) {
+         LOG("This window is of type dock\n");
+         Output *output = get_output_containing(geom-&amp;gt;x, geom-&amp;gt;y);
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/793/window-as-desktop/?comment=957#comment-957</link><description>Yes, the patch doesn't take into account any of the issues Michael mentions in ticket 903. It seems to work fine for me in case of plasma-desktop (I haven't tested it in other environments). </description><pubDate>Tue, 01 Jan 2013 04:16:20 +0000</pubDate><guid>https://faq.i3wm.org/question/793/window-as-desktop/?comment=957#comment-957</guid></item><item><title>Comment by killown for &lt;p&gt;The following patch makes desktop windows to be mapped but not managed by i3, resulting in the behaviour you are looking for.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;diff --git a/include/atoms.xmacro b/include/atoms.xmacro
+
+index 7cfef82..5d2d2db 100644
+--- a/include/atoms.xmacro
++++ b/include/atoms.xmacro
+@@ -14,6 +14,7 @@ xmacro(_NET_WM_STRUT_PARTIAL)
+ xmacro(_NET_CLIENT_LIST_STACKING)
+ xmacro(_NET_CURRENT_DESKTOP)
+ xmacro(_NET_ACTIVE_WINDOW)
++xmacro(_NET_WM_WINDOW_TYPE_DESKTOP)
+ xmacro(_NET_WORKAREA)
+ xmacro(_NET_STARTUP_ID)
+ xmacro(_NET_WM_ICON)
+diff --git a/src/manage.c b/src/manage.c
+index b3c43d5..990ffc8 100644
+--- a/src/manage.c
++++ b/src/manage.c
+@@ -214,6 +214,18 @@ void manage_window(xcb_window_t window, xcb_get_window_attributes_cookie_t cooki
+     Con *search_at = croot;
+
+     xcb_get_property_reply_t *reply = xcb_get_property_reply(conn, wm_type_cookie, NULL);
++
++    /* Don't manage desktop type windows, just map them */
++    if (xcb_reply_contains_atom(reply, A__NET_WM_WINDOW_TYPE_DESKTOP)) {
++        LOG("Ignoring window of type desktop\n");
++        xcb_map_window(conn, window);
++
++        uint32_t values[] = { XCB_STACK_MODE_BELOW };
++        xcb_configure_window (conn, window, XCB_CONFIG_WINDOW_STACK_MODE, values);
++
++        goto geom_out;
++    }
++
+     if (xcb_reply_contains_atom(reply, A__NET_WM_WINDOW_TYPE_DOCK)) {
+         LOG("This window is of type dock\n");
+         Output *output = get_output_containing(geom-&amp;gt;x, geom-&amp;gt;y);
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/793/window-as-desktop/?comment=1844#comment-1844</link><description>this patch works very well for xfce4 desktop</description><pubDate>Sun, 19 May 2013 05:05:39 +0000</pubDate><guid>https://faq.i3wm.org/question/793/window-as-desktop/?comment=1844#comment-1844</guid></item><item><title>Answer by Michael for &lt;p&gt;Does i3 support any way for a window to be managed as if it was the desktop?
+Plasma-desktop (from KDE) is an example of an application that creates it's own window for the desktop. Trying to start such programs results in i3 trying to tile them like normal windows.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/793/window-as-desktop/?answer=798#post-id-798</link><description>No, it doesn’t. See also http://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/</description><pubDate>Thu, 22 Nov 2012 22:45:30 +0000</pubDate><guid>https://faq.i3wm.org/question/793/window-as-desktop/?answer=798#post-id-798</guid></item><item><title>Answer by sLite for &lt;p&gt;Does i3 support any way for a window to be managed as if it was the desktop?
+Plasma-desktop (from KDE) is an example of an application that creates it's own window for the desktop. Trying to start such programs results in i3 trying to tile them like normal windows.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/793/window-as-desktop/?answer=1568#post-id-1568</link><description>you can try with --force-xinerama, i dont know why but i found out by accident that this solves that problem. 
+
+this has some other side effects as noted out in the docs but had the desired effect for me.
+
+(also confirmed on an ati card, althouth the article talks specifically about nvidia)</description><pubDate>Sat, 06 Apr 2013 17:21:43 +0000</pubDate><guid>https://faq.i3wm.org/question/793/window-as-desktop/?answer=1568#post-id-1568</guid></item></channel></rss>

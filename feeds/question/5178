@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5178/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 15 Dec 2014 08:42:56 +0000</lastBuildDate><item><title>Disable dropbox icon in i3status</title><link>https://faq.i3wm.org/question/5178/disable-dropbox-icon-in-i3status/</link><description>My i3status shows a Dropbox icon by default -- is there a way to disable this in i3status.conf?</description><pubDate>Mon, 15 Dec 2014 05:40:05 +0000</pubDate><guid>https://faq.i3wm.org/question/5178/disable-dropbox-icon-in-i3status/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;My i3status shows a Dropbox icon by default -- is there a way to disable this in i3status.conf?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5178/disable-dropbox-icon-in-i3status/?answer=5180#post-id-5180</link><description>The tray icons are handled by `i3bar` and have nothing do do with `i3status`. (`i3status`  only creates text status messages).
+
+You can disable **all** tray icons by setting `tray_output none` in the `bar{}` section(s) of your *i3* configuration (see [section "Tray Output" in the User's Guide](http://i3wm.org/docs/userguide.html#_tray_output))
+
+    bar {
+        tray_output none
+    }
+
+If you want to disable just the Dropbox icon there are two ways, that depend on your preferences and are not really *i3* specific:
+
+1. You want Dropbox to run but do not like the icon: This can only be done from within Dropbox settings, see if there is an option for that.
+2. You do not care about Dropbox at all: Do not run Dropbox. If it is started from within the *i3* configuration, remove the corresponding `exec` statement. Else you will have to go looking from where it is being started.</description><pubDate>Mon, 15 Dec 2014 08:42:56 +0000</pubDate><guid>https://faq.i3wm.org/question/5178/disable-dropbox-icon-in-i3status/?answer=5180#post-id-5180</guid></item></channel></rss>

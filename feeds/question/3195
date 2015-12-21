@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3195/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 13 Jan 2014 12:18:44 +0000</lastBuildDate><item><title>How to bind a key to start an app in a specific workspace</title><link>https://faq.i3wm.org/question/3195/how-to-bind-a-key-to-start-an-app-in-a-specific-workspace/</link><description>We autostart applications in the workspaces we want like this:
+
+&gt; exec --no-startup-id i3-msg 'workspace xxx; exec /usr/bin/x'
+
+We'd start an application via a key-bind:
+
+&gt; bindsym a+b exec /usr/bin/x
+
+What I want is to specify the workspace which the new window will appear in the last key-binding scheme.
+
+I tried
+
+&gt; bindsym a+b exec --no-startup-id i3-msg 'workspace xxx; exec /usr/bin/x'
+
+&gt; bindsym a+b exec i3-msg --no-startup-id 'workspace xxx; exec /usr/bin/x'
+
+&gt; bindsym a+b exec i3-msg 'workspace xxx; exec /usr/bin/x'
+
+Sarcastically enough,
+
+&gt; i3-msg --no-startup-id 'workspace xxx; exec /usr/bin/x'
+
+This executed in a bash without hassle. Any tricks I am missing?</description><pubDate>Sat, 11 Jan 2014 09:37:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3195/how-to-bind-a-key-to-start-an-app-in-a-specific-workspace/</guid></item><item><title>Answer by Michael for &lt;p&gt;We autostart applications in the workspaces we want like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;exec --no-startup-id i3-msg 'workspace xxx; exec /usr/bin/x'&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;We'd start an application via a key-bind:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym a+b exec /usr/bin/x&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;What I want is to specify the workspace which the new window will appear in the last key-binding scheme.&lt;/p&gt;
+
+&lt;p&gt;I tried&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym a+b exec --no-startup-id i3-msg 'workspace xxx; exec /usr/bin/x'&lt;/p&gt;
+  
+  &lt;p&gt;bindsym a+b exec i3-msg --no-startup-id 'workspace xxx; exec /usr/bin/x'&lt;/p&gt;
+  
+  &lt;p&gt;bindsym a+b exec i3-msg 'workspace xxx; exec /usr/bin/x'&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Sarcastically enough,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;i3-msg --no-startup-id 'workspace xxx; exec /usr/bin/x'&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This executed in a bash without hassle. Any tricks I am missing?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3195/how-to-bind-a-key-to-start-an-app-in-a-specific-workspace/?answer=3196#post-id-3196</link><description>You don’t need to use i3-msg in a key binding. Just use this:
+
+    bindsym a+b workspace 3; exec urxvt</description><pubDate>Sat, 11 Jan 2014 09:48:05 +0000</pubDate><guid>https://faq.i3wm.org/question/3195/how-to-bind-a-key-to-start-an-app-in-a-specific-workspace/?answer=3196#post-id-3196</guid></item><item><title>Comment by Adaephon for &lt;p&gt;You don’t need to use i3-msg in a key binding. Just use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym a+b workspace 3; exec urxvt
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3195/how-to-bind-a-key-to-start-an-app-in-a-specific-workspace/?comment=3221#comment-3221</link><description>`bindsym a+b workspace xxx; exec /usr/bin/x; workspace back_and_forth` works for startup notification aware apps for example gnome tools (do **not** use `--no-startup-id`). These will be opened on 'xxx' even though i3 switches to back_and_forth without waiting for the window to be created.</description><pubDate>Mon, 13 Jan 2014 12:18:44 +0000</pubDate><guid>https://faq.i3wm.org/question/3195/how-to-bind-a-key-to-start-an-app-in-a-specific-workspace/?comment=3221#comment-3221</guid></item><item><title>Comment by Gulver for &lt;p&gt;You don’t need to use i3-msg in a key binding. Just use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym a+b workspace 3; exec urxvt
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3195/how-to-bind-a-key-to-start-an-app-in-a-specific-workspace/?comment=3198#comment-3198</link><description>Any chance to run the exec without automatically switching to the specified workspace?</description><pubDate>Sat, 11 Jan 2014 12:42:05 +0000</pubDate><guid>https://faq.i3wm.org/question/3195/how-to-bind-a-key-to-start-an-app-in-a-specific-workspace/?comment=3198#comment-3198</guid></item></channel></rss>

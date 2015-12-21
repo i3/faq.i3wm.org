@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3192/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 25 Aug 2014 20:34:57 +0000</lastBuildDate><item><title>Different border styles for floating and normal windows</title><link>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/</link><description>Is that possible to set different border styles for floating and normal windows?
+
+I have this in my config:
+
+    new_float normal 4
+    new_window normal 1
+
+But it doesn't work as expected. Both floating and normal windows have **normal 1** border in that case. If I swap these two lines in my config, both floating and normal windows will have **normal 4** border. 
+
+Am I missing something?
+
+__UPDATE:__
+This bug was fixed in 4.8 version. Part from the changelog:
+
+&gt; new\_window and new_float can now be used simultaneously with different border widths</description><pubDate>Fri, 10 Jan 2014 08:43:48 +0000</pubDate><guid>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/</guid></item><item><title>Answer by Michael for &lt;p&gt;Is that possible to set different border styles for floating and normal windows?&lt;/p&gt;
+
+&lt;p&gt;I have this in my config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_float normal 4
+new_window normal 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it doesn't work as expected. Both floating and normal windows have &lt;strong&gt;normal 1&lt;/strong&gt; border in that case. If I swap these two lines in my config, both floating and normal windows will have &lt;strong&gt;normal 4&lt;/strong&gt; border. &lt;/p&gt;
+
+&lt;p&gt;Am I missing something?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;
+This bug was fixed in 4.8 version. Part from the changelog:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;new_window and new_float can now be used simultaneously with different border widths&lt;/p&gt;
+&lt;/blockquote&gt;
+ </title><link>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/?answer=3197#post-id-3197</link><description>You’re not missing something. This is an edge case which is already identified, but nobody bothered to fix it yet:
+
+http://code.stapelberg.de/git/i3/tree/src/config_directives.c?h=next#n286
+
+In case you feel strongly about it, please submit a patch to http://cr.i3wm.org/ (after reading http://build.i3wm.org/docs/hacking-howto.html)</description><pubDate>Sat, 11 Jan 2014 09:54:16 +0000</pubDate><guid>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/?answer=3197#post-id-3197</guid></item><item><title>Answer by Man from Mars for &lt;p&gt;Is that possible to set different border styles for floating and normal windows?&lt;/p&gt;
+
+&lt;p&gt;I have this in my config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_float normal 4
+new_window normal 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it doesn't work as expected. Both floating and normal windows have &lt;strong&gt;normal 1&lt;/strong&gt; border in that case. If I swap these two lines in my config, both floating and normal windows will have &lt;strong&gt;normal 4&lt;/strong&gt; border. &lt;/p&gt;
+
+&lt;p&gt;Am I missing something?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt;
+This bug was fixed in 4.8 version. Part from the changelog:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;new_window and new_float can now be used simultaneously with different border widths&lt;/p&gt;
+&lt;/blockquote&gt;
+ </title><link>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/?answer=3897#post-id-3897</link><description>Seems fixed, and it's very nice to see.
+Or am I just somehow very lucky to have this feature working?</description><pubDate>Sat, 31 May 2014 15:43:30 +0000</pubDate><guid>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/?answer=3897#post-id-3897</guid></item><item><title>Comment by schfkt for &lt;p&gt;Seems fixed, and it's very nice to see.
+Or am I just somehow very lucky to have this feature working?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/?comment=4583#comment-4583</link><description>I also use 4.8. And there is no such bug. According to the changelog (http://i3wm.org/downloads/RELEASE-NOTES-4.8.txt) it was fixed in 4.8: "new\_window and new\_float can now be used simultaneously with different border widths".</description><pubDate>Mon, 25 Aug 2014 20:34:57 +0000</pubDate><guid>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/?comment=4583#comment-4583</guid></item><item><title>Comment by tigrezno for &lt;p&gt;Seems fixed, and it's very nice to see.
+Or am I just somehow very lucky to have this feature working?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/?comment=4091#comment-4091</link><description>Are you using 4.8? Because it's still present in 4.7.2.</description><pubDate>Tue, 01 Jul 2014 15:09:53 +0000</pubDate><guid>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/?comment=4091#comment-4091</guid></item><item><title>Comment by Man from Mars for &lt;p&gt;Seems fixed, and it's very nice to see.
+Or am I just somehow very lucky to have this feature working?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/?comment=4110#comment-4110</link><description>yes, 4.8 (from sur5r repo, Debian Testing).</description><pubDate>Thu, 03 Jul 2014 14:15:01 +0000</pubDate><guid>https://faq.i3wm.org/question/3192/different-border-styles-for-floating-and-normal-windows/?comment=4110#comment-4110</guid></item></channel></rss>

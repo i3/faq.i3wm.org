@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1278/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 21 Apr 2014 08:23:06 +0000</lastBuildDate><item><title>Solving xdg-open special URI opening problems</title><link>https://faq.i3wm.org/question/1278/solving-xdg-open-special-uri-opening-problems/</link><description>Hi
+
+Is there any clear (not dirty-hack style) way to make xdg-open open URIs like 'magnet:...' and so on? I've created workaround (see the patch), but maybe there is better way?
+
+Thank you
+
+&lt;pre&gt;
+--- /usr/bin/xdg-open.orig	2013-03-02 16:02:36.184184989 +0400
++++ /usr/bin/xdg-open	2013-03-02 16:51:53.878851407 +0400
+@@ -384,7 +384,11 @@
+ 
+ open_generic_xdg_mime()
+ {
+-    filetype=`xdg-mime query filetype "$1" | sed "s/;.*//"`
++    if [ -z $not_file ]; then
++        filetype=`xdg-mime query filetype "$1" | sed "s/;.*//"`
++    else
++        filetype=x-scheme-handler/`echo "$1" | cut -d: -f 1`
++    fi
+     default=`xdg-mime query default "$filetype"`
+     if [ -n "$default" ] ; then
+         xdg_user_dir="$XDG_DATA_HOME"
+@@ -444,6 +448,9 @@
+                 exit_success
+             fi
+         fi
++        elif (echo "$1" | egrep -q '^[a-zA-Z+\.\-]+:'); then
++            not_file=1
++            open_generic_xdg_mime "$1"
+     fi
+ 
+     OLDIFS="$IFS"
+&lt;/pre&gt;
+
+UPDATE: Script for adding support for all your current x-scheme-handler types http:// pastebin.com/qkVbkrqq . Still looking for better solution</description><pubDate>Sat, 02 Mar 2013 13:03:43 +0000</pubDate><guid>https://faq.i3wm.org/question/1278/solving-xdg-open-special-uri-opening-problems/</guid></item><item><title>Answer by badboy_ for &lt;p&gt;Hi&lt;/p&gt;
+
+&lt;p&gt;Is there any clear (not dirty-hack style) way to make xdg-open open URIs like 'magnet:...' and so on? I've created workaround (see the patch), but maybe there is better way?&lt;/p&gt;
+
+&lt;p&gt;Thank you&lt;/p&gt;
+
+&lt;pre&gt;--- /usr/bin/xdg-open.orig  2013-03-02 16:02:36.184184989 +0400
++++ /usr/bin/xdg-open   2013-03-02 16:51:53.878851407 +0400
+@@ -384,7 +384,11 @@
+
+ open_generic_xdg_mime()
+ {
+-    filetype=`xdg-mime query filetype "$1" | sed "s/;.*//"`
++    if [ -z $not_file ]; then
++        filetype=`xdg-mime query filetype "$1" | sed "s/;.*//"`
++    else
++        filetype=x-scheme-handler/`echo "$1" | cut -d: -f 1`
++    fi
+     default=`xdg-mime query default "$filetype"`
+     if [ -n "$default" ] ; then
+         xdg_user_dir="$XDG_DATA_HOME"
+@@ -444,6 +448,9 @@
+                 exit_success
+             fi
+         fi
++        elif (echo "$1" | egrep -q '^[a-zA-Z+\.\-]+:'); then
++            not_file=1
++            open_generic_xdg_mime "$1"
+     fi
+
+     OLDIFS="$IFS"
+&lt;/pre&gt;
+
+&lt;p&gt;UPDATE: Script for adding support for all your current x-scheme-handler types http:// pastebin.com/qkVbkrqq . Still looking for better solution&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1278/solving-xdg-open-special-uri-opening-problems/?answer=3696#post-id-3696</link><description>Just provide desktop files and a correct entry as follows:
+
+    $ cat ~/.local/share/applications/mimeapps.list
+    [Default Applications]
+    x-scheme-handler/magnet=add-torrent.desktop
+    $ cat ~/.local/share/applications/add-torrent.desktop
+    [Desktop Entry]
+    Name=Add Torrent
+    GenericName=Torrent
+    Comment=Add a manget link to the Torrent Client
+    Exec=script-to-add-torrent %U
+    TryExec=script-to-add-torrent
+    Terminal=false
+    Type=Application
+    MimeType=x-scheme-handler/magnet</description><pubDate>Mon, 21 Apr 2014 08:23:06 +0000</pubDate><guid>https://faq.i3wm.org/question/1278/solving-xdg-open-special-uri-opening-problems/?answer=3696#post-id-3696</guid></item></channel></rss>

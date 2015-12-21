@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4791/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 17 Oct 2014 15:04:03 +0000</lastBuildDate><item><title>How to redraw status line after a shortcut or any shortcut?</title><link>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/</link><description>For example I bind +- keys for alsa volume.
+
+I want see current voulume after a shortcut was pressed.
+</description><pubDate>Fri, 17 Oct 2014 13:22:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;For example I bind +- keys for alsa volume.&lt;/p&gt;
+
+&lt;p&gt;I want see current voulume after a shortcut was pressed.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?answer=4792#post-id-4792</link><description>You can send the signal `SIGUSR1` to `i3status` to force an update. To do this add `; killall -SIGUSR1 i3stats` to the commands you use for volume control and make sure that the whole command (what is actually run, not the *i3* configuration parts) is in quotes, else the `;` will be interpreted by *i3*.
+
+So something like this should work
+
+    bindsym SomeKey exec --no-startup-id "change-volume +5 ; killall -SIGUSR1 i3status"</description><pubDate>Fri, 17 Oct 2014 14:24:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?answer=4792#post-id-4792</guid></item><item><title>Answer by cee for &lt;p&gt;For example I bind +- keys for alsa volume.&lt;/p&gt;
+
+&lt;p&gt;I want see current voulume after a shortcut was pressed.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?answer=4793#post-id-4793</link><description>I defined a variable $update in my config file that can be appended to any command that you would like to update the statusbar.
+
+    set $update &amp;&amp; killall -SIGUSR1 i3status
+
+For volume up, down and mute I have following commands:
+
+    bindsym XF86AudioLowerVolume    exec $psst pactl set-sink-volume @DEFAULT_SINK@ -- -5% &amp;&amp; pactl set-sink-mute @DEFAULT_SINK@ 0 $update
+    bindsym XF86AudioRaiseVolume    exec $psst pactl set-sink-volume @DEFAULT_SINK@ -- +5% &amp;&amp; pactl set-sink-mute @DEFAULT_SINK@ 0 $update
+    bindsym XF86AudioMute           exec $psst pactl set-sink-mute @DEFAULT_SINK@ toggle $update
+
+where $psst is another variable that just disables any startup notification.
+
+    set $psst --no-startup-id
+
+You can find my whole [config file on github](https://github.com/andreatta/config/tree/master/i3) for reference.
+
+</description><pubDate>Fri, 17 Oct 2014 14:25:17 +0000</pubDate><guid>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?answer=4793#post-id-4793</guid></item><item><title>Comment by cee for &lt;p&gt;I defined a variable $update in my config file that can be appended to any command that you would like to update the statusbar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $update &amp;amp;&amp;amp; killall -SIGUSR1 i3status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For volume up, down and mute I have following commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym XF86AudioLowerVolume    exec $psst pactl set-sink-volume @DEFAULT_SINK@ -- -5% &amp;amp;&amp;amp; pactl set-sink-mute @DEFAULT_SINK@ 0 $update
+bindsym XF86AudioRaiseVolume    exec $psst pactl set-sink-volume @DEFAULT_SINK@ -- +5% &amp;amp;&amp;amp; pactl set-sink-mute @DEFAULT_SINK@ 0 $update
+bindsym XF86AudioMute           exec $psst pactl set-sink-mute @DEFAULT_SINK@ toggle $update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;where $psst is another variable that just disables any startup notification.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $psst --no-startup-id
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can find my whole &lt;a href="https://github.com/andreatta/config/tree/master/i3"&gt;config file on github&lt;/a&gt; for reference.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?comment=4795#comment-4795</link><description>Took me also a while and a good amount of "google-luck" to find it :-)</description><pubDate>Fri, 17 Oct 2014 14:38:04 +0000</pubDate><guid>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?comment=4795#comment-4795</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I defined a variable $update in my config file that can be appended to any command that you would like to update the statusbar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $update &amp;amp;&amp;amp; killall -SIGUSR1 i3status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For volume up, down and mute I have following commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym XF86AudioLowerVolume    exec $psst pactl set-sink-volume @DEFAULT_SINK@ -- -5% &amp;amp;&amp;amp; pactl set-sink-mute @DEFAULT_SINK@ 0 $update
+bindsym XF86AudioRaiseVolume    exec $psst pactl set-sink-volume @DEFAULT_SINK@ -- +5% &amp;amp;&amp;amp; pactl set-sink-mute @DEFAULT_SINK@ 0 $update
+bindsym XF86AudioMute           exec $psst pactl set-sink-mute @DEFAULT_SINK@ toggle $update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;where $psst is another variable that just disables any startup notification.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $psst --no-startup-id
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can find my whole &lt;a href="https://github.com/andreatta/config/tree/master/i3"&gt;config file on github&lt;/a&gt; for reference.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?comment=4794#comment-4794</link><description>`@DEFAULT_SINK@`! I've been looking for ages for a non-stupid way to tell pactl to use the *default sink*. Thank you! Which documentation did I overlook? (Just so that I can feel even more stupid...)</description><pubDate>Fri, 17 Oct 2014 14:34:14 +0000</pubDate><guid>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?comment=4794#comment-4794</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I defined a variable $update in my config file that can be appended to any command that you would like to update the statusbar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $update &amp;amp;&amp;amp; killall -SIGUSR1 i3status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For volume up, down and mute I have following commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym XF86AudioLowerVolume    exec $psst pactl set-sink-volume @DEFAULT_SINK@ -- -5% &amp;amp;&amp;amp; pactl set-sink-mute @DEFAULT_SINK@ 0 $update
+bindsym XF86AudioRaiseVolume    exec $psst pactl set-sink-volume @DEFAULT_SINK@ -- +5% &amp;amp;&amp;amp; pactl set-sink-mute @DEFAULT_SINK@ 0 $update
+bindsym XF86AudioMute           exec $psst pactl set-sink-mute @DEFAULT_SINK@ toggle $update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;where $psst is another variable that just disables any startup notification.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $psst --no-startup-id
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can find my whole &lt;a href="https://github.com/andreatta/config/tree/master/i3"&gt;config file on github&lt;/a&gt; for reference.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?comment=4797#comment-4797</link><description>...! Ok, now I really *do* feel stupid. But then again, that one sentence really should be part of the manpage.</description><pubDate>Fri, 17 Oct 2014 15:04:03 +0000</pubDate><guid>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?comment=4797#comment-4797</guid></item><item><title>Comment by cee for &lt;p&gt;I defined a variable $update in my config file that can be appended to any command that you would like to update the statusbar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $update &amp;amp;&amp;amp; killall -SIGUSR1 i3status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For volume up, down and mute I have following commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym XF86AudioLowerVolume    exec $psst pactl set-sink-volume @DEFAULT_SINK@ -- -5% &amp;amp;&amp;amp; pactl set-sink-mute @DEFAULT_SINK@ 0 $update
+bindsym XF86AudioRaiseVolume    exec $psst pactl set-sink-volume @DEFAULT_SINK@ -- +5% &amp;amp;&amp;amp; pactl set-sink-mute @DEFAULT_SINK@ 0 $update
+bindsym XF86AudioMute           exec $psst pactl set-sink-mute @DEFAULT_SINK@ toggle $update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;where $psst is another variable that just disables any startup notification.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $psst --no-startup-id
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can find my whole &lt;a href="https://github.com/andreatta/config/tree/master/i3"&gt;config file on github&lt;/a&gt; for reference.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?comment=4796#comment-4796</link><description>Now I remember the source: `pactl --help`. But funnily `man pactl` does *NOT* reveal this secret.</description><pubDate>Fri, 17 Oct 2014 14:41:12 +0000</pubDate><guid>https://faq.i3wm.org/question/4791/how-to-redraw-status-line-after-a-shortcut-or-any-shortcut/?comment=4796#comment-4796</guid></item></channel></rss>

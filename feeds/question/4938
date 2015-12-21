@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4938/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 04 Dec 2015 09:48:47 +0000</lastBuildDate><item><title>bash script to start several terminal/ssh windows with specific layout?</title><link>https://faq.i3wm.org/question/4938/bash-script-to-start-several-terminalssh-windows-with-specific-layout/</link><description>I need a bash script to start serveral terminals with ssh connections using a specific layout on demand, not at startup.
+
+Basically each window (Wx) is a 'gnome-terminal -e "ssh $USER@$IPx"'. The layout I need is something like is:
+
+    +----+----+----+
+    | W1 |    |    |
+    +----+ W4 |    |
+    | W2 |----| W6 |
+    +----+ W5 |    |
+    | W3 |    |    |
+    +----+----+----+
+
+I tried to use "i3-msg" to change the layout, and to move the terminals to different containers, but somehow I couldn't manage to get the layout I want.
+
+Can someone give me some hints with this problem, please?</description><pubDate>Wed, 12 Nov 2014 09:14:01 +0000</pubDate><guid>https://faq.i3wm.org/question/4938/bash-script-to-start-several-terminalssh-windows-with-specific-layout/</guid></item><item><title>Answer by Leadguit for &lt;p&gt;I need a bash script to start serveral terminals with ssh connections using a specific layout on demand, not at startup.&lt;/p&gt;
+
+&lt;p&gt;Basically each window (Wx) is a 'gnome-terminal -e "ssh $USER@$IPx"'. The layout I need is something like is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+----+----+----+
+| W1 |    |    |
++----+ W4 |    |
+| W2 |----| W6 |
++----+ W5 |    |
+| W3 |    |    |
++----+----+----+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried to use "i3-msg" to change the layout, and to move the terminals to different containers, but somehow I couldn't manage to get the layout I want.&lt;/p&gt;
+
+&lt;p&gt;Can someone give me some hints with this problem, please?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4938/bash-script-to-start-several-terminalssh-windows-with-specific-layout/?answer=4950#post-id-4950</link><description>Since you're using Terminal-only, I would recommend `terminator` for such a setup.
+
+You can define layouts, save them and define a "start command" for each terminal.
+
+Short "Tutorial" for usage of `terminator`:
+
+http:// blog.al4.co.nz/2011/05/getting-the-most-out-of-terminator/
+
+Edit: Cannot post links due to having not enough karma</description><pubDate>Thu, 13 Nov 2014 18:11:46 +0000</pubDate><guid>https://faq.i3wm.org/question/4938/bash-script-to-start-several-terminalssh-windows-with-specific-layout/?answer=4950#post-id-4950</guid></item><item><title>Comment by bsmr for &lt;p&gt;Since you're using Terminal-only, I would recommend &lt;code&gt;terminator&lt;/code&gt; for such a setup.&lt;/p&gt;
+
+&lt;p&gt;You can define layouts, save them and define a "start command" for each terminal.&lt;/p&gt;
+
+&lt;p&gt;Short "Tutorial" for usage of &lt;code&gt;terminator&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;http:// blog.al4.co.nz/2011/05/getting-the-most-out-of-terminator/&lt;/p&gt;
+
+&lt;p&gt;Edit: Cannot post links due to having not enough karma&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4938/bash-script-to-start-several-terminalssh-windows-with-specific-layout/?comment=7558#comment-7558</link><description>I haven't logged into here for quite some time, so I didn't see Your answer earlier.
+I had a brief look at ```terminator```, and actually I was not too happy. I still use the layout feature. But I will have a better look at ```terminator``` soon.</description><pubDate>Fri, 04 Dec 2015 09:48:47 +0000</pubDate><guid>https://faq.i3wm.org/question/4938/bash-script-to-start-several-terminalssh-windows-with-specific-layout/?comment=7558#comment-7558</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I need a bash script to start serveral terminals with ssh connections using a specific layout on demand, not at startup.&lt;/p&gt;
+
+&lt;p&gt;Basically each window (Wx) is a 'gnome-terminal -e "ssh $USER@$IPx"'. The layout I need is something like is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+----+----+----+
+| W1 |    |    |
++----+ W4 |    |
+| W2 |----| W6 |
++----+ W5 |    |
+| W3 |    |    |
++----+----+----+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried to use "i3-msg" to change the layout, and to move the terminals to different containers, but somehow I couldn't manage to get the layout I want.&lt;/p&gt;
+
+&lt;p&gt;Can someone give me some hints with this problem, please?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4938/bash-script-to-start-several-terminalssh-windows-with-specific-layout/?answer=4941#post-id-4941</link><description>The fastest and easiest way is to save the intended layout and restore it when needed on a fresh workspace. (Since version 4.8 i3 can save and restore layouts ([see here](http://i3wm.org/docs/layout-saving.html))
+
+Luckily with `gnome-terminal` you can set the window role with a command line parameter: `--role ROLE`, which makes it quite easy to assign specific positions for specific windows. 
+
+To start your terminals you can just use the following script and run it on an empty workspace:
+
+    #!/bin/bash
+    WS_LAYOUT_FILE=/some/where/layout
+    declare -A IPs
+    IPs=(
+      [W1]=xx.xx.xx.01 
+      [W2]=xx.xx.xx.02
+      [W3]=xx.xx.xx.03
+      [W4]=xx.xx.xx.04
+      [W5]=xx.xx.xx.05
+      [W6]=xx.xx.xx.06
+    )
+    SSH_USER=username
+    
+    i3-msg append_layout "$WS_LAYOUT_FILE"
+
+    for window in ${!IPs[*]};
+    do
+      gnome-terminal --role "$window" -e "ssh $SSH_USER@${IPs[$window)}" &amp;
+    done
+
+The layout file (`/some/where/layout` in the example) for your case looks like this:
+
+    {
+      "border": "normal", "floating": "auto_off", 
+      "layout": "splith", "type": "workspace",
+      "nodes": [
+        {
+          "border": "normal", "floating": "auto_off", 
+          "layout": "splitv", "percent": 0.333333333333333, "type": "con",
+          "nodes": [
+            {
+              "border": "normal", "floating": "auto_off", 
+              "layout": "splitv", "percent": 1, "type": "con",
+              "nodes": [
+                {
+                  "border": "normal", "floating": "auto_off", 
+                  "type": "con", "percent": 0.333333333333333,
+                  "name": "W1",
+                  "swallows": [ { "window_role": "^W1$" } ]
+                },
+                {
+                  "border": "normal", "floating": "auto_off", 
+                  "type": "con", "percent": 0.333333333333333,
+                  "name": "W2",
+                  "swallows": [ { "window_role": "^W2$" } ]
+                },
+                {
+                  "border": "normal", "floating": "auto_off", 
+                  "type": "con", "percent": 0.333333333333333,
+                  "name": "W3",
+                  "swallows": [ { "window_role": "^W3$" } ]
+                }
+              ]
+            }
+          ]
+        },
+    
+        {
+          "border": "normal", "floating": "auto_off", 
+          "layout": "splitv", "percent": 0.333333333333333, "type": "con",
+          "nodes": [
+            {
+              "border": "normal", "floating": "auto_off", 
+              "type": "con", "percent": 0.5,
+              "name": "W4",
+              "swallows": [ { "window_role": "^W4$" } ]
+            },
+            {
+              "border": "normal", "floating": "auto_off", 
+              "type": "con", "percent": 0.5,
+              "name": "W5",
+              "swallows": [ { "window_role": "^W5$" } ]
+            }
+          ]
+        },
+    
+        {
+          "border": "normal", "floating": "auto_off", 
+          "layout": "splitv", "percent": 0.333333333333333, "type": "con",
+          "nodes": [
+            {
+              "border": "normal", "floating": "auto_off", 
+              "type": "con", "percent": 1,
+              "name": "W6",
+              "swallows": [ { "window_role": "^W6$" } ]
+            }
+          ]
+        }
+      ]
+    }
+
+`append_layout` opens placeholder windows as defined in the layout file. If a window is created that matches the rules in `swallow` (in this example only `window_role` is checked) i3 puts it in place of the placeholder.
+
+
+
+</description><pubDate>Wed, 12 Nov 2014 12:45:36 +0000</pubDate><guid>https://faq.i3wm.org/question/4938/bash-script-to-start-several-terminalssh-windows-with-specific-layout/?answer=4941#post-id-4941</guid></item></channel></rss>

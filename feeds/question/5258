@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5258/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 26 Dec 2014 17:50:27 +0000</lastBuildDate><item><title>KeePassX in scratchpad with keybind toggle</title><link>https://faq.i3wm.org/question/5258/keepassx-in-scratchpad-with-keybind-toggle/</link><description>Hi guys,
+I want to have keepassx hidden in scratchpad, so it's available on any workspace via keybind.
+So I did this:
+
+    for_window [instance="scratchpad"] move scratchpad
+    bindsym $mod+k [class="(?i)keepassx" instance="scratchpad"] scratchpad show
+    exec --no-startup-id keepassx -name scratchpad
+
+Works nice, with one problem. Any dialog window from keepassx is moved to scratchpad when it's opened, for example when editing an entry, setting dialog or  something.... So I have to press mod+K to bring it up.
+That's not comfortable…
+
+Do you have any idea? The keepassx main or dialog window doesn't have the WM_WINDOW_ROLE property, so I can't filter the dialog windows :(</description><pubDate>Tue, 23 Dec 2014 23:07:20 +0000</pubDate><guid>https://faq.i3wm.org/question/5258/keepassx-in-scratchpad-with-keybind-toggle/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi guys,
+I want to have keepassx hidden in scratchpad, so it's available on any workspace via keybind.
+So I did this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="scratchpad"] move scratchpad
+bindsym $mod+k [class="(?i)keepassx" instance="scratchpad"] scratchpad show
+exec --no-startup-id keepassx -name scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Works nice, with one problem. Any dialog window from keepassx is moved to scratchpad when it's opened, for example when editing an entry, setting dialog or  something.... So I have to press mod+K to bring it up.
+That's not comfortable…&lt;/p&gt;
+
+&lt;p&gt;Do you have any idea? The keepassx main or dialog window doesn't have the WM&lt;em&gt;WINDOW&lt;/em&gt;ROLE property, so I can't filter the dialog windows :(&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5258/keepassx-in-scratchpad-with-keybind-toggle/?answer=5271#post-id-5271</link><description>I think your best bet is to convince the keepassx devs to set the `WM_WINDOW_ROLE` hint. Perhaps send a patch? :)</description><pubDate>Fri, 26 Dec 2014 17:50:27 +0000</pubDate><guid>https://faq.i3wm.org/question/5258/keepassx-in-scratchpad-with-keybind-toggle/?answer=5271#post-id-5271</guid></item></channel></rss>

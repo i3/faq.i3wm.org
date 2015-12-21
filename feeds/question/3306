@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3306/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 03 Feb 2014 09:31:18 +0000</lastBuildDate><item><title>Using $LD_PRELOAD (env variable) with $TERMINAL (i3 variable)</title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/</link><description>I use [stderred](https://github.com/sickill/stderred) to color the stderr of programs that run in the terminal. This relies on the $LD_PRELOAD hook. Can I use the same trick to load stderred every time I open a new terminal, so that something like `echo ha &gt;&amp;2` will output a red-colored `ha`? I tried setting the i3 `$TERMINAL` variable to be an entire Bash-like command (`set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'`), but of course that didn't work.</description><pubDate>Wed, 22 Jan 2014 22:26:31 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I use &lt;a href="https://github.com/sickill/stderred"&gt;stderred&lt;/a&gt; to color the stderr of programs that run in the terminal. This relies on the $LD_PRELOAD hook. Can I use the same trick to load stderred every time I open a new terminal, so that something like &lt;code&gt;echo ha &amp;gt;&amp;amp;2&lt;/code&gt; will output a red-colored &lt;code&gt;ha&lt;/code&gt;? I tried setting the i3 &lt;code&gt;$TERMINAL&lt;/code&gt; variable to be an entire Bash-like command (&lt;code&gt;set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'&lt;/code&gt;), but of course that didn't work.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?answer=3307#post-id-3307</link><description>Handling of variables in the i3 config is very minimal, they are just set verbatim to whatever is written after the variable name. This includes quotation marks. That means, when you do
+
+    set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'
+
+the single quotes are still contained in `$TERMINAL`. When you try to start the terminal, `exec` or rather the shell called by `exec` tries to start a binary named `LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole`
+
+To get the intended results, just define `$TERMINAL` like you would write it in the shell, that is, without surrounding quotes:
+
+    set $TERMINAL LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so" /usr/bin/konsole
+
+You could also create a script like this:
+
+    #!/bin/sh
+    export LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+    /usr/bin/konsole
+
+Make it executable and then change the configuration accordingly
+
+    set `$TERMINAL` /path/to/script
+
+----
+
+Also going by the instructions on (*stderred* github page)[https://github.com/sickill/stderred] it is sufficient to put 
+
+    export LD_PRELOAD="/absolute/path/to/stderred/buildlibstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+
+into your shell configuration (`~/.bashrc`, `~/.zshrc`, etc.). That is because stderred changes the behaviour of the commands you are calling in the shell and not the the behaviour of the terminal or shell. Therefore it doesn't have to be already set when opening the terminal.
+
+----
+
+Im leaving the first answer, because, although it is not really necessary in the case of stderred, it may be of help in other cases where `$LD_PRELOAD` (or any other environment variable) has to be set for the program called.</description><pubDate>Wed, 22 Jan 2014 23:34:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?answer=3307#post-id-3307</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Handling of variables in the i3 config is very minimal, they are just set verbatim to whatever is written after the variable name. This includes quotation marks. That means, when you do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the single quotes are still contained in &lt;code&gt;$TERMINAL&lt;/code&gt;. When you try to start the terminal, &lt;code&gt;exec&lt;/code&gt; or rather the shell called by &lt;code&gt;exec&lt;/code&gt; tries to start a binary named &lt;code&gt;LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To get the intended results, just define &lt;code&gt;$TERMINAL&lt;/code&gt; like you would write it in the shell, that is, without surrounding quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so" /usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+export LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+/usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and then change the configuration accordingly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set `$TERMINAL` /path/to/script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Also going by the instructions on (&lt;em&gt;stderred&lt;/em&gt; github page)[https://github.com/sickill/stderred] it is sufficient to put &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export LD_PRELOAD="/absolute/path/to/stderred/buildlibstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into your shell configuration (&lt;code&gt;~/.bashrc&lt;/code&gt;, &lt;code&gt;~/.zshrc&lt;/code&gt;, etc.). That is because stderred changes the behaviour of the commands you are calling in the shell and not the the behaviour of the terminal or shell. Therefore it doesn't have to be already set when opening the terminal.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Im leaving the first answer, because, although it is not really necessary in the case of stderred, it may be of help in other cases where &lt;code&gt;$LD_PRELOAD&lt;/code&gt; (or any other environment variable) has to be set for the program called.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3316#comment-3316</link><description>That is strange, I just tested it (Ubuntu 13.10, libstderred fresh from git) and it worked fine with konsole. I did `cat nonexistantfile` and the error message was red.</description><pubDate>Fri, 24 Jan 2014 09:42:32 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3316#comment-3316</guid></item><item><title>Comment by BatmanAoD for &lt;p&gt;Handling of variables in the i3 config is very minimal, they are just set verbatim to whatever is written after the variable name. This includes quotation marks. That means, when you do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the single quotes are still contained in &lt;code&gt;$TERMINAL&lt;/code&gt;. When you try to start the terminal, &lt;code&gt;exec&lt;/code&gt; or rather the shell called by &lt;code&gt;exec&lt;/code&gt; tries to start a binary named &lt;code&gt;LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To get the intended results, just define &lt;code&gt;$TERMINAL&lt;/code&gt; like you would write it in the shell, that is, without surrounding quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so" /usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+export LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+/usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and then change the configuration accordingly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set `$TERMINAL` /path/to/script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Also going by the instructions on (&lt;em&gt;stderred&lt;/em&gt; github page)[https://github.com/sickill/stderred] it is sufficient to put &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export LD_PRELOAD="/absolute/path/to/stderred/buildlibstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into your shell configuration (&lt;code&gt;~/.bashrc&lt;/code&gt;, &lt;code&gt;~/.zshrc&lt;/code&gt;, etc.). That is because stderred changes the behaviour of the commands you are calling in the shell and not the the behaviour of the terminal or shell. Therefore it doesn't have to be already set when opening the terminal.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Im leaving the first answer, because, although it is not really necessary in the case of stderred, it may be of help in other cases where &lt;code&gt;$LD_PRELOAD&lt;/code&gt; (or any other environment variable) has to be set for the program called.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3330#comment-3330</link><description>Ah. Well, that makes sense. Thanks. Do you know of any simple command-line utilities like echo that print to fd 2 instead of fd 1?</description><pubDate>Wed, 29 Jan 2014 17:59:48 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3330#comment-3330</guid></item><item><title>Comment by BatmanAoD for &lt;p&gt;Handling of variables in the i3 config is very minimal, they are just set verbatim to whatever is written after the variable name. This includes quotation marks. That means, when you do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the single quotes are still contained in &lt;code&gt;$TERMINAL&lt;/code&gt;. When you try to start the terminal, &lt;code&gt;exec&lt;/code&gt; or rather the shell called by &lt;code&gt;exec&lt;/code&gt; tries to start a binary named &lt;code&gt;LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To get the intended results, just define &lt;code&gt;$TERMINAL&lt;/code&gt; like you would write it in the shell, that is, without surrounding quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so" /usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+export LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+/usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and then change the configuration accordingly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set `$TERMINAL` /path/to/script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Also going by the instructions on (&lt;em&gt;stderred&lt;/em&gt; github page)[https://github.com/sickill/stderred] it is sufficient to put &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export LD_PRELOAD="/absolute/path/to/stderred/buildlibstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into your shell configuration (&lt;code&gt;~/.bashrc&lt;/code&gt;, &lt;code&gt;~/.zshrc&lt;/code&gt;, etc.). That is because stderred changes the behaviour of the commands you are calling in the shell and not the the behaviour of the terminal or shell. Therefore it doesn't have to be already set when opening the terminal.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Im leaving the first answer, because, although it is not really necessary in the case of stderred, it may be of help in other cases where &lt;code&gt;$LD_PRELOAD&lt;/code&gt; (or any other environment variable) has to be set for the program called.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3326#comment-3326</link><description>`cat nonexistantfile` makes a red error message regardless of whether Bash itself was started with $LD_PRELOAD set. What I want is for bash scripts that use "echo message &gt;&amp;2", or even the command "echo ha &gt;&amp;2" in an interactive session, to create red output. Maybe stderred just doesn't do this?</description><pubDate>Tue, 28 Jan 2014 22:48:35 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3326#comment-3326</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Handling of variables in the i3 config is very minimal, they are just set verbatim to whatever is written after the variable name. This includes quotation marks. That means, when you do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the single quotes are still contained in &lt;code&gt;$TERMINAL&lt;/code&gt;. When you try to start the terminal, &lt;code&gt;exec&lt;/code&gt; or rather the shell called by &lt;code&gt;exec&lt;/code&gt; tries to start a binary named &lt;code&gt;LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To get the intended results, just define &lt;code&gt;$TERMINAL&lt;/code&gt; like you would write it in the shell, that is, without surrounding quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so" /usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+export LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+/usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and then change the configuration accordingly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set `$TERMINAL` /path/to/script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Also going by the instructions on (&lt;em&gt;stderred&lt;/em&gt; github page)[https://github.com/sickill/stderred] it is sufficient to put &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export LD_PRELOAD="/absolute/path/to/stderred/buildlibstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into your shell configuration (&lt;code&gt;~/.bashrc&lt;/code&gt;, &lt;code&gt;~/.zshrc&lt;/code&gt;, etc.). That is because stderred changes the behaviour of the commands you are calling in the shell and not the the behaviour of the terminal or shell. Therefore it doesn't have to be already set when opening the terminal.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Im leaving the first answer, because, although it is not really necessary in the case of stderred, it may be of help in other cases where &lt;code&gt;$LD_PRELOAD&lt;/code&gt; (or any other environment variable) has to be set for the program called.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3331#comment-3331</link><description>You could use [this example in C](https://en.wikipedia.org/wiki/Echo_%28command%29) and replace both `printf(` with `fprintf(stderr, `. Compile with `gcc -o errcho errcho.c`</description><pubDate>Wed, 29 Jan 2014 20:25:34 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3331#comment-3331</guid></item><item><title>Comment by Michael for &lt;p&gt;Handling of variables in the i3 config is very minimal, they are just set verbatim to whatever is written after the variable name. This includes quotation marks. That means, when you do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the single quotes are still contained in &lt;code&gt;$TERMINAL&lt;/code&gt;. When you try to start the terminal, &lt;code&gt;exec&lt;/code&gt; or rather the shell called by &lt;code&gt;exec&lt;/code&gt; tries to start a binary named &lt;code&gt;LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To get the intended results, just define &lt;code&gt;$TERMINAL&lt;/code&gt; like you would write it in the shell, that is, without surrounding quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so" /usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+export LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+/usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and then change the configuration accordingly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set `$TERMINAL` /path/to/script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Also going by the instructions on (&lt;em&gt;stderred&lt;/em&gt; github page)[https://github.com/sickill/stderred] it is sufficient to put &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export LD_PRELOAD="/absolute/path/to/stderred/buildlibstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into your shell configuration (&lt;code&gt;~/.bashrc&lt;/code&gt;, &lt;code&gt;~/.zshrc&lt;/code&gt;, etc.). That is because stderred changes the behaviour of the commands you are calling in the shell and not the the behaviour of the terminal or shell. Therefore it doesn't have to be already set when opening the terminal.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Im leaving the first answer, because, although it is not really necessary in the case of stderred, it may be of help in other cases where &lt;code&gt;$LD_PRELOAD&lt;/code&gt; (or any other environment variable) has to be set for the program called.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3337#comment-3337</link><description>Note that your first sentence is wrong: i3’s exec command invokes a shell (/bin/sh), so `bindsym $mod+x exec FOO=bar urxvt` will launch a terminal in which `env | grep '^FOO'` shows `FOO=bar`.</description><pubDate>Sun, 02 Feb 2014 10:31:15 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3337#comment-3337</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Handling of variables in the i3 config is very minimal, they are just set verbatim to whatever is written after the variable name. This includes quotation marks. That means, when you do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the single quotes are still contained in &lt;code&gt;$TERMINAL&lt;/code&gt;. When you try to start the terminal, &lt;code&gt;exec&lt;/code&gt; or rather the shell called by &lt;code&gt;exec&lt;/code&gt; tries to start a binary named &lt;code&gt;LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To get the intended results, just define &lt;code&gt;$TERMINAL&lt;/code&gt; like you would write it in the shell, that is, without surrounding quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so" /usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+export LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+/usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and then change the configuration accordingly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set `$TERMINAL` /path/to/script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Also going by the instructions on (&lt;em&gt;stderred&lt;/em&gt; github page)[https://github.com/sickill/stderred] it is sufficient to put &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export LD_PRELOAD="/absolute/path/to/stderred/buildlibstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into your shell configuration (&lt;code&gt;~/.bashrc&lt;/code&gt;, &lt;code&gt;~/.zshrc&lt;/code&gt;, etc.). That is because stderred changes the behaviour of the commands you are calling in the shell and not the the behaviour of the terminal or shell. Therefore it doesn't have to be already set when opening the terminal.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Im leaving the first answer, because, although it is not really necessary in the case of stderred, it may be of help in other cases where &lt;code&gt;$LD_PRELOAD&lt;/code&gt; (or any other environment variable) has to be set for the program called.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3347#comment-3347</link><description>@Michael: Thanks for the heads up. I just remembered that I had some problems getting a especially convoluted line of shell cod to run and concluded that shell code does not work for `exec`. I corrected the answer to address the real problem.</description><pubDate>Mon, 03 Feb 2014 09:31:18 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3347#comment-3347</guid></item><item><title>Comment by BatmanAoD for &lt;p&gt;Handling of variables in the i3 config is very minimal, they are just set verbatim to whatever is written after the variable name. This includes quotation marks. That means, when you do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the single quotes are still contained in &lt;code&gt;$TERMINAL&lt;/code&gt;. When you try to start the terminal, &lt;code&gt;exec&lt;/code&gt; or rather the shell called by &lt;code&gt;exec&lt;/code&gt; tries to start a binary named &lt;code&gt;LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To get the intended results, just define &lt;code&gt;$TERMINAL&lt;/code&gt; like you would write it in the shell, that is, without surrounding quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so" /usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+export LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+/usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and then change the configuration accordingly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set `$TERMINAL` /path/to/script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Also going by the instructions on (&lt;em&gt;stderred&lt;/em&gt; github page)[https://github.com/sickill/stderred] it is sufficient to put &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export LD_PRELOAD="/absolute/path/to/stderred/buildlibstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into your shell configuration (&lt;code&gt;~/.bashrc&lt;/code&gt;, &lt;code&gt;~/.zshrc&lt;/code&gt;, etc.). That is because stderred changes the behaviour of the commands you are calling in the shell and not the the behaviour of the terminal or shell. Therefore it doesn't have to be already set when opening the terminal.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Im leaving the first answer, because, although it is not really necessary in the case of stderred, it may be of help in other cases where &lt;code&gt;$LD_PRELOAD&lt;/code&gt; (or any other environment variable) has to be set for the program called.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3309#comment-3309</link><description>Thank you, this is clever. Unfortunately, it appears that calling `konsole` with `LD_PRELOAD` set to point to libstderred.so doesn't actually color all stderr, anyway, so I suppose the issue is moot.</description><pubDate>Thu, 23 Jan 2014 17:51:44 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3309#comment-3309</guid></item><item><title>Comment by BatmanAoD for &lt;p&gt;Handling of variables in the i3 config is very minimal, they are just set verbatim to whatever is written after the variable name. This includes quotation marks. That means, when you do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the single quotes are still contained in &lt;code&gt;$TERMINAL&lt;/code&gt;. When you try to start the terminal, &lt;code&gt;exec&lt;/code&gt; or rather the shell called by &lt;code&gt;exec&lt;/code&gt; tries to start a binary named &lt;code&gt;LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To get the intended results, just define &lt;code&gt;$TERMINAL&lt;/code&gt; like you would write it in the shell, that is, without surrounding quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so" /usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+export LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+/usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and then change the configuration accordingly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set `$TERMINAL` /path/to/script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Also going by the instructions on (&lt;em&gt;stderred&lt;/em&gt; github page)[https://github.com/sickill/stderred] it is sufficient to put &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export LD_PRELOAD="/absolute/path/to/stderred/buildlibstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into your shell configuration (&lt;code&gt;~/.bashrc&lt;/code&gt;, &lt;code&gt;~/.zshrc&lt;/code&gt;, etc.). That is because stderred changes the behaviour of the commands you are calling in the shell and not the the behaviour of the terminal or shell. Therefore it doesn't have to be already set when opening the terminal.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Im leaving the first answer, because, although it is not really necessary in the case of stderred, it may be of help in other cases where &lt;code&gt;$LD_PRELOAD&lt;/code&gt; (or any other environment variable) has to be set for the program called.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3332#comment-3332</link><description>Hmmmmmm...that gives me another idea; I could just replace `&gt;&amp;2` with `| perl -n -e 'print STDERR $_'`. Bit of a goofy hack, but quick and easy. Thanks for your help.
+</description><pubDate>Wed, 29 Jan 2014 20:43:36 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3332#comment-3332</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Handling of variables in the i3 config is very minimal, they are just set verbatim to whatever is written after the variable name. This includes quotation marks. That means, when you do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL 'LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the single quotes are still contained in &lt;code&gt;$TERMINAL&lt;/code&gt;. When you try to start the terminal, &lt;code&gt;exec&lt;/code&gt; or rather the shell called by &lt;code&gt;exec&lt;/code&gt; tries to start a binary named &lt;code&gt;LD_PRELOAD=/net/erard/usr/lib/stderred/build/libstderred.so /usr/bin/konsole&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To get the intended results, just define &lt;code&gt;$TERMINAL&lt;/code&gt; like you would write it in the shell, that is, without surrounding quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $TERMINAL LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so" /usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+export LD_PRELOAD="/net/erard/usr/lib/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+/usr/bin/konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and then change the configuration accordingly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set `$TERMINAL` /path/to/script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Also going by the instructions on (&lt;em&gt;stderred&lt;/em&gt; github page)[https://github.com/sickill/stderred] it is sufficient to put &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export LD_PRELOAD="/absolute/path/to/stderred/buildlibstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into your shell configuration (&lt;code&gt;~/.bashrc&lt;/code&gt;, &lt;code&gt;~/.zshrc&lt;/code&gt;, etc.). That is because stderred changes the behaviour of the commands you are calling in the shell and not the the behaviour of the terminal or shell. Therefore it doesn't have to be already set when opening the terminal.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Im leaving the first answer, because, although it is not really necessary in the case of stderred, it may be of help in other cases where &lt;code&gt;$LD_PRELOAD&lt;/code&gt; (or any other environment variable) has to be set for the program called.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3329#comment-3329</link><description>Output redirections work by changing which stream a file descriptor indicates not by changing the fd a program uses. By default 1=stdout and 2=stderr. Using &gt;&amp;2 both, 1 and 2, indicate stderr. stderred only works with 2, while echo only writes to 1 both not knowing that 1 points to stderr, too.</description><pubDate>Wed, 29 Jan 2014 11:49:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3306/using-ld_preload-env-variable-with-terminal-i3-variable/?comment=3329#comment-3329</guid></item></channel></rss>

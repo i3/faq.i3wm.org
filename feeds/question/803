@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/803/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 23 Nov 2012 16:47:32 +0000</lastBuildDate><item><title>No wifi in i3</title><link>https://faq.i3wm.org/question/803/no-wifi-in-i3/</link><description>I am running the latest stable version of crunchbang with a fresh version of i3 installed on top. Logging in to the default WM, openbox lets me use wifi without any issues but in i3 I can only see `W: DOWN` in the status bar.
+
+Wired network works however great in i3. What should I do?
+
+Running iwconfig outputs this:
+
+    wlan0     IEEE 802.11bg  ESSID:off/any  
+              Mode:Managed  Access Point: Not-Associated   Tx-Power=20 dBm   
+              Retry  long limit:7   RTS thr:off   Fragment thr:off
+              Power Management:off
+
+</description><pubDate>Fri, 23 Nov 2012 15:07:55 +0000</pubDate><guid>https://faq.i3wm.org/question/803/no-wifi-in-i3/</guid></item><item><title>Answer by loblik for &lt;p&gt;I am running the latest stable version of crunchbang with a fresh version of i3 installed on top. Logging in to the default WM, openbox lets me use wifi without any issues but in i3 I can only see &lt;code&gt;W: DOWN&lt;/code&gt; in the status bar.&lt;/p&gt;
+
+&lt;p&gt;Wired network works however great in i3. What should I do?&lt;/p&gt;
+
+&lt;p&gt;Running iwconfig outputs this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wlan0     IEEE 802.11bg  ESSID:off/any  
+          Mode:Managed  Access Point: Not-Associated   Tx-Power=20 dBm   
+          Retry  long limit:7   RTS thr:off   Fragment thr:off
+          Power Management:off
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/803/no-wifi-in-i3/?answer=804#post-id-804</link><description>I'm not sure what's your problem. You mean your wireless connection doesn't work or you just can't see the status of your wireless interface in i3bar?
+
+If your connection doesn't work it's not i3 fault. You have to use network manager or wpa_supplicant and some network configuration utility. I don't know what crunchbang uses.
+
+And if it works fine but you don't see wireless information in i3bar there are two things which can cause this. 
+
+ - you don't have right interface name in i3status.conf
+ - your kernel doesn't allow to configure your card via library i3status currently uses (see this question for more info: [question 218](http://faq.i3wm.org/question/218/is-i3status-compatible-with-wpa_supplicant/))
+
+If you run iwconfig in termnial and it prints status of your wireless NIC then its probably the first case. Otherwise it's the second thing which is not easy to fix right now (as explained in mentioned thread).</description><pubDate>Fri, 23 Nov 2012 15:49:35 +0000</pubDate><guid>https://faq.i3wm.org/question/803/no-wifi-in-i3/?answer=804#post-id-804</guid></item><item><title>Comment by jockster for &lt;p&gt;I'm not sure what's your problem. You mean your wireless connection doesn't work or you just can't see the status of your wireless interface in i3bar?&lt;/p&gt;
+
+&lt;p&gt;If your connection doesn't work it's not i3 fault. You have to use network manager or wpa_supplicant and some network configuration utility. I don't know what crunchbang uses.&lt;/p&gt;
+
+&lt;p&gt;And if it works fine but you don't see wireless information in i3bar there are two things which can cause this. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;you don't have right interface name in i3status.conf&lt;/li&gt;
+&lt;li&gt;your kernel doesn't allow to configure your card via library i3status currently uses (see this question for more info: &lt;a href="http://faq.i3wm.org/question/218/is-i3status-compatible-with-wpa_supplicant/"&gt;question 218&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you run iwconfig in termnial and it prints status of your wireless NIC then its probably the first case. Otherwise it's the second thing which is not easy to fix right now (as explained in mentioned thread).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/803/no-wifi-in-i3/?comment=807#comment-807</link><description>It turned out that if I added `exec --no-startup-id nm-applet` to `~/.i3/config` wifi began working. Thank you!</description><pubDate>Fri, 23 Nov 2012 16:47:32 +0000</pubDate><guid>https://faq.i3wm.org/question/803/no-wifi-in-i3/?comment=807#comment-807</guid></item><item><title>Comment by jockster for &lt;p&gt;I'm not sure what's your problem. You mean your wireless connection doesn't work or you just can't see the status of your wireless interface in i3bar?&lt;/p&gt;
+
+&lt;p&gt;If your connection doesn't work it's not i3 fault. You have to use network manager or wpa_supplicant and some network configuration utility. I don't know what crunchbang uses.&lt;/p&gt;
+
+&lt;p&gt;And if it works fine but you don't see wireless information in i3bar there are two things which can cause this. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;you don't have right interface name in i3status.conf&lt;/li&gt;
+&lt;li&gt;your kernel doesn't allow to configure your card via library i3status currently uses (see this question for more info: &lt;a href="http://faq.i3wm.org/question/218/is-i3status-compatible-with-wpa_supplicant/"&gt;question 218&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you run iwconfig in termnial and it prints status of your wireless NIC then its probably the first case. Otherwise it's the second thing which is not easy to fix right now (as explained in mentioned thread).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/803/no-wifi-in-i3/?comment=806#comment-806</link><description>Updated my post with the result of `iwconfig`</description><pubDate>Fri, 23 Nov 2012 16:14:46 +0000</pubDate><guid>https://faq.i3wm.org/question/803/no-wifi-in-i3/?comment=806#comment-806</guid></item><item><title>Comment by jockster for &lt;p&gt;I'm not sure what's your problem. You mean your wireless connection doesn't work or you just can't see the status of your wireless interface in i3bar?&lt;/p&gt;
+
+&lt;p&gt;If your connection doesn't work it's not i3 fault. You have to use network manager or wpa_supplicant and some network configuration utility. I don't know what crunchbang uses.&lt;/p&gt;
+
+&lt;p&gt;And if it works fine but you don't see wireless information in i3bar there are two things which can cause this. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;you don't have right interface name in i3status.conf&lt;/li&gt;
+&lt;li&gt;your kernel doesn't allow to configure your card via library i3status currently uses (see this question for more info: &lt;a href="http://faq.i3wm.org/question/218/is-i3status-compatible-with-wpa_supplicant/"&gt;question 218&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you run iwconfig in termnial and it prints status of your wireless NIC then its probably the first case. Otherwise it's the second thing which is not easy to fix right now (as explained in mentioned thread).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/803/no-wifi-in-i3/?comment=805#comment-805</link><description>No connection on wireless whatsoever in i3 which i3bar also confirms.</description><pubDate>Fri, 23 Nov 2012 16:10:13 +0000</pubDate><guid>https://faq.i3wm.org/question/803/no-wifi-in-i3/?comment=805#comment-805</guid></item></channel></rss>

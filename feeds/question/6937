@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6937/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 21 Oct 2015 17:36:15 +0000</lastBuildDate><item><title>move focus from tabbed container to window which is currently displayed left of it</title><link>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/</link><description>Consider the following arrangement of windows: 
+
+AAAA|BB|CC
+
+where B and C are in a tabbed container, A and this tabbed container are on a split-screen workspace and the focus is on C (which means the screen content is actually AAAA|CCCC). 
+
+What would be a good way of moving the focus to window A without changing the focus on the right half of the screen to B?
+
+I would like to have something like 'move the focus to whatever is visible left of the currently focused window'. I already tried to use 'focus parent' a couple of times until the level where the 'move left' would accomplish what I wanted to do. However I found it difficult to find out to determine which parent level I have to focus on.
+
+Is there a good way of achieving that?
+
+(obviously I am not only interested in moving the focus left, but ideally in all four directions :P)
+</description><pubDate>Wed, 14 Oct 2015 12:51:14 +0000</pubDate><guid>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/</guid></item><item><title>Answer by Philippe Virouleau for &lt;p&gt;Consider the following arrangement of windows: &lt;/p&gt;
+
+&lt;p&gt;AAAA|BB|CC&lt;/p&gt;
+
+&lt;p&gt;where B and C are in a tabbed container, A and this tabbed container are on a split-screen workspace and the focus is on C (which means the screen content is actually AAAA|CCCC). &lt;/p&gt;
+
+&lt;p&gt;What would be a good way of moving the focus to window A without changing the focus on the right half of the screen to B?&lt;/p&gt;
+
+&lt;p&gt;I would like to have something like 'move the focus to whatever is visible left of the currently focused window'. I already tried to use 'focus parent' a couple of times until the level where the 'move left' would accomplish what I wanted to do. However I found it difficult to find out to determine which parent level I have to focus on.&lt;/p&gt;
+
+&lt;p&gt;Is there a good way of achieving that?&lt;/p&gt;
+
+&lt;p&gt;(obviously I am not only interested in moving the focus left, but ideally in all four directions :P)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?answer=6938#post-id-6938</link><description>While in 'C' you can focus parent container and then move the focus left.
+
+Assuming you have something like that in your bindings :
+
+    bindsym $mod+q focus parent
+    bindsym $mod+h focus left
+You would use mod+q to focus C's parent container, and mod+h to move focus to A.
+
+
+
+
+
+ </description><pubDate>Wed, 14 Oct 2015 13:09:22 +0000</pubDate><guid>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?answer=6938#post-id-6938</guid></item><item><title>Comment by i3convert for &lt;p&gt;While in 'C' you can focus parent container and then move the focus left.&lt;/p&gt;
+
+&lt;p&gt;Assuming you have something like that in your bindings :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+q focus parent
+bindsym $mod+h focus left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You would use mod+q to focus C's parent container, and mod+h to move focus to A.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?comment=6946#comment-6946</link><description>So I think there is a value to having a "visual" left, right, etc. procedures that work with a fixed number of keystrokes and require no thinking :)</description><pubDate>Wed, 14 Oct 2015 16:29:15 +0000</pubDate><guid>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?comment=6946#comment-6946</guid></item><item><title>Comment by i3convert for &lt;p&gt;While in 'C' you can focus parent container and then move the focus left.&lt;/p&gt;
+
+&lt;p&gt;Assuming you have something like that in your bindings :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+q focus parent
+bindsym $mod+h focus left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You would use mod+q to focus C's parent container, and mod+h to move focus to A.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?comment=6943#comment-6943</link><description>@PV: I've been doing that too. The problem is that I'm sometimes left with empty (i.e., one node) levels in between (after closing some windows), so this requires multiple `focus parent` and the depth is unclear. So I overshoot with `focus parent` and fix this with a single `focus child`.</description><pubDate>Wed, 14 Oct 2015 16:21:02 +0000</pubDate><guid>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?comment=6943#comment-6943</guid></item><item><title>Comment by Philippe Virouleau for &lt;p&gt;While in 'C' you can focus parent container and then move the focus left.&lt;/p&gt;
+
+&lt;p&gt;Assuming you have something like that in your bindings :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+q focus parent
+bindsym $mod+h focus left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You would use mod+q to focus C's parent container, and mod+h to move focus to A.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?comment=6941#comment-6941</link><description>I usually look at the windows' titles and borders, as they are highlighted when using 'focus parent'. Maybe it's because I don't use very complicated layouts but I feel this is a sufficient hint.</description><pubDate>Wed, 14 Oct 2015 14:27:18 +0000</pubDate><guid>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?comment=6941#comment-6941</guid></item><item><title>Comment by i3convert for &lt;p&gt;While in 'C' you can focus parent container and then move the focus left.&lt;/p&gt;
+
+&lt;p&gt;Assuming you have something like that in your bindings :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+q focus parent
+bindsym $mod+h focus left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You would use mod+q to focus C's parent container, and mod+h to move focus to A.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?comment=6939#comment-6939</link><description>I think it is not always obvious with complicated layouts how many times you have to press $mod+q.</description><pubDate>Wed, 14 Oct 2015 13:57:40 +0000</pubDate><guid>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?comment=6939#comment-6939</guid></item><item><title>Answer by Anon1234 for &lt;p&gt;Consider the following arrangement of windows: &lt;/p&gt;
+
+&lt;p&gt;AAAA|BB|CC&lt;/p&gt;
+
+&lt;p&gt;where B and C are in a tabbed container, A and this tabbed container are on a split-screen workspace and the focus is on C (which means the screen content is actually AAAA|CCCC). &lt;/p&gt;
+
+&lt;p&gt;What would be a good way of moving the focus to window A without changing the focus on the right half of the screen to B?&lt;/p&gt;
+
+&lt;p&gt;I would like to have something like 'move the focus to whatever is visible left of the currently focused window'. I already tried to use 'focus parent' a couple of times until the level where the 'move left' would accomplish what I wanted to do. However I found it difficult to find out to determine which parent level I have to focus on.&lt;/p&gt;
+
+&lt;p&gt;Is there a good way of achieving that?&lt;/p&gt;
+
+&lt;p&gt;(obviously I am not only interested in moving the focus left, but ideally in all four directions :P)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?answer=6999#post-id-6999</link><description>I wrote a small python script that uses &lt;code&gt;i3-msg -t get_tree&lt;/code&gt;  as was mentioned by @i3convert. It can toggle focus between visible windows.
+Also thanks to @Airblader for his [explanation](https://airblader.github.io/2015/10/01/i3-4.11/) on hidden windows feature.
+
+Usage:
+
+    # focus next visible window
+    bindsym $mod+n exec --no-startup-id ~/.i3/focus_next_visible.py
+    # focus previous visible window
+    bindsym $mod+Shift+n exec --no-startup-id ~/.i3/focus_next_visible.py reverse
+
+Code:
+
+    #!/usr/bin/env python3
+
+    """
+    focus_next_visible.py - toggles focus between visible windows on workspace
+    
+     - requires https://github.com/acrisci/i3ipc-python
+    
+    """
+    from sys import argv
+    from itertools import cycle
+    from subprocess import check_output
+    
+    import i3ipc
+    
+    
+    def get_windows_on_ws(conn):
+        return filter(lambda x: x.window,
+                      conn.get_tree().find_focused().workspace().descendents())
+    
+    
+    def find_visible_windows(windows_on_workspace):
+        visible_windows = []
+        for w in windows_on_workspace:
+            xprop = check_output(['xprop', '-id', str(w.window)]).decode()
+    
+            if '_NET_WM_STATE_HIDDEN' in xprop:
+                print(w.name, 'is not visible')
+            else:
+                print(w.name, 'is visible')
+                visible_windows.append(w)
+    
+        return visible_windows
+    
+    
+    if __name__ == '__main__':
+    
+        conn = i3ipc.Connection()
+    
+        visible = find_visible_windows(get_windows_on_ws(conn))
+    
+        if len(argv) &gt; 1 and argv[1] == "reverse":
+            cv = cycle(reversed(visible))
+        else:
+            cv = cycle(visible)
+    
+        for w in cv:
+            if w.focused:
+                focus_to = next(cv)
+                conn.command('[id="%d"] focus' % focus_to.window)
+                print("Moving focus to", focus_to.name)
+                break</description><pubDate>Wed, 21 Oct 2015 17:36:15 +0000</pubDate><guid>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?answer=6999#post-id-6999</guid></item><item><title>Answer by i3convert for &lt;p&gt;Consider the following arrangement of windows: &lt;/p&gt;
+
+&lt;p&gt;AAAA|BB|CC&lt;/p&gt;
+
+&lt;p&gt;where B and C are in a tabbed container, A and this tabbed container are on a split-screen workspace and the focus is on C (which means the screen content is actually AAAA|CCCC). &lt;/p&gt;
+
+&lt;p&gt;What would be a good way of moving the focus to window A without changing the focus on the right half of the screen to B?&lt;/p&gt;
+
+&lt;p&gt;I would like to have something like 'move the focus to whatever is visible left of the currently focused window'. I already tried to use 'focus parent' a couple of times until the level where the 'move left' would accomplish what I wanted to do. However I found it difficult to find out to determine which parent level I have to focus on.&lt;/p&gt;
+
+&lt;p&gt;Is there a good way of achieving that?&lt;/p&gt;
+
+&lt;p&gt;(obviously I am not only interested in moving the focus left, but ideally in all four directions :P)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?answer=6940#post-id-6940</link><description>**Possible solution:** You can write a script that analyzes the output of `i3-msg -t get_tree` to figure out for you how many levels you have to go up first (Python has a nice library for parsing JSON, which is the format of the output of this command). Then the script could issue the command `focus parent` the right number of times, before doing `focus left`.
+
+Alternately, it could just figure out the X11 id of the window you want to move the focus to and then just issue `[id=???] focus`, where `???` is the id.
+
+I guess it would be nice to have two sets of left, right, up, down keys. $mod+arrows is the standard one, and Ctrl+$mod+arrows is the visual move focus, which doesn't switch tabs in the tabbed or stacking layout.
+
+**Workaround:** What I have been doing in this kind of situation is to use the stacking layout for the right side of the screen (the command `layout stacking`). Then moving left/right doesn't change between windows B and C (you have to move up/down for that). Clearly, this is only a workaround that wouldn't work in more complicated situations and unfortunately a little more screen space gets wasted.
+</description><pubDate>Wed, 14 Oct 2015 14:18:21 +0000</pubDate><guid>https://faq.i3wm.org/question/6937/move-focus-from-tabbed-container-to-window-which-is-currently-displayed-left-of-it/?answer=6940#post-id-6940</guid></item></channel></rss>

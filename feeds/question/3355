@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3355/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 04 Feb 2014 21:21:47 +0000</lastBuildDate><item><title>Move any container directly where the last split was done</title><link>https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/</link><description>When I am on a workspace and I want to move a container, I don't like to move it with top/right/bottom/left move bindkeys (to much moves for me!!).
+
+I prefer to do like this :
+
+ 1. I make the split somewhere
+ 2. I make floated the container I want to move
+ 3. I immediatly make it unfloated (and it goes to the right place, where I made the split)
+
+But I'm looking for a way to make the step 2 and 3 with one bindkey (on one step).
+
+Is it possible ?</description><pubDate>Mon, 03 Feb 2014 22:06:41 +0000</pubDate><guid>https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;When I am on a workspace and I want to move a container, I don't like to move it with top/right/bottom/left move bindkeys (to much moves for me!!).&lt;/p&gt;
+
+&lt;p&gt;I prefer to do like this :&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;I make the split somewhere&lt;/li&gt;
+&lt;li&gt;I make floated the container I want to move&lt;/li&gt;
+&lt;li&gt;I immediatly make it unfloated (and it goes to the right place, where I made the split)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;But I'm looking for a way to make the step 2 and 3 with one bindkey (on one step).&lt;/p&gt;
+
+&lt;p&gt;Is it possible ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/?answer=3358#post-id-3358</link><description>Yes.
+
+First use `mark` to save, where the last split happened. Just chain it to your normal `split` commands:
+
+    bindsym $mod+h split horizontal; mark lastsplit
+    bindsym $mod+v split vertical; mark lastsplit
+
+Now you can move a window to the mark by one of these two methods, depending on your version of i3:
+
+* Since version 4.11 you can use the following to move to a mark. 
+
+        bindsym $mod+m move window to mark lastsplit
+
+* for older versions there is no direct way to move a window to a split. But there is a workaround using the scratchpad:
+
+ When 'unfloating' a window, i3 drops it where it would also create a new window: just next to the focused (and tiled) one. So the window with the last split has to be focused immediately before disabling floating:
+
+        bindsym $mod+m mark movethis; move scratchpad; [con_mark="^lastsplit$"] focus; [con_mark="^movethis$"] scratchpad show, floating disable
+
+
+Now, on `$mod+m` the currently focused window will be moved to the last split. You can even move multiple windows to the same split.
+
+Also, some binding to just set the mark, without splitting could come in handy.</description><pubDate>Tue, 04 Feb 2014 06:11:45 +0000</pubDate><guid>https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/?answer=3358#post-id-3358</guid></item><item><title>Comment by Spheerys for &lt;p&gt;Yes.&lt;/p&gt;
+
+&lt;p&gt;First use &lt;code&gt;mark&lt;/code&gt; to save, where the last split happened. Just chain it to your normal &lt;code&gt;split&lt;/code&gt; commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+h split horizontal; mark lastsplit
+bindsym $mod+v split vertical; mark lastsplit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can move a window to the mark by one of these two methods, depending on your version of i3:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Since version 4.11 you can use the following to move to a mark. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m move window to mark lastsplit
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;for older versions there is no direct way to move a window to a split. But there is a workaround using the scratchpad:&lt;/p&gt;
+
+&lt;p&gt;When 'unfloating' a window, i3 drops it where it would also create a new window: just next to the focused (and tiled) one. So the window with the last split has to be focused immediately before disabling floating:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m mark movethis; move scratchpad; [con_mark="^lastsplit$"] focus; [con_mark="^movethis$"] scratchpad show, floating disable
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now, on &lt;code&gt;$mod+m&lt;/code&gt; the currently focused window will be moved to the last split. You can even move multiple windows to the same split.&lt;/p&gt;
+
+&lt;p&gt;Also, some binding to just set the mark, without splitting could come in handy.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/?comment=3360#comment-3360</link><description>There is an error :
+
+```
+ERROR: Expected one of these tokens: 'class', 'instance', 'window_role', 'con_id', 'id', 'con_mark', 'title', 'urgent', ']'
+
+ERROR: Your command: mark movethis; floating enable; [con_mark="^lastsplit$"] focus; [con_mark="^movethis$] focus, floating disable
+```</description><pubDate>Tue, 04 Feb 2014 10:01:07 +0000</pubDate><guid>https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/?comment=3360#comment-3360</guid></item><item><title>Comment by Spheerys for &lt;p&gt;Yes.&lt;/p&gt;
+
+&lt;p&gt;First use &lt;code&gt;mark&lt;/code&gt; to save, where the last split happened. Just chain it to your normal &lt;code&gt;split&lt;/code&gt; commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+h split horizontal; mark lastsplit
+bindsym $mod+v split vertical; mark lastsplit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can move a window to the mark by one of these two methods, depending on your version of i3:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Since version 4.11 you can use the following to move to a mark. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m move window to mark lastsplit
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;for older versions there is no direct way to move a window to a split. But there is a workaround using the scratchpad:&lt;/p&gt;
+
+&lt;p&gt;When 'unfloating' a window, i3 drops it where it would also create a new window: just next to the focused (and tiled) one. So the window with the last split has to be focused immediately before disabling floating:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m mark movethis; move scratchpad; [con_mark="^lastsplit$"] focus; [con_mark="^movethis$"] scratchpad show, floating disable
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now, on &lt;code&gt;$mod+m&lt;/code&gt; the currently focused window will be moved to the last split. You can even move multiple windows to the same split.&lt;/p&gt;
+
+&lt;p&gt;Also, some binding to just set the mark, without splitting could come in handy.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/?comment=3361#comment-3361</link><description>It's missing a quote.
+The correct line is :
+```
+bindsym $mod+m mark movethis; floating enable; [con_mark="^lastsplit$"] focus; [con_mark="^movethis$"] focus, floating disable
+```</description><pubDate>Tue, 04 Feb 2014 16:16:48 +0000</pubDate><guid>https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/?comment=3361#comment-3361</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Yes.&lt;/p&gt;
+
+&lt;p&gt;First use &lt;code&gt;mark&lt;/code&gt; to save, where the last split happened. Just chain it to your normal &lt;code&gt;split&lt;/code&gt; commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+h split horizontal; mark lastsplit
+bindsym $mod+v split vertical; mark lastsplit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can move a window to the mark by one of these two methods, depending on your version of i3:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Since version 4.11 you can use the following to move to a mark. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m move window to mark lastsplit
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;for older versions there is no direct way to move a window to a split. But there is a workaround using the scratchpad:&lt;/p&gt;
+
+&lt;p&gt;When 'unfloating' a window, i3 drops it where it would also create a new window: just next to the focused (and tiled) one. So the window with the last split has to be focused immediately before disabling floating:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m mark movethis; move scratchpad; [con_mark="^lastsplit$"] focus; [con_mark="^movethis$"] scratchpad show, floating disable
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now, on &lt;code&gt;$mod+m&lt;/code&gt; the currently focused window will be moved to the last split. You can even move multiple windows to the same split.&lt;/p&gt;
+
+&lt;p&gt;Also, some binding to just set the mark, without splitting could come in handy.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/?comment=3369#comment-3369</link><description>@Spheerys: Thanks, I fixed it.</description><pubDate>Tue, 04 Feb 2014 21:21:47 +0000</pubDate><guid>https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/?comment=3369#comment-3369</guid></item></channel></rss>

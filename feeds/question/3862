@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3862/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 09 Oct 2015 23:58:55 +0000</lastBuildDate><item><title>system settings not working (scrolling and touch click)</title><link>https://faq.i3wm.org/question/3862/system-settings-not-working-scrolling-and-touch-click/</link><description>In my ubuntu settings i have turned off touch click and made the scrolling natural. However, when I run i3 it doesn't seem to hold those settings. </description><pubDate>Thu, 22 May 2014 17:38:49 +0000</pubDate><guid>https://faq.i3wm.org/question/3862/system-settings-not-working-scrolling-and-touch-click/</guid></item><item><title>Answer by veraxest for &lt;p&gt;In my ubuntu settings i have turned off touch click and made the scrolling natural. However, when I run i3 it doesn't seem to hold those settings. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3862/system-settings-not-working-scrolling-and-touch-click/?answer=6874#post-id-6874</link><description> I'm sorry to post this question in this thread, but it might effect some users who adjust their mouse settings using the `xinput`(?)
+
+I added 
+
+    exec --no-startup-id xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Constant Deceleration" 0.35
+into `~/.i3/config` and it worked perfectly, until I enabled "Automatic user login". i3 simply doesn't execute this line on startup anymore. Enabling password on login solved the problem again. Another strange thing is, that this line is beying executed normaly on the other machine, which runs exectly the same Dist and i3WM, - also Automatic login without password enabled. What could be the reason? </description><pubDate>Fri, 09 Oct 2015 23:58:55 +0000</pubDate><guid>https://faq.i3wm.org/question/3862/system-settings-not-working-scrolling-and-touch-click/?answer=6874#post-id-6874</guid></item><item><title>Answer by Adaephon for &lt;p&gt;In my ubuntu settings i have turned off touch click and made the scrolling natural. However, when I run i3 it doesn't seem to hold those settings. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3862/system-settings-not-working-scrolling-and-touch-click/?answer=3863#post-id-3863</link><description>The settings you make in Ubuntu Settings are only loaded if you start a Unity session (the same holds true for systemsettings in KDE, or gnome-settings).
+
+You can configure your touchpad (also mouse and keyboard) with the tool `xinput`:
+
+List devices:
+
+    $ xinput list
+    ⎡Virtual core pointer
+    ⎜  ↳ Virtual core XTEST pointer      id=2   [master pointer   (3)]
+    ⎜  ↳ PS/2 Generic Mouse              id=12  [slave  pointer   (2)]
+    ⎜  ↳ SynPS/2 Synaptics Touchpad      id=13  [slave  pointer   (2)]
+    [...]
+
+In my case I have a touchpad and a trackpoint.
+
+To show properties of a device call `xinput list-props` with the ID or name of the device (IDs are obviously shorter, but may change between reboots)
+
+    $ xinput list-props "SynPS/2 Synaptics Touchpad"
+    Device 'SynPS/2 Synaptics TouchPad':
+            Device Enabled (142):	1
+            [...]
+            Synaptics Tap Time (291):	150
+            [...]
+            Synaptics Scrolling Distance (298):	107, 107
+            [...]
+
+To disable tapping set `Synaptics Tap Time` to `0`:
+
+    $ xinput set-prop "SynPS/2 Synaptics Touchpad" "Synaptics Tap Time" 0
+
+For natural scrolling negate both values of `Synaptics Scrolling Distance`. The first is for vertical scrolling, the second for horizontal:
+
+    $ xinput set-prop "SynPS/2 Synaptics Touchpad" "Synaptics Scrolling Distance" -107, -107
+
+Note: the actual values for (here `107`) may be different for your device.
+
+You can just start these commands from `~/.i3/config`
+
+    exec --no-startup-id xinput set-prop "SynPS/2 Synaptics Touchpad" "Synaptics Tap Time" 0
+    exec --no-startup-id xinput set-prop "SynPS/2 Synaptics Touchpad" "Synaptics Scrolling Distance" -107, -107
+    
+
+If you want to have system-wide settings (all users, login-screen), you'll have to edit or create `/etc/X11/xorg.conf` or a file in `/etc/X11/xorg.conf.d/` with extension `.conf`.
+
+`/etc/X11/xorg.conf/50-touchpad.conf`:
+
+    Section "InputClass"
+        Identifier "Touchpad"
+        MatchIsTouchpad "yes"
+        Driver "synaptics"
+        Option "MaxTapTime" "0"
+        Option "VertScrollDelta" "-107"
+        Option "HorizScrollDelta" "-107"
+
+Sadly, the option names for `xorg.conf` are not the same as the one used with `xinput`, but you can look up the mapping in `man 4 synaptics`. In order for these changes to be applied, you will have to restart Xorg.
+
+</description><pubDate>Fri, 23 May 2014 08:06:28 +0000</pubDate><guid>https://faq.i3wm.org/question/3862/system-settings-not-working-scrolling-and-touch-click/?answer=3863#post-id-3863</guid></item></channel></rss>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3434/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 27 Mar 2014 14:54:32 +0000</lastBuildDate><item><title>Switch to workspace where a link was opened in Firefox</title><link>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/</link><description>When I open a link from workspace 1 (terminal, email, etc), it gets opened in the Firefox instance running on workspace 2.
+
+I would like to automatically switch to / focus the Firefox window.</description><pubDate>Wed, 26 Feb 2014 20:05:51 +0000</pubDate><guid>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/</guid></item><item><title>Answer by uzsolt for &lt;p&gt;When I open a link from workspace 1 (terminal, email, etc), it gets opened in the Firefox instance running on workspace 2.&lt;/p&gt;
+
+&lt;p&gt;I would like to automatically switch to / focus the Firefox window.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?answer=3435#post-id-3435</link><description>Try create a script (e.g. `~/bin/mybrowser`) which changes the workspaces too. And set browser of your programs to `~/bin/mybrowser`:
+
+    #!/usr/bin/env bash
+    firefox $*
+    i3-msg workspace "web"
+    # blueyed's comment:
+    # i3-msg [class="Firefox"] focus
+</description><pubDate>Wed, 26 Feb 2014 20:13:27 +0000</pubDate><guid>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?answer=3435#post-id-3435</guid></item><item><title>Comment by blueyed for &lt;p&gt;Try create a script (e.g. &lt;code&gt;~/bin/mybrowser&lt;/code&gt;) which changes the workspaces too. And set browser of your programs to &lt;code&gt;~/bin/mybrowser&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env bash
+firefox $*
+i3-msg workspace "web"
+# blueyed's comment:
+# i3-msg [class="Firefox"] focus
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3440#comment-3440</link><description>That's part of the problem.. :)
+Apart from that it affects other applications as well.
+When it is on the same workspace, the focus changes. It would be nice, if this would get done across workspaces, too - preferably with a setting ("focus stealing prevention").</description><pubDate>Wed, 26 Feb 2014 20:59:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3440#comment-3440</guid></item><item><title>Comment by blueyed for &lt;p&gt;Try create a script (e.g. &lt;code&gt;~/bin/mybrowser&lt;/code&gt;) which changes the workspaces too. And set browser of your programs to &lt;code&gt;~/bin/mybrowser&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env bash
+firefox $*
+i3-msg workspace "web"
+# blueyed's comment:
+# i3-msg [class="Firefox"] focus
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3437#comment-3437</link><description>This assumes that the browser is running in a particular workspace always. But I might have multiple instances across different workspaces.</description><pubDate>Wed, 26 Feb 2014 20:27:52 +0000</pubDate><guid>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3437#comment-3437</guid></item><item><title>Comment by blueyed for &lt;p&gt;Try create a script (e.g. &lt;code&gt;~/bin/mybrowser&lt;/code&gt;) which changes the workspaces too. And set browser of your programs to &lt;code&gt;~/bin/mybrowser&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env bash
+firefox $*
+i3-msg workspace "web"
+# blueyed's comment:
+# i3-msg [class="Firefox"] focus
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3443#comment-3443</link><description>wmctrl does not appear to work with i3 - I have used it in scripts before (e.g. `wmctrl -a foo` to select a window). For the problem at hand, I could also use `i3-msg '[class=Firefox] focus'` in the custom script, but I would rather have this fixed globally.</description><pubDate>Wed, 26 Feb 2014 21:10:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3443#comment-3443</guid></item><item><title>Comment by uzsolt for &lt;p&gt;Try create a script (e.g. &lt;code&gt;~/bin/mybrowser&lt;/code&gt;) which changes the workspaces too. And set browser of your programs to &lt;code&gt;~/bin/mybrowser&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env bash
+firefox $*
+i3-msg workspace "web"
+# blueyed's comment:
+# i3-msg [class="Firefox"] focus
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3438#comment-3438</link><description>And how do you control which instance will open your URL? I think it's impossible: https://support.mozilla.org/hu/questions/975778</description><pubDate>Wed, 26 Feb 2014 20:54:02 +0000</pubDate><guid>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3438#comment-3438</guid></item><item><title>Comment by uzsolt for &lt;p&gt;Try create a script (e.g. &lt;code&gt;~/bin/mybrowser&lt;/code&gt;) which changes the workspaces too. And set browser of your programs to &lt;code&gt;~/bin/mybrowser&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env bash
+firefox $*
+i3-msg workspace "web"
+# blueyed's comment:
+# i3-msg [class="Firefox"] focus
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3444#comment-3444</link><description>But which Firefox instance will focus? :)</description><pubDate>Wed, 26 Feb 2014 21:33:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3444#comment-3444</guid></item><item><title>Comment by uzsolt for &lt;p&gt;Try create a script (e.g. &lt;code&gt;~/bin/mybrowser&lt;/code&gt;) which changes the workspaces too. And set browser of your programs to &lt;code&gt;~/bin/mybrowser&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env bash
+firefox $*
+i3-msg workspace "web"
+# blueyed's comment:
+# i3-msg [class="Firefox"] focus
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3441#comment-3441</link><description>Oh, understand. Do you know about wmctrl? Maybe you can use it. http://www.freedesktop.org/wiki/Software/wmctrl/</description><pubDate>Wed, 26 Feb 2014 21:03:13 +0000</pubDate><guid>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?comment=3441#comment-3441</guid></item><item><title>Answer by TonyC for &lt;p&gt;When I open a link from workspace 1 (terminal, email, etc), it gets opened in the Firefox instance running on workspace 2.&lt;/p&gt;
+
+&lt;p&gt;I would like to automatically switch to / focus the Firefox window.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?answer=3578#post-id-3578</link><description>This is not possible with i3 in the current version, but in the next version we can listen to title change events with the new [i3ipc](https://github.com/acrisci/i3ipc-glib) library to determine when the tab is opened and then focus the window. This script uses the [JavaScript](https://github.com/acrisci/i3ipc-gjs) version of the library. You can find the latest version of this script [here](https://github.com/acrisci/i3ipc-gjs/blob/master/examples/browser-tab-open-focus.js).
+
+    #!/usr/bin/env gjs
+
+    /*
+       This example shows how to make i3wm automatically switch to a browser that
+       has opened a new tab by using the new ipc "title change" event. This event
+       will be available in the next released version (after 4.7.2).
+
+       If you have a webpage open that changes the title without any user
+       interaction (rare, but possible), you may need to do some additional
+       filtering so it does not switch focus unexpectedly.
+
+       https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/
+    */
+
+    const i3ipc = imports.gi.i3ipc;
+
+    let conn = new i3ipc.Connection;
+
+    let browser_re = /- Vimperator$|- Firefox$|- Chromium$/
+
+    conn.on('window::title', function(conn, e) {
+        if (browser_re.test(e.container.name)) {
+            e.container.command('focus');
+        }
+    });
+
+    conn.main();
+
+</description><pubDate>Thu, 27 Mar 2014 14:54:32 +0000</pubDate><guid>https://faq.i3wm.org/question/3434/switch-to-workspace-where-a-link-was-opened-in-firefox/?answer=3578#post-id-3578</guid></item></channel></rss>

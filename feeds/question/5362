@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5362/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 03 Aug 2015 22:42:16 +0000</lastBuildDate><item><title>3 monitors, 2 nvidia cards - how to setup without xinerama?</title><link>https://faq.i3wm.org/question/5362/3-monitors-2-nvidia-cards-how-to-setup-without-xinerama/</link><description>Hi all,
+
+I have 3 monitors and 2 nvidia cards attached to my computer at work.  I can obtain 3 separate X screens and run 3 separate sessions of i3 using the DISPLAY=$DISPLAY i3 &amp; trick, but I would like to have it so I am only running one session of i3 that sees all the monitors and still treats them independently.  So far, I I have only been able to achieve this by turning on Xinerama and using the --force-xinerama option, but that isn't a solution because it kills 3d acceleration.  I am also stuck using the prop. drivers because nouveau doesn't have support for OpenCL, which I also use.  Following are my .xinitrc, xorg.conf, and xrandr output.  Would someone be willing to take a look and help me figure out if you can do this? I thought you would be able to by RANDR 1.4.  I have been using i3 on my laptop and think it is fantastic, I would really like to use it at work as well.  Thanks!
+
+.xinitrc
+
+    xscreensaver -nosplash &amp;
+    udiskie &amp;
+    CURRENT_DISPLAY=(`echo $DISPLAY | tr '.' ' '`)
+    ( xcompmgr -CcFf &amp;&gt;/dev/null ) &amp;
+    ( xcompmgr -CcFf -d ${CURRENT_DISPLAY}.1 &amp;&gt;/dev/null ) &amp;
+    ( xcompmgr -CcFf -d ${CURRENT_DISPLAY}.2 &amp;&gt;/dev/null ) &amp;
+    #exec i3 -V &gt;&gt; i3.log 2&gt;&amp;1
+    DISPLAY=:0.0 i3 &amp;
+    DISPLAY=:0.1 i3 &amp;
+    DISPLAY=:0.2 i3
+
+xorg.conf
+
+    Section "ServerLayout"
+        Identifier     "Layout0"
+        Screen      0  "Screen0" 1920 0
+        Screen      1  "Screen1" LeftOf "Screen0"
+        Screen      2  "Screen2" RightOf "Screen0"
+        InputDevice    "Keyboard0" "CoreKeyboard"
+        InputDevice    "Mouse0" "CorePointer"
+        Option         "Xinerama" "0"
+    EndSection
+
+    Section "Files"
+    EndSection
+
+    Section "InputDevice"
+        # generated from default
+        Identifier     "Mouse0"
+        Driver         "mouse"
+        Option         "Protocol" "auto"
+        Option         "Device" "/dev/psaux"
+        Option         "Emulate3Buttons" "no"
+        Option         "ZAxisMapping" "4 5"
+    EndSection
+
+    Section "InputDevice"
+        # generated from default
+        Identifier     "Keyboard0"
+        Driver         "kbd"
+    EndSection
+
+    Section "Monitor"
+        # HorizSync source: edid, VertRefresh source: edid
+        Identifier     "Monitor0"
+        VendorName     "Unknown"
+        ModelName      "HP ZR30w"
+        HorizSync       49.3 - 98.7
+        VertRefresh     59.9 - 60.0
+        Option         "DPMS"
+    EndSection
+
+    Section "Monitor"
+        # HorizSync source: edid, VertRefresh source: edid
+        Identifier     "Monitor1"
+        VendorName     "Unknown"
+        ModelName      "HP LP2465"
+        HorizSync       30.0 - 94.0
+        VertRefresh     48.0 - 85.0
+        Option         "DPMS"
+    EndSection
+
+    Section "Monitor"
+        # HorizSync source: edid, VertRefresh source: edid
+        Identifier     "Monitor2"
+        VendorName     "Unknown"
+        ModelName      "hp L2335"
+        HorizSync       30.0 - 94.0
+        VertRefresh     48.0 - 85.0
+        Option         "DPMS"
+    EndSection
+
+    Section "Device"
+        Identifier     "Device0"
+        Driver         "nvidia"
+        VendorName     "NVIDIA Corporation"
+        BoardName      "Quadro 2000"
+        BusID          "PCI:5:0:0"
+    EndSection
+
+    Section "Device"
+        Identifier     "Device1"
+        Driver         "nvidia"
+        VendorName     "NVIDIA Corporation"
+        BoardName      "Quadro FX 1700"
+        BusID          "PCI:4:0:0"
+        Screen          0
+    EndSection
+
+    Section "Device"
+        Identifier     "Device2"
+        Driver         "nvidia"
+        VendorName     "NVIDIA Corporation"
+        BoardName      "Quadro FX 1700"
+        BusID          "PCI:4:0:0"
+        Screen          1
+    EndSection
+
+    Section "Screen"
+        Identifier     "Screen0"
+        Device         "Device0"
+        Monitor        "Monitor0"
+        DefaultDepth    24
+        Option         "Stereo" "0"
+        Option         "nvidiaXineramaInfoOrder" "DFP-4"
+        Option         "metamodes" "nvidia-auto-select +0+0"
+        Option         "SLI" "Off"
+        Option         "MultiGPU" "Off"
+        Option         "BaseMosaic" "off"
+        SubSection     "Display"
+            Depth       24
+        EndSubSection
+    EndSection
+
+    Section "Screen"
+        Identifier     "Screen1"
+        Device         "Device1"
+        Monitor        "Monitor1"
+        DefaultDepth    24
+        Option         "Stereo" "0"
+        Option         "metamodes" "DVI-I-2: nvidia-auto-select +0+0"
+        Option         "SLI" "Off"
+        Option         "MultiGPU" "Off"
+        Option         "BaseMosaic" "off"
+        SubSection     "Display"
+            Depth       24
+        EndSubSection
+    EndSection
+
+    Section "Screen"
+        Identifier     "Screen2"
+        Device         "Device2"
+        Monitor        "Monitor2"
+        DefaultDepth    24
+        Option         "Stereo" "0"
+        Option         "metamodes" "DVI-I-3: nvidia-auto-select +0+0"
+        Option         "SLI" "Off"
+        Option         "MultiGPU" "Off"
+        Option         "BaseMosaic" "off"
+        SubSection     "Display"
+            Depth       24
+        EndSubSection
+    EndSection
+
+xrandr --screen 0
+
+    Screen 0: minimum 8 x 8, current 2560 x 1600, maximum 16384 x 16384
+    DVI-I-0 disconnected (normal left inverted right x axis y axis)
+    DVI-I-1 disconnected (normal left inverted right x axis y axis)
+    DP-0 disconnected (normal left inverted right x axis y axis)
+    DP-1 disconnected (normal left inverted right x axis y axis)
+    DP-2 connected 2560x1600+0+0 (normal left inverted right x axis y axis) 641mm x 400mm
+       2560x1600     59.97*+
+       1280x800      59.91  
+    DP-3 disconnected primary (normal left inverted right x axis y axis)
+
+xrandr --screen 1
+
+    Screen 1: minimum 8 x 8, current 1920 x 1200, maximum 16384 x 16384
+    DVI-I-0 disconnected primary (normal left inverted right x axis y axis)
+    DVI-I-1 disconnected (normal left inverted right x axis y axis)
+    DP-1 connected 1920x1200+0+0 (normal left inverted right x axis y axis) 519mm x 324mm
+       1920x1200     59.95*+
+       1680x1050     59.95  
+       1600x1200     60.00  
+       1600x1000     60.00  
+       1280x1024     85.02    75.02    60.02  
+       1280x960      60.00  
+       1152x720      60.00  
+       1024x768      75.03    60.00  
+       800x600       75.00    60.32  
+       640x480       75.00    59.94  
+    DP-2 disconnected (normal left inverted right x axis y axis)
+    DP-3 disconnected (normal left inverted right x axis y axis)
+
+xrandr --screen 2
+
+    Screen 2: minimum 8 x 8, current 1920 x 1200, maximum 16384 x 16384
+    DP-0 connected primary 1920x1200+0+0 (normal left inverted right x axis y axis) 519mm x 324mm
+       1920x1200     59.95*+
+       1680x1050     59.95  
+       1600x1200     60.00  
+       1600x1000     60.00  
+       1280x1024     85.02    75.02    60.02  
+       1280x960      60.00  
+       1152x720      60.00  
+       1024x768      75.03    60.00  
+       800x600       75.00    60.32  
+       640x480       75.00    59.94
+
+So far, as I said, the only solutions have been to turn on Xinerama and use the force option - otherwise, I can't seem to get it to work.  Thanks for any suggestions / help!</description><pubDate>Tue, 20 Jan 2015 22:12:34 +0000</pubDate><guid>https://faq.i3wm.org/question/5362/3-monitors-2-nvidia-cards-how-to-setup-without-xinerama/</guid></item><item><title>Comment by tenspd137 for &lt;div class="snippet"&gt;&lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I have 3 monitors and 2 nvidia cards attached to my computer at work.  I can obtain 3 separate X screens and run 3 separate sessions of i3 using the DISPLAY=$DISPLAY i3 &amp;amp; trick, but I would like to have it so I am only running one session of i3 that sees all the monitors and still treats them independently.  So far, I I have only been able to achieve this by turning on Xinerama and using the --force-xinerama option, but that isn't a solution because it kills 3d acceleration.  I am also stuck using the prop. drivers because nouveau doesn't have support for OpenCL, which I also use.  Following are my .xinitrc, xorg.conf, and xrandr output.  Would someone be willing to take a look and help me figure out if you can do this? I thought you would be able to by RANDR 1.4.  I have been using i3 on my laptop and think it is fantastic, I would really like to use it at work as well.  Thanks!&lt;/p&gt;
+
+&lt;p&gt;.xinitrc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xscreensaver -nosplash &amp;amp;
+udiskie &amp;amp;
+CURRENT_DISPLAY=(`echo $DISPLAY | tr '.' ' '`)
+( xcompmgr -CcFf &amp;amp;&amp;gt;/dev/null ) &amp;amp;
+( xcompmgr -CcFf -d ${CURRENT_DISPLAY}.1 &amp;amp;&amp;gt;/dev/null ) &amp;amp;
+( xcompmgr -CcFf -d ${CURRENT_DISPLAY}.2 &amp;amp;&amp;gt;/dev/null ) &amp;amp;
+#exec i3 -V &amp;gt;&amp;gt; i3.log 2&amp;gt;&amp;amp;1
+DISPLAY=:0.0 i3 &amp;amp;
+DISPLAY=:0.1 i3 &amp;amp;
+DISPLAY=:0.2 i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;xorg.conf&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Section "ServerLayout"
+    Identifier     "Layout0"
+    Screen      0  "Screen0" 1920 0
+    Screen      1  "Screen1" LeftOf "Screen0"
+    Screen      2  "Screen2" RightOf "Screen0"
+    InputDevice    "Keyboard0" "CoreKeyboard"
+    InputDevice    "Mouse0" "CorePointer"
+    Option         "Xinerama" "0"
+EndSection
+
+Section "Files"
+EndSection
+
+Section "InputDevice"
+    # generated from default
+    Identifier     "Mouse0"
+    Driver         "mouse"
+    Option         "Protocol" "auto"
+    Option         "Device" "/dev/psaux"
+    Option         "Emulate3Buttons" "no"
+    Option         "ZAxisMapping" "4 5"
+EndSection
+
+Section "InputDevice"
+    # generated from default
+    Identifier     "Keyboard0"
+    Driver         "kbd"
+EndSection
+
+Section "Monitor"
+    # HorizSync source: edid, VertRefresh source: edid
+    Identifier     "Monitor0"
+    VendorName     "Unknown"
+    ModelName      "HP ZR30w"
+    HorizSync       49.3 - 98.7
+    VertRefresh     59.9 - 60.0
+    Option         "DPMS"
+EndSection
+
+Section "Monitor"
+    # HorizSync source: edid, VertRefresh source: edid
+    Identifier     "Monitor1"
+    VendorName     "Unknown"
+    ModelName      "HP LP2465"
+    HorizSync       30.0 - 94.0
+    VertRefresh     48.0 - 85.0
+    Option         "DPMS"
+EndSection
+
+Section "Monitor"
+    # HorizSync source: edid, VertRefresh source: edid
+    Identifier     "Monitor2"
+    VendorName     "Unknown"
+    ModelName      "hp L2335"
+    HorizSync       30.0 - 94.0
+    VertRefresh     48.0 - 85.0
+    Option         "DPMS"
+EndSection
+
+Section "Device"
+    Identifier     "Device0"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "Quadro 2000"
+    BusID          "PCI:5:0:0"
+EndSection
+
+Section "Device"
+    Identifier     "Device1"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "Quadro FX 1700"
+    BusID          "PCI:4:0:0"
+    Screen          0
+EndSection
+
+Section "Device"
+    Identifier     "Device2"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "Quadro FX 1700"
+    BusID          "PCI:4:0:0"
+    Screen          1
+EndSection
+
+Section "Screen"
+    Identifier     "Screen0"
+    Device         "Device0"
+    Monitor        "Monitor0"
+    DefaultDepth    24
+    Option         "Stereo" "0"
+    Option         "nvidiaXineramaInfoOrder" "DFP-4"
+    Option         "metamodes" "nvidia-auto-select +0+0"
+    Option         "SLI" "Off"
+    Option         "MultiGPU" "Off"
+    Option         "BaseMosaic" "off"
+    SubSection     "Display"
+        Depth       24
+    EndSubSection
+EndSection
+
+Section "Screen"
+    Identifier     "Screen1"
+    Device         "Device1"
+    Monitor        "Monitor1"
+    DefaultDepth    24
+    Option         "Stereo" "0"
+    Option         "metamodes" "DVI-I-2: nvidia-auto-select +0+0"
+    Option         "SLI" "Off"
+    Option         "MultiGPU" "Off"
+    Option         "BaseMosaic" "off"
+    SubSection     "Display"
+        Depth ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/5362/3-monitors-2-nvidia-cards-how-to-setup-without-xinerama/?comment=5364#comment-5364</link><description>Sorry - I keep forgetting not everyone uses the same version of stuff as me.  Running Gentoo (rolling), Nvidia Drivers 346.22,  i3 4.8.  And, that is a good idea - I have had the xorg configs so long, it never occured I might not need them or could pare them back.  I'll try that and write back..</description><pubDate>Wed, 21 Jan 2015 16:19:22 +0000</pubDate><guid>https://faq.i3wm.org/question/5362/3-monitors-2-nvidia-cards-how-to-setup-without-xinerama/?comment=5364#comment-5364</guid></item><item><title>Comment by Adaephon for &lt;div class="snippet"&gt;&lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I have 3 monitors and 2 nvidia cards attached to my computer at work.  I can obtain 3 separate X screens and run 3 separate sessions of i3 using the DISPLAY=$DISPLAY i3 &amp;amp; trick, but I would like to have it so I am only running one session of i3 that sees all the monitors and still treats them independently.  So far, I I have only been able to achieve this by turning on Xinerama and using the --force-xinerama option, but that isn't a solution because it kills 3d acceleration.  I am also stuck using the prop. drivers because nouveau doesn't have support for OpenCL, which I also use.  Following are my .xinitrc, xorg.conf, and xrandr output.  Would someone be willing to take a look and help me figure out if you can do this? I thought you would be able to by RANDR 1.4.  I have been using i3 on my laptop and think it is fantastic, I would really like to use it at work as well.  Thanks!&lt;/p&gt;
+
+&lt;p&gt;.xinitrc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xscreensaver -nosplash &amp;amp;
+udiskie &amp;amp;
+CURRENT_DISPLAY=(`echo $DISPLAY | tr '.' ' '`)
+( xcompmgr -CcFf &amp;amp;&amp;gt;/dev/null ) &amp;amp;
+( xcompmgr -CcFf -d ${CURRENT_DISPLAY}.1 &amp;amp;&amp;gt;/dev/null ) &amp;amp;
+( xcompmgr -CcFf -d ${CURRENT_DISPLAY}.2 &amp;amp;&amp;gt;/dev/null ) &amp;amp;
+#exec i3 -V &amp;gt;&amp;gt; i3.log 2&amp;gt;&amp;amp;1
+DISPLAY=:0.0 i3 &amp;amp;
+DISPLAY=:0.1 i3 &amp;amp;
+DISPLAY=:0.2 i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;xorg.conf&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Section "ServerLayout"
+    Identifier     "Layout0"
+    Screen      0  "Screen0" 1920 0
+    Screen      1  "Screen1" LeftOf "Screen0"
+    Screen      2  "Screen2" RightOf "Screen0"
+    InputDevice    "Keyboard0" "CoreKeyboard"
+    InputDevice    "Mouse0" "CorePointer"
+    Option         "Xinerama" "0"
+EndSection
+
+Section "Files"
+EndSection
+
+Section "InputDevice"
+    # generated from default
+    Identifier     "Mouse0"
+    Driver         "mouse"
+    Option         "Protocol" "auto"
+    Option         "Device" "/dev/psaux"
+    Option         "Emulate3Buttons" "no"
+    Option         "ZAxisMapping" "4 5"
+EndSection
+
+Section "InputDevice"
+    # generated from default
+    Identifier     "Keyboard0"
+    Driver         "kbd"
+EndSection
+
+Section "Monitor"
+    # HorizSync source: edid, VertRefresh source: edid
+    Identifier     "Monitor0"
+    VendorName     "Unknown"
+    ModelName      "HP ZR30w"
+    HorizSync       49.3 - 98.7
+    VertRefresh     59.9 - 60.0
+    Option         "DPMS"
+EndSection
+
+Section "Monitor"
+    # HorizSync source: edid, VertRefresh source: edid
+    Identifier     "Monitor1"
+    VendorName     "Unknown"
+    ModelName      "HP LP2465"
+    HorizSync       30.0 - 94.0
+    VertRefresh     48.0 - 85.0
+    Option         "DPMS"
+EndSection
+
+Section "Monitor"
+    # HorizSync source: edid, VertRefresh source: edid
+    Identifier     "Monitor2"
+    VendorName     "Unknown"
+    ModelName      "hp L2335"
+    HorizSync       30.0 - 94.0
+    VertRefresh     48.0 - 85.0
+    Option         "DPMS"
+EndSection
+
+Section "Device"
+    Identifier     "Device0"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "Quadro 2000"
+    BusID          "PCI:5:0:0"
+EndSection
+
+Section "Device"
+    Identifier     "Device1"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "Quadro FX 1700"
+    BusID          "PCI:4:0:0"
+    Screen          0
+EndSection
+
+Section "Device"
+    Identifier     "Device2"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "Quadro FX 1700"
+    BusID          "PCI:4:0:0"
+    Screen          1
+EndSection
+
+Section "Screen"
+    Identifier     "Screen0"
+    Device         "Device0"
+    Monitor        "Monitor0"
+    DefaultDepth    24
+    Option         "Stereo" "0"
+    Option         "nvidiaXineramaInfoOrder" "DFP-4"
+    Option         "metamodes" "nvidia-auto-select +0+0"
+    Option         "SLI" "Off"
+    Option         "MultiGPU" "Off"
+    Option         "BaseMosaic" "off"
+    SubSection     "Display"
+        Depth       24
+    EndSubSection
+EndSection
+
+Section "Screen"
+    Identifier     "Screen1"
+    Device         "Device1"
+    Monitor        "Monitor1"
+    DefaultDepth    24
+    Option         "Stereo" "0"
+    Option         "metamodes" "DVI-I-2: nvidia-auto-select +0+0"
+    Option         "SLI" "Off"
+    Option         "MultiGPU" "Off"
+    Option         "BaseMosaic" "off"
+    SubSection     "Display"
+        Depth ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/5362/3-monitors-2-nvidia-cards-how-to-setup-without-xinerama/?comment=5363#comment-5363</link><description>I think a bit more information is needed: Which distribution and version thereof are you using? Nvidia driver version? i3 version? Also, have you tried to start X without an `xorg.conf` (that includes any files below `/etc/xorg.conf.d`)?</description><pubDate>Wed, 21 Jan 2015 06:42:09 +0000</pubDate><guid>https://faq.i3wm.org/question/5362/3-monitors-2-nvidia-cards-how-to-setup-without-xinerama/?comment=5363#comment-5363</guid></item><item><title>Answer by trschick for &lt;div class="snippet"&gt;&lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I have 3 monitors and 2 nvidia cards attached to my computer at work.  I can obtain 3 separate X screens and run 3 separate sessions of i3 using the DISPLAY=$DISPLAY i3 &amp;amp; trick, but I would like to have it so I am only running one session of i3 that sees all the monitors and still treats them independently.  So far, I I have only been able to achieve this by turning on Xinerama and using the --force-xinerama option, but that isn't a solution because it kills 3d acceleration.  I am also stuck using the prop. drivers because nouveau doesn't have support for OpenCL, which I also use.  Following are my .xinitrc, xorg.conf, and xrandr output.  Would someone be willing to take a look and help me figure out if you can do this? I thought you would be able to by RANDR 1.4.  I have been using i3 on my laptop and think it is fantastic, I would really like to use it at work as well.  Thanks!&lt;/p&gt;
+
+&lt;p&gt;.xinitrc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xscreensaver -nosplash &amp;amp;
+udiskie &amp;amp;
+CURRENT_DISPLAY=(`echo $DISPLAY | tr '.' ' '`)
+( xcompmgr -CcFf &amp;amp;&amp;gt;/dev/null ) &amp;amp;
+( xcompmgr -CcFf -d ${CURRENT_DISPLAY}.1 &amp;amp;&amp;gt;/dev/null ) &amp;amp;
+( xcompmgr -CcFf -d ${CURRENT_DISPLAY}.2 &amp;amp;&amp;gt;/dev/null ) &amp;amp;
+#exec i3 -V &amp;gt;&amp;gt; i3.log 2&amp;gt;&amp;amp;1
+DISPLAY=:0.0 i3 &amp;amp;
+DISPLAY=:0.1 i3 &amp;amp;
+DISPLAY=:0.2 i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;xorg.conf&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Section "ServerLayout"
+    Identifier     "Layout0"
+    Screen      0  "Screen0" 1920 0
+    Screen      1  "Screen1" LeftOf "Screen0"
+    Screen      2  "Screen2" RightOf "Screen0"
+    InputDevice    "Keyboard0" "CoreKeyboard"
+    InputDevice    "Mouse0" "CorePointer"
+    Option         "Xinerama" "0"
+EndSection
+
+Section "Files"
+EndSection
+
+Section "InputDevice"
+    # generated from default
+    Identifier     "Mouse0"
+    Driver         "mouse"
+    Option         "Protocol" "auto"
+    Option         "Device" "/dev/psaux"
+    Option         "Emulate3Buttons" "no"
+    Option         "ZAxisMapping" "4 5"
+EndSection
+
+Section "InputDevice"
+    # generated from default
+    Identifier     "Keyboard0"
+    Driver         "kbd"
+EndSection
+
+Section "Monitor"
+    # HorizSync source: edid, VertRefresh source: edid
+    Identifier     "Monitor0"
+    VendorName     "Unknown"
+    ModelName      "HP ZR30w"
+    HorizSync       49.3 - 98.7
+    VertRefresh     59.9 - 60.0
+    Option         "DPMS"
+EndSection
+
+Section "Monitor"
+    # HorizSync source: edid, VertRefresh source: edid
+    Identifier     "Monitor1"
+    VendorName     "Unknown"
+    ModelName      "HP LP2465"
+    HorizSync       30.0 - 94.0
+    VertRefresh     48.0 - 85.0
+    Option         "DPMS"
+EndSection
+
+Section "Monitor"
+    # HorizSync source: edid, VertRefresh source: edid
+    Identifier     "Monitor2"
+    VendorName     "Unknown"
+    ModelName      "hp L2335"
+    HorizSync       30.0 - 94.0
+    VertRefresh     48.0 - 85.0
+    Option         "DPMS"
+EndSection
+
+Section "Device"
+    Identifier     "Device0"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "Quadro 2000"
+    BusID          "PCI:5:0:0"
+EndSection
+
+Section "Device"
+    Identifier     "Device1"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "Quadro FX 1700"
+    BusID          "PCI:4:0:0"
+    Screen          0
+EndSection
+
+Section "Device"
+    Identifier     "Device2"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "Quadro FX 1700"
+    BusID          "PCI:4:0:0"
+    Screen          1
+EndSection
+
+Section "Screen"
+    Identifier     "Screen0"
+    Device         "Device0"
+    Monitor        "Monitor0"
+    DefaultDepth    24
+    Option         "Stereo" "0"
+    Option         "nvidiaXineramaInfoOrder" "DFP-4"
+    Option         "metamodes" "nvidia-auto-select +0+0"
+    Option         "SLI" "Off"
+    Option         "MultiGPU" "Off"
+    Option         "BaseMosaic" "off"
+    SubSection     "Display"
+        Depth       24
+    EndSubSection
+EndSection
+
+Section "Screen"
+    Identifier     "Screen1"
+    Device         "Device1"
+    Monitor        "Monitor1"
+    DefaultDepth    24
+    Option         "Stereo" "0"
+    Option         "metamodes" "DVI-I-2: nvidia-auto-select +0+0"
+    Option         "SLI" "Off"
+    Option         "MultiGPU" "Off"
+    Option         "BaseMosaic" "off"
+    SubSection     "Display"
+        Depth ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; </title><link>https://faq.i3wm.org/question/5362/3-monitors-2-nvidia-cards-how-to-setup-without-xinerama/?answer=5457#post-id-5457</link><description>I have similar situation.... 4 monitors with 2 nvidia cards.   Appears that by default an X screen can only use displays on the same card.
+
+Xinerama would work - but be in conflict with xrandr
+
+you can also enable base mosaic mode in the nvidia driver.   Run nvidia-settings - and select advanced button - this makes "Enable Base Mosaic" available in the X server Display Config
+
+enable that and set all displays to be on X screen 0
+
+Appears to be working well - no crashing - can move windows between all monitors /workspaces
+
+OS: Centos7 -
+Nvidia driver ver: 346.35 -
+i3 ver: 4.6
+</description><pubDate>Fri, 13 Feb 2015 22:21:58 +0000</pubDate><guid>https://faq.i3wm.org/question/5362/3-monitors-2-nvidia-cards-how-to-setup-without-xinerama/?answer=5457#post-id-5457</guid></item><item><title>Comment by freb for &lt;p&gt;I have similar situation.... 4 monitors with 2 nvidia cards.   Appears that by default an X screen can only use displays on the same card.&lt;/p&gt;
+
+&lt;p&gt;Xinerama would work - but be in conflict with xrandr&lt;/p&gt;
+
+&lt;p&gt;you can also enable base mosaic mode in the nvidia driver.   Run nvidia-settings - and select advanced button - this makes "Enable Base Mosaic" available in the X server Display Config&lt;/p&gt;
+
+&lt;p&gt;enable that and set all displays to be on X screen 0&lt;/p&gt;
+
+&lt;p&gt;Appears to be working well - no crashing - can move windows between all monitors /workspaces&lt;/p&gt;
+
+&lt;p&gt;OS: Centos7 -
+Nvidia driver ver: 346.35 -
+i3 ver: 4.6&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5362/3-monitors-2-nvidia-cards-how-to-setup-without-xinerama/?comment=6387#comment-6387</link><description>I don't have the points to upvote, but "Enable Basic Mosaic" did the trick for me.</description><pubDate>Mon, 03 Aug 2015 22:42:16 +0000</pubDate><guid>https://faq.i3wm.org/question/5362/3-monitors-2-nvidia-cards-how-to-setup-without-xinerama/?comment=6387#comment-6387</guid></item></channel></rss>

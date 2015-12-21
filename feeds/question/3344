@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3344/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 03 Feb 2014 07:32:16 +0000</lastBuildDate><item><title>i3 config file after upgrade</title><link>https://faq.i3wm.org/question/3344/i3-config-file-after-upgrade/</link><description>After the latest i3 upgrade on Debian testing, I ended up with 4.7.2.
+Examining my existing i3/config file in my home folder with the new /etc/i3/config file, I noticed that there are a few extra lines concerning the scratchpad.
+I copied them over (changing Mod1 to $mod) to my ~/.i3/config and everything works fine.
+I would like to ask however if there is a safe procedure for having the ~/.i3/config file in sync after upgrades.</description><pubDate>Mon, 03 Feb 2014 05:48:29 +0000</pubDate><guid>https://faq.i3wm.org/question/3344/i3-config-file-after-upgrade/</guid></item><item><title>Answer by joepd for &lt;p&gt;After the latest i3 upgrade on Debian testing, I ended up with 4.7.2.
+Examining my existing i3/config file in my home folder with the new /etc/i3/config file, I noticed that there are a few extra lines concerning the scratchpad.
+I copied them over (changing Mod1 to $mod) to my ~/.i3/config and everything works fine.
+I would like to ask however if there is a safe procedure for having the ~/.i3/config file in sync after upgrades.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3344/i3-config-file-after-upgrade/?answer=3345#post-id-3345</link><description>No, there is not. The only thing you can track (depending on your package manager) is if the file `/etc/i3/config` file has changed. 
+
+In archlinux I exploit pacman in the following way: 
+I changed `/etc/i3/config` with an extra space, so my package manager will write `/etc/i3/config.pacnew` instead of overwriting the changed file, and warns me about it. 
+
+A periodical `locate pacnew` will inform me of overdue system maintenance tasks, including possibly new niceties in the i3 config file. 
+
+I am pretty sure `apt` has similar possibilities to deal with changed config files. </description><pubDate>Mon, 03 Feb 2014 07:32:16 +0000</pubDate><guid>https://faq.i3wm.org/question/3344/i3-config-file-after-upgrade/?answer=3345#post-id-3345</guid></item></channel></rss>

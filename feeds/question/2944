@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2944/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 26 Nov 2013 21:20:45 +0000</lastBuildDate><item><title>A way to make all children the children of their grandparents</title><link>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/</link><description>Sometimes I have a group of windows inside a container that is in another container and I want to take all windows *inside* the container and make them children of their grandparent. Is this possible? Here is a visualization,
+
+Before
+
+        g
+       / \
+      p   a
+     / \
+    c   d
+
+After
+
+        g
+       /|\
+      c d a
+
+If you started with,
+
+    +---------+---------+
+    |         |         |
+    |    c    |         |
+    |         |         |
+    +---------|    a    |
+    |         |         |
+    |    d    |         |
+    |         |         |
+    +---------+---------+
+
+It would end up with
+
+    +------+------+------+
+    |      |      |      |
+    |      |      |      |
+    |      |      |      |
+    |   c  |   d  |   a  |
+    |      |      |      |
+    |      |      |      |
+    |      |      |      |
+    +------+------+------+
+
+Where c, d, and a are all in the same container.</description><pubDate>Thu, 21 Nov 2013 19:05:58 +0000</pubDate><guid>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/</guid></item><item><title>Comment by joepd for &lt;p&gt;Sometimes I have a group of windows inside a container that is in another container and I want to take all windows &lt;em&gt;inside&lt;/em&gt; the container and make them children of their grandparent. Is this possible? Here is a visualization,&lt;/p&gt;
+
+&lt;p&gt;Before&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    g
+   / \
+  p   a
+ / \
+c   d
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    g
+   /|\
+  c d a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you started with,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------+---------+
+|         |         |
+|    c    |         |
+|         |         |
++---------|    a    |
+|         |         |
+|    d    |         |
+|         |         |
++---------+---------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It would end up with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+------+------+------+
+|      |      |      |
+|      |      |      |
+|      |      |      |
+|   c  |   d  |   a  |
+|      |      |      |
+|      |      |      |
+|      |      |      |
++------+------+------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where c, d, and a are all in the same container.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2945#comment-2945</link><description>Crap. Too little space. Answer instead. </description><pubDate>Thu, 21 Nov 2013 20:39:58 +0000</pubDate><guid>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2945#comment-2945</guid></item><item><title>Answer by joepd for &lt;p&gt;Sometimes I have a group of windows inside a container that is in another container and I want to take all windows &lt;em&gt;inside&lt;/em&gt; the container and make them children of their grandparent. Is this possible? Here is a visualization,&lt;/p&gt;
+
+&lt;p&gt;Before&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    g
+   / \
+  p   a
+ / \
+c   d
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    g
+   /|\
+  c d a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you started with,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------+---------+
+|         |         |
+|    c    |         |
+|         |         |
++---------|    a    |
+|         |         |
+|    d    |         |
+|         |         |
++---------+---------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It would end up with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+------+------+------+
+|      |      |      |
+|      |      |      |
+|      |      |      |
+|   c  |   d  |   a  |
+|      |      |      |
+|      |      |      |
+|      |      |      |
++------+------+------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where c, d, and a are all in the same container.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?answer=2946#post-id-2946</link><description>I don't understand your question. If this is the starting situation, how should it look like after the move action? 
+
+    +---------+---------+
+    |         |         |
+    |    c    |         |
+    |         |         |
+    +---------|    a    |
+    |         |         |
+    |    d    |         |
+    |         |         |
+    +---------+---------+
+
+Thanks for the update. Now the answer: You'll first want to bring the three windows to the same level in the container hierarchy, and then do a layout change command (`layout toggle split`, `stacking` or `tabbed`).
+
+Otherwise you will have to break the windows out of the container `p` into the container `g` at some moment. Moving the container _as a container_ does not help with that. </description><pubDate>Thu, 21 Nov 2013 20:42:32 +0000</pubDate><guid>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?answer=2946#post-id-2946</guid></item><item><title>Comment by joepd for &lt;p&gt;I don't understand your question. If this is the starting situation, how should it look like after the move action? &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------+---------+
+|         |         |
+|    c    |         |
+|         |         |
++---------|    a    |
+|         |         |
+|    d    |         |
+|         |         |
++---------+---------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks for the update. Now the answer: You'll first want to bring the three windows to the same level in the container hierarchy, and then do a layout change command (&lt;code&gt;layout toggle split&lt;/code&gt;, &lt;code&gt;stacking&lt;/code&gt; or &lt;code&gt;tabbed&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Otherwise you will have to break the windows out of the container &lt;code&gt;p&lt;/code&gt; into the container &lt;code&gt;g&lt;/code&gt; at some moment. Moving the container &lt;em&gt;as a container&lt;/em&gt; does not help with that. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2958#comment-2958</link><description>It is not clear what you are talking about concretely, as the procedure that I indicated leads from starting position to end position. Are you talking about tabbed/stacked containers? Your question might be answered in this question: https://faq.i3wm.org/question/2952</description><pubDate>Sun, 24 Nov 2013 03:52:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2958#comment-2958</guid></item><item><title>Comment by joepd for &lt;p&gt;I don't understand your question. If this is the starting situation, how should it look like after the move action? &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------+---------+
+|         |         |
+|    c    |         |
+|         |         |
++---------|    a    |
+|         |         |
+|    d    |         |
+|         |         |
++---------+---------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks for the update. Now the answer: You'll first want to bring the three windows to the same level in the container hierarchy, and then do a layout change command (&lt;code&gt;layout toggle split&lt;/code&gt;, &lt;code&gt;stacking&lt;/code&gt; or &lt;code&gt;tabbed&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Otherwise you will have to break the windows out of the container &lt;code&gt;p&lt;/code&gt; into the container &lt;code&gt;g&lt;/code&gt; at some moment. Moving the container &lt;em&gt;as a container&lt;/em&gt; does not help with that. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2978#comment-2978</link><description>Why the dislike of container `p`? Type this in `a`, if it would be a terminal: `i3-msg 'move left; layout splith'`. </description><pubDate>Tue, 26 Nov 2013 21:20:45 +0000</pubDate><guid>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2978#comment-2978</guid></item><item><title>Comment by milkypostman for &lt;p&gt;I don't understand your question. If this is the starting situation, how should it look like after the move action? &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------+---------+
+|         |         |
+|    c    |         |
+|         |         |
++---------|    a    |
+|         |         |
+|    d    |         |
+|         |         |
++---------+---------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks for the update. Now the answer: You'll first want to bring the three windows to the same level in the container hierarchy, and then do a layout change command (&lt;code&gt;layout toggle split&lt;/code&gt;, &lt;code&gt;stacking&lt;/code&gt; or &lt;code&gt;tabbed&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Otherwise you will have to break the windows out of the container &lt;code&gt;p&lt;/code&gt; into the container &lt;code&gt;g&lt;/code&gt; at some moment. Moving the container &lt;em&gt;as a container&lt;/em&gt; does not help with that. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2947#comment-2947</link><description>updated main question with a visual response.</description><pubDate>Thu, 21 Nov 2013 21:21:26 +0000</pubDate><guid>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2947#comment-2947</guid></item><item><title>Comment by milkypostman for &lt;p&gt;I don't understand your question. If this is the starting situation, how should it look like after the move action? &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------+---------+
+|         |         |
+|    c    |         |
+|         |         |
++---------|    a    |
+|         |         |
+|    d    |         |
+|         |         |
++---------+---------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks for the update. Now the answer: You'll first want to bring the three windows to the same level in the container hierarchy, and then do a layout change command (&lt;code&gt;layout toggle split&lt;/code&gt;, &lt;code&gt;stacking&lt;/code&gt; or &lt;code&gt;tabbed&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Otherwise you will have to break the windows out of the container &lt;code&gt;p&lt;/code&gt; into the container &lt;code&gt;g&lt;/code&gt; at some moment. Moving the container &lt;em&gt;as a container&lt;/em&gt; does not help with that. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2948#comment-2948</link><description>But see, I don't want `c` and `d` to be in a container. So in your terms, I want a way to break *all* windows out of container `p`.</description><pubDate>Thu, 21 Nov 2013 23:27:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2948#comment-2948</guid></item><item><title>Comment by joepd for &lt;p&gt;I don't understand your question. If this is the starting situation, how should it look like after the move action? &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------+---------+
+|         |         |
+|    c    |         |
+|         |         |
++---------|    a    |
+|         |         |
+|    d    |         |
+|         |         |
++---------+---------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks for the update. Now the answer: You'll first want to bring the three windows to the same level in the container hierarchy, and then do a layout change command (&lt;code&gt;layout toggle split&lt;/code&gt;, &lt;code&gt;stacking&lt;/code&gt; or &lt;code&gt;tabbed&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Otherwise you will have to break the windows out of the container &lt;code&gt;p&lt;/code&gt; into the container &lt;code&gt;g&lt;/code&gt; at some moment. Moving the container &lt;em&gt;as a container&lt;/em&gt; does not help with that. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2951#comment-2951</link><description>In my understanding, what you want is having `a`, `c` and `d` in the same container, in a vertical split. What I say is: Move `a` into the container of `c` and `d`, and then take care of the layout. Any other way is backward. </description><pubDate>Fri, 22 Nov 2013 08:40:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2951#comment-2951</guid></item><item><title>Comment by milkypostman for &lt;p&gt;I don't understand your question. If this is the starting situation, how should it look like after the move action? &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------+---------+
+|         |         |
+|    c    |         |
+|         |         |
++---------|    a    |
+|         |         |
+|    d    |         |
+|         |         |
++---------+---------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks for the update. Now the answer: You'll first want to bring the three windows to the same level in the container hierarchy, and then do a layout change command (&lt;code&gt;layout toggle split&lt;/code&gt;, &lt;code&gt;stacking&lt;/code&gt; or &lt;code&gt;tabbed&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Otherwise you will have to break the windows out of the container &lt;code&gt;p&lt;/code&gt; into the container &lt;code&gt;g&lt;/code&gt; at some moment. Moving the container &lt;em&gt;as a container&lt;/em&gt; does not help with that. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2957#comment-2957</link><description>Then I have them in a container inside another container which is not what I want. </description><pubDate>Sun, 24 Nov 2013 03:38:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2957#comment-2957</guid></item><item><title>Comment by milkypostman for &lt;p&gt;I don't understand your question. If this is the starting situation, how should it look like after the move action? &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------+---------+
+|         |         |
+|    c    |         |
+|         |         |
++---------|    a    |
+|         |         |
+|    d    |         |
+|         |         |
++---------+---------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks for the update. Now the answer: You'll first want to bring the three windows to the same level in the container hierarchy, and then do a layout change command (&lt;code&gt;layout toggle split&lt;/code&gt;, &lt;code&gt;stacking&lt;/code&gt; or &lt;code&gt;tabbed&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Otherwise you will have to break the windows out of the container &lt;code&gt;p&lt;/code&gt; into the container &lt;code&gt;g&lt;/code&gt; at some moment. Moving the container &lt;em&gt;as a container&lt;/em&gt; does not help with that. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2960#comment-2960</link><description>I want to get rid of p from the window tree in a single keystroke. </description><pubDate>Sun, 24 Nov 2013 21:10:46 +0000</pubDate><guid>https://faq.i3wm.org/question/2944/a-way-to-make-all-children-the-children-of-their-grandparents/?comment=2960#comment-2960</guid></item></channel></rss>

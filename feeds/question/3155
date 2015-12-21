@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3155/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 03 Jan 2014 06:50:19 +0000</lastBuildDate><item><title>Manually set colors for i3status configurations</title><link>https://faq.i3wm.org/question/3155/manually-set-colors-for-i3status-configurations/</link><description>Is it possible to have individual colors for i3status? Like for example, when I am not using ethernet, it shows `E:down` in red. I don't want to that and I want it to be in white.
+
+I know I can set the color of `color_good` or `color_bad` for all configurations, but can I do it individually? 
+
+Another use case is that I want to color the `tztime local` configuration but it is by default white in color and I want to fix that.</description><pubDate>Fri, 03 Jan 2014 01:19:37 +0000</pubDate><guid>https://faq.i3wm.org/question/3155/manually-set-colors-for-i3status-configurations/</guid></item><item><title>Answer by cdlscpmv for &lt;p&gt;Is it possible to have individual colors for i3status? Like for example, when I am not using ethernet, it shows &lt;code&gt;E:down&lt;/code&gt; in red. I don't want to that and I want it to be in white.&lt;/p&gt;
+
+&lt;p&gt;I know I can set the color of &lt;code&gt;color_good&lt;/code&gt; or &lt;code&gt;color_bad&lt;/code&gt; for all configurations, but can I do it individually? &lt;/p&gt;
+
+&lt;p&gt;Another use case is that I want to color the &lt;code&gt;tztime local&lt;/code&gt; configuration but it is by default white in color and I want to fix that.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3155/manually-set-colors-for-i3status-configurations/?answer=3156#post-id-3156</link><description>You can easily set colors per module like this:
+
+    ethernet eth0 {
+                 format_up = "E: %ip (%speed)"
+                 format_down = "E: down"
+                 color_bad = "#bbbbbb"
+    }
+
+But it doesn't seem to work with tztime/time. And it shouldn't. There are no good or bad states for the time.</description><pubDate>Fri, 03 Jan 2014 05:01:11 +0000</pubDate><guid>https://faq.i3wm.org/question/3155/manually-set-colors-for-i3status-configurations/?answer=3156#post-id-3156</guid></item><item><title>Comment by mneywn for &lt;p&gt;You can easily set colors per module like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ethernet eth0 {
+             format_up = "E: %ip (%speed)"
+             format_down = "E: down"
+             color_bad = "#bbbbbb"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it doesn't seem to work with tztime/time. And it shouldn't. There are no good or bad states for the time.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3155/manually-set-colors-for-i3status-configurations/?comment=3157#comment-3157</link><description>thanks, this worked. Though I don't care about good or bad states for time, the reason I wanted to use colors is so that when I look at the statusbar, I can see the time easily :)</description><pubDate>Fri, 03 Jan 2014 06:50:19 +0000</pubDate><guid>https://faq.i3wm.org/question/3155/manually-set-colors-for-i3status-configurations/?comment=3157#comment-3157</guid></item></channel></rss>

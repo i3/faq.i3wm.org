@@ -1,0 +1,1255 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns="http://www.w3.org/1999/xhtml"> <head> <title>Questions - i3 FAQ</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <meta http-equiv="X-UA-Compatible" content="IE=EDGE" /> <meta name="description" content="Frequently asked questions and answers about the i3 window manager" /> <meta name="keywords" content=",i3,faq,questions,question" /> <meta name="referrer" content="always" /> <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" /> <link rel="shortcut icon" href="../../../../m/default/media/images/favicon.gif%3Fv=2" /> <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="RSS feed from i3 FAQ"
+            href="../../../../feeds/rss/index.html"
+        /> <link href="../../../../m/default/media/style/style.css%3Fv=2.css" rel="stylesheet" type="text/css" /> <link href="../../../../m/default/media/fa-4.3.0/css/font-awesome.css%3Fv=2.css" rel="stylesheet" type="text/css" /> <link href="../../../../m/default/media/bootstrap/css/bootstrap.css%3Fv=2.css" rel="stylesheet" type="text/css" /> <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&amp;subset=latin-ext" rel="stylesheet" type="text/css" /> <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&amp;subset=cyrillic-ext" rel="stylesheet" type="text/css" /> <script type="text/javascript" src="../../../../m/default/media/jslib/modernizr.custom.js%3Fv=2"></script> <script type="text/javascript">
+    var askbot = {};
+    askbot['data'] = {};
+    askbot['data']['userIsAuthenticated'] = false;
+    askbot['data']['languageCode'] = 'en';
+    
+        askbot['data']['userReputation'] = 0;
+        askbot['data']['userEmail'] = null;
+        askbot['data']['userIsReadOnly'] = false;//in principle we allow anon users to start posting
+    
+    askbot['urls'] = {};
+    askbot['settings'] = {};
+    askbot['messages'] = {};
+</script> <script type="text/javascript" src="../../../../jsi18n/index.html"></script> </head> <body class="two-col main-page anon lang-en"> <div class="notify" style="display:none"> <div class="content-wrapper"> <a id="closeNotify" onclick="notify.close(true)"></a> </div> </div> <div id="custom-header"> <div style="border: 2px solid red; margin: 2em; padding: 1em">The i3 FAQ has migrated to <a href="https://www.reddit.com/r/i3wm/">https://www.reddit.com/r/i3wm/</a>. All content here is read-only.</div> </div> <!-- template header.html --> <div 
+    id="header"
+    class="without-logo"
+> <div class="content-wrapper"> <div id="userToolsNav"> <a href="https://faq.i3wm.org/account/signin/?next=/">Hi there! Please sign in</a> <a class="help" href="../../../../help/index.html" title="help">help</a> </div> <div id="metaNav"> <a 
+  id="navTags"
+  href="https://faq.i3wm.org/tags/"
+  
+>tags</a> <a 
+  id="navUsers"
+  href="../../../../users/index.html"
+  
+>users</a> <a 
+  id="navBadges"
+  href="../../../../badges/index.html"
+  
+>badges</a> </div> <div class="clean"></div> </div> <div class="content-wrapper system-messages">
+            The i3 FAQ has migrated to https://www.reddit.com/r/i3wm/. All content here is read-only.
+        </div> </div> <!-- end template header.html --> <!-- template secondary_header.html --> <div id="secondaryHeader"> <div class="content-wrapper"> <form
+            
+                action="../../../../question/5172/exit-i3-dialog/index.html" id="searchForm"
+            
+            class="scopes-True-True-False"
+            method="get"> <table width="100%"> <tr> <td width="1"><a id="homeButton" href="../../../../question/5172/exit-i3-dialog/index.html"><i class="fa fa-home"></i></a></td> <td width="1"><div id="scopeNav"> <a class="scope-selector on"
+            href="index.html"
+        >ALL</a> <a class="scope-selector "
+            href="../../../scope:unanswered/sort:answers-asc/page:1/index.html"
+        >UNANSWERED</a> </div></td> <td width="*" class="search-bar"> <div 
+    id="searchBar"
+    class="search-bar"
+><input 
+        class="searchInput" 
+        type="text" 
+        autocomplete="off"
+        value="" 
+        name="query" 
+        placeholder="search or ask your question"
+        id="keywords"
+    /><input type="submit" value="" name="search" class="searchBtn" /><input type="button"
+        value="X"
+        name="reset_query"
+        class="cancelSearchBtn"
+        
+            style="display: none;"
+        
+    /></div> </td> <td width="1"> <a
+        id="askButton"
+        class="button"
+        href="../../../ask/index.html"
+        >
+            Ask Your Question
+        </a> </td> </tr> </table> </form> </div> </div> <div class="content-wrapper"> <div id="ContentLeft"> <a class="rss"
+    
+    href="../../../../feeds/rss/index.html%3F"
+    
+    title="subscribe to the feed"
+    >RSS
+</a> <div class="tabBar"> <div id="sort_tabs" class="tabsA"> <span class="label">Sort by &raquo;</span> <script type="text/javascript">
+                askbot['data']['sortButtonData'] = askbot['data']['sortButtonData'] || {};
+                askbot['data']['sortButtonData']['relevance'] = {
+                    asc_tooltip: "most relevant questions",
+                    desc_tooltip: "click to see most relevant questions",
+                    label: "relevance"
+                };
+            </script> <a id="by_age"
+           href="../../sort:age-desc/page:1/index.html"
+           class="off"
+           title="click to see the newest questions"><span>by date</span></a> <script type="text/javascript">
+        askbot['data']['sortButtonData'] = askbot['data']['sortButtonData'] || {};
+        askbot['data']['sortButtonData']['age'] = {
+            label: 'by date',
+            asc_tooltip: 'click to see the oldest questions',
+            desc_tooltip: 'click to see the newest questions'
+        };
+    </script> <a id="by_activity"
+           href="../../sort:activity-desc/page:1/index.html"
+           class="off"
+           title="click to see the most recently updated questions"><span>by activity</span></a> <script type="text/javascript">
+        askbot['data']['sortButtonData'] = askbot['data']['sortButtonData'] || {};
+        askbot['data']['sortButtonData']['activity'] = {
+            label: 'by activity',
+            asc_tooltip: 'click to see the least recently updated questions',
+            desc_tooltip: 'click to see the most recently updated questions'
+        };
+    </script> <a id="by_answers"
+           href="../../sort:answers-desc/page:1/index.html"
+           class="rev on"
+           title="click to see the most answered questions"><span>by answers &#9650;</span></a> <script type="text/javascript">
+        askbot['data']['sortButtonData'] = askbot['data']['sortButtonData'] || {};
+        askbot['data']['sortButtonData']['answers'] = {
+            label: 'by answers',
+            asc_tooltip: 'click to see the least answered questions',
+            desc_tooltip: 'click to see the most answered questions'
+        };
+    </script> <a id="by_votes"
+           href="../../sort:votes-desc/page:1/index.html"
+           class="off"
+           title="click to see most voted questions"><span>by votes</span></a> <script type="text/javascript">
+        askbot['data']['sortButtonData'] = askbot['data']['sortButtonData'] || {};
+        askbot['data']['sortButtonData']['votes'] = {
+            label: 'by votes',
+            asc_tooltip: 'click to see least voted questions',
+            desc_tooltip: 'click to see most voted questions'
+        };
+    </script> </div> </div> <h1 id="questionCount" class="search-result-summary">
+            1,427 questions
+        
+        </h1> <div class="clearfix"></div> <div id="listSearchTags" style="display: none;"> <span class="left">Tagged</span> <ul id="searchTags"
+    class="tags"
+> </ul> </div> <div id="question-list"> <div class="short-summary" id="question-322"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">297</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2012-08-08 13:06:52 +0000">
+        2012-08-08 13:06:52 +0000
+    </abbr> <a href="../../../../users/80/otchipoi/index.html">Otchipoi</a> </div> </div> <h2><a href="../../../../question/322/how-to-open-four-apps-on-startup-in-a-quattro-view/index.html">how to open four apps on startup in a quattro view [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:quattro/page:1/"
+            
+            data-tag-name="quattro"
+        >quattro</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:screens/page:1/"
+            
+            data-tag-name="screens"
+        >screens</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:startup/page:1/"
+            
+            data-tag-name="startup"
+        >startup</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:four/page:1/"
+            
+            data-tag-name="four"
+        >four</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:screen/page:1/"
+            
+            data-tag-name="screen"
+        >screen</a></div> </li> </ul> </div> <div class="short-summary" id="question-428"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">186</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2012-09-03 06:25:44 +0000">
+        2012-09-03 06:25:44 +0000
+    </abbr> <a href="../../../../users/97/lzap/index.html">lzap</a> </div> </div> <h2><a href="../../../../question/428/start-and-resize/index.html">Start and resize [closed]</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-577"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">858</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-12-17 13:09:03 +0000">
+        2013-12-17 13:09:03 +0000
+    </abbr> <a href="../../../../users/793/antte/index.html">antte</a> </div> </div> <h2><a href="../../../../question/577/mouse-clicking-problem/index.html">Mouse clicking problem [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:right-click/page:1/"
+            
+            data-tag-name="right-click"
+        >right-click</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:mouse/page:1/"
+            
+            data-tag-name="mouse"
+        >mouse</a></div> </li> </ul> </div> <div class="short-summary" id="question-749"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">224</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2012-11-13 15:22:03 +0000">
+        2012-11-13 15:22:03 +0000
+    </abbr> <a href="../../../../users/62/jcharnley/index.html">jcharnley</a> </div> </div> <h2><a href="../../../../question/749/primary-paste/index.html">primary paste [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:primary/page:1/"
+            
+            data-tag-name="primary"
+        >primary</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:paste/page:1/"
+            
+            data-tag-name="paste"
+        >paste</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:xdotool/page:1/"
+            
+            data-tag-name="xdotool"
+        >xdotool</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:xsel/page:1/"
+            
+            data-tag-name="xsel"
+        >xsel</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:crash/page:1/"
+            
+            data-tag-name="crash"
+        >crash</a></div> </li> </ul> </div> <div class="short-summary" id="question-753"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">3k</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2012-11-15 11:05:32 +0000">
+        2012-11-15 11:05:32 +0000
+    </abbr> <a href="../../../../users/128/chris/index.html">Chris</a> </div> </div> <h2><a href="../../../../question/753/i3lock-error-opening-varlogfaillog-for-updateread/index.html">i3lock: Error opening /var/log/faillog for update/read [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:i3lock/page:1/"
+            
+            data-tag-name="i3lock"
+        >i3lock</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:pam/page:1/"
+            
+            data-tag-name="pam"
+        >pam</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:systemd/page:1/"
+            
+            data-tag-name="systemd"
+        >systemd</a></div> </li> </ul> </div> <div class="short-summary" id="question-759"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">171</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2012-11-17 01:43:57 +0000">
+        2012-11-17 01:43:57 +0000
+    </abbr> <span class="anonymous">Anonymous</span> </div> </div> <h2><a href="../../../../question/759/modshiftat-move-container-to-workspace-2-not-working/index.html">&#34;$mod+Shift+at move container to workspace 2&#34; not working [closed]</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-818"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">535</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2012-11-26 09:09:16 +0000">
+        2012-11-26 09:09:16 +0000
+    </abbr> <a href="../../../../users/226/murali-suriar/index.html">Murali Suriar</a> </div> </div> <h2><a href="../../../../question/818/some-keybindings-not-taking-effect-on-initial-i3-startup/index.html">Some keybindings not taking effect on initial i3 startup [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:keybinding/page:1/"
+            
+            data-tag-name="keybinding"
+        >keybinding</a></div> </li> </ul> </div> <div class="short-summary" id="question-1115"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">148</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-01-24 15:24:10 +0000">
+        2013-01-24 15:24:10 +0000
+    </abbr> <a href="../../../../users/334/dkeg/index.html">dkeg</a> </div> </div> <h2><a href="../../../../question/1115/latest-next-version-and-dmenu/index.html">latest &#39;next&#39; version and dmenu [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:dmenu/page:1/"
+            
+            data-tag-name="dmenu"
+        >dmenu</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:update/page:1/"
+            
+            data-tag-name="update"
+        >update</a></div> </li> </ul> </div> <div class="short-summary" id="question-1126"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">682</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-01-27 19:33:19 +0000">
+        2013-01-27 19:33:19 +0000
+    </abbr> <a href="../../../../users/170/licaon_kter/index.html">Licaon_Kter</a> </div> </div> <h2><a href="../../../../question/1126/steam-windows-gone-withdrawn/index.html">Steam windows gone &#34;withdrawn&#34; [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:steam/page:1/"
+            
+            data-tag-name="steam"
+        >steam</a></div> </li> </ul> </div> <div class="short-summary" id="question-1186"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">422</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    some-votes"> <span class="item-count">1</span> <div>
+            vote
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-02-04 00:59:44 +0000">
+        2013-02-04 00:59:44 +0000
+    </abbr> <a href="../../../../users/352/kynan/index.html">kynan</a> </div> </div> <h2><a href="../../../../question/1186/no-reaction-when-clicking-on-show-errors-and-edit-config/index.html">No reaction when clicking on &#39;show errors&#39; and &#39;edit config&#39; [closed]</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-1208"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">313</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-02-11 01:17:38 +0000">
+        2013-02-11 01:17:38 +0000
+    </abbr> <a href="../../../../users/362/ignorant/index.html">ignorant</a> </div> </div> <h2><a href="../../../../question/1208/is-there-a-way-to-get-dwm-style-window-focusing-behavior/index.html">Is there a way to get dwm-style window focusing behavior? [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:focus/page:1/"
+            
+            data-tag-name="focus"
+        >focus</a></div> </li> </ul> </div> <div class="short-summary" id="question-1229"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">592</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-02-19 05:14:29 +0000">
+        2013-02-19 05:14:29 +0000
+    </abbr> <a href="../../../../users/369/rsplenum/index.html">rsplenum</a> </div> </div> <h2><a href="../../../../question/1229/right-click-and-context-menus-dont-appear-properly/index.html">right-click and context menus don&#39;t appear properly. [closed]</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-1253"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">340</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-02-24 14:08:07 +0000">
+        2013-02-24 14:08:07 +0000
+    </abbr> <span class="anonymous">Anonymous</span> </div> </div> <h2><a href="../../../../question/1253/run-multi-command-with-exec/index.html">Run multi command with exec [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:exec/page:1/"
+            
+            data-tag-name="exec"
+        >exec</a></div> </li> </ul> </div> <div class="short-summary" id="question-1444"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">96</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-03-19 13:57:39 +0000">
+        2013-03-19 13:57:39 +0000
+    </abbr> <a href="../../../../users/340/mr-green/index.html">Mr Green</a> </div> </div> <h2><a href="../../../../question/1444/hide-battery/index.html">Hide battery [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:battery/page:1/"
+            
+            data-tag-name="battery"
+        >battery</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:i3status.conf/page:1/"
+            
+            data-tag-name="i3status.conf"
+        >i3status.conf</a></div> </li> </ul> </div> <div class="short-summary" id="question-1478"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">566</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    some-votes"> <span class="item-count">2</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-03-24 17:28:42 +0000">
+        2013-03-24 17:28:42 +0000
+    </abbr> <a href="../../../../users/404/vardhan/index.html">Vardhan</a> </div> </div> <h2><a href="../../../../question/1478/google-hangouts-screen-sharing-only-finds-windows-from-current-workspace/index.html">google hangout&#39;s screen sharing only finds windows from current workspace</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:screen/page:1/"
+            
+            data-tag-name="screen"
+        >screen</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:sharing/page:1/"
+            
+            data-tag-name="sharing"
+        >sharing</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:google/page:1/"
+            
+            data-tag-name="google"
+        >google</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:hangout/page:1/"
+            
+            data-tag-name="hangout"
+        >hangout</a></div> </li> </ul> </div> <div class="short-summary" id="question-1514"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">112</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-04-02 19:45:28 +0000">
+        2013-04-02 19:45:28 +0000
+    </abbr> <a href="../../../../users/433/littlebobbytables/index.html">littlebobbytables</a> </div> </div> <h2><a href="../../../../question/1514/move-workspace/index.html">Move workspace [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:workspace/page:1/"
+            
+            data-tag-name="workspace"
+        >workspace</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:move/page:1/"
+            
+            data-tag-name="move"
+        >move</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:crash/page:1/"
+            
+            data-tag-name="crash"
+        >crash</a></div> </li> </ul> </div> <div class="short-summary" id="question-1606"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">555</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-04-10 13:28:18 +0000">
+        2013-04-10 13:28:18 +0000
+    </abbr> <a href="../../../../users/251/matt-godbolt/index.html">Matt Godbolt</a> </div> </div> <h2><a href="../../../../question/1606/jetbrains-intellij-floating-windows-draw-issue/index.html">Jetbrains IntelliJ floating windows draw issue [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:draw/page:1/"
+            
+            data-tag-name="draw"
+        >draw</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:intellij/page:1/"
+            
+            data-tag-name="intellij"
+        >intellij</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:pycharm/page:1/"
+            
+            data-tag-name="pycharm"
+        >pycharm</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:jetbrains/page:1/"
+            
+            data-tag-name="jetbrains"
+        >jetbrains</a></div> </li> </ul> </div> <div class="short-summary" id="question-1750"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">490</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-05-05 09:58:38 +0000">
+        2013-05-05 09:58:38 +0000
+    </abbr> <a href="../../../../users/468/stsquad/index.html">stsquad</a> </div> </div> <h2><a href="../../../../question/1750/is-it-possible-to-have-conditional-segments-of-a-config-file/index.html">Is it possible to have conditional segments of a config file? [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:config/page:1/"
+            
+            data-tag-name="config"
+        >config</a></div> </li> </ul> </div> <div class="short-summary" id="question-2029"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">2k</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-06-16 08:37:39 +0000">
+        2013-06-16 08:37:39 +0000
+    </abbr> <a href="../../../../users/553/demon256/index.html">Demon256</a> </div> </div> <h2><a href="../../../../question/2029/how-to-disable-a-touchpads-tap-click-and-disable-it-while-typing/index.html">How to disable a touchpad&#39;s tap-click and disable it while typing ? [closed]</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-2097"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">971</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-06-27 05:27:02 +0000">
+        2013-06-27 05:27:02 +0000
+    </abbr> <a href="../../../../users/559/sergej/index.html">sergej</a> </div> </div> <h2><a href="../../../../question/2097/how-to-prevent-popup-window-focus-steal/)&lt;/p&gt;.html">How to prevent popup window focus steal? [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:focus/page:1/"
+            
+            data-tag-name="focus"
+        >focus</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:idea/page:1/"
+            
+            data-tag-name="idea"
+        >idea</a></div> </li> </ul> </div> <div class="short-summary" id="question-2248"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">310</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-07-20 19:13:27 +0000">
+        2013-07-20 19:13:27 +0000
+    </abbr> <a href="../../../../users/600/jklp/index.html">jklp</a> </div> </div> <h2><a href="../../../../question/2248/workspaces-dont-appearrefresh-in-the-first-session-after-boot/index.html">Workspaces don&#39;t appear/refresh in the first session after boot [closed]</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-2250"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">223</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-07-20 19:58:02 +0000">
+        2013-07-20 19:58:02 +0000
+    </abbr> <a href="../../../../users/601/blogue/index.html">blogue</a> </div> </div> <h2><a href="../../../../question/2250/dialog-buttons-not-working/index.html">Dialog buttons not working [closed]</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-2273"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">145</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-07-25 20:32:53 +0000">
+        2013-07-25 20:32:53 +0000
+    </abbr> <a href="../../../../users/512/ndemou/index.html">ndemou</a> </div> </div> <h2><a href="../../../../question/2273/i3-crashes/index.html">i3 crashes [closed]</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-2301"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">199</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-07-29 20:56:09 +0000">
+        2013-07-29 20:56:09 +0000
+    </abbr> <a href="../../../../users/65/0x000000/index.html">0x000000</a> </div> </div> <h2><a href="../../../../question/2301/qt-menus-not-showing/index.html">Qt menus not showing [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:menu/page:1/"
+            
+            data-tag-name="menu"
+        >menu</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:qt/page:1/"
+            
+            data-tag-name="qt"
+        >qt</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:popup/page:1/"
+            
+            data-tag-name="popup"
+        >popup</a></div> </li> </ul> </div> <div class="short-summary" id="question-2417"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">252</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-08-23 22:51:15 +0000">
+        2013-08-23 22:51:15 +0000
+    </abbr> <a href="../../../../users/641/ch2is/index.html">CH2IS</a> </div> </div> <h2><a href="../../../../question/2417/how-to-get-urxvtc-transparency-working-within-i3wm/index.html">How to get urxvtc transparency working within i3wm? [closed]</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-2421"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">204</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-08-25 19:29:01 +0000">
+        2013-08-25 19:29:01 +0000
+    </abbr> <a href="../../../../users/645/edro/index.html">edro</a> </div> </div> <h2><a href="../../../../question/2421/conky-i3-to-a-workspace-doesnt-play-well/index.html">Conky &amp; i3 to a workspace doesn&#39;t play well [closed]</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:conky/page:1/"
+            
+            data-tag-name="conky"
+        >conky</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:script/page:1/"
+            
+            data-tag-name="script"
+        >script</a></div> </li> </ul> </div> <div class="short-summary" id="question-2466"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">1k</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    some-votes"> <span class="item-count">1</span> <div>
+            vote
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-08-31 13:33:05 +0000">
+        2013-08-31 13:33:05 +0000
+    </abbr> <a href="../../../../users/600/jklp/index.html">jklp</a> </div> </div> <h2><a href="../../../../question/2466/firefox-integration/index.html">Firefox Integration</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-2474"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">3k</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-09-02 22:36:55 +0000">
+        2013-09-02 22:36:55 +0000
+    </abbr> <a href="../../../../users/524/tinh/index.html">tinh</a> </div> </div> <h2><a href="../../../../question/2474/move-workspacelayout-to-another-output-and-follow-them-by-screens/index.html">move workspace/layout to another output and follow them by screens</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:workspace/page:1/"
+            
+            data-tag-name="workspace"
+        >workspace</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:dual-screen/page:1/"
+            
+            data-tag-name="dual-screen"
+        >dual-screen</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:switch/page:1/"
+            
+            data-tag-name="switch"
+        >switch</a></div> </li> </ul> </div> <div class="short-summary" id="question-2489"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">5k</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    no-votes
+                    "> <span class="item-count">no</span> <div>
+            votes
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-09-06 08:39:20 +0000">
+        2013-09-06 08:39:20 +0000
+    </abbr> <a href="../../../../users/661/toor/index.html">toor</a> </div> </div> <h2><a href="../../../../question/2489/automatically-starting-applications-on-i3-startup/index.html">Automatically starting applications on i3 startup [closed]</a></h2> <ul 
+    class="tags"
+> </ul> </div> <div class="short-summary" id="question-2527"> <div class="counts"> <div class="views
+             some-views"> <span class="item-count">5k</span> <div>
+            views
+            </div> </div> <div class="answers
+                no-answers
+                "> <span 
+                class="item-count"
+            >no</span> <div>
+            answers
+            </div> </div> <div class="votes 
+                    some-votes"> <span class="item-count">1</span> <div>
+            vote
+            </div> </div> <div class="clearfix"></div> <div class="userinfo"> <abbr class="timeago" title="2013-09-14 20:15:24 +0000">
+        2013-09-14 20:15:24 +0000
+    </abbr> <a href="../../../../users/671/ghibe/index.html">ghibe</a> </div> </div> <h2><a href="../../../../question/2527/setting-up-gnome-session-i3/index.html">Setting up gnome-session + i3</a></h2> <ul 
+    class="tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:gnome-session/page:1/"
+            
+            data-tag-name="gnome-session"
+        >gnome-session</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:answers-asc/tags:window-manager/page:1/"
+            
+            data-tag-name="window-manager"
+        >window-manager</a></div> </li> </ul> </div> </div> <div id="pager" class="pager"> <div class="paginator" style="float:left"><span class="curr page" title="current page"><a>1</a></span><span class="page"><a href="../page:2/index.html" title="page 2">2</a></span><span class="page"><a href="../page:3/index.html" title="page 3">3</a></span><span class="page"><a href="../page:4/index.html" title="page 4">4</a></span><span class="page"><a href="../page:5/index.html" title="page 5">5</a></span>
+                    
+                
+
+                
+                    ...
+                    
+                        <span class="page"><a href="../page:48/index.html" title="page 48">48</a></span><span class="next"><a href="../page:2/index.html" title="next page">next page &raquo;</a></span></div> <div class="clean"></div> </div> </div> <div id="ContentRight"> <div id="contrib-users" class="box"> <h2 class="contributorback">Contributors</h2> <a class="js-avatar-box"
+    href="../../../../users/251/matt-godbolt/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/434718fad75737beed232159b45149dd?s=48&amp;d=identicon&amp;r=PG"
+    title="Matt Godbolt" 
+    alt="Matt Godbolt gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/334/dkeg/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/0a3ecc73ffebe5a2754a3db8aa78051c?s=48&amp;d=identicon&amp;r=PG"
+    title="dkeg" 
+    alt="dkeg gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/65/0x000000/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/8e3b240fc7b76531ee99427ad4a3dfa4?s=48&amp;d=identicon&amp;r=PG"
+    title="0x000000" 
+    alt="0x000000 gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/170/licaon_kter/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/37d713562308ec43784a9efd91597dca?s=48&amp;d=identicon&amp;r=PG"
+    title="Licaon_Kter" 
+    alt="Licaon_Kter gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/97/lzap/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/76b76089c6a9c79573f07123b8050303?s=48&amp;d=identicon&amp;r=PG"
+    title="lzap" 
+    alt="lzap gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/524/tinh/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/77e3462e58a84c33cce95e1073afaf35?s=48&amp;d=identicon&amp;r=PG"
+    title="tinh" 
+    alt="tinh gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/226/murali-suriar/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/9158e86f539e96a05118d26340c4de8f?s=48&amp;d=identicon&amp;r=PG"
+    title="Murali Suriar" 
+    alt="Murali Suriar gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/58/shahin/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/5b548c24fb12dcde259a7b07c0bb1361?s=48&amp;d=identicon&amp;r=PG"
+    title="Shahin" 
+    alt="Shahin gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/369/rsplenum/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/608ccfcd79aea3ff671801a56701d943?s=48&amp;d=identicon&amp;r=PG"
+    title="rsplenum" 
+    alt="rsplenum gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/377/hvn/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/a2983a39be15b504cf8c29de4330596d?s=48&amp;d=identicon&amp;r=PG"
+    title="HVN" 
+    alt="HVN gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/404/vardhan/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/c3c37d879c578faf603e03233baa8368?s=48&amp;d=identicon&amp;r=PG"
+    title="Vardhan" 
+    alt="Vardhan gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/433/littlebobbytables/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/d052dcf31c4c0fc2d79f45f0022bfd77?s=48&amp;d=identicon&amp;r=PG"
+    title="littlebobbytables" 
+    alt="littlebobbytables gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/468/stsquad/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/a7d7f408c0b3370bbbeb98833d6c50e4?s=48&amp;d=identicon&amp;r=PG"
+    title="stsquad" 
+    alt="stsquad gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/512/ndemou/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/321858b90b7f3ffd95a53123e15134de?s=48&amp;d=identicon&amp;r=PG"
+    title="ndemou" 
+    alt="ndemou gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/553/demon256/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/93f1a0061d2949ac68bbeac472fcb532?s=48&amp;d=identicon&amp;r=PG"
+    title="Demon256" 
+    alt="Demon256 gravatar image" 
+/></a><a class="js-avatar-box"
+    href="../../../../users/559/sergej/index.html"
+><img class="js-avatar gravatar" 
+    width="48" height="48"
+    src="https://www.gravatar.com/avatar/3cb581d010930a77b3e26b30979849c6?s=48&amp;d=identicon&amp;r=PG"
+    title="sergej" 
+    alt="sergej gravatar image" 
+/></a> </div> </div> </div> <!-- template footer.html --> <div id="ground"> <div class="content-wrapper"> <div class="copyright"> <a href="http://creativecommons.org/licenses/by-sa/3.0/legalcode"> <img
+                            class="license-logo"
+                            src="../../../../m/default/media/images/cc-by-sa.png%3Fv=2"
+                            title="cc-by-sa"
+                            alt="cc-by-sa"
+                        /> </a>
+                
+                Copyright i3, 2012 Content on this site is licensed under a <a href="http://creativecommons.org/licenses/by-sa/3.0/legalcode">Creative Commons Attribution Share Alike 3.0</a> license.
+
+            </div> <div class="footer-links" > <a href="../../../../about/index.html">about</a><span class="link-separator"> |</span> <a href="../../../../faq/index.html">faq</a><span class="link-separator"> |</span> <a href="../../../../help/index.html" title="help">help</a> <span class="link-separator"> |</span> <a href="../../../../privacy/index.html">privacy policy</a><span class="link-separator"> |</span> <a href="../../../../terms/index.html">terms of service</a><span class="link-separator"> |</span> <a href=
+                        
+                            "https://github.com/i3/i3.github.io/issues"
+                            target="_blank">
+                        
+                        give feedback
+                    </a> </div> <div class="powered-link"> <a href="http://askbot.com" target="_blank">
+                Powered by Askbot version 0.7.52
+            </a> </div> <div class="clean"></div> </div> </div> <!-- end template footer.html --> <div id="no-javascript"> <noscript class="noscript">
+        Please note: i3 FAQ requires javascript to work properly, please enable javascript in your browser, <a href="https://www.google.com/support/bin/answer.py?answer=23852">here is how</a> </noscript> <script type="text/javascript">
+        //IE fix to hide the red margin
+        var noscript = document.getElementsByTagName('noscript')[0];
+        noscript.style.padding = '0px';
+        noscript.style.backgroundColor = 'transparent';
+    </script> </div> <script type="text/javascript">
+    askbot['urls']['mark_read_message'] = '/messages/markread/';
+    askbot['urls']['get_tags_by_wildcard'] = '/get-tags-by-wildcard/';
+    askbot['urls']['get_tag_list'] = '/get-tag-list/';
+    askbot['urls']['follow_user'] = '/followit/follow/user/{{userId}}/';
+    askbot['urls']['unfollow_user'] = '/followit/unfollow/user/{{userId}}/';
+    askbot['urls']['user_signin'] = '/account/signin/';
+    askbot['urls']['getEditor'] = '/get-editor/';
+    
+    askbot['urls']['apiGetQuestions'] = '/api/get_questions/';
+    askbot['urls']['ask'] = '/questions/ask/';
+	askbot['urls']['questions'] = '/questions/';
+    askbot['settings']['groupsEnabled'] = false;
+    askbot['settings']['static_url'] = '/m/';
+    askbot['settings']['minSearchWordLength'] = 4;
+    askbot['settings']['mathjaxEnabled'] = false;
+    askbot['settings']['sharingSuffixText'] = '';
+    askbot['settings']['errorPlacement'] = 'after-label';
+    askbot['data']['maxCommentLength'] = 300;
+    askbot['settings']['editorType'] = 'markdown';
+    askbot['settings']['commentsEditorType'] = 'plain-text';
+    askbot['messages']['askYourQuestion'] = 'Ask Your Question';
+    askbot['messages']['questionSingular'] = 'question';
+    askbot['messages']['answerSingular'] = 'answer';
+    askbot['messages']['acceptOwnAnswer'] = 'accept or unaccept your own answer';
+    askbot['messages']['followQuestions'] = 'follow questions';
+    
+        askbot['settings']['allowedUploadFileTypes'] = [
+            "jpg", "jpeg", "gif", "bmp", "png", "tiff"
+        ];
+    
+    askbot['data']['haveFlashNotifications'] = false;
+    askbot['data']['activeTab'] = 'questions';
+    askbot['settings']['csrfCookieName'] = '_csrf';
+    
+        askbot['data']['searchUrl'] = 'scope:all/sort:answers\u002Dasc/page:1/';
+    
+</script> <script type="text/javascript" src="../../../../m/default/media/jslib/jquery-1.7.2.min.js%3Fv=2"></script> <script type="text/javascript" src="../../../../m/default/media/bootstrap/js/bootstrap.js%3Fv=2"></script> <!-- History.js --> <script type='text/javascript' src="../../../../m/default/media/jslib/jquery.history.js%3Fv=2"></script> <!-- Utils.js --> <script type='text/javascript' src="../../../../m/default/media/js/utils.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/q_sutils.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/wrapped_element.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/wait_icon.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/paginator.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/limited_width_image.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/one_shot_form.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/link.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/widget.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/tipped_input.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/flash_alert.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/alert_box.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/simple_content.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/simple_control.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/post_expander.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/edit_link.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/comment_convert_link.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/delete_icon.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/modal_dialog.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/file_upload_dialog.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/text_property_editor.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/two_state_toggle.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/dropdown_select.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/box_item_content.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/select_box_item.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/select_box.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/group_dropdown.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/tag.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/perms_hover_card.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/show_perms_trigger.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/autocompleter.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/js/utils/lang_nav.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/jslib/se_hilite.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/jslib/json.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/jslib/jquery-fieldselection.js%3Fv=2"></script> <script type='text/javascript' src="../../../../m/default/media/jslib/timeago.js%3Fv=2"></script> <!-- End Utils.js --> <script type="text/javascript" src="../../../../m/default/media/js/live_search.js%3Fv=2"></script> <script type="text/javascript">
+    /*<![CDATA[*/
+    $('.mceStatusbar').remove();//a hack to remove the tinyMCE status bar
+    $(document).ready(function(){
+        // focus input on the search bar endcomment
+        var activeTab = askbot['data']['activeTab'];
+        if (inArray(activeTab, ['users', 'questions', 'tags', 'badges'])) {
+            var searchInput = $('#keywords');
+        } else if (activeTab === 'ask') {
+            var searchInput = $('#id_title');
+        } else {
+            var searchInput = undefined;
+            animateHashes();
+        }
+
+        if (searchInput) {
+            searchInput.focus();
+            putCursorAtEnd(searchInput);
+        }
+
+        var haveFullTextSearchTab = inArray(activeTab, ['questions', 'badges', 'ask']);
+        var haveUserProfilePage = $('body').hasClass('user-profile-page');
+        if ((haveUserProfilePage || haveFullTextSearchTab) && searchInput && searchInput.length) {
+            var search = new FullTextSearch();
+            askbot['controllers'] = askbot['controllers'] || {};
+            askbot['controllers']['fullTextSearch'] = search;
+            search.setSearchUrl(askbot['data']['searchUrl']);
+            if (activeTab === 'ask') {
+                search.setAskButtonEnabled(false);
+            }
+            search.decorate(searchInput);
+        } else if (activeTab === 'tags') {
+            var search = new TagSearch();
+            search.decorate(searchInput);
+        }
+
+        if (askbot['data']['userIsAdminOrMod']) {
+            $('body').addClass('admin');
+        }
+        if (askbot['settings']['groupsEnabled']) {
+            askbot['urls']['add_group'] = "/add-group/";
+            var group_dropdown = new GroupDropdown();
+            $('.groups-dropdown').append(group_dropdown.getElement());
+        }
+        var userRep = $('#userToolsNav .reputation');
+        if (userRep.length) {
+            var showPermsTrigger = new ShowPermsTrigger();
+            showPermsTrigger.decorate(userRep);
+        }
+    });
+    if (askbot['data']['haveFlashNotifications']) {
+        $('#validate_email_alert').click(function(){notify.close(true)})
+        notify.show();
+    }
+
+    var langNav = $('.lang-nav');
+    if (langNav.length) {
+        var nav = new LangNav();
+        nav.decorate(langNav);
+    }
+
+    $('abbr.timeago').timeago();
+    /*]]>*/
+</script> <div class="js-templates" style="display: none;"><div class="js-tag  js-deletable-tag"><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:activity-desc/tags:dummy/page:1/"
+            
+            data-tag-name="dummy"
+        >dummy</a><span class="js-delete-icon">&times;</span></div></div> <script type="text/javascript">
+        
+        askbot['settings']['showSortByRelevance'] = true;
+    </script> <script type="text/javascript">
+    /*<![CDATA[*/
+    $(document).ready(function(){
+        /*var on_tab = '#nav_questions';
+        $(on_tab).attr('className','on');*/
+        Hilite.exact = false;
+        Hilite.elementid = "question-list";
+        Hilite.debug_referrer = location.href;
+    });
+
+    askbot['urls']['mark_interesting_tag'] = '/mark-tag/interesting/';
+    askbot['urls']['mark_ignored_tag'] = '/mark-tag/ignored/';
+    askbot['urls']['mark_subscribed_tag'] = '/mark-tag/subscribed/';
+    askbot['urls']['unmark_tag'] = '/unmark-tag/';
+    askbot['urls']['set_tag_filter_strategy'] = '/set-tag-filter-strategy/';
+    askbot['settings']['tag_editor'] = '{\u0022tag_forbidden_first_chars\u0022: \u0022#\u0022, \u0022max_tag_length\u0022: 20, \u0022tag_regex\u0022: \u0022^\u005C\u005Cw[\u005C\u005Cw+.#\u002D]+$\u0022, \u0022max_tags_per_post\u0022: 5, \u0022messages\u0022: {\u0022wrong_first_char\u0022: \u0022# is not a valid character at the beginning of tags, use only letters and numbers\u0022, \u0022wrong_chars\u0022: \u0022please use letters, numbers and characters \u005C\u0022\u002D+.#\u005C\u0022\u0022, \u0022required\u0022: \u0022tags are required\u0022}, \u0022tags_are_required\u0022: false, \u0022force_lowercase_tags\u0022: false}';
+
+    if (Modernizr.history) {
+        // history management works!
+    } else {
+        // no history support :(
+        //hash = unescape(window.location.hash).replace('#','').split("?")[0]
+        
+        var hash = History.unescapeHash(window.location.hash).replace('#','').split("?")[0];
+        var questions_url = askbot['urls']['questions'];
+        if (hash.substring(0, questions_url.length) === questions_url) {
+            var url = hash;
+        } else {
+            var url = questions_url + hash;
+        }
+        if (hash !== '' && hash !== undefined && url !== undefined){
+            
+            window.location = document.location.protocol + '//' + window.location.host + url;
+        }
+    }
+    /*]]>*/
+</script> <script type="text/javascript" src="../../../../m/default/media/jslib/editor.js%3Fv=2"></script> <script type="text/javascript" src="../../../../m/default/media/js/tag_selector.js%3Fv=2"></script> <script type="text/javascript">
+            for (url_name in askbot['urls']){
+                askbot['urls'][url_name] = cleanUrl(askbot['urls'][url_name]);
+            }
+        </script> </body> </html>

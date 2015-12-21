@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4351/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 31 Jul 2014 20:38:27 +0000</lastBuildDate><item><title>Is this command correct?</title><link>https://faq.i3wm.org/question/4351/is-this-command-correct/</link><description>&lt;code&gt;i3-msg "[class='Firefox'] move position center"&lt;/code&gt;
+
+I'm calling this from a floating xterm, and it's the xterm window the one going to the center and not the floating firefox.
+</description><pubDate>Tue, 29 Jul 2014 22:18:58 +0000</pubDate><guid>https://faq.i3wm.org/question/4351/is-this-command-correct/</guid></item><item><title>Comment by TonyC for &lt;p&gt;&lt;code&gt;i3-msg "[class='Firefox'] move position center"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I'm calling this from a floating xterm, and it's the xterm window the one going to the center and not the floating firefox.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4351/is-this-command-correct/?comment=4367#comment-4367</link><description>This bug has been fixed in the development version and will be included in the next release (after 4.8)</description><pubDate>Thu, 31 Jul 2014 20:38:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4351/is-this-command-correct/?comment=4367#comment-4367</guid></item><item><title>Answer by Adaephon for &lt;p&gt;&lt;code&gt;i3-msg "[class='Firefox'] move position center"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I'm calling this from a floating xterm, and it's the xterm window the one going to the center and not the floating firefox.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4351/is-this-command-correct/?answer=4353#post-id-4353</link><description>There are two problems here:
+
+1. Not every command supports the usage of criteria. `move position` is on of them.
+2. i3 only understands double-quotes. So you have to use single-quotes to quote the whole command and double-quotes for the criteria
+
+If you only have one Firefox window than this should work:
+
+    i3-msg '[class="Firefox"] focus; move position center'
+
+----
+
+If you have multiple Firefox windows, i3 will just try to move one of them, not necessarily the one you want (multiple calls will always select the same window).
+
+In that case you could go by `title` or `con_mark` instead of `class` to select a specific Firefox window.
+</description><pubDate>Wed, 30 Jul 2014 06:30:22 +0000</pubDate><guid>https://faq.i3wm.org/question/4351/is-this-command-correct/?answer=4353#post-id-4353</guid></item><item><title>Comment by tigrezno for &lt;p&gt;There are two problems here:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Not every command supports the usage of criteria. &lt;code&gt;move position&lt;/code&gt; is on of them.&lt;/li&gt;
+&lt;li&gt;i3 only understands double-quotes. So you have to use single-quotes to quote the whole command and double-quotes for the criteria&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you only have one Firefox window than this should work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg '[class="Firefox"] focus; move position center'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;If you have multiple Firefox windows, i3 will just try to move one of them, not necessarily the one you want (multiple calls will always select the same window).&lt;/p&gt;
+
+&lt;p&gt;In that case you could go by &lt;code&gt;title&lt;/code&gt; or &lt;code&gt;con_mark&lt;/code&gt; instead of &lt;code&gt;class&lt;/code&gt; to select a specific Firefox window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4351/is-this-command-correct/?comment=4354#comment-4354</link><description>thank you!</description><pubDate>Wed, 30 Jul 2014 08:45:20 +0000</pubDate><guid>https://faq.i3wm.org/question/4351/is-this-command-correct/?comment=4354#comment-4354</guid></item></channel></rss>

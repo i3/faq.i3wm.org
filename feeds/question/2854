@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2854/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 10 Nov 2013 21:08:28 +0000</lastBuildDate><item><title>Keybinding for the both shifts keys</title><link>https://faq.i3wm.org/question/2854/keybinding-for-the-both-shifts-keys/</link><description>I'm looking for a way to launch a programm when I press the left and the right SHIFT key on the same time.
+Is it possible to do this with i3 ?</description><pubDate>Sun, 10 Nov 2013 10:07:06 +0000</pubDate><guid>https://faq.i3wm.org/question/2854/keybinding-for-the-both-shifts-keys/</guid></item><item><title>Comment by Spheerys for &lt;p&gt;I'm looking for a way to launch a programm when I press the left and the right SHIFT key on the same time.
+Is it possible to do this with i3 ?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2854/keybinding-for-the-both-shifts-keys/?comment=2862#comment-2862</link><description>Thank you !
+It's working like a charm :)</description><pubDate>Sun, 10 Nov 2013 21:08:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2854/keybinding-for-the-both-shifts-keys/?comment=2862#comment-2862</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I'm looking for a way to launch a programm when I press the left and the right SHIFT key on the same time.
+Is it possible to do this with i3 ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2854/keybinding-for-the-both-shifts-keys/?answer=2861#post-id-2861</link><description>Yes. Add this to your configuration:
+
+    bindcode Shift+50 exec program
+    bindcode Shift+62 exec program
+
+The first line configures the binding `&lt;Shift_R&gt;+&lt;Shift_L&gt;` (pressing `&lt;Shift_L&gt;` while holding `&lt;Shift_R&gt;`). The second line is for `&lt;Shift_L&gt;+&lt;Shift_R&gt;`. So you could even start different programs depending on the order you press the shift keys.
+
+----------
+
+Keycodes depend on the hardware and the drivers used. The code above should work with most modern Linux distributions (using evdev drivers) and common keyboards (PC 104/105-key). If it does not work use xev to determine the keycodes of the Shift keys.</description><pubDate>Sun, 10 Nov 2013 20:38:59 +0000</pubDate><guid>https://faq.i3wm.org/question/2854/keybinding-for-the-both-shifts-keys/?answer=2861#post-id-2861</guid></item></channel></rss>

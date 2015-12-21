@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/118/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 15 Jun 2012 08:23:38 +0000</lastBuildDate><item><title>mouse cursor remains 'waiting' after closing last tile</title><link>https://faq.i3wm.org/question/118/mouse-cursor-remains-waiting-after-closing-last-tile/</link><description>when I start i3 wm, or close the last tile on a workspace, the mouse cursor remains in a 'waiting' state. how to avoid this? (ubuntu 12.04)</description><pubDate>Wed, 13 Jun 2012 09:11:23 +0000</pubDate><guid>https://faq.i3wm.org/question/118/mouse-cursor-remains-waiting-after-closing-last-tile/</guid></item><item><title>Answer by Michael for &lt;p&gt;when I start i3 wm, or close the last tile on a workspace, the mouse cursor remains in a 'waiting' state. how to avoid this? (ubuntu 12.04)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/118/mouse-cursor-remains-waiting-after-closing-last-tile/?answer=120#post-id-120</link><description>This is due to startup notifications which are still running for some application. After 1 minute, the startup notification will time out.
+
+To avoid this, use applications which support startup-notification (basically everything which is GTK/Qt, but also urxvt, …). If your application does not support it, start it using exec --no-startup-id, for example:
+
+    bindsym $mod+x exec --no-startup-id xterm
+
+Note that this is not the default because you lose some functionality without startup notifications:
+
+1. Your cursor will no longer indicate that an application is starting.
+2. i3 will not be able to place the corresponding window on the same workspace on which the application was started.</description><pubDate>Wed, 13 Jun 2012 10:44:50 +0000</pubDate><guid>https://faq.i3wm.org/question/118/mouse-cursor-remains-waiting-after-closing-last-tile/?answer=120#post-id-120</guid></item><item><title>Comment by srepmub for &lt;p&gt;This is due to startup notifications which are still running for some application. After 1 minute, the startup notification will time out.&lt;/p&gt;
+
+&lt;p&gt;To avoid this, use applications which support startup-notification (basically everything which is GTK/Qt, but also urxvt, …). If your application does not support it, start it using exec --no-startup-id, for example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+x exec --no-startup-id xterm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that this is not the default because you lose some functionality without startup notifications:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Your cursor will no longer indicate that an application is starting.&lt;/li&gt;
+&lt;li&gt;i3 will not be able to place the corresponding window on the same workspace on which the application was started.&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/118/mouse-cursor-remains-waiting-after-closing-last-tile/?comment=133#comment-133</link><description>thanks! confirming that the waiting state indeed times out after a minute, and that --no-startup-id xterm works.</description><pubDate>Fri, 15 Jun 2012 08:23:38 +0000</pubDate><guid>https://faq.i3wm.org/question/118/mouse-cursor-remains-waiting-after-closing-last-tile/?comment=133#comment-133</guid></item><item><title>Answer by michaeltest for &lt;p&gt;when I start i3 wm, or close the last tile on a workspace, the mouse cursor remains in a 'waiting' state. how to avoid this? (ubuntu 12.04)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/118/mouse-cursor-remains-waiting-after-closing-last-tile/?answer=119#post-id-119</link><description>This is due to startup notifications which are still running for some application. After 1 minute, the startup notification will time out.
+
+To avoid this, use applications which support startup-notification (basically everything which is GTK/Qt, but also urxvt, …). If your application does not support it, start it using exec --no-startup-id, for example:
+
+    bindsym $mod+x exec --no-startup-id xterm
+
+Note that this is not the default because you lose some functionality without startup notifications:
+
+1. Your cursor will no longer indicate that an application is starting.
+2. i3 will not be able to place the corresponding window on the same workspace on which the application was started.</description><pubDate>Wed, 13 Jun 2012 10:44:01 +0000</pubDate><guid>https://faq.i3wm.org/question/118/mouse-cursor-remains-waiting-after-closing-last-tile/?answer=119#post-id-119</guid></item></channel></rss>

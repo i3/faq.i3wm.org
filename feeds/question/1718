@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1718/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 12 May 2013 22:35:38 +0000</lastBuildDate><item><title>Match window which has no title</title><link>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/</link><description>I'm having trouble matching a window without title:
+
+    % xprop| grep NAME
+    WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+    WM_ICON_NAME(STRING) = 
+    _NET_WM_ICON_NAME(UTF8_STRING) = 
+    WM_NAME(STRING) = 
+    _NET_WM_NAME(UTF8_STRING) =
+
+In both `assign` and `for_window`:
+
+- `title=""` gives an error
+- `"^$"` don't match</description><pubDate>Sun, 28 Apr 2013 14:45:03 +0000</pubDate><guid>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/</guid></item><item><title>Comment by tab3 for &lt;p&gt;I'm having trouble matching a window without title:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% xprop| grep NAME
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_ICON_NAME(STRING) = 
+_NET_WM_ICON_NAME(UTF8_STRING) = 
+WM_NAME(STRING) = 
+_NET_WM_NAME(UTF8_STRING) =
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In both &lt;code&gt;assign&lt;/code&gt; and &lt;code&gt;for_window&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;title=""&lt;/code&gt; gives an error&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"^$"&lt;/code&gt; don't match&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/?comment=1723#comment-1723</link><description>mschaefer, yep, I'm aware of `class`. I have few windows with the same class and instance, but one of which has no title. (Eclipse)</description><pubDate>Mon, 29 Apr 2013 13:13:26 +0000</pubDate><guid>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/?comment=1723#comment-1723</guid></item><item><title>Comment by mschaefer for &lt;p&gt;I'm having trouble matching a window without title:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% xprop| grep NAME
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_ICON_NAME(STRING) = 
+_NET_WM_ICON_NAME(UTF8_STRING) = 
+WM_NAME(STRING) = 
+_NET_WM_NAME(UTF8_STRING) =
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In both &lt;code&gt;assign&lt;/code&gt; and &lt;code&gt;for_window&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;title=""&lt;/code&gt; gives an error&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"^$"&lt;/code&gt; don't match&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/?comment=1721#comment-1721</link><description>Have you tried [class="..."] in the assign? Maybe your window has a WM_CLASS property that you can use?</description><pubDate>Mon, 29 Apr 2013 07:35:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/?comment=1721#comment-1721</guid></item><item><title>Answer by michaeltest for &lt;p&gt;I'm having trouble matching a window without title:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% xprop| grep NAME
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_ICON_NAME(STRING) = 
+_NET_WM_ICON_NAME(UTF8_STRING) = 
+WM_NAME(STRING) = 
+_NET_WM_NAME(UTF8_STRING) =
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In both &lt;code&gt;assign&lt;/code&gt; and &lt;code&gt;for_window&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;title=""&lt;/code&gt; gives an error&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"^$"&lt;/code&gt; don't match&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/?answer=1725#post-id-1725</link><description>Please fix this upstream, i.e. in the application itself. This is trivial if you have written it, and just a bug report in the right place if you didn’t.
+
+Plus, fixing this upstream will benefit all users of all window managers who ever want to match such a window.</description><pubDate>Mon, 29 Apr 2013 17:28:37 +0000</pubDate><guid>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/?answer=1725#post-id-1725</guid></item><item><title>Answer by Michael for &lt;p&gt;I'm having trouble matching a window without title:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% xprop| grep NAME
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_ICON_NAME(STRING) = 
+_NET_WM_ICON_NAME(UTF8_STRING) = 
+WM_NAME(STRING) = 
+_NET_WM_NAME(UTF8_STRING) =
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In both &lt;code&gt;assign&lt;/code&gt; and &lt;code&gt;for_window&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;title=""&lt;/code&gt; gives an error&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;"^$"&lt;/code&gt; don't match&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/?answer=1726#post-id-1726</link><description>Please fix this upstream, i.e. in the application itself. This is trivial if you have written it, and just a bug report in the right place if you didn’t.
+
+Plus, fixing this upstream will benefit all users of all window managers who ever want to match such a window.</description><pubDate>Mon, 29 Apr 2013 17:29:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/?answer=1726#post-id-1726</guid></item><item><title>Comment by dosimple for &lt;p&gt;Please fix this upstream, i.e. in the application itself. This is trivial if you have written it, and just a bug report in the right place if you didn’t.&lt;/p&gt;
+
+&lt;p&gt;Plus, fixing this upstream will benefit all users of all window managers who ever want to match such a window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/?comment=1801#comment-1801</link><description>iirc `class=".*"` wouln't match windows having no class. is this a expected behaviour?</description><pubDate>Sun, 12 May 2013 22:35:38 +0000</pubDate><guid>https://faq.i3wm.org/question/1718/match-window-which-has-no-title/?comment=1801#comment-1801</guid></item></channel></rss>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2894/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 19 Nov 2013 15:29:27 +0000</lastBuildDate><item><title>Automatically stack certain windows</title><link>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/</link><description>On my communications workspace, I have an email client and a Jabber client, tiled horizontally (Thunderbird occupying the left 4/5 of the screen, and Gajim contact list the remaining 1/5 on the right). There may be other windows stacked with Thunderbird.
+
+Now I want to arrange for all chat windows spawned by Gajim to open stacked with its contact list.
+
+If I only opened chat windows from my contact list, they would open in place automatically. But they also open when someone messages me.
+
+I understand that I can arrange for my initial layout to be like this:
+
+&lt;ul&gt;
+&lt;li&gt;H-split container&lt;ul&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Thunderbird&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Gajim contact list&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+Then, I plan to have a `for_window` rule matching all Gajim windows.
+
+What do I need to write as the action, so as to move the new window to the second stacked container in that workspace?
+
+As an ugly workaround, I used to use this:
+
+    assign [class="Gajim"] 2
+    for_window [class="Gajim"] focus; move right; move right; move left
+
+but this doesn’t play well with switching Thunderbird’s parent container into tabbed layout. (I would need to increase the number of `move right`s to the maximum number of tabbed windows I can have.)</description><pubDate>Tue, 12 Nov 2013 13:20:42 +0000</pubDate><guid>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/</guid></item><item><title>Comment by Yuri Khan for &lt;p&gt;On my communications workspace, I have an email client and a Jabber client, tiled horizontally (Thunderbird occupying the left 4/5 of the screen, and Gajim contact list the remaining 1/5 on the right). There may be other windows stacked with Thunderbird.&lt;/p&gt;
+
+&lt;p&gt;Now I want to arrange for all chat windows spawned by Gajim to open stacked with its contact list.&lt;/p&gt;
+
+&lt;p&gt;If I only opened chat windows from my contact list, they would open in place automatically. But they also open when someone messages me.&lt;/p&gt;
+
+&lt;p&gt;I understand that I can arrange for my initial layout to be like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;H-split container&lt;ul&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Thunderbird&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Gajim contact list&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then, I plan to have a &lt;code&gt;for_window&lt;/code&gt; rule matching all Gajim windows.&lt;/p&gt;
+
+&lt;p&gt;What do I need to write as the action, so as to move the new window to the second stacked container in that workspace?&lt;/p&gt;
+
+&lt;p&gt;As an ugly workaround, I used to use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Gajim"] 2
+for_window [class="Gajim"] focus; move right; move right; move left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but this doesn’t play well with switching Thunderbird’s parent container into tabbed layout. (I would need to increase the number of &lt;code&gt;move right&lt;/code&gt;s to the maximum number of tabbed windows I can have.)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/?comment=2934#comment-2934</link><description>As far as I understand, marks add a different way to address a window or container, in case its class/instance/role is not unique enough. It does not, however, allow any new two-address commands involving a window and a container (such as `move window to container`).</description><pubDate>Mon, 18 Nov 2013 03:07:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/?comment=2934#comment-2934</guid></item><item><title>Comment by joepd for &lt;p&gt;On my communications workspace, I have an email client and a Jabber client, tiled horizontally (Thunderbird occupying the left 4/5 of the screen, and Gajim contact list the remaining 1/5 on the right). There may be other windows stacked with Thunderbird.&lt;/p&gt;
+
+&lt;p&gt;Now I want to arrange for all chat windows spawned by Gajim to open stacked with its contact list.&lt;/p&gt;
+
+&lt;p&gt;If I only opened chat windows from my contact list, they would open in place automatically. But they also open when someone messages me.&lt;/p&gt;
+
+&lt;p&gt;I understand that I can arrange for my initial layout to be like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;H-split container&lt;ul&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Thunderbird&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Gajim contact list&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then, I plan to have a &lt;code&gt;for_window&lt;/code&gt; rule matching all Gajim windows.&lt;/p&gt;
+
+&lt;p&gt;What do I need to write as the action, so as to move the new window to the second stacked container in that workspace?&lt;/p&gt;
+
+&lt;p&gt;As an ugly workaround, I used to use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Gajim"] 2
+for_window [class="Gajim"] focus; move right; move right; move left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but this doesn’t play well with switching Thunderbird’s parent container into tabbed layout. (I would need to increase the number of &lt;code&gt;move right&lt;/code&gt;s to the maximum number of tabbed windows I can have.)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/?comment=2928#comment-2928</link><description>Adaephon: Experiment with http://i3wm.org/docs/userguide.html#_vim_like_marks_mark_goto. Focus parent, set a mark, and some juggling is possible with this container. </description><pubDate>Sun, 17 Nov 2013 20:28:15 +0000</pubDate><guid>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/?comment=2928#comment-2928</guid></item><item><title>Comment by Adaephon for &lt;p&gt;On my communications workspace, I have an email client and a Jabber client, tiled horizontally (Thunderbird occupying the left 4/5 of the screen, and Gajim contact list the remaining 1/5 on the right). There may be other windows stacked with Thunderbird.&lt;/p&gt;
+
+&lt;p&gt;Now I want to arrange for all chat windows spawned by Gajim to open stacked with its contact list.&lt;/p&gt;
+
+&lt;p&gt;If I only opened chat windows from my contact list, they would open in place automatically. But they also open when someone messages me.&lt;/p&gt;
+
+&lt;p&gt;I understand that I can arrange for my initial layout to be like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;H-split container&lt;ul&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Thunderbird&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Gajim contact list&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then, I plan to have a &lt;code&gt;for_window&lt;/code&gt; rule matching all Gajim windows.&lt;/p&gt;
+
+&lt;p&gt;What do I need to write as the action, so as to move the new window to the second stacked container in that workspace?&lt;/p&gt;
+
+&lt;p&gt;As an ugly workaround, I used to use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Gajim"] 2
+for_window [class="Gajim"] focus; move right; move right; move left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but this doesn’t play well with switching Thunderbird’s parent container into tabbed layout. (I would need to increase the number of &lt;code&gt;move right&lt;/code&gt;s to the maximum number of tabbed windows I can have.)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/?comment=2929#comment-2929</link><description>joepd: I'm aware of that feature, but the container has to be already there in order to use it. And even with a mark on the container it is not possible to move a window into it by using that mark as target. Or am I missing something?</description><pubDate>Sun, 17 Nov 2013 21:35:18 +0000</pubDate><guid>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/?comment=2929#comment-2929</guid></item><item><title>Comment by Adaephon for &lt;p&gt;On my communications workspace, I have an email client and a Jabber client, tiled horizontally (Thunderbird occupying the left 4/5 of the screen, and Gajim contact list the remaining 1/5 on the right). There may be other windows stacked with Thunderbird.&lt;/p&gt;
+
+&lt;p&gt;Now I want to arrange for all chat windows spawned by Gajim to open stacked with its contact list.&lt;/p&gt;
+
+&lt;p&gt;If I only opened chat windows from my contact list, they would open in place automatically. But they also open when someone messages me.&lt;/p&gt;
+
+&lt;p&gt;I understand that I can arrange for my initial layout to be like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;H-split container&lt;ul&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Thunderbird&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Gajim contact list&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then, I plan to have a &lt;code&gt;for_window&lt;/code&gt; rule matching all Gajim windows.&lt;/p&gt;
+
+&lt;p&gt;What do I need to write as the action, so as to move the new window to the second stacked container in that workspace?&lt;/p&gt;
+
+&lt;p&gt;As an ugly workaround, I used to use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Gajim"] 2
+for_window [class="Gajim"] focus; move right; move right; move left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but this doesn’t play well with switching Thunderbird’s parent container into tabbed layout. (I would need to increase the number of &lt;code&gt;move right&lt;/code&gt;s to the maximum number of tabbed windows I can have.)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/?comment=2898#comment-2898</link><description>It would be nice to have some of the workspace features for containers, too. Being able to predefine (named) containers, setting a layout (other than the global default) and assigning windows to them would go a long way to help with cases like this. I'd certainly like to see something like that.</description><pubDate>Tue, 12 Nov 2013 20:46:49 +0000</pubDate><guid>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/?comment=2898#comment-2898</guid></item><item><title>Answer by Yuri Khan for &lt;p&gt;On my communications workspace, I have an email client and a Jabber client, tiled horizontally (Thunderbird occupying the left 4/5 of the screen, and Gajim contact list the remaining 1/5 on the right). There may be other windows stacked with Thunderbird.&lt;/p&gt;
+
+&lt;p&gt;Now I want to arrange for all chat windows spawned by Gajim to open stacked with its contact list.&lt;/p&gt;
+
+&lt;p&gt;If I only opened chat windows from my contact list, they would open in place automatically. But they also open when someone messages me.&lt;/p&gt;
+
+&lt;p&gt;I understand that I can arrange for my initial layout to be like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;H-split container&lt;ul&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Thunderbird&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;Stacked container&lt;ul&gt;
+    &lt;li&gt;Gajim contact list&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then, I plan to have a &lt;code&gt;for_window&lt;/code&gt; rule matching all Gajim windows.&lt;/p&gt;
+
+&lt;p&gt;What do I need to write as the action, so as to move the new window to the second stacked container in that workspace?&lt;/p&gt;
+
+&lt;p&gt;As an ugly workaround, I used to use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Gajim"] 2
+for_window [class="Gajim"] focus; move right; move right; move left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but this doesn’t play well with switching Thunderbird’s parent container into tabbed layout. (I would need to increase the number of &lt;code&gt;move right&lt;/code&gt;s to the maximum number of tabbed windows I can have.)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/?answer=2937#post-id-2937</link><description>The basic commands we have for moving windows around are the basic `move left|right|up|down` which work within one workspace and lead to the ugly workaround; and one more command `move container to workspace x`. Let’s examine the latter.
+
+If we spell out all the defaults, what the general form of this command exactly does is it moves the currently active window on the current workspace into the parent container of the currently active window on the target workspace, except that:
+
+ * if `workspace_auto_back_and_forth` is set and target workspace is the same as current, **or**
+ * if target workspace is `back_and_forth`,
+
+then the target workspace is adjusted to the most recent previously active workspace.
+
+So, if we want to use this command, we need to arrange for the following conditions:
+
+ 1. The subject window is currently active.
+ 2. The target window is currently active on its workspace. (It follows that the subject window has to be on some other workspace.)
+ 3. The target workspace is the most recent previously active workspace. (Because otherwise we will have to specify the target workspace explicitly.)
+
+Working back from those requirements, we get the following sequence (assuming the subject window is currently focused):
+
+ 1. Move the subject window into an empty temporary workspace, out of the way but still easily accessible. `move container to workspace temp;`
+ 2. Focus the target window. (This satisfies requirement 2.) `[class="Gajim" role="roster"] focus;`
+ 3. Activate the temporary workspace. (This deals with requirements 3 and also 1, as the subject window is the only one on that workspace.) `workspace temp;`
+ 4. Move the window into place. `move container to workspace back_and_forth;`
+ 5. Finally, activate the target workspace. `workspace back_and_forth`</description><pubDate>Tue, 19 Nov 2013 15:29:27 +0000</pubDate><guid>https://faq.i3wm.org/question/2894/automatically-stack-certain-windows/?answer=2937#post-id-2937</guid></item></channel></rss>

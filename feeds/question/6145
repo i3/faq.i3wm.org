@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6145/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 20 Jun 2015 04:16:09 +0000</lastBuildDate><item><title>Sorting/Listing method of workspaces in i3status bar</title><link>https://faq.i3wm.org/question/6145/sortinglisting-method-of-workspaces-in-i3status-bar/</link><description>I've renamed the workspaces `1` to `&gt;_`, `2` to `web` and `10` to `com`. The others are not modified.
+
+Now if all workspaces are in use, they are listed as following: `3 4 5 6 7 8 9 &gt;_ com web`
+
+How do I define how they're listed? I'd want them to be as they're on the keyboard. `&gt;_ web 3 4 5 6 7 8 9 com`.
+
+
+I've just come to the conclusion that this must have something to do with the order in which they are used, as it's different again now. My config below:
+
+	# switch to workspace
+	bindsym $mod+1 workspace &gt;_
+	bindsym $mod+2 workspace web 
+	bindsym $mod+3 workspace 3
+	bindsym $mod+4 workspace 4
+	bindsym $mod+5 workspace 5
+	bindsym $mod+6 workspace 6
+	bindsym $mod+7 workspace 7
+	bindsym $mod+8 workspace 8
+	bindsym $mod+9 workspace 9
+	bindsym $mod+0 workspace com 
+	
+	# move focused container to workspace
+	bindsym $mod+Shift+1 move container to workspace &gt;_
+	bindsym $mod+Shift+2 move container to workspace web 
+	bindsym $mod+Shift+3 move container to workspace 3
+	bindsym $mod+Shift+4 move container to workspace 4
+	bindsym $mod+Shift+5 move container to workspace 5
+	bindsym $mod+Shift+6 move container to workspace 6
+	bindsym $mod+Shift+7 move container to workspace 7
+	bindsym $mod+Shift+8 move container to workspace 8
+	bindsym $mod+Shift+9 move container to workspace 9
+	bindsym $mod+Shift+0 move container to workspace com </description><pubDate>Fri, 19 Jun 2015 17:51:14 +0000</pubDate><guid>https://faq.i3wm.org/question/6145/sortinglisting-method-of-workspaces-in-i3status-bar/</guid></item><item><title>Answer by i3convert for &lt;p&gt;I've renamed the workspaces &lt;code&gt;1&lt;/code&gt; to &lt;code&gt;&amp;gt;_&lt;/code&gt;, &lt;code&gt;2&lt;/code&gt; to &lt;code&gt;web&lt;/code&gt; and &lt;code&gt;10&lt;/code&gt; to &lt;code&gt;com&lt;/code&gt;. The others are not modified.&lt;/p&gt;
+
+&lt;p&gt;Now if all workspaces are in use, they are listed as following: &lt;code&gt;3 4 5 6 7 8 9 &amp;gt;_ com web&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;How do I define how they're listed? I'd want them to be as they're on the keyboard. &lt;code&gt;&amp;gt;_ web 3 4 5 6 7 8 9 com&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I've just come to the conclusion that this must have something to do with the order in which they are used, as it's different again now. My config below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+1 workspace &amp;gt;_
+bindsym $mod+2 workspace web 
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace com 
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace &amp;gt;_
+bindsym $mod+Shift+2 move container to workspace web 
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace com
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/6145/sortinglisting-method-of-workspaces-in-i3status-bar/?answer=6146#post-id-6146</link><description>See [Section 5.2 (Strip workspace numbers)](https://i3wm.org/docs/userguide.html#_strip_workspace_numbers) of the guide. You can keep the numbers (which are used for sorting) but stop them from displaying.
+
+ 1. Use `1:&gt;_` and `2:web` as names of workspaces, instead of  `&gt;_` and `web`, respectively.
+ 2. Add `strip_workspace_numbers yes` inside the `bar{ ... }` section and reload the configuration.</description><pubDate>Fri, 19 Jun 2015 19:04:55 +0000</pubDate><guid>https://faq.i3wm.org/question/6145/sortinglisting-method-of-workspaces-in-i3status-bar/?answer=6146#post-id-6146</guid></item><item><title>Comment by i3convert for &lt;p&gt;See &lt;a href="https://i3wm.org/docs/userguide.html#_strip_workspace_numbers"&gt;Section 5.2 (Strip workspace numbers)&lt;/a&gt; of the guide. You can keep the numbers (which are used for sorting) but stop them from displaying.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Use &lt;code&gt;1:&amp;gt;_&lt;/code&gt; and &lt;code&gt;2:web&lt;/code&gt; as names of workspaces, instead of  &lt;code&gt;&amp;gt;_&lt;/code&gt; and &lt;code&gt;web&lt;/code&gt;, respectively.&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;strip_workspace_numbers yes&lt;/code&gt; inside the &lt;code&gt;bar{ ... }&lt;/code&gt; section and reload the configuration.&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/6145/sortinglisting-method-of-workspaces-in-i3status-bar/?comment=6152#comment-6152</link><description>@Airblader: I didn't intend to offend anyone :)</description><pubDate>Sat, 20 Jun 2015 04:16:09 +0000</pubDate><guid>https://faq.i3wm.org/question/6145/sortinglisting-method-of-workspaces-in-i3status-bar/?comment=6152#comment-6152</guid></item><item><title>Comment by Airblader for &lt;p&gt;See &lt;a href="https://i3wm.org/docs/userguide.html#_strip_workspace_numbers"&gt;Section 5.2 (Strip workspace numbers)&lt;/a&gt; of the guide. You can keep the numbers (which are used for sorting) but stop them from displaying.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Use &lt;code&gt;1:&amp;gt;_&lt;/code&gt; and &lt;code&gt;2:web&lt;/code&gt; as names of workspaces, instead of  &lt;code&gt;&amp;gt;_&lt;/code&gt; and &lt;code&gt;web&lt;/code&gt;, respectively.&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;strip_workspace_numbers yes&lt;/code&gt; inside the &lt;code&gt;bar{ ... }&lt;/code&gt; section and reload the configuration.&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/6145/sortinglisting-method-of-workspaces-in-i3status-bar/?comment=6151#comment-6151</link><description>That's hardly a "workaround". It's an intended solution.</description><pubDate>Fri, 19 Jun 2015 22:24:05 +0000</pubDate><guid>https://faq.i3wm.org/question/6145/sortinglisting-method-of-workspaces-in-i3status-bar/?comment=6151#comment-6151</guid></item></channel></rss>

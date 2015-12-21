@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5654/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 29 May 2015 14:58:38 +0000</lastBuildDate><item><title>How can I disable notifications when the screen locks and enable them again when unlocking?</title><link>https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/</link><description>I use dunst for notifications and xautolock/i3lock for a lockscreen. I'd like to disable notifications when the screen locks by using 'killall -SIGUSER1 dunst' and re-enable notifications with 'killall -SIGUSER2 dunst' when the screen is unlocked. 
+In my i3 config I use 'exec xautolock -time 10 -locker "i3lock"', so I could add the 'killall -SIGUSR1 dunst' to that line and disable notifications, but how would I automatically re-enable them when the screen gets unlocked?</description><pubDate>Tue, 24 Mar 2015 21:33:25 +0000</pubDate><guid>https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/</guid></item><item><title>Answer by Michael for &lt;p&gt;I use dunst for notifications and xautolock/i3lock for a lockscreen. I'd like to disable notifications when the screen locks by using 'killall -SIGUSER1 dunst' and re-enable notifications with 'killall -SIGUSER2 dunst' when the screen is unlocked. 
+In my i3 config I use 'exec xautolock -time 10 -locker "i3lock"', so I could add the 'killall -SIGUSR1 dunst' to that line and disable notifications, but how would I automatically re-enable them when the screen gets unlocked?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/?answer=5655#post-id-5655</link><description>See https://github.com/knopwob/dunst/issues/121#issuecomment-35828848:
+
+    $ cat lock.sh
+    #!/bin/bash
+    # suspend message display
+    pkill -u "$USER" -USR1 dunst
+    
+    # lock the screen
+    i3lock -n
+    
+    # resume message display
+    pkill -u "$USER" -USR2 dunst</description><pubDate>Tue, 24 Mar 2015 21:47:38 +0000</pubDate><guid>https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/?answer=5655#post-id-5655</guid></item><item><title>Comment by curious_one for &lt;p&gt;See &lt;a href="https://github.com/knopwob/dunst/issues/121#issuecomment-35828848"&gt;https://github.com/knopwob/dunst/issu...&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat lock.sh
+#!/bin/bash
+# suspend message display
+pkill -u "$USER" -USR1 dunst
+
+# lock the screen
+i3lock -n
+
+# resume message display
+pkill -u "$USER" -USR2 dunst
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/?comment=6031#comment-6031</link><description>@i3convert you are correct. the -n is required for this to work correctly.</description><pubDate>Fri, 29 May 2015 14:58:38 +0000</pubDate><guid>https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/?comment=6031#comment-6031</guid></item><item><title>Comment by i3convert for &lt;p&gt;See &lt;a href="https://github.com/knopwob/dunst/issues/121#issuecomment-35828848"&gt;https://github.com/knopwob/dunst/issu...&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat lock.sh
+#!/bin/bash
+# suspend message display
+pkill -u "$USER" -USR1 dunst
+
+# lock the screen
+i3lock -n
+
+# resume message display
+pkill -u "$USER" -USR2 dunst
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/?comment=5661#comment-5661</link><description>Does this really work? When I run `date; i3lock; date` in bash, the second `date` gets executed immediately. What you might want to do is to run `i3lock -n` instead. The `-n` option makes i3lock not fork. Compare the outputs of `date; i3lock; date` and `date; i3lock -n; date` to see the difference.</description><pubDate>Wed, 25 Mar 2015 16:07:07 +0000</pubDate><guid>https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/?comment=5661#comment-5661</guid></item><item><title>Comment by curious_one for &lt;p&gt;See &lt;a href="https://github.com/knopwob/dunst/issues/121#issuecomment-35828848"&gt;https://github.com/knopwob/dunst/issu...&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat lock.sh
+#!/bin/bash
+# suspend message display
+pkill -u "$USER" -USR1 dunst
+
+# lock the screen
+i3lock -n
+
+# resume message display
+pkill -u "$USER" -USR2 dunst
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/?comment=5656#comment-5656</link><description>Exactly what I was after! thanks</description><pubDate>Tue, 24 Mar 2015 21:55:20 +0000</pubDate><guid>https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/?comment=5656#comment-5656</guid></item></channel></rss>

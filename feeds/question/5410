@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5410/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 17 Feb 2015 12:24:32 +0000</lastBuildDate><item><title>Why can't I `bindsym Mod1+Mod3' ?</title><link>https://faq.i3wm.org/question/5410/why-cant-i-bindsym-mod1mod3/</link><description>I've tried to put the same command for `bindsym Mod1+Mod4` and `bindsym $mod+x` and it seems that only the latter works. Why is this? How do I troubleshoot this issue?</description><pubDate>Fri, 30 Jan 2015 15:51:07 +0000</pubDate><guid>https://faq.i3wm.org/question/5410/why-cant-i-bindsym-mod1mod3/</guid></item><item><title>Answer by mschaefer for &lt;p&gt;I've tried to put the same command for &lt;code&gt;bindsym Mod1+Mod4&lt;/code&gt; and &lt;code&gt;bindsym $mod+x&lt;/code&gt; and it seems that only the latter works. Why is this? How do I troubleshoot this issue?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5410/why-cant-i-bindsym-mod1mod3/?answer=5411#post-id-5411</link><description>Instead of `bindsym` you need to use `bindcode`. For that to work you have to find out the keycode of your Mod1 and Mod4 keys. You can do that using the `xkbevd` command line tool. For me, Mod1(=Alt) has keycode 64 and Mod4(=Windows key) has keycode 133. So I would use
+
+    bindcode Mod1 + 133 exec &lt;command&gt;
+    bindcode Mod4 + 64  exec &lt;command&gt;
+
+Note that you need both commands because `bindcode` is sensitive to the order in which the keys are pressed!
+</description><pubDate>Sat, 31 Jan 2015 12:18:31 +0000</pubDate><guid>https://faq.i3wm.org/question/5410/why-cant-i-bindsym-mod1mod3/?answer=5411#post-id-5411</guid></item><item><title>Comment by throstur for &lt;p&gt;Instead of &lt;code&gt;bindsym&lt;/code&gt; you need to use &lt;code&gt;bindcode&lt;/code&gt;. For that to work you have to find out the keycode of your Mod1 and Mod4 keys. You can do that using the &lt;code&gt;xkbevd&lt;/code&gt; command line tool. For me, Mod1(=Alt) has keycode 64 and Mod4(=Windows key) has keycode 133. So I would use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1 + 133 exec &amp;lt;command&amp;gt;
+bindcode Mod4 + 64  exec &amp;lt;command&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you need both commands because &lt;code&gt;bindcode&lt;/code&gt; is sensitive to the order in which the keys are pressed!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5410/why-cant-i-bindsym-mod1mod3/?comment=5422#comment-5422</link><description>Thank you, mschaefer! It works exactly as expected. I also tried `64 + 133` instead of `Mod1 + 133` and learned why your way is correct (and why the order matters). I would love to give you an upvote here, but I sadly don't have enough reputation.</description><pubDate>Mon, 02 Feb 2015 10:37:24 +0000</pubDate><guid>https://faq.i3wm.org/question/5410/why-cant-i-bindsym-mod1mod3/?comment=5422#comment-5422</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Instead of &lt;code&gt;bindsym&lt;/code&gt; you need to use &lt;code&gt;bindcode&lt;/code&gt;. For that to work you have to find out the keycode of your Mod1 and Mod4 keys. You can do that using the &lt;code&gt;xkbevd&lt;/code&gt; command line tool. For me, Mod1(=Alt) has keycode 64 and Mod4(=Windows key) has keycode 133. So I would use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1 + 133 exec &amp;lt;command&amp;gt;
+bindcode Mod4 + 64  exec &amp;lt;command&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you need both commands because &lt;code&gt;bindcode&lt;/code&gt; is sensitive to the order in which the keys are pressed!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5410/why-cant-i-bindsym-mod1mod3/?comment=5493#comment-5493</link><description>@throstur You do now. Have enough reputation, that is. :)</description><pubDate>Tue, 17 Feb 2015 12:24:32 +0000</pubDate><guid>https://faq.i3wm.org/question/5410/why-cant-i-bindsym-mod1mod3/?comment=5493#comment-5493</guid></item></channel></rss>

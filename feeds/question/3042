@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3042/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 30 May 2015 17:10:33 +0000</lastBuildDate><item><title>Change the focus of windows within vim and i3 with the same keystroke</title><link>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/</link><description>I wrote some bits of glue to change the focus between windows in i3 and vim using the same keystroke (Super_L+Arrow_Keys or hjkl). It consists of a C bit (It used to be written in python, but the new version of libxdo broke it in my setup), a plug-in for vim, and configurations for the vim and i3 mappings.
+
+To use it you would need libxdo (part of xdotools).
+
+The C bit (i put in `~/bin/i3_vim_focus`):
+
+    /* File: i3_vim_focus.c
+     *
+     * Compile with:
+     * gcc -lX11 -lxdo -o i3_vim_focus i3_vim_focus.c $(pkg-config --libs --cflags i3ipc-glib-1.0)
+     *
+     */
+    
+    #include &lt;stdio.h&gt;
+    
+    #include &lt;strings.h&gt;
+    #include &lt;string.h&gt;
+    
+    #include &lt;xdo.h&gt;
+    
+    #include &lt;glib/gprintf.h&gt;
+    #include &lt;i3ipc-glib/i3ipc-glib.h&gt;
+    
+    int main(int argc, char *argv[]) {
+    
+        char cmd[20];
+    
+        unsigned char *name;
+        int name_len;
+        int name_type;
+        Window window_ret;
+    
+        i3ipcConnection *conn;
+        gchar *reply;
+    
+        if(argc &lt; 2){
+            printf("Missing argument\n");
+            return 1;
+        }
+    
+        xdo_t *xdo = xdo_new(NULL);
+        xdo_get_active_window(xdo, &amp;window_ret);
+        xdo_get_window_name(xdo, window_ret, &amp;name, &amp;name_len, &amp;name_type);
+    
+        if(strstr(name, "VIM")) 
+        {
+            strcpy(cmd, "Escape+g+w+");
+    
+            
+            strcat(cmd, (argv[1][0] == 'l')? "h" :
+                        (argv[1][0] == 'd')? "j" :
+                        (argv[1][0] == 'u')? "k" :
+                                             "l" );
+    
+            xdo_send_keysequence_window(xdo, window_ret, cmd, 0);
+        }
+        else
+        {
+            conn = i3ipc_connection_new(NULL, NULL);
+            strcpy(cmd, "focus ");
+            strcat(cmd, argv[1]);
+            reply = i3ipc_connection_message(conn, I3IPC_MESSAGE_TYPE_COMMAND, cmd, NULL);
+            g_free(reply);
+            g_object_unref(conn);
+        }
+    
+        XFree(name);
+        return  0;
+    }
+
+
+The vim-plugin (I put in `~/.vim/plugin/focus.vim`):
+
+    func! Focus(comando,vim_comando)
+      let oldw = winnr()
+      silent exe 'wincmd ' . a:vim_comando
+      let neww = winnr()
+      if oldw == neww
+        silent exe '!i3-msg -q focus ' . a:comando
+        if !has("gui_running")
+            redraw!
+        endif
+      endif
+    endfunction
+
+The i3 configuration (`~/.i3/config`, I use Mod4 as $mod):
+
+    # change focus
+    bindsym $mod+h exec "i3_vim_focus left"
+    bindsym $mod+j exec "i3_vim_focus down"
+    bindsym $mod+k exec "i3_vim_focus up"
+    bindsym $mod+l exec "i3_vim_focus right"
+    
+    # alternatively, you can use the cursor keys:
+    bindsym $mod+Left  exec "i3_vim_focus left"
+    bindsym $mod+Down  exec "i3_vim_focus down"
+    bindsym $mod+Up    exec "i3_vim_focus up"
+    bindsym $mod+Right exec "i3_vim_focus right"
+
+The vim bindings (`~/.vimrc`):
+
+    " Focus!
+    map gwl :call Focus('right','l')&lt;CR&gt;
+    map gwh :call Focus('left','h')&lt;CR&gt;
+    map gwk :call Focus('up','k')&lt;CR&gt;
+    map gwj :call Focus('down','j')&lt;CR&gt;</description><pubDate>Thu, 12 Dec 2013 23:05:01 +0000</pubDate><guid>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/</guid></item><item><title>Comment by jacderida for &lt;p&gt;I wrote some bits of glue to change the focus between windows in i3 and vim using the same keystroke (Super&lt;em&gt;L+Arrow&lt;/em&gt;Keys or hjkl). It consists of a C bit (It used to be written in python, but the new version of libxdo broke it in my setup), a plug-in for vim, and configurations for the vim and i3 mappings.&lt;/p&gt;
+
+&lt;p&gt;To use it you would need libxdo (part of xdotools).&lt;/p&gt;
+
+&lt;p&gt;The C bit (i put in &lt;code&gt;~/bin/i3_vim_focus&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* File: i3_vim_focus.c
+ *
+ * Compile with:
+ * gcc -lX11 -lxdo -o i3_vim_focus i3_vim_focus.c $(pkg-config --libs --cflags i3ipc-glib-1.0)
+ *
+ */
+
+#include &amp;lt;stdio.h&amp;gt;
+
+#include &amp;lt;strings.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+
+#include &amp;lt;xdo.h&amp;gt;
+
+#include &amp;lt;glib/gprintf.h&amp;gt;
+#include &amp;lt;i3ipc-glib/i3ipc-glib.h&amp;gt;
+
+int main(int argc, char *argv[]) {
+
+    char cmd[20];
+
+    unsigned char *name;
+    int name_len;
+    int name_type;
+    Window window_ret;
+
+    i3ipcConnection *conn;
+    gchar *reply;
+
+    if(argc &amp;lt; 2){
+        printf("Missing argument\n");
+        return 1;
+    }
+
+    xdo_t *xdo = xdo_new(NULL);
+    xdo_get_active_window(xdo, &amp;amp;window_ret);
+    xdo_get_window_name(xdo, window_ret, &amp;amp;name, &amp;amp;name_len, &amp;amp;name_type);
+
+    if(strstr(name, "VIM")) 
+    {
+        strcpy(cmd, "Escape+g+w+");
+
+
+        strcat(cmd, (argv[1][0] == 'l')? "h" :
+                    (argv[1][0] == 'd')? "j" :
+                    (argv[1][0] == 'u')? "k" :
+                                         "l" );
+
+        xdo_send_keysequence_window(xdo, window_ret, cmd, 0);
+    }
+    else
+    {
+        conn = i3ipc_connection_new(NULL, NULL);
+        strcpy(cmd, "focus ");
+        strcat(cmd, argv[1]);
+        reply = i3ipc_connection_message(conn, I3IPC_MESSAGE_TYPE_COMMAND, cmd, NULL);
+        g_free(reply);
+        g_object_unref(conn);
+    }
+
+    XFree(name);
+    return  0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The vim-plugin (I put in &lt;code&gt;~/.vim/plugin/focus.vim&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func! Focus(comando,vim_comando)
+  let oldw = winnr()
+  silent exe 'wincmd ' . a:vim_comando
+  let neww = winnr()
+  if oldw == neww
+    silent exe '!i3-msg -q focus ' . a:comando
+    if !has("gui_running")
+        redraw!
+    endif
+  endif
+endfunction
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The i3 configuration (&lt;code&gt;~/.i3/config&lt;/code&gt;, I use Mod4 as $mod):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focus
+bindsym $mod+h exec "i3_vim_focus left"
+bindsym $mod+j exec "i3_vim_focus down"
+bindsym $mod+k exec "i3_vim_focus up"
+bindsym $mod+l exec "i3_vim_focus right"
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  exec "i3_vim_focus left"
+bindsym $mod+Down  exec "i3_vim_focus down"
+bindsym $mod+Up    exec "i3_vim_focus up"
+bindsym $mod+Right exec "i3_vim_focus right"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The vim bindings (&lt;code&gt;~/.vimrc&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;" Focus!
+map gwl :call Focus('right','l')&amp;lt;CR&amp;gt;
+map gwh :call Focus('left','h')&amp;lt;CR&amp;gt;
+map gwk :call Focus('up','k')&amp;lt;CR&amp;gt;
+map gwj :call Focus('down','j')&amp;lt;CR&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/?comment=6038#comment-6038</link><description>After using the vim-tmux-navigator plugin, I needed exactly this to switch from tmux to i3wm, so thanks very much! I changed it slightly to call out to xdotool, since xdo_keysequence seems to be missing from v3 of the library, but it's the same concept.</description><pubDate>Sat, 30 May 2015 17:10:33 +0000</pubDate><guid>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/?comment=6038#comment-6038</guid></item><item><title>Comment by Michael Rose for &lt;p&gt;I wrote some bits of glue to change the focus between windows in i3 and vim using the same keystroke (Super&lt;em&gt;L+Arrow&lt;/em&gt;Keys or hjkl). It consists of a C bit (It used to be written in python, but the new version of libxdo broke it in my setup), a plug-in for vim, and configurations for the vim and i3 mappings.&lt;/p&gt;
+
+&lt;p&gt;To use it you would need libxdo (part of xdotools).&lt;/p&gt;
+
+&lt;p&gt;The C bit (i put in &lt;code&gt;~/bin/i3_vim_focus&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* File: i3_vim_focus.c
+ *
+ * Compile with:
+ * gcc -lX11 -lxdo -o i3_vim_focus i3_vim_focus.c $(pkg-config --libs --cflags i3ipc-glib-1.0)
+ *
+ */
+
+#include &amp;lt;stdio.h&amp;gt;
+
+#include &amp;lt;strings.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+
+#include &amp;lt;xdo.h&amp;gt;
+
+#include &amp;lt;glib/gprintf.h&amp;gt;
+#include &amp;lt;i3ipc-glib/i3ipc-glib.h&amp;gt;
+
+int main(int argc, char *argv[]) {
+
+    char cmd[20];
+
+    unsigned char *name;
+    int name_len;
+    int name_type;
+    Window window_ret;
+
+    i3ipcConnection *conn;
+    gchar *reply;
+
+    if(argc &amp;lt; 2){
+        printf("Missing argument\n");
+        return 1;
+    }
+
+    xdo_t *xdo = xdo_new(NULL);
+    xdo_get_active_window(xdo, &amp;amp;window_ret);
+    xdo_get_window_name(xdo, window_ret, &amp;amp;name, &amp;amp;name_len, &amp;amp;name_type);
+
+    if(strstr(name, "VIM")) 
+    {
+        strcpy(cmd, "Escape+g+w+");
+
+
+        strcat(cmd, (argv[1][0] == 'l')? "h" :
+                    (argv[1][0] == 'd')? "j" :
+                    (argv[1][0] == 'u')? "k" :
+                                         "l" );
+
+        xdo_send_keysequence_window(xdo, window_ret, cmd, 0);
+    }
+    else
+    {
+        conn = i3ipc_connection_new(NULL, NULL);
+        strcpy(cmd, "focus ");
+        strcat(cmd, argv[1]);
+        reply = i3ipc_connection_message(conn, I3IPC_MESSAGE_TYPE_COMMAND, cmd, NULL);
+        g_free(reply);
+        g_object_unref(conn);
+    }
+
+    XFree(name);
+    return  0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The vim-plugin (I put in &lt;code&gt;~/.vim/plugin/focus.vim&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func! Focus(comando,vim_comando)
+  let oldw = winnr()
+  silent exe 'wincmd ' . a:vim_comando
+  let neww = winnr()
+  if oldw == neww
+    silent exe '!i3-msg -q focus ' . a:comando
+    if !has("gui_running")
+        redraw!
+    endif
+  endif
+endfunction
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The i3 configuration (&lt;code&gt;~/.i3/config&lt;/code&gt;, I use Mod4 as $mod):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focus
+bindsym $mod+h exec "i3_vim_focus left"
+bindsym $mod+j exec "i3_vim_focus down"
+bindsym $mod+k exec "i3_vim_focus up"
+bindsym $mod+l exec "i3_vim_focus right"
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  exec "i3_vim_focus left"
+bindsym $mod+Down  exec "i3_vim_focus down"
+bindsym $mod+Up    exec "i3_vim_focus up"
+bindsym $mod+Right exec "i3_vim_focus right"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The vim bindings (&lt;code&gt;~/.vimrc&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;" Focus!
+map gwl :call Focus('right','l')&amp;lt;CR&amp;gt;
+map gwh :call Focus('left','h')&amp;lt;CR&amp;gt;
+map gwk :call Focus('up','k')&amp;lt;CR&amp;gt;
+map gwj :call Focus('down','j')&amp;lt;CR&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/?comment=5166#comment-5166</link><description>joepd essentially if you run multiple vim windows each  is a separate instance.  There are several benefits of having them all running on the same instance of vim. Ex.  completing words from other buffers saving your vim session including position of windows/tabs etc. </description><pubDate>Fri, 12 Dec 2014 17:28:05 +0000</pubDate><guid>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/?comment=5166#comment-5166</guid></item><item><title>Comment by rafi for &lt;p&gt;I wrote some bits of glue to change the focus between windows in i3 and vim using the same keystroke (Super&lt;em&gt;L+Arrow&lt;/em&gt;Keys or hjkl). It consists of a C bit (It used to be written in python, but the new version of libxdo broke it in my setup), a plug-in for vim, and configurations for the vim and i3 mappings.&lt;/p&gt;
+
+&lt;p&gt;To use it you would need libxdo (part of xdotools).&lt;/p&gt;
+
+&lt;p&gt;The C bit (i put in &lt;code&gt;~/bin/i3_vim_focus&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* File: i3_vim_focus.c
+ *
+ * Compile with:
+ * gcc -lX11 -lxdo -o i3_vim_focus i3_vim_focus.c $(pkg-config --libs --cflags i3ipc-glib-1.0)
+ *
+ */
+
+#include &amp;lt;stdio.h&amp;gt;
+
+#include &amp;lt;strings.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+
+#include &amp;lt;xdo.h&amp;gt;
+
+#include &amp;lt;glib/gprintf.h&amp;gt;
+#include &amp;lt;i3ipc-glib/i3ipc-glib.h&amp;gt;
+
+int main(int argc, char *argv[]) {
+
+    char cmd[20];
+
+    unsigned char *name;
+    int name_len;
+    int name_type;
+    Window window_ret;
+
+    i3ipcConnection *conn;
+    gchar *reply;
+
+    if(argc &amp;lt; 2){
+        printf("Missing argument\n");
+        return 1;
+    }
+
+    xdo_t *xdo = xdo_new(NULL);
+    xdo_get_active_window(xdo, &amp;amp;window_ret);
+    xdo_get_window_name(xdo, window_ret, &amp;amp;name, &amp;amp;name_len, &amp;amp;name_type);
+
+    if(strstr(name, "VIM")) 
+    {
+        strcpy(cmd, "Escape+g+w+");
+
+
+        strcat(cmd, (argv[1][0] == 'l')? "h" :
+                    (argv[1][0] == 'd')? "j" :
+                    (argv[1][0] == 'u')? "k" :
+                                         "l" );
+
+        xdo_send_keysequence_window(xdo, window_ret, cmd, 0);
+    }
+    else
+    {
+        conn = i3ipc_connection_new(NULL, NULL);
+        strcpy(cmd, "focus ");
+        strcat(cmd, argv[1]);
+        reply = i3ipc_connection_message(conn, I3IPC_MESSAGE_TYPE_COMMAND, cmd, NULL);
+        g_free(reply);
+        g_object_unref(conn);
+    }
+
+    XFree(name);
+    return  0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The vim-plugin (I put in &lt;code&gt;~/.vim/plugin/focus.vim&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func! Focus(comando,vim_comando)
+  let oldw = winnr()
+  silent exe 'wincmd ' . a:vim_comando
+  let neww = winnr()
+  if oldw == neww
+    silent exe '!i3-msg -q focus ' . a:comando
+    if !has("gui_running")
+        redraw!
+    endif
+  endif
+endfunction
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The i3 configuration (&lt;code&gt;~/.i3/config&lt;/code&gt;, I use Mod4 as $mod):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focus
+bindsym $mod+h exec "i3_vim_focus left"
+bindsym $mod+j exec "i3_vim_focus down"
+bindsym $mod+k exec "i3_vim_focus up"
+bindsym $mod+l exec "i3_vim_focus right"
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  exec "i3_vim_focus left"
+bindsym $mod+Down  exec "i3_vim_focus down"
+bindsym $mod+Up    exec "i3_vim_focus up"
+bindsym $mod+Right exec "i3_vim_focus right"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The vim bindings (&lt;code&gt;~/.vimrc&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;" Focus!
+map gwl :call Focus('right','l')&amp;lt;CR&amp;gt;
+map gwh :call Focus('left','h')&amp;lt;CR&amp;gt;
+map gwk :call Focus('up','k')&amp;lt;CR&amp;gt;
+map gwj :call Focus('down','j')&amp;lt;CR&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/?comment=4079#comment-4079</link><description>Thanks for sharing! I used this to seamlessly move between i3's windows, tmux's panes, and vim's splits with the same key binding! Pretty awesome.</description><pubDate>Tue, 01 Jul 2014 10:01:26 +0000</pubDate><guid>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/?comment=4079#comment-4079</guid></item><item><title>Comment by e for &lt;p&gt;I wrote some bits of glue to change the focus between windows in i3 and vim using the same keystroke (Super&lt;em&gt;L+Arrow&lt;/em&gt;Keys or hjkl). It consists of a C bit (It used to be written in python, but the new version of libxdo broke it in my setup), a plug-in for vim, and configurations for the vim and i3 mappings.&lt;/p&gt;
+
+&lt;p&gt;To use it you would need libxdo (part of xdotools).&lt;/p&gt;
+
+&lt;p&gt;The C bit (i put in &lt;code&gt;~/bin/i3_vim_focus&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* File: i3_vim_focus.c
+ *
+ * Compile with:
+ * gcc -lX11 -lxdo -o i3_vim_focus i3_vim_focus.c $(pkg-config --libs --cflags i3ipc-glib-1.0)
+ *
+ */
+
+#include &amp;lt;stdio.h&amp;gt;
+
+#include &amp;lt;strings.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+
+#include &amp;lt;xdo.h&amp;gt;
+
+#include &amp;lt;glib/gprintf.h&amp;gt;
+#include &amp;lt;i3ipc-glib/i3ipc-glib.h&amp;gt;
+
+int main(int argc, char *argv[]) {
+
+    char cmd[20];
+
+    unsigned char *name;
+    int name_len;
+    int name_type;
+    Window window_ret;
+
+    i3ipcConnection *conn;
+    gchar *reply;
+
+    if(argc &amp;lt; 2){
+        printf("Missing argument\n");
+        return 1;
+    }
+
+    xdo_t *xdo = xdo_new(NULL);
+    xdo_get_active_window(xdo, &amp;amp;window_ret);
+    xdo_get_window_name(xdo, window_ret, &amp;amp;name, &amp;amp;name_len, &amp;amp;name_type);
+
+    if(strstr(name, "VIM")) 
+    {
+        strcpy(cmd, "Escape+g+w+");
+
+
+        strcat(cmd, (argv[1][0] == 'l')? "h" :
+                    (argv[1][0] == 'd')? "j" :
+                    (argv[1][0] == 'u')? "k" :
+                                         "l" );
+
+        xdo_send_keysequence_window(xdo, window_ret, cmd, 0);
+    }
+    else
+    {
+        conn = i3ipc_connection_new(NULL, NULL);
+        strcpy(cmd, "focus ");
+        strcat(cmd, argv[1]);
+        reply = i3ipc_connection_message(conn, I3IPC_MESSAGE_TYPE_COMMAND, cmd, NULL);
+        g_free(reply);
+        g_object_unref(conn);
+    }
+
+    XFree(name);
+    return  0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The vim-plugin (I put in &lt;code&gt;~/.vim/plugin/focus.vim&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func! Focus(comando,vim_comando)
+  let oldw = winnr()
+  silent exe 'wincmd ' . a:vim_comando
+  let neww = winnr()
+  if oldw == neww
+    silent exe '!i3-msg -q focus ' . a:comando
+    if !has("gui_running")
+        redraw!
+    endif
+  endif
+endfunction
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The i3 configuration (&lt;code&gt;~/.i3/config&lt;/code&gt;, I use Mod4 as $mod):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focus
+bindsym $mod+h exec "i3_vim_focus left"
+bindsym $mod+j exec "i3_vim_focus down"
+bindsym $mod+k exec "i3_vim_focus up"
+bindsym $mod+l exec "i3_vim_focus right"
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  exec "i3_vim_focus left"
+bindsym $mod+Down  exec "i3_vim_focus down"
+bindsym $mod+Up    exec "i3_vim_focus up"
+bindsym $mod+Right exec "i3_vim_focus right"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The vim bindings (&lt;code&gt;~/.vimrc&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;" Focus!
+map gwl :call Focus('right','l')&amp;lt;CR&amp;gt;
+map gwh :call Focus('left','h')&amp;lt;CR&amp;gt;
+map gwk :call Focus('up','k')&amp;lt;CR&amp;gt;
+map gwj :call Focus('down','j')&amp;lt;CR&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/?comment=3044#comment-3044</link><description>I usually edit many files in separate vim windows and keep a terminal with ipython, for example, next to gvim to do tests. With this I create the effect of the cursor jumping from one window to another, first within vim and then out of vim to the terminal, when I reach the border.</description><pubDate>Fri, 13 Dec 2013 09:01:45 +0000</pubDate><guid>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/?comment=3044#comment-3044</guid></item><item><title>Comment by joepd for &lt;p&gt;I wrote some bits of glue to change the focus between windows in i3 and vim using the same keystroke (Super&lt;em&gt;L+Arrow&lt;/em&gt;Keys or hjkl). It consists of a C bit (It used to be written in python, but the new version of libxdo broke it in my setup), a plug-in for vim, and configurations for the vim and i3 mappings.&lt;/p&gt;
+
+&lt;p&gt;To use it you would need libxdo (part of xdotools).&lt;/p&gt;
+
+&lt;p&gt;The C bit (i put in &lt;code&gt;~/bin/i3_vim_focus&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* File: i3_vim_focus.c
+ *
+ * Compile with:
+ * gcc -lX11 -lxdo -o i3_vim_focus i3_vim_focus.c $(pkg-config --libs --cflags i3ipc-glib-1.0)
+ *
+ */
+
+#include &amp;lt;stdio.h&amp;gt;
+
+#include &amp;lt;strings.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+
+#include &amp;lt;xdo.h&amp;gt;
+
+#include &amp;lt;glib/gprintf.h&amp;gt;
+#include &amp;lt;i3ipc-glib/i3ipc-glib.h&amp;gt;
+
+int main(int argc, char *argv[]) {
+
+    char cmd[20];
+
+    unsigned char *name;
+    int name_len;
+    int name_type;
+    Window window_ret;
+
+    i3ipcConnection *conn;
+    gchar *reply;
+
+    if(argc &amp;lt; 2){
+        printf("Missing argument\n");
+        return 1;
+    }
+
+    xdo_t *xdo = xdo_new(NULL);
+    xdo_get_active_window(xdo, &amp;amp;window_ret);
+    xdo_get_window_name(xdo, window_ret, &amp;amp;name, &amp;amp;name_len, &amp;amp;name_type);
+
+    if(strstr(name, "VIM")) 
+    {
+        strcpy(cmd, "Escape+g+w+");
+
+
+        strcat(cmd, (argv[1][0] == 'l')? "h" :
+                    (argv[1][0] == 'd')? "j" :
+                    (argv[1][0] == 'u')? "k" :
+                                         "l" );
+
+        xdo_send_keysequence_window(xdo, window_ret, cmd, 0);
+    }
+    else
+    {
+        conn = i3ipc_connection_new(NULL, NULL);
+        strcpy(cmd, "focus ");
+        strcat(cmd, argv[1]);
+        reply = i3ipc_connection_message(conn, I3IPC_MESSAGE_TYPE_COMMAND, cmd, NULL);
+        g_free(reply);
+        g_object_unref(conn);
+    }
+
+    XFree(name);
+    return  0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The vim-plugin (I put in &lt;code&gt;~/.vim/plugin/focus.vim&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func! Focus(comando,vim_comando)
+  let oldw = winnr()
+  silent exe 'wincmd ' . a:vim_comando
+  let neww = winnr()
+  if oldw == neww
+    silent exe '!i3-msg -q focus ' . a:comando
+    if !has("gui_running")
+        redraw!
+    endif
+  endif
+endfunction
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The i3 configuration (&lt;code&gt;~/.i3/config&lt;/code&gt;, I use Mod4 as $mod):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focus
+bindsym $mod+h exec "i3_vim_focus left"
+bindsym $mod+j exec "i3_vim_focus down"
+bindsym $mod+k exec "i3_vim_focus up"
+bindsym $mod+l exec "i3_vim_focus right"
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  exec "i3_vim_focus left"
+bindsym $mod+Down  exec "i3_vim_focus down"
+bindsym $mod+Up    exec "i3_vim_focus up"
+bindsym $mod+Right exec "i3_vim_focus right"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The vim bindings (&lt;code&gt;~/.vimrc&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;" Focus!
+map gwl :call Focus('right','l')&amp;lt;CR&amp;gt;
+map gwh :call Focus('left','h')&amp;lt;CR&amp;gt;
+map gwk :call Focus('up','k')&amp;lt;CR&amp;gt;
+map gwj :call Focus('down','j')&amp;lt;CR&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/?comment=3043#comment-3043</link><description>Just out of curiosity: Why would one let another application manage windows next to i3? Sounds a bit backward to me, but I am sure I am missing out on some cool stuff :) </description><pubDate>Fri, 13 Dec 2013 07:53:50 +0000</pubDate><guid>https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/?comment=3043#comment-3043</guid></item></channel></rss>

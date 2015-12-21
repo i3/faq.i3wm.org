@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4158/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 14 Jul 2014 20:32:12 +0000</lastBuildDate><item><title>How do I use special characters as keys in the config file?</title><link>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/</link><description>As ø takes the place of ; on Norwegian keyboards, I want to use $mod+ø instead of $mod+; for the vimmish "focus right".
+
+However, trying to use this command just prints "ø" in the shell.
+
+How do I get this to work?
+
+--
+
+Found this out, but I still can't get - and | to work as special keys (I want them to split windows tmux-style). Any takers?</description><pubDate>Mon, 07 Jul 2014 19:35:58 +0000</pubDate><guid>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/</guid></item><item><title>Comment by brakende for &lt;p&gt;As ø takes the place of ; on Norwegian keyboards, I want to use $mod+ø instead of $mod+; for the vimmish "focus right".&lt;/p&gt;
+
+&lt;p&gt;However, trying to use this command just prints "ø" in the shell.&lt;/p&gt;
+
+&lt;p&gt;How do I get this to work?&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;Found this out, but I still can't get - and | to work as special keys (I want them to split windows tmux-style). Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/?comment=4159#comment-4159</link><description>I've changed the keys to the Norwegian layout using the setxkbmap in shell config file if that matters.</description><pubDate>Mon, 07 Jul 2014 19:38:28 +0000</pubDate><guid>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/?comment=4159#comment-4159</guid></item><item><title>Answer by schfkt for &lt;p&gt;As ø takes the place of ; on Norwegian keyboards, I want to use $mod+ø instead of $mod+; for the vimmish "focus right".&lt;/p&gt;
+
+&lt;p&gt;However, trying to use this command just prints "ø" in the shell.&lt;/p&gt;
+
+&lt;p&gt;How do I get this to work?&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;Found this out, but I still can't get - and | to work as special keys (I want them to split windows tmux-style). Any takers?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/?answer=4250#post-id-4250</link><description>Try to use **bindcode** command instead of **bindsym**. Here as an example from my config:
+
+    bindcode $mod+34 [class="Konsole"] scratchpad show
+    bindcode $mod+35 [class="Google-chrome|X-www-browser"] scratchpad show
+
+These hotkeys work in different layouts (english and russian for me). To get the code of specific key use xev tool. Example output from xev tool for the "[" key:
+
+    KeyPress event, serial 32, synthetic NO, window 0x4200001,
+        root 0x9e, subw 0x0, time 156960544, (621,116), root:(623,155),
+        state 0x10, keycode 34 (keysym 0x5b, bracketleft), same_screen YES,
+        XLookupString gives 1 bytes: (5b) "["
+        XmbLookupString gives 1 bytes: (5b) "["
+        XFilterEvent returns: False
+
+As you can see on the third line keycode of this key is 34.</description><pubDate>Mon, 14 Jul 2014 20:32:12 +0000</pubDate><guid>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/?answer=4250#post-id-4250</guid></item><item><title>Answer by tigrezno for &lt;p&gt;As ø takes the place of ; on Norwegian keyboards, I want to use $mod+ø instead of $mod+; for the vimmish "focus right".&lt;/p&gt;
+
+&lt;p&gt;However, trying to use this command just prints "ø" in the shell.&lt;/p&gt;
+
+&lt;p&gt;How do I get this to work?&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;Found this out, but I still can't get - and | to work as special keys (I want them to split windows tmux-style). Any takers?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/?answer=4162#post-id-4162</link><description>You can use "xev" to see the name of the pressed key.</description><pubDate>Mon, 07 Jul 2014 20:06:03 +0000</pubDate><guid>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/?answer=4162#post-id-4162</guid></item><item><title>Answer by brakende for &lt;p&gt;As ø takes the place of ; on Norwegian keyboards, I want to use $mod+ø instead of $mod+; for the vimmish "focus right".&lt;/p&gt;
+
+&lt;p&gt;However, trying to use this command just prints "ø" in the shell.&lt;/p&gt;
+
+&lt;p&gt;How do I get this to work?&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+
+&lt;p&gt;Found this out, but I still can't get - and | to work as special keys (I want them to split windows tmux-style). Any takers?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/?answer=4160#post-id-4160</link><description>The answer was setting it to $mod+oslash... *embarrased*</description><pubDate>Mon, 07 Jul 2014 19:44:40 +0000</pubDate><guid>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/?answer=4160#post-id-4160</guid></item><item><title>Comment by brakende for &lt;p&gt;The answer was setting it to $mod+oslash... &lt;em&gt;embarrased&lt;/em&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/?comment=4161#comment-4161</link><description>http://wiki.linuxquestions.org/wiki/List_of_Keysyms_Recognised_by_Xmodmap</description><pubDate>Mon, 07 Jul 2014 19:45:40 +0000</pubDate><guid>https://faq.i3wm.org/question/4158/how-do-i-use-special-characters-as-keys-in-the-config-file/?comment=4161#comment-4161</guid></item></channel></rss>

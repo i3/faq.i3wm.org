@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5402/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 19 Apr 2015 03:36:06 +0000</lastBuildDate><item><title>i3-input starting programs</title><link>https://faq.i3wm.org/question/5402/i3-input-starting-programs/</link><description>Hey,
+at the moment I have a mode which allows me to start my favourite Programs with just hitting one key.
+
+It looks like this:
+
+&gt; mode "startPrograms" {
+
+&gt;     bindsym t exec telegram
+
+&gt;     bindsym e exec thunderbird 
+} 
+
+&gt; bindsym $modeOne+g mode "startPrograms"
+
+Now because I added more and more programs. I would like to see a prompt showing me the shortcuts for the programs, when entering the "startPrograms" mode.
+
+How could I do this?
+
+I tried something with this:
+
+&gt; name=`i3-input -P 'Programs:'`
+
+But I don't know how to do a prompt with more than one line. Or should I really read the input and work with it?
+
+Can anyone help me? This would be great!
+</description><pubDate>Thu, 29 Jan 2015 20:32:00 +0000</pubDate><guid>https://faq.i3wm.org/question/5402/i3-input-starting-programs/</guid></item><item><title>Answer by Pinyaka for &lt;p&gt;Hey,
+at the moment I have a mode which allows me to start my favourite Programs with just hitting one key.&lt;/p&gt;
+
+&lt;p&gt;It looks like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;mode "startPrograms" {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym t exec telegram
+
+bindsym e exec thunderbird
+&lt;/code&gt;&lt;/pre&gt;
+  
+  &lt;p&gt;} &lt;/p&gt;
+  
+  &lt;p&gt;bindsym $modeOne+g mode "startPrograms"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now because I added more and more programs. I would like to see a prompt showing me the shortcuts for the programs, when entering the "startPrograms" mode.&lt;/p&gt;
+
+&lt;p&gt;How could I do this?&lt;/p&gt;
+
+&lt;p&gt;I tried something with this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;name=&lt;code&gt;i3-input -P 'Programs:'&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But I don't know how to do a prompt with more than one line. Or should I really read the input and work with it?&lt;/p&gt;
+
+&lt;p&gt;Can anyone help me? This would be great!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?answer=5404#post-id-5404</link><description>Basically, rename your mode from StartPrograms to the help text that you want to display. Here is what I have for my "system" mode.
+
+    bindsym $mod+y mode "$system_menu"
+    set $system_menu (l)oad i3 config (L)ock (r)estart i3 (R)eboot (s)uspend (S)hutdown
+    mode "$system_menu" {
+         bindsym l reload, $return
+         bindsym Shift+l exec i3exit lock, $return
+         bindsym r restart, $return
+         bindsym Shift+r exec i3exit reboot, $return
+         bindsym s exec i3exit suspend, $return
+         bindsym Shift+s exec i3exit shutdown, $return
+         bindsym space $return
+         bindsym Return $return
+         bindsym Escape $return
+    }
+
+I don't need to capture input at all as the "name" of the mode is the help text.</description><pubDate>Thu, 29 Jan 2015 20:51:19 +0000</pubDate><guid>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?answer=5404#post-id-5404</guid></item><item><title>Comment by Kretortex for &lt;p&gt;Basically, rename your mode from StartPrograms to the help text that you want to display. Here is what I have for my "system" mode.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+y mode "$system_menu"
+set $system_menu (l)oad i3 config (L)ock (r)estart i3 (R)eboot (s)uspend (S)hutdown
+mode "$system_menu" {
+     bindsym l reload, $return
+     bindsym Shift+l exec i3exit lock, $return
+     bindsym r restart, $return
+     bindsym Shift+r exec i3exit reboot, $return
+     bindsym s exec i3exit suspend, $return
+     bindsym Shift+s exec i3exit shutdown, $return
+     bindsym space $return
+     bindsym Return $return
+     bindsym Escape $return
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don't need to capture input at all as the "name" of the mode is the help text.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?comment=5407#comment-5407</link><description>it is not too long for displaying them. It is just too long for displaying them where the mode Name is displayed.</description><pubDate>Thu, 29 Jan 2015 21:33:10 +0000</pubDate><guid>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?comment=5407#comment-5407</guid></item><item><title>Comment by Pinyaka for &lt;p&gt;Basically, rename your mode from StartPrograms to the help text that you want to display. Here is what I have for my "system" mode.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+y mode "$system_menu"
+set $system_menu (l)oad i3 config (L)ock (r)estart i3 (R)eboot (s)uspend (S)hutdown
+mode "$system_menu" {
+     bindsym l reload, $return
+     bindsym Shift+l exec i3exit lock, $return
+     bindsym r restart, $return
+     bindsym Shift+r exec i3exit reboot, $return
+     bindsym s exec i3exit suspend, $return
+     bindsym Shift+s exec i3exit shutdown, $return
+     bindsym space $return
+     bindsym Return $return
+     bindsym Escape $return
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don't need to capture input at all as the "name" of the mode is the help text.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?comment=5406#comment-5406</link><description>How were you planning to display the shortcuts if just displaying the shortcuts is too long?</description><pubDate>Thu, 29 Jan 2015 20:55:50 +0000</pubDate><guid>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?comment=5406#comment-5406</guid></item><item><title>Comment by Kretortex for &lt;p&gt;Basically, rename your mode from StartPrograms to the help text that you want to display. Here is what I have for my "system" mode.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+y mode "$system_menu"
+set $system_menu (l)oad i3 config (L)ock (r)estart i3 (R)eboot (s)uspend (S)hutdown
+mode "$system_menu" {
+     bindsym l reload, $return
+     bindsym Shift+l exec i3exit lock, $return
+     bindsym r restart, $return
+     bindsym Shift+r exec i3exit reboot, $return
+     bindsym s exec i3exit suspend, $return
+     bindsym Shift+s exec i3exit shutdown, $return
+     bindsym space $return
+     bindsym Return $return
+     bindsym Escape $return
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don't need to capture input at all as the "name" of the mode is the help text.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?comment=5405#comment-5405</link><description>Sadly this would get too long in my case, thank you anyway.</description><pubDate>Thu, 29 Jan 2015 20:54:15 +0000</pubDate><guid>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?comment=5405#comment-5405</guid></item><item><title>Answer by i3convert for &lt;p&gt;Hey,
+at the moment I have a mode which allows me to start my favourite Programs with just hitting one key.&lt;/p&gt;
+
+&lt;p&gt;It looks like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;mode "startPrograms" {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym t exec telegram
+
+bindsym e exec thunderbird
+&lt;/code&gt;&lt;/pre&gt;
+  
+  &lt;p&gt;} &lt;/p&gt;
+  
+  &lt;p&gt;bindsym $modeOne+g mode "startPrograms"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now because I added more and more programs. I would like to see a prompt showing me the shortcuts for the programs, when entering the "startPrograms" mode.&lt;/p&gt;
+
+&lt;p&gt;How could I do this?&lt;/p&gt;
+
+&lt;p&gt;I tried something with this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;name=&lt;code&gt;i3-input -P 'Programs:'&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But I don't know how to do a prompt with more than one line. Or should I really read the input and work with it?&lt;/p&gt;
+
+&lt;p&gt;Can anyone help me? This would be great!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?answer=5826#post-id-5826</link><description>If you don't insist on i3-input, you can use dmenu. A sample script in bash that uses it would be:
+
+    #!/bin/bash
+    list="thunderbird\n"
+    list+="firefox\n"
+    list+="digikam\n"
+    list+="gimp\n"
+    command=`echo -e "$list" | dmenu`
+    $command
+
+Now you can start typing a name of the command and it's going to narrow the set of options. If you want the options to be listed vertically (as opposed to horizontally), use `dmenu -l 10` instead of `dmenu`, where the number after `-l` specifies the maximum number of options to be displayed at any particular time.
+
+In this example, I use names of actual commands, but you can use dmenu to select from a set of arbitrary strings and then based on what is selected, you could run arbitrary commands (using for instance the `case` statement in bash).
+</description><pubDate>Sun, 19 Apr 2015 03:36:06 +0000</pubDate><guid>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?answer=5826#post-id-5826</guid></item><item><title>Answer by mimosinnet for &lt;p&gt;Hey,
+at the moment I have a mode which allows me to start my favourite Programs with just hitting one key.&lt;/p&gt;
+
+&lt;p&gt;It looks like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;mode "startPrograms" {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym t exec telegram
+
+bindsym e exec thunderbird
+&lt;/code&gt;&lt;/pre&gt;
+  
+  &lt;p&gt;} &lt;/p&gt;
+  
+  &lt;p&gt;bindsym $modeOne+g mode "startPrograms"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now because I added more and more programs. I would like to see a prompt showing me the shortcuts for the programs, when entering the "startPrograms" mode.&lt;/p&gt;
+
+&lt;p&gt;How could I do this?&lt;/p&gt;
+
+&lt;p&gt;I tried something with this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;name=&lt;code&gt;i3-input -P 'Programs:'&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But I don't know how to do a prompt with more than one line. Or should I really read the input and work with it?&lt;/p&gt;
+
+&lt;p&gt;Can anyone help me? This would be great!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?answer=5825#post-id-5825</link><description>I am solving this issue is the following way:
+
+- Favourite programs associated with workspace. 
+- Mode connecting workspace and keys.
+- Help text file, cut-and-paste of bind-keys definition, in case I forget.
+
+Result: For example, pressing **Numeric-Pad-8+t+Return** goes to the "network" workspace and opens Telegram. In case I forget, I can press **Numeric-Pad-8+h+See-the-key-I-have-to-press+Return** 
+
+using key 8 on the numeric pad
+
+    set  $8 KP_Up
+
+And this is the "network" workspace:
+    set  $W8  "8: Network"
+
+**Shift+numeric_pad_8** goes to **workspace 8** and enters the **network mode**
+
+    bindsym Shift+$8  workspace  $W8; mode "Network"
+
+When entering the mode "Network", I have these keybindings: 
+
+    # Network {{{
+    mode "Network" {
+    	bindsym h exec xmessage -nearmouse -file ~/.config/i3/help_Network.txt
+    	bindsym i exec urxvtc -e irssi
+    	bindsym r exec urxvtc -e rtorrent
+    	bindsym t exec /usr/local/bin/Telegram/Telegram
+    	bindsym w exec wicd-gtk -n 
+    
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+    # }}}
+
+And this is the text file, cut-and-paste of the key-bindings:
+
+    key
+    w wicd
+    t Telegram
+    i rssi
+    r rtorrent
+    h help
+    
+    Also:
+    - connman
+    - wpa_gui
+
+</description><pubDate>Sat, 18 Apr 2015 23:08:30 +0000</pubDate><guid>https://faq.i3wm.org/question/5402/i3-input-starting-programs/?answer=5825#post-id-5825</guid></item></channel></rss>

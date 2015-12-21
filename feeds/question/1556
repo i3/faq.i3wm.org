@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1556/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 07 May 2013 05:28:27 +0000</lastBuildDate><item><title>Automatically changing the layout after starting the second program on a workspace (similar to dwm)</title><link>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/</link><description>Hi all,
+
+I am using the (horizontal) split layout by default. This means, if I start three programs, I see all of them side by side.
+Is it possible to change the layout for the second container on a workspace automatically from the horizontal split to some other layout? 
+
+For instance, after starting two programs it looks like this:
+
+    ___________________
+    |_progr1_|_progr2_|
+    |        |        |
+    |________|________|
+
+If I start now a third program, I would like to have it as a child of the second program-node, using a new layout (e.g. vertical spit or tabbed layout). So after the starting the third program, it should look like this:
+
+    ___________________
+    |_progr1_|_progr2_|
+    |        |_progr3_|
+    |________|________|
+
+Thank you very much!</description><pubDate>Fri, 05 Apr 2013 09:40:42 +0000</pubDate><guid>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/</guid></item><item><title>Answer by Hibou57 for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I am using the (horizontal) split layout by default. This means, if I start three programs, I see all of them side by side.
+Is it possible to change the layout for the second container on a workspace automatically from the horizontal split to some other layout? &lt;/p&gt;
+
+&lt;p&gt;For instance, after starting two programs it looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;___________________
+|_progr1_|_progr2_|
+|        |        |
+|________|________|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I start now a third program, I would like to have it as a child of the second program-node, using a new layout (e.g. vertical spit or tabbed layout). So after the starting the third program, it should look like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;___________________
+|_progr1_|_progr2_|
+|        |_progr3_|
+|________|________|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thank you very much!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?answer=1558#post-id-1558</link><description>I tried to search, and believe the best way is to use i3wm IPC mechanism, as described in [sorry, can't post link] . You could subscribe to `window` events (described at the bottom of the page) and react accordingly, like changing the layout, which you could do sending a `COMMAND` message to i3wm.
+
+I may try later to do it myself and will update this answer with a ready‑to‑use snippet if I do (will probably use Python).
+
+Hint: you may also look at the question titled “How can I define my workspace on startup” (sorry, can't post a direct link).
+
+# Update
+
+It's not mandatory to use the IPC API directly. There's a command line wrapper to send the same kind of messages: the `i3-msg` command.
+</description><pubDate>Fri, 05 Apr 2013 10:25:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?answer=1558#post-id-1558</guid></item><item><title>Comment by Richard for &lt;p&gt;I tried to search, and believe the best way is to use i3wm IPC mechanism, as described in [sorry, can't post link] . You could subscribe to &lt;code&gt;window&lt;/code&gt; events (described at the bottom of the page) and react accordingly, like changing the layout, which you could do sending a &lt;code&gt;COMMAND&lt;/code&gt; message to i3wm.&lt;/p&gt;
+
+&lt;p&gt;I may try later to do it myself and will update this answer with a ready‑to‑use snippet if I do (will probably use Python).&lt;/p&gt;
+
+&lt;p&gt;Hint: you may also look at the question titled “How can I define my workspace on startup” (sorry, can't post a direct link).&lt;/p&gt;
+
+&lt;h1&gt;Update&lt;/h1&gt;
+
+&lt;p&gt;It's not mandatory to use the IPC API directly. There's a command line wrapper to send the same kind of messages: the &lt;code&gt;i3-msg&lt;/code&gt; command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1573#comment-1573</link><description>Hibou57, thanks, I already used i3-msg for changing the layout workspaces with a shortcut. But as far as I know, this doesn't allow me to change the layout depending on the number of programs running on a workspace, or is it possible to register to a window event using i3-msg or something similar?</description><pubDate>Sun, 07 Apr 2013 09:47:21 +0000</pubDate><guid>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1573#comment-1573</guid></item><item><title>Comment by gehidore for &lt;p&gt;I tried to search, and believe the best way is to use i3wm IPC mechanism, as described in [sorry, can't post link] . You could subscribe to &lt;code&gt;window&lt;/code&gt; events (described at the bottom of the page) and react accordingly, like changing the layout, which you could do sending a &lt;code&gt;COMMAND&lt;/code&gt; message to i3wm.&lt;/p&gt;
+
+&lt;p&gt;I may try later to do it myself and will update this answer with a ready‑to‑use snippet if I do (will probably use Python).&lt;/p&gt;
+
+&lt;p&gt;Hint: you may also look at the question titled “How can I define my workspace on startup” (sorry, can't post a direct link).&lt;/p&gt;
+
+&lt;h1&gt;Update&lt;/h1&gt;
+
+&lt;p&gt;It's not mandatory to use the IPC API directly. There's a command line wrapper to send the same kind of messages: the &lt;code&gt;i3-msg&lt;/code&gt; command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1759#comment-1759</link><description>Did anything ever come of this? I'm curious about the same as sometimes it would be nice if the 3rd window would auto split the last in the opposite manner as the primary split.</description><pubDate>Tue, 07 May 2013 05:28:27 +0000</pubDate><guid>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1759#comment-1759</guid></item><item><title>Comment by Richard for &lt;p&gt;I tried to search, and believe the best way is to use i3wm IPC mechanism, as described in [sorry, can't post link] . You could subscribe to &lt;code&gt;window&lt;/code&gt; events (described at the bottom of the page) and react accordingly, like changing the layout, which you could do sending a &lt;code&gt;COMMAND&lt;/code&gt; message to i3wm.&lt;/p&gt;
+
+&lt;p&gt;I may try later to do it myself and will update this answer with a ready‑to‑use snippet if I do (will probably use Python).&lt;/p&gt;
+
+&lt;p&gt;Hint: you may also look at the question titled “How can I define my workspace on startup” (sorry, can't post a direct link).&lt;/p&gt;
+
+&lt;h1&gt;Update&lt;/h1&gt;
+
+&lt;p&gt;It's not mandatory to use the IPC API directly. There's a command line wrapper to send the same kind of messages: the &lt;code&gt;i3-msg&lt;/code&gt; command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1565#comment-1565</link><description>Hi Hibou57,
+thanks for your reply, I have now an idea how it could work. However I didn't use the i3 IPC interface yet and I have just little time this weekend. I will try to write a script myself as soon as possible and post it to this question.</description><pubDate>Sat, 06 Apr 2013 08:37:21 +0000</pubDate><guid>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1565#comment-1565</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;I tried to search, and believe the best way is to use i3wm IPC mechanism, as described in [sorry, can't post link] . You could subscribe to &lt;code&gt;window&lt;/code&gt; events (described at the bottom of the page) and react accordingly, like changing the layout, which you could do sending a &lt;code&gt;COMMAND&lt;/code&gt; message to i3wm.&lt;/p&gt;
+
+&lt;p&gt;I may try later to do it myself and will update this answer with a ready‑to‑use snippet if I do (will probably use Python).&lt;/p&gt;
+
+&lt;p&gt;Hint: you may also look at the question titled “How can I define my workspace on startup” (sorry, can't post a direct link).&lt;/p&gt;
+
+&lt;h1&gt;Update&lt;/h1&gt;
+
+&lt;p&gt;It's not mandatory to use the IPC API directly. There's a command line wrapper to send the same kind of messages: the &lt;code&gt;i3-msg&lt;/code&gt; command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1572#comment-1572</link><description>Richard, you may not need to use the IPC API directly. There's the `i3-msg` command which do the same. Do `man i3-msg` and you will see it covers the same type of message de IPC API do. `I3-msg` seems to be a command line wrapper for IPC.</description><pubDate>Sun, 07 Apr 2013 09:30:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1572#comment-1572</guid></item><item><title>Comment by Richard for &lt;p&gt;I tried to search, and believe the best way is to use i3wm IPC mechanism, as described in [sorry, can't post link] . You could subscribe to &lt;code&gt;window&lt;/code&gt; events (described at the bottom of the page) and react accordingly, like changing the layout, which you could do sending a &lt;code&gt;COMMAND&lt;/code&gt; message to i3wm.&lt;/p&gt;
+
+&lt;p&gt;I may try later to do it myself and will update this answer with a ready‑to‑use snippet if I do (will probably use Python).&lt;/p&gt;
+
+&lt;p&gt;Hint: you may also look at the question titled “How can I define my workspace on startup” (sorry, can't post a direct link).&lt;/p&gt;
+
+&lt;h1&gt;Update&lt;/h1&gt;
+
+&lt;p&gt;It's not mandatory to use the IPC API directly. There's a command line wrapper to send the same kind of messages: the &lt;code&gt;i3-msg&lt;/code&gt; command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1580#comment-1580</link><description>Yes I tried dwm and wmii before I finally got to i3. Probably this is why I miss this functionality. I am not sure anymore why I finally switched to i3 (I think dwm doesnt have a tabbed layout?) but now I like i3 very much. I will try first writing a daemon, before considering switching again. ;-)</description><pubDate>Sun, 07 Apr 2013 16:38:14 +0000</pubDate><guid>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1580#comment-1580</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;I tried to search, and believe the best way is to use i3wm IPC mechanism, as described in [sorry, can't post link] . You could subscribe to &lt;code&gt;window&lt;/code&gt; events (described at the bottom of the page) and react accordingly, like changing the layout, which you could do sending a &lt;code&gt;COMMAND&lt;/code&gt; message to i3wm.&lt;/p&gt;
+
+&lt;p&gt;I may try later to do it myself and will update this answer with a ready‑to‑use snippet if I do (will probably use Python).&lt;/p&gt;
+
+&lt;p&gt;Hint: you may also look at the question titled “How can I define my workspace on startup” (sorry, can't post a direct link).&lt;/p&gt;
+
+&lt;h1&gt;Update&lt;/h1&gt;
+
+&lt;p&gt;It's not mandatory to use the IPC API directly. There's a command line wrapper to send the same kind of messages: the &lt;code&gt;i3-msg&lt;/code&gt; command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1581#comment-1581</link><description>Don't remember if DWM has tabbed layout, just pretty sure WMII has. The thing I3 may lacks compared to DWM, is multiple tagging (see the question “dwm-like tagging?” in this FAQ), and may be named tags. Compared to DWM and WMII, I3 is still more polished and alive I believe.</description><pubDate>Sun, 07 Apr 2013 17:22:40 +0000</pubDate><guid>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1581#comment-1581</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;I tried to search, and believe the best way is to use i3wm IPC mechanism, as described in [sorry, can't post link] . You could subscribe to &lt;code&gt;window&lt;/code&gt; events (described at the bottom of the page) and react accordingly, like changing the layout, which you could do sending a &lt;code&gt;COMMAND&lt;/code&gt; message to i3wm.&lt;/p&gt;
+
+&lt;p&gt;I may try later to do it myself and will update this answer with a ready‑to‑use snippet if I do (will probably use Python).&lt;/p&gt;
+
+&lt;p&gt;Hint: you may also look at the question titled “How can I define my workspace on startup” (sorry, can't post a direct link).&lt;/p&gt;
+
+&lt;h1&gt;Update&lt;/h1&gt;
+
+&lt;p&gt;It's not mandatory to use the IPC API directly. There's a command line wrapper to send the same kind of messages: the &lt;code&gt;i3-msg&lt;/code&gt; command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1577#comment-1577</link><description>No, I don't think so. To register to i3 events and react accordingly, I believe you need a daemon listening to i3 using its IPC. Or else, you may look at DWM, which behave as you expect, if I remember correctly (I tried DWM among others, before I decided to stick to i3).</description><pubDate>Sun, 07 Apr 2013 12:17:54 +0000</pubDate><guid>https://faq.i3wm.org/question/1556/automatically-changing-the-layout-after-starting-the-second-program-on-a-workspace-similar-to-dwm/?comment=1577#comment-1577</guid></item></channel></rss>

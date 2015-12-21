@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3447/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 27 Feb 2014 16:03:25 +0000</lastBuildDate><item><title>Race condition for startup applications?</title><link>https://faq.i3wm.org/question/3447/race-condition-for-startup-applications/</link><description>I am using i3 version 4.7.2 (Debian Jessie) and am having problems getting programs to start up on appropriate workspaces. For the life of me, it looks like any program which has a delay between execution and start will end up on whatever workspace is selected when the window finally gets drawn. For instance, if I drop to the cli and run
+
+    i3-msg 'workspace number 1; exec google-chrome; workspace number 11; exec google-chrome'
+
+I end up with workspaces 1 and 11 open, but 11 contains both instances of google-chrome (this works with other sets of programs too, like virtualbox and libreoffice).
+
+The relevant parts of my actual config looks like this:
+
+    workspace 1 output VGA1
+    workspace 2 output VGA1
+    workspace 9 output VGA1
+    workspace 10 output VGA1
+    workspace 11 output HDMI1
+    workspace 19 output HDMI1
+    workspace 20 output HDMI1
+    exec i3-msg 'workspace number 1 "Chrome"; exec google-chrome'
+    exec i3-msg 'workspace number 2 "Chrome 2"; exec google-chrome'
+    exec i3-msg 'workspace number 11 "Chrome 3"; exec google-chrome'
+    exec i3-msg 'workspace number 9 "virtualbox"; exec virtualbox'
+    exec i3-msg 'workspace number 10 "log"; exec libreoffice --calc -o ~/Documents/Log.ods'
+    exec i3-msg 'workspace number 19 "banshee"; exec banshee'
+    exec i3-msg 'workspace number 20 "pidgin"; exec pidgin'
+    exec i3-msg 'workspace number 11; workspace number 1;
+
+What I actually get is 
+
+    Workspace 10 "log" is open on VGA1, but empty
+    Workspace 2 is open on HDMI1 and contains 3 google-chrome windows
+    Workspace 19 "banshee" is open on HDMI1 and contains virtualbox, libreoffice, banshee
+    Workspace 20 "pidgin" is open on HDMI1 and contains pidgin
+    Workspaces 1,9,11 are not present (presumably created and destroyed when switched away with nothing in).
+
+I have tried using `exec --no-startup-id i3-msg` on each line containg i3-msg above, but it just rearranges the jumble rather than sorting it out. I tried running multiple shell commands in just a few i3-msg commands, but again it just rearranges the jumble rather than sorting correctly. 
+
+It's worth noting that after i3 loads, if I drop to a command line and enter `i3-msg 'workspace 5; exec google-chrome'` the new window opens in workspace 5, whereas if I enter `i3-msg 'workspace 5; exec google-chrome; workspace number 2'`, I get the new chrome window in workspace 2.
+
+Am I missing something? Is there some way to insert a pause between lines in the config file to give time for everything to load?</description><pubDate>Thu, 27 Feb 2014 04:03:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3447/race-condition-for-startup-applications/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I am using i3 version 4.7.2 (Debian Jessie) and am having problems getting programs to start up on appropriate workspaces. For the life of me, it looks like any program which has a delay between execution and start will end up on whatever workspace is selected when the window finally gets drawn. For instance, if I drop to the cli and run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg 'workspace number 1; exec google-chrome; workspace number 11; exec google-chrome'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I end up with workspaces 1 and 11 open, but 11 contains both instances of google-chrome (this works with other sets of programs too, like virtualbox and libreoffice).&lt;/p&gt;
+
+&lt;p&gt;The relevant parts of my actual config looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 1 output VGA1
+workspace 2 output VGA1
+workspace 9 output VGA1
+workspace 10 output VGA1
+workspace 11 output HDMI1
+workspace 19 output HDMI1
+workspace 20 output HDMI1
+exec i3-msg 'workspace number 1 "Chrome"; exec google-chrome'
+exec i3-msg 'workspace number 2 "Chrome 2"; exec google-chrome'
+exec i3-msg 'workspace number 11 "Chrome 3"; exec google-chrome'
+exec i3-msg 'workspace number 9 "virtualbox"; exec virtualbox'
+exec i3-msg 'workspace number 10 "log"; exec libreoffice --calc -o ~/Documents/Log.ods'
+exec i3-msg 'workspace number 19 "banshee"; exec banshee'
+exec i3-msg 'workspace number 20 "pidgin"; exec pidgin'
+exec i3-msg 'workspace number 11; workspace number 1;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What I actually get is &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Workspace 10 "log" is open on VGA1, but empty
+Workspace 2 is open on HDMI1 and contains 3 google-chrome windows
+Workspace 19 "banshee" is open on HDMI1 and contains virtualbox, libreoffice, banshee
+Workspace 20 "pidgin" is open on HDMI1 and contains pidgin
+Workspaces 1,9,11 are not present (presumably created and destroyed when switched away with nothing in).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have tried using &lt;code&gt;exec --no-startup-id i3-msg&lt;/code&gt; on each line containg i3-msg above, but it just rearranges the jumble rather than sorting it out. I tried running multiple shell commands in just a few i3-msg commands, but again it just rearranges the jumble rather than sorting correctly. &lt;/p&gt;
+
+&lt;p&gt;It's worth noting that after i3 loads, if I drop to a command line and enter &lt;code&gt;i3-msg 'workspace 5; exec google-chrome'&lt;/code&gt; the new window opens in workspace 5, whereas if I enter &lt;code&gt;i3-msg 'workspace 5; exec google-chrome; workspace number 2'&lt;/code&gt;, I get the new chrome window in workspace 2.&lt;/p&gt;
+
+&lt;p&gt;Am I missing something? Is there some way to insert a pause between lines in the config file to give time for everything to load?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3447/race-condition-for-startup-applications/?answer=3453#post-id-3453</link><description>Chrome is a bit of a special case:
+
+Use [`for_window`](http://i3wm.org/docs/userguide.html#_arbitrary_commands_for_specific_windows_for_window) to move your Chrome windows to the correct workspace:
+
+    for_window [title="this_is_chrome_window_number_1"] move workspace number 
+    for_window [title="this_is_chrome_window_number_2"] move workspace number 2
+    for_window [title="this_is_chrome_window_number_3"] move workspace number 3
+
+    exec google_chrome file:///this_is_chrome_window_number_1
+    exec google_chrome file:///this_is_chrome_window_number_2
+    exec google_chrome file:///this_is_chrome_window_number_3
+
+As long as the file does not exist Chrome will show the name of the file in the title bar along with an error message. If the file (or any URL) does exist, you have to take care that `for_window` matches to whatever the title is set. You could use this to set up different start pages for the different workspaces.
+
+----
+
+**Why does it not work as you expected?**
+
+There is a delay between `exec` starting the program and the actual creation of the window. Some applications are able to handle *startup notifications* which allows for the window to be opened on the workspace that was focused when `exec` was called. (`--no-startup-id` explicitly [*disables* this feature](http://i3wm.org/docs/userguide.html#exec), so you do not want it here. ).
+
+Applications that do not handle startup notifications will just open on whichever workspace is focused when the window is created.
+
+----
+
+**Why does `assign` not help here?**
+
+Usually you can use [`assign`](http://i3wm.org/docs/userguide.html#_automatically_putting_clients_on_specific_workspaces) to put applications on specific workspaces. But as you are trying to open multiple windows of the same application on different workspaces there may be some difficulties in differentiating between the different windows.
+
+It is possible to change the window class of GTK programs with `--class='NewClassName'`. But this will not work with Chrome: While the first window (`google-chrome --class=chrome_1`) gets he wanted class `chrome_1`, subsequent calls of `google-chrome --class_chrome_2` do not create their own window but cause the first instance (*chrome_1*) to open additional windows for the original session. So the class for these windows is also *chrome_1* and not *chrome_2*.
+
+Although there is a way to force Chrome to open a new session, it only works with different configuration directories for each session.
+
+
+ </description><pubDate>Thu, 27 Feb 2014 11:24:52 +0000</pubDate><guid>https://faq.i3wm.org/question/3447/race-condition-for-startup-applications/?answer=3453#post-id-3453</guid></item><item><title>Comment by cee for &lt;p&gt;Chrome is a bit of a special case:&lt;/p&gt;
+
+&lt;p&gt;Use &lt;a href="http://i3wm.org/docs/userguide.html#_arbitrary_commands_for_specific_windows_for_window"&gt;&lt;code&gt;for_window&lt;/code&gt;&lt;/a&gt; to move your Chrome windows to the correct workspace:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [title="this_is_chrome_window_number_1"] move workspace number 
+for_window [title="this_is_chrome_window_number_2"] move workspace number 2
+for_window [title="this_is_chrome_window_number_3"] move workspace number 3
+
+exec google_chrome file:///this_is_chrome_window_number_1
+exec google_chrome file:///this_is_chrome_window_number_2
+exec google_chrome file:///this_is_chrome_window_number_3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As long as the file does not exist Chrome will show the name of the file in the title bar along with an error message. If the file (or any URL) does exist, you have to take care that &lt;code&gt;for_window&lt;/code&gt; matches to whatever the title is set. You could use this to set up different start pages for the different workspaces.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Why does it not work as you expected?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There is a delay between &lt;code&gt;exec&lt;/code&gt; starting the program and the actual creation of the window. Some applications are able to handle &lt;em&gt;startup notifications&lt;/em&gt; which allows for the window to be opened on the workspace that was focused when &lt;code&gt;exec&lt;/code&gt; was called. (&lt;code&gt;--no-startup-id&lt;/code&gt; explicitly &lt;a href="http://i3wm.org/docs/userguide.html#exec"&gt;&lt;em&gt;disables&lt;/em&gt; this feature&lt;/a&gt;, so you do not want it here. ).&lt;/p&gt;
+
+&lt;p&gt;Applications that do not handle startup notifications will just open on whichever workspace is focused when the window is created.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Why does &lt;code&gt;assign&lt;/code&gt; not help here?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Usually you can use &lt;a href="http://i3wm.org/docs/userguide.html#_automatically_putting_clients_on_specific_workspaces"&gt;&lt;code&gt;assign&lt;/code&gt;&lt;/a&gt; to put applications on specific workspaces. But as you are trying to open multiple windows of the same application on different workspaces there may be some difficulties in differentiating between the different windows.&lt;/p&gt;
+
+&lt;p&gt;It is possible to change the window class of GTK programs with &lt;code&gt;--class='NewClassName'&lt;/code&gt;. But this will not work with Chrome: While the first window (&lt;code&gt;google-chrome --class=chrome_1&lt;/code&gt;) gets he wanted class &lt;code&gt;chrome_1&lt;/code&gt;, subsequent calls of &lt;code&gt;google-chrome --class_chrome_2&lt;/code&gt; do not create their own window but cause the first instance (&lt;em&gt;chrome_1&lt;/em&gt;) to open additional windows for the original session. So the class for these windows is also &lt;em&gt;chrome_1&lt;/em&gt; and not &lt;em&gt;chrome_2&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Although there is a way to force Chrome to open a new session, it only works with different configuration directories for each session.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3447/race-condition-for-startup-applications/?comment=3454#comment-3454</link><description>Thanks, very informative!</description><pubDate>Thu, 27 Feb 2014 16:03:25 +0000</pubDate><guid>https://faq.i3wm.org/question/3447/race-condition-for-startup-applications/?comment=3454#comment-3454</guid></item><item><title>Answer by cee for &lt;p&gt;I am using i3 version 4.7.2 (Debian Jessie) and am having problems getting programs to start up on appropriate workspaces. For the life of me, it looks like any program which has a delay between execution and start will end up on whatever workspace is selected when the window finally gets drawn. For instance, if I drop to the cli and run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg 'workspace number 1; exec google-chrome; workspace number 11; exec google-chrome'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I end up with workspaces 1 and 11 open, but 11 contains both instances of google-chrome (this works with other sets of programs too, like virtualbox and libreoffice).&lt;/p&gt;
+
+&lt;p&gt;The relevant parts of my actual config looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 1 output VGA1
+workspace 2 output VGA1
+workspace 9 output VGA1
+workspace 10 output VGA1
+workspace 11 output HDMI1
+workspace 19 output HDMI1
+workspace 20 output HDMI1
+exec i3-msg 'workspace number 1 "Chrome"; exec google-chrome'
+exec i3-msg 'workspace number 2 "Chrome 2"; exec google-chrome'
+exec i3-msg 'workspace number 11 "Chrome 3"; exec google-chrome'
+exec i3-msg 'workspace number 9 "virtualbox"; exec virtualbox'
+exec i3-msg 'workspace number 10 "log"; exec libreoffice --calc -o ~/Documents/Log.ods'
+exec i3-msg 'workspace number 19 "banshee"; exec banshee'
+exec i3-msg 'workspace number 20 "pidgin"; exec pidgin'
+exec i3-msg 'workspace number 11; workspace number 1;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What I actually get is &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Workspace 10 "log" is open on VGA1, but empty
+Workspace 2 is open on HDMI1 and contains 3 google-chrome windows
+Workspace 19 "banshee" is open on HDMI1 and contains virtualbox, libreoffice, banshee
+Workspace 20 "pidgin" is open on HDMI1 and contains pidgin
+Workspaces 1,9,11 are not present (presumably created and destroyed when switched away with nothing in).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have tried using &lt;code&gt;exec --no-startup-id i3-msg&lt;/code&gt; on each line containg i3-msg above, but it just rearranges the jumble rather than sorting it out. I tried running multiple shell commands in just a few i3-msg commands, but again it just rearranges the jumble rather than sorting correctly. &lt;/p&gt;
+
+&lt;p&gt;It's worth noting that after i3 loads, if I drop to a command line and enter &lt;code&gt;i3-msg 'workspace 5; exec google-chrome'&lt;/code&gt; the new window opens in workspace 5, whereas if I enter &lt;code&gt;i3-msg 'workspace 5; exec google-chrome; workspace number 2'&lt;/code&gt;, I get the new chrome window in workspace 2.&lt;/p&gt;
+
+&lt;p&gt;Am I missing something? Is there some way to insert a pause between lines in the config file to give time for everything to load?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3447/race-condition-for-startup-applications/?answer=3450#post-id-3450</link><description>Try to use [assign command](http://i3wm.org/docs/userguide.html#_automatically_putting_clients_on_specific_workspaces). 
+Maybe also take a look at this [thread](https://faq.i3wm.org/question/3389/start-on-specific-workspace-failing/)</description><pubDate>Thu, 27 Feb 2014 09:13:13 +0000</pubDate><guid>https://faq.i3wm.org/question/3447/race-condition-for-startup-applications/?answer=3450#post-id-3450</guid></item></channel></rss>

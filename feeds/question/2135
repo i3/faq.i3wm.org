@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2135/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 25 Dec 2013 01:39:03 +0000</lastBuildDate><item><title>Open new window in specific workspace and focus</title><link>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/</link><description>Hello,
+
+How can I open a new window in a specific workspace?
+My use case is that I'd my pdf viewer to always open in workspace 5, switch to that workspace, and focus the window. 
+
+I've tried the following solutions:
+
+* assign [class="^Evince$"] "5: doc"
+
+This works, but does not switch to workspace 5, nor focusses the new window. My workspace 5 is in tabbed layout, and new windows tend to open underneath the currently selected tab.
+
+* write a script that starts the pdf viewer, then runs
+
+i3-msg move container to workspace "5: doc"
+
+i3-msg workspace "5: doc"
+
+The trouble here is that depending on the currently focussed window and how long the pdf viewer takes to start, the wrong window is moved to workspace 5. I.e., there is no control over which window the i3-msg commands operate on. Note that there may be multiple instances with [class="^Evince$"], so I cannot simply use that.
+
+best regards,
+Tom
+</description><pubDate>Thu, 04 Jul 2013 11:49:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/</guid></item><item><title>Answer by ack006 for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;How can I open a new window in a specific workspace?
+My use case is that I'd my pdf viewer to always open in workspace 5, switch to that workspace, and focus the window. &lt;/p&gt;
+
+&lt;p&gt;I've tried the following solutions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;assign [class="^Evince$"] "5: doc"&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This works, but does not switch to workspace 5, nor focusses the new window. My workspace 5 is in tabbed layout, and new windows tend to open underneath the currently selected tab.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;write a script that starts the pdf viewer, then runs&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;i3-msg move container to workspace "5: doc"&lt;/p&gt;
+
+&lt;p&gt;i3-msg workspace "5: doc"&lt;/p&gt;
+
+&lt;p&gt;The trouble here is that depending on the currently focussed window and how long the pdf viewer takes to start, the wrong window is moved to workspace 5. I.e., there is no control over which window the i3-msg commands operate on. Note that there may be multiple instances with [class="^Evince$"], so I cannot simply use that.&lt;/p&gt;
+
+&lt;p&gt;best regards,
+Tom&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?answer=2205#post-id-2205</link><description>I've a solution which works precisely as asked (using i3 version 4.5.1-87-g8677936, YMMV):
+
+In ${HOME}/.i3/config, add
+
+    for_window [class="Evince"] rename workspace 5 to "5: doc", move container to workspace "5: doc", workspace "5: doc", focus
+
+
+This uses ',' to create a command list (remove the rename if that isn't what you need).
+As far as I can tell, the scope for the entire command list is set by the `for_window` directive, so the commands in the list are only executed when `for_window` actually matches something.
+
+I've tested it by:
+
+ - starting 'gedit' in workspace 5 (obviously an unrelated application meant for illustration)
+ - switching that workspace to tabbed mode to make the focus more obvious
+ - switching to workspace 1
+ - starting evince
+
+My screen switched to workspace "5: doc" showing evince focussed in its tab, just as you asked. Note that gedit, which was on workspace 5 before it got renamed, now is also on workspace "5: doc" but doesn't have focus.</description><pubDate>Sat, 13 Jul 2013 14:03:08 +0000</pubDate><guid>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?answer=2205#post-id-2205</guid></item><item><title>Comment by Michael for &lt;p&gt;I've a solution which works precisely as asked (using i3 version 4.5.1-87-g8677936, YMMV):&lt;/p&gt;
+
+&lt;p&gt;In ${HOME}/.i3/config, add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Evince"] rename workspace 5 to "5: doc", move container to workspace "5: doc", workspace "5: doc", focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This uses ',' to create a command list (remove the rename if that isn't what you need).
+As far as I can tell, the scope for the entire command list is set by the &lt;code&gt;for_window&lt;/code&gt; directive, so the commands in the list are only executed when &lt;code&gt;for_window&lt;/code&gt; actually matches something.&lt;/p&gt;
+
+&lt;p&gt;I've tested it by:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;starting 'gedit' in workspace 5 (obviously an unrelated application meant for illustration)&lt;/li&gt;
+&lt;li&gt;switching that workspace to tabbed mode to make the focus more obvious&lt;/li&gt;
+&lt;li&gt;switching to workspace 1&lt;/li&gt;
+&lt;li&gt;starting evince&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;My screen switched to workspace "5: doc" showing evince focussed in its tab, just as you asked. Note that gedit, which was on workspace 5 before it got renamed, now is also on workspace "5: doc" but doesn't have focus.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=2215#comment-2215</link><description>Note that you should use comma (,) instead of semicolon (;) here. With semicolon, the criterion is lost, i.e. the commands will be executed for the active window instead of the matched window. It won’t really matter, but to make it perfect, comma is the better choice.</description><pubDate>Sun, 14 Jul 2013 13:21:48 +0000</pubDate><guid>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=2215#comment-2215</guid></item><item><title>Comment by ack006 for &lt;p&gt;I've a solution which works precisely as asked (using i3 version 4.5.1-87-g8677936, YMMV):&lt;/p&gt;
+
+&lt;p&gt;In ${HOME}/.i3/config, add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Evince"] rename workspace 5 to "5: doc", move container to workspace "5: doc", workspace "5: doc", focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This uses ',' to create a command list (remove the rename if that isn't what you need).
+As far as I can tell, the scope for the entire command list is set by the &lt;code&gt;for_window&lt;/code&gt; directive, so the commands in the list are only executed when &lt;code&gt;for_window&lt;/code&gt; actually matches something.&lt;/p&gt;
+
+&lt;p&gt;I've tested it by:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;starting 'gedit' in workspace 5 (obviously an unrelated application meant for illustration)&lt;/li&gt;
+&lt;li&gt;switching that workspace to tabbed mode to make the focus more obvious&lt;/li&gt;
+&lt;li&gt;switching to workspace 1&lt;/li&gt;
+&lt;li&gt;starting evince&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;My screen switched to workspace "5: doc" showing evince focussed in its tab, just as you asked. Note that gedit, which was on workspace 5 before it got renamed, now is also on workspace "5: doc" but doesn't have focus.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=2206#comment-2206</link><description>The `focus` is possibly redundant, as it appears that i3 focusses any newly moved window in a workspace when you switch to that workspace.</description><pubDate>Sat, 13 Jul 2013 14:08:07 +0000</pubDate><guid>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=2206#comment-2206</guid></item><item><title>Comment by ack006 for &lt;p&gt;I've a solution which works precisely as asked (using i3 version 4.5.1-87-g8677936, YMMV):&lt;/p&gt;
+
+&lt;p&gt;In ${HOME}/.i3/config, add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Evince"] rename workspace 5 to "5: doc", move container to workspace "5: doc", workspace "5: doc", focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This uses ',' to create a command list (remove the rename if that isn't what you need).
+As far as I can tell, the scope for the entire command list is set by the &lt;code&gt;for_window&lt;/code&gt; directive, so the commands in the list are only executed when &lt;code&gt;for_window&lt;/code&gt; actually matches something.&lt;/p&gt;
+
+&lt;p&gt;I've tested it by:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;starting 'gedit' in workspace 5 (obviously an unrelated application meant for illustration)&lt;/li&gt;
+&lt;li&gt;switching that workspace to tabbed mode to make the focus more obvious&lt;/li&gt;
+&lt;li&gt;switching to workspace 1&lt;/li&gt;
+&lt;li&gt;starting evince&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;My screen switched to workspace "5: doc" showing evince focussed in its tab, just as you asked. Note that gedit, which was on workspace 5 before it got renamed, now is also on workspace "5: doc" but doesn't have focus.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=2231#comment-2231</link><description>Thanks for the tip! I've edite my answer accordingly.</description><pubDate>Mon, 15 Jul 2013 16:02:13 +0000</pubDate><guid>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=2231#comment-2231</guid></item><item><title>Answer by V0id for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;How can I open a new window in a specific workspace?
+My use case is that I'd my pdf viewer to always open in workspace 5, switch to that workspace, and focus the window. &lt;/p&gt;
+
+&lt;p&gt;I've tried the following solutions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;assign [class="^Evince$"] "5: doc"&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This works, but does not switch to workspace 5, nor focusses the new window. My workspace 5 is in tabbed layout, and new windows tend to open underneath the currently selected tab.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;write a script that starts the pdf viewer, then runs&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;i3-msg move container to workspace "5: doc"&lt;/p&gt;
+
+&lt;p&gt;i3-msg workspace "5: doc"&lt;/p&gt;
+
+&lt;p&gt;The trouble here is that depending on the currently focussed window and how long the pdf viewer takes to start, the wrong window is moved to workspace 5. I.e., there is no control over which window the i3-msg commands operate on. Note that there may be multiple instances with [class="^Evince$"], so I cannot simply use that.&lt;/p&gt;
+
+&lt;p&gt;best regards,
+Tom&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?answer=2136#post-id-2136</link><description>Keep your assignment:
+
+    assign [class="^Evince$"] "5: doc"
+
+And use a similar script (you may want to give it some arguments):
+
+    #!/bin/sh
+    i3-msg 'exec evince'
+    # sleep time depends on the application you launch
+    sleep 1
+    # will focus the most recent window of that class
+    i3-msg '[class="^Evince$"] focus'
+</description><pubDate>Thu, 04 Jul 2013 12:17:40 +0000</pubDate><guid>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?answer=2136#post-id-2136</guid></item><item><title>Comment by Tom Francart for &lt;p&gt;Keep your assignment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="^Evince$"] "5: doc"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And use a similar script (you may want to give it some arguments):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+i3-msg 'exec evince'
+# sleep time depends on the application you launch
+sleep 1
+# will focus the most recent window of that class
+i3-msg '[class="^Evince$"] focus'
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=2137#comment-2137</link><description>Thank you, works fine!</description><pubDate>Thu, 04 Jul 2013 12:39:56 +0000</pubDate><guid>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=2137#comment-2137</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;How can I open a new window in a specific workspace?
+My use case is that I'd my pdf viewer to always open in workspace 5, switch to that workspace, and focus the window. &lt;/p&gt;
+
+&lt;p&gt;I've tried the following solutions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;assign [class="^Evince$"] "5: doc"&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This works, but does not switch to workspace 5, nor focusses the new window. My workspace 5 is in tabbed layout, and new windows tend to open underneath the currently selected tab.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;write a script that starts the pdf viewer, then runs&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;i3-msg move container to workspace "5: doc"&lt;/p&gt;
+
+&lt;p&gt;i3-msg workspace "5: doc"&lt;/p&gt;
+
+&lt;p&gt;The trouble here is that depending on the currently focussed window and how long the pdf viewer takes to start, the wrong window is moved to workspace 5. I.e., there is no control over which window the i3-msg commands operate on. Note that there may be multiple instances with [class="^Evince$"], so I cannot simply use that.&lt;/p&gt;
+
+&lt;p&gt;best regards,
+Tom&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?answer=2924#post-id-2924</link><description>A script is not needed when you know beforehand what the window class is going to be. Just add the following to your configuration:
+
+    assign [class="^Evince$"] 5: doc
+    for_window [class="^Evince$"] focus
+
+`for_window` acts on any **new** window with matching criteria and will not affect already existing windows.</description><pubDate>Sun, 17 Nov 2013 15:23:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?answer=2924#post-id-2924</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;A script is not needed when you know beforehand what the window class is going to be. Just add the following to your configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="^Evince$"] 5: doc
+for_window [class="^Evince$"] focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;for_window&lt;/code&gt; acts on any &lt;strong&gt;new&lt;/strong&gt; window with matching criteria and will not affect already existing windows.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=2931#comment-2931</link><description>Well how do you use assign with i3-msg? Because putting i3-msg in front of that assign command doesn't seem to work from the CLI.</description><pubDate>Mon, 18 Nov 2013 01:34:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=2931#comment-2931</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;A script is not needed when you know beforehand what the window class is going to be. Just add the following to your configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="^Evince$"] 5: doc
+for_window [class="^Evince$"] focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;for_window&lt;/code&gt; acts on any &lt;strong&gt;new&lt;/strong&gt; window with matching criteria and will not affect already existing windows.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=3091#comment-3091</link><description>Okay, just to answer my own question: i3-msg [class="xyz"] move to workspace abc</description><pubDate>Wed, 25 Dec 2013 01:39:03 +0000</pubDate><guid>https://faq.i3wm.org/question/2135/open-new-window-in-specific-workspace-and-focus/?comment=3091#comment-3091</guid></item></channel></rss>

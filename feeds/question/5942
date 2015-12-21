@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5942/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 05 May 2015 12:12:40 +0000</lastBuildDate><item><title>Using modifer key as a binding</title><link>https://faq.i3wm.org/question/5942/using-modifer-key-as-a-binding/</link><description>Hi,
+
+I've been trying to do a similar setup as in https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?answer=5439#post-id-5439 with my Super_L/Windows/Mod4 key, i.e., I want to enter and stay in a mode as long as my window key is touched. 
+
+When doing `bindsym Mod4 mode "foo"` with i3 (i3 version 4.10.2-145-g37bee99 (2015-04-26, branch "next")), it does not go into mode "foo". If I do `bindsym Mod4+f mode "foo"` then i3 enters the desired mode but then the `bindsym --release Mod4+f` within mode "foo" does not work anymore. 
+
+Any advice ?</description><pubDate>Mon, 04 May 2015 11:23:04 +0000</pubDate><guid>https://faq.i3wm.org/question/5942/using-modifer-key-as-a-binding/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I've been trying to do a similar setup as in &lt;a href="https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?answer=5439#post-id-5439"&gt;https://faq.i3wm.org/question/5429/st...&lt;/a&gt; with my Super_L/Windows/Mod4 key, i.e., I want to enter and stay in a mode as long as my window key is touched. &lt;/p&gt;
+
+&lt;p&gt;When doing &lt;code&gt;bindsym Mod4 mode "foo"&lt;/code&gt; with i3 (i3 version 4.10.2-145-g37bee99 (2015-04-26, branch "next")), it does not go into mode "foo". If I do &lt;code&gt;bindsym Mod4+f mode "foo"&lt;/code&gt; then i3 enters the desired mode but then the &lt;code&gt;bindsym --release Mod4+f&lt;/code&gt; within mode "foo" does not work anymore. &lt;/p&gt;
+
+&lt;p&gt;Any advice ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5942/using-modifer-key-as-a-binding/?answer=5945#post-id-5945</link><description> It does not work, because `Mod4` is the name of the modifier but not the name of the key (keysym). The correct name would probably be either `Super_L` or `Super_R`, for the left and right Windows key respectively.
+
+So this should work in your case:
+
+    bindsym Super_L mode "foo"
+    bindsym Super_R mode "foo"
+    mode "foo" {
+        # ...
+        bindsym --release Super_L mode "default"
+        bindsym --release Super_R mode "default"
+    }
+
+Of course, you can drop the lines with either `Super_L` or `Super_R` in them, if you want to use only respective other key.
+
+To find out, what the keysym (or keycode for that matter) of a key is, you can use `xev`.
+
+
+
+----
+
+The modifier names `Mod1`, `Mod4`, `Shift`, etc. can only be used in conjunction with a keysym or keycode (e.g. `bindsym Mod4+f ...` or `bindcode Mod4+41 ...`) 
+
+It is even possible to combine modifier keys that way. `bindsym Mod4+Super_L ...` will bind to the left Window key being pressed, while the right one is held down (but not the other way around).
+
+----
+
+**Note:** I would suggest using `bindcode` instead of `bindsym` when working with modifier-only keybindings. It seems that in some cases it does not work when using keysyms, at least for me. (e.g. `Shift+Shift_L`)</description><pubDate>Mon, 04 May 2015 13:50:31 +0000</pubDate><guid>https://faq.i3wm.org/question/5942/using-modifer-key-as-a-binding/?answer=5945#post-id-5945</guid></item><item><title>Comment by teto for &lt;p&gt;It does not work, because &lt;code&gt;Mod4&lt;/code&gt; is the name of the modifier but not the name of the key (keysym). The correct name would probably be either &lt;code&gt;Super_L&lt;/code&gt; or &lt;code&gt;Super_R&lt;/code&gt;, for the left and right Windows key respectively.&lt;/p&gt;
+
+&lt;p&gt;So this should work in your case:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Super_L mode "foo"
+bindsym Super_R mode "foo"
+mode "foo" {
+    # ...
+    bindsym --release Super_L mode "default"
+    bindsym --release Super_R mode "default"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course, you can drop the lines with either &lt;code&gt;Super_L&lt;/code&gt; or &lt;code&gt;Super_R&lt;/code&gt; in them, if you want to use only respective other key.&lt;/p&gt;
+
+&lt;p&gt;To find out, what the keysym (or keycode for that matter) of a key is, you can use &lt;code&gt;xev&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;The modifier names &lt;code&gt;Mod1&lt;/code&gt;, &lt;code&gt;Mod4&lt;/code&gt;, &lt;code&gt;Shift&lt;/code&gt;, etc. can only be used in conjunction with a keysym or keycode (e.g. &lt;code&gt;bindsym Mod4+f ...&lt;/code&gt; or &lt;code&gt;bindcode Mod4+41 ...&lt;/code&gt;) &lt;/p&gt;
+
+&lt;p&gt;It is even possible to combine modifier keys that way. &lt;code&gt;bindsym Mod4+Super_L ...&lt;/code&gt; will bind to the left Window key being pressed, while the right one is held down (but not the other way around).&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; I would suggest using &lt;code&gt;bindcode&lt;/code&gt; instead of &lt;code&gt;bindsym&lt;/code&gt; when working with modifier-only keybindings. It seems that in some cases it does not work when using keysyms, at least for me. (e.g. &lt;code&gt;Shift+Shift_L&lt;/code&gt;)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5942/using-modifer-key-as-a-binding/?comment=5956#comment-5956</link><description>Thanks for your help. It makes sense that I would need to set the key rather than the modifier. As you do I notice the Super_L release is not always detected. Your answer helped me do this: https://github.com/i3/i3/issues/1214#issuecomment-97453611</description><pubDate>Tue, 05 May 2015 12:12:40 +0000</pubDate><guid>https://faq.i3wm.org/question/5942/using-modifer-key-as-a-binding/?comment=5956#comment-5956</guid></item></channel></rss>

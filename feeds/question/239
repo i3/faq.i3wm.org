@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/239/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 08 May 2015 12:40:14 +0000</lastBuildDate><item><title>How do i suspend,lockscreen and logout?</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/</link><description>How do i manage shortcuts? 
+
+eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. 
+
+(i did some fair amount of googleing before coming here :) )
+
+// first-day-with-i3-user</description><pubDate>Wed, 11 Jul 2012 07:32:59 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/</guid></item><item><title>Answer by fixxx3r for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=3194#post-id-3194</link><description>An easy way could be
+
+pm-suspend &amp;&amp; i3lock
+
+</description><pubDate>Fri, 10 Jan 2014 21:22:44 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=3194#post-id-3194</guid></item><item><title>Comment by vire for &lt;p&gt;An easy way could be&lt;/p&gt;
+
+&lt;p&gt;pm-suspend &amp;amp;&amp;amp; i3lock&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=4689#comment-4689</link><description>pm-suspend must be (in most cases) run as superuser</description><pubDate>Sat, 04 Oct 2014 09:18:40 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=4689#comment-4689</guid></item><item><title>Answer by V0id for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=1927#post-id-1927</link><description>I personally use a i3 "mode" to handle system shutdown, reboot, etc.
+
+e.g to suspend: Mod+Pause then s.
+
+The shortcuts are written in the mode name as a reminder.
+
+    set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+    mode "$mode_system" {
+        bindsym l exec --no-startup-id i3exit lock, mode "default"
+        bindsym e exec --no-startup-id i3exit logout, mode "default"
+        bindsym s exec --no-startup-id i3exit suspend, mode "default"
+        bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+        bindsym r exec --no-startup-id i3exit reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+    bindsym $mod+Pause mode "$mode_system"
+
+the i3exit is a simple script like that (for a distro with systemd):
+    
+    #!/bin/sh
+    lock() {
+        i3lock
+    }
+
+    case "$1" in
+        lock)
+            lock
+            ;;
+        logout)
+    	    i3-msg exit
+            ;;
+        suspend)
+            lock &amp;&amp; systemctl suspend
+            ;;
+        hibernate)
+            lock &amp;&amp; systemctl hibernate
+            ;;
+        reboot)
+            systemctl reboot
+            ;;
+        shutdown)
+            systemctl poweroff
+            ;;
+        *)
+            echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+            exit 2
+    esac
+
+    exit 0</description><pubDate>Thu, 30 May 2013 09:03:36 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=1927#post-id-1927</guid></item><item><title>Comment by flylo for &lt;p&gt;I personally use a i3 "mode" to handle system shutdown, reboot, etc.&lt;/p&gt;
+
+&lt;p&gt;e.g to suspend: Mod+Pause then s.&lt;/p&gt;
+
+&lt;p&gt;The shortcuts are written in the mode name as a reminder.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the i3exit is a simple script like that (for a distro with systemd):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+lock() {
+    i3lock
+}
+
+case "$1" in
+    lock)
+        lock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        lock &amp;amp;&amp;amp; systemctl suspend
+        ;;
+    hibernate)
+        lock &amp;amp;&amp;amp; systemctl hibernate
+        ;;
+    reboot)
+        systemctl reboot
+        ;;
+    shutdown)
+        systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+
+exit 0
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=2693#comment-2693</link><description>Handy script, thanks</description><pubDate>Sat, 12 Oct 2013 03:45:25 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=2693#comment-2693</guid></item><item><title>Answer by Michael for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=240#post-id-240</link><description>To lock your screen, you can use any screen locker, such as i3lock.
+
+To logout, press Mod+shift+e (like exit).
+
+To suspend, use `pm-suspend` or the more direct (but maybe not 100% working on your hardware) `sudo sh -c "echo mem &gt; /sys/power/state"`</description><pubDate>Wed, 11 Jul 2012 07:42:15 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=240#post-id-240</guid></item><item><title>Comment by queria for &lt;p&gt;To lock your screen, you can use any screen locker, such as i3lock.&lt;/p&gt;
+
+&lt;p&gt;To logout, press Mod+shift+e (like exit).&lt;/p&gt;
+
+&lt;p&gt;To suspend, use &lt;code&gt;pm-suspend&lt;/code&gt; or the more direct (but maybe not 100% working on your hardware) &lt;code&gt;sudo sh -c "echo mem &amp;gt; /sys/power/state"&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=5531#comment-5531</link><description>for lock+suspend i do use:
+ bindsym $mod+Shift+e exec --no-startup-id "sh -c 'qslock &amp;&amp; sleep 0.5 &amp;&amp; sudo /usr/sbin/pm-suspend'"
+while qslock is just my wrapper around vlock||i3lock based on [ -z $DISPLAY ] (https://github.com/queria/scripts/blob/master/qslock)</description><pubDate>Tue, 24 Feb 2015 22:13:35 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=5531#comment-5531</guid></item><item><title>Comment by simao for &lt;p&gt;To lock your screen, you can use any screen locker, such as i3lock.&lt;/p&gt;
+
+&lt;p&gt;To logout, press Mod+shift+e (like exit).&lt;/p&gt;
+
+&lt;p&gt;To suspend, use &lt;code&gt;pm-suspend&lt;/code&gt; or the more direct (but maybe not 100% working on your hardware) &lt;code&gt;sudo sh -c "echo mem &amp;gt; /sys/power/state"&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=2131#comment-2131</link><description>This works but the screen is not locked so anyone can just wake up the computer. Is it possible to also lock using pm-suspend?</description><pubDate>Tue, 02 Jul 2013 09:14:05 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=2131#comment-2131</guid></item><item><title>Comment by c1b3rh4ck for &lt;p&gt;To lock your screen, you can use any screen locker, such as i3lock.&lt;/p&gt;
+
+&lt;p&gt;To logout, press Mod+shift+e (like exit).&lt;/p&gt;
+
+&lt;p&gt;To suspend, use &lt;code&gt;pm-suspend&lt;/code&gt; or the more direct (but maybe not 100% working on your hardware) &lt;code&gt;sudo sh -c "echo mem &amp;gt; /sys/power/state"&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=338#comment-338</link><description>in addittion to that you can use in debian pm-is-supported for test wheter suspend or hibernate is supported if it gives you "0"  you  support hibernate or suspend if it gives you "1" not avalaible,you might be use this : pm-is-supported --suspend,pm is as a root user...sudo or something like that.</description><pubDate>Sun, 12 Aug 2012 18:55:06 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=338#comment-338</guid></item><item><title>Answer by Sam73 for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=4635#post-id-4635</link><description>I used answer from V0id but changed the i3exit script for dbus commands so being root is not required
+
+    #!/bin/sh
+    lock() {
+        i3lock
+    }
+    
+    case "$1" in
+        lock)
+            lock
+            ;;
+        logout)
+            i3-msg exit
+            ;;
+        suspend)
+            lock &amp;&amp; dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+            ;;
+        hibernate)
+            lock &amp;&amp; dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Hibernate
+            ;;
+        reboot)
+            dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
+            ;;
+        shutdown)
+            dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
+            ;;
+        *)
+            echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+            exit 2
+    esac
+    
+    exit 0
+
+</description><pubDate>Wed, 17 Sep 2014 10:24:24 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=4635#post-id-4635</guid></item><item><title>Comment by Ruben G for &lt;p&gt;I used answer from V0id but changed the i3exit script for dbus commands so being root is not required&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+lock() {
+    i3lock
+}
+
+case "$1" in
+    lock)
+        lock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        lock &amp;amp;&amp;amp; dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+        ;;
+    hibernate)
+        lock &amp;amp;&amp;amp; dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Hibernate
+        ;;
+    reboot)
+        dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
+        ;;
+    shutdown)
+        dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+
+exit 0
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=5556#comment-5556</link><description>The reboot, shutdown &amp; hibernate commands won't work in Ubuntu 14.04+, I've posted them in a new comment below.</description><pubDate>Mon, 02 Mar 2015 08:24:19 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=5556#comment-5556</guid></item><item><title>Answer by cschooley for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=922#post-id-922</link><description>If you are looking for a "10 minutes idle" type of screen saver try adding [xautolock](http://linux.die.net/man/1/xautolock) to your xsession.
+
+In security conscious environments this is a must. I like the ideas above and plan to use both.
+
+It's not specific to i3, but you can use it to launch any screen lock type of program (to include i3lock).
+
+Also, for fellow i3noobs - i3lock's default mode is to make the screen white. To unlock just type your password (there's no dialog like you are used to seeing - just type it). The first time I ran i3lock I thought I hosed my session up. I like it, but it just confused me for a google or two.</description><pubDate>Wed, 19 Dec 2012 02:14:37 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=922#post-id-922</guid></item><item><title>Answer by msx for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=5973#post-id-5973</link><description>Log out - quick and clean:
+
+    bindsym $mod+Shift+e exec "i3-msg exit" 
+
+For manually locking your screen you can set i3-lock the same way, however I'm using 'i3-lock-wrapper' (from the awesome i3 extras repo in GitHub: https://github.com/ashinkarov/i3-extras):
+
+    bindsym $mod+Ctrl+l exec --no-startup-id "~/.i3/addons/i3lock-wrapper -nbdl; xset r rate 200 40; setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl; xinput --set-button-map 15 1 3 2"
+(The rest of the commands just re-establish my kbd and mouse settings)
+
+To manually suspend the system I use a little variation of the above line:
+
+    bindsym $mod+Ctrl+s exec --no-startup-id "~/.i3/addons/i3lock-wrapper -bdl; systemctl suspend;... 
+
+I yet need to configure my system to automatically lock the screen whenever I suspend but closing my laptop's lid, I think I will end up creating a new systemd service for that.</description><pubDate>Fri, 08 May 2015 12:40:14 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=5973#post-id-5973</guid></item><item><title>Answer by jonyamo for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=307#post-id-307</link><description>My current favorite distro is [CrunchBang](http://crunchbanglinux.org/), and [the developer](http://corenominal.org/) has created [some cool scripts](https://github.com/corenominal) that come along with it. One of those scripts is called cb-exit and it provides a nice dialog window to handle logout, suspend, reboot, and shutdown. The problem is it is designed around Openbox, so I tweaked it to work with i3 (admittedly I didn't need to do much). Just be aware it does require Python, but that is just for creating the dialog window, you can just rip out the dbus commands and use them any way you want.
+
+I have aptly renamed it to i3-exit and you can [download it here](https://gist.github.com/5675359). Just add the script to your path and then create a keybind to call it, such as:
+
+    bindsym Mod4+x exec i3-exit
+
+Also, be aware that I prefer to lock my screen when I suspend my computer, so in the suspend function I have a call to i3-lock, which is just a wrapper I created to call my locker of choice.
+
+As far as locking your screen just create a keybind for your favorite locker (e.g., i3lock), like so:
+
+    bindsym Mod4+l exec i3lock</description><pubDate>Mon, 30 Jul 2012 17:30:13 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=307#post-id-307</guid></item><item><title>Comment by joepd for &lt;p&gt;My current favorite distro is &lt;a href="http://crunchbanglinux.org/"&gt;CrunchBang&lt;/a&gt;, and &lt;a href="http://corenominal.org/"&gt;the developer&lt;/a&gt; has created &lt;a href="https://github.com/corenominal"&gt;some cool scripts&lt;/a&gt; that come along with it. One of those scripts is called cb-exit and it provides a nice dialog window to handle logout, suspend, reboot, and shutdown. The problem is it is designed around Openbox, so I tweaked it to work with i3 (admittedly I didn't need to do much). Just be aware it does require Python, but that is just for creating the dialog window, you can just rip out the dbus commands and use them any way you want.&lt;/p&gt;
+
+&lt;p&gt;I have aptly renamed it to i3-exit and you can &lt;a href="https://gist.github.com/5675359"&gt;download it here&lt;/a&gt;. Just add the script to your path and then create a keybind to call it, such as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+x exec i3-exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, be aware that I prefer to lock my screen when I suspend my computer, so in the suspend function I have a call to i3-lock, which is just a wrapper I created to call my locker of choice.&lt;/p&gt;
+
+&lt;p&gt;As far as locking your screen just create a keybind for your favorite locker (e.g., i3lock), like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+l exec i3lock
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=1430#comment-1430</link><description>mschaefer: Reply in new answer. </description><pubDate>Sun, 17 Mar 2013 16:58:08 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=1430#comment-1430</guid></item><item><title>Comment by joepd for &lt;p&gt;My current favorite distro is &lt;a href="http://crunchbanglinux.org/"&gt;CrunchBang&lt;/a&gt;, and &lt;a href="http://corenominal.org/"&gt;the developer&lt;/a&gt; has created &lt;a href="https://github.com/corenominal"&gt;some cool scripts&lt;/a&gt; that come along with it. One of those scripts is called cb-exit and it provides a nice dialog window to handle logout, suspend, reboot, and shutdown. The problem is it is designed around Openbox, so I tweaked it to work with i3 (admittedly I didn't need to do much). Just be aware it does require Python, but that is just for creating the dialog window, you can just rip out the dbus commands and use them any way you want.&lt;/p&gt;
+
+&lt;p&gt;I have aptly renamed it to i3-exit and you can &lt;a href="https://gist.github.com/5675359"&gt;download it here&lt;/a&gt;. Just add the script to your path and then create a keybind to call it, such as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+x exec i3-exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, be aware that I prefer to lock my screen when I suspend my computer, so in the suspend function I have a call to i3-lock, which is just a wrapper I created to call my locker of choice.&lt;/p&gt;
+
+&lt;p&gt;As far as locking your screen just create a keybind for your favorite locker (e.g., i3lock), like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+l exec i3lock
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=458#comment-458</link><description>+1 for cb-exit mod :)</description><pubDate>Sun, 09 Sep 2012 18:31:30 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=458#comment-458</guid></item><item><title>Comment by mschaefer for &lt;p&gt;My current favorite distro is &lt;a href="http://crunchbanglinux.org/"&gt;CrunchBang&lt;/a&gt;, and &lt;a href="http://corenominal.org/"&gt;the developer&lt;/a&gt; has created &lt;a href="https://github.com/corenominal"&gt;some cool scripts&lt;/a&gt; that come along with it. One of those scripts is called cb-exit and it provides a nice dialog window to handle logout, suspend, reboot, and shutdown. The problem is it is designed around Openbox, so I tweaked it to work with i3 (admittedly I didn't need to do much). Just be aware it does require Python, but that is just for creating the dialog window, you can just rip out the dbus commands and use them any way you want.&lt;/p&gt;
+
+&lt;p&gt;I have aptly renamed it to i3-exit and you can &lt;a href="https://gist.github.com/5675359"&gt;download it here&lt;/a&gt;. Just add the script to your path and then create a keybind to call it, such as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+x exec i3-exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, be aware that I prefer to lock my screen when I suspend my computer, so in the suspend function I have a call to i3-lock, which is just a wrapper I created to call my locker of choice.&lt;/p&gt;
+
+&lt;p&gt;As far as locking your screen just create a keybind for your favorite locker (e.g., i3lock), like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+l exec i3lock
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=1383#comment-1383</link><description>The download link for this is dead and I didn't find the script in jonyamo's repositories either. How can I get it?</description><pubDate>Tue, 12 Mar 2013 15:55:30 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=1383#comment-1383</guid></item><item><title>Comment by mschaefer for &lt;p&gt;My current favorite distro is &lt;a href="http://crunchbanglinux.org/"&gt;CrunchBang&lt;/a&gt;, and &lt;a href="http://corenominal.org/"&gt;the developer&lt;/a&gt; has created &lt;a href="https://github.com/corenominal"&gt;some cool scripts&lt;/a&gt; that come along with it. One of those scripts is called cb-exit and it provides a nice dialog window to handle logout, suspend, reboot, and shutdown. The problem is it is designed around Openbox, so I tweaked it to work with i3 (admittedly I didn't need to do much). Just be aware it does require Python, but that is just for creating the dialog window, you can just rip out the dbus commands and use them any way you want.&lt;/p&gt;
+
+&lt;p&gt;I have aptly renamed it to i3-exit and you can &lt;a href="https://gist.github.com/5675359"&gt;download it here&lt;/a&gt;. Just add the script to your path and then create a keybind to call it, such as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+x exec i3-exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, be aware that I prefer to lock my screen when I suspend my computer, so in the suspend function I have a call to i3-lock, which is just a wrapper I created to call my locker of choice.&lt;/p&gt;
+
+&lt;p&gt;As far as locking your screen just create a keybind for your favorite locker (e.g., i3lock), like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+l exec i3lock
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=1438#comment-1438</link><description>joepd: thanks, i will try do adapt it myself :-)</description><pubDate>Mon, 18 Mar 2013 08:45:12 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=1438#comment-1438</guid></item><item><title>Comment by jonyamo for &lt;p&gt;My current favorite distro is &lt;a href="http://crunchbanglinux.org/"&gt;CrunchBang&lt;/a&gt;, and &lt;a href="http://corenominal.org/"&gt;the developer&lt;/a&gt; has created &lt;a href="https://github.com/corenominal"&gt;some cool scripts&lt;/a&gt; that come along with it. One of those scripts is called cb-exit and it provides a nice dialog window to handle logout, suspend, reboot, and shutdown. The problem is it is designed around Openbox, so I tweaked it to work with i3 (admittedly I didn't need to do much). Just be aware it does require Python, but that is just for creating the dialog window, you can just rip out the dbus commands and use them any way you want.&lt;/p&gt;
+
+&lt;p&gt;I have aptly renamed it to i3-exit and you can &lt;a href="https://gist.github.com/5675359"&gt;download it here&lt;/a&gt;. Just add the script to your path and then create a keybind to call it, such as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+x exec i3-exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, be aware that I prefer to lock my screen when I suspend my computer, so in the suspend function I have a call to i3-lock, which is just a wrapper I created to call my locker of choice.&lt;/p&gt;
+
+&lt;p&gt;As far as locking your screen just create a keybind for your favorite locker (e.g., i3lock), like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+l exec i3lock
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=1926#comment-1926</link><description>Sorry, I fell off the face of the earth for a bit... Since it was a bit silly to directly link to a file in my dotfiles repo (changing things around constantly), I created a gist on Github and linked to that instead. Now I don't have enough karma to post links, though... sigh...</description><pubDate>Thu, 30 May 2013 02:21:52 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=1926#comment-1926</guid></item><item><title>Comment by swap38 for &lt;p&gt;My current favorite distro is &lt;a href="http://crunchbanglinux.org/"&gt;CrunchBang&lt;/a&gt;, and &lt;a href="http://corenominal.org/"&gt;the developer&lt;/a&gt; has created &lt;a href="https://github.com/corenominal"&gt;some cool scripts&lt;/a&gt; that come along with it. One of those scripts is called cb-exit and it provides a nice dialog window to handle logout, suspend, reboot, and shutdown. The problem is it is designed around Openbox, so I tweaked it to work with i3 (admittedly I didn't need to do much). Just be aware it does require Python, but that is just for creating the dialog window, you can just rip out the dbus commands and use them any way you want.&lt;/p&gt;
+
+&lt;p&gt;I have aptly renamed it to i3-exit and you can &lt;a href="https://gist.github.com/5675359"&gt;download it here&lt;/a&gt;. Just add the script to your path and then create a keybind to call it, such as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+x exec i3-exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, be aware that I prefer to lock my screen when I suspend my computer, so in the suspend function I have a call to i3-lock, which is just a wrapper I created to call my locker of choice.&lt;/p&gt;
+
+&lt;p&gt;As far as locking your screen just create a keybind for your favorite locker (e.g., i3lock), like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+l exec i3lock
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=833#comment-833</link><description>Thanks for i3 exit, it's really cool ! 
+I bind it on the power button :
+
+bindsym XF86PowerOff exec ~/.i3/i3-exit</description><pubDate>Wed, 28 Nov 2012 15:16:18 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=833#comment-833</guid></item><item><title>Comment by blueyed for &lt;p&gt;My current favorite distro is &lt;a href="http://crunchbanglinux.org/"&gt;CrunchBang&lt;/a&gt;, and &lt;a href="http://corenominal.org/"&gt;the developer&lt;/a&gt; has created &lt;a href="https://github.com/corenominal"&gt;some cool scripts&lt;/a&gt; that come along with it. One of those scripts is called cb-exit and it provides a nice dialog window to handle logout, suspend, reboot, and shutdown. The problem is it is designed around Openbox, so I tweaked it to work with i3 (admittedly I didn't need to do much). Just be aware it does require Python, but that is just for creating the dialog window, you can just rip out the dbus commands and use them any way you want.&lt;/p&gt;
+
+&lt;p&gt;I have aptly renamed it to i3-exit and you can &lt;a href="https://gist.github.com/5675359"&gt;download it here&lt;/a&gt;. Just add the script to your path and then create a keybind to call it, such as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+x exec i3-exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, be aware that I prefer to lock my screen when I suspend my computer, so in the suspend function I have a call to i3-lock, which is just a wrapper I created to call my locker of choice.&lt;/p&gt;
+
+&lt;p&gt;As far as locking your screen just create a keybind for your favorite locker (e.g., i3lock), like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+l exec i3lock
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=3427#comment-3427</link><description>I have improved it at bit: https://github.com/blueyed/dotfiles/commit/b422b053738f5229d799a5c8914af66fa9d5eb2f
+But I think I'll use gnome-session-quit instead (`gnome-session-quit --logout` and `gnome-session-quit --power-off`).</description><pubDate>Tue, 25 Feb 2014 20:33:26 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?comment=3427#comment-3427</guid></item><item><title>Answer by joepd for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=1429#post-id-1429</link><description>posting an answer, as a comment cannot be that long. This is the current version of cb-exit at crunchbang linux, could not find a quick link... Community wiki for if someone makes it better suited for i3 ;) 
+
+    #!/usr/bin/env python
+
+    import pygtk
+    pygtk.require('2.0')
+    import gtk
+    import os
+    import getpass
+
+    class cb_exit:
+	    def disable_buttons(self):
+		    self.cancel.set_sensitive(False)
+		    self.logout.set_sensitive(False)
+		    self.suspend.set_sensitive(False)
+		    self.reboot.set_sensitive(False)
+		    self.shutdown.set_sensitive(False)
+
+	    def cancel_action(self,btn):
+		    self.disable_buttons()
+		    gtk.main_quit()
+
+	    def logout_action(self,btn):
+		    self.disable_buttons()
+		    self.status.set_label("Exiting Openbox, please standby...")
+		    os.system("openbox --exit")
+
+	    def suspend_action(self,btn):
+		    self.disable_buttons()
+		    self.status.set_label("Suspending, please standby...")
+		    os.system("cb-lock")
+		    os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Suspend")
+		    gtk.main_quit()
+
+	    def reboot_action(self,btn):
+		    self.disable_buttons()
+		    self.status.set_label("Rebooting, please standby...")
+		    os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart")
+
+	    def shutdown_action(self,btn):
+		    self.disable_buttons()
+		    self.status.set_label("Shutting down, please standby...")
+		    os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop")
+
+	    def create_window(self):
+		    self.window = gtk.Window()
+		    title = "Log out " + getpass.getuser() + "? Choose an option:"
+		    self.window.set_title(title)
+		    self.window.set_border_width(5)
+		    self.window.set_size_request(500, 80)
+		    self.window.set_resizable(False)
+		    self.window.set_keep_above(True)
+		    self.window.stick
+		    self.window.set_position(1)
+		    self.window.connect("delete_event", gtk.main_quit)
+		    windowicon = self.window.render_icon(gtk.STOCK_QUIT, gtk.ICON_SIZE_MENU)
+		    self.window.set_icon(windowicon)
+
+		
+		    #Create HBox for buttons
+		    self.button_box = gtk.HBox()
+		    self.button_box.show()
+		
+		    #Cancel button
+		    self.cancel = gtk.Button(stock = gtk.STOCK_CANCEL)
+		    self.cancel.set_border_width(4)
+		    self.cancel.connect("clicked", self.cancel_action)
+		    self.button_box.pack_start(self.cancel)
+		    self.cancel.show()
+		
+		    #Logout button
+		    self.logout = gtk.Button("_Log out")
+		    self.logout.set_border_width(4)
+		    self.logout.connect("clicked", self.logout_action)
+		    self.button_box.pack_start(self.logout)
+		    self.logout.show()
+		
+		    #Suspend button
+		    self.suspend = gtk.Button("_Suspend")
+		    self.suspend.set_border_width(4)
+		    self.suspend.connect("clicked", self.suspend_action)
+		    self.button_box.pack_start(self.suspend)
+		    self.suspend.show()
+		
+		    #Reboot button
+		    self.reboot = gtk.Button("_Reboot")
+		    self.reboot.set_border_width(4)
+		    self.reboot.connect("clicked", self.reboot_action)
+		    self.button_box.pack_start(self.reboot)
+		    self.reboot.show()
+		
+		    #Shutdown button
+		    self.shutdown = gtk.Button("_Power off")
+		    self.shutdown.set_border_width(4)
+		    self.shutdown.connect("clicked", self.shutdown_action)
+		    self.button_box.pack_start(self.shutdown)
+		    self.shutdown.show()
+		
+		    #Create HBox for status label
+		    self.label_box = gtk.HBox()
+		    self.label_box.show()
+		    self.status = gtk.Label()
+		    self.status.show()
+		    self.label_box.pack_start(self.status)
+		
+		    #Create VBox and pack the above HBox's
+		    self.vbox = gtk.VBox()
+		    self.vbox.pack_start(self.button_box)
+		    self.vbox.pack_start(self.label_box)
+		    self.vbox.show()
+		
+		    self.window.add(self.vbox)
+		    self.window.show()
+		
+	    def __init__(self):
+		    self.create_window()
+
+
+    def main():
+        gtk.main()
+
+    if __name__ == "__main__":
+        go = cb_exit()
+        main()</description><pubDate>Sun, 17 Mar 2013 16:57:22 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=1429#post-id-1429</guid></item><item><title>Answer by Ruben G for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=5557#post-id-5557</link><description>Extending Sam73 comment, the reboot, shutdown &amp; hibernate commands won't work in Ubuntu 14.04+, these are the new ones:
+
+**Reboot:**
+
+    dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true
+
+**Suspend:**
+
+    dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true
+
+**Hibernate:**
+
+    dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Hibernate" boolean:true
+
+Source (can't post direct links): askubuntu.com/questions/454039/what-command-is-executed-when-shutdown-from-the-graphical-menu-in-14-04
+
+Edit 3/26-Two more interesting commands, switch user and switch to guest account without closing current session:
+
+**Switch user:**
+
+    dm-tool switch-to-greeter
+
+**Switch to guest:**
+
+    dm-tool switch-to-guest
+
+
+
+
+</description><pubDate>Mon, 02 Mar 2015 08:25:53 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=5557#post-id-5557</guid></item><item><title>Answer by Ruben G for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=5555#post-id-5555</link><description>The reboot, shutdown &amp; hibernate commands won't work in Ubuntu 14.04+, these are the new ones:
+
+**Reboot:**
+
+    dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true
+
+**Suspend:**
+
+    dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true
+
+**Hibernate:**
+
+    dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Hibernate" boolean:true
+
+Source (can't post direct links): askubuntu.com/questions/454039/what-command-is-executed-when-shutdown-from-the-graphical-menu-in-14-04</description><pubDate>Mon, 02 Mar 2015 08:23:15 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=5555#post-id-5555</guid></item><item><title>Answer by lzap for &lt;p&gt;How do i manage shortcuts? &lt;/p&gt;
+
+&lt;p&gt;eg i logged in but couldnt lock my screen at my office (you have too, or you will get lemonparty everywhere), suspend or even logout. &lt;/p&gt;
+
+&lt;p&gt;(i did some fair amount of googleing before coming here :) )&lt;/p&gt;
+
+&lt;p&gt;// first-day-with-i3-user&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=373#post-id-373</link><description>If you want KDE/GNOME behavior for locking, then:
+
+    bindsym Control+mod1+l exec i3lock</description><pubDate>Sun, 26 Aug 2012 15:12:58 +0000</pubDate><guid>https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/?answer=373#post-id-373</guid></item></channel></rss>

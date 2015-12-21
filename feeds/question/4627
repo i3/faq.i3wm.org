@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4627/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 19 Sep 2014 06:19:07 +0000</lastBuildDate><item><title>Disable border only for splash screens</title><link>https://faq.i3wm.org/question/4627/disable-border-only-for-splash-screens/</link><description>Currently windows with `_NET_WM_WINDOW_TYPE_SPLASH` are considered floating. I would like to disable border for those windows, without disabling the border for other floating windows. How can I do that?</description><pubDate>Mon, 15 Sep 2014 05:17:31 +0000</pubDate><guid>https://faq.i3wm.org/question/4627/disable-border-only-for-splash-screens/</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;Currently windows with &lt;code&gt;_NET_WM_WINDOW_TYPE_SPLASH&lt;/code&gt; are considered floating. I would like to disable border for those windows, without disabling the border for other floating windows. How can I do that?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4627/disable-border-only-for-splash-screens/?answer=4628#post-id-4628</link><description>The command to change the border to a thin line around the window is border 1pixel
+
+    for_window [criteria] action runs action on all new windows that meet criteria
+
+example `for_window [window_role="^splash$"] border 1pixel` may do it if not the entire list of criteria is available at 
+
+http://i3wm.org/docs/userguide.html#command_criteria
+
+to find out the criteria for a given window you may run xprop from the terminal and click on said window and examine the output.  This will tell you what criteria you want to match on.  Note ^foo means starts with foo and foo$ means ends in foo.</description><pubDate>Mon, 15 Sep 2014 05:40:17 +0000</pubDate><guid>https://faq.i3wm.org/question/4627/disable-border-only-for-splash-screens/?answer=4628#post-id-4628</guid></item><item><title>Comment by Michael for &lt;p&gt;The command to change the border to a thin line around the window is border 1pixel&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [criteria] action runs action on all new windows that meet criteria
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;example &lt;code&gt;for_window [window_role="^splash$"] border 1pixel&lt;/code&gt; may do it if not the entire list of criteria is available at &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://i3wm.org/docs/userguide.html#command_criteria"&gt;http://i3wm.org/docs/userguide.html#c...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;to find out the criteria for a given window you may run xprop from the terminal and click on said window and examine the output.  This will tell you what criteria you want to match on.  Note ^foo means starts with foo and foo$ means ends in foo.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4627/disable-border-only-for-splash-screens/?comment=4651#comment-4651</link><description>That’s a good general answer, but there is no criterion for the window type (yet), so you cannot match on  the type being `_NET_WM_WINDOW_TYPE_SPLASH`. Patches for that would be accepted, though.</description><pubDate>Fri, 19 Sep 2014 06:19:07 +0000</pubDate><guid>https://faq.i3wm.org/question/4627/disable-border-only-for-splash-screens/?comment=4651#comment-4651</guid></item></channel></rss>

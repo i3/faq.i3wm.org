@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1273/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 11 Aug 2013 18:10:57 +0000</lastBuildDate><item><title>i3 and emacs integration</title><link>https://faq.i3wm.org/question/1273/i3-and-emacs-integration/</link><description>I just found this [Github repository "vava/i3-emacs"](https://github.com/vava/i3-emacs/) and I think that the idead behind it is quite great: 
+
+emacs was built at a time when i3 and tiling WMs did not exist, and it does quite a good job at faking it.
+
+    C-x 2 splits the editor horizontally 
+    C-x 3 splits it vertically
+    C-x o jumps to the other side
+    C-x 1 only keeps the active buffer
+
+[Vadim Atlygin](http://infra.in.zekjur.net/archives/i3-discuss/2012-June/000716.html) worked on integrating i3 in emacs, *certainly* by, somehow, delegating the execution of these commands to `i3` through IPC messages.
+
+
+However, I can't get it working, and I don't know emacs enough to be able to fix anything in his code.
+
+Any idea how to install it propertly ?, anything else than that:
+
+    (require 'i3)
+    (require 'i3-integration)
+    (i3-one-window-per-frame-mode-on)
+    (i3-advise-visible-frame-list-on)
+
+Any idea what's wrong ? maybe it's just version conflicts ?
+
+    $ i3 -v
+    i3 version 4.4 (2012-12-12, branch "tags/4.4")
+    $ emacs --version
+    GNU Emacs 24.2.1</description><pubDate>Thu, 28 Feb 2013 15:03:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1273/i3-and-emacs-integration/</guid></item><item><title>Answer by fgallina for &lt;p&gt;I just found this &lt;a href="https://github.com/vava/i3-emacs/"&gt;Github repository "vava/i3-emacs"&lt;/a&gt; and I think that the idead behind it is quite great: &lt;/p&gt;
+
+&lt;p&gt;emacs was built at a time when i3 and tiling WMs did not exist, and it does quite a good job at faking it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C-x 2 splits the editor horizontally 
+C-x 3 splits it vertically
+C-x o jumps to the other side
+C-x 1 only keeps the active buffer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="http://infra.in.zekjur.net/archives/i3-discuss/2012-June/000716.html"&gt;Vadim Atlygin&lt;/a&gt; worked on integrating i3 in emacs, &lt;em&gt;certainly&lt;/em&gt; by, somehow, delegating the execution of these commands to &lt;code&gt;i3&lt;/code&gt; through IPC messages.&lt;/p&gt;
+
+&lt;p&gt;However, I can't get it working, and I don't know emacs enough to be able to fix anything in his code.&lt;/p&gt;
+
+&lt;p&gt;Any idea how to install it propertly ?, anything else than that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(require 'i3)
+(require 'i3-integration)
+(i3-one-window-per-frame-mode-on)
+(i3-advise-visible-frame-list-on)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any idea what's wrong ? maybe it's just version conflicts ?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ i3 -v
+i3 version 4.4 (2012-12-12, branch "tags/4.4")
+$ emacs --version
+GNU Emacs 24.2.1
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1273/i3-and-emacs-integration/?answer=1297#post-id-1297</link><description>What's the error you are receiving?
+
+Putting those files in your ~/.emacs.d folder and adding:
+
+    (require 'i3)
+    (require 'i3-integration)
+    (i3-one-window-per-frame-mode-on)
+    (i3-advise-visible-frame-list-on)
+
+To your .emacs should be enough. If you are receiving start-up errors try running Emacs with the --debug-init flag and post the backtrace.</description><pubDate>Mon, 04 Mar 2013 05:31:49 +0000</pubDate><guid>https://faq.i3wm.org/question/1273/i3-and-emacs-integration/?answer=1297#post-id-1297</guid></item><item><title>Comment by npostavs for &lt;p&gt;What's the error you are receiving?&lt;/p&gt;
+
+&lt;p&gt;Putting those files in your ~/.emacs.d folder and adding:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(require 'i3)
+(require 'i3-integration)
+(i3-one-window-per-frame-mode-on)
+(i3-advise-visible-frame-list-on)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To your .emacs should be enough. If you are receiving start-up errors try running Emacs with the --debug-init flag and post the backtrace.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1273/i3-and-emacs-integration/?comment=2342#comment-2342</link><description>@kevin: the `C-x n` commands are not supposed to change. The `i3-one-window-per-frame-mode` only affects where Emacs opens new popup windows.</description><pubDate>Sun, 11 Aug 2013 18:10:57 +0000</pubDate><guid>https://faq.i3wm.org/question/1273/i3-and-emacs-integration/?comment=2342#comment-2342</guid></item><item><title>Comment by kevin for &lt;p&gt;What's the error you are receiving?&lt;/p&gt;
+
+&lt;p&gt;Putting those files in your ~/.emacs.d folder and adding:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(require 'i3)
+(require 'i3-integration)
+(i3-one-window-per-frame-mode-on)
+(i3-advise-visible-frame-list-on)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To your .emacs should be enough. If you are receiving start-up errors try running Emacs with the --debug-init flag and post the backtrace.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1273/i3-and-emacs-integration/?comment=1298#comment-1298</link><description>I don't see any error, and that's what is bothering me! My `C-x n` commands work the same way as usual and the `*Messages*` buffer doesn't have anything suspicious, I can even see `i3.el (source)...done` and `i3.el (source)...done` ...</description><pubDate>Mon, 04 Mar 2013 08:35:30 +0000</pubDate><guid>https://faq.i3wm.org/question/1273/i3-and-emacs-integration/?comment=1298#comment-1298</guid></item></channel></rss>

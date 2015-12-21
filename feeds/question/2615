@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2615/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 27 Sep 2013 20:29:35 +0000</lastBuildDate><item><title>insert new workspace</title><link>https://faq.i3wm.org/question/2615/insert-new-workspace/</link><description>Hi all, I'm a new i3 user. I switched from fluxbox a couple of weeks ago and I'm really happy with i3!
+
+My question:
+Is it possible to insert a new workspace between existing workspaces? Say I have stuff on workspaces 1, 2, 3 and 4. For some reason I'd like to push some window from workspace 2 to the workspace next to it, i.e. to workspace 3. However, I don't want my new window to be on workspace 3 mixed with all the other junk I had there. Rather I want my new window to be on a clean workspace 3, and the old workspaces 3 and 4 to be renumbered to 4 and 5.
+
+Thanks!</description><pubDate>Thu, 26 Sep 2013 21:31:42 +0000</pubDate><guid>https://faq.i3wm.org/question/2615/insert-new-workspace/</guid></item><item><title>Answer by urban for &lt;p&gt;Hi all, I'm a new i3 user. I switched from fluxbox a couple of weeks ago and I'm really happy with i3!&lt;/p&gt;
+
+&lt;p&gt;My question:
+Is it possible to insert a new workspace between existing workspaces? Say I have stuff on workspaces 1, 2, 3 and 4. For some reason I'd like to push some window from workspace 2 to the workspace next to it, i.e. to workspace 3. However, I don't want my new window to be on workspace 3 mixed with all the other junk I had there. Rather I want my new window to be on a clean workspace 3, and the old workspaces 3 and 4 to be renumbered to 4 and 5.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2615/insert-new-workspace/?answer=2621#post-id-2621</link><description>Ok! I'll give it a try and post here once I've sort of got it.
+
+Update! (Dec 8 2013)
+
+Hi again, 
+today I looked into this and wrote the following code using i3-py. It does what I want, but I'm sure it can be done simpler. I haven't used python before why I am appreciating any comments for improving that.
+
+    import imp
+    i3=imp.load_source('i3','/home/urban/i3/i3-py/i3-py-master/i3.py')
+    
+    # get current workspace no
+    workspaces = i3.get_workspaces()
+    for workspace in workspaces:
+        if (workspace['visible']):
+            currentno=workspace['num']
+    
+    # next workspace no
+    nextno=currentno+1
+    exists=i3.filter(num=nextno)
+    
+    # get focused windows
+    focused=i3.filter(nodes=[],focused=True)
+    
+    # loop over all workspaces with higher number than the current one if
+    # nextno has windows
+    if exists
+        for workspace in reversed(workspaces):
+            if (workspace['num']&gt;currentno):
+                i3.command('workspace',str(workspace['num']))
+                i3.command('rename','workspace','to',str(workspace['num']+1))
+    
+    # move focused windows to next workspace
+    for window in focused:
+        i3.focus(con_id=window['id'])
+        i3.command('move','window','to','workspace',str(nextno))
+    
+    # go to next (optional)
+    i3.command('workspace',str(nextno))
+
+
+</description><pubDate>Fri, 27 Sep 2013 20:29:35 +0000</pubDate><guid>https://faq.i3wm.org/question/2615/insert-new-workspace/?answer=2621#post-id-2621</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi all, I'm a new i3 user. I switched from fluxbox a couple of weeks ago and I'm really happy with i3!&lt;/p&gt;
+
+&lt;p&gt;My question:
+Is it possible to insert a new workspace between existing workspaces? Say I have stuff on workspaces 1, 2, 3 and 4. For some reason I'd like to push some window from workspace 2 to the workspace next to it, i.e. to workspace 3. However, I don't want my new window to be on workspace 3 mixed with all the other junk I had there. Rather I want my new window to be on a clean workspace 3, and the old workspaces 3 and 4 to be renumbered to 4 and 5.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2615/insert-new-workspace/?answer=2618#post-id-2618</link><description>You can do that using the IPC interface, for example with this sequence of commands:
+
+    i3-msg workspace 4
+    i3-msg rename workspace to 5
+    i3-msg workspace 3
+    i3-msg rename workspace to 4
+    i3-msg workspace 3
+
+Of course you should add some sanity checking and edge case handling, this is only to give you a rough idea.</description><pubDate>Fri, 27 Sep 2013 06:15:47 +0000</pubDate><guid>https://faq.i3wm.org/question/2615/insert-new-workspace/?answer=2618#post-id-2618</guid></item></channel></rss>

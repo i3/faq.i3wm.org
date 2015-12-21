@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3757/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 03 May 2014 19:36:41 +0000</lastBuildDate><item><title>Swapping workspaces script does not work</title><link>https://faq.i3wm.org/question/3757/swapping-workspaces-script-does-not-work/</link><description>Hello, I tried this script "User-contributed article: Swapping workspaces". Sadly I cannot post the link as my karma is insufficient.
+
+However it does not work. Instead I get the following error
+
+    Traceback (most recent call last):
+      File "./swap.py", line 11, in &lt;module&gt;
+        i3.move__workspace__to__output__right()
+      File "/usr/local/lib/python2.7/dist-packages/i3.py", line 412, in function
+        raise response
+    i3.MessageError: Expected one of these tokens: 'window', 'container', 'to', 'workspace', 'output', 'scratchpad', 'left', 'right', 'up', 'down', 'position', 'absolute'
+
+line 11 is:
+ 
+    11 i3.move__workspace__to__output__right(    )
+
+in zsh i3-msg works without a problem as in:
+
+    i3-msg move workspace to output right
+
+I'm using 4.7.2 and the latest python bindings (ziberna/i3-py 0.6.4, 2012-04-28)
+
+Kind regards
+</description><pubDate>Sat, 03 May 2014 18:37:07 +0000</pubDate><guid>https://faq.i3wm.org/question/3757/swapping-workspaces-script-does-not-work/</guid></item><item><title>Comment by TonyC for &lt;p&gt;Hello, I tried this script "User-contributed article: Swapping workspaces". Sadly I cannot post the link as my karma is insufficient.&lt;/p&gt;
+
+&lt;p&gt;However it does not work. Instead I get the following error&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Traceback (most recent call last):
+  File "./swap.py", line 11, in &amp;lt;module&amp;gt;
+    i3.move__workspace__to__output__right()
+  File "/usr/local/lib/python2.7/dist-packages/i3.py", line 412, in function
+    raise response
+i3.MessageError: Expected one of these tokens: 'window', 'container', 'to', 'workspace', 'output', 'scratchpad', 'left', 'right', 'up', 'down', 'position', 'absolute'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;line 11 is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;11 i3.move__workspace__to__output__right(    )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in zsh i3-msg works without a problem as in:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg move workspace to output right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm using 4.7.2 and the latest python bindings (ziberna/i3-py 0.6.4, 2012-04-28)&lt;/p&gt;
+
+&lt;p&gt;Kind regards&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3757/swapping-workspaces-script-does-not-work/?comment=3760#comment-3760</link><description>i3-py is no longer maintained and has lots of bugs. I recommend using [i3ipc-python](https://github.com/acrisci/i3ipc-python) instead.</description><pubDate>Sat, 03 May 2014 19:36:41 +0000</pubDate><guid>https://faq.i3wm.org/question/3757/swapping-workspaces-script-does-not-work/?comment=3760#comment-3760</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hello, I tried this script "User-contributed article: Swapping workspaces". Sadly I cannot post the link as my karma is insufficient.&lt;/p&gt;
+
+&lt;p&gt;However it does not work. Instead I get the following error&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Traceback (most recent call last):
+  File "./swap.py", line 11, in &amp;lt;module&amp;gt;
+    i3.move__workspace__to__output__right()
+  File "/usr/local/lib/python2.7/dist-packages/i3.py", line 412, in function
+    raise response
+i3.MessageError: Expected one of these tokens: 'window', 'container', 'to', 'workspace', 'output', 'scratchpad', 'left', 'right', 'up', 'down', 'position', 'absolute'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;line 11 is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;11 i3.move__workspace__to__output__right(    )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in zsh i3-msg works without a problem as in:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg move workspace to output right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm using 4.7.2 and the latest python bindings (ziberna/i3-py 0.6.4, 2012-04-28)&lt;/p&gt;
+
+&lt;p&gt;Kind regards&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3757/swapping-workspaces-script-does-not-work/?answer=3758#post-id-3758</link><description>I think that should be
+
+    i3.move("workspace", "to", "output", "right")
+
+instead of 
+
+    i3.move__workspace__to__output__right
+
+In ziberna's i3-py the i3 commands are mapped to functions of the same name, any parameters have to be passed as arguments.</description><pubDate>Sat, 03 May 2014 19:17:07 +0000</pubDate><guid>https://faq.i3wm.org/question/3757/swapping-workspaces-script-does-not-work/?answer=3758#post-id-3758</guid></item></channel></rss>

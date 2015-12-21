@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2952/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 30 Nov 2013 12:51:46 +0000</lastBuildDate><item><title>How to have two sibling nodes with many children each</title><link>https://faq.i3wm.org/question/2952/how-to-have-two-sibling-nodes-with-many-children-each/</link><description>I often find myself wanting to have two "stacks" of windows next to each other. I believe in i3's tree model, this would mean I have two sibling nodes in my tree, each with many windows in it. However, I can't seem to create a tree like this.
+
+I know how to have many individual sibling windows, and even how to have many sibling windows with a child containing many windows, but I do not know how to make a second child of many windows.
+
+What I want is something like this:
+
+
+
+                             +----------------+
+                             |                |
+                             |                |
+                             |                |
+                             x----------------xxx
+                           xx                   xxxxxxx
+                         xxx                          xxxxxxxxx
+                       xxx                                    xxx
+                   +---x-+                                   +--xx---+
+                   |     |                                   |       |
+                  x+-----xx                                  x----x--xxx
+                 xx   x   xxx                                x    x     xxxx
+               xxx    x      xxx                            xx    xxx      xxxxx
+              xx      x        xx                           x        xxx       xxxxxx
+            xxx       x         xx                        xxx          xx           xxxx
+          xxx         x           xx                      x             xx             xx
+     +---xx---+    +---x----+   +--x-----+              +-x------+    +--xx------+   +--x-----+
+     |        |    |        |   |        |              |        |    |          |   |        |
+     |        |    |        |   |        |              |        |    |          |   |        |
+     |        |    |        |   |        |              |        |    |          |   |        |
+     |        |    |        |   |        |              |        |    |          |   |        |
+     +--------+    +--------+   +--------+              +--------+    +----------+   +--------+
+
+But the only thing I can seem to make is:
+
+
+                                       +------------+
+                                       |            |
+                                       |            |
+                                       +-------x----x
+                                        x      xxx  xxxxx
+                                      xxx        xxx    xxxxxxx
+                                     xx            xxx        xxxx
+                                   xxx               x           xxxxxx
+                                xxxx                 xx               xxxx
+                             xxxx                   +-xxx-----+      +---x------+
+                         +---x                      |         |      |          |
+                         |   |                      |         |      |          |
+                        xx-x-+                      |         |      |          |
+                       xx  x xxx                    |         |      |          |
+                     xx   xx   x                    +---------+      +----------+
+                  xxxx    x    xxx
+                xxx       x      xxx
+               xx         x        xxx
+           +---x---+  +---x----+  +--x------+
+           |       |  |        |  |         |
+           |       |  |        |  |         |
+           |       |  |        |  |         |
+           +-------+  +--------+  +---------+</description><pubDate>Fri, 22 Nov 2013 20:50:29 +0000</pubDate><guid>https://faq.i3wm.org/question/2952/how-to-have-two-sibling-nodes-with-many-children-each/</guid></item><item><title>Answer by Michael for &lt;p&gt;I often find myself wanting to have two "stacks" of windows next to each other. I believe in i3's tree model, this would mean I have two sibling nodes in my tree, each with many windows in it. However, I can't seem to create a tree like this.&lt;/p&gt;
+
+&lt;p&gt;I know how to have many individual sibling windows, and even how to have many sibling windows with a child containing many windows, but I do not know how to make a second child of many windows.&lt;/p&gt;
+
+&lt;p&gt;What I want is something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;                         +----------------+
+                         |                |
+                         |                |
+                         |                |
+                         x----------------xxx
+                       xx                   xxxxxxx
+                     xxx                          xxxxxxxxx
+                   xxx                                    xxx
+               +---x-+                                   +--xx---+
+               |     |                                   |       |
+              x+-----xx                                  x----x--xxx
+             xx   x   xxx                                x    x     xxxx
+           xxx    x      xxx                            xx    xxx      xxxxx
+          xx      x        xx                           x        xxx       xxxxxx
+        xxx       x         xx                        xxx          xx           xxxx
+      xxx         x           xx                      x             xx             xx
+ +---xx---+    +---x----+   +--x-----+              +-x------+    +--xx------+   +--x-----+
+ |        |    |        |   |        |              |        |    |          |   |        |
+ |        |    |        |   |        |              |        |    |          |   |        |
+ |        |    |        |   |        |              |        |    |          |   |        |
+ |        |    |        |   |        |              |        |    |          |   |        |
+ +--------+    +--------+   +--------+              +--------+    +----------+   +--------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But the only thing I can seem to make is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;                                   +------------+
+                                   |            |
+                                   |            |
+                                   +-------x----x
+                                    x      xxx  xxxxx
+                                  xxx        xxx    xxxxxxx
+                                 xx            xxx        xxxx
+                               xxx               x           xxxxxx
+                            xxxx                 xx               xxxx
+                         xxxx                   +-xxx-----+      +---x------+
+                     +---x                      |         |      |          |
+                     |   |                      |         |      |          |
+                    xx-x-+                      |         |      |          |
+                   xx  x xxx                    |         |      |          |
+                 xx   xx   x                    +---------+      +----------+
+              xxxx    x    xxx
+            xxx       x      xxx
+           xx         x        xxx
+       +---x---+  +---x----+  +--x------+
+       |       |  |        |  |         |
+       |       |  |        |  |         |
+       |       |  |        |  |         |
+       +-------+  +--------+  +---------+
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/2952/how-to-have-two-sibling-nodes-with-many-children-each/?answer=2982#post-id-2982</link><description>joepds answer is correct, but just as an addition: if you want to work with stacks primarily, maybe using `workspace_layout stacked` is convenient for you.</description><pubDate>Tue, 26 Nov 2013 21:33:16 +0000</pubDate><guid>https://faq.i3wm.org/question/2952/how-to-have-two-sibling-nodes-with-many-children-each/?answer=2982#post-id-2982</guid></item><item><title>Comment by Yuri Khan for &lt;p&gt;joepds answer is correct, but just as an addition: if you want to work with stacks primarily, maybe using &lt;code&gt;workspace_layout stacked&lt;/code&gt; is convenient for you.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2952/how-to-have-two-sibling-nodes-with-many-children-each/?comment=2998#comment-2998</link><description>+1. I run with `workspace_layout stacked`. As soon as I move a window out of the stack (e.g. `move right`), it starts a new one.</description><pubDate>Sat, 30 Nov 2013 12:51:46 +0000</pubDate><guid>https://faq.i3wm.org/question/2952/how-to-have-two-sibling-nodes-with-many-children-each/?comment=2998#comment-2998</guid></item><item><title>Answer by joepd for &lt;p&gt;I often find myself wanting to have two "stacks" of windows next to each other. I believe in i3's tree model, this would mean I have two sibling nodes in my tree, each with many windows in it. However, I can't seem to create a tree like this.&lt;/p&gt;
+
+&lt;p&gt;I know how to have many individual sibling windows, and even how to have many sibling windows with a child containing many windows, but I do not know how to make a second child of many windows.&lt;/p&gt;
+
+&lt;p&gt;What I want is something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;                         +----------------+
+                         |                |
+                         |                |
+                         |                |
+                         x----------------xxx
+                       xx                   xxxxxxx
+                     xxx                          xxxxxxxxx
+                   xxx                                    xxx
+               +---x-+                                   +--xx---+
+               |     |                                   |       |
+              x+-----xx                                  x----x--xxx
+             xx   x   xxx                                x    x     xxxx
+           xxx    x      xxx                            xx    xxx      xxxxx
+          xx      x        xx                           x        xxx       xxxxxx
+        xxx       x         xx                        xxx          xx           xxxx
+      xxx         x           xx                      x             xx             xx
+ +---xx---+    +---x----+   +--x-----+              +-x------+    +--xx------+   +--x-----+
+ |        |    |        |   |        |              |        |    |          |   |        |
+ |        |    |        |   |        |              |        |    |          |   |        |
+ |        |    |        |   |        |              |        |    |          |   |        |
+ |        |    |        |   |        |              |        |    |          |   |        |
+ +--------+    +--------+   +--------+              +--------+    +----------+   +--------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But the only thing I can seem to make is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;                                   +------------+
+                                   |            |
+                                   |            |
+                                   +-------x----x
+                                    x      xxx  xxxxx
+                                  xxx        xxx    xxxxxxx
+                                 xx            xxx        xxxx
+                               xxx               x           xxxxxx
+                            xxxx                 xx               xxxx
+                         xxxx                   +-xxx-----+      +---x------+
+                     +---x                      |         |      |          |
+                     |   |                      |         |      |          |
+                    xx-x-+                      |         |      |          |
+                   xx  x xxx                    |         |      |          |
+                 xx   xx   x                    +---------+      +----------+
+              xxxx    x    xxx
+            xxx       x      xxx
+           xx         x        xxx
+       +---x---+  +---x----+  +--x------+
+       |       |  |        |  |         |
+       |       |  |        |  |         |
+       |       |  |        |  |         |
+       +-------+  +--------+  +---------+
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/2952/how-to-have-two-sibling-nodes-with-many-children-each/?answer=2953#post-id-2953</link><description>I am taking a guess at what you are actually asking, but I suppose that you are talking about not being able to make a stacking/tabbed container in the right one. That is because ``layout tabbed|stacking`` works like ``layout splith|splitv``, as opposed to  ``split horizontal|vertical``. That is: It operates on the container, rather than the current window. 
+
+Assuming you have created the windows of the left branch, and have the first and only window in the right branch focused, I would press the ``split horizontal`` shortcut. The result is a new container, which you will see if you open an extra window. 
+
+After the second window is open, you can make this new container tabbed or stacking. 
+
+If this does not answer your question, please update your question. And please describe what you actually **do**. 
+
+**Update** 
+Correction. You don't even need to create the second window in the right branch. Just put this in my `i3.conf`:  
+
+    bindsym $mod+Shift+W split v; layout tabbed
+
+This will turn the current window into a tabbed container with only one window. </description><pubDate>Fri, 22 Nov 2013 21:25:32 +0000</pubDate><guid>https://faq.i3wm.org/question/2952/how-to-have-two-sibling-nodes-with-many-children-each/?answer=2953#post-id-2953</guid></item><item><title>Comment by efrey for &lt;p&gt;I am taking a guess at what you are actually asking, but I suppose that you are talking about not being able to make a stacking/tabbed container in the right one. That is because &lt;code&gt;layout tabbed|stacking&lt;/code&gt; works like &lt;code&gt;layout splith|splitv&lt;/code&gt;, as opposed to  &lt;code&gt;split horizontal|vertical&lt;/code&gt;. That is: It operates on the container, rather than the current window. &lt;/p&gt;
+
+&lt;p&gt;Assuming you have created the windows of the left branch, and have the first and only window in the right branch focused, I would press the &lt;code&gt;split horizontal&lt;/code&gt; shortcut. The result is a new container, which you will see if you open an extra window. &lt;/p&gt;
+
+&lt;p&gt;After the second window is open, you can make this new container tabbed or stacking. &lt;/p&gt;
+
+&lt;p&gt;If this does not answer your question, please update your question. And please describe what you actually &lt;strong&gt;do&lt;/strong&gt;. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt; 
+Correction. You don't even need to create the second window in the right branch. Just put this in my &lt;code&gt;i3.conf&lt;/code&gt;:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+W split v; layout tabbed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will turn the current window into a tabbed container with only one window. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2952/how-to-have-two-sibling-nodes-with-many-children-each/?comment=2954#comment-2954</link><description>Oh, I see the problem now. I have only been using the `layout split(h|v)` commands, not the `split horizontal` command. After reading your comments I returned to the manual and found what you are talking about. Thanks!</description><pubDate>Fri, 22 Nov 2013 21:38:27 +0000</pubDate><guid>https://faq.i3wm.org/question/2952/how-to-have-two-sibling-nodes-with-many-children-each/?comment=2954#comment-2954</guid></item></channel></rss>

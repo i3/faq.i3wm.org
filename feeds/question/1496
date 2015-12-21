@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1496/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 24 Apr 2015 01:03:16 +0000</lastBuildDate><item><title>change Caps Lock to Esc in i3</title><link>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/</link><description>I use vim and i am accustomed to replace the function of caps lock with esc. 
+So, my problem is how could i switch them in i3?</description><pubDate>Sun, 31 Mar 2013 11:21:54 +0000</pubDate><guid>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/</guid></item><item><title>Answer by mschaefer for &lt;p&gt;I use vim and i am accustomed to replace the function of caps lock with esc. 
+So, my problem is how could i switch them in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?answer=1501#post-id-1501</link><description>I don't know a direct i3 solution but you could bind the escape key to xdotool:
+
+    bindsym Escape exec xdotool key 66
+
+(66 being the keyCODE for Capslock, maybe check it using xev). Xdotool is available via package management in at least Ubuntu and Arch Linux.</description><pubDate>Sun, 31 Mar 2013 12:13:05 +0000</pubDate><guid>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?answer=1501#post-id-1501</guid></item><item><title>Comment by Michael for &lt;p&gt;I don't know a direct i3 solution but you could bind the escape key to xdotool:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Escape exec xdotool key 66
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(66 being the keyCODE for Capslock, maybe check it using xev). Xdotool is available via package management in at least Ubuntu and Arch Linux.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?comment=1505#comment-1505</link><description>Note that this is the wrong way around and involves executing a new process every time you press a key. See the other answer instead for the proper solution.</description><pubDate>Sun, 31 Mar 2013 14:32:21 +0000</pubDate><guid>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?comment=1505#comment-1505</guid></item><item><title>Answer by schischi for &lt;p&gt;I use vim and i am accustomed to replace the function of caps lock with esc. 
+So, my problem is how could i switch them in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?answer=1596#post-id-1596</link><description>You can also use:
+
+    setxkbmap -layout us -option caps:escape</description><pubDate>Tue, 09 Apr 2013 15:36:15 +0000</pubDate><guid>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?answer=1596#post-id-1596</guid></item><item><title>Answer by vandannen for &lt;p&gt;I use vim and i am accustomed to replace the function of caps lock with esc. 
+So, my problem is how could i switch them in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?answer=1502#post-id-1502</link><description>you can modify your keyboard layout with xmodmap. To replace the caps_lock functionality with escape you could execute the following commands on startup:
+
+    xmodmap -e "clear lock" #disable caps lock switch
+    xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape</description><pubDate>Sun, 31 Mar 2013 13:45:34 +0000</pubDate><guid>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?answer=1502#post-id-1502</guid></item><item><title>Comment by elvis for &lt;p&gt;you can modify your keyboard layout with xmodmap. To replace the caps_lock functionality with escape you could execute the following commands on startup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap -e "clear lock" #disable caps lock switch
+xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?comment=1597#comment-1597</link><description>but i would not have "Caps_Lock" function. Are there any way to switch them instead of removing the "Caps_Lock" ?</description><pubDate>Tue, 09 Apr 2013 15:47:46 +0000</pubDate><guid>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?comment=1597#comment-1597</guid></item><item><title>Comment by ethanmad for &lt;p&gt;you can modify your keyboard layout with xmodmap. To replace the caps_lock functionality with escape you could execute the following commands on startup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap -e "clear lock" #disable caps lock switch
+xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?comment=5888#comment-5888</link><description>Worked for me!</description><pubDate>Fri, 24 Apr 2015 01:03:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1496/change-caps-lock-to-esc-in-i3/?comment=5888#comment-5888</guid></item></channel></rss>

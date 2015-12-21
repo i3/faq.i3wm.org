@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2459/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 15 Sep 2013 15:04:48 +0000</lastBuildDate><item><title>new_window 1pixel ignored in config</title><link>https://faq.i3wm.org/question/2459/new_window-1pixel-ignored-in-config/</link><description>I am running i3 4.6 from sur5r's ubuntu ppa. When I change my .i3/config and alter the new_window variable, the only values which are honored are 'normal' and 'pixel 2'. Any other value which does not cause an error simply does the same thing as 'pixel 2'. 
+
+I can do i3-msg border pixel 1, and get an actual 1 pixel border, or a 10 pixel border if I wish, but if I use the same value in the .i3/config, still only normal and two-pixel borders.</description><pubDate>Fri, 30 Aug 2013 02:22:04 +0000</pubDate><guid>https://faq.i3wm.org/question/2459/new_window-1pixel-ignored-in-config/</guid></item><item><title>Comment by DocOC for &lt;p&gt;I am running i3 4.6 from sur5r's ubuntu ppa. When I change my .i3/config and alter the new_window variable, the only values which are honored are 'normal' and 'pixel 2'. Any other value which does not cause an error simply does the same thing as 'pixel 2'. &lt;/p&gt;
+
+&lt;p&gt;I can do i3-msg border pixel 1, and get an actual 1 pixel border, or a 10 pixel border if I wish, but if I use the same value in the .i3/config, still only normal and two-pixel borders.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2459/new_window-1pixel-ignored-in-config/?comment=2468#comment-2468</link><description>From i3-dump-log:
+08/31/2013 09:04:30 PM - con.c:con_border_style_rect:1076 - The border width for con is set to: -1
+08/31/2013 09:04:30 PM - con.c:con_border_style_rect:1080 - Effective border width is set to: 2</description><pubDate>Sun, 01 Sep 2013 01:36:32 +0000</pubDate><guid>https://faq.i3wm.org/question/2459/new_window-1pixel-ignored-in-config/?comment=2468#comment-2468</guid></item><item><title>Answer by DocOC for &lt;p&gt;I am running i3 4.6 from sur5r's ubuntu ppa. When I change my .i3/config and alter the new_window variable, the only values which are honored are 'normal' and 'pixel 2'. Any other value which does not cause an error simply does the same thing as 'pixel 2'. &lt;/p&gt;
+
+&lt;p&gt;I can do i3-msg border pixel 1, and get an actual 1 pixel border, or a 10 pixel border if I wish, but if I use the same value in the .i3/config, still only normal and two-pixel borders.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2459/new_window-1pixel-ignored-in-config/?answer=2469#post-id-2469</link><description>I don't know why i3 thinks the default container border width is set to -1, but it does. I have, however, found a work-around, in case this will help anyone else. I put this in my .i3/config
+
+for_window [class="\w*"] border pixel 1
+
+It also works with values like pixel 3 or pixel 9.</description><pubDate>Sun, 01 Sep 2013 02:18:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2459/new_window-1pixel-ignored-in-config/?answer=2469#post-id-2469</guid></item><item><title>Comment by Havoc for &lt;p&gt;I don't know why i3 thinks the default container border width is set to -1, but it does. I have, however, found a work-around, in case this will help anyone else. I put this in my .i3/config&lt;/p&gt;
+
+&lt;p&gt;for_window [class="\w*"] border pixel 1&lt;/p&gt;
+
+&lt;p&gt;It also works with values like pixel 3 or pixel 9.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2459/new_window-1pixel-ignored-in-config/?comment=2530#comment-2530</link><description>Hi this works, but it will overwrite "new_float normal".  How to set tiling window for 1 pixel, and floating window with window title bar? Thanks.
+</description><pubDate>Sun, 15 Sep 2013 15:04:48 +0000</pubDate><guid>https://faq.i3wm.org/question/2459/new_window-1pixel-ignored-in-config/?comment=2530#comment-2530</guid></item></channel></rss>

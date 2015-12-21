@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4998/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 26 Mar 2015 22:29:46 +0000</lastBuildDate><item><title>HUGE font on startup</title><link>https://faq.i3wm.org/question/4998/huge-font-on-startup/</link><description>I've been trying to customize my config a bit.  After I changed the font, I've been noticing the font size will be huge when I login with i3.  We're talking at least twice as tall.  
+
+I figured out restarting i3 seems to fix it.  However, this also seems to change the behavior of gnome-settings-daemon slightly (which I use for small little conveniences--nothing major), and I feel like I shouldn't have to restart the WM to have properly sized font.
+
+I'm wondering if anyone has encountered this issue, or if they know how I might fix it?  (note:  the default font does not suffer this issue).  the font lines from my config (one or the other would always be commented out):
+
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    font pango:DejaVu Sans Mono 10
+
+edit:
+
+OS:  Debian 7.7 Wheezy (stable)
+
+i3 version: 4.8</description><pubDate>Sun, 23 Nov 2014 03:19:00 +0000</pubDate><guid>https://faq.i3wm.org/question/4998/huge-font-on-startup/</guid></item><item><title>Answer by drak3 for &lt;p&gt;I've been trying to customize my config a bit.  After I changed the font, I've been noticing the font size will be huge when I login with i3.  We're talking at least twice as tall.  &lt;/p&gt;
+
+&lt;p&gt;I figured out restarting i3 seems to fix it.  However, this also seems to change the behavior of gnome-settings-daemon slightly (which I use for small little conveniences--nothing major), and I feel like I shouldn't have to restart the WM to have properly sized font.&lt;/p&gt;
+
+&lt;p&gt;I'm wondering if anyone has encountered this issue, or if they know how I might fix it?  (note:  the default font does not suffer this issue).  the font lines from my config (one or the other would always be commented out):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:DejaVu Sans Mono 10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;edit:&lt;/p&gt;
+
+&lt;p&gt;OS:  Debian 7.7 Wheezy (stable)&lt;/p&gt;
+
+&lt;p&gt;i3 version: 4.8&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4998/huge-font-on-startup/?answer=5001#post-id-5001</link><description>It would appear the issue was with my DPI settings.  For some reason, the DPI would be set to some higher than actual value when i3 started.  the lines I added to my configuration:
+
+    Option "DPI" "96 x 96"
+
+Odd that the DPI would be detected by xorg properly (using `xdpyinfo | grep -B2 resolution`), but would not display correctly the first time...</description><pubDate>Sun, 23 Nov 2014 13:52:20 +0000</pubDate><guid>https://faq.i3wm.org/question/4998/huge-font-on-startup/?answer=5001#post-id-5001</guid></item><item><title>Comment by kynan for &lt;p&gt;It would appear the issue was with my DPI settings.  For some reason, the DPI would be set to some higher than actual value when i3 started.  the lines I added to my configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Option "DPI" "96 x 96"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Odd that the DPI would be detected by xorg properly (using &lt;code&gt;xdpyinfo | grep -B2 resolution&lt;/code&gt;), but would not display correctly the first time...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4998/huge-font-on-startup/?comment=5671#comment-5671</link><description>Since it's a laptop I switch display configurations very frequently so it's just easier without an `xorg.conf`. I might try to just set those specific settings in a dedicated conf file in `/etc/X11/xorg.conf.d`.</description><pubDate>Thu, 26 Mar 2015 22:29:46 +0000</pubDate><guid>https://faq.i3wm.org/question/4998/huge-font-on-startup/?comment=5671#comment-5671</guid></item><item><title>Comment by drak3 for &lt;p&gt;It would appear the issue was with my DPI settings.  For some reason, the DPI would be set to some higher than actual value when i3 started.  the lines I added to my configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Option "DPI" "96 x 96"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Odd that the DPI would be detected by xorg properly (using &lt;code&gt;xdpyinfo | grep -B2 resolution&lt;/code&gt;), but would not display correctly the first time...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4998/huge-font-on-startup/?comment=5667#comment-5667</link><description>not sure.  why do you want to avoid it?  I think this might be an nVidia issue.  I have since switched to an AMD card, and did not have the issue with a default xorg.conf</description><pubDate>Thu, 26 Mar 2015 12:29:46 +0000</pubDate><guid>https://faq.i3wm.org/question/4998/huge-font-on-startup/?comment=5667#comment-5667</guid></item><item><title>Comment by kynan for &lt;p&gt;It would appear the issue was with my DPI settings.  For some reason, the DPI would be set to some higher than actual value when i3 started.  the lines I added to my configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Option "DPI" "96 x 96"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Odd that the DPI would be detected by xorg properly (using &lt;code&gt;xdpyinfo | grep -B2 resolution&lt;/code&gt;), but would not display correctly the first time...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4998/huge-font-on-startup/?comment=5662#comment-5662</link><description>What if you don't want to create an `xorg.conf`?</description><pubDate>Thu, 26 Mar 2015 07:46:54 +0000</pubDate><guid>https://faq.i3wm.org/question/4998/huge-font-on-startup/?comment=5662#comment-5662</guid></item></channel></rss>

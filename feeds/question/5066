@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5066/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 02 Dec 2014 00:24:19 +0000</lastBuildDate><item><title>How do I stack two selected window out of 4 windows?</title><link>https://faq.i3wm.org/question/5066/how-do-i-stack-two-selected-window-out-of-4-windows/</link><description>Let's say I have 4 windows side by side. How do I group them into 2 groups and stack each of them?</description><pubDate>Mon, 01 Dec 2014 06:20:51 +0000</pubDate><guid>https://faq.i3wm.org/question/5066/how-do-i-stack-two-selected-window-out-of-4-windows/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Let's say I have 4 windows side by side. How do I group them into 2 groups and stack each of them?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5066/how-do-i-stack-two-selected-window-out-of-4-windows/?answer=5067#post-id-5067</link><description>Let say, you have 4 windows in a horizontally split container, looking like this:
+
+    +-1--+-2--+-3--+-4--+
+    |    |    |    |    |
+    |    |    |    |    |
+    +----+----+----+----+
+
+And you want to order them into two tabbed containers inside a horizontally split container, looking like this:
+
+    +-1-------+-3-------+
+    +-2-------+-4-------+
+    |         |         |
+    +---------+---------+
+
+One way to do this is:
+
+Focus window "1" and run the following i3 command (here with `i3-msg`, but it could be bound to a key):
+
+    i3-msg 'split vertical, focus right, move left, layout stacking, focus right, split vertical, focus right, move left, layout stacking'
+
+Explanation:
+
+1. `split vertical` or `split horizontal`: creates a split container in place of window "1" with window "1" in it. (Which split does not matter as the layout will be changed in the next step)
+2. `layout stacking`: switch layout of the new container to stacking
+3. `focus right`: focuses window "2"
+4. `move left`: moves window "2" into the stacking container
+5. `focus right`: focuses window "3"
+6. `split vertical` or `split horizontal`: same as step 2.
+7. `layout stacking`: same as step 3.
+8. `focus right`: focuses window "4"
+9. `move left`: moves window "4" into the same stacked container as window "3"
+
+As no window is moved outside of the original split container, this should work reliably even if this container is surrounded by other containers.
+
+If these are the only four windows on a workspace, this would be shorter:
+
+1. `layout stacking`
+2. focus window "1"
+3. `move left`
+4. `layout stacking`
+5. `focus right`:should focus  window "2"
+6. `move left`
+
+----
+
+Generally speaking, to get a certain layout do the following:
+
+1. Move all needed windows into the same container
+2. Change layout of this container to the desired type. (`layout &lt;splith|splitv|tabbed|stacking&gt;`)
+3. If a sub-container is needed, use `split vertical` or `split horizontal` on one window you want to have in this sub-container. This creates a container with the window in it.
+4. do steps 1. - 3. for the sub-container
+5. If more sub-containers are needed go to step 3.
+
+(Step 1. and 2. are interchangeable)
+
+In some cases there may be shorter ways, but the above should work everytime.</description><pubDate>Mon, 01 Dec 2014 08:50:37 +0000</pubDate><guid>https://faq.i3wm.org/question/5066/how-do-i-stack-two-selected-window-out-of-4-windows/?answer=5067#post-id-5067</guid></item><item><title>Comment by xuhdev for &lt;p&gt;Let say, you have 4 windows in a horizontally split container, looking like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+-1--+-2--+-3--+-4--+
+|    |    |    |    |
+|    |    |    |    |
++----+----+----+----+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And you want to order them into two tabbed containers inside a horizontally split container, looking like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+-1-------+-3-------+
++-2-------+-4-------+
+|         |         |
++---------+---------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;One way to do this is:&lt;/p&gt;
+
+&lt;p&gt;Focus window "1" and run the following i3 command (here with &lt;code&gt;i3-msg&lt;/code&gt;, but it could be bound to a key):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg 'split vertical, focus right, move left, layout stacking, focus right, split vertical, focus right, move left, layout stacking'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Explanation:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;split vertical&lt;/code&gt; or &lt;code&gt;split horizontal&lt;/code&gt;: creates a split container in place of window "1" with window "1" in it. (Which split does not matter as the layout will be changed in the next step)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;layout stacking&lt;/code&gt;: switch layout of the new container to stacking&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;focus right&lt;/code&gt;: focuses window "2"&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;move left&lt;/code&gt;: moves window "2" into the stacking container&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;focus right&lt;/code&gt;: focuses window "3"&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;split vertical&lt;/code&gt; or &lt;code&gt;split horizontal&lt;/code&gt;: same as step 2.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;layout stacking&lt;/code&gt;: same as step 3.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;focus right&lt;/code&gt;: focuses window "4"&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;move left&lt;/code&gt;: moves window "4" into the same stacked container as window "3"&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;As no window is moved outside of the original split container, this should work reliably even if this container is surrounded by other containers.&lt;/p&gt;
+
+&lt;p&gt;If these are the only four windows on a workspace, this would be shorter:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;layout stacking&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;focus window "1"&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;move left&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;layout stacking&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;focus right&lt;/code&gt;:should focus  window "2"&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;move left&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Generally speaking, to get a certain layout do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Move all needed windows into the same container&lt;/li&gt;
+&lt;li&gt;Change layout of this container to the desired type. (&lt;code&gt;layout &amp;lt;splith|splitv|tabbed|stacking&amp;gt;&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;If a sub-container is needed, use &lt;code&gt;split vertical&lt;/code&gt; or &lt;code&gt;split horizontal&lt;/code&gt; on one window you want to have in this sub-container. This creates a container with the window in it.&lt;/li&gt;
+&lt;li&gt;do steps 1. - 3. for the sub-container&lt;/li&gt;
+&lt;li&gt;If more sub-containers are needed go to step 3.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;(Step 1. and 2. are interchangeable)&lt;/p&gt;
+
+&lt;p&gt;In some cases there may be shorter ways, but the above should work everytime.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5066/how-do-i-stack-two-selected-window-out-of-4-windows/?comment=5075#comment-5075</link><description>Very clear, and the conclusion to get any certain layout is great!</description><pubDate>Tue, 02 Dec 2014 00:24:19 +0000</pubDate><guid>https://faq.i3wm.org/question/5066/how-do-i-stack-two-selected-window-out-of-4-windows/?comment=5075#comment-5075</guid></item></channel></rss>

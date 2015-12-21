@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2718/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 05 Nov 2013 11:49:55 +0000</lastBuildDate><item><title>i3status on secondary monitor only?</title><link>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/</link><description>I'm using a setup with dual portrait displays, and I'm wondering if there is a way to have i3status on the 2nd display only.
+Having the same thing displayed twice makes it look cluttered, not mention it's redundant.
+Here's what my bar section looks like:
+
+`bar {
+mode dock
+position top
+font pango: cure 10
+workspace_buttons yes
+tray_output none
+status ~/.i3./conky.sh
+}`</description><pubDate>Wed, 16 Oct 2013 08:15:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/</guid></item><item><title>Answer by mschaefer for &lt;p&gt;I'm using a setup with dual portrait displays, and I'm wondering if there is a way to have i3status on the 2nd display only.
+Having the same thing displayed twice makes it look cluttered, not mention it's redundant.
+Here's what my bar section looks like:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bar {
+mode dock
+position top
+font pango: cure 10
+workspace_buttons yes
+tray_output none
+status ~/.i3./conky.sh
+}&lt;/code&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?answer=2719#post-id-2719</link><description>You can use &lt;code&gt;output [output name]&lt;/code&gt; in the bar section of your i3 config file to specify where the bar should be shown. See [i3 user's guide](http://i3wm.org/docs/userguide.html#_configuring_i3bar), section 5.6
+
+Edit: Okay, this way also the workspace buttons are removed. If you don't want that but just remove the status bar, just create a second bar section in the config without a status command, c.f. the complete example in section 5.6 of the user's guide.</description><pubDate>Wed, 16 Oct 2013 09:39:47 +0000</pubDate><guid>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?answer=2719#post-id-2719</guid></item><item><title>Comment by Adaephon for &lt;p&gt;You can use &lt;code&gt;output [output name]&lt;/code&gt; in the bar section of your i3 config file to specify where the bar should be shown. See &lt;a href="http://i3wm.org/docs/userguide.html#_configuring_i3bar"&gt;i3 user's guide&lt;/a&gt;, section 5.6&lt;/p&gt;
+
+&lt;p&gt;Edit: Okay, this way also the workspace buttons are removed. If you don't want that but just remove the status bar, just create a second bar section in the config without a status command, c.f. the complete example in section 5.6 of the user's guide.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?comment=2833#comment-2833</link><description>Could you check if you have `force_xinerama yes` somewhere in your config? In that case the outputs would be named `xinerama-0` and `xinerama-1` no matter what `xrandr` says. This was [needed for older nVidia drivers](http://i3wm.org/docs/multi-monitor.html) and you may no longer need it.</description><pubDate>Tue, 05 Nov 2013 11:49:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?comment=2833#comment-2833</guid></item><item><title>Comment by mschaefer for &lt;p&gt;You can use &lt;code&gt;output [output name]&lt;/code&gt; in the bar section of your i3 config file to specify where the bar should be shown. See &lt;a href="http://i3wm.org/docs/userguide.html#_configuring_i3bar"&gt;i3 user's guide&lt;/a&gt;, section 5.6&lt;/p&gt;
+
+&lt;p&gt;Edit: Okay, this way also the workspace buttons are removed. If you don't want that but just remove the status bar, just create a second bar section in the config without a status command, c.f. the complete example in section 5.6 of the user's guide.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?comment=2724#comment-2724</link><description>Could you post the bar sections of your config in your initial post? Could be helpful</description><pubDate>Wed, 16 Oct 2013 10:54:43 +0000</pubDate><guid>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?comment=2724#comment-2724</guid></item><item><title>Comment by Greymon for &lt;p&gt;You can use &lt;code&gt;output [output name]&lt;/code&gt; in the bar section of your i3 config file to specify where the bar should be shown. See &lt;a href="http://i3wm.org/docs/userguide.html#_configuring_i3bar"&gt;i3 user's guide&lt;/a&gt;, section 5.6&lt;/p&gt;
+
+&lt;p&gt;Edit: Okay, this way also the workspace buttons are removed. If you don't want that but just remove the status bar, just create a second bar section in the config without a status command, c.f. the complete example in section 5.6 of the user's guide.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?comment=2723#comment-2723</link><description>Sorry, I'm really bad at troubleshooting. When I use output DVI-I-3 in the bar section and reload i3, i3bar disappears. I can still move between workspaces, but the bar is gone entirely. I've tried DVI-I-2, as well, with same results, as well as DVI2 and DVI3.</description><pubDate>Wed, 16 Oct 2013 10:30:01 +0000</pubDate><guid>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?comment=2723#comment-2723</guid></item><item><title>Comment by Greymon for &lt;p&gt;You can use &lt;code&gt;output [output name]&lt;/code&gt; in the bar section of your i3 config file to specify where the bar should be shown. See &lt;a href="http://i3wm.org/docs/userguide.html#_configuring_i3bar"&gt;i3 user's guide&lt;/a&gt;, section 5.6&lt;/p&gt;
+
+&lt;p&gt;Edit: Okay, this way also the workspace buttons are removed. If you don't want that but just remove the status bar, just create a second bar section in the config without a status command, c.f. the complete example in section 5.6 of the user's guide.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?comment=2720#comment-2720</link><description>This actually highlights another issue I've been having. xrandr lists my monitor outputs as DVI-I-2 and DVI-I-3, but i3 doesn't accepts that as correct, and thus I can't put my bar on a single monitor. What am I doing wrong?</description><pubDate>Wed, 16 Oct 2013 10:07:16 +0000</pubDate><guid>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?comment=2720#comment-2720</guid></item><item><title>Comment by mschaefer for &lt;p&gt;You can use &lt;code&gt;output [output name]&lt;/code&gt; in the bar section of your i3 config file to specify where the bar should be shown. See &lt;a href="http://i3wm.org/docs/userguide.html#_configuring_i3bar"&gt;i3 user's guide&lt;/a&gt;, section 5.6&lt;/p&gt;
+
+&lt;p&gt;Edit: Okay, this way also the workspace buttons are removed. If you don't want that but just remove the status bar, just create a second bar section in the config without a status command, c.f. the complete example in section 5.6 of the user's guide.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?comment=2722#comment-2722</link><description>what do you mean by "doesn't accept that as correct"? It just doesn't work, or do you get some kind of an error? Sure you wrote it correct? I think there are people here that are working with devices exactly named like yours...</description><pubDate>Wed, 16 Oct 2013 10:18:00 +0000</pubDate><guid>https://faq.i3wm.org/question/2718/i3status-on-secondary-monitor-only/?comment=2722#comment-2722</guid></item></channel></rss>

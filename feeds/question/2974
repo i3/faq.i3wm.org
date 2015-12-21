@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2974/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 10 May 2015 01:52:27 +0000</lastBuildDate><item><title>how to use gtk themes with i3</title><link>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/</link><description>How can I use custom gtk themes on a plain i3 install (without any additional desktop environments)?</description><pubDate>Tue, 26 Nov 2013 20:30:14 +0000</pubDate><guid>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/</guid></item><item><title>Answer by cee for &lt;p&gt;How can I use custom gtk themes on a plain i3 install (without any additional desktop environments)?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?answer=2975#post-id-2975</link><description>This [blog post](http://hndr.me/blog/making-my-new-linux-less-ugly/) inspired me to try it out.  
+  
+1. First download the theme you want to use (preferrably one that works for gtk-2.0 and gtk-3.0). My favorite is [delorean-dark-theme](http://killhellokitty.deviantart.com/art/DeLorean-Dark-Themes-3-8-379643446) (not only because of the name).
+2. unzip it
+3. copy both folders **gtk-2.0** and **gtk-3.0** to **~/.config**
+4. create a new config file for gtk2: vim ~/.gtkrc-2.0
+with following content:
+-------------------------------
+
+    gtk-theme-name = "delorean-dark-theme-3.9"  
+    gtk-font-name = "Open Sans 8"  
+    gtk-icon-theme-name = "gnome"  
+
+That's it. I guess you can easily adapt it to any other theme.
+</description><pubDate>Tue, 26 Nov 2013 20:39:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?answer=2975#post-id-2975</guid></item><item><title>Comment by cee for &lt;p&gt;This &lt;a href="http://hndr.me/blog/making-my-new-linux-less-ugly/"&gt;blog post&lt;/a&gt; inspired me to try it out.  &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;First download the theme you want to use (preferrably one that works for gtk-2.0 and gtk-3.0). My favorite is &lt;a href="http://killhellokitty.deviantart.com/art/DeLorean-Dark-Themes-3-8-379643446"&gt;delorean-dark-theme&lt;/a&gt; (not only because of the name).&lt;/li&gt;
+&lt;li&gt;unzip it&lt;/li&gt;
+&lt;li&gt;copy both folders &lt;strong&gt;gtk-2.0&lt;/strong&gt; and &lt;strong&gt;gtk-3.0&lt;/strong&gt; to &lt;strong&gt;~/.config&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;create a new config file for gtk2: vim ~/.gtkrc-2.0&lt;/p&gt;
+
+&lt;h2&gt;with following content:&lt;/h2&gt;
+
+&lt;p&gt;gtk-theme-name = "delorean-dark-theme-3.9" &lt;br/&gt;
+gtk-font-name = "Open Sans 8" &lt;br/&gt;
+gtk-icon-theme-name = "gnome"  &lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That's it. I guess you can easily adapt it to any other theme.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=4911#comment-4911</link><description>Isn't VLC based on Qt? But anyway, if I set "Force window style" from the Interface Settings to GTK+ it looks OK on my Arch Linux.</description><pubDate>Wed, 05 Nov 2014 13:03:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=4911#comment-4911</guid></item><item><title>Comment by Sajo for &lt;p&gt;This &lt;a href="http://hndr.me/blog/making-my-new-linux-less-ugly/"&gt;blog post&lt;/a&gt; inspired me to try it out.  &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;First download the theme you want to use (preferrably one that works for gtk-2.0 and gtk-3.0). My favorite is &lt;a href="http://killhellokitty.deviantart.com/art/DeLorean-Dark-Themes-3-8-379643446"&gt;delorean-dark-theme&lt;/a&gt; (not only because of the name).&lt;/li&gt;
+&lt;li&gt;unzip it&lt;/li&gt;
+&lt;li&gt;copy both folders &lt;strong&gt;gtk-2.0&lt;/strong&gt; and &lt;strong&gt;gtk-3.0&lt;/strong&gt; to &lt;strong&gt;~/.config&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;create a new config file for gtk2: vim ~/.gtkrc-2.0&lt;/p&gt;
+
+&lt;h2&gt;with following content:&lt;/h2&gt;
+
+&lt;p&gt;gtk-theme-name = "delorean-dark-theme-3.9" &lt;br/&gt;
+gtk-font-name = "Open Sans 8" &lt;br/&gt;
+gtk-icon-theme-name = "gnome"  &lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That's it. I guess you can easily adapt it to any other theme.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=4912#comment-4912</link><description>That worked for me. Thanks. I thought it was based on wx - Seems I was wrong. But the issue remains with picard (which also I think is based on wx)</description><pubDate>Wed, 05 Nov 2014 13:12:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=4912#comment-4912</guid></item><item><title>Comment by Sajo for &lt;p&gt;This &lt;a href="http://hndr.me/blog/making-my-new-linux-less-ugly/"&gt;blog post&lt;/a&gt; inspired me to try it out.  &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;First download the theme you want to use (preferrably one that works for gtk-2.0 and gtk-3.0). My favorite is &lt;a href="http://killhellokitty.deviantart.com/art/DeLorean-Dark-Themes-3-8-379643446"&gt;delorean-dark-theme&lt;/a&gt; (not only because of the name).&lt;/li&gt;
+&lt;li&gt;unzip it&lt;/li&gt;
+&lt;li&gt;copy both folders &lt;strong&gt;gtk-2.0&lt;/strong&gt; and &lt;strong&gt;gtk-3.0&lt;/strong&gt; to &lt;strong&gt;~/.config&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;create a new config file for gtk2: vim ~/.gtkrc-2.0&lt;/p&gt;
+
+&lt;h2&gt;with following content:&lt;/h2&gt;
+
+&lt;p&gt;gtk-theme-name = "delorean-dark-theme-3.9" &lt;br/&gt;
+gtk-font-name = "Open Sans 8" &lt;br/&gt;
+gtk-icon-theme-name = "gnome"  &lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That's it. I guess you can easily adapt it to any other theme.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=4909#comment-4909</link><description>This doesn't seem to work with wxWidgets based applications like vlc. How can those be configured?</description><pubDate>Wed, 05 Nov 2014 11:51:19 +0000</pubDate><guid>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=4909#comment-4909</guid></item><item><title>Answer by msx for &lt;p&gt;How can I use custom gtk themes on a plain i3 install (without any additional desktop environments)?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?answer=5970#post-id-5970</link><description>If you run GNOME alongside i3 it is a good idea to have at least these daemos launched at startup:
+
+    # Restore GNOME's settings
+    exec --no-startup-id /usr/libexec/gnome-settings-daemon-localeexec
+    
+    # Fix a bug in gnome-settings-daemon: http://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
+    exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/active false</description><pubDate>Fri, 08 May 2015 12:25:11 +0000</pubDate><guid>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?answer=5970#post-id-5970</guid></item><item><title>Comment by drak3 for &lt;p&gt;If you run GNOME alongside i3 it is a good idea to have at least these daemos launched at startup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Restore GNOME's settings
+exec --no-startup-id /usr/libexec/gnome-settings-daemon-localeexec
+
+# Fix a bug in gnome-settings-daemon: http://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
+exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/active false
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=5981#comment-5981</link><description>this is what I do and it works great.  I've done it for CInnamon, Gnome, and Unity.  lets me use the awesomeness of i3 with some of the conveniences of a DE.</description><pubDate>Sun, 10 May 2015 01:52:27 +0000</pubDate><guid>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=5981#comment-5981</guid></item><item><title>Answer by lasers for &lt;p&gt;How can I use custom gtk themes on a plain i3 install (without any additional desktop environments)?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?answer=2976#post-id-2976</link><description>Alternative: Use lxappearance</description><pubDate>Tue, 26 Nov 2013 20:46:38 +0000</pubDate><guid>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?answer=2976#post-id-2976</guid></item><item><title>Comment by cee for &lt;p&gt;Alternative: Use lxappearance&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=2977#comment-2977</link><description>Sure, there is a program for everything. But I change my theme once and therefore prefer to just copy it to the right place. K-I-S-S</description><pubDate>Tue, 26 Nov 2013 20:51:52 +0000</pubDate><guid>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=2977#comment-2977</guid></item><item><title>Comment by blueyed for &lt;p&gt;Alternative: Use lxappearance&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=3414#comment-3414</link><description>`lxappearance` (and other programs) make it easier to find the right icon theme etc though.</description><pubDate>Sat, 22 Feb 2014 11:59:56 +0000</pubDate><guid>https://faq.i3wm.org/question/2974/how-to-use-gtk-themes-with-i3/?comment=3414#comment-3414</guid></item></channel></rss>

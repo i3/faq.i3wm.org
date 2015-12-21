@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4077/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 27 Feb 2015 09:56:16 +0000</lastBuildDate><item><title>Colour management and ICC profiles</title><link>https://faq.i3wm.org/question/4077/colour-management-and-icc-profiles/</link><description>I have a really bad display without colour management. Within Ubuntu Unity, I use an ICC profile. The profile does not seems to be loaded when running an i3‑wm session. I though I just have to run the same application Ubuntu probably invokes for Unity, but failed to find which one it uses. I installed and tried `xicc` to load the profile, but this do nothing and my calibration test pictures still display badly.
+
+How do one install an ICC profile when running an i3‑wm session ?
+
+</description><pubDate>Tue, 01 Jul 2014 08:29:29 +0000</pubDate><guid>https://faq.i3wm.org/question/4077/colour-management-and-icc-profiles/</guid></item><item><title>Answer by Hibou57 for &lt;p&gt;I have a really bad display without colour management. Within Ubuntu Unity, I use an ICC profile. The profile does not seems to be loaded when running an i3‑wm session. I though I just have to run the same application Ubuntu probably invokes for Unity, but failed to find which one it uses. I installed and tried &lt;code&gt;xicc&lt;/code&gt; to load the profile, but this do nothing and my calibration test pictures still display badly.&lt;/p&gt;
+
+&lt;p&gt;How do one install an ICC profile when running an i3‑wm session ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4077/colour-management-and-icc-profiles/?answer=4107#post-id-4107</link><description>Answering to myself, still feel free to contribute any other answer.
+
+Adding this to i3's `config` file (in `~/.i3` or `~/.config/i3`), works like a charm:
+
+    exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+
+Tested with Ubuntu 12.04.
+
+As a bonus, it makes Ubuntu fonts display a lot better (otherwise, Ubuntu Mono, as an example, displays uglier than within an Ubuntu session).
+</description><pubDate>Thu, 03 Jul 2014 10:06:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4077/colour-management-and-icc-profiles/?answer=4107#post-id-4107</guid></item><item><title>Comment by Ruben G for &lt;p&gt;Answering to myself, still feel free to contribute any other answer.&lt;/p&gt;
+
+&lt;p&gt;Adding this to i3's &lt;code&gt;config&lt;/code&gt; file (in &lt;code&gt;~/.i3&lt;/code&gt; or &lt;code&gt;~/.config/i3&lt;/code&gt;), works like a charm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tested with Ubuntu 12.04.&lt;/p&gt;
+
+&lt;p&gt;As a bonus, it makes Ubuntu fonts display a lot better (otherwise, Ubuntu Mono, as an example, displays uglier than within an Ubuntu session).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4077/colour-management-and-icc-profiles/?comment=5550#comment-5550</link><description>For the fonts issue look into this thread [1] it did the trick for me too.
+I've followed the instructions there, and also I've added this line in my config file:
+
+    exec xrdb -load .Xdefaults
+
+[1] bbs.archlinux.org/viewtopic.php?id=158621</description><pubDate>Fri, 27 Feb 2015 09:56:16 +0000</pubDate><guid>https://faq.i3wm.org/question/4077/colour-management-and-icc-profiles/?comment=5550#comment-5550</guid></item><item><title>Answer by Ruben G for &lt;p&gt;I have a really bad display without colour management. Within Ubuntu Unity, I use an ICC profile. The profile does not seems to be loaded when running an i3‑wm session. I though I just have to run the same application Ubuntu probably invokes for Unity, but failed to find which one it uses. I installed and tried &lt;code&gt;xicc&lt;/code&gt; to load the profile, but this do nothing and my calibration test pictures still display badly.&lt;/p&gt;
+
+&lt;p&gt;How do one install an ICC profile when running an i3‑wm session ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4077/colour-management-and-icc-profiles/?answer=5549#post-id-5549</link><description>I've been looking this today in Ubuntu 14.04 onwards the command would be:
+
+    exec --no-startup-id /usr/bin/unity-settings-daemon
+
+PD. I'm looking for how to do this in a *dual screen* setup outside the Ubuntu/GNOME world and I'm quite lost. Any help is appreciated.
+
+PD2. I've found the answer in this thread [1] for doing it without the unity settings daemon, the argyll package must be installed and the command would be:
+
+    dispwin -d &lt;screen number, 1 or 2 in my case, listed by the utility&gt; -I &lt;profile&gt;
+
+[1] ubuntuforums.org/showthread.php?t=1347896&amp;s=3ead15925f2c9557a23b8fa8cce2d8e1
+
+ </description><pubDate>Fri, 27 Feb 2015 07:54:04 +0000</pubDate><guid>https://faq.i3wm.org/question/4077/colour-management-and-icc-profiles/?answer=5549#post-id-5549</guid></item></channel></rss>

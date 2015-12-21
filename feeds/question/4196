@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4196/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 11 Jul 2014 22:31:08 +0000</lastBuildDate><item><title>Problem when matching windows with changed instance</title><link>https://faq.i3wm.org/question/4196/problem-when-matching-windows-with-changed-instance/</link><description>Hello,
+
+I have the following script running when I press Mod4+Enter : 
+
+    #!/bin/bash
+    i3-msg '[instance="nextURxvt"] move workspace current'
+    WINDOW_ID=`xwininfo -tree -root|grep nextURxvt|awk '{print $1;}'`
+    xprop -id $WINDOW_ID -f WM_CLASS 8ss -set WM_CLASS "urxvt"
+    i3-msg 'exec urxvtc -name nextURxvt'
+
+What it does is : 
+
+- Pull the URxvt instance named nextURxvt from the scratchpad to the current workspace.
+- Change its WM_CLASS from `WM_CLASS(STRING) = "nextURxvt", "URxvt"` to `WM_CLASS(STRING) = "urxvt"`
+- Open a new urxvt in the scratchpad (the mapping is in my i3 config).
+
+The problem is : when I do ` i3-msg '[instance="nextURxvt"] move workspace current'`, even the renamed URxvt's are moved to the current workspace, even though if I run `xprop|grep nextURxvt` there is nothing.
+
+What is wrong ? 
+Thanks
+</description><pubDate>Thu, 10 Jul 2014 13:36:19 +0000</pubDate><guid>https://faq.i3wm.org/question/4196/problem-when-matching-windows-with-changed-instance/</guid></item><item><title>Comment by TonyC for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have the following script running when I press Mod4+Enter : &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+i3-msg '[instance="nextURxvt"] move workspace current'
+WINDOW_ID=`xwininfo -tree -root|grep nextURxvt|awk '{print $1;}'`
+xprop -id $WINDOW_ID -f WM_CLASS 8ss -set WM_CLASS "urxvt"
+i3-msg 'exec urxvtc -name nextURxvt'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What it does is : &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Pull the URxvt instance named nextURxvt from the scratchpad to the current workspace.&lt;/li&gt;
+&lt;li&gt;Change its WM_CLASS from &lt;code&gt;WM_CLASS(STRING) = "nextURxvt", "URxvt"&lt;/code&gt; to &lt;code&gt;WM_CLASS(STRING) = "urxvt"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Open a new urxvt in the scratchpad (the mapping is in my i3 config).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The problem is : when I do &lt;code&gt;i3-msg '[instance="nextURxvt"] move workspace current'&lt;/code&gt;, even the renamed URxvt's are moved to the current workspace, even though if I run &lt;code&gt;xprop|grep nextURxvt&lt;/code&gt; there is nothing.&lt;/p&gt;
+
+&lt;p&gt;What is wrong ? 
+Thanks&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4196/problem-when-matching-windows-with-changed-instance/?comment=4212#comment-4212</link><description>We cache class/instance when the window is managed and then it doesn't get updated afterwards. It's not hard to fix. See https://github.com/i3/i3/issues/1052</description><pubDate>Fri, 11 Jul 2014 22:31:08 +0000</pubDate><guid>https://faq.i3wm.org/question/4196/problem-when-matching-windows-with-changed-instance/?comment=4212#comment-4212</guid></item><item><title>Comment by tigrezno for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have the following script running when I press Mod4+Enter : &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+i3-msg '[instance="nextURxvt"] move workspace current'
+WINDOW_ID=`xwininfo -tree -root|grep nextURxvt|awk '{print $1;}'`
+xprop -id $WINDOW_ID -f WM_CLASS 8ss -set WM_CLASS "urxvt"
+i3-msg 'exec urxvtc -name nextURxvt'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What it does is : &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Pull the URxvt instance named nextURxvt from the scratchpad to the current workspace.&lt;/li&gt;
+&lt;li&gt;Change its WM_CLASS from &lt;code&gt;WM_CLASS(STRING) = "nextURxvt", "URxvt"&lt;/code&gt; to &lt;code&gt;WM_CLASS(STRING) = "urxvt"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Open a new urxvt in the scratchpad (the mapping is in my i3 config).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The problem is : when I do &lt;code&gt;i3-msg '[instance="nextURxvt"] move workspace current'&lt;/code&gt;, even the renamed URxvt's are moved to the current workspace, even though if I run &lt;code&gt;xprop|grep nextURxvt&lt;/code&gt; there is nothing.&lt;/p&gt;
+
+&lt;p&gt;What is wrong ? 
+Thanks&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4196/problem-when-matching-windows-with-changed-instance/?comment=4197#comment-4197</link><description>Have you tried "i3-msg -t get_tree"? there you can see what properties are set on each client.</description><pubDate>Thu, 10 Jul 2014 16:06:48 +0000</pubDate><guid>https://faq.i3wm.org/question/4196/problem-when-matching-windows-with-changed-instance/?comment=4197#comment-4197</guid></item><item><title>Comment by Michael for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have the following script running when I press Mod4+Enter : &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+i3-msg '[instance="nextURxvt"] move workspace current'
+WINDOW_ID=`xwininfo -tree -root|grep nextURxvt|awk '{print $1;}'`
+xprop -id $WINDOW_ID -f WM_CLASS 8ss -set WM_CLASS "urxvt"
+i3-msg 'exec urxvtc -name nextURxvt'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What it does is : &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Pull the URxvt instance named nextURxvt from the scratchpad to the current workspace.&lt;/li&gt;
+&lt;li&gt;Change its WM_CLASS from &lt;code&gt;WM_CLASS(STRING) = "nextURxvt", "URxvt"&lt;/code&gt; to &lt;code&gt;WM_CLASS(STRING) = "urxvt"&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Open a new urxvt in the scratchpad (the mapping is in my i3 config).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The problem is : when I do &lt;code&gt;i3-msg '[instance="nextURxvt"] move workspace current'&lt;/code&gt;, even the renamed URxvt's are moved to the current workspace, even though if I run &lt;code&gt;xprop|grep nextURxvt&lt;/code&gt; there is nothing.&lt;/p&gt;
+
+&lt;p&gt;What is wrong ? 
+Thanks&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4196/problem-when-matching-windows-with-changed-instance/?comment=4205#comment-4205</link><description>In addition to the previous comment, perhaps `i3-dump-log` (see http://i3wm.org/docs/debugging.html) will be helpful.</description><pubDate>Fri, 11 Jul 2014 18:08:16 +0000</pubDate><guid>https://faq.i3wm.org/question/4196/problem-when-matching-windows-with-changed-instance/?comment=4205#comment-4205</guid></item></channel></rss>

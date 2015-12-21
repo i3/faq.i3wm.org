@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4142/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 10 Jul 2014 13:30:36 +0000</lastBuildDate><item><title>Workspace can only be a split container: why?</title><link>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/</link><description>Unless I'm wrong, seems there is no way to give a workspace, a layout of `tabbed` or `stacked`.
+
+With the help of `i3-msg -t get_tree`, I could determine whenever I try to give a workspace, one of these two latter layouts, an intermediate container is created instead, with the requested layout. So seems a workspace can present two layouts only: `splith` or `splitv`.
+
+I would just like to know why, as I don't guess what could prevent a workspace to be `tabbed` or `stacked`, directly.
+
+## Example case
+
+ * Go to a new empty workspace;
+ * Press `$mod+w` (for English layout keyboard) to give it a tabbed layout;
+ * Press `$mod+Enter` to open a new terminal;
+ * Repeat two more times;
+ * You have three terminals, the focused one is the rightmost one;
+ * Press `$mod+Shift+Right` : the terminal goes to a parent split container.
+
+The workspace is not the tabbed container, a child container is, and the workspace is an horizontal split container.
+
+## Introspection case
+
+Each introspection of a state is given as an indented tree, generated using `i3-msg -t get_tree`. For readability, the `root` and `__i3` nodes are not shown. The fields shown in the tree, are, in that order: name, layout, and type.
+
+### Introspection of a workspace with tabbed layout
+
+Initial, with one terminal opened:
+
+    LVDS1|output|output|
+       topdock|dockarea|dockarea|
+       content|splith|con|
+          1:test|splith|workspace|
+             Terminal|splith|con|
+       bottomdock|dockarea|dockarea|
+          i3bar for output LVDS1|splith|con|
+
+
+
+After switching to `tabbed` layout:
+
+    LVDS1|output|output|
+       topdock|dockarea|dockarea|
+       content|splith|con|
+          1:test|splith|workspace|
+             #00FF00|tabbed|con|
+                Terminal|splith|con|
+       bottomdock|dockarea|dockarea|
+          i3bar for output LVDS1|splith|con|
+
+Note the unexpected additional “anonymous” container which appeared, named `#00FF00`. Its layout is `tabbed`, the workspace keeps its `splith` layout.
+
+After a new terminal is opened:
+
+    LVDS1|output|output|
+       topdock|dockarea|dockarea|
+       content|splith|con|
+          1:test|splith|workspace|
+             #00FF00|tabbed|con|
+                Terminal|splith|con|
+                Terminal|splith|con|
+       bottomdock|dockarea|dockarea|
+          i3bar for output LVDS1|splith|con|
+
+The terminal is created in the new `#00FF00` container.
+
+### Introspection of a workspace with split layout
+
+Initial, with one terminal opened:
+
+    LVDS1|output|output|
+       topdock|dockarea|dockarea|
+       content|splith|con|
+          1:test|splith|workspace|
+             Terminal|splith|con|
+       bottomdock|dockarea|dockarea|
+          i3bar for output LVDS1|splith|con|
+
+After switching to `splith` layout:
+
+    LVDS1|output|output|
+       topdock|dockarea|dockarea|
+       content|splith|con|
+          1:test|splith|workspace|
+             Terminal|splith|con|
+       bottomdock|dockarea|dockarea|
+          i3bar for output LVDS1|splith|con|
+
+Note no additional anonymous container is created in this case.
+
+After a new terminal is opened:
+
+    LVDS1|output|output|
+       topdock|dockarea|dockarea|
+       content|splith|con|
+          1:test|splith|workspace|
+             Terminal|splith|con|
+             Terminal|splith|con|
+       bottomdock|dockarea|dockarea|
+          i3bar for output LVDS1|splith|con|
+
+The parent of the new terminal is just the workspace (as expected), not an intermediate container.
+
+The same when switching `splitv`, there is not additional container created (this case is not shown here, for readability).
+
+### Conclusion
+
+An anonymous container is created only when switching the workspace layout to `tabbed` (also to `stacked`), and there is no anonymous container created when switching the workspace layout to `splith` (also to `splitv`). The workspace can only have either a `splith` or a `splitv` layout, proper, and for `tabbed` and `stacked` layout, an intermediate container is created. It does not work the same, depending on the layout.</description><pubDate>Sun, 06 Jul 2014 11:52:31 +0000</pubDate><guid>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/</guid></item><item><title>Comment by phairland for &lt;div class="snippet"&gt;&lt;p&gt;Unless I'm wrong, seems there is no way to give a workspace, a layout of &lt;code&gt;tabbed&lt;/code&gt; or &lt;code&gt;stacked&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;With the help of &lt;code&gt;i3-msg -t get_tree&lt;/code&gt;, I could determine whenever I try to give a workspace, one of these two latter layouts, an intermediate container is created instead, with the requested layout. So seems a workspace can present two layouts only: &lt;code&gt;splith&lt;/code&gt; or &lt;code&gt;splitv&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I would just like to know why, as I don't guess what could prevent a workspace to be &lt;code&gt;tabbed&lt;/code&gt; or &lt;code&gt;stacked&lt;/code&gt;, directly.&lt;/p&gt;
+
+&lt;h2&gt;Example case&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Go to a new empty workspace;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+w&lt;/code&gt; (for English layout keyboard) to give it a tabbed layout;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+Enter&lt;/code&gt; to open a new terminal;&lt;/li&gt;
+&lt;li&gt;Repeat two more times;&lt;/li&gt;
+&lt;li&gt;You have three terminals, the focused one is the rightmost one;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+Shift+Right&lt;/code&gt; : the terminal goes to a parent split container.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The workspace is not the tabbed container, a child container is, and the workspace is an horizontal split container.&lt;/p&gt;
+
+&lt;h2&gt;Introspection case&lt;/h2&gt;
+
+&lt;p&gt;Each introspection of a state is given as an indented tree, generated using &lt;code&gt;i3-msg -t get_tree&lt;/code&gt;. For readability, the &lt;code&gt;root&lt;/code&gt; and &lt;code&gt;__i3&lt;/code&gt; nodes are not shown. The fields shown in the tree, are, in that order: name, layout, and type.&lt;/p&gt;
+
+&lt;h3&gt;Introspection of a workspace with tabbed layout&lt;/h3&gt;
+
+&lt;p&gt;Initial, with one terminal opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After switching to &lt;code&gt;tabbed&lt;/code&gt; layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         #00FF00|tabbed|con|
+            Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the unexpected additional “anonymous” container which appeared, named &lt;code&gt;#00FF00&lt;/code&gt;. Its layout is &lt;code&gt;tabbed&lt;/code&gt;, the workspace keeps its &lt;code&gt;splith&lt;/code&gt; layout.&lt;/p&gt;
+
+&lt;p&gt;After a new terminal is opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         #00FF00|tabbed|con|
+            Terminal|splith|con|
+            Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The terminal is created in the new &lt;code&gt;#00FF00&lt;/code&gt; container.&lt;/p&gt;
+
+&lt;h3&gt;Introspection of a workspace with split layout&lt;/h3&gt;
+
+&lt;p&gt;Initial, with one terminal opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After switching to &lt;code&gt;splith&lt;/code&gt; layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note no additional anonymous container is created in this case.&lt;/p&gt;
+
+&lt;p&gt;After a new terminal is opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The parent of the new terminal is just the workspace (as expected), not an intermediate container.&lt;/p&gt;
+
+&lt;p&gt;The same when switching &lt;code&gt;splitv&lt;/code&gt;, there is not additional container created (this case is not shown here, for readability).&lt;/p&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;An anonymous container is created only when switching the workspace layout to &lt;code&gt;tabbed ...&lt;/code&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/?comment=4143#comment-4143</link><description>Workspaces do not have layouts. The space within a workspace is call a container, which you can change the layout to splitv, splith, stacked or tabbed. You probably need to rephrase your question as it is not very clear. Could you made an example, you may want to include a diagram of text characters</description><pubDate>Sun, 06 Jul 2014 18:21:14 +0000</pubDate><guid>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/?comment=4143#comment-4143</guid></item><item><title>Comment by Hibou57 for &lt;div class="snippet"&gt;&lt;p&gt;Unless I'm wrong, seems there is no way to give a workspace, a layout of &lt;code&gt;tabbed&lt;/code&gt; or &lt;code&gt;stacked&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;With the help of &lt;code&gt;i3-msg -t get_tree&lt;/code&gt;, I could determine whenever I try to give a workspace, one of these two latter layouts, an intermediate container is created instead, with the requested layout. So seems a workspace can present two layouts only: &lt;code&gt;splith&lt;/code&gt; or &lt;code&gt;splitv&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I would just like to know why, as I don't guess what could prevent a workspace to be &lt;code&gt;tabbed&lt;/code&gt; or &lt;code&gt;stacked&lt;/code&gt;, directly.&lt;/p&gt;
+
+&lt;h2&gt;Example case&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Go to a new empty workspace;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+w&lt;/code&gt; (for English layout keyboard) to give it a tabbed layout;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+Enter&lt;/code&gt; to open a new terminal;&lt;/li&gt;
+&lt;li&gt;Repeat two more times;&lt;/li&gt;
+&lt;li&gt;You have three terminals, the focused one is the rightmost one;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+Shift+Right&lt;/code&gt; : the terminal goes to a parent split container.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The workspace is not the tabbed container, a child container is, and the workspace is an horizontal split container.&lt;/p&gt;
+
+&lt;h2&gt;Introspection case&lt;/h2&gt;
+
+&lt;p&gt;Each introspection of a state is given as an indented tree, generated using &lt;code&gt;i3-msg -t get_tree&lt;/code&gt;. For readability, the &lt;code&gt;root&lt;/code&gt; and &lt;code&gt;__i3&lt;/code&gt; nodes are not shown. The fields shown in the tree, are, in that order: name, layout, and type.&lt;/p&gt;
+
+&lt;h3&gt;Introspection of a workspace with tabbed layout&lt;/h3&gt;
+
+&lt;p&gt;Initial, with one terminal opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After switching to &lt;code&gt;tabbed&lt;/code&gt; layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         #00FF00|tabbed|con|
+            Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the unexpected additional “anonymous” container which appeared, named &lt;code&gt;#00FF00&lt;/code&gt;. Its layout is &lt;code&gt;tabbed&lt;/code&gt;, the workspace keeps its &lt;code&gt;splith&lt;/code&gt; layout.&lt;/p&gt;
+
+&lt;p&gt;After a new terminal is opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         #00FF00|tabbed|con|
+            Terminal|splith|con|
+            Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The terminal is created in the new &lt;code&gt;#00FF00&lt;/code&gt; container.&lt;/p&gt;
+
+&lt;h3&gt;Introspection of a workspace with split layout&lt;/h3&gt;
+
+&lt;p&gt;Initial, with one terminal opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After switching to &lt;code&gt;splith&lt;/code&gt; layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note no additional anonymous container is created in this case.&lt;/p&gt;
+
+&lt;p&gt;After a new terminal is opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The parent of the new terminal is just the workspace (as expected), not an intermediate container.&lt;/p&gt;
+
+&lt;p&gt;The same when switching &lt;code&gt;splitv&lt;/code&gt;, there is not additional container created (this case is not shown here, for readability).&lt;/p&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;An anonymous container is created only when switching the workspace layout to &lt;code&gt;tabbed ...&lt;/code&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/?comment=4151#comment-4151</link><description>@phairland, I added an example case.</description><pubDate>Mon, 07 Jul 2014 17:34:09 +0000</pubDate><guid>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/?comment=4151#comment-4151</guid></item><item><title>Answer by ANOKNUSA for &lt;div class="snippet"&gt;&lt;p&gt;Unless I'm wrong, seems there is no way to give a workspace, a layout of &lt;code&gt;tabbed&lt;/code&gt; or &lt;code&gt;stacked&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;With the help of &lt;code&gt;i3-msg -t get_tree&lt;/code&gt;, I could determine whenever I try to give a workspace, one of these two latter layouts, an intermediate container is created instead, with the requested layout. So seems a workspace can present two layouts only: &lt;code&gt;splith&lt;/code&gt; or &lt;code&gt;splitv&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I would just like to know why, as I don't guess what could prevent a workspace to be &lt;code&gt;tabbed&lt;/code&gt; or &lt;code&gt;stacked&lt;/code&gt;, directly.&lt;/p&gt;
+
+&lt;h2&gt;Example case&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Go to a new empty workspace;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+w&lt;/code&gt; (for English layout keyboard) to give it a tabbed layout;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+Enter&lt;/code&gt; to open a new terminal;&lt;/li&gt;
+&lt;li&gt;Repeat two more times;&lt;/li&gt;
+&lt;li&gt;You have three terminals, the focused one is the rightmost one;&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+Shift+Right&lt;/code&gt; : the terminal goes to a parent split container.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The workspace is not the tabbed container, a child container is, and the workspace is an horizontal split container.&lt;/p&gt;
+
+&lt;h2&gt;Introspection case&lt;/h2&gt;
+
+&lt;p&gt;Each introspection of a state is given as an indented tree, generated using &lt;code&gt;i3-msg -t get_tree&lt;/code&gt;. For readability, the &lt;code&gt;root&lt;/code&gt; and &lt;code&gt;__i3&lt;/code&gt; nodes are not shown. The fields shown in the tree, are, in that order: name, layout, and type.&lt;/p&gt;
+
+&lt;h3&gt;Introspection of a workspace with tabbed layout&lt;/h3&gt;
+
+&lt;p&gt;Initial, with one terminal opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After switching to &lt;code&gt;tabbed&lt;/code&gt; layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         #00FF00|tabbed|con|
+            Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the unexpected additional “anonymous” container which appeared, named &lt;code&gt;#00FF00&lt;/code&gt;. Its layout is &lt;code&gt;tabbed&lt;/code&gt;, the workspace keeps its &lt;code&gt;splith&lt;/code&gt; layout.&lt;/p&gt;
+
+&lt;p&gt;After a new terminal is opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         #00FF00|tabbed|con|
+            Terminal|splith|con|
+            Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The terminal is created in the new &lt;code&gt;#00FF00&lt;/code&gt; container.&lt;/p&gt;
+
+&lt;h3&gt;Introspection of a workspace with split layout&lt;/h3&gt;
+
+&lt;p&gt;Initial, with one terminal opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After switching to &lt;code&gt;splith&lt;/code&gt; layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note no additional anonymous container is created in this case.&lt;/p&gt;
+
+&lt;p&gt;After a new terminal is opened:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LVDS1|output|output|
+   topdock|dockarea|dockarea|
+   content|splith|con|
+      1:test|splith|workspace|
+         Terminal|splith|con|
+         Terminal|splith|con|
+   bottomdock|dockarea|dockarea|
+      i3bar for output LVDS1|splith|con|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The parent of the new terminal is just the workspace (as expected), not an intermediate container.&lt;/p&gt;
+
+&lt;p&gt;The same when switching &lt;code&gt;splitv&lt;/code&gt;, there is not additional container created (this case is not shown here, for readability).&lt;/p&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;An anonymous container is created only when switching the workspace layout to &lt;code&gt;tabbed ...&lt;/code&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt; </title><link>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/?answer=4176#post-id-4176</link><description>"Press $mod+Shift+Right : the terminal goes to a parent split container."
+
+Wrong. A "workspace" is really just a particular collection of windows/containers on the screen. As phairland stated, a workspace doesn't have a layout itself, because the workspace itself is *not* a container.
+
+A workspace starts with an invisible container. When a window is opened on the empty workspace, that window is drawn within the top-most parent container on the workspace. That container has a layout---tabbed, stacked or split (depending on the default you've set in your configuration file). When you open more windows within that container they abide by the layout you've set. Once you move a window out of that container it does not move to a split container, but a second parent container is created for it, to be placed next to, above or below its previous parent. Simply put: **The window does not go to a parent split container---it *becomes* a parent container, and has whatever layout you give it.**
+
+What you seem to be asking is "Why can't I just have everything be tabbed containers?" The answer is that you can: Just create nested tabbed containers within the current parent. As soon as you remove a window from the top-most parent container a new parent container is created for it. Not only does this make sense, but doing the opposite (forcing assigned layouts on workspaces) would negate the whole point of manual tiling. Think about it: If a workspace has an assigned tabbed layout, what does the window manager do when I try to move a window upward or downward out of its parent container?</description><pubDate>Wed, 09 Jul 2014 18:47:46 +0000</pubDate><guid>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/?answer=4176#post-id-4176</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;"Press $mod+Shift+Right : the terminal goes to a parent split container."&lt;/p&gt;
+
+&lt;p&gt;Wrong. A "workspace" is really just a particular collection of windows/containers on the screen. As phairland stated, a workspace doesn't have a layout itself, because the workspace itself is &lt;em&gt;not&lt;/em&gt; a container.&lt;/p&gt;
+
+&lt;p&gt;A workspace starts with an invisible container. When a window is opened on the empty workspace, that window is drawn within the top-most parent container on the workspace. That container has a layout---tabbed, stacked or split (depending on the default you've set in your configuration file). When you open more windows within that container they abide by the layout you've set. Once you move a window out of that container it does not move to a split container, but a second parent container is created for it, to be placed next to, above or below its previous parent. Simply put: &lt;strong&gt;The window does not go to a parent split container---it &lt;em&gt;becomes&lt;/em&gt; a parent container, and has whatever layout you give it.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;What you seem to be asking is "Why can't I just have everything be tabbed containers?" The answer is that you can: Just create nested tabbed containers within the current parent. As soon as you remove a window from the top-most parent container a new parent container is created for it. Not only does this make sense, but doing the opposite (forcing assigned layouts on workspaces) would negate the whole point of manual tiling. Think about it: If a workspace has an assigned tabbed layout, what does the window manager do when I try to move a window upward or downward out of its parent container?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/?comment=4195#comment-4195</link><description>This doesn't really clarify what it is you're asking (or rather, *why* you're asking). I won't pretend to understand exactly how the i3 data tree works, but again: How would having a strict tabbed layout for a workspace be beneficial? It seems it would certainly interfere with manual layout control.</description><pubDate>Thu, 10 Jul 2014 13:30:36 +0000</pubDate><guid>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/?comment=4195#comment-4195</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;"Press $mod+Shift+Right : the terminal goes to a parent split container."&lt;/p&gt;
+
+&lt;p&gt;Wrong. A "workspace" is really just a particular collection of windows/containers on the screen. As phairland stated, a workspace doesn't have a layout itself, because the workspace itself is &lt;em&gt;not&lt;/em&gt; a container.&lt;/p&gt;
+
+&lt;p&gt;A workspace starts with an invisible container. When a window is opened on the empty workspace, that window is drawn within the top-most parent container on the workspace. That container has a layout---tabbed, stacked or split (depending on the default you've set in your configuration file). When you open more windows within that container they abide by the layout you've set. Once you move a window out of that container it does not move to a split container, but a second parent container is created for it, to be placed next to, above or below its previous parent. Simply put: &lt;strong&gt;The window does not go to a parent split container---it &lt;em&gt;becomes&lt;/em&gt; a parent container, and has whatever layout you give it.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;What you seem to be asking is "Why can't I just have everything be tabbed containers?" The answer is that you can: Just create nested tabbed containers within the current parent. As soon as you remove a window from the top-most parent container a new parent container is created for it. Not only does this make sense, but doing the opposite (forcing assigned layouts on workspaces) would negate the whole point of manual tiling. Think about it: If a workspace has an assigned tabbed layout, what does the window manager do when I try to move a window upward or downward out of its parent container?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/?comment=4194#comment-4194</link><description>I added cases introspection in the original post, to make the matter more clear.</description><pubDate>Thu, 10 Jul 2014 11:50:19 +0000</pubDate><guid>https://faq.i3wm.org/question/4142/workspace-can-only-be-a-split-container-why/?comment=4194#comment-4194</guid></item></channel></rss>

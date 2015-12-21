@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2187/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 12 Jul 2013 06:34:56 +0000</lastBuildDate><item><title>multilple key to show i3bar in hide mode?</title><link>https://faq.i3wm.org/question/2187/multilple-key-to-show-i3bar-in-hide-mode/</link><description>As far as I can figure out, I can only bind a limited selection of key to show the `i3bar` when it is in hide mode, mod1, mod2, etc. 
+
+Problem is those keys are used for many other things, in i3, and also in other application. For example, when I switch between windows, I ended up toggling the i3bar when I am pressing the modifier key. I find this very disorienting. 
+
+Is there anyway to bind a key combination to this? maybe mod+alt+space or something?</description><pubDate>Fri, 12 Jul 2013 02:58:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2187/multilple-key-to-show-i3bar-in-hide-mode/</guid></item><item><title>Answer by joepd for &lt;p&gt;As far as I can figure out, I can only bind a limited selection of key to show the &lt;code&gt;i3bar&lt;/code&gt; when it is in hide mode, mod1, mod2, etc. &lt;/p&gt;
+
+&lt;p&gt;Problem is those keys are used for many other things, in i3, and also in other application. For example, when I switch between windows, I ended up toggling the i3bar when I am pressing the modifier key. I find this very disorienting. &lt;/p&gt;
+
+&lt;p&gt;Is there anyway to bind a key combination to this? maybe mod+alt+space or something?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2187/multilple-key-to-show-i3bar-in-hide-mode/?answer=2190#post-id-2190</link><description>You can specify the modifyer for showing i3bar as per the [userguide](http://i3wm.org/docs/userguide.html#_display_mode) like this: 
+
+    bar {
+        mode hide
+        modifier Mod1
+    }
+
+Adapt the modifier line to set your [keybinds](http://i3wm.org/docs/userguide.html#keybindings). </description><pubDate>Fri, 12 Jul 2013 05:13:00 +0000</pubDate><guid>https://faq.i3wm.org/question/2187/multilple-key-to-show-i3bar-in-hide-mode/?answer=2190#post-id-2190</guid></item><item><title>Comment by hndr for &lt;p&gt;You can specify the modifyer for showing i3bar as per the &lt;a href="http://i3wm.org/docs/userguide.html#_display_mode"&gt;userguide&lt;/a&gt; like this: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    mode hide
+    modifier Mod1
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Adapt the modifier line to set your &lt;a href="http://i3wm.org/docs/userguide.html#keybindings"&gt;keybinds&lt;/a&gt;. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2187/multilple-key-to-show-i3bar-in-hide-mode/?comment=2195#comment-2195</link><description>done: https://github.com/i3/i3/issues/1050.
+Thanks for the clarification.</description><pubDate>Fri, 12 Jul 2013 06:34:56 +0000</pubDate><guid>https://faq.i3wm.org/question/2187/multilple-key-to-show-i3bar-in-hide-mode/?comment=2195#comment-2195</guid></item><item><title>Comment by hndr for &lt;p&gt;You can specify the modifyer for showing i3bar as per the &lt;a href="http://i3wm.org/docs/userguide.html#_display_mode"&gt;userguide&lt;/a&gt; like this: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    mode hide
+    modifier Mod1
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Adapt the modifier line to set your &lt;a href="http://i3wm.org/docs/userguide.html#keybindings"&gt;keybinds&lt;/a&gt;. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2187/multilple-key-to-show-i3bar-in-hide-mode/?comment=2191#comment-2191</link><description>No, as I as mentioned, I need it to bind to more than 1 keypress, for example Mod4+Shift+Space. 
+putting more than 1 key, or anything other than Mod1-5,Ctrl,Shift to that line will cause an error. </description><pubDate>Fri, 12 Jul 2013 05:19:30 +0000</pubDate><guid>https://faq.i3wm.org/question/2187/multilple-key-to-show-i3bar-in-hide-mode/?comment=2191#comment-2191</guid></item><item><title>Comment by joepd for &lt;p&gt;You can specify the modifyer for showing i3bar as per the &lt;a href="http://i3wm.org/docs/userguide.html#_display_mode"&gt;userguide&lt;/a&gt; like this: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    mode hide
+    modifier Mod1
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Adapt the modifier line to set your &lt;a href="http://i3wm.org/docs/userguide.html#keybindings"&gt;keybinds&lt;/a&gt;. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2187/multilple-key-to-show-i3bar-in-hide-mode/?comment=2193#comment-2193</link><description>OK, now I understand what you mean. `i3-nagbar` show up when using multiple modifier keys, complaining about the key after the `+`. Maybe this is desired behavior for some reason, but please [report it](https://faq.i3wm.org/question/148/how-to-report-bug-or-submit-patch/?answer=149#post-id-149). </description><pubDate>Fri, 12 Jul 2013 06:15:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2187/multilple-key-to-show-i3bar-in-hide-mode/?comment=2193#comment-2193</guid></item></channel></rss>

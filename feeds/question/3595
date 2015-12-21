@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3595/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 30 Mar 2014 18:23:58 +0000</lastBuildDate><item><title>How can I renumber workspaces?</title><link>https://faq.i3wm.org/question/3595/how-can-i-renumber-workspaces/</link><description>After a while, I end up with my workspace list looking like: `2 5 6 7 9 ...`. I would like to consolidate these; i.e. renumber them to `1 2 3 4 5 ... `. Is that possible? Is there a shortcut for it? If not how can I create a shortcut for it?</description><pubDate>Sun, 30 Mar 2014 16:13:48 +0000</pubDate><guid>https://faq.i3wm.org/question/3595/how-can-i-renumber-workspaces/</guid></item><item><title>Answer by TonyC for &lt;p&gt;After a while, I end up with my workspace list looking like: &lt;code&gt;2 5 6 7 9 ...&lt;/code&gt;. I would like to consolidate these; i.e. renumber them to &lt;code&gt;1 2 3 4 5 ...&lt;/code&gt;. Is that possible? Is there a shortcut for it? If not how can I create a shortcut for it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3595/how-can-i-renumber-workspaces/?answer=3596#post-id-3596</link><description>You can do this with the new [ipc library](https://github.com/acrisci/i3ipc-glib). This script uses the [JavaScript](https://github.com/acrisci/i3ipc-gjs) version but the same API is available in many languages. You can find the latest version of this script [here](https://github.com/acrisci/i3ipc-gjs/blob/master/examples/harmonious-ws-nums.js).
+
+    #!/usr/bin/env gjs
+
+    /*
+       This example shows how to renumber your workspaces so they are consolidated
+       into a harmonious linear order starting from 1. For instance, if you have
+       open workspaces 2, 5, 6, 7, 9 they will be renumbered to 1, 2, 3, 4, 5
+       respectively.
+
+       https://faq.i3wm.org/question/3595/how-can-i-renumber-workspaces/
+    */
+
+    const i3ipc = imports.gi.i3ipc;
+
+    let conn = new i3ipc.Connection;
+
+    let workspaces = conn.get_workspaces()
+        .filter(function(ws) {
+            return !isNaN(parseInt(ws.name));
+        }).sort(function(a, b) {
+            return parseInt(a.name) - parseInt(b.name);
+        });
+
+    workspaces.forEach(function(ws, i) {
+        let new_name = ws.name.replace(parseInt(ws.name).toString(), (i + 1).toString());
+        conn.command('rename workspace "' + ws.name + '" to "' + new_name + '"');
+    });
+</description><pubDate>Sun, 30 Mar 2014 18:23:58 +0000</pubDate><guid>https://faq.i3wm.org/question/3595/how-can-i-renumber-workspaces/?answer=3596#post-id-3596</guid></item></channel></rss>

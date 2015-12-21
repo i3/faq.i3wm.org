@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2717/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 17 Oct 2013 17:05:45 +0000</lastBuildDate><item><title>xmodmap alters i3 shortcuts</title><link>https://faq.i3wm.org/question/2717/xmodmap-alters-i3-shortcuts/</link><description>I'm having an issue that seems to be somewhat similar to the one in question 676. It's different enough, however, that I'm not sure it's actually the same. After using xmodmap to set `keycode 0x09 = Return`, `$mod+Esc` opens a new terminal window but `$mod+Enter` just sends a "return" code to the program in the active window (so, for instance, in a text editor I get newlines). (Note that my `$mod` is `Mod4`, so my problem is not due to the oddities of the caps lock key itself.)
+
+The `xmodmap` line in my i3 config:
+
+    exec xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' -e 'keycode 0x09 = Return'
+
+`xmodmap -pm`:
+
+    xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+    shift       Shift_L (0x32),  Shift_R (0x3e)
+    lock
+    control     Control_L (0x25),  Control_R (0x69)
+    mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+    mod2        Num_Lock (0x4d)
+    mod3
+    mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+    mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+
+`xmodmap -pke | grep Return`:
+
+    keycode   9 = Return NoSymbol Return
+    keycode  36 = Return NoSymbol Return
+
+I've tried mapping 36 (the Enter key) to "Return Return Return," but that didn't seem to change anything.
+
+EDIT: this error is with i3 version 4.0.1.</description><pubDate>Tue, 15 Oct 2013 21:51:31 +0000</pubDate><guid>https://faq.i3wm.org/question/2717/xmodmap-alters-i3-shortcuts/</guid></item><item><title>Answer by BatmanAoD for &lt;p&gt;I'm having an issue that seems to be somewhat similar to the one in question 676. It's different enough, however, that I'm not sure it's actually the same. After using xmodmap to set &lt;code&gt;keycode 0x09 = Return&lt;/code&gt;, &lt;code&gt;$mod+Esc&lt;/code&gt; opens a new terminal window but &lt;code&gt;$mod+Enter&lt;/code&gt; just sends a "return" code to the program in the active window (so, for instance, in a text editor I get newlines). (Note that my &lt;code&gt;$mod&lt;/code&gt; is &lt;code&gt;Mod4&lt;/code&gt;, so my problem is not due to the oddities of the caps lock key itself.)&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;xmodmap&lt;/code&gt; line in my i3 config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' -e 'keycode 0x09 = Return'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;xmodmap -pm&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3
+mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;xmodmap -pke | grep Return&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode   9 = Return NoSymbol Return
+keycode  36 = Return NoSymbol Return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I've tried mapping 36 (the Enter key) to "Return Return Return," but that didn't seem to change anything.&lt;/p&gt;
+
+&lt;p&gt;EDIT: this error is with i3 version 4.0.1.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2717/xmodmap-alters-i3-shortcuts/?answer=2726#post-id-2726</link><description>This bug was apparently fixed in i3 version 4.0.2.</description><pubDate>Thu, 17 Oct 2013 17:05:45 +0000</pubDate><guid>https://faq.i3wm.org/question/2717/xmodmap-alters-i3-shortcuts/?answer=2726#post-id-2726</guid></item></channel></rss>

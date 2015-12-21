@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/269/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 31 Aug 2012 15:42:57 +0000</lastBuildDate><item><title>Custom layout for Pidgin</title><link>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/</link><description>I'm trying to figure out how to make the Pidgin windows into a dock-style thing. Conversation window on the left of a workspace, taking up about 80%. Buddy list on the right taking up the remaining 20%. These are the rules I've come up with, but nothing seems to happen when I launch Pidgin:
+
+    for_window [window_role="buddy_list"] focus; resize shrink width 50 ppt
+    for_window [window_role="conversation"] focus; move absolute left
+
+I should note that the i3 user guide doesn't explicitly say what "absolute" does, but it seems to make another 50/50 layout work for me (or maybe I'm just lucky).</description><pubDate>Mon, 16 Jul 2012 13:57:16 +0000</pubDate><guid>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/</guid></item><item><title>Answer by psvo for &lt;p&gt;I'm trying to figure out how to make the Pidgin windows into a dock-style thing. Conversation window on the left of a workspace, taking up about 80%. Buddy list on the right taking up the remaining 20%. These are the rules I've come up with, but nothing seems to happen when I launch Pidgin:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [window_role="buddy_list"] focus; resize shrink width 50 ppt
+for_window [window_role="conversation"] focus; move absolute left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I should note that the i3 user guide doesn't explicitly say what "absolute" does, but it seems to make another 50/50 layout work for me (or maybe I'm just lucky).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?answer=331#post-id-331</link><description>Following works for me. I have only Pidgin on desktop and only one conversation window with tabs.
+
+    for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 px or 30 ppt
+</description><pubDate>Sat, 11 Aug 2012 20:38:48 +0000</pubDate><guid>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?answer=331#post-id-331</guid></item><item><title>Comment by 0x000000 for &lt;p&gt;Following works for me. I have only Pidgin on desktop and only one conversation window with tabs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 px or 30 ppt
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?comment=422#comment-422</link><description>&lt;code&gt;for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 px or 30 ppt; move left&lt;/code&gt;</description><pubDate>Fri, 31 Aug 2012 15:42:57 +0000</pubDate><guid>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?comment=422#comment-422</guid></item><item><title>Comment by styx for &lt;p&gt;Following works for me. I have only Pidgin on desktop and only one conversation window with tabs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 px or 30 ppt
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?comment=356#comment-356</link><description>Ahhh thanks, this fixes the size problem, but how can i force the buddy list window to be on the right side?</description><pubDate>Mon, 20 Aug 2012 23:23:44 +0000</pubDate><guid>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?comment=356#comment-356</guid></item><item><title>Comment by 0x000000 for &lt;p&gt;Following works for me. I have only Pidgin on desktop and only one conversation window with tabs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 px or 30 ppt
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?comment=421#comment-421</link><description>for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 px or 30 ppt; move left
+
+I *think* this should work, but I feel like if the conversation window pops up while you're focused on another window, it might move the focused window left instead of the convo window.</description><pubDate>Fri, 31 Aug 2012 15:42:57 +0000</pubDate><guid>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?comment=421#comment-421</guid></item><item><title>Answer by styx for &lt;p&gt;I'm trying to figure out how to make the Pidgin windows into a dock-style thing. Conversation window on the left of a workspace, taking up about 80%. Buddy list on the right taking up the remaining 20%. These are the rules I've come up with, but nothing seems to happen when I launch Pidgin:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [window_role="buddy_list"] focus; resize shrink width 50 ppt
+for_window [window_role="conversation"] focus; move absolute left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I should note that the i3 user guide doesn't explicitly say what "absolute" does, but it seems to make another 50/50 layout work for me (or maybe I'm just lucky).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?answer=321#post-id-321</link><description>Im also very interested in this.
+Does someone have a solution?</description><pubDate>Wed, 08 Aug 2012 00:33:11 +0000</pubDate><guid>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?answer=321#post-id-321</guid></item><item><title>Answer by Michael for &lt;p&gt;I'm trying to figure out how to make the Pidgin windows into a dock-style thing. Conversation window on the left of a workspace, taking up about 80%. Buddy list on the right taking up the remaining 20%. These are the rules I've come up with, but nothing seems to happen when I launch Pidgin:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [window_role="buddy_list"] focus; resize shrink width 50 ppt
+for_window [window_role="conversation"] focus; move absolute left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I should note that the i3 user guide doesn't explicitly say what "absolute" does, but it seems to make another 50/50 layout work for me (or maybe I'm just lucky).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?answer=270#post-id-270</link><description>`move absolute` is only for floating windows (and it emits a warning in the logfile, see http://i3wm.org/docs/debugging.html ). In general, there is something fishy going on with `for_window` and these kinds of commands, but I haven’t looked into it yet.</description><pubDate>Mon, 16 Jul 2012 16:09:40 +0000</pubDate><guid>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?answer=270#post-id-270</guid></item><item><title>Comment by 0x000000 for &lt;p&gt;&lt;code&gt;move absolute&lt;/code&gt;is only for floating windows (and it emits a warning in the logfile, see &lt;a href="http://i3wm.org/docs/debugging.html"&gt;http://i3wm.org/docs/debugging.html&lt;/a&gt; ). In general, there is something fishy going on with &lt;code&gt;for_window&lt;/code&gt; and these kinds of commands, but I haven’t looked into it yet.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?comment=308#comment-308</link><description>Right on, thanks. But is there a way to do what I want to do?</description><pubDate>Tue, 31 Jul 2012 16:00:19 +0000</pubDate><guid>https://faq.i3wm.org/question/269/custom-layout-for-pidgin/?comment=308#comment-308</guid></item></channel></rss>

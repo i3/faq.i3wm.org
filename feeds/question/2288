@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2288/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 28 Jul 2013 15:33:44 +0000</lastBuildDate><item><title>How to specify the default workspace on startup ?</title><link>https://faq.i3wm.org/question/2288/how-to-specify-the-default-workspace-on-startup/</link><description>I have the following bindings:
+
+    bindsym $mod+0 workspace 0:web
+    bindsym $mod+1 workspace 1:code
+    bindsym $mod+2 workspace 2:view
+
+And I've setup the following settings:
+
+    workspace "0:web" output HDMI1
+    workspace "1:code" output HDMI1
+    workspace "2:view" output HDMI1
+    workspace "0:web" output LVDS1
+    workspace "1:code" output LVDS1
+    workspace "2:view" output LVDS1
+    workspace 9 output VGA1
+
+The default workspace after startup in HDMI1 or LVDS1 is always "1", not "0:web".
+
+I've tried adding this line to ~/.i3/config, but with no luck:
+
+exec --no-startup-id i3-msg "workspace 0:web"
+
+How could I make it ?</description><pubDate>Sun, 28 Jul 2013 03:46:47 +0000</pubDate><guid>https://faq.i3wm.org/question/2288/how-to-specify-the-default-workspace-on-startup/</guid></item><item><title>Answer by Michael for &lt;p&gt;I have the following bindings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+0 workspace 0:web
+bindsym $mod+1 workspace 1:code
+bindsym $mod+2 workspace 2:view
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And I've setup the following settings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace "0:web" output HDMI1
+workspace "1:code" output HDMI1
+workspace "2:view" output HDMI1
+workspace "0:web" output LVDS1
+workspace "1:code" output LVDS1
+workspace "2:view" output LVDS1
+workspace 9 output VGA1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The default workspace after startup in HDMI1 or LVDS1 is always "1", not "0:web".&lt;/p&gt;
+
+&lt;p&gt;I've tried adding this line to ~/.i3/config, but with no luck:&lt;/p&gt;
+
+&lt;p&gt;exec --no-startup-id i3-msg "workspace 0:web"&lt;/p&gt;
+
+&lt;p&gt;How could I make it ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2288/how-to-specify-the-default-workspace-on-startup/?answer=2292#post-id-2292</link><description>You are assigning the same set of workspaces to two different outputs. How would this work? :)
+
+Try assigning a workspace to at most one output. In case that does not work, please report a bug at http://bugs.i3wm.org/</description><pubDate>Sun, 28 Jul 2013 15:33:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2288/how-to-specify-the-default-workspace-on-startup/?answer=2292#post-id-2292</guid></item></channel></rss>

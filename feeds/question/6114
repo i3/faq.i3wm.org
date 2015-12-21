@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6114/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 11 Jun 2015 11:53:15 +0000</lastBuildDate><item><title>Focus between windows on current output then switch to the next</title><link>https://faq.i3wm.org/question/6114/focus-between-windows-on-current-output-then-switch-to-the-next/</link><description>Let's say I have 2 monitors each containing 2 vertical splits. I start on the left most window.
+I'd like to set  `Alt+Tab` to  focus on the next window to the right, then since we reach the end of the left monitor, switch to the right monitor, left most window, then the next, then since we reach the end of the right monitor, circle back to the left-most window on the left monitor.
+
+I thought about doing it in a script using the return code of `focus right`, but since it circles, it always returns true.
+Something like:
+
+    if (!focus right) then  
+      focus output right
+    fi</description><pubDate>Thu, 11 Jun 2015 11:30:41 +0000</pubDate><guid>https://faq.i3wm.org/question/6114/focus-between-windows-on-current-output-then-switch-to-the-next/</guid></item><item><title>Answer by Airblader for &lt;p&gt;Let's say I have 2 monitors each containing 2 vertical splits. I start on the left most window.
+I'd like to set  &lt;code&gt;Alt+Tab&lt;/code&gt; to  focus on the next window to the right, then since we reach the end of the left monitor, switch to the right monitor, left most window, then the next, then since we reach the end of the right monitor, circle back to the left-most window on the left monitor.&lt;/p&gt;
+
+&lt;p&gt;I thought about doing it in a script using the return code of &lt;code&gt;focus right&lt;/code&gt;, but since it circles, it always returns true.
+Something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if (!focus right) then  
+  focus output right
+fi
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/6114/focus-between-windows-on-current-output-then-switch-to-the-next/?answer=6115#post-id-6115</link><description>See [this question](https://faq.i3wm.org/question/874/how-to-disable-focus-wrapping/). AFAIK, as of 4.10.2, this is still true.
+That isn't to say an IPC script can't take care of it, though. 
+
+By the way:
+
+&gt; each containing 2 vertical splits
+
+In "i3 speak" you are talking about a horizontal split, which is a split where two containers are side by side (left/right of each other).</description><pubDate>Thu, 11 Jun 2015 11:53:15 +0000</pubDate><guid>https://faq.i3wm.org/question/6114/focus-between-windows-on-current-output-then-switch-to-the-next/?answer=6115#post-id-6115</guid></item></channel></rss>

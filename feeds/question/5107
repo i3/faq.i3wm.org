@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5107/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 06 Dec 2014 19:40:04 +0000</lastBuildDate><item><title>Customly repositioned and resized terminal in scratchpad at startup</title><link>https://faq.i3wm.org/question/5107/customly-repositioned-and-resized-terminal-in-scratchpad-at-startup/</link><description>I'm trying to always have a terminal in the scratchpad positioned in the bottom right of my screen and hidden since startup. Since it seems moving a container to the scratchpad always implies it being automatically resized and ripositioned to the center of the screen, I've found here in this site this workaroud.
+
+    # Open a terminal during startup and move it to the scratchpad
+    exec --no-startup-id urxvt -name urxvt_scratchpad
+    for_window [instance="urxvt_scratchpad"] move scratchpad
+    
+    # Workaround to resize and reposition urxvt container
+    for_window [instance="urxvt_scratchpad"] scratchpad show; move position 1000px 200px; move scratchpad
+
+The problems I have are: 
+
+1) I don't know how to resize the window to a custom value. (I want the terminal to be a small window for quick commands while browsing, etc)
+
+2) I don't know how to set the exact position I want it to be, the above config example was just a test.
+
+Using the mouse I can position the terminal in the place and with the size I'd like it to have, I'd only like to automatize this behaviour at startup.
+
+Maybe there's a way to query i3 with the position of the terminal in the scratchpad and just copy&amp;paste it to the config?
+</description><pubDate>Sat, 06 Dec 2014 12:11:19 +0000</pubDate><guid>https://faq.i3wm.org/question/5107/customly-repositioned-and-resized-terminal-in-scratchpad-at-startup/</guid></item><item><title>Answer by smlb for &lt;p&gt;I'm trying to always have a terminal in the scratchpad positioned in the bottom right of my screen and hidden since startup. Since it seems moving a container to the scratchpad always implies it being automatically resized and ripositioned to the center of the screen, I've found here in this site this workaroud.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Open a terminal during startup and move it to the scratchpad
+exec --no-startup-id urxvt -name urxvt_scratchpad
+for_window [instance="urxvt_scratchpad"] move scratchpad
+
+# Workaround to resize and reposition urxvt container
+for_window [instance="urxvt_scratchpad"] scratchpad show; move position 1000px 200px; move scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problems I have are: &lt;/p&gt;
+
+&lt;p&gt;1) I don't know how to resize the window to a custom value. (I want the terminal to be a small window for quick commands while browsing, etc)&lt;/p&gt;
+
+&lt;p&gt;2) I don't know how to set the exact position I want it to be, the above config example was just a test.&lt;/p&gt;
+
+&lt;p&gt;Using the mouse I can position the terminal in the place and with the size I'd like it to have, I'd only like to automatize this behaviour at startup.&lt;/p&gt;
+
+&lt;p&gt;Maybe there's a way to query i3 with the position of the terminal in the scratchpad and just copy&amp;amp;paste it to the config?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5107/customly-repositioned-and-resized-terminal-in-scratchpad-at-startup/?answer=5109#post-id-5109</link><description>urxvt supports `-geometry XxY` value, maybe try with
+
+    exec --no-startup-id urxvt -name urxvt_scratchpad -geometry 130x40
+    for_window [instance="urxvt_scratchpad"] floating enable
+    for_window [instance="urxvt_scratchpad"] move scratchpad
+
+This way the default size created using -geometry should remain the same in scratchpad.</description><pubDate>Sat, 06 Dec 2014 16:50:11 +0000</pubDate><guid>https://faq.i3wm.org/question/5107/customly-repositioned-and-resized-terminal-in-scratchpad-at-startup/?answer=5109#post-id-5109</guid></item><item><title>Comment by Mariano for &lt;p&gt;urxvt supports &lt;code&gt;-geometry XxY&lt;/code&gt; value, maybe try with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id urxvt -name urxvt_scratchpad -geometry 130x40
+for_window [instance="urxvt_scratchpad"] floating enable
+for_window [instance="urxvt_scratchpad"] move scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This way the default size created using -geometry should remain the same in scratchpad.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5107/customly-repositioned-and-resized-terminal-in-scratchpad-at-startup/?comment=5113#comment-5113</link><description>Thanks! Using  --geometry I was able to obtain what I wanted, I had just to try a bit to obtain the right position.</description><pubDate>Sat, 06 Dec 2014 19:30:57 +0000</pubDate><guid>https://faq.i3wm.org/question/5107/customly-repositioned-and-resized-terminal-in-scratchpad-at-startup/?comment=5113#comment-5113</guid></item><item><title>Answer by Mariano for &lt;p&gt;I'm trying to always have a terminal in the scratchpad positioned in the bottom right of my screen and hidden since startup. Since it seems moving a container to the scratchpad always implies it being automatically resized and ripositioned to the center of the screen, I've found here in this site this workaroud.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Open a terminal during startup and move it to the scratchpad
+exec --no-startup-id urxvt -name urxvt_scratchpad
+for_window [instance="urxvt_scratchpad"] move scratchpad
+
+# Workaround to resize and reposition urxvt container
+for_window [instance="urxvt_scratchpad"] scratchpad show; move position 1000px 200px; move scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problems I have are: &lt;/p&gt;
+
+&lt;p&gt;1) I don't know how to resize the window to a custom value. (I want the terminal to be a small window for quick commands while browsing, etc)&lt;/p&gt;
+
+&lt;p&gt;2) I don't know how to set the exact position I want it to be, the above config example was just a test.&lt;/p&gt;
+
+&lt;p&gt;Using the mouse I can position the terminal in the place and with the size I'd like it to have, I'd only like to automatize this behaviour at startup.&lt;/p&gt;
+
+&lt;p&gt;Maybe there's a way to query i3 with the position of the terminal in the scratchpad and just copy&amp;amp;paste it to the config?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5107/customly-repositioned-and-resized-terminal-in-scratchpad-at-startup/?answer=5114#post-id-5114</link><description>For whoever may need it, this is what I used for a 1366x768 screen size.
+
+    # Open a small terminal at startup
+    exec --no-startup-id urxvt -name urxvt_scratchpad --geometry 70x15
+
+    # Workaround size&amp;position
+    for_window [instance="urxvt_scratchpad"] floating enable; move scratchpad; scratchpad show; move position 865px 512px; move scratchpad
+
+Note: This was done on urxvt with this line specifying a custom font and pixelsize in the .Xdefaults file -&gt;
+
+  # Font
+
+URxvt*font: xft:Source Code Pro:pixelsize=11:style=regular
+
+Different font and pixelsize may cause the terminal to be in a slightly different position than bottom left just over the status bar, the one I was looking for.
+
+
+</description><pubDate>Sat, 06 Dec 2014 19:40:04 +0000</pubDate><guid>https://faq.i3wm.org/question/5107/customly-repositioned-and-resized-terminal-in-scratchpad-at-startup/?answer=5114#post-id-5114</guid></item></channel></rss>

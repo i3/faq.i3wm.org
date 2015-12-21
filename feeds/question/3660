@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3660/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 17 Apr 2014 11:46:12 +0000</lastBuildDate><item><title>i3status battery %emptytime etc. work only when charging?!</title><link>https://faq.i3wm.org/question/3660/i3status-battery-emptytime-etc-work-only-when-charging/</link><description>Sorry, completely forgot to state what version of i3 I'm using:
+
+    local/i3-wm 4.7.2-1 (i3)
+    local/i3lock 2.5-2 (i3)
+    local/i3status 2.8-2 (i3)
+
+    Linux chromebook 3.4.0-ARCH #1 SMP Wed Jan 15 15:33:47 MST 2014 armv7l GNU/Linux
+
+
+----------
+
+i3bar displays `%status` and `%percentage` fine, but for *some* reason `%remaining`, `%emptytime` and `%consumption` *only* show up if the battery is charging and has &lt;100% of the design capacity. 
+
+I guess it has something to do with me running i3 on the Samsung Chromebook as battery has always been a little weird even with the xfce applets, but I can't find the culprit. Here's the relevant part of my `.i3status.conf`: 
+
+    battery 0 {
+        last_full_capacity = true
+        format = "%status %percentage %remaining %emptytime %consumption"
+        path = "/sys/class/power_supply/sbs-4-000b/uevent"
+    }
+
+And here's the content of `/sys/class/power_supply/sbs-4-000b/uevent` @ around 97% (according to i3status) and charging:
+
+    POWER_SUPPLY_NAME=sbs-4-000b
+    POWER_SUPPLY_STATUS=Charging
+    POWER_SUPPLY_HEALTH=Good
+    POWER_SUPPLY_PRESENT=1
+    POWER_SUPPLY_TECHNOLOGY=Li-ion
+    POWER_SUPPLY_CYCLE_COUNT=42
+    POWER_SUPPLY_VOLTAGE_NOW=8550000
+    POWER_SUPPLY_CURRENT_NOW=1159000
+    POWER_SUPPLY_CAPACITY=97
+    POWER_SUPPLY_TEMP=311
+    POWER_SUPPLY_TIME_TO_EMPTY_AVG=3932100
+    POWER_SUPPLY_TIME_TO_FULL_AVG=1740
+    POWER_SUPPLY_SERIAL_NUMBER=1dc9
+    POWER_SUPPLY_VOLTAGE_MIN_DESIGN=7500000
+    POWER_SUPPLY_VOLTAGE_MAX_DESIGN=7500000
+    POWER_SUPPLY_ENERGY_NOW=29540000
+    POWER_SUPPLY_ENERGY_FULL=32350000
+    POWER_SUPPLY_ENERGY_FULL_DESIGN=30600000
+    POWER_SUPPLY_CHARGE_NOW=3906000
+    POWER_SUPPLY_CHARGE_FULL=4242000
+    POWER_SUPPLY_CHARGE_FULL_DESIGN=4080000
+    POWER_SUPPLY_MANUFACTURER=SDI
+    POWER_SUPPLY_MODEL_NAME=4302D40
+
+I assume i3status reads `POWER_SUPPLY_TIME_TO_EMPTY_AVG` for `%emptytime`, so it's there but for some reason only gets read when the charger is plugged in? The same goes for `POWER_SUPPLY_TIME_TO_FULL_AVG`, but at least that makes sense as I only want to see it when I'm actually charging. 
+
+(And in case you're wondering: `POWER_SUPPLY_TIME_TO_EMPTY_AVG` does decrease when you unplug the charger, so it's not some weird bug which keeps it a constant number)
+
+Oh and `last_full_capacity = true` doesn't work at all for me. But it should, because the battery is regularly charging &gt;100% and also `acpi -V` shows this output:
+
+    Battery 0: design capacity 4080 mAh, last full capacity 4253 mAh = 100%
+
+Any ideas on how I could fix these things? What I need/want most is having `%emptytime` work, and `%consumption` would be nice but isn't a must.
+</description><pubDate>Thu, 17 Apr 2014 11:27:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3660/i3status-battery-emptytime-etc-work-only-when-charging/</guid></item><item><title>Comment by Michael for &lt;p&gt;Sorry, completely forgot to state what version of i3 I'm using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;local/i3-wm 4.7.2-1 (i3)
+local/i3lock 2.5-2 (i3)
+local/i3status 2.8-2 (i3)
+
+Linux chromebook 3.4.0-ARCH #1 SMP Wed Jan 15 15:33:47 MST 2014 armv7l GNU/Linux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;i3bar displays &lt;code&gt;%status&lt;/code&gt; and &lt;code&gt;%percentage&lt;/code&gt; fine, but for &lt;em&gt;some&lt;/em&gt; reason &lt;code&gt;%remaining&lt;/code&gt;, &lt;code&gt;%emptytime&lt;/code&gt; and &lt;code&gt;%consumption&lt;/code&gt; &lt;em&gt;only&lt;/em&gt; show up if the battery is charging and has &amp;lt;100% of the design capacity. &lt;/p&gt;
+
+&lt;p&gt;I guess it has something to do with me running i3 on the Samsung Chromebook as battery has always been a little weird even with the xfce applets, but I can't find the culprit. Here's the relevant part of my &lt;code&gt;.i3status.conf&lt;/code&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;battery 0 {
+    last_full_capacity = true
+    format = "%status %percentage %remaining %emptytime %consumption"
+    path = "/sys/class/power_supply/sbs-4-000b/uevent"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And here's the content of &lt;code&gt;/sys/class/power_supply/sbs-4-000b/uevent&lt;/code&gt; @ around 97% (according to i3status) and charging:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;POWER_SUPPLY_NAME=sbs-4-000b
+POWER_SUPPLY_STATUS=Charging
+POWER_SUPPLY_HEALTH=Good
+POWER_SUPPLY_PRESENT=1
+POWER_SUPPLY_TECHNOLOGY=Li-ion
+POWER_SUPPLY_CYCLE_COUNT=42
+POWER_SUPPLY_VOLTAGE_NOW=8550000
+POWER_SUPPLY_CURRENT_NOW=1159000
+POWER_SUPPLY_CAPACITY=97
+POWER_SUPPLY_TEMP=311
+POWER_SUPPLY_TIME_TO_EMPTY_AVG=3932100
+POWER_SUPPLY_TIME_TO_FULL_AVG=1740
+POWER_SUPPLY_SERIAL_NUMBER=1dc9
+POWER_SUPPLY_VOLTAGE_MIN_DESIGN=7500000
+POWER_SUPPLY_VOLTAGE_MAX_DESIGN=7500000
+POWER_SUPPLY_ENERGY_NOW=29540000
+POWER_SUPPLY_ENERGY_FULL=32350000
+POWER_SUPPLY_ENERGY_FULL_DESIGN=30600000
+POWER_SUPPLY_CHARGE_NOW=3906000
+POWER_SUPPLY_CHARGE_FULL=4242000
+POWER_SUPPLY_CHARGE_FULL_DESIGN=4080000
+POWER_SUPPLY_MANUFACTURER=SDI
+POWER_SUPPLY_MODEL_NAME=4302D40
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I assume i3status reads &lt;code&gt;POWER_SUPPLY_TIME_TO_EMPTY_AVG&lt;/code&gt; for &lt;code&gt;%emptytime&lt;/code&gt;, so it's there but for some reason only gets read when the charger is plugged in? The same goes for &lt;code&gt;POWER_SUPPLY_TIME_TO_FULL_AVG&lt;/code&gt;, but at least that makes sense as I only want to see it when I'm actually charging. &lt;/p&gt;
+
+&lt;p&gt;(And in case you're wondering: &lt;code&gt;POWER_SUPPLY_TIME_TO_EMPTY_AVG&lt;/code&gt; does decrease when you unplug the charger, so it's not some weird bug which keeps it a constant number)&lt;/p&gt;
+
+&lt;p&gt;Oh and &lt;code&gt;last_full_capacity = true&lt;/code&gt; doesn't work at all for me. But it should, because the battery is regularly charging &amp;gt;100% and also &lt;code&gt;acpi -V&lt;/code&gt; shows this output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Battery 0: design capacity 4080 mAh, last full capacity 4253 mAh = 100%
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any ideas on how I could fix these things? What I need/want most is having &lt;code&gt;%emptytime&lt;/code&gt; work, and &lt;code&gt;%consumption&lt;/code&gt; would be nice but isn't a must.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3660/i3status-battery-emptytime-etc-work-only-when-charging/?comment=3661#comment-3661</link><description>This is not a real question for the FAQ. Please submit a bugreport at http://bugs.i3wm.org/ instead (or a patch at http://cr.i3wm.org/ :)).</description><pubDate>Thu, 17 Apr 2014 11:46:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3660/i3status-battery-emptytime-etc-work-only-when-charging/?comment=3661#comment-3661</guid></item></channel></rss>

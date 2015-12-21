@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5031/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 27 Nov 2014 16:08:52 +0000</lastBuildDate><item><title>I3bar-conky - is positioning the output possible?</title><link>https://faq.i3wm.org/question/5031/i3bar-conky-is-positioning-the-output-possible/</link><description>Hi!
+
+I'm using I3bar with Conky as status command. Everything works as expected. 
+
+How would I go about moving the whole status bar a bit to the left? Is it possible to specify X and Y positions with i3bar+conky?
+
+</description><pubDate>Thu, 27 Nov 2014 07:54:27 +0000</pubDate><guid>https://faq.i3wm.org/question/5031/i3bar-conky-is-positioning-the-output-possible/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi!&lt;/p&gt;
+
+&lt;p&gt;I'm using I3bar with Conky as status command. Everything works as expected. &lt;/p&gt;
+
+&lt;p&gt;How would I go about moving the whole status bar a bit to the left? Is it possible to specify X and Y positions with i3bar+conky?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5031/i3bar-conky-is-positioning-the-output-possible/?answer=5032#post-id-5032</link><description>*i3bar* itself has no options for positioning the status output. It is always on the right, either next to edge of the screen or next to the tray.
+
+I do not know what capabilities conky has to move things around, but the following wrapper script should do as a workaround
+
+    #!/bin/sh
+    conky | while :
+    do
+        read line
+        echo "$line  " || exit 1
+    done
+
+This just adds two spaces on the right. The script is inspired by (ripped off) the instructions for using external commands in the `i3status` manpage.</description><pubDate>Thu, 27 Nov 2014 09:34:28 +0000</pubDate><guid>https://faq.i3wm.org/question/5031/i3bar-conky-is-positioning-the-output-possible/?answer=5032#post-id-5032</guid></item><item><title>Answer by airblader for &lt;p&gt;Hi!&lt;/p&gt;
+
+&lt;p&gt;I'm using I3bar with Conky as status command. Everything works as expected. &lt;/p&gt;
+
+&lt;p&gt;How would I go about moving the whole status bar a bit to the left? Is it possible to specify X and Y positions with i3bar+conky?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5031/i3bar-conky-is-positioning-the-output-possible/?answer=5034#post-id-5034</link><description>As an alternative to the pipe script solution, you can change your `.conkyrc` by adding a dummy element and using `i3bar`'s separator properties:
+
+    ,{ \
+      "full_text": "Last Element", \
+      "separator": false, \
+      "separator_block_width": 50 \
+    } \
+    ,{ \
+      "full_text": "" \
+    } \
+
+The `50` will change the widht of the gap to the right. Of course, instead of using `separator_block_width` you can also just use spaces in the dummy element's `full_text` property. You'll still need `separator: false`, though.
+
+One advantage to is that you don't need another shell level in your chain.
+
+By the way: the `\` are used to turn the JSON into one physical line which improves the performance of `i3bar`'s parsing by quite a bit.</description><pubDate>Thu, 27 Nov 2014 16:08:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5031/i3bar-conky-is-positioning-the-output-possible/?answer=5034#post-id-5034</guid></item></channel></rss>

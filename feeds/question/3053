@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3053/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 16 Dec 2013 09:41:58 +0000</lastBuildDate><item><title>How do I change workspace with the numeric pad?</title><link>https://faq.i3wm.org/question/3053/how-do-i-change-workspace-with-the-numeric-pad/</link><description>I am able to switch workspaces with mod and a number key, but it does not work with the numeric pad.  Toggling NumLock has no effect.  I am able to type numbers with NumLock on.
+
+I am on Ubuntu 13.10.</description><pubDate>Sun, 15 Dec 2013 10:40:15 +0000</pubDate><guid>https://faq.i3wm.org/question/3053/how-do-i-change-workspace-with-the-numeric-pad/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I am able to switch workspaces with mod and a number key, but it does not work with the numeric pad.  Toggling NumLock has no effect.  I am able to type numbers with NumLock on.&lt;/p&gt;
+
+&lt;p&gt;I am on Ubuntu 13.10.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3053/how-do-i-change-workspace-with-the-numeric-pad/?answer=3063#post-id-3063</link><description>Although they send the same character, the keys on the numeric pad do not have the same key symbols as the number keys on the upper row.
+
+Every key symbol on the numeric pad starts with `KP_`
+
+For the numbers (with NumLock enabled) that is 
+
+    KP_0
+    KP_1
+    KP_2
+    ...
+    KP_9
+
+There are also:
+
+    KP_Add
+    KP_Subtract
+    KP_Multiply
+    KP_Divide
+    KP_Enter
+    KP_Separator
+
+The navigational keys (with NumLock disabled) send key symbols with leading `KP_`, too, such as
+
+    KP_Up
+    KP_Home
+    KP_Delete
+    ...
+
+So, instead of (or in addition to)
+
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    ...
+
+you need these lines
+
+    bindsym $mod+KP_1 workspace 1
+    bindsym $mod+KP_2 workspace 2
+    ...
+
+Also, for the binding it does not matter, whether NumLock is enabled. Bindings with `KP_1` will work even when NumLock is disabled, as will bindings with `KP_End` if NumLock is enabled. This also means, that you cannot bind different functions depending on the state of NumLock.
+
+----
+
+In general, you can alwasy use `xev` to get the symbol of a key. Start it with `xev -event keyboard` from a terminal and make the appearing window ('Event Tester') floating. Any Key you press while the focus is on the 'Event Tester' window should produce an output that looks like this:
+
+    KeyPress event, serial 28, synthetic NO, window 0x1800001,
+        root 0x25a, subw 0x0, time 546217033, (42,122), root:(2833,555),
+        state 0x0, keycode 87 (keysym 0xffb1, KP_1), same_screen YES,
+        XLookupString gives 1 bytes: (31) "1"
+        XmbLookupString gives 1 bytes: (31) "1"
+        XFilterEvent returns: False
+
+    KeyRelease event, serial 28, synthetic NO, window 0x1800001,
+        root 0x25a, subw 0x0, time 546217105, (42,122), root:(2833,555),
+        state 0x0, keycode 87 (keysym 0xffb1, KP_1), same_screen YES,
+        XLookupString gives 1 bytes: (31) "1"
+        XFilterEvent returns: False
+
+Exceptions are some special keys (mostly on Laptops) that do not send any key event and keys (key combinations) whose events are grabbed globally by another program, that includes key bindings in i3.</description><pubDate>Mon, 16 Dec 2013 09:41:58 +0000</pubDate><guid>https://faq.i3wm.org/question/3053/how-do-i-change-workspace-with-the-numeric-pad/?answer=3063#post-id-3063</guid></item><item><title>Answer by phairland for &lt;p&gt;I am able to switch workspaces with mod and a number key, but it does not work with the numeric pad.  Toggling NumLock has no effect.  I am able to type numbers with NumLock on.&lt;/p&gt;
+
+&lt;p&gt;I am on Ubuntu 13.10.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3053/how-do-i-change-workspace-with-the-numeric-pad/?answer=3057#post-id-3057</link><description>You need to use the keycodes for the numeric pad. You can find out by the following command
+
+    xbindkeys -k
+
+and then press the key you need to find out the keycode.
+
+For i3 you need to use bindcode instead of bindsym. The following code works on my system:
+    
+    bindcode $mod+87 workspace 1
+    bindcode $mod+88 workspace 2
+    bindcode $mod+89 workspace 3
+    bindcode $mod+83 workspace 4
+    bindcode $mod+84 workspace 5
+    bindcode $mod+85 workspace 6
+    bindcode $mod+79 workspace 7
+    bindcode $mod+80 workspace 8
+    bindcode $mod+81 workspace 9
+    bindcode $mod+90 workspace 10
+
+</description><pubDate>Sun, 15 Dec 2013 22:19:00 +0000</pubDate><guid>https://faq.i3wm.org/question/3053/how-do-i-change-workspace-with-the-numeric-pad/?answer=3057#post-id-3057</guid></item></channel></rss>

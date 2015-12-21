@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/478/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 13 Dec 2014 01:04:39 +0000</lastBuildDate><item><title>How do I simulate keypresses?</title><link>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/</link><description>Hello everybody,&lt;br /&gt;&lt;br /&gt;
+this is my first post here, although I've been using i3 for some months now. I really have to thank the developers for this incredible wm (and for its docs!! :) ).&lt;br /&gt;&lt;br /&gt;Some context for my question.&lt;br /&gt;
+I'm using an Apple keyboard and I set the **Meta** key as **$mod**. Since this key is easier to reach than **Ctrl**, I would like to use it for copy/paste shortcuts and other stuff. E.g., I'd like to press **Meta+c** to copy the selected text to the clipboard, and **Meta+v** to paste. I tried different programs (xdotool, xte, xvkbd ...) to simulate keypresses. They do work in a terminal, i.e, if I run in xterm&lt;br /&gt;&lt;br /&gt;
+*xte "keydown Control_R" "key c" "keyup Control_R"*&lt;br /&gt;&lt;br /&gt;
+I do get ^C as output. However, if I configure i3 like this&lt;br /&gt;&lt;br /&gt;
+*bindsym $mod+c exec xte "keydown Control_R" "key c" "keyup Control_R"*&lt;br /&gt;&lt;br /&gt;
+nothing happens, probably becasue the command is run in the login shell.
+So I guess my question becomes: is there a way to tell i3 to send a keypress to the focused container?&lt;br /&gt;&lt;br /&gt;
+Thanks in advance.&lt;br /&gt;
+Bye</description><pubDate>Tue, 11 Sep 2012 15:20:49 +0000</pubDate><guid>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hello everybody,&lt;br/&gt;&lt;br/&gt;
+this is my first post here, although I've been using i3 for some months now. I really have to thank the developers for this incredible wm (and for its docs!! :) ).&lt;br/&gt;&lt;br/&gt;Some context for my question.&lt;br/&gt;
+I'm using an Apple keyboard and I set the &lt;strong&gt;Meta&lt;/strong&gt; key as &lt;strong&gt;$mod&lt;/strong&gt;. Since this key is easier to reach than &lt;strong&gt;Ctrl&lt;/strong&gt;, I would like to use it for copy/paste shortcuts and other stuff. E.g., I'd like to press &lt;strong&gt;Meta+c&lt;/strong&gt; to copy the selected text to the clipboard, and &lt;strong&gt;Meta+v&lt;/strong&gt; to paste. I tried different programs (xdotool, xte, xvkbd ...) to simulate keypresses. They do work in a terminal, i.e, if I run in xterm&lt;br/&gt;&lt;br/&gt;
+&lt;em&gt;xte "keydown Control_R" "key c" "keyup Control_R"&lt;/em&gt;&lt;br/&gt;&lt;br/&gt;
+I do get ^C as output. However, if I configure i3 like this&lt;br/&gt;&lt;br/&gt;
+&lt;em&gt;bindsym $mod+c exec xte "keydown Control_R" "key c" "keyup Control_R"&lt;/em&gt;&lt;br/&gt;&lt;br/&gt;
+nothing happens, probably becasue the command is run in the login shell.
+So I guess my question becomes: is there a way to tell i3 to send a keypress to the focused container?&lt;br/&gt;&lt;br/&gt;
+Thanks in advance.&lt;br/&gt;
+Bye&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/?answer=482#post-id-482</link><description>I think you will find your answer in ticket https://github.com/i3/i3/issues/485
+
+A short summary: In the current git "next" version (what will be i3 v4.3 soonish), you can use the following:
+
+    bindsym --release $mod+x exec --no-startup-id xdotool key --clearmodifiers ctrl+v
+</description><pubDate>Tue, 11 Sep 2012 22:27:25 +0000</pubDate><guid>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/?answer=482#post-id-482</guid></item><item><title>Comment by gak for &lt;p&gt;I think you will find your answer in ticket &lt;a href="https://github.com/i3/i3/issues/485"&gt;https://github.com/i3/i3/issues/485&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;A short summary: In the current git "next" version (what will be i3 v4.3 soonish), you can use the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym --release $mod+x exec --no-startup-id xdotool key --clearmodifiers ctrl+v
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/?comment=5167#comment-5167</link><description>Thanks, this is perfect. Shame I can't vote..</description><pubDate>Sat, 13 Dec 2014 01:04:39 +0000</pubDate><guid>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/?comment=5167#comment-5167</guid></item><item><title>Comment by scanf for &lt;p&gt;I think you will find your answer in ticket &lt;a href="https://github.com/i3/i3/issues/485"&gt;https://github.com/i3/i3/issues/485&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;A short summary: In the current git "next" version (what will be i3 v4.3 soonish), you can use the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym --release $mod+x exec --no-startup-id xdotool key --clearmodifiers ctrl+v
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/?comment=487#comment-487</link><description>Fantastic! I installed the git version and it works. Thank you very much :)</description><pubDate>Wed, 12 Sep 2012 12:42:14 +0000</pubDate><guid>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/?comment=487#comment-487</guid></item><item><title>Answer by joepd for &lt;p&gt;Hello everybody,&lt;br/&gt;&lt;br/&gt;
+this is my first post here, although I've been using i3 for some months now. I really have to thank the developers for this incredible wm (and for its docs!! :) ).&lt;br/&gt;&lt;br/&gt;Some context for my question.&lt;br/&gt;
+I'm using an Apple keyboard and I set the &lt;strong&gt;Meta&lt;/strong&gt; key as &lt;strong&gt;$mod&lt;/strong&gt;. Since this key is easier to reach than &lt;strong&gt;Ctrl&lt;/strong&gt;, I would like to use it for copy/paste shortcuts and other stuff. E.g., I'd like to press &lt;strong&gt;Meta+c&lt;/strong&gt; to copy the selected text to the clipboard, and &lt;strong&gt;Meta+v&lt;/strong&gt; to paste. I tried different programs (xdotool, xte, xvkbd ...) to simulate keypresses. They do work in a terminal, i.e, if I run in xterm&lt;br/&gt;&lt;br/&gt;
+&lt;em&gt;xte "keydown Control_R" "key c" "keyup Control_R"&lt;/em&gt;&lt;br/&gt;&lt;br/&gt;
+I do get ^C as output. However, if I configure i3 like this&lt;br/&gt;&lt;br/&gt;
+&lt;em&gt;bindsym $mod+c exec xte "keydown Control_R" "key c" "keyup Control_R"&lt;/em&gt;&lt;br/&gt;&lt;br/&gt;
+nothing happens, probably becasue the command is run in the login shell.
+So I guess my question becomes: is there a way to tell i3 to send a keypress to the focused container?&lt;br/&gt;&lt;br/&gt;
+Thanks in advance.&lt;br/&gt;
+Bye&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/?answer=479#post-id-479</link><description>This sounds like a convoluted approach. 
+
+I defined some remappings of my keyboard in ~/.Xmodmap. This way, any application that not on a real TTY has CAPSLOCK removed, and functions as an extra ESC there. Might want to make that my i3-modifier, but I am getting addicted to the fast escape key in vim...
+
+Xmodmap is very readable: 
+ 
+    $ cat ~/.Xmodmap
+    remove Lock = Caps_Lock
+    keysym Caps_Lock = Escape
+
+And it is activated like this in ~/.xinitrc: 
+
+    xmodmap ~/.Xmodmap
+</description><pubDate>Tue, 11 Sep 2012 15:30:50 +0000</pubDate><guid>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/?answer=479#post-id-479</guid></item><item><title>Comment by scanf for &lt;p&gt;This sounds like a convoluted approach. &lt;/p&gt;
+
+&lt;p&gt;I defined some remappings of my keyboard in ~/.Xmodmap. This way, any application that not on a real TTY has CAPSLOCK removed, and functions as an extra ESC there. Might want to make that my i3-modifier, but I am getting addicted to the fast escape key in vim...&lt;/p&gt;
+
+&lt;p&gt;Xmodmap is very readable: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat ~/.Xmodmap
+remove Lock = Caps_Lock
+keysym Caps_Lock = Escape
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And it is activated like this in ~/.xinitrc: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap ~/.Xmodmap
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/?comment=480#comment-480</link><description>Yes, I thought about remapping the keyboard. The problem is, if I define the **Meta** key to be **Ctrl**, I lose it as $mod. Or, if I then set $mod to be **Ctrl**, I might get some conflicts. That's why I discarded it as an option. I might try it though if I all else fails. Thank you</description><pubDate>Tue, 11 Sep 2012 15:42:43 +0000</pubDate><guid>https://faq.i3wm.org/question/478/how-do-i-simulate-keypresses/?comment=480#comment-480</guid></item></channel></rss>

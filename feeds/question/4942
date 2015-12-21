@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4942/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 17 Nov 2014 16:03:29 +0000</lastBuildDate><item><title>assign some workspaces to specific screen, clone others to all screens</title><link>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/</link><description>Imagine a teacher running i3 on his notebook and a projector connected. Is this setup possible?
+
+* Workspace (1-4): Notebook screen
+* Workspace (5-8): projector
+* Workspace (9-10): Both, notebook screen and projector
+
+On workspace 1-4 one could work without seeing the others what you are doing (e.g. reading the sample solution), on workspace 5-8 you can place your presentation etc. and on workspace 9 and 10 you could do live coding or something else.
+
+I know that these setups are possible on their own (workspace assignment, clone output), but is it possible to get it at the same time?</description><pubDate>Wed, 12 Nov 2014 16:00:58 +0000</pubDate><guid>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;Imagine a teacher running i3 on his notebook and a projector connected. Is this setup possible?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Workspace (1-4): Notebook screen&lt;/li&gt;
+&lt;li&gt;Workspace (5-8): projector&lt;/li&gt;
+&lt;li&gt;Workspace (9-10): Both, notebook screen and projector&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;On workspace 1-4 one could work without seeing the others what you are doing (e.g. reading the sample solution), on workspace 5-8 you can place your presentation etc. and on workspace 9 and 10 you could do live coding or something else.&lt;/p&gt;
+
+&lt;p&gt;I know that these setups are possible on their own (workspace assignment, clone output), but is it possible to get it at the same time?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?answer=4944#post-id-4944</link><description>&gt; I know that these setups are possible on their own (workspace assignment, clone output)...
+
+Workspace assignment is not what can *possibly* be done, it is what *must* be done. A workspace is unique; it must be assigned to a single display. If you don't explicitly assign a workspace to a display in the configuration file, i3 just assigns it to whatever display currently has focus. A workspace only exists so long as it is focused and/or has open windows assigned to it.
+
+A possible work-around is to either a) write a script to quickly switch between cloning an X output and having two separate virtual screens, or b) pair workspaces together by having a key combination [switch two workspaces at once](https://faq.i3wm.org/question/4047/how-can-i-define-workspace-numbers-for-specific-monitors/#4048). In the latter case each workspace would still be distinct, however.
+
+EDIT: For live coding, you can use Tmux with console Vim or Emacs. But then again, that wouldn't have anything to do with the window manager *per se*.</description><pubDate>Wed, 12 Nov 2014 22:10:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?answer=4944#post-id-4944</guid></item><item><title>Comment by Adaephon for &lt;blockquote&gt;
+  &lt;p&gt;I know that these setups are possible on their own (workspace assignment, clone output)...&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Workspace assignment is not what can &lt;em&gt;possibly&lt;/em&gt; be done, it is what &lt;em&gt;must&lt;/em&gt; be done. A workspace is unique; it must be assigned to a single display. If you don't explicitly assign a workspace to a display in the configuration file, i3 just assigns it to whatever display currently has focus. A workspace only exists so long as it is focused and/or has open windows assigned to it.&lt;/p&gt;
+
+&lt;p&gt;A possible work-around is to either a) write a script to quickly switch between cloning an X output and having two separate virtual screens, or b) pair workspaces together by having a key combination &lt;a href="https://faq.i3wm.org/question/4047/how-can-i-define-workspace-numbers-for-specific-monitors/#4048"&gt;switch two workspaces at once&lt;/a&gt;. In the latter case each workspace would still be distinct, however.&lt;/p&gt;
+
+&lt;p&gt;EDIT: For live coding, you can use Tmux with console Vim or Emacs. But then again, that wouldn't have anything to do with the window manager &lt;em&gt;per se&lt;/em&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4952#comment-4952</link><description>@foo Xorg. Assigning a workspace to two displays (when not just cloning)  would really mean that the same window has to be drawn on two separate displays, which is not possible with Xorg. A window can only have one set of coordinates at a time.</description><pubDate>Fri, 14 Nov 2014 11:47:32 +0000</pubDate><guid>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4952#comment-4952</guid></item><item><title>Comment by foo for &lt;blockquote&gt;
+  &lt;p&gt;I know that these setups are possible on their own (workspace assignment, clone output)...&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Workspace assignment is not what can &lt;em&gt;possibly&lt;/em&gt; be done, it is what &lt;em&gt;must&lt;/em&gt; be done. A workspace is unique; it must be assigned to a single display. If you don't explicitly assign a workspace to a display in the configuration file, i3 just assigns it to whatever display currently has focus. A workspace only exists so long as it is focused and/or has open windows assigned to it.&lt;/p&gt;
+
+&lt;p&gt;A possible work-around is to either a) write a script to quickly switch between cloning an X output and having two separate virtual screens, or b) pair workspaces together by having a key combination &lt;a href="https://faq.i3wm.org/question/4047/how-can-i-define-workspace-numbers-for-specific-monitors/#4048"&gt;switch two workspaces at once&lt;/a&gt;. In the latter case each workspace would still be distinct, however.&lt;/p&gt;
+
+&lt;p&gt;EDIT: For live coding, you can use Tmux with console Vim or Emacs. But then again, that wouldn't have anything to do with the window manager &lt;em&gt;per se&lt;/em&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4948#comment-4948</link><description>Well, not really satisfying... Is this going to be possible with Wayland? </description><pubDate>Thu, 13 Nov 2014 17:08:57 +0000</pubDate><guid>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4948#comment-4948</guid></item><item><title>Comment by foo for &lt;blockquote&gt;
+  &lt;p&gt;I know that these setups are possible on their own (workspace assignment, clone output)...&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Workspace assignment is not what can &lt;em&gt;possibly&lt;/em&gt; be done, it is what &lt;em&gt;must&lt;/em&gt; be done. A workspace is unique; it must be assigned to a single display. If you don't explicitly assign a workspace to a display in the configuration file, i3 just assigns it to whatever display currently has focus. A workspace only exists so long as it is focused and/or has open windows assigned to it.&lt;/p&gt;
+
+&lt;p&gt;A possible work-around is to either a) write a script to quickly switch between cloning an X output and having two separate virtual screens, or b) pair workspaces together by having a key combination &lt;a href="https://faq.i3wm.org/question/4047/how-can-i-define-workspace-numbers-for-specific-monitors/#4048"&gt;switch two workspaces at once&lt;/a&gt;. In the latter case each workspace would still be distinct, however.&lt;/p&gt;
+
+&lt;p&gt;EDIT: For live coding, you can use Tmux with console Vim or Emacs. But then again, that wouldn't have anything to do with the window manager &lt;em&gt;per se&lt;/em&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4949#comment-4949</link><description>&gt; A workspace is unique; it must be assigned to a single display
+
+Where does this limitation come from? i3, Xorg,..?</description><pubDate>Thu, 13 Nov 2014 17:09:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4949#comment-4949</guid></item><item><title>Comment by foo for &lt;blockquote&gt;
+  &lt;p&gt;I know that these setups are possible on their own (workspace assignment, clone output)...&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Workspace assignment is not what can &lt;em&gt;possibly&lt;/em&gt; be done, it is what &lt;em&gt;must&lt;/em&gt; be done. A workspace is unique; it must be assigned to a single display. If you don't explicitly assign a workspace to a display in the configuration file, i3 just assigns it to whatever display currently has focus. A workspace only exists so long as it is focused and/or has open windows assigned to it.&lt;/p&gt;
+
+&lt;p&gt;A possible work-around is to either a) write a script to quickly switch between cloning an X output and having two separate virtual screens, or b) pair workspaces together by having a key combination &lt;a href="https://faq.i3wm.org/question/4047/how-can-i-define-workspace-numbers-for-specific-monitors/#4048"&gt;switch two workspaces at once&lt;/a&gt;. In the latter case each workspace would still be distinct, however.&lt;/p&gt;
+
+&lt;p&gt;EDIT: For live coding, you can use Tmux with console Vim or Emacs. But then again, that wouldn't have anything to do with the window manager &lt;em&gt;per se&lt;/em&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4965#comment-4965</link><description>Seems like I have to live without this feature. Thanks for your answers!</description><pubDate>Mon, 17 Nov 2014 16:03:29 +0000</pubDate><guid>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4965#comment-4965</guid></item><item><title>Comment by Adaephon for &lt;blockquote&gt;
+  &lt;p&gt;I know that these setups are possible on their own (workspace assignment, clone output)...&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Workspace assignment is not what can &lt;em&gt;possibly&lt;/em&gt; be done, it is what &lt;em&gt;must&lt;/em&gt; be done. A workspace is unique; it must be assigned to a single display. If you don't explicitly assign a workspace to a display in the configuration file, i3 just assigns it to whatever display currently has focus. A workspace only exists so long as it is focused and/or has open windows assigned to it.&lt;/p&gt;
+
+&lt;p&gt;A possible work-around is to either a) write a script to quickly switch between cloning an X output and having two separate virtual screens, or b) pair workspaces together by having a key combination &lt;a href="https://faq.i3wm.org/question/4047/how-can-i-define-workspace-numbers-for-specific-monitors/#4048"&gt;switch two workspaces at once&lt;/a&gt;. In the latter case each workspace would still be distinct, however.&lt;/p&gt;
+
+&lt;p&gt;EDIT: For live coding, you can use Tmux with console Vim or Emacs. But then again, that wouldn't have anything to do with the window manager &lt;em&gt;per se&lt;/em&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4945#comment-4945</link><description>The OP only informed us that he is aware of the possibility to assign workspaces, probably to preempt answers that concentrate on that aspect only. And - you even said so yourself - workspace assignment is nothing that "*must* be done", i3 works just as well without, it all depends on your workflow.</description><pubDate>Thu, 13 Nov 2014 08:03:05 +0000</pubDate><guid>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4945#comment-4945</guid></item><item><title>Comment by ANOKNUSA for &lt;blockquote&gt;
+  &lt;p&gt;I know that these setups are possible on their own (workspace assignment, clone output)...&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Workspace assignment is not what can &lt;em&gt;possibly&lt;/em&gt; be done, it is what &lt;em&gt;must&lt;/em&gt; be done. A workspace is unique; it must be assigned to a single display. If you don't explicitly assign a workspace to a display in the configuration file, i3 just assigns it to whatever display currently has focus. A workspace only exists so long as it is focused and/or has open windows assigned to it.&lt;/p&gt;
+
+&lt;p&gt;A possible work-around is to either a) write a script to quickly switch between cloning an X output and having two separate virtual screens, or b) pair workspaces together by having a key combination &lt;a href="https://faq.i3wm.org/question/4047/how-can-i-define-workspace-numbers-for-specific-monitors/#4048"&gt;switch two workspaces at once&lt;/a&gt;. In the latter case each workspace would still be distinct, however.&lt;/p&gt;
+
+&lt;p&gt;EDIT: For live coding, you can use Tmux with console Vim or Emacs. But then again, that wouldn't have anything to do with the window manager &lt;em&gt;per se&lt;/em&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4947#comment-4947</link><description>If you don't assign a workspace, then i3 automatically assigns it to the currently focused display. The OP wants the same workspace on more than one screen; that isn't possible. I explained why not in more detail for posterity. No WM does what the OP wants. WMs and Xorg are different levels.</description><pubDate>Thu, 13 Nov 2014 16:53:50 +0000</pubDate><guid>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4947#comment-4947</guid></item><item><title>Comment by ANOKNUSA for &lt;blockquote&gt;
+  &lt;p&gt;I know that these setups are possible on their own (workspace assignment, clone output)...&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Workspace assignment is not what can &lt;em&gt;possibly&lt;/em&gt; be done, it is what &lt;em&gt;must&lt;/em&gt; be done. A workspace is unique; it must be assigned to a single display. If you don't explicitly assign a workspace to a display in the configuration file, i3 just assigns it to whatever display currently has focus. A workspace only exists so long as it is focused and/or has open windows assigned to it.&lt;/p&gt;
+
+&lt;p&gt;A possible work-around is to either a) write a script to quickly switch between cloning an X output and having two separate virtual screens, or b) pair workspaces together by having a key combination &lt;a href="https://faq.i3wm.org/question/4047/how-can-i-define-workspace-numbers-for-specific-monitors/#4048"&gt;switch two workspaces at once&lt;/a&gt;. In the latter case each workspace would still be distinct, however.&lt;/p&gt;
+
+&lt;p&gt;EDIT: For live coding, you can use Tmux with console Vim or Emacs. But then again, that wouldn't have anything to do with the window manager &lt;em&gt;per se&lt;/em&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4959#comment-4959</link><description>@foo Even if it were, Wayland is entirely different. WMs written for X can't work under Wayland without a compatibility layer. i3 would need to be completely rewritten. FWIW, what you're asking for is a major corner case. Even Win and Mac can't clone windows across distinct displays and workspaces.</description><pubDate>Fri, 14 Nov 2014 22:37:09 +0000</pubDate><guid>https://faq.i3wm.org/question/4942/assign-some-workspaces-to-specific-screen-clone-others-to-all-screens/?comment=4959#comment-4959</guid></item></channel></rss>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3477/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 06 Mar 2014 02:34:42 +0000</lastBuildDate><item><title>define default application for opening an application URL</title><link>https://faq.i3wm.org/question/3477/define-default-application-for-opening-an-application-url/</link><description>Hello,
+I'm trying to configure my OS to open this kind of URLs: `sparkleshare://addProject/https://compartir.cooperativa.cat/coopfunding.xml`
+
+If I try to use gnome shell and chromium works by default, with firefox i fixed with gconftool-2 (solution found here: http://people.w3.org/~dom/archives/2005/09/integrating-a-new-uris-scheme-handler-to-gnome-and-firefox/)
+
+but when I switch to i3 stops working in both browsers
+</description><pubDate>Wed, 05 Mar 2014 10:51:03 +0000</pubDate><guid>https://faq.i3wm.org/question/3477/define-default-application-for-opening-an-application-url/</guid></item><item><title>Comment by duub for &lt;p&gt;Hello,
+I'm trying to configure my OS to open this kind of URLs: &lt;code&gt;sparkleshare://addProject/https://compartir.cooperativa.cat/coopfunding.xml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If I try to use gnome shell and chromium works by default, with firefox i fixed with gconftool-2 (solution found here: &lt;a href="http://people.w3.org/~dom/archives/2005/09/integrating-a-new-uris-scheme-handler-to-gnome-and-firefox/"&gt;http://people.w3.org/~dom/archives/20...&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;but when I switch to i3 stops working in both browsers&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3477/define-default-application-for-opening-an-application-url/?comment=3484#comment-3484</link><description>thanks adaephon for the update :)</description><pubDate>Wed, 05 Mar 2014 19:02:15 +0000</pubDate><guid>https://faq.i3wm.org/question/3477/define-default-application-for-opening-an-application-url/?comment=3484#comment-3484</guid></item><item><title>Answer by duub for &lt;p&gt;Hello,
+I'm trying to configure my OS to open this kind of URLs: &lt;code&gt;sparkleshare://addProject/https://compartir.cooperativa.cat/coopfunding.xml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If I try to use gnome shell and chromium works by default, with firefox i fixed with gconftool-2 (solution found here: &lt;a href="http://people.w3.org/~dom/archives/2005/09/integrating-a-new-uris-scheme-handler-to-gnome-and-firefox/"&gt;http://people.w3.org/~dom/archives/20...&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;but when I switch to i3 stops working in both browsers&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3477/define-default-application-for-opening-an-application-url/?answer=3486#post-id-3486</link><description>Finally I've found how to solve it, I don't think it's the right way to do it but...
+I've created a script called sparkleshare-web in /usr/bin
+
+    #!/usr/bin/env bash
+    
+     invite=`date -u +%N`
+     open=`echo $1 | sed "s/sparkleshare:\/\/addProject\///"`
+     curl --insecure --output ~/SparkleShare/$invite.xml $open
+
+and then assigned this script as the default app of this kind of urls in firefox(preferences-&gt;aplications)
+</description><pubDate>Thu, 06 Mar 2014 02:34:42 +0000</pubDate><guid>https://faq.i3wm.org/question/3477/define-default-application-for-opening-an-application-url/?answer=3486#post-id-3486</guid></item></channel></rss>

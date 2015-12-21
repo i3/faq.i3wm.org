@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7297/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 19 Nov 2015 18:46:55 +0000</lastBuildDate><item><title>How can I use NetworkManager with i3 in Fedora 23?</title><link>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/</link><description>I saw another post about starting nm-applet, however such command is not available in Fedora 23.
+
+Same goes for gnome-settings-daemon. Probably the guides are referring to older versions of Gnome.
+
+How can I solve this? Is it possible to have the network manager icon to quickly switch on/off VPNs and WiFi connections?
+
+Thanks in advance :)</description><pubDate>Fri, 13 Nov 2015 10:54:44 +0000</pubDate><guid>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/</guid></item><item><title>Comment by LordFazole for &lt;p&gt;I saw another post about starting nm-applet, however such command is not available in Fedora 23.&lt;/p&gt;
+
+&lt;p&gt;Same goes for gnome-settings-daemon. Probably the guides are referring to older versions of Gnome.&lt;/p&gt;
+
+&lt;p&gt;How can I solve this? Is it possible to have the network manager icon to quickly switch on/off VPNs and WiFi connections?&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance :)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?comment=7373#comment-7373</link><description>Use "dnf provides &lt;NAME&gt;" when you know the command name but the package name is different :) The NAME can be any file (including binaries).</description><pubDate>Thu, 19 Nov 2015 18:46:55 +0000</pubDate><guid>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?comment=7373#comment-7373</guid></item><item><title>Answer by i3convert for &lt;p&gt;I saw another post about starting nm-applet, however such command is not available in Fedora 23.&lt;/p&gt;
+
+&lt;p&gt;Same goes for gnome-settings-daemon. Probably the guides are referring to older versions of Gnome.&lt;/p&gt;
+
+&lt;p&gt;How can I solve this? Is it possible to have the network manager icon to quickly switch on/off VPNs and WiFi connections?&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?answer=7309#post-id-7309</link><description>**I'm a Fedora 22 user, so things might have changed in the meantime.** 
+
+1. Are you sure there is no `network-manager-applet` package you could install. Try running `dnf install network-manager-applet` as root.
+
+2. What happens when you run (as root) `dnf provides *nm-applet`? It should provide the name of the package (if any) that contains the applet command.</description><pubDate>Sat, 14 Nov 2015 08:00:19 +0000</pubDate><guid>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?answer=7309#post-id-7309</guid></item><item><title>Comment by Giordano for &lt;p&gt;&lt;strong&gt;I'm a Fedora 22 user, so things might have changed in the meantime.&lt;/strong&gt; &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Are you sure there is no &lt;code&gt;network-manager-applet&lt;/code&gt; package you could install. Try running &lt;code&gt;dnf install network-manager-applet&lt;/code&gt; as root.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What happens when you run (as root) &lt;code&gt;dnf provides *nm-applet&lt;/code&gt;? It should provide the name of the package (if any) that contains the applet command.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?comment=7316#comment-7316</link><description>thank you, I don't know how I missed that.
+I had tried with `sudo dnf search` but I guess I searched with wrong terms.</description><pubDate>Sat, 14 Nov 2015 15:32:33 +0000</pubDate><guid>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?comment=7316#comment-7316</guid></item><item><title>Answer by Airblader for &lt;p&gt;I saw another post about starting nm-applet, however such command is not available in Fedora 23.&lt;/p&gt;
+
+&lt;p&gt;Same goes for gnome-settings-daemon. Probably the guides are referring to older versions of Gnome.&lt;/p&gt;
+
+&lt;p&gt;How can I solve this? Is it possible to have the network manager icon to quickly switch on/off VPNs and WiFi connections?&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?answer=7300#post-id-7300</link><description>There's nothing i3 specific here. If you want to use NetworkManager, use NetworkManager. If Fedora 23 doesn't have it, install and configure it. nm-applet should be a part of it.
+
+You should check the Fedora docs on this. </description><pubDate>Fri, 13 Nov 2015 14:48:10 +0000</pubDate><guid>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?answer=7300#post-id-7300</guid></item><item><title>Comment by Giordano for &lt;p&gt;There's nothing i3 specific here. If you want to use NetworkManager, use NetworkManager. If Fedora 23 doesn't have it, install and configure it. nm-applet should be a part of it.&lt;/p&gt;
+
+&lt;p&gt;You should check the Fedora docs on this. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?comment=7304#comment-7304</link><description>I have Gnome 3 installed with the NetworkManager applet. 
+Unfortunately nm-applet is not available though:
+
+$ which nm-applet
+/usr/bin/which: no nm-applet in (/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin)</description><pubDate>Fri, 13 Nov 2015 16:26:56 +0000</pubDate><guid>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?comment=7304#comment-7304</guid></item><item><title>Answer by apoc for &lt;p&gt;I saw another post about starting nm-applet, however such command is not available in Fedora 23.&lt;/p&gt;
+
+&lt;p&gt;Same goes for gnome-settings-daemon. Probably the guides are referring to older versions of Gnome.&lt;/p&gt;
+
+&lt;p&gt;How can I solve this? Is it possible to have the network manager icon to quickly switch on/off VPNs and WiFi connections?&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?answer=7301#post-id-7301</link><description>Personally I use [wicd](https://admin.fedoraproject.org/pkgdb/package/wicd/) and start it in tray using the `.i3/config` file:
+
+    exec --no-startup-id wicd-client --tray</description><pubDate>Fri, 13 Nov 2015 16:03:55 +0000</pubDate><guid>https://faq.i3wm.org/question/7297/how-can-i-use-networkmanager-with-i3-in-fedora-23/?answer=7301#post-id-7301</guid></item></channel></rss>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5284/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 31 Dec 2014 02:30:39 +0000</lastBuildDate><item><title>i3lock issue</title><link>https://faq.i3wm.org/question/5284/i3lock-issue/</link><description>I made a little C program to act as shutdown/reboot/lock menu (and to have fun) that works perfectly when called in a running term emulator, but the lock function does not when launched like this: "urxvt -e program". Any idea why?
+
+    #include &lt;ncurses.h&gt;
+    #include &lt;string.h&gt;
+    #include &lt;unistd.h&gt;
+    
+    int main()
+    {
+    	initscr(); keypad(stdscr, TRUE); noecho(); curs_set(0);
+    	int i, choice = 0, c = 0;
+    	const char *options[]=
+    	{
+    		"Poweroff",
+    		"Reboot",
+    		"Lock",
+    		0
+    	};
+    	
+    	for(i = 0; options[i]; ++i)
+    		mvaddstr(i, 0, options[i]);
+    	
+    	move(0, 0);
+    	do
+    	{
+    		mvchgat(choice, 0, strlen(options[choice]), A_NORMAL, 0, NULL);
+    		if(c == KEY_DOWN &amp;&amp; choice &lt; 2)
+    			++choice;
+    		else if(c == KEY_UP &amp;&amp; choice)
+    			--choice;
+    		mvchgat(choice, 0, strlen(options[choice]), A_REVERSE, 0, NULL);
+    	}
+    	while((c = getch()) != '\n');
+    	
+    	switch(choice)
+    	{
+    		case 0:
+    			system("mpd --kill &amp;&amp; systemctl poweroff");
+    			
+    		case 1:
+    			system("mpd --kill &amp;&amp; systemctl reboot");
+    		
+    		case 2:
+    			system("/home/user/Scripts/lock.sh");
+    	}
+    	curs_set(1);
+    	endwin();
+    	return 0;
+    }
+
+It "works" if I don't close the program, e.g. add something like a getch() before the return. i don't understand why since system and i3lock fork.
+
+Content of lock.sh if it can help:
+
+    #!/bin/bash
+    IMAGE=/tmp/lockpic.png
+    
+    import -window root $IMAGE
+    convert $IMAGE -blur '0x5' $IMAGE
+    i3lock -i $IMAGE
+</description><pubDate>Wed, 31 Dec 2014 02:30:39 +0000</pubDate><guid>https://faq.i3wm.org/question/5284/i3lock-issue/</guid></item></channel></rss>

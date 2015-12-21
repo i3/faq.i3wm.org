@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6297/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 16 Jul 2015 03:04:55 +0000</lastBuildDate><item><title>prompt to close a window (by mod+shift+q)</title><link>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/</link><description>closing a window now becomes too easy. Is it possible to have a prompt to close a window?</description><pubDate>Wed, 15 Jul 2015 06:01:35 +0000</pubDate><guid>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/</guid></item><item><title>Answer by i3convert for &lt;p&gt;closing a window now becomes too easy. Is it possible to have a prompt to close a window?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/?answer=6301#post-id-6301</link><description>You can use i3 modes for this purpose.  Pressing $mod+Shift+q moves you to a special mode, where it asks you if you really want to close the window. Then, in my example, pressing Enter or y will close the window. Pressing Escape or n will get you out of this mode.
+
+    set $close "Close the window? (y/n)"
+
+    mode $close {
+        bindsym y kill, mode default
+        bindsym Return kill, mode default
+    
+        bindsym n mode default
+        bindsym Escape mode default
+    }
+    
+    bindsym $mod+Shift+q mode $close
+
+This is not perfect, but perhaps you'll like it.
+</description><pubDate>Wed, 15 Jul 2015 15:43:28 +0000</pubDate><guid>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/?answer=6301#post-id-6301</guid></item><item><title>Comment by i3convert for &lt;p&gt;You can use i3 modes for this purpose.  Pressing $mod+Shift+q moves you to a special mode, where it asks you if you really want to close the window. Then, in my example, pressing Enter or y will close the window. Pressing Escape or n will get you out of this mode.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $close "Close the window? (y/n)"
+
+mode $close {
+    bindsym y kill, mode default
+    bindsym Return kill, mode default
+
+    bindsym n mode default
+    bindsym Escape mode default
+}
+
+bindsym $mod+Shift+q mode $close
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is not perfect, but perhaps you'll like it.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/?comment=6304#comment-6304</link><description>@diablo456: You could write a script that uses the output of `i3-msg -t get_tree` to figure out the type of the currently focused window. Then it could either execute `i3-msg kill` (to kill the current window) or `i3-msg "mode Close the window? (y/n)"` (to switch to the auxiliary mode).</description><pubDate>Thu, 16 Jul 2015 03:04:55 +0000</pubDate><guid>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/?comment=6304#comment-6304</guid></item><item><title>Comment by diablo465 for &lt;p&gt;You can use i3 modes for this purpose.  Pressing $mod+Shift+q moves you to a special mode, where it asks you if you really want to close the window. Then, in my example, pressing Enter or y will close the window. Pressing Escape or n will get you out of this mode.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $close "Close the window? (y/n)"
+
+mode $close {
+    bindsym y kill, mode default
+    bindsym Return kill, mode default
+
+    bindsym n mode default
+    bindsym Escape mode default
+}
+
+bindsym $mod+Shift+q mode $close
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is not perfect, but perhaps you'll like it.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/?comment=6303#comment-6303</link><description>Thanks so much for the update. actually I just wish to enforce such prompt to iterm and rdesktop (WM_CLASS(STRING) = "xterm", "XTerm" and WM_CLASS(STRING) = "rdesktop", "rdesktop" ). how can i add an if function for this?</description><pubDate>Thu, 16 Jul 2015 00:24:13 +0000</pubDate><guid>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/?comment=6303#comment-6303</guid></item><item><title>Comment by Airblader for &lt;p&gt;You can use i3 modes for this purpose.  Pressing $mod+Shift+q moves you to a special mode, where it asks you if you really want to close the window. Then, in my example, pressing Enter or y will close the window. Pressing Escape or n will get you out of this mode.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $close "Close the window? (y/n)"
+
+mode $close {
+    bindsym y kill, mode default
+    bindsym Return kill, mode default
+
+    bindsym n mode default
+    bindsym Escape mode default
+}
+
+bindsym $mod+Shift+q mode $close
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is not perfect, but perhaps you'll like it.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/?comment=6302#comment-6302</link><description>A great alternative indeed! Never occurred to me to use modes like that.</description><pubDate>Wed, 15 Jul 2015 16:02:54 +0000</pubDate><guid>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/?comment=6302#comment-6302</guid></item><item><title>Answer by Airblader for &lt;p&gt;closing a window now becomes too easy. Is it possible to have a prompt to close a window?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/?answer=6298#post-id-6298</link><description> Sure, but not from i3 itself. You can change your keybinding to execute this:
+
+    bindsym $mod+Shift+q exec --no-startup-id xdotool getactivewindow | xargs -I '{}' i3-nagbar -t warning -m "Do you really want to close this?" -b "Yes" "killall i3-nagbar; i3-msg [id='{}'] kill" -b "No" "killall i3-nagbar; i3-msg nop"
+
+Not exactly pretty, but works. I don't think i3-nagbar is a great tool for this, though, but you can replace it with whatever tool you want to create the dialog with. For example, you can use `zenity`:
+
+    bindsym $mod+Shift+q exec --no-startup-id xdotool getactivewindow | xargs -I '{}' zenity --question &amp;&amp; i3-msg [id='{}'] kill
+
+I use `xdotool` to get the focused window first because if I simply do the dialog and kall `i3-msg kill`, you end up killing the wrong window.</description><pubDate>Wed, 15 Jul 2015 07:23:16 +0000</pubDate><guid>https://faq.i3wm.org/question/6297/prompt-to-close-a-window-by-modshiftq/?answer=6298#post-id-6298</guid></item></channel></rss>

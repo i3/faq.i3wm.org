@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2444/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 29 Aug 2013 03:59:20 +0000</lastBuildDate><item><title>What' the point that child container can have the same split mode with its parent?</title><link>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/</link><description>Hi, i have moved to i3 wm recently from wmii. And i really like it. One thing i can not understand about i3 is: when a container split to vertical mode, like:
+
+A | B
+
+Then its child B can also be split to vertical mode:
+
+A | [ B|C ]
+
+This is very confusing sometime. It's not easy to find the relationship between A, B ,C quickly. There are just look exactly same as A,B,C in same level: 
+
+A | B | C
+
+In my opinion, if a parent is in vertical mode, its children should be automatically switched to horizontal mode. 
+Then "mod+h" and "mod+v" can be reduced to 1 key-binding. This could ease a lot of things.
+
+Maybe i am not fully familiar with i3 yet. Please tell me if there some good reasons.
+
+Thank you very much.</description><pubDate>Wed, 28 Aug 2013 14:24:42 +0000</pubDate><guid>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/</guid></item><item><title>Answer by Havoc for &lt;p&gt;Hi, i have moved to i3 wm recently from wmii. And i really like it. One thing i can not understand about i3 is: when a container split to vertical mode, like:&lt;/p&gt;
+
+&lt;p&gt;A | B&lt;/p&gt;
+
+&lt;p&gt;Then its child B can also be split to vertical mode:&lt;/p&gt;
+
+&lt;p&gt;A | [ B|C ]&lt;/p&gt;
+
+&lt;p&gt;This is very confusing sometime. It's not easy to find the relationship between A, B ,C quickly. There are just look exactly same as A,B,C in same level: &lt;/p&gt;
+
+&lt;p&gt;A | B | C&lt;/p&gt;
+
+&lt;p&gt;In my opinion, if a parent is in vertical mode, its children should be automatically switched to horizontal mode. 
+Then "mod+h" and "mod+v" can be reduced to 1 key-binding. This could ease a lot of things.&lt;/p&gt;
+
+&lt;p&gt;Maybe i am not fully familiar with i3 yet. Please tell me if there some good reasons.&lt;/p&gt;
+
+&lt;p&gt;Thank you very much.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/?answer=2447#post-id-2447</link><description>Hi, DocOC
+
+I will put my reply here, because the length of comments is limited.
+
+I agree with you that tree structure is more powerful than column/row structure. That's why i like i3 so much.
+
+But when you split a window, the choice between hsplit and vsplit is actually unnecessary.     
+
+Suppose you are in [A|B] layout, if you open window C , it will just appear at the rightside of B, get a result of [A|B|C]. 
+
+If you press "vsplit" key, then open C, you get [A|[B|C]], but this is nearly the same result in the users view. 
+
+So, in this situation, the "vsplit" key is kinda redundant.
+
+You only need to press "hsplit" key when you need B and C is split up and down.
+
+So my suggestions is there is only one command "split", bind to one key. You will automatically get the hsplit if the parent is vsplit, and vice versa. This could save alot of time for your brain to "decide which kind of split" and "chose the right key between mod+h and mod+v"
+
+P.S. In some rare case, you really want [A|[B|C]], rather than [A|B|C], you just first get the hsplit B and C, and use mod+s to toggle it. That's no problem.
+</description><pubDate>Wed, 28 Aug 2013 17:27:22 +0000</pubDate><guid>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/?answer=2447#post-id-2447</guid></item><item><title>Comment by DocOC for &lt;p&gt;Hi, DocOC&lt;/p&gt;
+
+&lt;p&gt;I will put my reply here, because the length of comments is limited.&lt;/p&gt;
+
+&lt;p&gt;I agree with you that tree structure is more powerful than column/row structure. That's why i like i3 so much.&lt;/p&gt;
+
+&lt;p&gt;But when you split a window, the choice between hsplit and vsplit is actually unnecessary.     &lt;/p&gt;
+
+&lt;p&gt;Suppose you are in [A|B] layout, if you open window C , it will just appear at the rightside of B, get a result of [A|B|C]. &lt;/p&gt;
+
+&lt;p&gt;If you press "vsplit" key, then open C, you get [A|[B|C]], but this is nearly the same result in the users view. &lt;/p&gt;
+
+&lt;p&gt;So, in this situation, the "vsplit" key is kinda redundant.&lt;/p&gt;
+
+&lt;p&gt;You only need to press "hsplit" key when you need B and C is split up and down.&lt;/p&gt;
+
+&lt;p&gt;So my suggestions is there is only one command "split", bind to one key. You will automatically get the hsplit if the parent is vsplit, and vice versa. This could save alot of time for your brain to "decide which kind of split" and "chose the right key between mod+h and mod+v"&lt;/p&gt;
+
+&lt;p&gt;P.S. In some rare case, you really want [A|[B|C]], rather than [A|B|C], you just first get the hsplit B and C, and use mod+s to toggle it. That's no problem.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/?comment=2448#comment-2448</link><description>There is a differenece. If you create windows without using the split key, you have 3 equal size windows. If you open two windows, then use the split key, you end up with one window half the size of the display, and two other windows 1/4th the size of the display. Forgive my curtness, limited space.</description><pubDate>Wed, 28 Aug 2013 20:16:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/?comment=2448#comment-2448</guid></item><item><title>Comment by Havoc for &lt;p&gt;Hi, DocOC&lt;/p&gt;
+
+&lt;p&gt;I will put my reply here, because the length of comments is limited.&lt;/p&gt;
+
+&lt;p&gt;I agree with you that tree structure is more powerful than column/row structure. That's why i like i3 so much.&lt;/p&gt;
+
+&lt;p&gt;But when you split a window, the choice between hsplit and vsplit is actually unnecessary.     &lt;/p&gt;
+
+&lt;p&gt;Suppose you are in [A|B] layout, if you open window C , it will just appear at the rightside of B, get a result of [A|B|C]. &lt;/p&gt;
+
+&lt;p&gt;If you press "vsplit" key, then open C, you get [A|[B|C]], but this is nearly the same result in the users view. &lt;/p&gt;
+
+&lt;p&gt;So, in this situation, the "vsplit" key is kinda redundant.&lt;/p&gt;
+
+&lt;p&gt;You only need to press "hsplit" key when you need B and C is split up and down.&lt;/p&gt;
+
+&lt;p&gt;So my suggestions is there is only one command "split", bind to one key. You will automatically get the hsplit if the parent is vsplit, and vice versa. This could save alot of time for your brain to "decide which kind of split" and "chose the right key between mod+h and mod+v"&lt;/p&gt;
+
+&lt;p&gt;P.S. In some rare case, you really want [A|[B|C]], rather than [A|B|C], you just first get the hsplit B and C, and use mod+s to toggle it. That's no problem.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/?comment=2453#comment-2453</link><description>After some thinking. I suggest maybe can add another 2 functions besides "split v" and "split h", which are "split perpendicular" and "split parallel". First one will split a window to the different mode of parent, another to same mode. In most case, "split perpendicular" will be enough. </description><pubDate>Thu, 29 Aug 2013 03:59:20 +0000</pubDate><guid>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/?comment=2453#comment-2453</guid></item><item><title>Comment by Havoc for &lt;p&gt;Hi, DocOC&lt;/p&gt;
+
+&lt;p&gt;I will put my reply here, because the length of comments is limited.&lt;/p&gt;
+
+&lt;p&gt;I agree with you that tree structure is more powerful than column/row structure. That's why i like i3 so much.&lt;/p&gt;
+
+&lt;p&gt;But when you split a window, the choice between hsplit and vsplit is actually unnecessary.     &lt;/p&gt;
+
+&lt;p&gt;Suppose you are in [A|B] layout, if you open window C , it will just appear at the rightside of B, get a result of [A|B|C]. &lt;/p&gt;
+
+&lt;p&gt;If you press "vsplit" key, then open C, you get [A|[B|C]], but this is nearly the same result in the users view. &lt;/p&gt;
+
+&lt;p&gt;So, in this situation, the "vsplit" key is kinda redundant.&lt;/p&gt;
+
+&lt;p&gt;You only need to press "hsplit" key when you need B and C is split up and down.&lt;/p&gt;
+
+&lt;p&gt;So my suggestions is there is only one command "split", bind to one key. You will automatically get the hsplit if the parent is vsplit, and vice versa. This could save alot of time for your brain to "decide which kind of split" and "chose the right key between mod+h and mod+v"&lt;/p&gt;
+
+&lt;p&gt;P.S. In some rare case, you really want [A|[B|C]], rather than [A|B|C], you just first get the hsplit B and C, and use mod+s to toggle it. That's no problem.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/?comment=2451#comment-2451</link><description>This can also be achieved without vsplit. First you get [A|B|C] by just open C. Then just resize them as you wish. Because even if you get a 1/2:1/4:1/4 ratio, it's not usually exactly what you want, you are likely need resize also. So in conclusion, vsplit still kinda redundant. :)</description><pubDate>Thu, 29 Aug 2013 01:05:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/?comment=2451#comment-2451</guid></item><item><title>Answer by DocOC for &lt;p&gt;Hi, i have moved to i3 wm recently from wmii. And i really like it. One thing i can not understand about i3 is: when a container split to vertical mode, like:&lt;/p&gt;
+
+&lt;p&gt;A | B&lt;/p&gt;
+
+&lt;p&gt;Then its child B can also be split to vertical mode:&lt;/p&gt;
+
+&lt;p&gt;A | [ B|C ]&lt;/p&gt;
+
+&lt;p&gt;This is very confusing sometime. It's not easy to find the relationship between A, B ,C quickly. There are just look exactly same as A,B,C in same level: &lt;/p&gt;
+
+&lt;p&gt;A | B | C&lt;/p&gt;
+
+&lt;p&gt;In my opinion, if a parent is in vertical mode, its children should be automatically switched to horizontal mode. 
+Then "mod+h" and "mod+v" can be reduced to 1 key-binding. This could ease a lot of things.&lt;/p&gt;
+
+&lt;p&gt;Maybe i am not fully familiar with i3 yet. Please tell me if there some good reasons.&lt;/p&gt;
+
+&lt;p&gt;Thank you very much.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/?answer=2445#post-id-2445</link><description>The reason is that once you split the parent container, you are not actually creating a child container until you change the split. So, A | B | C, are all children of the same parent container, instead of B and C being children of a new container. i3 is different from other tiling window managers in that it uses a tree structure for container heirarchy, instead of a static colum / row structure. This is wonderful, because you can create infinitely complex structures, without being constrained to a particular static layout.</description><pubDate>Wed, 28 Aug 2013 16:34:19 +0000</pubDate><guid>https://faq.i3wm.org/question/2444/what-the-point-that-child-container-can-have-the-same-split-mode-with-its-parent/?answer=2445#post-id-2445</guid></item></channel></rss>

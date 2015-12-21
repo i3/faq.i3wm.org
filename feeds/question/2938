@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2938/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 26 Nov 2013 21:30:12 +0000</lastBuildDate><item><title>Window ignores floating_minimum_size</title><link>https://faq.i3wm.org/question/2938/window-ignores-floating_minimum_size/</link><description>I've configured i3 so that any sub-windows of PhpStorm are automatically set floating:
+
+    for_window [title="(?i)^((?!phpstorm).)*$" class="jetbrains-phpstorm"] floating enable
+    floating_minimum_size 400 x 200
+    floating_maximum_size 1900 x 1000
+
+Floating works fine, however, the resulting window size is too small; the resulting window is only a few pixels wide and high. xprop for the target window shows the following output:
+
+    WM_STATE(WM_STATE):
+    		window state: Normal
+    		icon window: 0x0
+    _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+    _MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x1, 0x1, 0x0, 0x0
+    _MOTIF_DRAG_RECEIVER_INFO(_MOTIF_DRAG_RECEIVER_INFO) = 0x6c, 0x0, 0x5, 0x0, 0x2c, 0xa, 0x0, 0x3, 0x0, 0x0, 0x0, 0x0, 0x10, 0x0, 0x0, 0x0
+    XdndAware(ATOM) = BITMAP
+    _NET_WM_STATE(ATOM) = 
+    WM_HINTS(WM_HINTS):
+    		Client accepts input or input focus: False
+    		Initial state is Normal State.
+    _NET_FRAME_EXTENTS(CARDINAL) = 0, 15621, 0, 11467
+    _NET_WM_ICON(CARDINAL) = 	Icon (16 x 16):
+    	                
+    	 ░░░░░     ░░░░ 
+    	 ░░░░░   ▒  ░░░ 
+    	 ░       ▒▒░ ░░ 
+    	 ░ ▒▒▒▒▒▒▒▒▒░ ░ 
+    	 ░ ▒▒▒▒▒▒▒▒▒░ ░ 
+    	 ░       ▒▒  ░░ 
+    	 ░░░░    ░  ░░░ 
+    	 ░░░  ▒    ░░░░ 
+    	 ░░ ░▒▒       ░ 
+    	 ░ ░▒▒▒▒▒▒▒▒▒ ░ 
+    	 ░ ░▒▒▒▒▒▒▒▒▒ ░ 
+    	 ░░  ▒▒       ░ 
+    	 ░░░  ░   ░░░░░ 
+    	 ░░░░     ░░░░░ 
+    	                
+    
+    
+    _NET_WM_PID(CARDINAL) = 7654
+    WM_CLIENT_MACHINE(STRING) = "feli-desktop"
+    WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS
+    WM_CLASS(STRING) = "sun-awt-X11-XFramePeer", "jetbrains-phpstorm"
+    WM_CLIENT_LEADER(WINDOW): window id # 0x3000008
+    _NET_WM_ICON_NAME(UTF8_STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+    WM_ICON_NAME(STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+    _NET_WM_NAME(UTF8_STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+    WM_NAME(STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+    WM_NORMAL_HINTS(WM_SIZE_HINTS):
+    		user specified location: 2484, 245
+    		program specified location: 2484, 245
+    		program specified size: 6 by 12
+    		window gravity: NorthWest
+
+
+When I try to resize the window, it immediately jumps to the configured floating_minimum_size.
+
+I'm not sure if this is an issue of i3, a configuration issue, or an issue with PhpStorm itself. Any hints?</description><pubDate>Tue, 19 Nov 2013 15:45:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2938/window-ignores-floating_minimum_size/</guid></item><item><title>Comment by Michael for &lt;p&gt;I've configured i3 so that any sub-windows of PhpStorm are automatically set floating:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [title="(?i)^((?!phpstorm).)*$" class="jetbrains-phpstorm"] floating enable
+floating_minimum_size 400 x 200
+floating_maximum_size 1900 x 1000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Floating works fine, however, the resulting window size is too small; the resulting window is only a few pixels wide and high. xprop for the target window shows the following output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x1, 0x1, 0x0, 0x0
+_MOTIF_DRAG_RECEIVER_INFO(_MOTIF_DRAG_RECEIVER_INFO) = 0x6c, 0x0, 0x5, 0x0, 0x2c, 0xa, 0x0, 0x3, 0x0, 0x0, 0x0, 0x0, 0x10, 0x0, 0x0, 0x0
+XdndAware(ATOM) = BITMAP
+_NET_WM_STATE(ATOM) = 
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: False
+        Initial state is Normal State.
+_NET_FRAME_EXTENTS(CARDINAL) = 0, 15621, 0, 11467
+_NET_WM_ICON(CARDINAL) =    Icon (16 x 16):
+
+     ░░░░░     ░░░░ 
+     ░░░░░   ▒  ░░░ 
+     ░       ▒▒░ ░░ 
+     ░ ▒▒▒▒▒▒▒▒▒░ ░ 
+     ░ ▒▒▒▒▒▒▒▒▒░ ░ 
+     ░       ▒▒  ░░ 
+     ░░░░    ░  ░░░ 
+     ░░░  ▒    ░░░░ 
+     ░░ ░▒▒       ░ 
+     ░ ░▒▒▒▒▒▒▒▒▒ ░ 
+     ░ ░▒▒▒▒▒▒▒▒▒ ░ 
+     ░░  ▒▒       ░ 
+     ░░░  ░   ░░░░░ 
+     ░░░░     ░░░░░ 
+
+
+
+_NET_WM_PID(CARDINAL) = 7654
+WM_CLIENT_MACHINE(STRING) = "feli-desktop"
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS
+WM_CLASS(STRING) = "sun-awt-X11-XFramePeer", "jetbrains-phpstorm"
+WM_CLIENT_LEADER(WINDOW): window id # 0x3000008
+_NET_WM_ICON_NAME(UTF8_STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+WM_ICON_NAME(STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+_NET_WM_NAME(UTF8_STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+WM_NAME(STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        user specified location: 2484, 245
+        program specified location: 2484, 245
+        program specified size: 6 by 12
+        window gravity: NorthWest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I try to resize the window, it immediately jumps to the configured floating&lt;em&gt;minimum&lt;/em&gt;size.&lt;/p&gt;
+
+&lt;p&gt;I'm not sure if this is an issue of i3, a configuration issue, or an issue with PhpStorm itself. Any hints?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2938/window-ignores-floating_minimum_size/?comment=2981#comment-2981</link><description>Please post bugs at http://bugs.i3wm.org/ only, not in the FAQ.</description><pubDate>Tue, 26 Nov 2013 21:30:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2938/window-ignores-floating_minimum_size/?comment=2981#comment-2981</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I've configured i3 so that any sub-windows of PhpStorm are automatically set floating:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [title="(?i)^((?!phpstorm).)*$" class="jetbrains-phpstorm"] floating enable
+floating_minimum_size 400 x 200
+floating_maximum_size 1900 x 1000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Floating works fine, however, the resulting window size is too small; the resulting window is only a few pixels wide and high. xprop for the target window shows the following output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x1, 0x1, 0x0, 0x0
+_MOTIF_DRAG_RECEIVER_INFO(_MOTIF_DRAG_RECEIVER_INFO) = 0x6c, 0x0, 0x5, 0x0, 0x2c, 0xa, 0x0, 0x3, 0x0, 0x0, 0x0, 0x0, 0x10, 0x0, 0x0, 0x0
+XdndAware(ATOM) = BITMAP
+_NET_WM_STATE(ATOM) = 
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: False
+        Initial state is Normal State.
+_NET_FRAME_EXTENTS(CARDINAL) = 0, 15621, 0, 11467
+_NET_WM_ICON(CARDINAL) =    Icon (16 x 16):
+
+     ░░░░░     ░░░░ 
+     ░░░░░   ▒  ░░░ 
+     ░       ▒▒░ ░░ 
+     ░ ▒▒▒▒▒▒▒▒▒░ ░ 
+     ░ ▒▒▒▒▒▒▒▒▒░ ░ 
+     ░       ▒▒  ░░ 
+     ░░░░    ░  ░░░ 
+     ░░░  ▒    ░░░░ 
+     ░░ ░▒▒       ░ 
+     ░ ░▒▒▒▒▒▒▒▒▒ ░ 
+     ░ ░▒▒▒▒▒▒▒▒▒ ░ 
+     ░░  ▒▒       ░ 
+     ░░░  ░   ░░░░░ 
+     ░░░░     ░░░░░ 
+
+
+
+_NET_WM_PID(CARDINAL) = 7654
+WM_CLIENT_MACHINE(STRING) = "feli-desktop"
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS
+WM_CLASS(STRING) = "sun-awt-X11-XFramePeer", "jetbrains-phpstorm"
+WM_CLIENT_LEADER(WINDOW): window id # 0x3000008
+_NET_WM_ICON_NAME(UTF8_STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+WM_ICON_NAME(STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+_NET_WM_NAME(UTF8_STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+WM_NAME(STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        user specified location: 2484, 245
+        program specified location: 2484, 245
+        program specified size: 6 by 12
+        window gravity: NorthWest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I try to resize the window, it immediately jumps to the configured floating&lt;em&gt;minimum&lt;/em&gt;size.&lt;/p&gt;
+
+&lt;p&gt;I'm not sure if this is an issue of i3, a configuration issue, or an issue with PhpStorm itself. Any hints?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2938/window-ignores-floating_minimum_size/?comment=2943#comment-2943</link><description>What version of Java are you using?</description><pubDate>Thu, 21 Nov 2013 16:18:00 +0000</pubDate><guid>https://faq.i3wm.org/question/2938/window-ignores-floating_minimum_size/?comment=2943#comment-2943</guid></item><item><title>Answer by TonyC for &lt;p&gt;I've configured i3 so that any sub-windows of PhpStorm are automatically set floating:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [title="(?i)^((?!phpstorm).)*$" class="jetbrains-phpstorm"] floating enable
+floating_minimum_size 400 x 200
+floating_maximum_size 1900 x 1000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Floating works fine, however, the resulting window size is too small; the resulting window is only a few pixels wide and high. xprop for the target window shows the following output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x1, 0x1, 0x0, 0x0
+_MOTIF_DRAG_RECEIVER_INFO(_MOTIF_DRAG_RECEIVER_INFO) = 0x6c, 0x0, 0x5, 0x0, 0x2c, 0xa, 0x0, 0x3, 0x0, 0x0, 0x0, 0x0, 0x10, 0x0, 0x0, 0x0
+XdndAware(ATOM) = BITMAP
+_NET_WM_STATE(ATOM) = 
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: False
+        Initial state is Normal State.
+_NET_FRAME_EXTENTS(CARDINAL) = 0, 15621, 0, 11467
+_NET_WM_ICON(CARDINAL) =    Icon (16 x 16):
+
+     ░░░░░     ░░░░ 
+     ░░░░░   ▒  ░░░ 
+     ░       ▒▒░ ░░ 
+     ░ ▒▒▒▒▒▒▒▒▒░ ░ 
+     ░ ▒▒▒▒▒▒▒▒▒░ ░ 
+     ░       ▒▒  ░░ 
+     ░░░░    ░  ░░░ 
+     ░░░  ▒    ░░░░ 
+     ░░ ░▒▒       ░ 
+     ░ ░▒▒▒▒▒▒▒▒▒ ░ 
+     ░ ░▒▒▒▒▒▒▒▒▒ ░ 
+     ░░  ▒▒       ░ 
+     ░░░  ░   ░░░░░ 
+     ░░░░     ░░░░░ 
+
+
+
+_NET_WM_PID(CARDINAL) = 7654
+WM_CLIENT_MACHINE(STRING) = "feli-desktop"
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS
+WM_CLASS(STRING) = "sun-awt-X11-XFramePeer", "jetbrains-phpstorm"
+WM_CLIENT_LEADER(WINDOW): window id # 0x3000008
+_NET_WM_ICON_NAME(UTF8_STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+WM_ICON_NAME(STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+_NET_WM_NAME(UTF8_STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+WM_NAME(STRING) = "/home/felicitus/public_html/stoffundliebe/application/views/zoxidElegance/tpl/page/account/noticelist.tpl"
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        user specified location: 2484, 245
+        program specified location: 2484, 245
+        program specified size: 6 by 12
+        window gravity: NorthWest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I try to resize the window, it immediately jumps to the configured floating&lt;em&gt;minimum&lt;/em&gt;size.&lt;/p&gt;
+
+&lt;p&gt;I'm not sure if this is an issue of i3, a configuration issue, or an issue with PhpStorm itself. Any hints?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2938/window-ignores-floating_minimum_size/?answer=2959#post-id-2959</link><description>This bug has been fixed in the next version.
+
+`code.stapelberg.de/git/i3/commit/?h=next&amp;id=05e46848f07460f18574d51eba0b182b177ab2d2`</description><pubDate>Sun, 24 Nov 2013 05:49:24 +0000</pubDate><guid>https://faq.i3wm.org/question/2938/window-ignores-floating_minimum_size/?answer=2959#post-id-2959</guid></item></channel></rss>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1216/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 25 May 2013 01:38:24 +0000</lastBuildDate><item><title>accent character in bindsym</title><link>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/</link><description>I am trying to have a key binding involving the key \` but it does not work. Is there an alias I have to use for the \` key, or what?
+
+The exact line in my config would be 
+
+bindsym $mod+` exec i3-sensible-terminal 
+
+for example. 
+</description><pubDate>Fri, 15 Feb 2013 22:31:15 +0000</pubDate><guid>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/</guid></item><item><title>Answer by dkeg for &lt;p&gt;I am trying to have a key binding involving the key ` but it does not work. Is there an alias I have to use for the ` key, or what?&lt;/p&gt;
+
+&lt;p&gt;The exact line in my config would be &lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+` exec i3-sensible-terminal &lt;/p&gt;
+
+&lt;p&gt;for example. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?answer=1217#post-id-1217</link><description>you would need to use this
+
+&lt;code&gt;bindsym $MOD+apostrophe exec i3-sensible-terminal&lt;/code&gt;
+
+or what the verbose name of the character is.  For example I use the ' - ' to tile horizontally and the bar for vertical
+
+&lt;code&gt;bindsym $mod+dash split h&lt;/code&gt;
+&lt;code&gt;bindsym $mod+bar split v&lt;/code&gt;
+
+</description><pubDate>Fri, 15 Feb 2013 22:37:59 +0000</pubDate><guid>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?answer=1217#post-id-1217</guid></item><item><title>Comment by muz for &lt;p&gt;you would need to use this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $MOD+apostrophe exec i3-sensible-terminal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or what the verbose name of the character is.  For example I use the ' - ' to tile horizontally and the bar for vertical&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+dash split h&lt;/code&gt;
+&lt;code&gt;bindsym $mod+bar split v&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?comment=1218#comment-1218</link><description>How would I go about finding the verbose name of the character? apostrophe does not work, neither does Apostrophe or backtick (wild guess)..</description><pubDate>Fri, 15 Feb 2013 22:45:39 +0000</pubDate><guid>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?comment=1218#comment-1218</guid></item><item><title>Comment by robsku for &lt;p&gt;you would need to use this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $MOD+apostrophe exec i3-sensible-terminal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or what the verbose name of the character is.  For example I use the ' - ' to tile horizontally and the bar for vertical&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+dash split h&lt;/code&gt;
+&lt;code&gt;bindsym $mod+bar split v&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?comment=1889#comment-1889</link><description>If you have the keycode from xev (let's say it's 25):
+&lt;code&gt;xmodmap -pke | grep ' 25 '&lt;/code&gt;(There's a reason for padding the 25 with spaces, as otherwise also keysyms for keynums like 125 and 252 would be printed.</description><pubDate>Sat, 25 May 2013 01:38:24 +0000</pubDate><guid>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?comment=1889#comment-1889</guid></item><item><title>Comment by dkeg for &lt;p&gt;you would need to use this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $MOD+apostrophe exec i3-sensible-terminal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or what the verbose name of the character is.  For example I use the ' - ' to tile horizontally and the bar for vertical&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+dash split h&lt;/code&gt;
+&lt;code&gt;bindsym $mod+bar split v&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?comment=1219#comment-1219</link><description>i'm not on a machine I can test on, but try acute accent, or maybe its just accent</description><pubDate>Fri, 15 Feb 2013 23:03:42 +0000</pubDate><guid>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?comment=1219#comment-1219</guid></item><item><title>Answer by akg for &lt;p&gt;I am trying to have a key binding involving the key ` but it does not work. Is there an alias I have to use for the ` key, or what?&lt;/p&gt;
+
+&lt;p&gt;The exact line in my config would be &lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+` exec i3-sensible-terminal &lt;/p&gt;
+
+&lt;p&gt;for example. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?answer=1220#post-id-1220</link><description>The keysym is "grave". 
+
+    bindsym $mod+grave exec i3-sensible-terminal</description><pubDate>Sun, 17 Feb 2013 12:46:31 +0000</pubDate><guid>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?answer=1220#post-id-1220</guid></item><item><title>Comment by Michael for &lt;p&gt;The keysym is "grave". &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+grave exec i3-sensible-terminal
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?comment=1223#comment-1223</link><description>You can find out using the tool `xev`</description><pubDate>Sun, 17 Feb 2013 23:59:48 +0000</pubDate><guid>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?comment=1223#comment-1223</guid></item><item><title>Comment by muz for &lt;p&gt;The keysym is "grave". &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+grave exec i3-sensible-terminal
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?comment=1221#comment-1221</link><description>Thank you very much. This worked. May I ask how you found this?</description><pubDate>Sun, 17 Feb 2013 21:27:08 +0000</pubDate><guid>https://faq.i3wm.org/question/1216/accent-character-in-bindsym/?comment=1221#comment-1221</guid></item></channel></rss>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4625/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 16 Sep 2014 13:01:10 +0000</lastBuildDate><item><title>I3 status bar not showing my battery</title><link>https://faq.i3wm.org/question/4625/i3-status-bar-not-showing-my-battery/</link><description>I'm using debian with I3. So far everything is working OK, but I'm having issues with the i3status bar. It doesn't show the status of my battery. Ir says "No battery", as if I were using a desktop Pc.
+What can I do?</description><pubDate>Fri, 12 Sep 2014 04:14:42 +0000</pubDate><guid>https://faq.i3wm.org/question/4625/i3-status-bar-not-showing-my-battery/</guid></item><item><title>Comment by tinh for &lt;p&gt;I'm using debian with I3. So far everything is working OK, but I'm having issues with the i3status bar. It doesn't show the status of my battery. Ir says "No battery", as if I were using a desktop Pc.
+What can I do?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4625/i3-status-bar-not-showing-my-battery/?comment=4626#comment-4626</link><description>Could you post your /etc/i3status.conf file, please.</description><pubDate>Sun, 14 Sep 2014 11:49:45 +0000</pubDate><guid>https://faq.i3wm.org/question/4625/i3-status-bar-not-showing-my-battery/?comment=4626#comment-4626</guid></item><item><title>Answer by rosetree for &lt;p&gt;I'm using debian with I3. So far everything is working OK, but I'm having issues with the i3status bar. It doesn't show the status of my battery. Ir says "No battery", as if I were using a desktop Pc.
+What can I do?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4625/i3-status-bar-not-showing-my-battery/?answer=4630#post-id-4630</link><description>This is the same problem I had with Ubuntu 14.04. Changing the battery number in the `i3status.conf` file from 0 to 1 helped me.
+
+When you do this, you have to change two lines. First near the top of the configuration.
+
+    # order += "battery 0" old
+    order += "battery 1" # new
+
+And the following, somewhere in the middle:
+
+    # battery 0 { old
+    battery 1 { # new</description><pubDate>Tue, 16 Sep 2014 13:01:10 +0000</pubDate><guid>https://faq.i3wm.org/question/4625/i3-status-bar-not-showing-my-battery/?answer=4630#post-id-4630</guid></item></channel></rss>

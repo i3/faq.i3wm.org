@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3349/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 03 Feb 2014 12:56:45 +0000</lastBuildDate><item><title>Exit mode on any other key</title><link>https://faq.i3wm.org/question/3349/exit-mode-on-any-other-key/</link><description>Hi,
+
+I wanted to make some "go to App" mode, like Win+G O -&gt; Focus Opera. So I made this config:
+
+    mode "gotoapp" {
+            bindsym o [class="opera"] focus
+            bindsym p [class="psi"] focus
+            bindsym t [class="roxterm" title="suk@pc"] focus
+            bindsym Escape mode "default"
+            bindsym Return mode "default"
+    }
+    bindsym $mod+g mode "gotoapp"
+
+Is there a chance to make somethink like switch/case/default to return to default mode? Thank you!
+And, of course - how to run on one keystroke two commands (focus and return to default mode)?</description><pubDate>Mon, 03 Feb 2014 11:55:13 +0000</pubDate><guid>https://faq.i3wm.org/question/3349/exit-mode-on-any-other-key/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I wanted to make some "go to App" mode, like Win+G O -&amp;gt; Focus Opera. So I made this config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "gotoapp" {
+        bindsym o [class="opera"] focus
+        bindsym p [class="psi"] focus
+        bindsym t [class="roxterm" title="suk@pc"] focus
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+}
+bindsym $mod+g mode "gotoapp"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is there a chance to make somethink like switch/case/default to return to default mode? Thank you!
+And, of course - how to run on one keystroke two commands (focus and return to default mode)?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3349/exit-mode-on-any-other-key/?answer=3350#post-id-3350</link><description>There is no way to catch "any key". i3 only cares about key(-combinations) that have explicitly been bound with `bindsym` or `bindkey`.
+
+So, although you can emulate switch/case with `mode`, you cannot have a "default" case.
+
+----
+
+It is possible to chain multiple commands by using either `;` or `,` (see [Section 6 of the User's Guide](http://i3wm.org/docs/userguide.html#_list_of_commands) for the difference).
+
+So, in order to leave the mode after focusing, you can just do this:
+
+    mode "gotoapp" {
+        bindsym o [class="opera"] focus; mode "default"
+        bindsym p [class="psi"] focus; mode "default"
+        bindsym t [class="roxterm" title="suk@pc"] focus; mode "default"
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+    }
+    bindsym $mod+g mode "gotoapp"
+</description><pubDate>Mon, 03 Feb 2014 12:43:11 +0000</pubDate><guid>https://faq.i3wm.org/question/3349/exit-mode-on-any-other-key/?answer=3350#post-id-3350</guid></item><item><title>Comment by SUK for &lt;p&gt;There is no way to catch "any key". i3 only cares about key(-combinations) that have explicitly been bound with &lt;code&gt;bindsym&lt;/code&gt; or &lt;code&gt;bindkey&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, although you can emulate switch/case with &lt;code&gt;mode&lt;/code&gt;, you cannot have a "default" case.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;It is possible to chain multiple commands by using either &lt;code&gt;;&lt;/code&gt; or &lt;code&gt;,&lt;/code&gt; (see &lt;a href="http://i3wm.org/docs/userguide.html#_list_of_commands"&gt;Section 6 of the User's Guide&lt;/a&gt; for the difference).&lt;/p&gt;
+
+&lt;p&gt;So, in order to leave the mode after focusing, you can just do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "gotoapp" {
+    bindsym o [class="opera"] focus; mode "default"
+    bindsym p [class="psi"] focus; mode "default"
+    bindsym t [class="roxterm" title="suk@pc"] focus; mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+bindsym $mod+g mode "gotoapp"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3349/exit-mode-on-any-other-key/?comment=3351#comment-3351</link><description>Thank for your (not so optimistic for me :) ) answer. </description><pubDate>Mon, 03 Feb 2014 12:56:45 +0000</pubDate><guid>https://faq.i3wm.org/question/3349/exit-mode-on-any-other-key/?comment=3351#comment-3351</guid></item></channel></rss>

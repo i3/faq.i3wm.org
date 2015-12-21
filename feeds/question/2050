@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2050/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 06 Dec 2014 22:28:32 +0000</lastBuildDate><item><title>How to launch an application on a different workspace with cwd preserved</title><link>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/</link><description>Assume the following situation (which is my normal way of working): 2 displays, a full screen terminal with tmux on workspace 1 on display 1. When launching a X application from that terminal it will open "in the background" of workspace 1 since the full screen terminal is always on top.
+
+What I'm looking for is a convenient way (i.e. something I can bind to a shell alias/function) to launch an application on workspace N on display 2 instead. Ideally I'd also like to preserve my current working directory.
+
+I got some of the way using:
+
+```
+i3 "workspace N; exec cd `pwd` &amp;&amp; cmd"
+```
+
+This will however still launch a new workspace on the same display. Is there a more elegant way of doing this?</description><pubDate>Tue, 18 Jun 2013 12:56:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/</guid></item><item><title>Comment by mschaefer for &lt;p&gt;Assume the following situation (which is my normal way of working): 2 displays, a full screen terminal with tmux on workspace 1 on display 1. When launching a X application from that terminal it will open "in the background" of workspace 1 since the full screen terminal is always on top.&lt;/p&gt;
+
+&lt;p&gt;What I'm looking for is a convenient way (i.e. something I can bind to a shell alias/function) to launch an application on workspace N on display 2 instead. Ideally I'd also like to preserve my current working directory.&lt;/p&gt;
+
+&lt;p&gt;I got some of the way using:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+i3 "workspace N; exec cd `pwd` &amp;amp;&amp;amp; cmd"
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will however still launch a new workspace on the same display. Is there a more elegant way of doing this?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?comment=2056#comment-2056</link><description>You could try to explicitly bind some workspaces to the second display in your config file using "workspace &lt;N&gt; output &lt;output&gt;" where &lt;N&gt; is the number and &lt;output&gt; is the display name (you get it e.g. via xrandr). However, maybe not the solution you are looking for...</description><pubDate>Thu, 20 Jun 2013 09:59:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?comment=2056#comment-2056</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Assume the following situation (which is my normal way of working): 2 displays, a full screen terminal with tmux on workspace 1 on display 1. When launching a X application from that terminal it will open "in the background" of workspace 1 since the full screen terminal is always on top.&lt;/p&gt;
+
+&lt;p&gt;What I'm looking for is a convenient way (i.e. something I can bind to a shell alias/function) to launch an application on workspace N on display 2 instead. Ideally I'd also like to preserve my current working directory.&lt;/p&gt;
+
+&lt;p&gt;I got some of the way using:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+i3 "workspace N; exec cd `pwd` &amp;amp;&amp;amp; cmd"
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will however still launch a new workspace on the same display. Is there a more elegant way of doing this?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?comment=2051#comment-2051</link><description>There is a talk here on launching terminals on specific path: https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/</description><pubDate>Tue, 18 Jun 2013 14:16:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?comment=2051#comment-2051</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Assume the following situation (which is my normal way of working): 2 displays, a full screen terminal with tmux on workspace 1 on display 1. When launching a X application from that terminal it will open "in the background" of workspace 1 since the full screen terminal is always on top.&lt;/p&gt;
+
+&lt;p&gt;What I'm looking for is a convenient way (i.e. something I can bind to a shell alias/function) to launch an application on workspace N on display 2 instead. Ideally I'd also like to preserve my current working directory.&lt;/p&gt;
+
+&lt;p&gt;I got some of the way using:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+i3 "workspace N; exec cd `pwd` &amp;amp;&amp;amp; cmd"
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will however still launch a new workspace on the same display. Is there a more elegant way of doing this?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?comment=2063#comment-2063</link><description>but if you want different behavior (this time move to w1, now w3, and so on), the only way would be to bind different terminal launch keys with named windows (urxvt), running the script to preserve the cwd, and then assigning the particular window to a specific workspace in i3 config.  </description><pubDate>Thu, 20 Jun 2013 22:39:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?comment=2063#comment-2063</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Assume the following situation (which is my normal way of working): 2 displays, a full screen terminal with tmux on workspace 1 on display 1. When launching a X application from that terminal it will open "in the background" of workspace 1 since the full screen terminal is always on top.&lt;/p&gt;
+
+&lt;p&gt;What I'm looking for is a convenient way (i.e. something I can bind to a shell alias/function) to launch an application on workspace N on display 2 instead. Ideally I'd also like to preserve my current working directory.&lt;/p&gt;
+
+&lt;p&gt;I got some of the way using:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+i3 "workspace N; exec cd `pwd` &amp;amp;&amp;amp; cmd"
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will however still launch a new workspace on the same display. Is there a more elegant way of doing this?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?comment=2062#comment-2062</link><description>why not? If you can preserve the cwd location, then you can just define the i3 config to react when your terminal window is created, such as moving to a specific workspace... </description><pubDate>Thu, 20 Jun 2013 22:37:09 +0000</pubDate><guid>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?comment=2062#comment-2062</guid></item><item><title>Comment by kynan for &lt;p&gt;Assume the following situation (which is my normal way of working): 2 displays, a full screen terminal with tmux on workspace 1 on display 1. When launching a X application from that terminal it will open "in the background" of workspace 1 since the full screen terminal is always on top.&lt;/p&gt;
+
+&lt;p&gt;What I'm looking for is a convenient way (i.e. something I can bind to a shell alias/function) to launch an application on workspace N on display 2 instead. Ideally I'd also like to preserve my current working directory.&lt;/p&gt;
+
+&lt;p&gt;I got some of the way using:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+i3 "workspace N; exec cd `pwd` &amp;amp;&amp;amp; cmd"
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will however still launch a new workspace on the same display. Is there a more elegant way of doing this?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?comment=2054#comment-2054</link><description>Thanks, I've seen that, but it only solves a small part of the problem.</description><pubDate>Tue, 18 Jun 2013 15:01:53 +0000</pubDate><guid>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?comment=2054#comment-2054</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;Assume the following situation (which is my normal way of working): 2 displays, a full screen terminal with tmux on workspace 1 on display 1. When launching a X application from that terminal it will open "in the background" of workspace 1 since the full screen terminal is always on top.&lt;/p&gt;
+
+&lt;p&gt;What I'm looking for is a convenient way (i.e. something I can bind to a shell alias/function) to launch an application on workspace N on display 2 instead. Ideally I'd also like to preserve my current working directory.&lt;/p&gt;
+
+&lt;p&gt;I got some of the way using:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+i3 "workspace N; exec cd `pwd` &amp;amp;&amp;amp; cmd"
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will however still launch a new workspace on the same display. Is there a more elegant way of doing this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?answer=5062#post-id-5062</link><description>you could do i3-msg focus output foo; i3-msg workspace bar which will create a workspace bar on the desired outout.  You could also simply cause certain programs to be assigned to start on certain workspaces and assign certain workspaces to be on certain monitors.
+
+If its not desirable to do so as you want to start a certain app on multiple workspaces you could write a function to start a program on a particular ws.
+
+Example in fish shell
+function starton
+    set ws $argv[1]
+    set program $argv[2..-1] &amp;
+    set num (instances-of $program)
+    ws $ws
+    eval $program
+    while test (instances-of $program) -le $num
+        sleep 0.25
+    end
+end
+
+function instances-of
+    count (wmctrl -lxp | grep -i $argv)
+end
+
+instances-of is using wmctrl to count the number of windows present of the given program.
+
+starton switches to the desired workspace, evals the program and doesn't terminate until wmctrl reports that the number of instances of said program is greater.  This is so you can starton foo someprogram; starton bar someotherprogram wherein program takes some time to startup without ending up with all windows stuck on the last ws.  May need some work.</description><pubDate>Sun, 30 Nov 2014 21:15:40 +0000</pubDate><guid>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?answer=5062#post-id-5062</guid></item><item><title>Answer by Michael for &lt;p&gt;Assume the following situation (which is my normal way of working): 2 displays, a full screen terminal with tmux on workspace 1 on display 1. When launching a X application from that terminal it will open "in the background" of workspace 1 since the full screen terminal is always on top.&lt;/p&gt;
+
+&lt;p&gt;What I'm looking for is a convenient way (i.e. something I can bind to a shell alias/function) to launch an application on workspace N on display 2 instead. Ideally I'd also like to preserve my current working directory.&lt;/p&gt;
+
+&lt;p&gt;I got some of the way using:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+i3 "workspace N; exec cd `pwd` &amp;amp;&amp;amp; cmd"
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will however still launch a new workspace on the same display. Is there a more elegant way of doing this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?answer=5119#post-id-5119</link><description>If you always use only precisely two outputs, this should work:
+
+    i3 "focus output right; workspace N; exec cd `pwd` &amp;&amp; cmd"
+
+If you’re using more than two outputs, you’ll need to specify the output name and have some custom script around that i3 command which figures out the topology.</description><pubDate>Sat, 06 Dec 2014 22:28:32 +0000</pubDate><guid>https://faq.i3wm.org/question/2050/how-to-launch-an-application-on-a-different-workspace-with-cwd-preserved/?answer=5119#post-id-5119</guid></item></channel></rss>

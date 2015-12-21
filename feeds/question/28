@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/28/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 11 Aug 2012 21:12:49 +0000</lastBuildDate><item><title>How do you use IPC (and scripting libraries)?</title><link>https://faq.i3wm.org/question/28/how-do-you-use-ipc-and-scripting-libraries/</link><description>As a satisfied, year-long, full-time user of i3, I did not get much further than playing with the configuration file, and here and there some i3-msg command. In the documentation much attention is given to the [IPC interface](http://i3wm.org/docs/ipc.html), and apparently [some scripting libraries](http://i3wm.org/docs/ipc.html#_see_also) have been built upon that. Considering the effort that must have gone into this, I am sure I am still missing out on some Real Goodies™. 
+
+The question: To what end and how are you using the IPC and/or its implementations? 
+
+Thanks for sharing :) </description><pubDate>Mon, 04 Jun 2012 20:21:00 +0000</pubDate><guid>https://faq.i3wm.org/question/28/how-do-you-use-ipc-and-scripting-libraries/</guid></item><item><title>Comment by mloskot for &lt;p&gt;As a satisfied, year-long, full-time user of i3, I did not get much further than playing with the configuration file, and here and there some i3-msg command. In the documentation much attention is given to the &lt;a href="http://i3wm.org/docs/ipc.html"&gt;IPC interface&lt;/a&gt;, and apparently &lt;a href="http://i3wm.org/docs/ipc.html#_see_also"&gt;some scripting libraries&lt;/a&gt; have been built upon that. Considering the effort that must have gone into this, I am sure I am still missing out on some Real Goodies™. &lt;/p&gt;
+
+&lt;p&gt;The question: To what end and how are you using the IPC and/or its implementations? &lt;/p&gt;
+
+&lt;p&gt;Thanks for sharing :) &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/28/how-do-you-use-ipc-and-scripting-libraries/?comment=82#comment-82</link><description>IMHO it would be good if you can provide examples of use cases you are interested in, so the "extent of use" is more concrete.</description><pubDate>Thu, 07 Jun 2012 10:02:57 +0000</pubDate><guid>https://faq.i3wm.org/question/28/how-do-you-use-ipc-and-scripting-libraries/?comment=82#comment-82</guid></item><item><title>Answer by ShadowPrince for &lt;p&gt;As a satisfied, year-long, full-time user of i3, I did not get much further than playing with the configuration file, and here and there some i3-msg command. In the documentation much attention is given to the &lt;a href="http://i3wm.org/docs/ipc.html"&gt;IPC interface&lt;/a&gt;, and apparently &lt;a href="http://i3wm.org/docs/ipc.html#_see_also"&gt;some scripting libraries&lt;/a&gt; have been built upon that. Considering the effort that must have gone into this, I am sure I am still missing out on some Real Goodies™. &lt;/p&gt;
+
+&lt;p&gt;The question: To what end and how are you using the IPC and/or its implementations? &lt;/p&gt;
+
+&lt;p&gt;Thanks for sharing :) &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/28/how-do-you-use-ipc-and-scripting-libraries/?answer=333#post-id-333</link><description>Currenly I am newbie user, and have only 1 program based on this:
+
+    #!/usr/bin/python
+    import os
+    import i3
+    import sys
+    import time
+
+    def wait_for_new_window(windows):
+        return i3.get_tree() == windows
+
+    if __name__ == '__main__' or True:
+        os.system(sys.argv[1] + '&amp;')
+        os.system('i3 split h')
+        windows = i3.get_tree()
+        while wait_for_new_window(windows): time.sleep(0.1)
+        time.sleep(0.1)
+        os.system('i3 focus left')
+        os.system('i3 kill')
+Think there wil be more soon.</description><pubDate>Sat, 11 Aug 2012 21:12:49 +0000</pubDate><guid>https://faq.i3wm.org/question/28/how-do-you-use-ipc-and-scripting-libraries/?answer=333#post-id-333</guid></item><item><title>Answer by Michael for &lt;p&gt;As a satisfied, year-long, full-time user of i3, I did not get much further than playing with the configuration file, and here and there some i3-msg command. In the documentation much attention is given to the &lt;a href="http://i3wm.org/docs/ipc.html"&gt;IPC interface&lt;/a&gt;, and apparently &lt;a href="http://i3wm.org/docs/ipc.html#_see_also"&gt;some scripting libraries&lt;/a&gt; have been built upon that. Considering the effort that must have gone into this, I am sure I am still missing out on some Real Goodies™. &lt;/p&gt;
+
+&lt;p&gt;The question: To what end and how are you using the IPC and/or its implementations? &lt;/p&gt;
+
+&lt;p&gt;Thanks for sharing :) &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/28/how-do-you-use-ipc-and-scripting-libraries/?answer=328#post-id-328</link><description>Here’s a script from another answer which restores workspace to output mappings (without having them configured in the i3 config in a static way): https://gist.github.com/3310561</description><pubDate>Fri, 10 Aug 2012 12:28:18 +0000</pubDate><guid>https://faq.i3wm.org/question/28/how-do-you-use-ipc-and-scripting-libraries/?answer=328#post-id-328</guid></item></channel></rss>

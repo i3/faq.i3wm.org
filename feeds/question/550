@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/550/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 05 Mar 2015 18:06:54 +0000</lastBuildDate><item><title>Manipulating windows with the mouse</title><link>https://faq.i3wm.org/question/550/manipulating-windows-with-the-mouse/</link><description>Hi,
+I'm using i3 for several months and I still feel some things are missing : mainly the possibility to manipulate windows with the mouse. I mean :
+&lt;ul&gt;closing windows (e.g. with a little cross-button on the title bar like many other wm, or by clicking with some button on the titlebar)&lt;/ul&gt;
+&lt;ul&gt;switching to full screen (e.g. with double-click on the titlebar)&lt;/ul&gt;
+
+So I would like to know whether options to handle this will be implemented in the future, or if there's some way to configure this by hand.
+
+Thanks, and thanks for developing such a great wm.</description><pubDate>Tue, 25 Sep 2012 19:38:38 +0000</pubDate><guid>https://faq.i3wm.org/question/550/manipulating-windows-with-the-mouse/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,
+I'm using i3 for several months and I still feel some things are missing : mainly the possibility to manipulate windows with the mouse. I mean :&lt;/p&gt;
+
+&lt;ul&gt;closing windows (e.g. with a little cross-button on the title bar like many other wm, or by clicking with some button on the titlebar)&lt;/ul&gt;
+
+&lt;ul&gt;switching to full screen (e.g. with double-click on the titlebar)&lt;/ul&gt;
+
+&lt;p&gt;So I would like to know whether options to handle this will be implemented in the future, or if there's some way to configure this by hand.&lt;/p&gt;
+
+&lt;p&gt;Thanks, and thanks for developing such a great wm.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/550/manipulating-windows-with-the-mouse/?answer=551#post-id-551</link><description>No, features like little close buttons will not be implemented. i3 does not have full mouse support (or traditional mouse support) as one of its goals.
+
+What still has a chance of getting introduced is bindsym-like support for mouse-buttons, e.g. that you can bind what a click on a window title with each mouse button should do. But nothing apart from that is planned (or desirable IMO) with regards to mouse support.</description><pubDate>Tue, 25 Sep 2012 19:46:55 +0000</pubDate><guid>https://faq.i3wm.org/question/550/manipulating-windows-with-the-mouse/?answer=551#post-id-551</guid></item><item><title>Answer by hos for &lt;p&gt;Hi,
+I'm using i3 for several months and I still feel some things are missing : mainly the possibility to manipulate windows with the mouse. I mean :&lt;/p&gt;
+
+&lt;ul&gt;closing windows (e.g. with a little cross-button on the title bar like many other wm, or by clicking with some button on the titlebar)&lt;/ul&gt;
+
+&lt;ul&gt;switching to full screen (e.g. with double-click on the titlebar)&lt;/ul&gt;
+
+&lt;p&gt;So I would like to know whether options to handle this will be implemented in the future, or if there's some way to configure this by hand.&lt;/p&gt;
+
+&lt;p&gt;Thanks, and thanks for developing such a great wm.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/550/manipulating-windows-with-the-mouse/?answer=5573#post-id-5573</link><description>Apparently bindsym features for mouse buttons have been added in the 4.9 release. 
+
+    # The middle button over a titlebar kills the window
+    bindsym --release button2 kill
+    
+    # The middle button and a modifer over any part of the window kills the window
+    bindsym --whole-window $mod+button2 kill
+    
+    # The right button toggles floating
+    bindsym button3 floating toggle
+    bindsym $mod+button3 floating toggle
+    
+    # The side buttons move the window around
+    bindsym button9 move left
+    bindsym button8 move right
+
+Visit [mousebindings section in the User's Guide](http://i3wm.org/docs/userguide.html#mousebindings) for the necessary configuration. </description><pubDate>Thu, 05 Mar 2015 18:06:54 +0000</pubDate><guid>https://faq.i3wm.org/question/550/manipulating-windows-with-the-mouse/?answer=5573#post-id-5573</guid></item><item><title>Answer by Timbus for &lt;p&gt;Hi,
+I'm using i3 for several months and I still feel some things are missing : mainly the possibility to manipulate windows with the mouse. I mean :&lt;/p&gt;
+
+&lt;ul&gt;closing windows (e.g. with a little cross-button on the title bar like many other wm, or by clicking with some button on the titlebar)&lt;/ul&gt;
+
+&lt;ul&gt;switching to full screen (e.g. with double-click on the titlebar)&lt;/ul&gt;
+
+&lt;p&gt;So I would like to know whether options to handle this will be implemented in the future, or if there's some way to configure this by hand.&lt;/p&gt;
+
+&lt;p&gt;Thanks, and thanks for developing such a great wm.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/550/manipulating-windows-with-the-mouse/?answer=1252#post-id-1252</link><description>Hi there. I added this to i3 quite some time ago and could not live without it:
+
+    diff --git a/src/click.c b/src/click.c
+    index 3022c24..e76a57c 100644
+    --- a/src/click.c
+    +++ b/src/click.c
+    @@ -229,6 +229,12 @@ static int route_click(Con *con, xcb_button_press_event_t *event, const bool mod
+             goto done;
+         }
+     
+    +    if (dest == CLICK_DECORATION &amp;&amp; event-&gt;detail == 2) {
+    +        DLOG("Closing window using middle click\n");
+    +        tree_close(con, KILL_WINDOW, false, false);
+    +        goto done;
+    +    }
+    +
+         /* 2: focus this con. */
+         con_focus(con);
+
+
+It allows windows to be closed with middle-click. If you have the latest git pull of the 'next' branch you should be able to apply it.
+
+If anyone finds it useful, I might work on adding more mouse support such as moving and swapping window positions..</description><pubDate>Sat, 23 Feb 2013 01:41:02 +0000</pubDate><guid>https://faq.i3wm.org/question/550/manipulating-windows-with-the-mouse/?answer=1252#post-id-1252</guid></item><item><title>Comment by dev-zero for &lt;p&gt;Hi there. I added this to i3 quite some time ago and could not live without it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;diff --git a/src/click.c b/src/click.c
+index 3022c24..e76a57c 100644
+--- a/src/click.c
++++ b/src/click.c
+@@ -229,6 +229,12 @@ static int route_click(Con *con, xcb_button_press_event_t *event, const bool mod
+         goto done;
+     }
+
++    if (dest == CLICK_DECORATION &amp;amp;&amp;amp; event-&amp;gt;detail == 2) {
++        DLOG("Closing window using middle click\n");
++        tree_close(con, KILL_WINDOW, false, false);
++        goto done;
++    }
++
+     /* 2: focus this con. */
+     con_focus(con);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It allows windows to be closed with middle-click. If you have the latest git pull of the 'next' branch you should be able to apply it.&lt;/p&gt;
+
+&lt;p&gt;If anyone finds it useful, I might work on adding more mouse support such as moving and swapping window positions..&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/550/manipulating-windows-with-the-mouse/?comment=4078#comment-4078</link><description>It is definitely useful, although it should terminate the processing of the event: currently the middle-click is passed through to the window behind it (which is the case when closing a floating window).</description><pubDate>Tue, 01 Jul 2014 08:57:43 +0000</pubDate><guid>https://faq.i3wm.org/question/550/manipulating-windows-with-the-mouse/?comment=4078#comment-4078</guid></item></channel></rss>

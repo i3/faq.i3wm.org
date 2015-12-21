@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4761/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 16 Apr 2015 21:30:10 +0000</lastBuildDate><item><title>Keyboard Input language Problems (Want to switch to Greek)</title><link>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/</link><description>I'm Greek, I use English mostly but when I want to type in Greek... I want to type in Greek. lol.
+
+So how to add the Greek language and switch between English and Greeek with `alt + shift`?
+
+In unity desktop that's already setup so I thought that these kind of settings were "cross dekstop". How to go about it?</description><pubDate>Wed, 15 Oct 2014 21:03:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I'm Greek, I use English mostly but when I want to type in Greek... I want to type in Greek. lol.&lt;/p&gt;
+
+&lt;p&gt;So how to add the Greek language and switch between English and Greeek with &lt;code&gt;alt + shift&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;In unity desktop that's already setup so I thought that these kind of settings were "cross dekstop". How to go about it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?answer=4766#post-id-4766</link><description>If you add the following line to your *i3* configuration it should work just like in *Unity*
+
+    exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
+
+
+If you use some variant of the these layouts you can also add the `-variant` option. For example, `-variant euro,simple` will use the `euro` variant of the `us` layout and the `simple` variant for the `gr` layout (same order as `-layout`). In order to use the default variant just leave it out, so `-variant euro,` will use `euro` for `us`, but the default for `gr`.
+
+Also the above line assumes that a default 105-key PC-keyboard will be used. If you use anything else change the model accordingly. 
+
+With `setxkbmap -query` you can see what is currently set. If you run it before adding the above line to the configuration, you can see what is set by Xorg. 
+
+----
+
+There is also the chance that *Unity* is using the same method to set multiple layouts (I do not use Unity, so I cannot check). So if you log in with Unity and just run `setxkbmap -query` you might get everything you need to set layout changing for *i3* the exact same way.
+
+For example, the output
+
+    rules:      evdev
+    model:      pc105
+    layout:     us,gr
+    options:    grp:alt_shift_toggle
+
+would translate to the above `setxkbmap` command.
+
+----
+
+Have a look on [this Arch Linux Documentation](https://wiki.archlinux.org/index.php/Keyboard_Configuration_in_Xorg#Setting_keyboard_layout) for more information. The 'Setting keyboard layout' section works just as well with Ubuntu.
+</description><pubDate>Thu, 16 Oct 2014 07:14:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?answer=4766#post-id-4766</guid></item><item><title>Comment by Deus Deceit for &lt;p&gt;If you add the following line to your &lt;em&gt;i3&lt;/em&gt; configuration it should work just like in &lt;em&gt;Unity&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you use some variant of the these layouts you can also add the &lt;code&gt;-variant&lt;/code&gt; option. For example, &lt;code&gt;-variant euro,simple&lt;/code&gt; will use the &lt;code&gt;euro&lt;/code&gt; variant of the &lt;code&gt;us&lt;/code&gt; layout and the &lt;code&gt;simple&lt;/code&gt; variant for the &lt;code&gt;gr&lt;/code&gt; layout (same order as &lt;code&gt;-layout&lt;/code&gt;). In order to use the default variant just leave it out, so &lt;code&gt;-variant euro,&lt;/code&gt; will use &lt;code&gt;euro&lt;/code&gt; for &lt;code&gt;us&lt;/code&gt;, but the default for &lt;code&gt;gr&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also the above line assumes that a default 105-key PC-keyboard will be used. If you use anything else change the model accordingly. &lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;setxkbmap -query&lt;/code&gt; you can see what is currently set. If you run it before adding the above line to the configuration, you can see what is set by Xorg. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;There is also the chance that &lt;em&gt;Unity&lt;/em&gt; is using the same method to set multiple layouts (I do not use Unity, so I cannot check). So if you log in with Unity and just run &lt;code&gt;setxkbmap -query&lt;/code&gt; you might get everything you need to set layout changing for &lt;em&gt;i3&lt;/em&gt; the exact same way.&lt;/p&gt;
+
+&lt;p&gt;For example, the output&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rules:      evdev
+model:      pc105
+layout:     us,gr
+options:    grp:alt_shift_toggle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would translate to the above &lt;code&gt;setxkbmap&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Have a look on &lt;a href="https://wiki.archlinux.org/index.php/Keyboard_Configuration_in_Xorg#Setting_keyboard_layout"&gt;this Arch Linux Documentation&lt;/a&gt; for more information. The 'Setting keyboard layout' section works just as well with Ubuntu.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=4772#comment-4772</link><description>Yes, it does :/</description><pubDate>Thu, 16 Oct 2014 13:52:20 +0000</pubDate><guid>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=4772#comment-4772</guid></item><item><title>Comment by Deus Deceit for &lt;p&gt;If you add the following line to your &lt;em&gt;i3&lt;/em&gt; configuration it should work just like in &lt;em&gt;Unity&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you use some variant of the these layouts you can also add the &lt;code&gt;-variant&lt;/code&gt; option. For example, &lt;code&gt;-variant euro,simple&lt;/code&gt; will use the &lt;code&gt;euro&lt;/code&gt; variant of the &lt;code&gt;us&lt;/code&gt; layout and the &lt;code&gt;simple&lt;/code&gt; variant for the &lt;code&gt;gr&lt;/code&gt; layout (same order as &lt;code&gt;-layout&lt;/code&gt;). In order to use the default variant just leave it out, so &lt;code&gt;-variant euro,&lt;/code&gt; will use &lt;code&gt;euro&lt;/code&gt; for &lt;code&gt;us&lt;/code&gt;, but the default for &lt;code&gt;gr&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also the above line assumes that a default 105-key PC-keyboard will be used. If you use anything else change the model accordingly. &lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;setxkbmap -query&lt;/code&gt; you can see what is currently set. If you run it before adding the above line to the configuration, you can see what is set by Xorg. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;There is also the chance that &lt;em&gt;Unity&lt;/em&gt; is using the same method to set multiple layouts (I do not use Unity, so I cannot check). So if you log in with Unity and just run &lt;code&gt;setxkbmap -query&lt;/code&gt; you might get everything you need to set layout changing for &lt;em&gt;i3&lt;/em&gt; the exact same way.&lt;/p&gt;
+
+&lt;p&gt;For example, the output&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rules:      evdev
+model:      pc105
+layout:     us,gr
+options:    grp:alt_shift_toggle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would translate to the above &lt;code&gt;setxkbmap&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Have a look on &lt;a href="https://wiki.archlinux.org/index.php/Keyboard_Configuration_in_Xorg#Setting_keyboard_layout"&gt;this Arch Linux Documentation&lt;/a&gt; for more information. The 'Setting keyboard layout' section works just as well with Ubuntu.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=4801#comment-4801</link><description>Yep, that worked! Thank you very much</description><pubDate>Sun, 19 Oct 2014 04:14:32 +0000</pubDate><guid>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=4801#comment-4801</guid></item><item><title>Comment by Deus Deceit for &lt;p&gt;If you add the following line to your &lt;em&gt;i3&lt;/em&gt; configuration it should work just like in &lt;em&gt;Unity&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you use some variant of the these layouts you can also add the &lt;code&gt;-variant&lt;/code&gt; option. For example, &lt;code&gt;-variant euro,simple&lt;/code&gt; will use the &lt;code&gt;euro&lt;/code&gt; variant of the &lt;code&gt;us&lt;/code&gt; layout and the &lt;code&gt;simple&lt;/code&gt; variant for the &lt;code&gt;gr&lt;/code&gt; layout (same order as &lt;code&gt;-layout&lt;/code&gt;). In order to use the default variant just leave it out, so &lt;code&gt;-variant euro,&lt;/code&gt; will use &lt;code&gt;euro&lt;/code&gt; for &lt;code&gt;us&lt;/code&gt;, but the default for &lt;code&gt;gr&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also the above line assumes that a default 105-key PC-keyboard will be used. If you use anything else change the model accordingly. &lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;setxkbmap -query&lt;/code&gt; you can see what is currently set. If you run it before adding the above line to the configuration, you can see what is set by Xorg. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;There is also the chance that &lt;em&gt;Unity&lt;/em&gt; is using the same method to set multiple layouts (I do not use Unity, so I cannot check). So if you log in with Unity and just run &lt;code&gt;setxkbmap -query&lt;/code&gt; you might get everything you need to set layout changing for &lt;em&gt;i3&lt;/em&gt; the exact same way.&lt;/p&gt;
+
+&lt;p&gt;For example, the output&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rules:      evdev
+model:      pc105
+layout:     us,gr
+options:    grp:alt_shift_toggle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would translate to the above &lt;code&gt;setxkbmap&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Have a look on &lt;a href="https://wiki.archlinux.org/index.php/Keyboard_Configuration_in_Xorg#Setting_keyboard_layout"&gt;this Arch Linux Documentation&lt;/a&gt; for more information. The 'Setting keyboard layout' section works just as well with Ubuntu.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=4770#comment-4770</link><description>I did check with `setxkbmap -query` in unity and the model is the same, I put the line in my config file, but it didn't work. I read the arch wiki but it kinda says what you said too. Am I missing something?</description><pubDate>Thu, 16 Oct 2014 13:12:18 +0000</pubDate><guid>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=4770#comment-4770</guid></item><item><title>Comment by Adaephon for &lt;p&gt;If you add the following line to your &lt;em&gt;i3&lt;/em&gt; configuration it should work just like in &lt;em&gt;Unity&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you use some variant of the these layouts you can also add the &lt;code&gt;-variant&lt;/code&gt; option. For example, &lt;code&gt;-variant euro,simple&lt;/code&gt; will use the &lt;code&gt;euro&lt;/code&gt; variant of the &lt;code&gt;us&lt;/code&gt; layout and the &lt;code&gt;simple&lt;/code&gt; variant for the &lt;code&gt;gr&lt;/code&gt; layout (same order as &lt;code&gt;-layout&lt;/code&gt;). In order to use the default variant just leave it out, so &lt;code&gt;-variant euro,&lt;/code&gt; will use &lt;code&gt;euro&lt;/code&gt; for &lt;code&gt;us&lt;/code&gt;, but the default for &lt;code&gt;gr&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also the above line assumes that a default 105-key PC-keyboard will be used. If you use anything else change the model accordingly. &lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;setxkbmap -query&lt;/code&gt; you can see what is currently set. If you run it before adding the above line to the configuration, you can see what is set by Xorg. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;There is also the chance that &lt;em&gt;Unity&lt;/em&gt; is using the same method to set multiple layouts (I do not use Unity, so I cannot check). So if you log in with Unity and just run &lt;code&gt;setxkbmap -query&lt;/code&gt; you might get everything you need to set layout changing for &lt;em&gt;i3&lt;/em&gt; the exact same way.&lt;/p&gt;
+
+&lt;p&gt;For example, the output&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rules:      evdev
+model:      pc105
+layout:     us,gr
+options:    grp:alt_shift_toggle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would translate to the above &lt;code&gt;setxkbmap&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Have a look on &lt;a href="https://wiki.archlinux.org/index.php/Keyboard_Configuration_in_Xorg#Setting_keyboard_layout"&gt;this Arch Linux Documentation&lt;/a&gt; for more information. The 'Setting keyboard layout' section works just as well with Ubuntu.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=4787#comment-4787</link><description>Oh, my fault. You have to put the command in quotes because otherwise the `,` between layouts is interpreted by *i3* as separator between two commands. I've edited the answer accordingly.</description><pubDate>Fri, 17 Oct 2014 06:02:40 +0000</pubDate><guid>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=4787#comment-4787</guid></item><item><title>Comment by Adaephon for &lt;p&gt;If you add the following line to your &lt;em&gt;i3&lt;/em&gt; configuration it should work just like in &lt;em&gt;Unity&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you use some variant of the these layouts you can also add the &lt;code&gt;-variant&lt;/code&gt; option. For example, &lt;code&gt;-variant euro,simple&lt;/code&gt; will use the &lt;code&gt;euro&lt;/code&gt; variant of the &lt;code&gt;us&lt;/code&gt; layout and the &lt;code&gt;simple&lt;/code&gt; variant for the &lt;code&gt;gr&lt;/code&gt; layout (same order as &lt;code&gt;-layout&lt;/code&gt;). In order to use the default variant just leave it out, so &lt;code&gt;-variant euro,&lt;/code&gt; will use &lt;code&gt;euro&lt;/code&gt; for &lt;code&gt;us&lt;/code&gt;, but the default for &lt;code&gt;gr&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also the above line assumes that a default 105-key PC-keyboard will be used. If you use anything else change the model accordingly. &lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;setxkbmap -query&lt;/code&gt; you can see what is currently set. If you run it before adding the above line to the configuration, you can see what is set by Xorg. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;There is also the chance that &lt;em&gt;Unity&lt;/em&gt; is using the same method to set multiple layouts (I do not use Unity, so I cannot check). So if you log in with Unity and just run &lt;code&gt;setxkbmap -query&lt;/code&gt; you might get everything you need to set layout changing for &lt;em&gt;i3&lt;/em&gt; the exact same way.&lt;/p&gt;
+
+&lt;p&gt;For example, the output&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rules:      evdev
+model:      pc105
+layout:     us,gr
+options:    grp:alt_shift_toggle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would translate to the above &lt;code&gt;setxkbmap&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Have a look on &lt;a href="https://wiki.archlinux.org/index.php/Keyboard_Configuration_in_Xorg#Setting_keyboard_layout"&gt;this Arch Linux Documentation&lt;/a&gt; for more information. The 'Setting keyboard layout' section works just as well with Ubuntu.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=4771#comment-4771</link><description>Does it work if you run `setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle` from a terminal?</description><pubDate>Thu, 16 Oct 2014 13:23:01 +0000</pubDate><guid>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=4771#comment-4771</guid></item><item><title>Comment by Adaephon for &lt;p&gt;If you add the following line to your &lt;em&gt;i3&lt;/em&gt; configuration it should work just like in &lt;em&gt;Unity&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you use some variant of the these layouts you can also add the &lt;code&gt;-variant&lt;/code&gt; option. For example, &lt;code&gt;-variant euro,simple&lt;/code&gt; will use the &lt;code&gt;euro&lt;/code&gt; variant of the &lt;code&gt;us&lt;/code&gt; layout and the &lt;code&gt;simple&lt;/code&gt; variant for the &lt;code&gt;gr&lt;/code&gt; layout (same order as &lt;code&gt;-layout&lt;/code&gt;). In order to use the default variant just leave it out, so &lt;code&gt;-variant euro,&lt;/code&gt; will use &lt;code&gt;euro&lt;/code&gt; for &lt;code&gt;us&lt;/code&gt;, but the default for &lt;code&gt;gr&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also the above line assumes that a default 105-key PC-keyboard will be used. If you use anything else change the model accordingly. &lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;setxkbmap -query&lt;/code&gt; you can see what is currently set. If you run it before adding the above line to the configuration, you can see what is set by Xorg. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;There is also the chance that &lt;em&gt;Unity&lt;/em&gt; is using the same method to set multiple layouts (I do not use Unity, so I cannot check). So if you log in with Unity and just run &lt;code&gt;setxkbmap -query&lt;/code&gt; you might get everything you need to set layout changing for &lt;em&gt;i3&lt;/em&gt; the exact same way.&lt;/p&gt;
+
+&lt;p&gt;For example, the output&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rules:      evdev
+model:      pc105
+layout:     us,gr
+options:    grp:alt_shift_toggle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would translate to the above &lt;code&gt;setxkbmap&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Have a look on &lt;a href="https://wiki.archlinux.org/index.php/Keyboard_Configuration_in_Xorg#Setting_keyboard_layout"&gt;this Arch Linux Documentation&lt;/a&gt; for more information. The 'Setting keyboard layout' section works just as well with Ubuntu.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=5812#comment-5812</link><description>@Omer : I tested the command as it is in my i3 config as well as on the command line and it seems to work just fine without any additional brackets. One of my colleagues has it in his i3 config and it work for him, too.</description><pubDate>Thu, 16 Apr 2015 21:30:10 +0000</pubDate><guid>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=5812#comment-5812</guid></item><item><title>Comment by Omer for &lt;p&gt;If you add the following line to your &lt;em&gt;i3&lt;/em&gt; configuration it should work just like in &lt;em&gt;Unity&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you use some variant of the these layouts you can also add the &lt;code&gt;-variant&lt;/code&gt; option. For example, &lt;code&gt;-variant euro,simple&lt;/code&gt; will use the &lt;code&gt;euro&lt;/code&gt; variant of the &lt;code&gt;us&lt;/code&gt; layout and the &lt;code&gt;simple&lt;/code&gt; variant for the &lt;code&gt;gr&lt;/code&gt; layout (same order as &lt;code&gt;-layout&lt;/code&gt;). In order to use the default variant just leave it out, so &lt;code&gt;-variant euro,&lt;/code&gt; will use &lt;code&gt;euro&lt;/code&gt; for &lt;code&gt;us&lt;/code&gt;, but the default for &lt;code&gt;gr&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also the above line assumes that a default 105-key PC-keyboard will be used. If you use anything else change the model accordingly. &lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;setxkbmap -query&lt;/code&gt; you can see what is currently set. If you run it before adding the above line to the configuration, you can see what is set by Xorg. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;There is also the chance that &lt;em&gt;Unity&lt;/em&gt; is using the same method to set multiple layouts (I do not use Unity, so I cannot check). So if you log in with Unity and just run &lt;code&gt;setxkbmap -query&lt;/code&gt; you might get everything you need to set layout changing for &lt;em&gt;i3&lt;/em&gt; the exact same way.&lt;/p&gt;
+
+&lt;p&gt;For example, the output&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rules:      evdev
+model:      pc105
+layout:     us,gr
+options:    grp:alt_shift_toggle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would translate to the above &lt;code&gt;setxkbmap&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Have a look on &lt;a href="https://wiki.archlinux.org/index.php/Keyboard_Configuration_in_Xorg#Setting_keyboard_layout"&gt;this Arch Linux Documentation&lt;/a&gt; for more information. The 'Setting keyboard layout' section works just as well with Ubuntu.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=5808#comment-5808</link><description>the grp:alt_shift_toggle also needs to be in brackets to work.</description><pubDate>Thu, 16 Apr 2015 19:38:03 +0000</pubDate><guid>https://faq.i3wm.org/question/4761/keyboard-input-language-problems-want-to-switch-to-greek/?comment=5808#comment-5808</guid></item></channel></rss>

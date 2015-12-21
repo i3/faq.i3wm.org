@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2759/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 08 May 2015 12:19:39 +0000</lastBuildDate><item><title>Open a program in floating mode, just once.</title><link>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/</link><description>Sometimes when I'm trouble shooting some program it's better to have it in floating mode because that's the more "standard" environment. Is there a simple way to execute a program in floating mode just for a single execution?</description><pubDate>Mon, 21 Oct 2013 23:40:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/</guid></item><item><title>Comment by KJ44 for &lt;p&gt;Sometimes when I'm trouble shooting some program it's better to have it in floating mode because that's the more "standard" environment. Is there a simple way to execute a program in floating mode just for a single execution?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?comment=2771#comment-2771</link><description>Sorry, I put my answer here originally, by mistake,</description><pubDate>Wed, 23 Oct 2013 21:45:27 +0000</pubDate><guid>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?comment=2771#comment-2771</guid></item><item><title>Answer by npostavs for &lt;p&gt;Sometimes when I'm trouble shooting some program it's better to have it in floating mode because that's the more "standard" environment. Is there a simple way to execute a program in floating mode just for a single execution?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?answer=2760#post-id-2760</link><description>The application I had in mind happens to be Emacs; I found a solution that works for this case at least.
+
+In `~/.config/i3/config`:
+
+    for_window [title="^floatme$"] floating enable
+
+Then to get a floating Emacs, run:
+
+    emacs -Q -T floatme
+
+It would be nice to have a solution that didn't rely on the application being able to set its title though.</description><pubDate>Mon, 21 Oct 2013 23:59:49 +0000</pubDate><guid>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?answer=2760#post-id-2760</guid></item><item><title>Comment by msx for &lt;p&gt;The application I had in mind happens to be Emacs; I found a solution that works for this case at least.&lt;/p&gt;
+
+&lt;p&gt;In &lt;code&gt;~/.config/i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [title="^floatme$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then to get a floating Emacs, run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs -Q -T floatme
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It would be nice to have a solution that didn't rely on the application being able to set its title though.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?comment=5969#comment-5969</link><description>You can use [Class="Emacs"] instead; use the cli tool xprops to find out information about your open applications' windows.</description><pubDate>Fri, 08 May 2015 12:19:39 +0000</pubDate><guid>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?comment=5969#comment-5969</guid></item><item><title>Answer by KJ44 for &lt;p&gt;Sometimes when I'm trouble shooting some program it's better to have it in floating mode because that's the more "standard" environment. Is there a simple way to execute a program in floating mode just for a single execution?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?answer=2772#post-id-2772</link><description>There's a keybinding to toggle a window between tiling and floating modes and one to move focus between tiling and floating windows,</description><pubDate>Wed, 23 Oct 2013 21:46:59 +0000</pubDate><guid>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?answer=2772#post-id-2772</guid></item><item><title>Comment by jrichter for &lt;p&gt;There's a keybinding to toggle a window between tiling and floating modes and one to move focus between tiling and floating windows,&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?comment=3024#comment-3024</link><description>Mod1 + Shift + Space I believe is the default</description><pubDate>Sat, 07 Dec 2013 23:44:09 +0000</pubDate><guid>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?comment=3024#comment-3024</guid></item><item><title>Comment by qed for &lt;p&gt;There's a keybinding to toggle a window between tiling and floating modes and one to move focus between tiling and floating windows,&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?comment=2856#comment-2856</link><description>What is the keybinding?</description><pubDate>Sun, 10 Nov 2013 14:26:14 +0000</pubDate><guid>https://faq.i3wm.org/question/2759/open-a-program-in-floating-mode-just-once/?comment=2856#comment-2856</guid></item></channel></rss>

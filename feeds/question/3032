@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3032/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 11 Dec 2013 22:40:09 +0000</lastBuildDate><item><title>Quickswitch.py font is tiny</title><link>https://faq.i3wm.org/question/3032/quickswitchpy-font-is-tiny/</link><description>Using quickswitch.py 2.0 with i3 and dmenu, it works just fine but the font is tiny. Any way to enlarge it?</description><pubDate>Wed, 11 Dec 2013 17:29:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3032/quickswitchpy-font-is-tiny/</guid></item><item><title>Answer by joepd for &lt;p&gt;Using quickswitch.py 2.0 with i3 and dmenu, it works just fine but the font is tiny. Any way to enlarge it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3032/quickswitchpy-font-is-tiny/?answer=3033#post-id-3033</link><description>You need to tell `dmenu` which font to use, which goes with the `-fn`-switch. dmenu normally accepts only the core X fonts. There is a patch that allows you to Xft-fonts, but you might need to apply the patch yourself and compile dmenu. 
+
+If you are not having Xft support, this is what the result could look like: 
+
+    echo 'test1\ntest2' | dmenu -fn '-*-terminus-*-*-*-*-22-*-*-*-*-*-*-*'
+
+The most easy way to get such a funny font string is by using `xfontsel`. 
+
+I have not toyed with quickswitch.py myself, but from a first glance, you should add the `-fn &lt;funny string&gt;` in the `default` part of the following line: 
+
+    parser.add_argument('-d', '--dmenu', default='dmenu -b -i -l 20', help='dmenu command, executed within a shell')</description><pubDate>Wed, 11 Dec 2013 20:32:59 +0000</pubDate><guid>https://faq.i3wm.org/question/3032/quickswitchpy-font-is-tiny/?answer=3033#post-id-3033</guid></item><item><title>Comment by oldos2er for &lt;p&gt;You need to tell &lt;code&gt;dmenu&lt;/code&gt; which font to use, which goes with the &lt;code&gt;-fn&lt;/code&gt;-switch. dmenu normally accepts only the core X fonts. There is a patch that allows you to Xft-fonts, but you might need to apply the patch yourself and compile dmenu. &lt;/p&gt;
+
+&lt;p&gt;If you are not having Xft support, this is what the result could look like: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo 'test1\ntest2' | dmenu -fn '-*-terminus-*-*-*-*-22-*-*-*-*-*-*-*'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The most easy way to get such a funny font string is by using &lt;code&gt;xfontsel&lt;/code&gt;. &lt;/p&gt;
+
+&lt;p&gt;I have not toyed with quickswitch.py myself, but from a first glance, you should add the &lt;code&gt;-fn &amp;lt;funny string&amp;gt;&lt;/code&gt; in the &lt;code&gt;default&lt;/code&gt; part of the following line: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;parser.add_argument('-d', '--dmenu', default='dmenu -b -i -l 20', help='dmenu command, executed within a shell')
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3032/quickswitchpy-font-is-tiny/?comment=3036#comment-3036</link><description>I'd upvote you, joepd, but it seems I don't have enough karma.</description><pubDate>Wed, 11 Dec 2013 22:40:09 +0000</pubDate><guid>https://faq.i3wm.org/question/3032/quickswitchpy-font-is-tiny/?comment=3036#comment-3036</guid></item><item><title>Comment by oldos2er for &lt;p&gt;You need to tell &lt;code&gt;dmenu&lt;/code&gt; which font to use, which goes with the &lt;code&gt;-fn&lt;/code&gt;-switch. dmenu normally accepts only the core X fonts. There is a patch that allows you to Xft-fonts, but you might need to apply the patch yourself and compile dmenu. &lt;/p&gt;
+
+&lt;p&gt;If you are not having Xft support, this is what the result could look like: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo 'test1\ntest2' | dmenu -fn '-*-terminus-*-*-*-*-22-*-*-*-*-*-*-*'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The most easy way to get such a funny font string is by using &lt;code&gt;xfontsel&lt;/code&gt;. &lt;/p&gt;
+
+&lt;p&gt;I have not toyed with quickswitch.py myself, but from a first glance, you should add the &lt;code&gt;-fn &amp;lt;funny string&amp;gt;&lt;/code&gt; in the &lt;code&gt;default&lt;/code&gt; part of the following line: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;parser.add_argument('-d', '--dmenu', default='dmenu -b -i -l 20', help='dmenu command, executed within a shell')
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3032/quickswitchpy-font-is-tiny/?comment=3034#comment-3034</link><description>Thank you, I will give that a try. I did change the dmenu font not long after I first began using i3, but I don't remember now how I did it. quickswitcher.py is not using the same font.</description><pubDate>Wed, 11 Dec 2013 20:41:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3032/quickswitchpy-font-is-tiny/?comment=3034#comment-3034</guid></item><item><title>Answer by oldos2er for &lt;p&gt;Using quickswitch.py 2.0 with i3 and dmenu, it works just fine but the font is tiny. Any way to enlarge it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3032/quickswitchpy-font-is-tiny/?answer=3035#post-id-3035</link><description>I got it to work. For the record, I changed the line 
+
+parser.add_argument('-d', '--dmenu', default='dmenu -b -i -l 20', help='dmenu command, executed within a shell')
+
+to
+
+parser.add_argument('-d', '--dmenu', default='dmenu -b -i -l 20 -fn -*-terminus-*-*-*-*-20-*-*-*-*-*-*-*', help='dmenu command, executed within a shell')
+
+Thanks for your help!</description><pubDate>Wed, 11 Dec 2013 21:50:29 +0000</pubDate><guid>https://faq.i3wm.org/question/3032/quickswitchpy-font-is-tiny/?answer=3035#post-id-3035</guid></item></channel></rss>

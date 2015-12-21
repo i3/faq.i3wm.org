@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6077/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 09 Jun 2015 06:02:05 +0000</lastBuildDate><item><title>Window always on top</title><link>https://faq.i3wm.org/question/6077/window-always-on-top/</link><description> Hi guys! 
+I would like to ask you a simple thing: how to hold a window always above the others?
+
+I use i3 and want to have a good graphical statusbar, not a text-based one (I often use performance-heavy software, and I need to monitor my cpu to avoid to burn my laptop); I want it to be able to show a graph, and to execute an action on click, while also stay on every monitor I use and show me all the workspaces present on that monitor. The latter can be accomplished only with i3 statusbars (i3status, etc.) while the former, - by conky. So I decided to show the conky bar as a floating window above the i3status, so it can do what I want. The problem here is: How do I set conky to be floating, and always on top of others? Can it be accomplished with something like this:
+
+----------
+for_window [class="Conky"] floating enable ?
+
+----------
+Thank you in advance for your help.
+</description><pubDate>Sun, 07 Jun 2015 17:48:21 +0000</pubDate><guid>https://faq.i3wm.org/question/6077/window-always-on-top/</guid></item><item><title>Answer by Airblader for &lt;p&gt;Hi guys! 
+I would like to ask you a simple thing: how to hold a window always above the others?&lt;/p&gt;
+
+&lt;p&gt;I use i3 and want to have a good graphical statusbar, not a text-based one (I often use performance-heavy software, and I need to monitor my cpu to avoid to burn my laptop); I want it to be able to show a graph, and to execute an action on click, while also stay on every monitor I use and show me all the workspaces present on that monitor. The latter can be accomplished only with i3 statusbars (i3status, etc.) while the former, - by conky. So I decided to show the conky bar as a floating window above the i3status, so it can do what I want. The problem here is: How do I set conky to be floating, and always on top of others? Can it be accomplished with something like this:&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;for_window [class="Conky"] floating enable ?&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Thank you in advance for your help.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6077/window-always-on-top/?answer=6096#post-id-6096</link><description>This currently isn't possible. Floating windows will always stay on top of tiled windows, but other than that there's no such mechanism in i3. However, there is an [open issue #1455](https://github.com/i3/i3/issues/1455) to implement a sticky property for floating windows. I'm not sure whether this includes staying on top of all other floating windows.
+
+Either way, the real problem here is that you abuse floating mode. Anything panel-y should be a dock. That being said, floating windows in i3 will be on top of docked windows. </description><pubDate>Tue, 09 Jun 2015 06:02:05 +0000</pubDate><guid>https://faq.i3wm.org/question/6077/window-always-on-top/?answer=6096#post-id-6096</guid></item></channel></rss>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6552/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 09 Sep 2015 08:59:32 +0000</lastBuildDate><item><title>tooltips for window titles</title><link>https://faq.i3wm.org/question/6552/tooltips-for-window-titles/</link><description>Many applications set a long title string expecting the window title bar to be the same width as the window.  Would it be possible to show a tooltip of the full string to allow for cases where it is truncated (eg. in tabbed mode)?
+
+The long title is often useful (eg. full filepath)  and I don't think it can always be sensibly shortened with 'title_format'.  For some applications there may be no other way of determining the path of the currently open file.
+
+see also [change titles](https://faq.i3wm.org/question/6159/change-titles-in-tabbed-mode/)</description><pubDate>Tue, 08 Sep 2015 14:31:02 +0000</pubDate><guid>https://faq.i3wm.org/question/6552/tooltips-for-window-titles/</guid></item><item><title>Answer by Airblader for &lt;p&gt;Many applications set a long title string expecting the window title bar to be the same width as the window.  Would it be possible to show a tooltip of the full string to allow for cases where it is truncated (eg. in tabbed mode)?&lt;/p&gt;
+
+&lt;p&gt;The long title is often useful (eg. full filepath)  and I don't think it can always be sensibly shortened with 'title_format'.  For some applications there may be no other way of determining the path of the currently open file.&lt;/p&gt;
+
+&lt;p&gt;see also &lt;a href="https://faq.i3wm.org/question/6159/change-titles-in-tabbed-mode/"&gt;change titles&lt;/a&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6552/tooltips-for-window-titles/?answer=6553#post-id-6553</link><description>You could write a small script `~/.config/i3/title_popup.sh` like this:
+
+    #!/usr/bin/env bash
+    notify-send "$(xdotool getactivewindow getwindowname)"
+
+Note that you need some notification daemon for this (e.g., dunst). Then, use a keybinding (or any binding) like this:
+
+    # middle mouse button on window title triggers notification
+    bindsym button2 exec --no-startup-id $HOME/.config/i3/title_popup.sh
+
+Unfortunately i3 has no "hover" feature. So if it has to be hovering, you'll need to write a tool (or see if something exists).
+
+ </description><pubDate>Tue, 08 Sep 2015 15:50:04 +0000</pubDate><guid>https://faq.i3wm.org/question/6552/tooltips-for-window-titles/?answer=6553#post-id-6553</guid></item><item><title>Comment by rob for &lt;p&gt;You could write a small script &lt;code&gt;~/.config/i3/title_popup.sh&lt;/code&gt; like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env bash
+notify-send "$(xdotool getactivewindow getwindowname)"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you need some notification daemon for this (e.g., dunst). Then, use a keybinding (or any binding) like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# middle mouse button on window title triggers notification
+bindsym button2 exec --no-startup-id $HOME/.config/i3/title_popup.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unfortunately i3 has no "hover" feature. So if it has to be hovering, you'll need to write a tool (or see if something exists).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6552/tooltips-for-window-titles/?comment=6558#comment-6558</link><description>thanks, that works well</description><pubDate>Wed, 09 Sep 2015 08:59:32 +0000</pubDate><guid>https://faq.i3wm.org/question/6552/tooltips-for-window-titles/?comment=6558#comment-6558</guid></item><item><title>Answer by rob for &lt;p&gt;Many applications set a long title string expecting the window title bar to be the same width as the window.  Would it be possible to show a tooltip of the full string to allow for cases where it is truncated (eg. in tabbed mode)?&lt;/p&gt;
+
+&lt;p&gt;The long title is often useful (eg. full filepath)  and I don't think it can always be sensibly shortened with 'title_format'.  For some applications there may be no other way of determining the path of the currently open file.&lt;/p&gt;
+
+&lt;p&gt;see also &lt;a href="https://faq.i3wm.org/question/6159/change-titles-in-tabbed-mode/"&gt;change titles&lt;/a&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6552/tooltips-for-window-titles/?answer=6557#post-id-6557</link><description> Thanks, that works well.</description><pubDate>Wed, 09 Sep 2015 08:59:02 +0000</pubDate><guid>https://faq.i3wm.org/question/6552/tooltips-for-window-titles/?answer=6557#post-id-6557</guid></item></channel></rss>

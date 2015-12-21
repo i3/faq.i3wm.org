@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6446/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 23 Aug 2015 20:21:27 +0000</lastBuildDate><item><title>KDE plasma desktop notifications</title><link>https://faq.i3wm.org/question/6446/kde-plasma-desktop-notifications/</link><description>Hello, 
+
+I mostly have kubuntu working fine with i3, the only thing I cannot get to work properly are certain widgets (including notifications) that I am not sure how to tell i3 to treat them as floating by default. Anyone know a way around this?   </description><pubDate>Fri, 14 Aug 2015 11:57:42 +0000</pubDate><guid>https://faq.i3wm.org/question/6446/kde-plasma-desktop-notifications/</guid></item><item><title>Comment by Airblader for &lt;p&gt;Hello, &lt;/p&gt;
+
+&lt;p&gt;I mostly have kubuntu working fine with i3, the only thing I cannot get to work properly are certain widgets (including notifications) that I am not sure how to tell i3 to treat them as floating by default. Anyone know a way around this?   &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6446/kde-plasma-desktop-notifications/?comment=6447#comment-6447</link><description>Did you use `xprop` on such a notification? Are you aware of the for_window directive?</description><pubDate>Fri, 14 Aug 2015 13:07:35 +0000</pubDate><guid>https://faq.i3wm.org/question/6446/kde-plasma-desktop-notifications/?comment=6447#comment-6447</guid></item><item><title>Answer by ssamot for &lt;p&gt;Hello, &lt;/p&gt;
+
+&lt;p&gt;I mostly have kubuntu working fine with i3, the only thing I cannot get to work properly are certain widgets (including notifications) that I am not sure how to tell i3 to treat them as floating by default. Anyone know a way around this?   &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6446/kde-plasma-desktop-notifications/?answer=6487#post-id-6487</link><description> I am answering my own question based on airblader's comment (thanks), just in case someone is interested in the future. the correct i3config for KDE looks something like this: 
+
+    for_window [class="Plasma-desktop"] border none
+    for_window [class="Plasma-desktop"] floating enable
+    for_window [class="krunner"] border none
+    for_window [class="Kmix"] floating enable
+    for_window [class="Plasmoidviewer"] floating enable
+    for_window [class="Klipper"] floating enable, border none
+
+You can also do this to start-stop plasma-desktop:
+
+    bindsym $mod+o exec plasma-desktop
+    bindsym $mod+p exec "killall plasma-desktop"
+
+When plasma-desktop starts, a small background window will also start which you have to quit manually.
+</description><pubDate>Fri, 21 Aug 2015 12:22:14 +0000</pubDate><guid>https://faq.i3wm.org/question/6446/kde-plasma-desktop-notifications/?answer=6487#post-id-6487</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I am answering my own question based on airblader's comment (thanks), just in case someone is interested in the future. the correct i3config for KDE looks something like this: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Plasma-desktop"] border none
+for_window [class="Plasma-desktop"] floating enable
+for_window [class="krunner"] border none
+for_window [class="Kmix"] floating enable
+for_window [class="Plasmoidviewer"] floating enable
+for_window [class="Klipper"] floating enable, border none
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can also do this to start-stop plasma-desktop:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+o exec plasma-desktop
+bindsym $mod+p exec "killall plasma-desktop"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When plasma-desktop starts, a small background window will also start which you have to quit manually.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6446/kde-plasma-desktop-notifications/?comment=6494#comment-6494</link><description>You must use `,` as command separator with criteria, as criteria only apply up to the next `;`. Unless there is a new criterion after the `;` the command there will be applied to the currently focused window, which might not be the newly created window.</description><pubDate>Sun, 23 Aug 2015 20:21:27 +0000</pubDate><guid>https://faq.i3wm.org/question/6446/kde-plasma-desktop-notifications/?comment=6494#comment-6494</guid></item></channel></rss>

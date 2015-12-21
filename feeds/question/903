@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/903/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 30 May 2014 22:40:11 +0000</lastBuildDate><item><title>Workspace switching causes screen tearing</title><link>https://faq.i3wm.org/question/903/workspace-switching-causes-screen-tearing/</link><description>Considering I have a terminal occupying a whole workspace and another terminal in another, switching quickly between these two workspaces will cause screen tearing with some white rectangles "blending in" with the terminal background color.
+
+I have an Nvidia GTS 450 graphics card, with the Nvidia driver version 310.19. I've also set up the following attributes in `/etc/X11/xorg.conf`:
+
+    Option         "Composite" "Disable"
+    Option         "TrippleBuffering"    "true"
+    Option         "DynamicTwinView"     "false"
+    Option         "UseEvents"           "true"
+    Option         "FlatPanelProperties" "Scaling = Native"
+
+While this may not be an issue with i3, I was wondering if there was something that could be done in order to wait for all the windows to be rendered in a workspace before switching to it so that no more tearing will appear. This seems to occur also with the Nouveau driver.
+
+---
+
+Later Edit:
+
+Tearing does not occur when using `xterm` or `urxvt`, however. It seems that this happens on `xfce4-terminal` and `gnome-terminal`, therefore a possible solution will be to change the terminal emulator. I guess I answered my own question.</description><pubDate>Fri, 14 Dec 2012 20:10:37 +0000</pubDate><guid>https://faq.i3wm.org/question/903/workspace-switching-causes-screen-tearing/</guid></item><item><title>Answer by AladW for &lt;p&gt;Considering I have a terminal occupying a whole workspace and another terminal in another, switching quickly between these two workspaces will cause screen tearing with some white rectangles "blending in" with the terminal background color.&lt;/p&gt;
+
+&lt;p&gt;I have an Nvidia GTS 450 graphics card, with the Nvidia driver version 310.19. I've also set up the following attributes in &lt;code&gt;/etc/X11/xorg.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Option         "Composite" "Disable"
+Option         "TrippleBuffering"    "true"
+Option         "DynamicTwinView"     "false"
+Option         "UseEvents"           "true"
+Option         "FlatPanelProperties" "Scaling = Native"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While this may not be an issue with i3, I was wondering if there was something that could be done in order to wait for all the windows to be rendered in a workspace before switching to it so that no more tearing will appear. This seems to occur also with the Nouveau driver.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Later Edit:&lt;/p&gt;
+
+&lt;p&gt;Tearing does not occur when using &lt;code&gt;xterm&lt;/code&gt; or &lt;code&gt;urxvt&lt;/code&gt;, however. It seems that this happens on &lt;code&gt;xfce4-terminal&lt;/code&gt; and &lt;code&gt;gnome-terminal&lt;/code&gt;, therefore a possible solution will be to change the terminal emulator. I guess I answered my own question.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/903/workspace-switching-causes-screen-tearing/?answer=3896#post-id-3896</link><description>For me it only happens when switching with the mouse (intel E3-1200). Terminal emulator is lxterminal
+
+also see: https://github.com/i3/i3/issues/661</description><pubDate>Fri, 30 May 2014 22:40:11 +0000</pubDate><guid>https://faq.i3wm.org/question/903/workspace-switching-causes-screen-tearing/?answer=3896#post-id-3896</guid></item><item><title>Answer by Michael for &lt;p&gt;Considering I have a terminal occupying a whole workspace and another terminal in another, switching quickly between these two workspaces will cause screen tearing with some white rectangles "blending in" with the terminal background color.&lt;/p&gt;
+
+&lt;p&gt;I have an Nvidia GTS 450 graphics card, with the Nvidia driver version 310.19. I've also set up the following attributes in &lt;code&gt;/etc/X11/xorg.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Option         "Composite" "Disable"
+Option         "TrippleBuffering"    "true"
+Option         "DynamicTwinView"     "false"
+Option         "UseEvents"           "true"
+Option         "FlatPanelProperties" "Scaling = Native"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While this may not be an issue with i3, I was wondering if there was something that could be done in order to wait for all the windows to be rendered in a workspace before switching to it so that no more tearing will appear. This seems to occur also with the Nouveau driver.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Later Edit:&lt;/p&gt;
+
+&lt;p&gt;Tearing does not occur when using &lt;code&gt;xterm&lt;/code&gt; or &lt;code&gt;urxvt&lt;/code&gt;, however. It seems that this happens on &lt;code&gt;xfce4-terminal&lt;/code&gt; and &lt;code&gt;gnome-terminal&lt;/code&gt;, therefore a possible solution will be to change the terminal emulator. I guess I answered my own question.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/903/workspace-switching-causes-screen-tearing/?answer=905#post-id-905</link><description>In my experience, any form of tearing/lags/corruption occuring in i3 was caused by faulty graphic drivers and/or graphics hardware.
+
+I have never once heard of a problem with Intel graphic cards, so I recommend these.
+
+I am not aware of anything we can do in i3 to fix this from our side, but that doesn’t mean that there is nothing we can do…</description><pubDate>Fri, 14 Dec 2012 20:22:06 +0000</pubDate><guid>https://faq.i3wm.org/question/903/workspace-switching-causes-screen-tearing/?answer=905#post-id-905</guid></item><item><title>Comment by aliasbind for &lt;p&gt;In my experience, any form of tearing/lags/corruption occuring in i3 was caused by faulty graphic drivers and/or graphics hardware.&lt;/p&gt;
+
+&lt;p&gt;I have never once heard of a problem with Intel graphic cards, so I recommend these.&lt;/p&gt;
+
+&lt;p&gt;I am not aware of anything we can do in i3 to fix this from our side, but that doesn’t mean that there is nothing we can do…&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/903/workspace-switching-causes-screen-tearing/?comment=906#comment-906</link><description>Thank you for your quick answer. It seems that there is no tearing with most applications that I tried until now, except for those two given in my post above (`gnome-terminal` and `xfce4-terminal`).</description><pubDate>Fri, 14 Dec 2012 20:47:08 +0000</pubDate><guid>https://faq.i3wm.org/question/903/workspace-switching-causes-screen-tearing/?comment=906#comment-906</guid></item></channel></rss>

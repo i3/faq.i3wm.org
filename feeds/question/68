@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/68/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 06 May 2015 20:37:29 +0000</lastBuildDate><item><title>How to build and install i3 from sources?</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/</link><description>Hi,
+
+I have tried to find instructions on installing i3 from sources in the Git repository.
+It seems, the procedure is not explained anywhere in:
+ 
+ * [User's Guide](http://i3wm.org/docs/userguide.html)
+ * [Hacking i3: How To](http://i3wm.org/docs/hacking-howto.html)
+ * not even typical GNU-style README/INSTALL files are available.
+
+The only instructions I found is compilation of details from:
+
+ * PACKAGE-MAINTAINER and DEPENDS files in the Git repository
+ * and my own experience with building software on Linux :)
+
+I wonder, is it intentional not to provide users with "Install i3 from source" How-To?
+
+EDIT:
+
+I have found the following note from the features list on the [i3wm front page](http://i3wm.org/) complements the philosophy:
+
+
+ * Do not use programs such as autoconf/automake for configuration and creating unreadable/broken makefiles.
+ * Also, document the dependencies properly, so that package maintainers have an easy job packaging i3.</description><pubDate>Wed, 06 Jun 2012 19:47:46 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have tried to find instructions on installing i3 from sources in the Git repository.
+It seems, the procedure is not explained anywhere in:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/userguide.html"&gt;User's Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/hacking-howto.html"&gt;Hacking i3: How To&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;not even typical GNU-style README/INSTALL files are available.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The only instructions I found is compilation of details from:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PACKAGE-MAINTAINER and DEPENDS files in the Git repository&lt;/li&gt;
+&lt;li&gt;and my own experience with building software on Linux :)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I wonder, is it intentional not to provide users with "Install i3 from source" How-To?&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;I have found the following note from the features list on the &lt;a href="http://i3wm.org/"&gt;i3wm front page&lt;/a&gt; complements the philosophy:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do not use programs such as autoconf/automake for configuration and creating unreadable/broken makefiles.&lt;/li&gt;
+&lt;li&gt;Also, document the dependencies properly, so that package maintainers have an easy job packaging i3.&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=69#post-id-69</link><description>Yes, it is. People are supposed to install the packages in their distribution. If there are no packages yet, they should create one (or request creation). That way, only one person per distribution has to do the work, and all the users benefit.
+
+Apart from that, if you really really need to compile i3 yourself for some reason, the mechanism used to install i3 is well-known amongst any UNIX user: `make &amp;&amp; sudo make install` (we don’t have a configure script).</description><pubDate>Wed, 06 Jun 2012 20:01:44 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=69#post-id-69</guid></item><item><title>Comment by i3er for &lt;p&gt;Yes, it is. People are supposed to install the packages in their distribution. If there are no packages yet, they should create one (or request creation). That way, only one person per distribution has to do the work, and all the users benefit.&lt;/p&gt;
+
+&lt;p&gt;Apart from that, if you really really need to compile i3 yourself for some reason, the mechanism used to install i3 is well-known amongst any UNIX user: &lt;code&gt;make &amp;amp;&amp;amp; sudo make install&lt;/code&gt; (we don’t have a configure script).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=3286#comment-3286</link><description>How do I request creation of missing packages, lets say, for Ubuntu 12.04? I for one like trying out development versions of i3 and there are unmet dependencies for Ubuntu 12.04 and i3 4.7 development branch. I'll be happy to put in a request for these packages for Ubuntu 12.04. Thanks!</description><pubDate>Sun, 19 Jan 2014 18:58:57 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=3286#comment-3286</guid></item><item><title>Answer by Marco Hunsicker for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have tried to find instructions on installing i3 from sources in the Git repository.
+It seems, the procedure is not explained anywhere in:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/userguide.html"&gt;User's Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/hacking-howto.html"&gt;Hacking i3: How To&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;not even typical GNU-style README/INSTALL files are available.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The only instructions I found is compilation of details from:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PACKAGE-MAINTAINER and DEPENDS files in the Git repository&lt;/li&gt;
+&lt;li&gt;and my own experience with building software on Linux :)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I wonder, is it intentional not to provide users with "Install i3 from source" How-To?&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;I have found the following note from the features list on the &lt;a href="http://i3wm.org/"&gt;i3wm front page&lt;/a&gt; complements the philosophy:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do not use programs such as autoconf/automake for configuration and creating unreadable/broken makefiles.&lt;/li&gt;
+&lt;li&gt;Also, document the dependencies properly, so that package maintainers have an easy job packaging i3.&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=3283#post-id-3283</link><description>As of i3 v 4.7, I had to add one additional dependency to make compilation work:
+
+ - libev-dev
+ - libpango1.0-dev
+ - libstartup-notification0-dev
+ - libxcb1-dev
+ - **libxcb-cursor-dev**
+ - libxcb-icccm4-dev
+ - libxcb-keysyms1-dev
+ - libxcb-randr0-dev
+ - libxcb-util0-dev
+ - libxcb-xinerama0-dev
+ - libxcursor-dev
+ - libyajl-dev</description><pubDate>Sun, 19 Jan 2014 14:06:48 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=3283#post-id-3283</guid></item><item><title>Comment by Marco Hunsicker for &lt;p&gt;As of i3 v 4.7, I had to add one additional dependency to make compilation work:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;libev-dev&lt;/li&gt;
+&lt;li&gt;libpango1.0-dev&lt;/li&gt;
+&lt;li&gt;libstartup-notification0-dev&lt;/li&gt;
+&lt;li&gt;libxcb1-dev&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;libxcb-cursor-dev&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;libxcb-icccm4-dev&lt;/li&gt;
+&lt;li&gt;libxcb-keysyms1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-randr0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-util0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-xinerama0-dev&lt;/li&gt;
+&lt;li&gt;libxcursor-dev&lt;/li&gt;
+&lt;li&gt;libyajl-dev&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=3289#comment-3289</link><description>Oh, sorry. Debian 7.3. Maybe libxcursor-dev is no longer necessary? I haven't checked that.</description><pubDate>Sun, 19 Jan 2014 20:40:24 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=3289#comment-3289</guid></item><item><title>Comment by joepd for &lt;p&gt;As of i3 v 4.7, I had to add one additional dependency to make compilation work:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;libev-dev&lt;/li&gt;
+&lt;li&gt;libpango1.0-dev&lt;/li&gt;
+&lt;li&gt;libstartup-notification0-dev&lt;/li&gt;
+&lt;li&gt;libxcb1-dev&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;libxcb-cursor-dev&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;libxcb-icccm4-dev&lt;/li&gt;
+&lt;li&gt;libxcb-keysyms1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-randr0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-util0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-xinerama0-dev&lt;/li&gt;
+&lt;li&gt;libxcursor-dev&lt;/li&gt;
+&lt;li&gt;libyajl-dev&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=3288#comment-3288</link><description>Which platform/version? Thanks. </description><pubDate>Sun, 19 Jan 2014 20:21:09 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=3288#comment-3288</guid></item><item><title>Answer by Hibou57 for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have tried to find instructions on installing i3 from sources in the Git repository.
+It seems, the procedure is not explained anywhere in:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/userguide.html"&gt;User's Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/hacking-howto.html"&gt;Hacking i3: How To&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;not even typical GNU-style README/INSTALL files are available.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The only instructions I found is compilation of details from:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PACKAGE-MAINTAINER and DEPENDS files in the Git repository&lt;/li&gt;
+&lt;li&gt;and my own experience with building software on Linux :)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I wonder, is it intentional not to provide users with "Install i3 from source" How-To?&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;I have found the following note from the features list on the &lt;a href="http://i3wm.org/"&gt;i3wm front page&lt;/a&gt; complements the philosophy:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do not use programs such as autoconf/automake for configuration and creating unreadable/broken makefiles.&lt;/li&gt;
+&lt;li&gt;Also, document the dependencies properly, so that package maintainers have an easy job packaging i3.&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=1522#post-id-1522</link><description>It may indeed be needed to build from source, whenever your platform only provides an obsolete version of i3 (the same for DMenu by the way).
+
+Here are the compilation dependencies I could determine for a successful build on Ubuntu Precise (Ubuntu 12.04):
+
+ * libxcb1-dev
+ * libxcb-keysyms1-dev
+ * libxcb-util0-dev
+ * libxcb-icccm4-dev
+ * libyajl-dev
+ * libstartup-notification0-dev
+ * libxcb-randr0-dev
+ * libev-dev
+ * libxcb-xinerama0-dev
+
+These are not the same as those listed in `DEPENDS`, which does not match.
+
+If you want to install locally in your account, you will have to edit `common.mk` and change this:
+
+    ifndef PREFIX
+      PREFIX=/usr
+    endif
+
+into as an example 
+
+    ifndef PREFIX
+      PREFIX=$(HOME)/apps/i3
+    endif
+
+You will also have to manually copy `i3.applications.desktop` into `/usr/share/xsessions` as `i3.desktop` (you need to use `sudo` or to be root for that).
+</description><pubDate>Wed, 03 Apr 2013 10:48:34 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=1522#post-id-1522</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;It may indeed be needed to build from source, whenever your platform only provides an obsolete version of i3 (the same for DMenu by the way).&lt;/p&gt;
+
+&lt;p&gt;Here are the compilation dependencies I could determine for a successful build on Ubuntu Precise (Ubuntu 12.04):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;libxcb1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-keysyms1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-util0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-icccm4-dev&lt;/li&gt;
+&lt;li&gt;libyajl-dev&lt;/li&gt;
+&lt;li&gt;libstartup-notification0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-randr0-dev&lt;/li&gt;
+&lt;li&gt;libev-dev&lt;/li&gt;
+&lt;li&gt;libxcb-xinerama0-dev&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are not the same as those listed in &lt;code&gt;DEPENDS&lt;/code&gt;, which does not match.&lt;/p&gt;
+
+&lt;p&gt;If you want to install locally in your account, you will have to edit &lt;code&gt;common.mk&lt;/code&gt; and change this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifndef PREFIX
+  PREFIX=/usr
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into as an example &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifndef PREFIX
+  PREFIX=$(HOME)/apps/i3
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will also have to manually copy &lt;code&gt;i3.applications.desktop&lt;/code&gt; into &lt;code&gt;/usr/share/xsessions&lt;/code&gt; as &lt;code&gt;i3.desktop&lt;/code&gt; (you need to use &lt;code&gt;sudo&lt;/code&gt; or to be root for that).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1552#comment-1552</link><description>Still about dmenu, there exist another useful patch on the suckless.org development mailing list: `dmenu-4.5-fuzzy.diff`, for fuzzy matching with dmenu with a `-z` option. But it does not work well on long lists, making some items unreachable whenever an item is a fuzzy match of another longer.</description><pubDate>Fri, 05 Apr 2013 08:47:44 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1552#comment-1552</guid></item><item><title>Comment by Michael for &lt;p&gt;It may indeed be needed to build from source, whenever your platform only provides an obsolete version of i3 (the same for DMenu by the way).&lt;/p&gt;
+
+&lt;p&gt;Here are the compilation dependencies I could determine for a successful build on Ubuntu Precise (Ubuntu 12.04):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;libxcb1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-keysyms1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-util0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-icccm4-dev&lt;/li&gt;
+&lt;li&gt;libyajl-dev&lt;/li&gt;
+&lt;li&gt;libstartup-notification0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-randr0-dev&lt;/li&gt;
+&lt;li&gt;libev-dev&lt;/li&gt;
+&lt;li&gt;libxcb-xinerama0-dev&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are not the same as those listed in &lt;code&gt;DEPENDS&lt;/code&gt;, which does not match.&lt;/p&gt;
+
+&lt;p&gt;If you want to install locally in your account, you will have to edit &lt;code&gt;common.mk&lt;/code&gt; and change this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifndef PREFIX
+  PREFIX=/usr
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into as an example &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifndef PREFIX
+  PREFIX=$(HOME)/apps/i3
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will also have to manually copy &lt;code&gt;i3.applications.desktop&lt;/code&gt; into &lt;code&gt;/usr/share/xsessions&lt;/code&gt; as &lt;code&gt;i3.desktop&lt;/code&gt; (you need to use &lt;code&gt;sudo&lt;/code&gt; or to be root for that).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1523#comment-1523</link><description>Note that we provide repositories for ubuntu, so what you describe is entirely unnecessary. See http://i3wm.org/docs/repositories.html</description><pubDate>Wed, 03 Apr 2013 10:51:07 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1523#comment-1523</guid></item><item><title>Comment by sur5r for &lt;p&gt;It may indeed be needed to build from source, whenever your platform only provides an obsolete version of i3 (the same for DMenu by the way).&lt;/p&gt;
+
+&lt;p&gt;Here are the compilation dependencies I could determine for a successful build on Ubuntu Precise (Ubuntu 12.04):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;libxcb1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-keysyms1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-util0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-icccm4-dev&lt;/li&gt;
+&lt;li&gt;libyajl-dev&lt;/li&gt;
+&lt;li&gt;libstartup-notification0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-randr0-dev&lt;/li&gt;
+&lt;li&gt;libev-dev&lt;/li&gt;
+&lt;li&gt;libxcb-xinerama0-dev&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are not the same as those listed in &lt;code&gt;DEPENDS&lt;/code&gt;, which does not match.&lt;/p&gt;
+
+&lt;p&gt;If you want to install locally in your account, you will have to edit &lt;code&gt;common.mk&lt;/code&gt; and change this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifndef PREFIX
+  PREFIX=/usr
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into as an example &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifndef PREFIX
+  PREFIX=$(HOME)/apps/i3
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will also have to manually copy &lt;code&gt;i3.applications.desktop&lt;/code&gt; into &lt;code&gt;/usr/share/xsessions&lt;/code&gt; as &lt;code&gt;i3.desktop&lt;/code&gt; (you need to use &lt;code&gt;sudo&lt;/code&gt; or to be root for that).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1527#comment-1527</link><description>I can put dmenu into my repository as well if people request it.</description><pubDate>Wed, 03 Apr 2013 11:26:41 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1527#comment-1527</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;It may indeed be needed to build from source, whenever your platform only provides an obsolete version of i3 (the same for DMenu by the way).&lt;/p&gt;
+
+&lt;p&gt;Here are the compilation dependencies I could determine for a successful build on Ubuntu Precise (Ubuntu 12.04):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;libxcb1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-keysyms1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-util0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-icccm4-dev&lt;/li&gt;
+&lt;li&gt;libyajl-dev&lt;/li&gt;
+&lt;li&gt;libstartup-notification0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-randr0-dev&lt;/li&gt;
+&lt;li&gt;libev-dev&lt;/li&gt;
+&lt;li&gt;libxcb-xinerama0-dev&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are not the same as those listed in &lt;code&gt;DEPENDS&lt;/code&gt;, which does not match.&lt;/p&gt;
+
+&lt;p&gt;If you want to install locally in your account, you will have to edit &lt;code&gt;common.mk&lt;/code&gt; and change this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifndef PREFIX
+  PREFIX=/usr
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into as an example &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifndef PREFIX
+  PREFIX=$(HOME)/apps/i3
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will also have to manually copy &lt;code&gt;i3.applications.desktop&lt;/code&gt; into &lt;code&gt;/usr/share/xsessions&lt;/code&gt; as &lt;code&gt;i3.desktop&lt;/code&gt; (you need to use &lt;code&gt;sudo&lt;/code&gt; or to be root for that).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1529#comment-1529</link><description>The DMenu provided with SuckLessTools has an issue with fonts. So I compiled `dmenu-4.5` from source with an applied patch named `dmenu-4.5-xft.diff` I found on the web (seems I can't post a link, sorry). I did not check if the remaining of SuckLessTools is OK or not.</description><pubDate>Wed, 03 Apr 2013 13:28:34 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1529#comment-1529</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;It may indeed be needed to build from source, whenever your platform only provides an obsolete version of i3 (the same for DMenu by the way).&lt;/p&gt;
+
+&lt;p&gt;Here are the compilation dependencies I could determine for a successful build on Ubuntu Precise (Ubuntu 12.04):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;libxcb1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-keysyms1-dev&lt;/li&gt;
+&lt;li&gt;libxcb-util0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-icccm4-dev&lt;/li&gt;
+&lt;li&gt;libyajl-dev&lt;/li&gt;
+&lt;li&gt;libstartup-notification0-dev&lt;/li&gt;
+&lt;li&gt;libxcb-randr0-dev&lt;/li&gt;
+&lt;li&gt;libev-dev&lt;/li&gt;
+&lt;li&gt;libxcb-xinerama0-dev&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are not the same as those listed in &lt;code&gt;DEPENDS&lt;/code&gt;, which does not match.&lt;/p&gt;
+
+&lt;p&gt;If you want to install locally in your account, you will have to edit &lt;code&gt;common.mk&lt;/code&gt; and change this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifndef PREFIX
+  PREFIX=/usr
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into as an example &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifndef PREFIX
+  PREFIX=$(HOME)/apps/i3
+endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will also have to manually copy &lt;code&gt;i3.applications.desktop&lt;/code&gt; into &lt;code&gt;/usr/share/xsessions&lt;/code&gt; as &lt;code&gt;i3.desktop&lt;/code&gt; (you need to use &lt;code&gt;sudo&lt;/code&gt; or to be root for that).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1524#comment-1524</link><description>OK, thanks for the tip. I installed from the official Ubuntu repositories, and did not knew there was one here. Is this the same for DMenu?</description><pubDate>Wed, 03 Apr 2013 10:54:02 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1524#comment-1524</guid></item><item><title>Answer by sycamorex for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have tried to find instructions on installing i3 from sources in the Git repository.
+It seems, the procedure is not explained anywhere in:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/userguide.html"&gt;User's Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/hacking-howto.html"&gt;Hacking i3: How To&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;not even typical GNU-style README/INSTALL files are available.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The only instructions I found is compilation of details from:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PACKAGE-MAINTAINER and DEPENDS files in the Git repository&lt;/li&gt;
+&lt;li&gt;and my own experience with building software on Linux :)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I wonder, is it intentional not to provide users with "Install i3 from source" How-To?&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;I have found the following note from the features list on the &lt;a href="http://i3wm.org/"&gt;i3wm front page&lt;/a&gt; complements the philosophy:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do not use programs such as autoconf/automake for configuration and creating unreadable/broken makefiles.&lt;/li&gt;
+&lt;li&gt;Also, document the dependencies properly, so that package maintainers have an easy job packaging i3.&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=97#post-id-97</link><description>If your distribution is Slackware, have a look at [this](http://www.slackword.net/?p=689)
+or [this](http://slackword.net/files/builds/i3/i3-master/) for i3 master branch.
+Even if it isn't, you can have a look at the slackbuild script and get the idea.</description><pubDate>Fri, 08 Jun 2012 23:30:06 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=97#post-id-97</guid></item><item><title>Comment by badboy_ for &lt;p&gt;If your distribution is Slackware, have a look at &lt;a href="http://www.slackword.net/?p=689"&gt;this&lt;/a&gt;
+or &lt;a href="http://slackword.net/files/builds/i3/i3-master/"&gt;this&lt;/a&gt; for i3 master branch.
+Even if it isn't, you can have a look at the slackbuild script and get the idea.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=989#comment-989</link><description>On Arch Linux it's even simpler. Just grab the PKGBUILD (for example this one from the git build: https://aur.archlinux.org/packages/i3-git/) and makepkg</description><pubDate>Sun, 06 Jan 2013 18:00:18 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=989#comment-989</guid></item><item><title>Comment by mloskot for &lt;p&gt;If your distribution is Slackware, have a look at &lt;a href="http://www.slackword.net/?p=689"&gt;this&lt;/a&gt;
+or &lt;a href="http://slackword.net/files/builds/i3/i3-master/"&gt;this&lt;/a&gt; for i3 master branch.
+Even if it isn't, you can have a look at the slackbuild script and get the idea.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=98#comment-98</link><description>I use Arch Linux, but the Slackware approach is an interesting resource to learn from too.</description><pubDate>Sat, 09 Jun 2012 00:17:11 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=98#comment-98</guid></item><item><title>Answer by erikdubois for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have tried to find instructions on installing i3 from sources in the Git repository.
+It seems, the procedure is not explained anywhere in:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/userguide.html"&gt;User's Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/hacking-howto.html"&gt;Hacking i3: How To&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;not even typical GNU-style README/INSTALL files are available.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The only instructions I found is compilation of details from:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PACKAGE-MAINTAINER and DEPENDS files in the Git repository&lt;/li&gt;
+&lt;li&gt;and my own experience with building software on Linux :)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I wonder, is it intentional not to provide users with "Install i3 from source" How-To?&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;I have found the following note from the features list on the &lt;a href="http://i3wm.org/"&gt;i3wm front page&lt;/a&gt; complements the philosophy:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do not use programs such as autoconf/automake for configuration and creating unreadable/broken makefiles.&lt;/li&gt;
+&lt;li&gt;Also, document the dependencies properly, so that package maintainers have an easy job packaging i3.&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=5961#post-id-5961</link><description>Hi
+
+Installed your i3 on arch 
+moved my codes to Linux Mint 17.1 and come to the conclusion that I got errors for different shortcuts.
+Linux Mint is on an older version in the repo. With the help of Marco above and some googling. This is how i installed the version of MAY 2015 on an LINUX MINT 17.1 Cinnamon.
+
+    git clone https://github.com/i3/i3.git
+
+# installing dependancies
+
+    sudo apt-get install libxcb1-dev 
+    sudo apt-get install libxcb-keysyms1-dev 
+    sudo apt-get install libxcb-util0-dev 
+    sudo apt-get install libxcb-icccm4-dev 
+    sudo apt-get install libyajl-dev 
+    sudo apt-get install libstartup-notification0-dev  
+    sudo apt-get install libxcb-randr0-dev 
+    sudo apt-get install libev-dev 
+    sudo apt-get install libxcb-xinerama0-dev 
+    sudo apt-get install libpango1.0-dev 
+    sudo apt-get install libxcursor-dev 
+    sudo apt-get install libxcb-cursor-dev
+    sudo apt-get install libxcb-xkb-dev
+    sudo apt-get install libxkbcommon-dev
+    sudo apt-get install libxkbcommon-x11-dev
+
+go to the directory
+
+make &amp;&amp; sudo make install </description><pubDate>Wed, 06 May 2015 20:37:29 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=5961#post-id-5961</guid></item><item><title>Answer by pberndt for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have tried to find instructions on installing i3 from sources in the Git repository.
+It seems, the procedure is not explained anywhere in:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/userguide.html"&gt;User's Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/hacking-howto.html"&gt;Hacking i3: How To&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;not even typical GNU-style README/INSTALL files are available.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The only instructions I found is compilation of details from:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PACKAGE-MAINTAINER and DEPENDS files in the Git repository&lt;/li&gt;
+&lt;li&gt;and my own experience with building software on Linux :)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I wonder, is it intentional not to provide users with "Install i3 from source" How-To?&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;I have found the following note from the features list on the &lt;a href="http://i3wm.org/"&gt;i3wm front page&lt;/a&gt; complements the philosophy:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do not use programs such as autoconf/automake for configuration and creating unreadable/broken makefiles.&lt;/li&gt;
+&lt;li&gt;Also, document the dependencies properly, so that package maintainers have an easy job packaging i3.&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=2115#post-id-2115</link><description>I needed to build i3 from sources to check if a bug was fixed and found the dependency list above most helpful, thanks. I wrote myself a little script for the task, which also takes care of the dependencies. I thought I'd leave this here if others want to build i3 themselves: [build-i3.sh](https://gist.github.com/phillipberndt/5894841)</description><pubDate>Sun, 30 Jun 2013 11:39:54 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=2115#post-id-2115</guid></item><item><title>Answer by agorf for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have tried to find instructions on installing i3 from sources in the Git repository.
+It seems, the procedure is not explained anywhere in:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/userguide.html"&gt;User's Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/hacking-howto.html"&gt;Hacking i3: How To&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;not even typical GNU-style README/INSTALL files are available.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The only instructions I found is compilation of details from:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PACKAGE-MAINTAINER and DEPENDS files in the Git repository&lt;/li&gt;
+&lt;li&gt;and my own experience with building software on Linux :)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I wonder, is it intentional not to provide users with "Install i3 from source" How-To?&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;I have found the following note from the features list on the &lt;a href="http://i3wm.org/"&gt;i3wm front page&lt;/a&gt; complements the philosophy:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do not use programs such as autoconf/automake for configuration and creating unreadable/broken makefiles.&lt;/li&gt;
+&lt;li&gt;Also, document the dependencies properly, so that package maintainers have an easy job packaging i3.&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=988#post-id-988</link><description>If you're using Debian, I've documented how [here](http://agorf.gr/blog/2012/12/15/building-i3-from-source/). I did this for v4.4.</description><pubDate>Sun, 06 Jan 2013 17:31:33 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=988#post-id-988</guid></item><item><title>Comment by sur5r for &lt;p&gt;If you're using Debian, I've documented how &lt;a href="http://agorf.gr/blog/2012/12/15/building-i3-from-source/"&gt;here&lt;/a&gt;. I did this for v4.4.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1525#comment-1525</link><description>For Debian check http://packages.debian.org/search?keywords=i3-wm
+Furthermode, I provide up-to-date .debs for Ubuntu (currently oneiric, precise, quantal and raring) and Debian (squeeze and testing).
+</description><pubDate>Wed, 03 Apr 2013 10:57:40 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?comment=1525#comment-1525</guid></item><item><title>Answer by cee for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have tried to find instructions on installing i3 from sources in the Git repository.
+It seems, the procedure is not explained anywhere in:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/userguide.html"&gt;User's Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://i3wm.org/docs/hacking-howto.html"&gt;Hacking i3: How To&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;not even typical GNU-style README/INSTALL files are available.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The only instructions I found is compilation of details from:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PACKAGE-MAINTAINER and DEPENDS files in the Git repository&lt;/li&gt;
+&lt;li&gt;and my own experience with building software on Linux :)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I wonder, is it intentional not to provide users with "Install i3 from source" How-To?&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;I have found the following note from the features list on the &lt;a href="http://i3wm.org/"&gt;i3wm front page&lt;/a&gt; complements the philosophy:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do not use programs such as autoconf/automake for configuration and creating unreadable/broken makefiles.&lt;/li&gt;
+&lt;li&gt;Also, document the dependencies properly, so that package maintainers have an easy job packaging i3.&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=2545#post-id-2545</link><description>For me on a vanilla xubuntu install (with build-essential) two other dependencies have been necessary.
+
+libpango1.0-dev
+libxcursor-dev
+
+(Yes I know that there is a package for (x)ubuntu, but still wanted to try to build it myself...)</description><pubDate>Wed, 18 Sep 2013 12:41:54 +0000</pubDate><guid>https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/?answer=2545#post-id-2545</guid></item></channel></rss>

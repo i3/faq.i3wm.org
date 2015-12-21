@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3068/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 16 Dec 2013 13:21:30 +0000</lastBuildDate><item><title>Console vim quitting without confirmation</title><link>https://faq.i3wm.org/question/3068/console-vim-quitting-without-confirmation/</link><description>```mod+shift+q``` quits an application. Most application hooks into this, but it doesn't seem to work when using console vim. I suspect this might be because I'm launching it using urxvt: ```bindsym $mod+Shift+v exec urxvtc -e vim```
+
+So.. Is there a way to let urxvt pipe the quit over to the console application that is open?
+
+EDIT: A fix is to use gvim rather than vim, just turning off all gui elements. This works as expected, although the question is still the same for all curses applications I guess.
+
+EDIT2: Setting some guioptions makes gvim look more like vim. For future reference, here are my settings so far:
+
+    if has("gui_running")
+        " For console vim, this is handled by setting font for urxvt in .XResources
+        set guifont=Source\ Code\ Pro\ Medium\ 12
+        set guioptions-=m " Remove menu
+        set guioptions-=T " Remove toolbar
+        set guioptions-=r " Remove right scrollbar
+        set guioptions-=e " Use curses rendering for tab pages
+        set guioptions+=c " Use curses for simple dialog boxes
+        set guioptions-=i " No vim icon
+        set guioptions-=L " No left scrollbar
+        set langmenu=en_US.utf-8
+        language C " language for menus
+        winpos 0 0 " Startup window position - not neccessary for all OSes/WMs
+    endif
+</description><pubDate>Mon, 16 Dec 2013 11:43:42 +0000</pubDate><guid>https://faq.i3wm.org/question/3068/console-vim-quitting-without-confirmation/</guid></item><item><title>Comment by simendsjo for &lt;p&gt;&lt;code&gt;mod+shift+q&lt;/code&gt; quits an application. Most application hooks into this, but it doesn't seem to work when using console vim. I suspect this might be because I'm launching it using urxvt: &lt;code&gt;bindsym $mod+Shift+v exec urxvtc -e vim&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;So.. Is there a way to let urxvt pipe the quit over to the console application that is open?&lt;/p&gt;
+
+&lt;p&gt;EDIT: A fix is to use gvim rather than vim, just turning off all gui elements. This works as expected, although the question is still the same for all curses applications I guess.&lt;/p&gt;
+
+&lt;p&gt;EDIT2: Setting some guioptions makes gvim look more like vim. For future reference, here are my settings so far:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if has("gui_running")
+    " For console vim, this is handled by setting font for urxvt in .XResources
+    set guifont=Source\ Code\ Pro\ Medium\ 12
+    set guioptions-=m " Remove menu
+    set guioptions-=T " Remove toolbar
+    set guioptions-=r " Remove right scrollbar
+    set guioptions-=e " Use curses rendering for tab pages
+    set guioptions+=c " Use curses for simple dialog boxes
+    set guioptions-=i " No vim icon
+    set guioptions-=L " No left scrollbar
+    set langmenu=en_US.utf-8
+    language C " language for menus
+    winpos 0 0 " Startup window position - not neccessary for all OSes/WMs
+endif
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3068/console-vim-quitting-without-confirmation/?comment=3070#comment-3070</link><description>I get the exact same behavior when running non-deamon mode. The problem isn't that vim isn't closed (it is), the problem is that there are no confirmation about unsaved buffers. So vim is just killed. I would rather have it worked like I typed ":q" in vim before trying to kill anything.</description><pubDate>Mon, 16 Dec 2013 12:46:16 +0000</pubDate><guid>https://faq.i3wm.org/question/3068/console-vim-quitting-without-confirmation/?comment=3070#comment-3070</guid></item><item><title>Comment by simendsjo for &lt;p&gt;&lt;code&gt;mod+shift+q&lt;/code&gt; quits an application. Most application hooks into this, but it doesn't seem to work when using console vim. I suspect this might be because I'm launching it using urxvt: &lt;code&gt;bindsym $mod+Shift+v exec urxvtc -e vim&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;So.. Is there a way to let urxvt pipe the quit over to the console application that is open?&lt;/p&gt;
+
+&lt;p&gt;EDIT: A fix is to use gvim rather than vim, just turning off all gui elements. This works as expected, although the question is still the same for all curses applications I guess.&lt;/p&gt;
+
+&lt;p&gt;EDIT2: Setting some guioptions makes gvim look more like vim. For future reference, here are my settings so far:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if has("gui_running")
+    " For console vim, this is handled by setting font for urxvt in .XResources
+    set guifont=Source\ Code\ Pro\ Medium\ 12
+    set guioptions-=m " Remove menu
+    set guioptions-=T " Remove toolbar
+    set guioptions-=r " Remove right scrollbar
+    set guioptions-=e " Use curses rendering for tab pages
+    set guioptions+=c " Use curses for simple dialog boxes
+    set guioptions-=i " No vim icon
+    set guioptions-=L " No left scrollbar
+    set langmenu=en_US.utf-8
+    language C " language for menus
+    winpos 0 0 " Startup window position - not neccessary for all OSes/WMs
+endif
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3068/console-vim-quitting-without-confirmation/?comment=3072#comment-3072</link><description>Ok, thanks anyway. Setting some guioptions makes gvim look and behave much like vim, so I might just stick with that.</description><pubDate>Mon, 16 Dec 2013 13:21:30 +0000</pubDate><guid>https://faq.i3wm.org/question/3068/console-vim-quitting-without-confirmation/?comment=3072#comment-3072</guid></item><item><title>Comment by cee for &lt;p&gt;&lt;code&gt;mod+shift+q&lt;/code&gt; quits an application. Most application hooks into this, but it doesn't seem to work when using console vim. I suspect this might be because I'm launching it using urxvt: &lt;code&gt;bindsym $mod+Shift+v exec urxvtc -e vim&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;So.. Is there a way to let urxvt pipe the quit over to the console application that is open?&lt;/p&gt;
+
+&lt;p&gt;EDIT: A fix is to use gvim rather than vim, just turning off all gui elements. This works as expected, although the question is still the same for all curses applications I guess.&lt;/p&gt;
+
+&lt;p&gt;EDIT2: Setting some guioptions makes gvim look more like vim. For future reference, here are my settings so far:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if has("gui_running")
+    " For console vim, this is handled by setting font for urxvt in .XResources
+    set guifont=Source\ Code\ Pro\ Medium\ 12
+    set guioptions-=m " Remove menu
+    set guioptions-=T " Remove toolbar
+    set guioptions-=r " Remove right scrollbar
+    set guioptions-=e " Use curses rendering for tab pages
+    set guioptions+=c " Use curses for simple dialog boxes
+    set guioptions-=i " No vim icon
+    set guioptions-=L " No left scrollbar
+    set langmenu=en_US.utf-8
+    language C " language for menus
+    winpos 0 0 " Startup window position - not neccessary for all OSes/WMs
+endif
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3068/console-vim-quitting-without-confirmation/?comment=3071#comment-3071</link><description>OK, now I get it.. Unfortunately no idea to solve this problem right now. I just stick to ZZ and then close urxvt</description><pubDate>Mon, 16 Dec 2013 13:07:34 +0000</pubDate><guid>https://faq.i3wm.org/question/3068/console-vim-quitting-without-confirmation/?comment=3071#comment-3071</guid></item><item><title>Comment by cee for &lt;p&gt;&lt;code&gt;mod+shift+q&lt;/code&gt; quits an application. Most application hooks into this, but it doesn't seem to work when using console vim. I suspect this might be because I'm launching it using urxvt: &lt;code&gt;bindsym $mod+Shift+v exec urxvtc -e vim&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;So.. Is there a way to let urxvt pipe the quit over to the console application that is open?&lt;/p&gt;
+
+&lt;p&gt;EDIT: A fix is to use gvim rather than vim, just turning off all gui elements. This works as expected, although the question is still the same for all curses applications I guess.&lt;/p&gt;
+
+&lt;p&gt;EDIT2: Setting some guioptions makes gvim look more like vim. For future reference, here are my settings so far:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if has("gui_running")
+    " For console vim, this is handled by setting font for urxvt in .XResources
+    set guifont=Source\ Code\ Pro\ Medium\ 12
+    set guioptions-=m " Remove menu
+    set guioptions-=T " Remove toolbar
+    set guioptions-=r " Remove right scrollbar
+    set guioptions-=e " Use curses rendering for tab pages
+    set guioptions+=c " Use curses for simple dialog boxes
+    set guioptions-=i " No vim icon
+    set guioptions-=L " No left scrollbar
+    set langmenu=en_US.utf-8
+    language C " language for menus
+    winpos 0 0 " Startup window position - not neccessary for all OSes/WMs
+endif
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3068/console-vim-quitting-without-confirmation/?comment=3069#comment-3069</link><description>Maybe it's because you are using urxvt in deamon mode. On my machine if I open vim from a normal urxvt, both programs (vim + urxvt) getting closed after pressing mod+shift+q.</description><pubDate>Mon, 16 Dec 2013 12:41:13 +0000</pubDate><guid>https://faq.i3wm.org/question/3068/console-vim-quitting-without-confirmation/?comment=3069#comment-3069</guid></item></channel></rss>

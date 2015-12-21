@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4951/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 17 Nov 2014 10:02:47 +0000</lastBuildDate><item><title>status_command and php script</title><link>https://faq.i3wm.org/question/4951/status_command-and-php-script/</link><description>Hello. I have this php code to count the unread message from the mailbox
+
+      1 &lt;?php
+      2 
+      3     $conn   = imap_open('{imap.gmail.com:993/imap/ssl}INBOX', 'test@gmail.com', 'pass', OP_READONLY);
+      4 
+      5     $msgnos = imap_search($conn, 'UNSEEN');
+      6 
+      7     $unread = count($msgnos);
+      8 
+      9     $return = array("full_text"=&gt;$unread, 'name'=&gt;'newmail','color'=&gt;'#FF0000');
+     10 
+     11     echo json_encode($return);
+     12 
+     13 
+     14 ?&gt;
+
+the status command in .i3/config file
+
+    165 bar {
+    166         status_command i3status | php /home/trap/bin/mailcheck/mailck.php
+    167 }
+
+The problem is that Error: status_command process exited unexpectedly (exit 0)
+
+Why that's happening ?
+
+</description><pubDate>Thu, 13 Nov 2014 18:39:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4951/status_command-and-php-script/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hello. I have this php code to count the unread message from the mailbox&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  1 &amp;lt;?php
+  2 
+  3     $conn   = imap_open('{imap.gmail.com:993/imap/ssl}INBOX', 'test@gmail.com', 'pass', OP_READONLY);
+  4 
+  5     $msgnos = imap_search($conn, 'UNSEEN');
+  6 
+  7     $unread = count($msgnos);
+  8 
+  9     $return = array("full_text"=&amp;gt;$unread, 'name'=&amp;gt;'newmail','color'=&amp;gt;'#FF0000');
+ 10 
+ 11     echo json_encode($return);
+ 12 
+ 13 
+ 14 ?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the status command in .i3/config file&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;165 bar {
+166         status_command i3status | php /home/trap/bin/mailcheck/mailck.php
+167 }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem is that Error: status_command process exited unexpectedly (exit 0)&lt;/p&gt;
+
+&lt;p&gt;Why that's happening ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4951/status_command-and-php-script/?answer=4953#post-id-4953</link><description>i3bar expects `status_command` to keep running and produce output line by line. 
+
+The reason it fails in your case is that you are using an output redirection `|` to pass the output of `i3status` to `php /home/trap/bin/mailcheck/mailck.php`, but the php script is not actually waiting for input and just exits (with status 0) after printing its output just once.
+
+What you would have to do to get this to work is something like this with your PHP script (I do not know enough PHP to actually write the code for you):
+
+1. establish IMAP connection (line 3 of your original code)
+2. read input from STDIN line by line
+3. for each line of input
+  1. run line 5-9 of your original script
+  2. decode json from line to array
+  3. append `$return` to the array
+  4. encode the array to json
+  5. echo the json
+
+Ensure that the `output_format` set in the i3status configuration is `i3bar` else step 3.2 may fail.
+
+If the connection to the IMAP server breaks often it may be necessary to pull step 1. into the loop. In that case it may also be necessary to close the connection after pulling the information.
+
+In the i3status manpage is also an example on how to extend i3status with a shell script.
+
+
+    
+</description><pubDate>Fri, 14 Nov 2014 14:17:26 +0000</pubDate><guid>https://faq.i3wm.org/question/4951/status_command-and-php-script/?answer=4953#post-id-4953</guid></item><item><title>Comment by Adaephon for &lt;p&gt;i3bar expects &lt;code&gt;status_command&lt;/code&gt; to keep running and produce output line by line. &lt;/p&gt;
+
+&lt;p&gt;The reason it fails in your case is that you are using an output redirection &lt;code&gt;|&lt;/code&gt; to pass the output of &lt;code&gt;i3status&lt;/code&gt; to &lt;code&gt;php /home/trap/bin/mailcheck/mailck.php&lt;/code&gt;, but the php script is not actually waiting for input and just exits (with status 0) after printing its output just once.&lt;/p&gt;
+
+&lt;p&gt;What you would have to do to get this to work is something like this with your PHP script (I do not know enough PHP to actually write the code for you):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;establish IMAP connection (line 3 of your original code)&lt;/li&gt;
+&lt;li&gt;read input from STDIN line by line&lt;/li&gt;
+&lt;li&gt;for each line of input
+&lt;ol&gt;
+&lt;li&gt;run line 5-9 of your original script&lt;/li&gt;
+&lt;li&gt;decode json from line to array&lt;/li&gt;
+&lt;li&gt;append &lt;code&gt;$return&lt;/code&gt; to the array&lt;/li&gt;
+&lt;li&gt;encode the array to json&lt;/li&gt;
+&lt;li&gt;echo the json&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ensure that the &lt;code&gt;output_format&lt;/code&gt; set in the i3status configuration is &lt;code&gt;i3bar&lt;/code&gt; else step 3.2 may fail.&lt;/p&gt;
+
+&lt;p&gt;If the connection to the IMAP server breaks often it may be necessary to pull step 1. into the loop. In that case it may also be necessary to close the connection after pulling the information.&lt;/p&gt;
+
+&lt;p&gt;In the i3status manpage is also an example on how to extend i3status with a shell script.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4951/status_command-and-php-script/?comment=4964#comment-4964</link><description>Instead of appending `$return` to the array in step 3.3 you need to prepend it. I'm not sure how this is done correctly in PHP. Something like `$array = [$return]  + $array`, maybe?</description><pubDate>Mon, 17 Nov 2014 10:02:47 +0000</pubDate><guid>https://faq.i3wm.org/question/4951/status_command-and-php-script/?comment=4964#comment-4964</guid></item><item><title>Comment by F.N for &lt;p&gt;i3bar expects &lt;code&gt;status_command&lt;/code&gt; to keep running and produce output line by line. &lt;/p&gt;
+
+&lt;p&gt;The reason it fails in your case is that you are using an output redirection &lt;code&gt;|&lt;/code&gt; to pass the output of &lt;code&gt;i3status&lt;/code&gt; to &lt;code&gt;php /home/trap/bin/mailcheck/mailck.php&lt;/code&gt;, but the php script is not actually waiting for input and just exits (with status 0) after printing its output just once.&lt;/p&gt;
+
+&lt;p&gt;What you would have to do to get this to work is something like this with your PHP script (I do not know enough PHP to actually write the code for you):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;establish IMAP connection (line 3 of your original code)&lt;/li&gt;
+&lt;li&gt;read input from STDIN line by line&lt;/li&gt;
+&lt;li&gt;for each line of input
+&lt;ol&gt;
+&lt;li&gt;run line 5-9 of your original script&lt;/li&gt;
+&lt;li&gt;decode json from line to array&lt;/li&gt;
+&lt;li&gt;append &lt;code&gt;$return&lt;/code&gt; to the array&lt;/li&gt;
+&lt;li&gt;encode the array to json&lt;/li&gt;
+&lt;li&gt;echo the json&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ensure that the &lt;code&gt;output_format&lt;/code&gt; set in the i3status configuration is &lt;code&gt;i3bar&lt;/code&gt; else step 3.2 may fail.&lt;/p&gt;
+
+&lt;p&gt;If the connection to the IMAP server breaks often it may be necessary to pull step 1. into the loop. In that case it may also be necessary to close the connection after pulling the information.&lt;/p&gt;
+
+&lt;p&gt;In the i3status manpage is also an example on how to extend i3status with a shell script.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4951/status_command-and-php-script/?comment=4961#comment-4961</link><description>i mean the position of mailbox status in relation to the rest of the status message</description><pubDate>Sat, 15 Nov 2014 20:47:45 +0000</pubDate><guid>https://faq.i3wm.org/question/4951/status_command-and-php-script/?comment=4961#comment-4961</guid></item><item><title>Comment by Adaephon for &lt;p&gt;i3bar expects &lt;code&gt;status_command&lt;/code&gt; to keep running and produce output line by line. &lt;/p&gt;
+
+&lt;p&gt;The reason it fails in your case is that you are using an output redirection &lt;code&gt;|&lt;/code&gt; to pass the output of &lt;code&gt;i3status&lt;/code&gt; to &lt;code&gt;php /home/trap/bin/mailcheck/mailck.php&lt;/code&gt;, but the php script is not actually waiting for input and just exits (with status 0) after printing its output just once.&lt;/p&gt;
+
+&lt;p&gt;What you would have to do to get this to work is something like this with your PHP script (I do not know enough PHP to actually write the code for you):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;establish IMAP connection (line 3 of your original code)&lt;/li&gt;
+&lt;li&gt;read input from STDIN line by line&lt;/li&gt;
+&lt;li&gt;for each line of input
+&lt;ol&gt;
+&lt;li&gt;run line 5-9 of your original script&lt;/li&gt;
+&lt;li&gt;decode json from line to array&lt;/li&gt;
+&lt;li&gt;append &lt;code&gt;$return&lt;/code&gt; to the array&lt;/li&gt;
+&lt;li&gt;encode the array to json&lt;/li&gt;
+&lt;li&gt;echo the json&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ensure that the &lt;code&gt;output_format&lt;/code&gt; set in the i3status configuration is &lt;code&gt;i3bar&lt;/code&gt; else step 3.2 may fail.&lt;/p&gt;
+
+&lt;p&gt;If the connection to the IMAP server breaks often it may be necessary to pull step 1. into the loop. In that case it may also be necessary to close the connection after pulling the information.&lt;/p&gt;
+
+&lt;p&gt;In the i3status manpage is also an example on how to extend i3status with a shell script.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4951/status_command-and-php-script/?comment=4960#comment-4960</link><description>Do you mean the position of the whole status output in the bar or just the position of mailbox status in relation to the rest of the status message?</description><pubDate>Sat, 15 Nov 2014 14:08:38 +0000</pubDate><guid>https://faq.i3wm.org/question/4951/status_command-and-php-script/?comment=4960#comment-4960</guid></item><item><title>Comment by F.N for &lt;p&gt;i3bar expects &lt;code&gt;status_command&lt;/code&gt; to keep running and produce output line by line. &lt;/p&gt;
+
+&lt;p&gt;The reason it fails in your case is that you are using an output redirection &lt;code&gt;|&lt;/code&gt; to pass the output of &lt;code&gt;i3status&lt;/code&gt; to &lt;code&gt;php /home/trap/bin/mailcheck/mailck.php&lt;/code&gt;, but the php script is not actually waiting for input and just exits (with status 0) after printing its output just once.&lt;/p&gt;
+
+&lt;p&gt;What you would have to do to get this to work is something like this with your PHP script (I do not know enough PHP to actually write the code for you):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;establish IMAP connection (line 3 of your original code)&lt;/li&gt;
+&lt;li&gt;read input from STDIN line by line&lt;/li&gt;
+&lt;li&gt;for each line of input
+&lt;ol&gt;
+&lt;li&gt;run line 5-9 of your original script&lt;/li&gt;
+&lt;li&gt;decode json from line to array&lt;/li&gt;
+&lt;li&gt;append &lt;code&gt;$return&lt;/code&gt; to the array&lt;/li&gt;
+&lt;li&gt;encode the array to json&lt;/li&gt;
+&lt;li&gt;echo the json&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ensure that the &lt;code&gt;output_format&lt;/code&gt; set in the i3status configuration is &lt;code&gt;i3bar&lt;/code&gt; else step 3.2 may fail.&lt;/p&gt;
+
+&lt;p&gt;If the connection to the IMAP server breaks often it may be necessary to pull step 1. into the loop. In that case it may also be necessary to close the connection after pulling the information.&lt;/p&gt;
+
+&lt;p&gt;In the i3status manpage is also an example on how to extend i3status with a shell script.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4951/status_command-and-php-script/?comment=4958#comment-4958</link><description>Ok. Fixed it by putting the full_text value in quotes "".  Do you know who to transfer that value in the top of the status bar ? Now it is right and i want it to go left. Any idea ?</description><pubDate>Fri, 14 Nov 2014 19:30:43 +0000</pubDate><guid>https://faq.i3wm.org/question/4951/status_command-and-php-script/?comment=4958#comment-4958</guid></item><item><title>Comment by F.N for &lt;p&gt;i3bar expects &lt;code&gt;status_command&lt;/code&gt; to keep running and produce output line by line. &lt;/p&gt;
+
+&lt;p&gt;The reason it fails in your case is that you are using an output redirection &lt;code&gt;|&lt;/code&gt; to pass the output of &lt;code&gt;i3status&lt;/code&gt; to &lt;code&gt;php /home/trap/bin/mailcheck/mailck.php&lt;/code&gt;, but the php script is not actually waiting for input and just exits (with status 0) after printing its output just once.&lt;/p&gt;
+
+&lt;p&gt;What you would have to do to get this to work is something like this with your PHP script (I do not know enough PHP to actually write the code for you):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;establish IMAP connection (line 3 of your original code)&lt;/li&gt;
+&lt;li&gt;read input from STDIN line by line&lt;/li&gt;
+&lt;li&gt;for each line of input
+&lt;ol&gt;
+&lt;li&gt;run line 5-9 of your original script&lt;/li&gt;
+&lt;li&gt;decode json from line to array&lt;/li&gt;
+&lt;li&gt;append &lt;code&gt;$return&lt;/code&gt; to the array&lt;/li&gt;
+&lt;li&gt;encode the array to json&lt;/li&gt;
+&lt;li&gt;echo the json&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ensure that the &lt;code&gt;output_format&lt;/code&gt; set in the i3status configuration is &lt;code&gt;i3bar&lt;/code&gt; else step 3.2 may fail.&lt;/p&gt;
+
+&lt;p&gt;If the connection to the IMAP server breaks often it may be necessary to pull step 1. into the loop. In that case it may also be necessary to close the connection after pulling the information.&lt;/p&gt;
+
+&lt;p&gt;In the i3status manpage is also an example on how to extend i3status with a shell script.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4951/status_command-and-php-script/?comment=4956#comment-4956</link><description>I did what you said and now the php script return such data (http://pastebin.com/xxMstfue) but in the status bar everything works properly except from the place where i want to print unread mails. Instead , it writes SPEC VIOLATION (null).
+</description><pubDate>Fri, 14 Nov 2014 18:45:20 +0000</pubDate><guid>https://faq.i3wm.org/question/4951/status_command-and-php-script/?comment=4956#comment-4956</guid></item></channel></rss>

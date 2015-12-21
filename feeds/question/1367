@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1367/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 17 Aug 2014 16:07:37 +0000</lastBuildDate><item><title>anyway to include in config file</title><link>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/</link><description>I am currently managing about 8 computers here and there, all using i3... and I have set of shared files and folders for stuff it can be reused in all (bash_aliases, bashrc, .vim, etc). In bash, specifically, is very convenient to use a dot to "include" other files within the executing script... I was wondering if we have (or could have) anything similar in i3 config file?
+
+The main reason being, every time I change something in the config (happens quite often when I discover new things, or want certain windows to behave different from the default), and I have to update all files, over and over...
+
+Any ideas?</description><pubDate>Sun, 10 Mar 2013 23:31:58 +0000</pubDate><guid>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/</guid></item><item><title>Comment by Wesley for &lt;p&gt;I am currently managing about 8 computers here and there, all using i3... and I have set of shared files and folders for stuff it can be reused in all (bash_aliases, bashrc, .vim, etc). In bash, specifically, is very convenient to use a dot to "include" other files within the executing script... I was wondering if we have (or could have) anything similar in i3 config file?&lt;/p&gt;
+
+&lt;p&gt;The main reason being, every time I change something in the config (happens quite often when I discover new things, or want certain windows to behave different from the default), and I have to update all files, over and over...&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?comment=1886#comment-1886</link><description>I realize you have an answer, but I'd like to suggest what I do, it works great.
+I sync common dot files via a github repo[1] and a cron job. The fact that they are versioned is also attractive. [1]: https://github.com/wesleywerner/dotfiles</description><pubDate>Fri, 24 May 2013 18:52:26 +0000</pubDate><guid>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?comment=1886#comment-1886</guid></item><item><title>Comment by gustavnikolaj for &lt;p&gt;I am currently managing about 8 computers here and there, all using i3... and I have set of shared files and folders for stuff it can be reused in all (bash_aliases, bashrc, .vim, etc). In bash, specifically, is very convenient to use a dot to "include" other files within the executing script... I was wondering if we have (or could have) anything similar in i3 config file?&lt;/p&gt;
+
+&lt;p&gt;The main reason being, every time I change something in the config (happens quite often when I discover new things, or want certain windows to behave different from the default), and I have to update all files, over and over...&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?comment=3514#comment-3514</link><description>I would really like to advocate for adding including of files to i3. Something like being able to have a config.d directory, with small files instead of having this giant blob of text that is hard to share. Unfortunately, my skills with C is not enough to make this happen on my own :-(</description><pubDate>Tue, 11 Mar 2014 12:49:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?comment=3514#comment-3514</guid></item><item><title>Answer by marc for &lt;p&gt;I am currently managing about 8 computers here and there, all using i3... and I have set of shared files and folders for stuff it can be reused in all (bash_aliases, bashrc, .vim, etc). In bash, specifically, is very convenient to use a dot to "include" other files within the executing script... I was wondering if we have (or could have) anything similar in i3 config file?&lt;/p&gt;
+
+&lt;p&gt;The main reason being, every time I change something in the config (happens quite often when I discover new things, or want certain windows to behave different from the default), and I have to update all files, over and over...&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?answer=1858#post-id-1858</link><description>I have the same problem. An include function would be very nice.
+Another option would be if/else conditons based on environment variables like $HOSTNAME etc. Creating the config on startup is an option but forces me to recreate the config file every time I made changes and want to reload the config on the fly.</description><pubDate>Tue, 21 May 2013 23:29:26 +0000</pubDate><guid>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?answer=1858#post-id-1858</guid></item><item><title>Comment by Michael for &lt;p&gt;I have the same problem. An include function would be very nice.
+Another option would be if/else conditons based on environment variables like $HOSTNAME etc. Creating the config on startup is an option but forces me to recreate the config file every time I made changes and want to reload the config on the fly.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?comment=1861#comment-1861</link><description>If you often reload the config file, just make your keybinding call the script + reload, or — if you reload from the commandline — create an alias which calls the script + i3-msg reload.</description><pubDate>Wed, 22 May 2013 17:50:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?comment=1861#comment-1861</guid></item><item><title>Comment by marc for &lt;p&gt;I have the same problem. An include function would be very nice.
+Another option would be if/else conditons based on environment variables like $HOSTNAME etc. Creating the config on startup is an option but forces me to recreate the config file every time I made changes and want to reload the config on the fly.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?comment=1864#comment-1864</link><description>yes - that works - thanks!</description><pubDate>Thu, 23 May 2013 03:57:23 +0000</pubDate><guid>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?comment=1864#comment-1864</guid></item><item><title>Answer by knopwob for &lt;p&gt;I am currently managing about 8 computers here and there, all using i3... and I have set of shared files and folders for stuff it can be reused in all (bash_aliases, bashrc, .vim, etc). In bash, specifically, is very convenient to use a dot to "include" other files within the executing script... I was wondering if we have (or could have) anything similar in i3 config file?&lt;/p&gt;
+
+&lt;p&gt;The main reason being, every time I change something in the config (happens quite often when I discover new things, or want certain windows to behave different from the default), and I have to update all files, over and over...&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?answer=1369#post-id-1369</link><description>There is no include mechanism in i3 itself. But you can create the config file everytime X starts from templates.
+
+    #!/bin/bash
+    cat $HOME/.config/i3/config.base \
+        $HOME/.config/i3/config.local &gt; $HOME/.config/i3/config
+    exec /usr/bin/i3
+
+Something like this as a wrapper-script around i3 should work.</description><pubDate>Mon, 11 Mar 2013 01:29:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?answer=1369#post-id-1369</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;There is no include mechanism in i3 itself. But you can create the config file everytime X starts from templates.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+cat $HOME/.config/i3/config.base \
+    $HOME/.config/i3/config.local &amp;gt; $HOME/.config/i3/config
+exec /usr/bin/i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Something like this as a wrapper-script around i3 should work.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?comment=1370#comment-1370</link><description>Yeah, that sounds like the only option at this moment. Thanks!</description><pubDate>Mon, 11 Mar 2013 04:05:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?comment=1370#comment-1370</guid></item><item><title>Answer by LindaJeanne for &lt;p&gt;I am currently managing about 8 computers here and there, all using i3... and I have set of shared files and folders for stuff it can be reused in all (bash_aliases, bashrc, .vim, etc). In bash, specifically, is very convenient to use a dot to "include" other files within the executing script... I was wondering if we have (or could have) anything similar in i3 config file?&lt;/p&gt;
+
+&lt;p&gt;The main reason being, every time I change something in the config (happens quite often when I discover new things, or want certain windows to behave different from the default), and I have to update all files, over and over...&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?answer=4508#post-id-4508</link><description>I keep my dotfiles (including i3's) on a shared drive, and use a symbolic link from each of my home directories to access it:
+
+ln -s /data/dotfiles/i3/config /home/me/.i3/i3/config</description><pubDate>Sun, 17 Aug 2014 16:07:37 +0000</pubDate><guid>https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/?answer=4508#post-id-4508</guid></item></channel></rss>

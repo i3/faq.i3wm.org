@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5581/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 11 Mar 2015 23:13:52 +0000</lastBuildDate><item><title>Virtual MS windows</title><link>https://faq.i3wm.org/question/5581/virtual-ms-windows/</link><description>
+
+I have virtual Windows installed through VirtualBox.
+
+While the command
+
+VBoxManage startvm "Windows XP"
+
+works in the terminal, editing the i3 config file and inserting
+
+bindsym $mod+Shift+W VBoxManage startvm "Windows XP"
+
+does not work. I double checked and there is no other key combination involving $mod+Shift+W . It is a default keybindings anyway, besides this single additional keybinding.
+
+Any thoughts?
+</description><pubDate>Sat, 07 Mar 2015 13:09:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5581/virtual-ms-windows/</guid></item><item><title>Answer by mschaefer for &lt;p&gt;I have virtual Windows installed through VirtualBox.&lt;/p&gt;
+
+&lt;p&gt;While the command&lt;/p&gt;
+
+&lt;p&gt;VBoxManage startvm "Windows XP"&lt;/p&gt;
+
+&lt;p&gt;works in the terminal, editing the i3 config file and inserting&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+Shift+W VBoxManage startvm "Windows XP"&lt;/p&gt;
+
+&lt;p&gt;does not work. I double checked and there is no other key combination involving $mod+Shift+W . It is a default keybindings anyway, besides this single additional keybinding.&lt;/p&gt;
+
+&lt;p&gt;Any thoughts?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5581/virtual-ms-windows/?answer=5582#post-id-5582</link><description>I think the config line should be `bindsym $mod+Shift+W exec VBoxManage startvm "Windows XP"`. The exec is neccessary in the i3 config since it is no shell script but a config file</description><pubDate>Sat, 07 Mar 2015 14:46:53 +0000</pubDate><guid>https://faq.i3wm.org/question/5581/virtual-ms-windows/?answer=5582#post-id-5582</guid></item><item><title>Comment by Oposum for &lt;p&gt;I think the config line should be &lt;code&gt;bindsym $mod+Shift+W exec VBoxManage startvm "Windows XP"&lt;/code&gt;. The exec is neccessary in the i3 config since it is no shell script but a config file&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5581/virtual-ms-windows/?comment=5596#comment-5596</link><description>Thanks, you were totally right!!</description><pubDate>Wed, 11 Mar 2015 23:13:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5581/virtual-ms-windows/?comment=5596#comment-5596</guid></item><item><title>Answer by elbajadord for &lt;p&gt;I have virtual Windows installed through VirtualBox.&lt;/p&gt;
+
+&lt;p&gt;While the command&lt;/p&gt;
+
+&lt;p&gt;VBoxManage startvm "Windows XP"&lt;/p&gt;
+
+&lt;p&gt;works in the terminal, editing the i3 config file and inserting&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+Shift+W VBoxManage startvm "Windows XP"&lt;/p&gt;
+
+&lt;p&gt;does not work. I double checked and there is no other key combination involving $mod+Shift+W . It is a default keybindings anyway, besides this single additional keybinding.&lt;/p&gt;
+
+&lt;p&gt;Any thoughts?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5581/virtual-ms-windows/?answer=5589#post-id-5589</link><description>try this
+
+    bindsym $mod+shift+w exec virtualbox --startvm "Windows XP"</description><pubDate>Mon, 09 Mar 2015 18:37:12 +0000</pubDate><guid>https://faq.i3wm.org/question/5581/virtual-ms-windows/?answer=5589#post-id-5589</guid></item></channel></rss>

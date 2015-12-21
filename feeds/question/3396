@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3396/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 17 Feb 2014 23:18:49 +0000</lastBuildDate><item><title>Error when attempting to rename workspace</title><link>https://faq.i3wm.org/question/3396/error-when-attempting-to-rename-workspace/</link><description>I have tried using the example provided by the user guide which is:
+
+    bindsym $mod+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: ' 
+
+but that doesn't seem to work. So I went into the terminal and tried a simple
+
+    $ i3-msg 'rename workspace to "test"'
+
+and that returned the following error
+
+    {"success":false, "error":"syntax error, unexpected $undefined at position 1"}
+
+Anyone have ideas whats going on here?</description><pubDate>Fri, 14 Feb 2014 03:30:09 +0000</pubDate><guid>https://faq.i3wm.org/question/3396/error-when-attempting-to-rename-workspace/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I have tried using the example provided by the user guide which is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but that doesn't seem to work. So I went into the terminal and tried a simple&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ i3-msg 'rename workspace to "test"'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and that returned the following error&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{"success":false, "error":"syntax error, unexpected $undefined at position 1"}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Anyone have ideas whats going on here?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3396/error-when-attempting-to-rename-workspace/?answer=3397#post-id-3397</link><description>It seems that you are using an older version of i3, where renaming the focused workspace was not yet implemented. This feature was introduced with version 4.4.
+
+Before that only explicit renaming was possible:
+
+    rename workspace "old_name" to "new_name"
+
+</description><pubDate>Fri, 14 Feb 2014 07:12:31 +0000</pubDate><guid>https://faq.i3wm.org/question/3396/error-when-attempting-to-rename-workspace/?answer=3397#post-id-3397</guid></item><item><title>Comment by Adaephon for &lt;p&gt;It seems that you are using an older version of i3, where renaming the focused workspace was not yet implemented. This feature was introduced with version 4.4.&lt;/p&gt;
+
+&lt;p&gt;Before that only explicit renaming was possible:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rename workspace "old_name" to "new_name"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3396/error-when-attempting-to-rename-workspace/?comment=3402#comment-3402</link><description>Yes. Instructions can be found on [the i3 website](http://i3wm.org/docs/repositories.html). At the moment stable packages are available for 12.04 and newer.</description><pubDate>Mon, 17 Feb 2014 23:18:49 +0000</pubDate><guid>https://faq.i3wm.org/question/3396/error-when-attempting-to-rename-workspace/?comment=3402#comment-3402</guid></item><item><title>Comment by QuinnFTW for &lt;p&gt;It seems that you are using an older version of i3, where renaming the focused workspace was not yet implemented. This feature was introduced with version 4.4.&lt;/p&gt;
+
+&lt;p&gt;Before that only explicit renaming was possible:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rename workspace "old_name" to "new_name"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3396/error-when-attempting-to-rename-workspace/?comment=3398#comment-3398</link><description>Thanks for the insight, but I have one more quick question.  I got i3 off the software center, is this not the latest version? [EDIT] it seems that I am unable to get the newest version because I am running 12.04, my bad.  Is there anyway for me to get the latest version on my current distro? (12.04</description><pubDate>Fri, 14 Feb 2014 12:26:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3396/error-when-attempting-to-rename-workspace/?comment=3398#comment-3398</guid></item></channel></rss>

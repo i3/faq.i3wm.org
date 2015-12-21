@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5184/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 15 Dec 2014 20:21:48 +0000</lastBuildDate><item><title>How can I get two stacked containers side-by-side?</title><link>https://faq.i3wm.org/question/5184/how-can-i-get-two-stacked-containers-side-by-side/</link><description>I can make my whole screen stacked, and then I can move windows out of that stacked container, but I can't seem to make more than one container stacked on my screen. In other words, what I'd like to do is this: 
+
+    |--Win A1--||--Win B1--|
+    |--Win A2--||--Win B2--| 
+
+</description><pubDate>Mon, 15 Dec 2014 18:33:35 +0000</pubDate><guid>https://faq.i3wm.org/question/5184/how-can-i-get-two-stacked-containers-side-by-side/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I can make my whole screen stacked, and then I can move windows out of that stacked container, but I can't seem to make more than one container stacked on my screen. In other words, what I'd like to do is this: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;|--Win A1--||--Win B1--|
+|--Win A2--||--Win B2--|
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/5184/how-can-i-get-two-stacked-containers-side-by-side/?answer=5185#post-id-5185</link><description>If you generally prefer stacked containers, I would suggest setting
+
+    workspace_layout stacking
+
+in your *i3* configuration. That way you start out with a stacked container and when you move a window out of it is again put into a new stacked container.
+
+So, if you just open four windows, you will get
+
+    +-Win 1-------------------+
+    +-Win 2-------------------+
+    +-Win 3-------------------+
+    +-Win 4-------------------+
+    |                         |
+    |                         |
+    +-------------------------+
+
+If you then move "Win 3" to the right, you get
+
+    +-Win 1------+-Win 3------+
+    +-Win 2------+            |
+    +-Win 4------+            |
+    |            |            |
+    |            |            |
+    |            |            |
+    +------------+------------+
+
+And moving "Win 1" to the right after that will have the desired stacked containers side by side:
+
+    +-Win 2------+-Win 3------+
+    +-Win 4------+-Win 1------+
+    |            |            |
+    |            |            |
+    |            |            |
+    |            |            |
+    +------------+------------+
+
+-----
+
+If you want to stay with some other `default_orientation`, you still can create a side-by-side layout of stacked containers by manually creating containers and switching them to stacked layout.
+
+Lets say, you again start out with the following layout:
+
+    +-Win 1-------------------+
+    +-Win 2-------------------+
+    +-Win 3-------------------+
+    +-Win 4-------------------+
+    |                         |
+    |                         |
+    +-------------------------+
+
+If you did not set `workspace_layout` or set it explicitly to `default`, moving "Win 3" and than "Win 1" to the right will probably get you the following layout (depending on screen orientation and setting of `default_orientation`):
+
+    +-Win 2--+-Win 1--+-Win 3-+
+    +-Win 4--+        |       |
+    |        |        |       |
+    |        |        |       |
+    |        |        |       |
+    |        |        |       |
+    +--------+--------+-------+
+
+That is because moving out "Win 3" did not create a new container, it instead moved "Win 3", and than "Win 1" into the same horizontal split container the initial stacked container resides in.
+
+To avoid this, you need to explicitly create a stacked container around "Win 3" after moving it out. There is no command to do that directly, but it takes only two steps:
+
+ 1. Create a container around the current window with either of the commands `split horizontal` or `split vertical`. This will put the current window into a new split container with the window as its only member. (Any new window or window moved into that container would then be sorted next to the initial window inside this container)
+ 2. Switch the layout of this container to stacking with the command `layout stacking`.
+
+Making use of *i3's* ability to chain commands, you can just bind `split vertical, layout stacking` to a key in order to run both commands with one keypress.
+
+So, after moving "Win 3" out:
+
+    +-Win 1------+-Win 3------+
+    +-Win 2------+            |
+    +-Win 4------+            |
+    |            |            |
+    |            |            |
+    |            |            |
+    +------------+------------+
+
+run `split horizontal, layout stacking`, than move "Win 1" to the right and you will get the desired result:
+
+    +-Win 2------+-Win 3------+
+    +-Win 4------+-Win 1------+
+    |            |            |
+    |            |            |
+    |            |            |
+    |            |            |
+    +------------+------------+
+</description><pubDate>Mon, 15 Dec 2014 20:21:48 +0000</pubDate><guid>https://faq.i3wm.org/question/5184/how-can-i-get-two-stacked-containers-side-by-side/?answer=5185#post-id-5185</guid></item></channel></rss>

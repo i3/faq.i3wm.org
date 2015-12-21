@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6591/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 18 Sep 2015 07:10:15 +0000</lastBuildDate><item><title>Is doubleclick among mousebinds?</title><link>https://faq.i3wm.org/question/6591/is-doubleclick-among-mousebinds/</link><description> I cannot find doubleclick in the documentation and these forums. Is it available for mousebind?</description><pubDate>Tue, 15 Sep 2015 18:50:58 +0000</pubDate><guid>https://faq.i3wm.org/question/6591/is-doubleclick-among-mousebinds/</guid></item><item><title>Answer by SpicyCat for &lt;p&gt;I cannot find doubleclick in the documentation and these forums. Is it available for mousebind?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6591/is-doubleclick-among-mousebinds/?answer=6612#post-id-6612</link><description>One possible way is you can define a mode, and bind mouse click to it and bind mouse click again inside the mode.
+Like this:
+
+    set $Locker i3lock-wrapper -l &amp;&amp; sleep 1
+    mode "test" {
+        bindsym --release button1 exec --no-startup-id $Locker, mode "default"
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+    bindsym --release button1 mode "test"
+
+&gt; By default, the binding will only run when you click on the titlebar of the window.
+
+When I double click window title bar, my PC will be locked.</description><pubDate>Fri, 18 Sep 2015 07:10:15 +0000</pubDate><guid>https://faq.i3wm.org/question/6591/is-doubleclick-among-mousebinds/?answer=6612#post-id-6612</guid></item><item><title>Answer by Airblader for &lt;p&gt;I cannot find doubleclick in the documentation and these forums. Is it available for mousebind?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6591/is-doubleclick-among-mousebinds/?answer=6592#post-id-6592</link><description>No, there's no built in way to do this in i3. </description><pubDate>Wed, 16 Sep 2015 04:47:30 +0000</pubDate><guid>https://faq.i3wm.org/question/6591/is-doubleclick-among-mousebinds/?answer=6592#post-id-6592</guid></item></channel></rss>

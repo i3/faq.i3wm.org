@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/289/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 21 Jul 2012 09:46:59 +0000</lastBuildDate><item><title>how How to close window and instantly open new on the same place? [closed]</title><link>https://faq.i3wm.org/question/289/how-how-to-close-window-and-instantly-open-new-on-the-same-place-closed/</link><description>... with size save.</description><pubDate>Thu, 19 Jul 2012 14:21:14 +0000</pubDate><guid>https://faq.i3wm.org/question/289/how-how-to-close-window-and-instantly-open-new-on-the-same-place-closed/</guid></item><item><title>Answer by ShadowPrince for &lt;p&gt;... with size save.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/289/how-how-to-close-window-and-instantly-open-new-on-the-same-place-closed/?answer=293#post-id-293</link><description>Sorry for anonymous question, thought that checkbox let me ask without registration. 
+
+    #!/usr/bin/python
+    # close window and open new at the same place
+    # uses i3-py, pip install i3-py
+    import os
+    import i3
+    import sys
+    
+    def wait_for_new_window(windows):
+        return i3.get_tree() == windows
+    
+    if __name__ == '__main__':
+        os.system(sys.argv[1])
+        os.system('i3 split h')
+        windows = i3.get_tree()
+        while wait_for_new_window(windows): pass
+        os.system('i3 focus left')
+        os.system('i3 kill')
+
+Thank for answer, I made that script on python, bind $mod+Shift+D to him with param dmenu_run, bind $mod+Shift+Enter to him with param terminal and use.
+P.S. Thanks for cool WM!
+</description><pubDate>Fri, 20 Jul 2012 11:57:40 +0000</pubDate><guid>https://faq.i3wm.org/question/289/how-how-to-close-window-and-instantly-open-new-on-the-same-place-closed/?answer=293#post-id-293</guid></item><item><title>Comment by joepd for &lt;p&gt;Sorry for anonymous question, thought that checkbox let me ask without registration. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/python
+# close window and open new at the same place
+# uses i3-py, pip install i3-py
+import os
+import i3
+import sys
+
+def wait_for_new_window(windows):
+    return i3.get_tree() == windows
+
+if __name__ == '__main__':
+    os.system(sys.argv[1])
+    os.system('i3 split h')
+    windows = i3.get_tree()
+    while wait_for_new_window(windows): pass
+    os.system('i3 focus left')
+    os.system('i3 kill')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thank for answer, I made that script on python, bind $mod+Shift+D to him with param dmenu_run, bind $mod+Shift+Enter to him with param terminal and use.
+P.S. Thanks for cool WM!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/289/how-how-to-close-window-and-instantly-open-new-on-the-same-place-closed/?comment=296#comment-296</link><description>That's a sweet trick: The wait_for_new_window function. This is handy for a whole lot of ideas. Thanks for sharing :) </description><pubDate>Sat, 21 Jul 2012 09:46:59 +0000</pubDate><guid>https://faq.i3wm.org/question/289/how-how-to-close-window-and-instantly-open-new-on-the-same-place-closed/?comment=296#comment-296</guid></item><item><title>Answer by joepd for &lt;p&gt;... with size save.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/289/how-how-to-close-window-and-instantly-open-new-on-the-same-place-closed/?answer=292#post-id-292</link><description>You could try and hack this, with splitting the container, create the new window, focus the previous one, and kill it. You might need to put a sleep command between the make-new-window and the focus-previous phases (or possibly a nicer hack involving parsing the window name if you can predict it reliably). 
+
+Hope this helps, I did not try it myself :) </description><pubDate>Fri, 20 Jul 2012 10:25:48 +0000</pubDate><guid>https://faq.i3wm.org/question/289/how-how-to-close-window-and-instantly-open-new-on-the-same-place-closed/?answer=292#post-id-292</guid></item><item><title>Answer by Michael for &lt;p&gt;... with size save.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/289/how-how-to-close-window-and-instantly-open-new-on-the-same-place-closed/?answer=290#post-id-290</link><description>Not possible in i3.</description><pubDate>Thu, 19 Jul 2012 15:52:09 +0000</pubDate><guid>https://faq.i3wm.org/question/289/how-how-to-close-window-and-instantly-open-new-on-the-same-place-closed/?answer=290#post-id-290</guid></item></channel></rss>

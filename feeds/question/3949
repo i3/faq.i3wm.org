@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3949/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 11 Jun 2014 08:14:35 +0000</lastBuildDate><item><title>match windows without class</title><link>https://faq.i3wm.org/question/3949/match-windows-without-class/</link><description>Is it possible to use a *WM_CLASS* test to match windows without a class? The reason I ask is the following match only matches windows that have a *WM_CLASS* set, the others are ignored:
+
+    assign [class="^(?!Steam)" title="(StarConflict.*|Trine|Spiral.*|Iesabel|The Witcher.*|Teslagrad.*|Dust:.*|Bastion|Painkiller.*|RaceTheSun|Rochard)"] $ws9
+
+This matches, for instance, The Witcher 2 Launcher which has a `WM_CLASS` property:
+[xprop output](http://pastebin.com/BgdBHtGb)
+
+but not, for instance, Teslagrad, which does not:
+[xprop output](http://pastebin.com/7bUPYUxG)
+
+</description><pubDate>Wed, 11 Jun 2014 01:36:26 +0000</pubDate><guid>https://faq.i3wm.org/question/3949/match-windows-without-class/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Is it possible to use a &lt;em&gt;WM_CLASS&lt;/em&gt; test to match windows without a class? The reason I ask is the following match only matches windows that have a &lt;em&gt;WM_CLASS&lt;/em&gt; set, the others are ignored:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="^(?!Steam)" title="(StarConflict.*|Trine|Spiral.*|Iesabel|The Witcher.*|Teslagrad.*|Dust:.*|Bastion|Painkiller.*|RaceTheSun|Rochard)"] $ws9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This matches, for instance, The Witcher 2 Launcher which has a &lt;code&gt;WM_CLASS&lt;/code&gt; property:
+&lt;a href="http://pastebin.com/BgdBHtGb"&gt;xprop output&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;but not, for instance, Teslagrad, which does not:
+&lt;a href="http://pastebin.com/7bUPYUxG"&gt;xprop output&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3949/match-windows-without-class/?comment=3952#comment-3952</link><description>I don't have anything to test with, but maybe `[class="^$"]` matches (it matches empty strings, I'm not sure how missing properties are mapped). </description><pubDate>Wed, 11 Jun 2014 08:14:35 +0000</pubDate><guid>https://faq.i3wm.org/question/3949/match-windows-without-class/?comment=3952#comment-3952</guid></item></channel></rss>

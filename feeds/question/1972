@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1972/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 08 Jun 2013 10:42:48 +0000</lastBuildDate><item><title>exec: long string</title><link>https://faq.i3wm.org/question/1972/exec-long-string/</link><description>Hi there,
+
+i simply want to open an ebook via `i3-msg`. To do so, i tried to execute the following command
+
+    i3-msg exec "xdg-open \"/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf\""
+
+unfortunately it doesn't work and the command returns
+
+    ERROR: Your command: exec xdg-open "/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf"
+    ERROR:                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ERROR: Expected one of these tokens: &lt;end&gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'
+    [{"success":true},{"success":false,"parse_error":true,"error":"Expected one of these tokens: &lt;end&gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'","input":"exec xdg-open \"/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf\"","errorposition":"                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}]
+
+However if i execute a comparable command 
+
+    i3-msg exec "xdg-open \"/home/johannes/Calibre Library/D. J. Amit/Statistical Physics an Introductory Course (164)/Statistical Physics an Introductory Course - D. J. Amit.pdf\""
+
+the specified ebook is opened flawlessly. Of course both files exist.
+
+Does anybody know how to successfully execute both commands with `i3-msg exec`?
+
+</description><pubDate>Sat, 08 Jun 2013 09:50:13 +0000</pubDate><guid>https://faq.i3wm.org/question/1972/exec-long-string/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi there,&lt;/p&gt;
+
+&lt;p&gt;i simply want to open an ebook via &lt;code&gt;i3-msg&lt;/code&gt;. To do so, i tried to execute the following command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg exec "xdg-open \"/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf\""
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;unfortunately it doesn't work and the command returns&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: Your command: exec xdg-open "/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf"
+ERROR:                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR: Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'
+[{"success":true},{"success":false,"parse_error":true,"error":"Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'","input":"exec xdg-open \"/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf\"","errorposition":"                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However if i execute a comparable command &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg exec "xdg-open \"/home/johannes/Calibre Library/D. J. Amit/Statistical Physics an Introductory Course (164)/Statistical Physics an Introductory Course - D. J. Amit.pdf\""
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the specified ebook is opened flawlessly. Of course both files exist.&lt;/p&gt;
+
+&lt;p&gt;Does anybody know how to successfully execute both commands with &lt;code&gt;i3-msg exec&lt;/code&gt;?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1972/exec-long-string/?answer=1975#post-id-1975</link><description>As always in shell, problems can be solved by adding more quotes ;-).
+
+    i3-msg 'exec "xdg-open \"/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf\""'
+
+Is what you want.
+
+In the command you tried, you were quoting the second argument (xdg-open "/home…), but your shell is the thing which interprets that. Therefore, the shell ran
+
+    exec("i3-msg", "exec", "xdg-open \"…\"")
+
+And therefore, i3 received
+
+    2013-06-08 12:31:46 - commands_parser.c:parse_command:209 - COMMAND: *exec xdg-open "/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf"*
+
+Whereas with my command, the shell runs
+
+    exec("i3-msg", "exec \"xdg-open \\"…\\"\"")
+
+Therefore, i3 receives
+
+    2013-06-08 12:31:56 - commands_parser.c:parse_command:209 - COMMAND: *exec "xdg-open \"/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf\""*
+
+Which is properly quoted. The error message highlighted that the comma (,) in your filename is the problem — it separates i3 commands, which is why one filename worked and the other one did not.</description><pubDate>Sat, 08 Jun 2013 10:35:59 +0000</pubDate><guid>https://faq.i3wm.org/question/1972/exec-long-string/?answer=1975#post-id-1975</guid></item><item><title>Comment by nichtleiter for &lt;p&gt;As always in shell, problems can be solved by adding more quotes ;-).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg 'exec "xdg-open \"/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf\""'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is what you want.&lt;/p&gt;
+
+&lt;p&gt;In the command you tried, you were quoting the second argument (xdg-open "/home…), but your shell is the thing which interprets that. Therefore, the shell ran&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec("i3-msg", "exec", "xdg-open \"…\"")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And therefore, i3 received&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2013-06-08 12:31:46 - commands_parser.c:parse_command:209 - COMMAND: *exec xdg-open "/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf"*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Whereas with my command, the shell runs&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec("i3-msg", "exec \"xdg-open \\"…\\"\"")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Therefore, i3 receives&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2013-06-08 12:31:56 - commands_parser.c:parse_command:209 - COMMAND: *exec "xdg-open \"/home/johannes/Calibre Library/Robert Faludi/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing (597)/Building Wireless Sensor Networks_ With ZigBee, XBee, Arduino, and Processing - Robert Faludi.pdf\""*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which is properly quoted. The error message highlighted that the comma (,) in your filename is the problem — it separates i3 commands, which is why one filename worked and the other one did not.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1972/exec-long-string/?comment=1976#comment-1976</link><description>Thanks a lot for your quick reply and the thorough explanation! You just made my day...</description><pubDate>Sat, 08 Jun 2013 10:42:48 +0000</pubDate><guid>https://faq.i3wm.org/question/1972/exec-long-string/?comment=1976#comment-1976</guid></item></channel></rss>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4219/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 01 May 2015 08:01:37 +0000</lastBuildDate><item><title>Increase font size of dmenu / j4-dmenu</title><link>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/</link><description>Hi, 
+
+I can't find a way to increase the font size of the application launcher menu (dmenu / j4-dmenu).
+
+Is there way to do that?
+
+Cheers, Alex</description><pubDate>Sun, 13 Jul 2014 12:01:36 +0000</pubDate><guid>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/</guid></item><item><title>Answer by erikdubois for &lt;p&gt;Hi, &lt;/p&gt;
+
+&lt;p&gt;I can't find a way to increase the font size of the application launcher menu (dmenu / j4-dmenu).&lt;/p&gt;
+
+&lt;p&gt;Is there way to do that?&lt;/p&gt;
+
+&lt;p&gt;Cheers, Alex&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?answer=5921#post-id-5921</link><description>great works with j4-dmenu </description><pubDate>Fri, 01 May 2015 08:01:37 +0000</pubDate><guid>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?answer=5921#post-id-5921</guid></item><item><title>Answer by tigrezno for &lt;p&gt;Hi, &lt;/p&gt;
+
+&lt;p&gt;I can't find a way to increase the font size of the application launcher menu (dmenu / j4-dmenu).&lt;/p&gt;
+
+&lt;p&gt;Is there way to do that?&lt;/p&gt;
+
+&lt;p&gt;Cheers, Alex&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?answer=4220#post-id-4220</link><description>Use the "-fn" option for setting the font, for example:
+
+&lt;code&gt;dmenu_run -fn '-*-fixed-bold-r-normal-*-15-*-*-*-*-*-iso10646-1'&lt;/code&gt;
+</description><pubDate>Sun, 13 Jul 2014 14:32:42 +0000</pubDate><guid>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?answer=4220#post-id-4220</guid></item><item><title>Comment by alex for &lt;p&gt;Use the "-fn" option for setting the font, for example:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;dmenu_run -fn '-&lt;em&gt;-fixed-bold-r-normal-&lt;/em&gt;-15-&lt;em&gt;-&lt;/em&gt;-&lt;em&gt;-&lt;/em&gt;-*-iso10646-1'&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?comment=4231#comment-4231</link><description>Thanks. As stated above I added this to the dmenu call in the Main.hh of j4-dmenu-desktop and it works fine after recompiling. Unfortunately I can only select one answer as the correct one.</description><pubDate>Mon, 14 Jul 2014 08:59:34 +0000</pubDate><guid>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?comment=4231#comment-4231</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;Hi, &lt;/p&gt;
+
+&lt;p&gt;I can't find a way to increase the font size of the application launcher menu (dmenu / j4-dmenu).&lt;/p&gt;
+
+&lt;p&gt;Is there way to do that?&lt;/p&gt;
+
+&lt;p&gt;Cheers, Alex&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?answer=4221#post-id-4221</link><description>I'm not familiar with j4-dmenu, but the font size of dmenu itself is dictated by the '-fn' flag used when it's launched. **i3-dmenu-desktop** is a nice convenience, but that's really all it is---the only thing that makes it different from plain old dmenu is that it specifically searches for *.desktop files rather than all executable files in $PATH. You simply need to edit the part of **i3-dmenu-desktop/j4-dmenu** that calls dmenu and add the '-fn' flag to your taste. Personally, I've just tied **dmenu_run** to a keybinding in my config:
+
+    bindsym $mod+space exec dmenu_run -i -b -p 'Arch Linux' -fn 'Ubuntu Mono:bold:pixelsize=15' -nb '#fdf6e3' -nf '#586c75' -sf '#fdf6e3' -sb '#b58900'
+
+The dmenu man page has all the information on what those flags do. I'd rather have complete control over how dmenu looks and behaves than a pre-made script that tells me what I want. I'll tell *you* what I want, dmenu, thank you very much. ;)
+
+Also, note that you'd need to build dmenu yourself with the [Xft](http://tools.suckless.org/dmenu/patches/xft) patch to use TTF fonts; otherwise you'd need to use xfont-style notation to declare the font.</description><pubDate>Sun, 13 Jul 2014 14:40:12 +0000</pubDate><guid>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?answer=4221#post-id-4221</guid></item><item><title>Comment by cee for &lt;p&gt;I'm not familiar with j4-dmenu, but the font size of dmenu itself is dictated by the '-fn' flag used when it's launched. &lt;strong&gt;i3-dmenu-desktop&lt;/strong&gt; is a nice convenience, but that's really all it is---the only thing that makes it different from plain old dmenu is that it specifically searches for *.desktop files rather than all executable files in $PATH. You simply need to edit the part of &lt;strong&gt;i3-dmenu-desktop/j4-dmenu&lt;/strong&gt; that calls dmenu and add the '-fn' flag to your taste. Personally, I've just tied &lt;strong&gt;dmenu_run&lt;/strong&gt; to a keybinding in my config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+space exec dmenu_run -i -b -p 'Arch Linux' -fn 'Ubuntu Mono:bold:pixelsize=15' -nb '#fdf6e3' -nf '#586c75' -sf '#fdf6e3' -sb '#b58900'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The dmenu man page has all the information on what those flags do. I'd rather have complete control over how dmenu looks and behaves than a pre-made script that tells me what I want. I'll tell &lt;em&gt;you&lt;/em&gt; what I want, dmenu, thank you very much. ;)&lt;/p&gt;
+
+&lt;p&gt;Also, note that you'd need to build dmenu yourself with the &lt;a href="http://tools.suckless.org/dmenu/patches/xft"&gt;Xft&lt;/a&gt; patch to use TTF fonts; otherwise you'd need to use xfont-style notation to declare the font.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?comment=4249#comment-4249</link><description>Thanks for this. I was finally able to tune dmenu to my likings. I don't use dmenu very often, but when I do, I do it big :-) bindsym $mod+d exec dmenu_run -i -l 23 -p 'gogo Gadget' -fn 'Source Code Pro for Powerline:bold:pixelsize=32' -nb '#222222' -nf '#ceecee' -sb '#f8f893' -sf '#222222'
+</description><pubDate>Mon, 14 Jul 2014 20:17:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?comment=4249#comment-4249</guid></item><item><title>Comment by Ruben G for &lt;p&gt;I'm not familiar with j4-dmenu, but the font size of dmenu itself is dictated by the '-fn' flag used when it's launched. &lt;strong&gt;i3-dmenu-desktop&lt;/strong&gt; is a nice convenience, but that's really all it is---the only thing that makes it different from plain old dmenu is that it specifically searches for *.desktop files rather than all executable files in $PATH. You simply need to edit the part of &lt;strong&gt;i3-dmenu-desktop/j4-dmenu&lt;/strong&gt; that calls dmenu and add the '-fn' flag to your taste. Personally, I've just tied &lt;strong&gt;dmenu_run&lt;/strong&gt; to a keybinding in my config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+space exec dmenu_run -i -b -p 'Arch Linux' -fn 'Ubuntu Mono:bold:pixelsize=15' -nb '#fdf6e3' -nf '#586c75' -sf '#fdf6e3' -sb '#b58900'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The dmenu man page has all the information on what those flags do. I'd rather have complete control over how dmenu looks and behaves than a pre-made script that tells me what I want. I'll tell &lt;em&gt;you&lt;/em&gt; what I want, dmenu, thank you very much. ;)&lt;/p&gt;
+
+&lt;p&gt;Also, note that you'd need to build dmenu yourself with the &lt;a href="http://tools.suckless.org/dmenu/patches/xft"&gt;Xft&lt;/a&gt; patch to use TTF fonts; otherwise you'd need to use xfont-style notation to declare the font.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?comment=5535#comment-5535</link><description>I already noticed that in Ubuntu 14.04 there's an alternative dmenu executable (dmenu.xft) with the patch already compiled. Can be selected via:
+
+    sudo update-alternatives --config dmenu</description><pubDate>Wed, 25 Feb 2015 13:00:41 +0000</pubDate><guid>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?comment=5535#comment-5535</guid></item><item><title>Comment by alex for &lt;p&gt;I'm not familiar with j4-dmenu, but the font size of dmenu itself is dictated by the '-fn' flag used when it's launched. &lt;strong&gt;i3-dmenu-desktop&lt;/strong&gt; is a nice convenience, but that's really all it is---the only thing that makes it different from plain old dmenu is that it specifically searches for *.desktop files rather than all executable files in $PATH. You simply need to edit the part of &lt;strong&gt;i3-dmenu-desktop/j4-dmenu&lt;/strong&gt; that calls dmenu and add the '-fn' flag to your taste. Personally, I've just tied &lt;strong&gt;dmenu_run&lt;/strong&gt; to a keybinding in my config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+space exec dmenu_run -i -b -p 'Arch Linux' -fn 'Ubuntu Mono:bold:pixelsize=15' -nb '#fdf6e3' -nf '#586c75' -sf '#fdf6e3' -sb '#b58900'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The dmenu man page has all the information on what those flags do. I'd rather have complete control over how dmenu looks and behaves than a pre-made script that tells me what I want. I'll tell &lt;em&gt;you&lt;/em&gt; what I want, dmenu, thank you very much. ;)&lt;/p&gt;
+
+&lt;p&gt;Also, note that you'd need to build dmenu yourself with the &lt;a href="http://tools.suckless.org/dmenu/patches/xft"&gt;Xft&lt;/a&gt; patch to use TTF fonts; otherwise you'd need to use xfont-style notation to declare the font.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?comment=4230#comment-4230</link><description>Thanks for your suggestion. Changing j4-dmenu-desktop's call to dmenu did the trick. I've edited the Main.hh to include the font specification when calling dmenu and it works flawlessly now. </description><pubDate>Mon, 14 Jul 2014 08:57:29 +0000</pubDate><guid>https://faq.i3wm.org/question/4219/increase-font-size-of-dmenu-j4-dmenu/?comment=4230#comment-4230</guid></item></channel></rss>

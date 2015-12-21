@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6381/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 03 Aug 2015 16:03:11 +0000</lastBuildDate><item><title>$mod+Shift+e does not work</title><link>https://faq.i3wm.org/question/6381/modshifte-does-not-work/</link><description> I have been using the i3wm with simple and default configuration, but I have never been able to get the $mod+Shift+e to do what it supposed to.  So when I press the key combination, nothing happens, but according to the docs, i3 supposed to exit.  I do a line in ~/.i3/config
+
+    bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3  -msg exit'" 
+
+This is on Ubuntu 15.04, but it was the same when I ran it on 14.04.
+
+Binary i3 version:  4.9 (2015-02-28, branch "tags/4.9") © 2009-2014 Michael Stapelberg and contributors
+
+When a key combination does not work, is there a way to debug it?
+
+Edit: Answer to first comment:
+
+Entering the following into terminal:
+
+    i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3  -msg exit'
+
+Get the following:
+
+    button with label *Yes, exit i3* and action *i3  -msg exit*
+    now 1 buttons
+    [libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+
+Entering:
+
+    i3  -msg exit
+
+System does logout.
+
+</description><pubDate>Mon, 03 Aug 2015 14:02:48 +0000</pubDate><guid>https://faq.i3wm.org/question/6381/modshifte-does-not-work/</guid></item><item><title>Comment by SilverDiamond for &lt;p&gt;I have been using the i3wm with simple and default configuration, but I have never been able to get the $mod+Shift+e to do what it supposed to.  So when I press the key combination, nothing happens, but according to the docs, i3 supposed to exit.  I do a line in ~/.i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3  -msg exit'"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is on Ubuntu 15.04, but it was the same when I ran it on 14.04.&lt;/p&gt;
+
+&lt;p&gt;Binary i3 version:  4.9 (2015-02-28, branch "tags/4.9") © 2009-2014 Michael Stapelberg and contributors&lt;/p&gt;
+
+&lt;p&gt;When a key combination does not work, is there a way to debug it?&lt;/p&gt;
+
+&lt;p&gt;Edit: Answer to first comment:&lt;/p&gt;
+
+&lt;p&gt;Entering the following into terminal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3  -msg exit'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Get the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;button with label *Yes, exit i3* and action *i3  -msg exit*
+now 1 buttons
+[libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Entering:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3  -msg exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;System does logout.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6381/modshifte-does-not-work/?comment=6384#comment-6384</link><description>i3convert, not sure how to replace the i3-nagbar with something else, see my edit above.  When I type `i3-nagbar --version`, I get `i3-nagbar 4.9 (2015-02-28, branch "tags/4.9")`.  Please see my edit, I added more possibly relative info.</description><pubDate>Mon, 03 Aug 2015 16:03:11 +0000</pubDate><guid>https://faq.i3wm.org/question/6381/modshifte-does-not-work/?comment=6384#comment-6384</guid></item><item><title>Comment by i3convert for &lt;p&gt;I have been using the i3wm with simple and default configuration, but I have never been able to get the $mod+Shift+e to do what it supposed to.  So when I press the key combination, nothing happens, but according to the docs, i3 supposed to exit.  I do a line in ~/.i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3  -msg exit'"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is on Ubuntu 15.04, but it was the same when I ran it on 14.04.&lt;/p&gt;
+
+&lt;p&gt;Binary i3 version:  4.9 (2015-02-28, branch "tags/4.9") © 2009-2014 Michael Stapelberg and contributors&lt;/p&gt;
+
+&lt;p&gt;When a key combination does not work, is there a way to debug it?&lt;/p&gt;
+
+&lt;p&gt;Edit: Answer to first comment:&lt;/p&gt;
+
+&lt;p&gt;Entering the following into terminal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3  -msg exit'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Get the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;button with label *Yes, exit i3* and action *i3  -msg exit*
+now 1 buttons
+[libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Entering:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3  -msg exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;System does logout.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6381/modshifte-does-not-work/?comment=6383#comment-6383</link><description>Do you have i3-nagbar installed? Does the shortcut work if you replace the i3-nagbar call with something else?</description><pubDate>Mon, 03 Aug 2015 15:26:39 +0000</pubDate><guid>https://faq.i3wm.org/question/6381/modshifte-does-not-work/?comment=6383#comment-6383</guid></item><item><title>Answer by i3convert for &lt;p&gt;I have been using the i3wm with simple and default configuration, but I have never been able to get the $mod+Shift+e to do what it supposed to.  So when I press the key combination, nothing happens, but according to the docs, i3 supposed to exit.  I do a line in ~/.i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3  -msg exit'"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is on Ubuntu 15.04, but it was the same when I ran it on 14.04.&lt;/p&gt;
+
+&lt;p&gt;Binary i3 version:  4.9 (2015-02-28, branch "tags/4.9") © 2009-2014 Michael Stapelberg and contributors&lt;/p&gt;
+
+&lt;p&gt;When a key combination does not work, is there a way to debug it?&lt;/p&gt;
+
+&lt;p&gt;Edit: Answer to first comment:&lt;/p&gt;
+
+&lt;p&gt;Entering the following into terminal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3  -msg exit'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Get the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;button with label *Yes, exit i3* and action *i3  -msg exit*
+now 1 buttons
+[libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Entering:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3  -msg exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;System does logout.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6381/modshifte-does-not-work/?answer=6382#post-id-6382</link><description>Do you have i3-nagbar installed? Does the shortcut work if you replace the i3-nagbar call with something else?</description><pubDate>Mon, 03 Aug 2015 15:25:54 +0000</pubDate><guid>https://faq.i3wm.org/question/6381/modshifte-does-not-work/?answer=6382#post-id-6382</guid></item></channel></rss>

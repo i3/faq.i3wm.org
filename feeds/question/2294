@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2294/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 03 Aug 2013 16:01:49 +0000</lastBuildDate><item><title>Vim and keybinds</title><link>https://faq.i3wm.org/question/2294/vim-and-keybinds/</link><description>Does anyone use Vim and i3?  If so how do you manage keybinds?  It seems difficult since movement is different on each.  It seems like changing i3 to vim makes more sense since I am more likely to use vim on another machine than i3.</description><pubDate>Sun, 28 Jul 2013 16:04:39 +0000</pubDate><guid>https://faq.i3wm.org/question/2294/vim-and-keybinds/</guid></item><item><title>Answer by alf for &lt;p&gt;Does anyone use Vim and i3?  If so how do you manage keybinds?  It seems difficult since movement is different on each.  It seems like changing i3 to vim makes more sense since I am more likely to use vim on another machine than i3.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2294/vim-and-keybinds/?answer=2322#post-id-2322</link><description>Change these lines in your configuration file:
+
+    # change focus
+    bindsym $mod+h focus left
+    bindsym $mod+j focus down
+    bindsym $mod+k focus up
+    bindsym $mod+l focus right
+
+    # split in horizontal orientation
+    bindsym $mod+Shift+v split h
+    
+    # split in vertical orientation
+    bindsym $mod+v split v
+
+    # resize window (you can also use the mouse for that)
+    mode "resize" {
+            # These bindings trigger as soon as you enter the resize mode
+    
+            # Pressing left will shrink the window’s width.
+            # Pressing right will grow the window’s width.
+            # Pressing up will shrink the window’s height.
+            # Pressing down will grow the window’s height.
+            bindsym $mod+h resize shrink width 10 px or 10 ppt
+            bindsym $mod+j resize grow height 10 px or 10 ppt
+            bindsym $mod+k resize shrink height 10 px or 10 ppt
+            bindsym $mod+l resize grow width 10 px or 10 ppt
+    
+            # same bindings, but for the arrow keys
+            bindsym Left resize shrink width 10 px or 10 ppt
+            bindsym Down resize grow height 10 px or 10 ppt
+            bindsym Up resize shrink height 10 px or 10 ppt
+            bindsym Right resize grow width 10 px or 10 ppt
+    
+            # back to normal: Enter or Escape
+            bindsym Return mode "default"
+            bindsym Escape mode "default"
+    }
+
+
+</description><pubDate>Sat, 03 Aug 2013 16:01:49 +0000</pubDate><guid>https://faq.i3wm.org/question/2294/vim-and-keybinds/?answer=2322#post-id-2322</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;Does anyone use Vim and i3?  If so how do you manage keybinds?  It seems difficult since movement is different on each.  It seems like changing i3 to vim makes more sense since I am more likely to use vim on another machine than i3.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2294/vim-and-keybinds/?answer=2295#post-id-2295</link><description>I think you have confused things here. Vim is a command-line based text editor, and i3 is a window manager. They serve different purposes.
+
+You can use both without any problems. The usual $mod key we rely on i3 for handling the windows is normally "Window" button, which is not used in vim by default. So, if you have colliding bindings for i3 and vim, then you need to sort them out on your own. 
+
+But if that's your case, I'd say that you are doing something wrong. I am not a VIM guru, but I use it in a regular basis and never had to use keys that collide with i3 ones... if that ever happen, you need to decide which one you will use for what purpose, and that's it.</description><pubDate>Mon, 29 Jul 2013 00:52:57 +0000</pubDate><guid>https://faq.i3wm.org/question/2294/vim-and-keybinds/?answer=2295#post-id-2295</guid></item><item><title>Comment by Kratisto for &lt;p&gt;I think you have confused things here. Vim is a command-line based text editor, and i3 is a window manager. They serve different purposes.&lt;/p&gt;
+
+&lt;p&gt;You can use both without any problems. The usual $mod key we rely on i3 for handling the windows is normally "Window" button, which is not used in vim by default. So, if you have colliding bindings for i3 and vim, then you need to sort them out on your own. &lt;/p&gt;
+
+&lt;p&gt;But if that's your case, I'd say that you are doing something wrong. I am not a VIM guru, but I use it in a regular basis and never had to use keys that collide with i3 ones... if that ever happen, you need to decide which one you will use for what purpose, and that's it.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2294/vim-and-keybinds/?comment=2303#comment-2303</link><description>They don't conflict as in not work.  My point was that it would be very difficult using two different movement schemes.  </description><pubDate>Mon, 29 Jul 2013 22:35:17 +0000</pubDate><guid>https://faq.i3wm.org/question/2294/vim-and-keybinds/?comment=2303#comment-2303</guid></item><item><title>Answer by syl20bnr for &lt;p&gt;Does anyone use Vim and i3?  If so how do you manage keybinds?  It seems difficult since movement is different on each.  It seems like changing i3 to vim makes more sense since I am more likely to use vim on another machine than i3.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2294/vim-and-keybinds/?answer=2296#post-id-2296</link><description>Just edit your ~/.i3/config file and shift all default key bindings jkl; to hjkl.</description><pubDate>Mon, 29 Jul 2013 01:07:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2294/vim-and-keybinds/?answer=2296#post-id-2296</guid></item></channel></rss>

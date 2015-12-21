@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4631/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 17 Sep 2014 04:40:01 +0000</lastBuildDate><item><title>Don't SIGSTOP when in hide mode</title><link>https://faq.i3wm.org/question/4631/dont-sigstop-when-in-hide-mode/</link><description>I'd like it so that when the i3 bar is in hide mode the SIGSTOP and SiGCONT signals are NOT sent. I want the bar to continue processing.</description><pubDate>Tue, 16 Sep 2014 15:47:48 +0000</pubDate><guid>https://faq.i3wm.org/question/4631/dont-sigstop-when-in-hide-mode/</guid></item><item><title>Answer by SuperZanti for &lt;p&gt;I'd like it so that when the i3 bar is in hide mode the SIGSTOP and SiGCONT signals are NOT sent. I want the bar to continue processing.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4631/dont-sigstop-when-in-hide-mode/?answer=4632#post-id-4632</link><description>I found a good lead [http://code.stapelberg.de/git/i3/commit/?id=a83e7699e75cad515019aa1ad5f7d59ee236a918](here) which shows a function in child.c that runs and sends SIGSTOP.
+
+Unfortunatly I found no better solution then just to comment out the lines in ./i3bar/src/child.c that call the stop and continue functions. Then I backed up to the ./i3bar directory and ran
+
+    sudo make install
+
+it just replaced my current i3 bar with the modified one without the sigstops that I made.</description><pubDate>Wed, 17 Sep 2014 04:40:01 +0000</pubDate><guid>https://faq.i3wm.org/question/4631/dont-sigstop-when-in-hide-mode/?answer=4632#post-id-4632</guid></item></channel></rss>

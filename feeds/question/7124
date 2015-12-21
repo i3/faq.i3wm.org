@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7124/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 10 Nov 2015 13:55:08 +0000</lastBuildDate><item><title>How to set path for dmenu_run with Debian standard i3 startup</title><link>https://faq.i3wm.org/question/7124/how-to-set-path-for-dmenu_run-with-debian-standard-i3-startup/</link><description>I'm using a standard debian system with xdm and i3. The stock startup procedure for Xsessions on Debian is that if no `~/.xsessionrc` or `~/.xsession` exists, it should use `x-window-manager`which debian symlinks to `i3`.
+
+The relevant lines in `/etc/X11/Xsession.d/50x11-common_determine-startup` are:
+
+    # If there is still nothing to use for a startup program, try the system
+    # default session manager, window manager, and terminal emulator.
+    if [ -z "$STARTUP" ]; then
+      if [ -x /usr/bin/x-session-manager ]; then
+        STARTUP=x-session-manager
+      elif [ -x /usr/bin/x-window-manager ]; then
+        STARTUP=x-window-manager
+      elif [ -x /usr/bin/x-terminal-emulator ]; then
+        STARTUP=x-terminal-emulator
+      fi
+    fi
+`
+
+I wish to add `~/bin` to my `PATH`. Of course, adding the `PATH` to my `.profile` or `.zshrc` files doesn't work since no shell is executed during the X session startup.
+
+Is there a way to define the `PATH` without introducing any kind of custom startup file like `.xsessionrc`?
+
+</description><pubDate>Sun, 01 Nov 2015 21:24:14 +0000</pubDate><guid>https://faq.i3wm.org/question/7124/how-to-set-path-for-dmenu_run-with-debian-standard-i3-startup/</guid></item><item><title>Answer by peterN for &lt;p&gt;I'm using a standard debian system with xdm and i3. The stock startup procedure for Xsessions on Debian is that if no &lt;code&gt;~/.xsessionrc&lt;/code&gt; or &lt;code&gt;~/.xsession&lt;/code&gt; exists, it should use &lt;code&gt;x-window-manager&lt;/code&gt;which debian symlinks to &lt;code&gt;i3&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The relevant lines in &lt;code&gt;/etc/X11/Xsession.d/50x11-common_determine-startup&lt;/code&gt; are:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# If there is still nothing to use for a startup program, try the system
+# default session manager, window manager, and terminal emulator.
+if [ -z "$STARTUP" ]; then
+  if [ -x /usr/bin/x-session-manager ]; then
+    STARTUP=x-session-manager
+  elif [ -x /usr/bin/x-window-manager ]; then
+    STARTUP=x-window-manager
+  elif [ -x /usr/bin/x-terminal-emulator ]; then
+    STARTUP=x-terminal-emulator
+  fi
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;`&lt;/p&gt;
+
+&lt;p&gt;I wish to add &lt;code&gt;~/bin&lt;/code&gt; to my &lt;code&gt;PATH&lt;/code&gt;. Of course, adding the &lt;code&gt;PATH&lt;/code&gt; to my &lt;code&gt;.profile&lt;/code&gt; or &lt;code&gt;.zshrc&lt;/code&gt; files doesn't work since no shell is executed during the X session startup.&lt;/p&gt;
+
+&lt;p&gt;Is there a way to define the &lt;code&gt;PATH&lt;/code&gt; without introducing any kind of custom startup file like &lt;code&gt;.xsessionrc&lt;/code&gt;?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7124/how-to-set-path-for-dmenu_run-with-debian-standard-i3-startup/?answer=7258#post-id-7258</link><description>Not sure for xdm but lightdm does allow you to pick/set a session based on *.desktop files (see /usr/share/xsessions/i3.desktop for an example). You can as well set your own/custom *.desktop file, where you could set a PATH environment. 
+
+Why do you need to add ~/bin to your PATH?</description><pubDate>Tue, 10 Nov 2015 13:55:08 +0000</pubDate><guid>https://faq.i3wm.org/question/7124/how-to-set-path-for-dmenu_run-with-debian-standard-i3-startup/?answer=7258#post-id-7258</guid></item></channel></rss>

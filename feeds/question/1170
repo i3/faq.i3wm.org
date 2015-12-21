@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1170/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 18 Feb 2013 05:00:04 +0000</lastBuildDate><item><title>Maintain floating window position after inplace restart</title><link>https://faq.i3wm.org/question/1170/maintain-floating-window-position-after-inplace-restart/</link><description>If I set a defined placement for a new floating window, for example
+
+&lt;pre&gt;
+for_window [class="Mousepad"] floating enable move right 332px,move up 213px
+for_window [class="Thunar"] floating enable move right 332px,move down 80px
+&lt;/pre&gt;
+
+Then if I restart i3 using &lt;code&gt;$MOD+Shift+r&lt;/code&gt;, the layout gets a bit diplaced.  It seems to happen when I have say both above open (not specific to those apps, just using them in my example), but if I only have one floating window open it does not get displaced.  
+
+For instance I have a terminal window open with specific size and plaement in autostart on the left.  That window is not affected.  Only the positioned floating windows on the right using the code above.  
+
+Is there a way to lock down the positions?  Its really not a huge deal, curious though if there is a way or syntax i can add.
+
+Thanks, </description><pubDate>Wed, 30 Jan 2013 23:24:06 +0000</pubDate><guid>https://faq.i3wm.org/question/1170/maintain-floating-window-position-after-inplace-restart/</guid></item><item><title>Answer by Michael for &lt;p&gt;If I set a defined placement for a new floating window, for example&lt;/p&gt;
+
+&lt;pre&gt;for_window [class="Mousepad"] floating enable move right 332px,move up 213px
+for_window [class="Thunar"] floating enable move right 332px,move down 80px
+&lt;/pre&gt;
+
+&lt;p&gt;Then if I restart i3 using &lt;code&gt;$MOD+Shift+r&lt;/code&gt;, the layout gets a bit diplaced.  It seems to happen when I have say both above open (not specific to those apps, just using them in my example), but if I only have one floating window open it does not get displaced.  &lt;/p&gt;
+
+&lt;p&gt;For instance I have a terminal window open with specific size and plaement in autostart on the left.  That window is not affected.  Only the positioned floating windows on the right using the code above.  &lt;/p&gt;
+
+&lt;p&gt;Is there a way to lock down the positions?  Its really not a huge deal, curious though if there is a way or syntax i can add.&lt;/p&gt;
+
+&lt;p&gt;Thanks, &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1170/maintain-floating-window-position-after-inplace-restart/?answer=1174#post-id-1174</link><description>Since you are running a new i3 session after restarting, i3 will execute the for_window statements again. You are also moving windows with relative coordinates, so it is to be expected that they will end up in a different position than before the restart.</description><pubDate>Thu, 31 Jan 2013 10:27:27 +0000</pubDate><guid>https://faq.i3wm.org/question/1170/maintain-floating-window-position-after-inplace-restart/?answer=1174#post-id-1174</guid></item><item><title>Comment by dkeg for &lt;p&gt;Since you are running a new i3 session after restarting, i3 will execute the for_window statements again. You are also moving windows with relative coordinates, so it is to be expected that they will end up in a different position than before the restart.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1170/maintain-floating-window-position-after-inplace-restart/?comment=1227#comment-1227</link><description>accepting answer.  Curious about absolute positioning but that's technically a separate question</description><pubDate>Mon, 18 Feb 2013 05:00:04 +0000</pubDate><guid>https://faq.i3wm.org/question/1170/maintain-floating-window-position-after-inplace-restart/?comment=1227#comment-1227</guid></item><item><title>Comment by dkeg for &lt;p&gt;Since you are running a new i3 session after restarting, i3 will execute the for_window statements again. You are also moving windows with relative coordinates, so it is to be expected that they will end up in a different position than before the restart.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1170/maintain-floating-window-position-after-inplace-restart/?comment=1176#comment-1176</link><description>okay, that makes sense now.  I thought it was relative to center, but now I see it is relative to the windows original position which was center, so when when the for_window runs again, it moves that specified amt again.  So my next question; is there a way to make that positioning absolute?  </description><pubDate>Thu, 31 Jan 2013 12:26:18 +0000</pubDate><guid>https://faq.i3wm.org/question/1170/maintain-floating-window-position-after-inplace-restart/?comment=1176#comment-1176</guid></item></channel></rss>

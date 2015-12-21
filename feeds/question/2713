@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2713/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 22 Oct 2013 10:37:28 +0000</lastBuildDate><item><title>Temporarely disable key capture</title><link>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/</link><description>Hi,
+
+I would like to disable i3 key bindings via an i3 shortcut. I would then enter a shortcut ignored by i3 and treated by the next application (in my case Sublimetext). i3 would then resume keyboard shortcuts interpretation. It would help when i3 shortcuts overlap those of other applications. 
+I wish I could choose  the same shortcuts for i3 than for applications when the actions have the same meaning</description><pubDate>Tue, 15 Oct 2013 14:28:22 +0000</pubDate><guid>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/</guid></item><item><title>Answer by BatmanAoD for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I would like to disable i3 key bindings via an i3 shortcut. I would then enter a shortcut ignored by i3 and treated by the next application (in my case Sublimetext). i3 would then resume keyboard shortcuts interpretation. It would help when i3 shortcuts overlap those of other applications. 
+I wish I could choose  the same shortcuts for i3 than for applications when the actions have the same meaning&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/?answer=2714#post-id-2714</link><description>You could create a mode with only one keybinding (the one to exit the mode). Look at the "resizing config" section of the user's guide (I'd link to it but I have no karma).
+
+However, if your i3 bindings conflict with a program you use with any regularity, you should reconfigure them to avoid that conflict. I don't believe that any i3 bindings are hardcoded, so you should be able to set them up any way you'd like.</description><pubDate>Tue, 15 Oct 2013 15:09:04 +0000</pubDate><guid>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/?answer=2714#post-id-2714</guid></item><item><title>Comment by teto for &lt;p&gt;You could create a mode with only one keybinding (the one to exit the mode). Look at the "resizing config" section of the user's guide (I'd link to it but I have no karma).&lt;/p&gt;
+
+&lt;p&gt;However, if your i3 bindings conflict with a program you use with any regularity, you should reconfigure them to avoid that conflict. I don't believe that any i3 bindings are hardcoded, so you should be able to set them up any way you'd like.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/?comment=2753#comment-2753</link><description>but I like keeping the same keybindings when they are logically the same. For instance ALT+1 goes to window 1 in irssi or workspace 1 in i3. I wish there would be a mode that resets to normal mode after a shortcut was pressed or after a certain timeout (2/3 seconds)</description><pubDate>Sun, 20 Oct 2013 21:36:40 +0000</pubDate><guid>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/?comment=2753#comment-2753</guid></item><item><title>Comment by BatmanAoD for &lt;p&gt;You could create a mode with only one keybinding (the one to exit the mode). Look at the "resizing config" section of the user's guide (I'd link to it but I have no karma).&lt;/p&gt;
+
+&lt;p&gt;However, if your i3 bindings conflict with a program you use with any regularity, you should reconfigure them to avoid that conflict. I don't believe that any i3 bindings are hardcoded, so you should be able to set them up any way you'd like.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/?comment=2756#comment-2756</link><description>That said, I suspect that both of your suggestions should be viable within your i3 config set-up, but I'm not completely sure of this. It seems that there should be a way to make `i3-msg` pop you out of the "do nothing" mode; if so, you can use `sleep` and `exec i3-msg` to do what you want.</description><pubDate>Mon, 21 Oct 2013 16:36:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/?comment=2756#comment-2756</guid></item><item><title>Comment by BatmanAoD for &lt;p&gt;You could create a mode with only one keybinding (the one to exit the mode). Look at the "resizing config" section of the user's guide (I'd link to it but I have no karma).&lt;/p&gt;
+
+&lt;p&gt;However, if your i3 bindings conflict with a program you use with any regularity, you should reconfigure them to avoid that conflict. I don't believe that any i3 bindings are hardcoded, so you should be able to set them up any way you'd like.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/?comment=2755#comment-2755</link><description>Personally, I think it makes more sense to think of reserving different modifier keys (or combinations of modifier keys) for different programs; that way keybindings with logically similar effects in different programs still won't conflict. For example, you could use ALT+1 in irssi and mod4+1 in i3.</description><pubDate>Mon, 21 Oct 2013 16:34:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/?comment=2755#comment-2755</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I would like to disable i3 key bindings via an i3 shortcut. I would then enter a shortcut ignored by i3 and treated by the next application (in my case Sublimetext). i3 would then resume keyboard shortcuts interpretation. It would help when i3 shortcuts overlap those of other applications. 
+I wish I could choose  the same shortcuts for i3 than for applications when the actions have the same meaning&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/?answer=2764#post-id-2764</link><description>You could add something like this to your config:
+
+    mode "passthrough" {
+        bindcode Mod4+9 mode "default"
+    }
+    bindcode Mod4+9 mode "passthrough"; exec sh -c 'sleep 2 &amp;&amp; i3-msg mode "default"'
+
+With Mod4+ESC you can enter and leave the passthrough mode and you have an automatic return to default mode after 2 seconds. 
+i3 can call several commands separated by ';', but it does not wait for the completion of one command before starting the next. Therefore the workaround with sh. Also, you have to use '&amp;&amp;' as a simple ';' gets interpreted by the i3 configuration parser and essentially breaks the sh command.
+
+If there are some cases, where you do not want the automatic return, you could always define an additional binding for just entering passthrough mode:
+
+    bindcode Mod4+Shift+9 mode "passthrough"</description><pubDate>Tue, 22 Oct 2013 10:37:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2713/temporarely-disable-key-capture/?answer=2764#post-id-2764</guid></item></channel></rss>

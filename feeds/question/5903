@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5903/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 27 Apr 2015 05:02:13 +0000</lastBuildDate><item><title>Why can I not log in to the FAQ using my Google account?</title><link>https://faq.i3wm.org/question/5903/why-can-i-not-log-in-to-the-faq-using-my-google-account/</link><description> When trying to log in to faq.i3wm.org using a Google account, I’m getting prompted to create a new account. Why?</description><pubDate>Sun, 26 Apr 2015 19:40:25 +0000</pubDate><guid>https://faq.i3wm.org/question/5903/why-can-i-not-log-in-to-the-faq-using-my-google-account/</guid></item><item><title>Answer by Michael for &lt;p&gt;When trying to log in to &lt;a href="http://faq.i3wm.org"&gt;faq.i3wm.org&lt;/a&gt; using a Google account, I’m getting prompted to create a new account. Why?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5903/why-can-i-not-log-in-to-the-faq-using-my-google-account/?answer=5904#post-id-5904</link><description>Let me start by saying that I’m truly sorry for the inconveniences. I’m grateful for each and every contribution that we get in this community, and it pains me that some of you are no longer able to simply log in. I’ve spent my entire Sunday on this (and other related) issue, but couldn’t resolve it in a more satisfactory way. Sorry :(.
+
+I think this is because askbot (the software we’re using to provide faq.i3wm.org) used to not set a realm for the Google OpenID requests. When no realm is set, Google will use the return_to URL, which is https://faq.i3wm.org/account/signin/complete/.
+
+In the meantime, OpenID has been deprecated and people should use the Google+ API. Askbot did make that switch, but it wasn’t a smooth transition:
+
+Unfortunately, we cannot set the openid.realm field in the Google+ API to https://faq.i3wm.org/account/signin/complete/ because of two reasons:
+
+1. Askbot doesn’t provide a setting for that.
+2. The auth callback must be underneath the realm, and askbot doesn’t follow that URL structure.
+
+Therefore, I’d ask you to use the account recovery option when logging in in order to recover your account.</description><pubDate>Sun, 26 Apr 2015 19:51:10 +0000</pubDate><guid>https://faq.i3wm.org/question/5903/why-can-i-not-log-in-to-the-faq-using-my-google-account/?answer=5904#post-id-5904</guid></item><item><title>Comment by Airblader for &lt;p&gt;Let me start by saying that I’m truly sorry for the inconveniences. I’m grateful for each and every contribution that we get in this community, and it pains me that some of you are no longer able to simply log in. I’ve spent my entire Sunday on this (and other related) issue, but couldn’t resolve it in a more satisfactory way. Sorry :(.&lt;/p&gt;
+
+&lt;p&gt;I think this is because askbot (the software we’re using to provide &lt;a href="http://faq.i3wm.org"&gt;faq.i3wm.org&lt;/a&gt;) used to not set a realm for the Google OpenID requests. When no realm is set, Google will use the return_to URL, which is &lt;a href="https://faq.i3wm.org/account/signin/complete/"&gt;https://faq.i3wm.org/account/signin/c...&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the meantime, OpenID has been deprecated and people should use the Google+ API. Askbot did make that switch, but it wasn’t a smooth transition:&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, we cannot set the openid.realm field in the Google+ API to &lt;a href="https://faq.i3wm.org/account/signin/complete/"&gt;https://faq.i3wm.org/account/signin/c...&lt;/a&gt; because of two reasons:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Askbot doesn’t provide a setting for that.&lt;/li&gt;
+&lt;li&gt;The auth callback must be underneath the realm, and askbot doesn’t follow that URL structure.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Therefore, I’d ask you to use the account recovery option when logging in in order to recover your account.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5903/why-can-i-not-log-in-to-the-faq-using-my-google-account/?comment=5907#comment-5907</link><description>Thanks for the work you put into resolving this Michael!</description><pubDate>Mon, 27 Apr 2015 05:02:13 +0000</pubDate><guid>https://faq.i3wm.org/question/5903/why-can-i-not-log-in-to-the-faq-using-my-google-account/?comment=5907#comment-5907</guid></item></channel></rss>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1849/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 20 May 2013 23:32:47 +0000</lastBuildDate><item><title>how to define a static window title?</title><link>https://faq.i3wm.org/question/1849/how-to-define-a-static-window-title/</link><description>is there a way to set up a window title? for example, chromium changes the window title according to the active tab, I would like chromium having a static title, because I have an issue with:
+#dolphin
+assign [class=" Dolphin"] 8:Arquivos
+for_window [title=" Dolphin"] move workspace 8:Arquivos; workspace 8:Arquivos
+if the chromium tab has a title including " Dolphin" the browser will be moved to the workspace 8:Arquivos, that's why I need to set it static.</description><pubDate>Sun, 19 May 2013 12:34:46 +0000</pubDate><guid>https://faq.i3wm.org/question/1849/how-to-define-a-static-window-title/</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;is there a way to set up a window title? for example, chromium changes the window title according to the active tab, I would like chromium having a static title, because I have an issue with:&lt;/p&gt;
+
+&lt;h1&gt;dolphin&lt;/h1&gt;
+
+&lt;p&gt;assign [class=" Dolphin"] 8:Arquivos
+for_window [title=" Dolphin"] move workspace 8:Arquivos; workspace 8:Arquivos
+if the chromium tab has a title including " Dolphin" the browser will be moved to the workspace 8:Arquivos, that's why I need to set it static.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1849/how-to-define-a-static-window-title/?answer=1855#post-id-1855</link><description>You can use multiple types as criteria (eg. title, class, window_role, etc - see [docs](http://i3wm.org/docs/userguide.html#_list_of_commands) for details), so you can ensure the rules for dolphin windows will not also catch browser windows:
+
+    for_window [class="^Dolphin$" title=" Dolphin"] move workspace 8
+
+This is not much related to the question (each application has own rules to define the window title, and you can only control this is they allow you to, such as a terminal window), but I think that's what you are actually looking for...</description><pubDate>Mon, 20 May 2013 23:32:47 +0000</pubDate><guid>https://faq.i3wm.org/question/1849/how-to-define-a-static-window-title/?answer=1855#post-id-1855</guid></item></channel></rss>

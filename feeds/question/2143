@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2143/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 09 Jul 2013 21:13:16 +0000</lastBuildDate><item><title>how to launch rdesktop</title><link>https://faq.i3wm.org/question/2143/how-to-launch-rdesktop/</link><description>when i try to launch rdesktop with the dmenu, nothing happens.  when i launch it from a terminal, it seems to ignore all the keys, like fullscreen, and float toggle.  how do i get rdesktop to launch fullscreen?</description><pubDate>Fri, 05 Jul 2013 00:54:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2143/how-to-launch-rdesktop/</guid></item><item><title>Answer by JohnnyFive for &lt;p&gt;when i try to launch rdesktop with the dmenu, nothing happens.  when i launch it from a terminal, it seems to ignore all the keys, like fullscreen, and float toggle.  how do i get rdesktop to launch fullscreen?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2143/how-to-launch-rdesktop/?answer=2166#post-id-2166</link><description>I personally created a bash file (named jHome) and put the following contents in it:
+
+    #!/bin/bash
+    rdesktop -g 95% ipaddress:port
+
+The -g option makes it so it automatically fills 95% of the screen (which is about perfect for i3). 
+
+Then made it executable and put it in my PATH. Then I just hit meta+d, type 'jH' and enter and away it goes. I understand that's not fullscreen, but it takes up most of the screen and allows me to switch between desktops in i3 as well.
+
+I have not had any real issues opening/operating rdesktop, </description><pubDate>Tue, 09 Jul 2013 21:13:16 +0000</pubDate><guid>https://faq.i3wm.org/question/2143/how-to-launch-rdesktop/?answer=2166#post-id-2166</guid></item><item><title>Answer by cee for &lt;p&gt;when i try to launch rdesktop with the dmenu, nothing happens.  when i launch it from a terminal, it seems to ignore all the keys, like fullscreen, and float toggle.  how do i get rdesktop to launch fullscreen?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2143/how-to-launch-rdesktop/?answer=2144#post-id-2144</link><description>-f should do it.
+
+    rdesktop mywinbox -f
+
+To toggle fullscreen press [Ctrl] + [Alt] + [Enter].</description><pubDate>Fri, 05 Jul 2013 05:38:51 +0000</pubDate><guid>https://faq.i3wm.org/question/2143/how-to-launch-rdesktop/?answer=2144#post-id-2144</guid></item><item><title>Comment by joepd for &lt;p&gt;-f should do it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rdesktop mywinbox -f
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To toggle fullscreen press [Ctrl] + [Alt] + [Enter].&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2143/how-to-launch-rdesktop/?comment=2145#comment-2145</link><description>+1 for ctrl+alt+enter. Thanks :)</description><pubDate>Fri, 05 Jul 2013 21:21:32 +0000</pubDate><guid>https://faq.i3wm.org/question/2143/how-to-launch-rdesktop/?comment=2145#comment-2145</guid></item></channel></rss>

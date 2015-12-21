@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2795/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 30 Oct 2013 12:33:45 +0000</lastBuildDate><item><title>Moving relative to bottom/right of screen</title><link>https://faq.i3wm.org/question/2795/moving-relative-to-bottomright-of-screen/</link><description>I can currently move a container relative to the top/left  (0, 0) of the screen:
+
+&gt; move absolute position 0 0
+
+Is it possible to refer to the bottom and/or right of the screen.  Ideally, when moving a container relative to the bottom or right, it would be relative to the bottom and/or right of the window being moved.
+
+I am reasonably sure this is not possible via any combination of built-in commands/options.  Can anyone think of a way this can be scripted?   Just thinking through it, I would need some way to access the size of the screen, and the size of the container being moved.  
+
+Thanks!</description><pubDate>Wed, 30 Oct 2013 02:41:54 +0000</pubDate><guid>https://faq.i3wm.org/question/2795/moving-relative-to-bottomright-of-screen/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I can currently move a container relative to the top/left  (0, 0) of the screen:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;move absolute position 0 0&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Is it possible to refer to the bottom and/or right of the screen.  Ideally, when moving a container relative to the bottom or right, it would be relative to the bottom and/or right of the window being moved.&lt;/p&gt;
+
+&lt;p&gt;I am reasonably sure this is not possible via any combination of built-in commands/options.  Can anyone think of a way this can be scripted?   Just thinking through it, I would need some way to access the size of the screen, and the size of the container being moved.  &lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2795/moving-relative-to-bottomright-of-screen/?answer=2796#post-id-2796</link><description>`xdotool` could help you with that.
+
+Retrieving the Window ID of the currently active window
+
+    $ xdotool getwindowfocus
+    62914570
+
+Getting the geometry of that window
+
+    $ xdotool getwindowgeometry 62914570
+    Window 62914570
+      Position: 3520,472 (screen: 0)
+      Geometry: 164x164
+
+Or both commands rolled in one
+
+    $ xdotool getwindowfocus getwindowgeometry
+    Window 62914570
+      Position: 3520,472 (screen: 0)
+      Geometry: 164x164
+
+Moving a given window arround, for example to position x,y = 123,456:
+
+    $ xdotool windowmove 62914570 123 456
+
+Moving the current window to the same position:
+
+    $ xdotool getwindowfocus windowmove 123 456
+
+The position is the position of the upper left corner of the window content, so there is some scripting to be done to take into account the window size when moving to the bottom or to the right in order to keep everything on screen. Parsing the output of xdotool shouldn't be to hard. Keep in mind that xdotool does not care for borders and titlebars, so you'll have to try around a bit, to keep them on screen.
+
+As for the screen size. If you have just one display `xdotool getdisplaygeometry` should do the trick. Unfortunatelly this seems not to work with multiple displays as it still returns just the size of one display (All my displays are the same size so I cannot check easily if it always the current display or just broken). With multiple displays (especially with differing resolutions) you may have to parse the output of `xrandr`. Of course, if you are not in the habbit of changing display setups regularly, you could just hard code it in your script.
+
+Please note that moving around windows with xdotool works only for floating windows, but nothing (including nothing bad) seems to happen when trying it on tiled windows.
+
+You also could try to parse the output of 'i3-msg -t get_tree' (it's formatted in JSON) and move the window around with the build-in command. But I myself am a bit confused about the values I get there, as there seem to be several fields pertaining to window size and position. Here the relevant parts from the same window as above:
+
+    {
+      "current_border_width": -1,
+      "geometry": {
+        "height": 164,
+        "width": 164,
+        "x": 0,
+        "y": 0
+      },
+      "rect": {
+        "height": 168,
+        "width": 170,
+        "x": 3515,
+        "y": 471
+      },
+      "window": 62914570,
+      "window_rect": {
+        "height": 164,
+        "width": 164,
+        "x": 2,
+        "y": 0
+      }
+    }
+      
+As you can see, some values match up, some differ slightly (enough for the borders but not the title bar).</description><pubDate>Wed, 30 Oct 2013 08:10:40 +0000</pubDate><guid>https://faq.i3wm.org/question/2795/moving-relative-to-bottomright-of-screen/?answer=2796#post-id-2796</guid></item><item><title>Comment by Adaephon for &lt;p&gt;&lt;code&gt;xdotool&lt;/code&gt; could help you with that.&lt;/p&gt;
+
+&lt;p&gt;Retrieving the Window ID of the currently active window&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xdotool getwindowfocus
+62914570
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Getting the geometry of that window&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xdotool getwindowgeometry 62914570
+Window 62914570
+  Position: 3520,472 (screen: 0)
+  Geometry: 164x164
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or both commands rolled in one&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xdotool getwindowfocus getwindowgeometry
+Window 62914570
+  Position: 3520,472 (screen: 0)
+  Geometry: 164x164
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Moving a given window arround, for example to position x,y = 123,456:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xdotool windowmove 62914570 123 456
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Moving the current window to the same position:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xdotool getwindowfocus windowmove 123 456
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The position is the position of the upper left corner of the window content, so there is some scripting to be done to take into account the window size when moving to the bottom or to the right in order to keep everything on screen. Parsing the output of xdotool shouldn't be to hard. Keep in mind that xdotool does not care for borders and titlebars, so you'll have to try around a bit, to keep them on screen.&lt;/p&gt;
+
+&lt;p&gt;As for the screen size. If you have just one display &lt;code&gt;xdotool getdisplaygeometry&lt;/code&gt; should do the trick. Unfortunatelly this seems not to work with multiple displays as it still returns just the size of one display (All my displays are the same size so I cannot check easily if it always the current display or just broken). With multiple displays (especially with differing resolutions) you may have to parse the output of &lt;code&gt;xrandr&lt;/code&gt;. Of course, if you are not in the habbit of changing display setups regularly, you could just hard code it in your script.&lt;/p&gt;
+
+&lt;p&gt;Please note that moving around windows with xdotool works only for floating windows, but nothing (including nothing bad) seems to happen when trying it on tiled windows.&lt;/p&gt;
+
+&lt;p&gt;You also could try to parse the output of 'i3-msg -t get_tree' (it's formatted in JSON) and move the window around with the build-in command. But I myself am a bit confused about the values I get there, as there seem to be several fields pertaining to window size and position. Here the relevant parts from the same window as above:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  "current_border_width": -1,
+  "geometry": {
+    "height": 164,
+    "width": 164,
+    "x": 0,
+    "y": 0
+  },
+  "rect": {
+    "height": 168,
+    "width": 170,
+    "x": 3515,
+    "y": 471
+  },
+  "window": 62914570,
+  "window_rect": {
+    "height": 164,
+    "width": 164,
+    "x": 2,
+    "y": 0
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, some values match up, some differ slightly (enough for the borders but not the title bar).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2795/moving-relative-to-bottomright-of-screen/?comment=2798#comment-2798</link><description>Glad to hear. Maybe you could post your script. A few days ago there was a similar qestion, so there may be others interested in the solution.</description><pubDate>Wed, 30 Oct 2013 12:33:45 +0000</pubDate><guid>https://faq.i3wm.org/question/2795/moving-relative-to-bottomright-of-screen/?comment=2798#comment-2798</guid></item><item><title>Comment by jonlorusso for &lt;p&gt;&lt;code&gt;xdotool&lt;/code&gt; could help you with that.&lt;/p&gt;
+
+&lt;p&gt;Retrieving the Window ID of the currently active window&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xdotool getwindowfocus
+62914570
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Getting the geometry of that window&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xdotool getwindowgeometry 62914570
+Window 62914570
+  Position: 3520,472 (screen: 0)
+  Geometry: 164x164
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or both commands rolled in one&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xdotool getwindowfocus getwindowgeometry
+Window 62914570
+  Position: 3520,472 (screen: 0)
+  Geometry: 164x164
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Moving a given window arround, for example to position x,y = 123,456:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xdotool windowmove 62914570 123 456
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Moving the current window to the same position:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xdotool getwindowfocus windowmove 123 456
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The position is the position of the upper left corner of the window content, so there is some scripting to be done to take into account the window size when moving to the bottom or to the right in order to keep everything on screen. Parsing the output of xdotool shouldn't be to hard. Keep in mind that xdotool does not care for borders and titlebars, so you'll have to try around a bit, to keep them on screen.&lt;/p&gt;
+
+&lt;p&gt;As for the screen size. If you have just one display &lt;code&gt;xdotool getdisplaygeometry&lt;/code&gt; should do the trick. Unfortunatelly this seems not to work with multiple displays as it still returns just the size of one display (All my displays are the same size so I cannot check easily if it always the current display or just broken). With multiple displays (especially with differing resolutions) you may have to parse the output of &lt;code&gt;xrandr&lt;/code&gt;. Of course, if you are not in the habbit of changing display setups regularly, you could just hard code it in your script.&lt;/p&gt;
+
+&lt;p&gt;Please note that moving around windows with xdotool works only for floating windows, but nothing (including nothing bad) seems to happen when trying it on tiled windows.&lt;/p&gt;
+
+&lt;p&gt;You also could try to parse the output of 'i3-msg -t get_tree' (it's formatted in JSON) and move the window around with the build-in command. But I myself am a bit confused about the values I get there, as there seem to be several fields pertaining to window size and position. Here the relevant parts from the same window as above:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  "current_border_width": -1,
+  "geometry": {
+    "height": 164,
+    "width": 164,
+    "x": 0,
+    "y": 0
+  },
+  "rect": {
+    "height": 168,
+    "width": 170,
+    "x": 3515,
+    "y": 471
+  },
+  "window": 62914570,
+  "window_rect": {
+    "height": 164,
+    "width": 164,
+    "x": 2,
+    "y": 0
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, some values match up, some differ slightly (enough for the borders but not the title bar).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2795/moving-relative-to-bottomright-of-screen/?comment=2797#comment-2797</link><description>Thanks! This worked great.</description><pubDate>Wed, 30 Oct 2013 12:01:30 +0000</pubDate><guid>https://faq.i3wm.org/question/2795/moving-relative-to-bottomright-of-screen/?comment=2797#comment-2797</guid></item></channel></rss>

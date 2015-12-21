@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4657/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 21 Sep 2014 12:08:33 +0000</lastBuildDate><item><title>Start program in specific workspace using terminal/bash-script</title><link>https://faq.i3wm.org/question/4657/start-program-in-specific-workspace-using-terminalbash-script/</link><description>Hi, 
+I have made a script (used for debugging a multi-user web portal) to run multiple instances of Firefox (each with its own profile). Is it possible to specify the workspace when starting a program from the terminal/script, so I am able to e.g. start the first 10 instances in workspace 1, the next 10 instances in workspace 2 etc.?
+
+bash-script: 
+for i in {1..40; do sleep 0.1; firefox -p $i -new-instance "website.com/login" &amp; done
+
+Kind regards, Morten</description><pubDate>Fri, 19 Sep 2014 10:44:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4657/start-program-in-specific-workspace-using-terminalbash-script/</guid></item><item><title>Answer by cee for &lt;p&gt;Hi, 
+I have made a script (used for debugging a multi-user web portal) to run multiple instances of Firefox (each with its own profile). Is it possible to specify the workspace when starting a program from the terminal/script, so I am able to e.g. start the first 10 instances in workspace 1, the next 10 instances in workspace 2 etc.?&lt;/p&gt;
+
+&lt;p&gt;bash-script: 
+for i in {1..40; do sleep 0.1; firefox -p $i -new-instance "website.com/login" &amp;amp; done&lt;/p&gt;
+
+&lt;p&gt;Kind regards, Morten&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4657/start-program-in-specific-workspace-using-terminalbash-script/?answer=4658#post-id-4658</link><description>You could use something like this:
+
+    i3-msg workspace 5 &amp;&amp; sleep 0.1 &amp;&amp; chromium
+
+- first switch to workspace 1 (or whatever yours is called)
+- then wait a little (not 100% sure if it's necessary)
+- then start your browser
+
+This is probably not the best possible way, but should get you started.</description><pubDate>Fri, 19 Sep 2014 14:30:11 +0000</pubDate><guid>https://faq.i3wm.org/question/4657/start-program-in-specific-workspace-using-terminalbash-script/?answer=4658#post-id-4658</guid></item><item><title>Comment by MortenJ for &lt;p&gt;You could use something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg workspace 5 &amp;amp;&amp;amp; sleep 0.1 &amp;amp;&amp;amp; chromium
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;first switch to workspace 1 (or whatever yours is called)&lt;/li&gt;
+&lt;li&gt;then wait a little (not 100% sure if it's necessary)&lt;/li&gt;
+&lt;li&gt;then start your browser&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is probably not the best possible way, but should get you started.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4657/start-program-in-specific-workspace-using-terminalbash-script/?comment=4664#comment-4664</link><description>Thanks, that works great. Final script:
+for (( i=1; i &lt;= 20; i++ ))
+do
+	WRKSPACE=$((($i-1)/5 + 2))
+	i3-msg workspace $WRKSPACE
+	sleep 1
+	firefox -p $i -new-instance "website.com" &amp; 
+done</description><pubDate>Sun, 21 Sep 2014 12:08:33 +0000</pubDate><guid>https://faq.i3wm.org/question/4657/start-program-in-specific-workspace-using-terminalbash-script/?comment=4664#comment-4664</guid></item></channel></rss>

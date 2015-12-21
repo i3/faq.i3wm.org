@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4597/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 03 Sep 2014 12:25:35 +0000</lastBuildDate><item><title>full screen</title><link>https://faq.i3wm.org/question/4597/full-screen/</link><description>Hi,
+
+Is it possible to launch certain applications in full screen?
+
+A bit more precisely:  I use gitg to commit to git repos and the repeated steps I do are:
+
+ 1. type `gitg` in the root of the project I'm working on
+ 2. push Windows-F to put it in full screen, because it starts in tiling mode
+ 3. i have to adjust the border between the staging area and the commit message, because it gets shrinked while it was in tiling mode
+ 4. do the commit and exit
+
+I would love to just type `gitg` and do the git commit, sparing the switchin to full screen and the border adjustment.  All I need is to somehow tell i3 that gitg is an exception and it should be always launched in full screen mode.
+
+Is this possible?
+
+(Creating a key binding for gitg is not a solution here, because I have to launch it in the projects root directory.  Once launching gitg and putting it to the scratchpad is also a nice thing, but not applicable here.)
+</description><pubDate>Wed, 03 Sep 2014 11:05:07 +0000</pubDate><guid>https://faq.i3wm.org/question/4597/full-screen/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Is it possible to launch certain applications in full screen?&lt;/p&gt;
+
+&lt;p&gt;A bit more precisely:  I use gitg to commit to git repos and the repeated steps I do are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;type &lt;code&gt;gitg&lt;/code&gt; in the root of the project I'm working on&lt;/li&gt;
+&lt;li&gt;push Windows-F to put it in full screen, because it starts in tiling mode&lt;/li&gt;
+&lt;li&gt;i have to adjust the border between the staging area and the commit message, because it gets shrinked while it was in tiling mode&lt;/li&gt;
+&lt;li&gt;do the commit and exit&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I would love to just type &lt;code&gt;gitg&lt;/code&gt; and do the git commit, sparing the switchin to full screen and the border adjustment.  All I need is to somehow tell i3 that gitg is an exception and it should be always launched in full screen mode.&lt;/p&gt;
+
+&lt;p&gt;Is this possible?&lt;/p&gt;
+
+&lt;p&gt;(Creating a key binding for gitg is not a solution here, because I have to launch it in the projects root directory.  Once launching gitg and putting it to the scratchpad is also a nice thing, but not applicable here.)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4597/full-screen/?answer=4598#post-id-4598</link><description>You can use the `for_window` configuration to run commands automatically for windows that match certain criteria. 
+
+`gitg` windows for example have the *WM_CLASS* "Gitg". So if you add this to your `~/.i3/config`:
+
+    for_window [class="^Gitg$"] fullscreen
+
+any `gitg` window will be made fullscreen immediatelly.</description><pubDate>Wed, 03 Sep 2014 12:25:35 +0000</pubDate><guid>https://faq.i3wm.org/question/4597/full-screen/?answer=4598#post-id-4598</guid></item></channel></rss>

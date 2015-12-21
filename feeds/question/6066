@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6066/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 05 Jun 2015 13:02:48 +0000</lastBuildDate><item><title>Scrot selection using bindkeys</title><link>https://faq.i3wm.org/question/6066/scrot-selection-using-bindkeys/</link><description>typing this in the teminal allows me to make a screen capture of a **selection** of the screen
+`scrot -s`
+
+however, in my i3 config i have the following: 
+`bindsym $mod+z exec scrot -s`
+but it doesnt work
+
+if i remove the `-s` it does take a screenshot but of the whole screen.
+`bindsym $mod+z exec scrot`
+
+is there something in i3 that is blocking the mouse capturing?</description><pubDate>Fri, 05 Jun 2015 10:04:02 +0000</pubDate><guid>https://faq.i3wm.org/question/6066/scrot-selection-using-bindkeys/</guid></item><item><title>Answer by simonwjackson for &lt;p&gt;typing this in the teminal allows me to make a screen capture of a &lt;strong&gt;selection&lt;/strong&gt; of the screen
+&lt;code&gt;scrot -s&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;however, in my i3 config i have the following: 
+&lt;code&gt;bindsym $mod+z exec scrot -s&lt;/code&gt;
+but it doesnt work&lt;/p&gt;
+
+&lt;p&gt;if i remove the &lt;code&gt;-s&lt;/code&gt; it does take a screenshot but of the whole screen.
+&lt;code&gt;bindsym $mod+z exec scrot&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;is there something in i3 that is blocking the mouse capturing?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6066/scrot-selection-using-bindkeys/?answer=6072#post-id-6072</link><description>Aparently you need to add --release just **after** bindsym
+
+`bindsym --release $mod+z exec scrot -s` </description><pubDate>Fri, 05 Jun 2015 13:02:48 +0000</pubDate><guid>https://faq.i3wm.org/question/6066/scrot-selection-using-bindkeys/?answer=6072#post-id-6072</guid></item><item><title>Answer by cee for &lt;p&gt;typing this in the teminal allows me to make a screen capture of a &lt;strong&gt;selection&lt;/strong&gt; of the screen
+&lt;code&gt;scrot -s&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;however, in my i3 config i have the following: 
+&lt;code&gt;bindsym $mod+z exec scrot -s&lt;/code&gt;
+but it doesnt work&lt;/p&gt;
+
+&lt;p&gt;if i remove the &lt;code&gt;-s&lt;/code&gt; it does take a screenshot but of the whole screen.
+&lt;code&gt;bindsym $mod+z exec scrot&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;is there something in i3 that is blocking the mouse capturing?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6066/scrot-selection-using-bindkeys/?answer=6068#post-id-6068</link><description> You probably need to add `--release` at the end of your command.</description><pubDate>Fri, 05 Jun 2015 11:35:36 +0000</pubDate><guid>https://faq.i3wm.org/question/6066/scrot-selection-using-bindkeys/?answer=6068#post-id-6068</guid></item><item><title>Comment by simonwjackson for &lt;p&gt;You probably need to add &lt;code&gt;--release&lt;/code&gt; at the end of your command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6066/scrot-selection-using-bindkeys/?comment=6070#comment-6070</link><description>Thanks for the input. I got it to work by adding it just after bindsym</description><pubDate>Fri, 05 Jun 2015 12:58:04 +0000</pubDate><guid>https://faq.i3wm.org/question/6066/scrot-selection-using-bindkeys/?comment=6070#comment-6070</guid></item></channel></rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5187/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 16 Dec 2014 13:40:53 +0000</lastBuildDate><item><title>How to get dunst working?</title><link>https://faq.i3wm.org/question/5187/how-to-get-dunst-working/</link><description>I just installed Dunst (via the .deb i found on Ubuntu Launchpad). 
+
+However, i have no idea on how to disable the gnome notification daemon and enable Dunst. 
+
+Where, and which are the following steps after installing Dunst? 
+</description><pubDate>Tue, 16 Dec 2014 00:35:50 +0000</pubDate><guid>https://faq.i3wm.org/question/5187/how-to-get-dunst-working/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I just installed Dunst (via the .deb i found on Ubuntu Launchpad). &lt;/p&gt;
+
+&lt;p&gt;However, i have no idea on how to disable the gnome notification daemon and enable Dunst. &lt;/p&gt;
+
+&lt;p&gt;Where, and which are the following steps after installing Dunst? &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5187/how-to-get-dunst-working/?comment=5188#comment-5188</link><description>That is not really an i3 question. Maybe [this question on askubutu](http://askubuntu.com/questions/472220/change-notification-daemon-on-14-04) helps. I myself just uninstalled the xfce4 notification daemon from my Xubuntu.</description><pubDate>Tue, 16 Dec 2014 13:31:28 +0000</pubDate><guid>https://faq.i3wm.org/question/5187/how-to-get-dunst-working/?comment=5188#comment-5188</guid></item><item><title>Answer by mschaefer for &lt;p&gt;I just installed Dunst (via the .deb i found on Ubuntu Launchpad). &lt;/p&gt;
+
+&lt;p&gt;However, i have no idea on how to disable the gnome notification daemon and enable Dunst. &lt;/p&gt;
+
+&lt;p&gt;Where, and which are the following steps after installing Dunst? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5187/how-to-get-dunst-working/?answer=5189#post-id-5189</link><description>Here are the necessary steps that work for me:
+
+1. Find out what the default notification daemon's name is (if you do not already know it) Here, a `ps aux | grep noti` might help.
+2. Put the following command in your i3 config file to kill the default daemon every time i3 is started: `exec killall -q &lt;notification daemon&gt;`.
+3. To start `dunst`, add to the config `exec --no-startup-id dunst -config &lt;path-to-config&gt;`. Leave the `-config ...` part if you want the default behaviour of `dunst`.</description><pubDate>Tue, 16 Dec 2014 13:40:53 +0000</pubDate><guid>https://faq.i3wm.org/question/5187/how-to-get-dunst-working/?answer=5189#post-id-5189</guid></item></channel></rss>

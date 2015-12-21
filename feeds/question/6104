@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6104/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 10 Jun 2015 10:50:35 +0000</lastBuildDate><item><title>Resize windows within vim and i3 with the same keystrokes</title><link>https://faq.i3wm.org/question/6104/resize-windows-within-vim-and-i3-with-the-same-keystrokes/</link><description> In the same line of 
+
+*Change the focus of windows within vim and i3 with the same keystroke*
+https://faq.i3wm.org/question/3042/change-the-focus-of-windows-within-vim-and-i3-with-the-same-keystroke/
+
+I wrote some bits of glue to resize windows i3 and vim using the same keystrokes. It consists of a C bit, a plug-in for vim, and configurations for the vim and i3 mappings.
+
+To use it you would need libxdo (part of xdotools).
+
+The C bit (i put in `~/bin/i3_vim_resize`):
+
+    /* File: i3_vim_resize.c
+     *
+     * Compile with:
+     * gcc -lX11 -lxdo -o i3_vim_resize i3_vim_resize.c $(pkg-config --libs --cflags i3ipc-glib-1.0)
+     *
+     */
+    
+    #include &lt;stdio.h&gt;
+    
+    #include &lt;strings.h&gt;
+    #include &lt;string.h&gt;
+    
+    #include &lt;xdo.h&gt;
+    
+    #include &lt;glib/gprintf.h&gt;
+    #include &lt;i3ipc-glib/i3ipc-glib.h&gt;
+    
+    int main(int argc, char *argv[]) {
+    
+        char cmd[50];
+    
+        unsigned char *name;
+        int name_len;
+        int name_type;
+        Window window_ret;
+    
+        i3ipcConnection *conn;
+        gchar *reply;
+    
+        if(argc &lt; 2){
+            printf("Missing argument\n");
+            return 1;
+        }
+    
+        xdo_t *xdo = xdo_new(NULL);
+        xdo_get_active_window(xdo, &amp;window_ret);
+        xdo_get_window_name(xdo, window_ret, &amp;name, &amp;name_len, &amp;name_type);
+    
+        if(strstr(name, "VIM")) 
+        {
+            strcpy(cmd, "Escape+g+w+");
+    
+            
+            strcat(cmd, (argv[1][0] == 'h')? "less" :
+                        (argv[1][0] == 'j')? "plus" :
+                        (argv[1][0] == 'k')? "minus" :
+                                             "greater" );
+    
+            xdo_send_keysequence_window(xdo, window_ret, cmd, 0);
+        }
+        else
+        {
+            conn = i3ipc_connection_new(NULL, NULL);
+            strcpy(cmd, "resize ");
+    
+            strcat(cmd, (argv[1][0] == 'h')? "shrink width 5 px or 5 ppt" :
+                        (argv[1][0] == 'j')? "grow height 5 px or 5 ppt" :
+                        (argv[1][0] == 'k')? "shrink height 5 px or 5 ppt" :
+                                             "grow width 5 px or 5 ppt" );
+    
+            reply = i3ipc_connection_message(conn, I3IPC_MESSAGE_TYPE_COMMAND, cmd, NULL);
+            /*g_printf("Reply: %s\n", reply);*/
+            g_free(reply);
+            g_object_unref(conn);
+        }
+    
+        XFree(name);
+        return  0;
+    }
+
+The vim-plugin (I put in `~/.vim/plugin/focus.vim`, together with my Focus function):
+
+
+    " CountOpenVertical and CountOpenHorizontal: stolen from Ben Klein
+    " http://www.vim.org/account/profile.php?user_id=67078
+    " Count the open vertical split windows in the current horizontal split
+    fun! s:CountOpenVertical()
+      " If there's only one open window, return 1
+      if(winnr('$') == 1)
+        return 1
+      endif
+      let l:start_window = winnr()
+      " Start by moving to the top horizontal window
+      " in this vertical split window
+      let l:status = 0
+      execute "1wincmd h"
+      while winnr() != l:status
+        let l:status = winnr()
+        execute "1wincmd h"
+      endwhile
+      " There's one window so far
+      let l:count = 1 | let l:status = winnr()
+      " Move to the next top-level vertical window
+      execute "1wincmd l"
+      " Add to the count each time we can move to
+      " another top-level vertical window
+      while winnr() != l:status
+        let l:status = winnr()
+        execute "1wincmd l"
+        let l:count += 1
+      endwhile
+      " Return to the original window
+      execute l:start_window . "wincmd w"
+      " Return the total
+      return l:count
+    endfun
+    
+    " Count the open horizontal split windows in the
+    " current vertical split window
+    fun! s:CountOpenHorizontal()
+      " If there aren't split windows, return 1
+      if(winnr('$') == 1)
+        return 1
+      endif
+      let l:start_window = winnr()
+      let l:count = 0 | let l:status = 0
+      " Start by moving to the top horizontal window
+      " in this vertical split window
+      execute "1wincmd k"
+      while winnr() != l:status
+        let l:status = winnr()
+        execute "1wincmd k"
+      endwhile
+      " Once we're there, start over, and begin the
+      " count
+      let l:status = 0
+      " For each time we can move to another window,
+      " add one to the count
+      while winnr() != l:status
+        let l:status = winnr()
+        execute "1wincmd j"
+        let l:count += 1
+      endwhile
+      execute l:start_window . "wincmd w"
+      " Return the total
+      return l:count
+    endfun
+    
+    func! Resize(comando, vim_comando)
+        if winnr('$') == 1
+            silent exe '!i3-msg -q resize ' . a:comando
+        else
+            if a:vim_comando == '&gt;' || a:vim_comando == "&lt;"
+                if s:CountOpenVertical() &gt; 1
+                    silent exe '3wincmd ' . a:vim_comando
+                else
+                    silent exe '!i3-msg -q resize ' . a:comando
+                endif
+            else
+                if s:CountOpenHorizontal() &gt; 1
+                    silent exe '3wincmd ' . a:vim_comando
+                else
+                    silent exe '!i3-msg -q resize ' . a:comando
+                endif
+            endif
+        endif
+    endfunction
+    
+The i3 configuration (`~/.i3/config`, in the resize mode):
+
+    # In case of weirdness, shift makes everything work as usual
+    bindsym Shift+h resize shrink width 5 px or 5 ppt
+    bindsym Shift+j resize grow height 5 px or 5 ppt
+    bindsym Shift+k resize shrink height 5 px or 5 ppt
+    bindsym Shift+l resize grow width 5 px or 5 ppt
+
+    bindsym h exec "i3_vim_resize h"
+    bindsym j exec "i3_vim_resize j"
+    bindsym k exec "i3_vim_resize k"
+    bindsym l exec "i3_vim_resize l"
+
+The vim bindings (`~/.vimrc`):
+
+    map gw&lt; :call Resize('shrink width 5 px or 5 ppt', '&lt;')&lt;CR&gt;
+    map gw+ :call Resize('grow height 5 px or 5 ppt', '+')&lt;CR&gt;
+    map gw- :call Resize('shrink height 5 px or 5 ppt', '-')&lt;CR&gt;
+    map gw&gt; :call Resize('grow width 5 px or 5 ppt', '&gt;')&lt;CR&gt;
+</description><pubDate>Wed, 10 Jun 2015 10:50:35 +0000</pubDate><guid>https://faq.i3wm.org/question/6104/resize-windows-within-vim-and-i3-with-the-same-keystrokes/</guid></item></channel></rss>

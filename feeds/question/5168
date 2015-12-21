@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5168/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 10 Jan 2015 23:32:44 +0000</lastBuildDate><item><title>owncloud applet asks for password when starting up</title><link>https://faq.i3wm.org/question/5168/owncloud-applet-asks-for-password-when-starting-up/</link><description>I'd like to run the owncloud applet on startup. Here's a snippet at the end of my i3 config:
+
+    exec --no-startup-id gnome-keyring-daemon
+    exec --no-startup-id owncloud &amp;
+
+I'm using gdm as my login manager. Upon logging in, I get a dialog box which reads:
+
+    Enter password to unlock your login keyring
+    The login keyring did not get unlocked when you logged into your computer
+
+If I enter my login password again, the owncloud applet starts fine. But what do I need to do to automatically unlock my keyring so that owncloud has access to it?
+</description><pubDate>Sat, 13 Dec 2014 07:48:54 +0000</pubDate><guid>https://faq.i3wm.org/question/5168/owncloud-applet-asks-for-password-when-starting-up/</guid></item><item><title>Answer by zenlinux for &lt;p&gt;I'd like to run the owncloud applet on startup. Here's a snippet at the end of my i3 config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id gnome-keyring-daemon
+exec --no-startup-id owncloud &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm using gdm as my login manager. Upon logging in, I get a dialog box which reads:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Enter password to unlock your login keyring
+The login keyring did not get unlocked when you logged into your computer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I enter my login password again, the owncloud applet starts fine. But what do I need to do to automatically unlock my keyring so that owncloud has access to it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5168/owncloud-applet-asks-for-password-when-starting-up/?answer=5321#post-id-5321</link><description>It turns out you do not need to run gnome-keyring-daemon in your i3 config (on Ubuntu 14.10, at least), as something in the login manager will start it for you. When I removed the line from my config, owncloud would start up just fine, and no longer ask me for my password.</description><pubDate>Sat, 10 Jan 2015 23:32:44 +0000</pubDate><guid>https://faq.i3wm.org/question/5168/owncloud-applet-asks-for-password-when-starting-up/?answer=5321#post-id-5321</guid></item></channel></rss>

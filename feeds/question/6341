@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6341/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 25 Jul 2015 19:51:36 +0000</lastBuildDate><item><title>Swallow existing window</title><link>https://faq.i3wm.org/question/6341/swallow-existing-window/</link><description> One of my workflows is as follows:
+
+ - open xterm and navigate into a directory
+ - set up a LaTeX-session (editor, latexmk, viewer)
+
+It would be nice, if I could restore a layout and the (already existing) xterm window gets swallowed into its place. Is this possible? Currently, append_layout seems only capable to append the layout right of the existing window.</description><pubDate>Fri, 24 Jul 2015 19:44:29 +0000</pubDate><guid>https://faq.i3wm.org/question/6341/swallow-existing-window/</guid></item><item><title>Answer by i3convert for &lt;p&gt;One of my workflows is as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;open xterm and navigate into a directory&lt;/li&gt;
+&lt;li&gt;set up a LaTeX-session (editor, latexmk, viewer)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It would be nice, if I could restore a layout and the (already existing) xterm window gets swallowed into its place. Is this possible? Currently, append_layout seems only capable to append the layout right of the existing window.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6341/swallow-existing-window/?answer=6342#post-id-6342</link><description>I don't think swallowing of existing windows is possible, but I can see the following workarounds.
+
+ 1. Open the layout (which includes a terminal window) and only then navigate to where your LaTeX project is. (Easy to implement, but I think this is exactly what you wanted to avoid.)
+
+ 2. Open a layout with the additional windows. They will unfortunately open in the wrong place, at the top of the tree for the workspace. You then have to write a script that focuses all of them, moves them to the scratchpad, moves focus back to where you want the windows to show up, and moves them back from the scratchpad. (This is complicated and you may have to do it window by window.)
+</description><pubDate>Fri, 24 Jul 2015 20:07:08 +0000</pubDate><guid>https://faq.i3wm.org/question/6341/swallow-existing-window/?answer=6342#post-id-6342</guid></item><item><title>Comment by gerw for &lt;p&gt;I don't think swallowing of existing windows is possible, but I can see the following workarounds.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open the layout (which includes a terminal window) and only then navigate to where your LaTeX project is. (Easy to implement, but I think this is exactly what you wanted to avoid.)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open a layout with the additional windows. They will unfortunately open in the wrong place, at the top of the tree for the workspace. You then have to write a script that focuses all of them, moves them to the scratchpad, moves focus back to where you want the windows to show up, and moves them back from the scratchpad. (This is complicated and you may have to do it window by window.)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/6341/swallow-existing-window/?comment=6343#comment-6343</link><description>Thank you for your answer. Currently, I am using a different workaround, similar to 2.: I open the layout with the additional windows and move the terminal at its desired position.</description><pubDate>Sat, 25 Jul 2015 19:51:36 +0000</pubDate><guid>https://faq.i3wm.org/question/6341/swallow-existing-window/?comment=6343#comment-6343</guid></item></channel></rss>

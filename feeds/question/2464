@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2464/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 31 Aug 2013 12:43:21 +0000</lastBuildDate><item><title>i3 not starting invoked by gdm</title><link>https://faq.i3wm.org/question/2464/i3-not-starting-invoked-by-gdm/</link><description>I use
+
+    exec i3 -V &gt;&gt; ~/.i3/i3log 2&gt;&amp;1
+
+in .xsession and .xprofile to start i3 on archlinux.
+My .x* files:
+
+    lrwxrwxrwx 1 bongo bongo    9 Aug 31 13:42 .xinitrc -&gt; .xsession*
+    -rw-r--r-- 1 bongo bongo   24 Mar 11  2012 .xmodmap
+    -rwxr-xr-x 1 bongo bongo 1006 Aug 31 13:52 .xprofile*
+    -rwxr-xr-x 1 bongo bongo   31 Aug 31 13:46 .xsession*
+.xprofile has no invocations of other wms in it, just some xinput lines.
+
+1st Problem in IMHO: i3 does not start logging when only using the exec line in .xsession! Only .xprofile works. I followed the suggestion on archlinux wiki (I may not post links).
+
+i3 seems to start but does not show anything like a terminal. No shortcuts are working etc.. Only the "busy" cursor is visible.
+
+Log:
+
+    08/31/2013 01:48:23 PM - i3 4.6 (2013-08-07, branch "tags/4.6") starting
+    08/31/2013 01:48:23 PM - Parsing configfile /home/$USER/.i3/config
+    deciding for version 4 due to this line: # i3 config file (v4)
+    08/31/2013 01:48:23 PM - [libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    08/31/2013 01:48:23 PM - Used number 1 for workspace with name 1
+    08/31/2013 01:48:23 PM - auto-starting i3status | i3bar -d
+    08/31/2013 01:48:23 PM - startup id = i3/i3status/17456-0-bird_TIME0
+    08/31/2013 01:48:23 PM - executing: i3status | i3bar -d
+    08/31/2013 01:48:23 PM - Not a managed window, ignoring UnmapNotify event
+    i3status: trying to auto-detect output_format setting
+    i3status: auto-detected "i3bar"
+    i3bar: invalid option -- 'd'
+    Usage: i3bar -b bar_id [-s sock_path] [-h] [-v]
+    
+    -b, --bar_id  &lt;bar_id&gt;	Bar ID for which to get the configuration
+    -s, --socket  &lt;sock_path&gt;	Connect to i3 via &lt;sock_path&gt;
+    -h, --help    Display this help-message and exit
+    -v, --version Display version number and exit
+    
+     PLEASE NOTE that i3bar will be automatically started by i3
+     as soon as there is a 'bar' configuration block in your
+     config file. You should never need to start it manually.
+    
+    Received SIGPIPE, exiting
+    08/31/2013 01:49:23 PM - Not a managed window, ignoring UnmapNotify event
+
+Does anyone have an idea on what I could try?
+</description><pubDate>Sat, 31 Aug 2013 12:19:05 +0000</pubDate><guid>https://faq.i3wm.org/question/2464/i3-not-starting-invoked-by-gdm/</guid></item><item><title>Answer by Michael for &lt;p&gt;I use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3 -V &amp;gt;&amp;gt; ~/.i3/i3log 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in .xsession and .xprofile to start i3 on archlinux.
+My .x* files:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;lrwxrwxrwx 1 bongo bongo    9 Aug 31 13:42 .xinitrc -&amp;gt; .xsession*
+-rw-r--r-- 1 bongo bongo   24 Mar 11  2012 .xmodmap
+-rwxr-xr-x 1 bongo bongo 1006 Aug 31 13:52 .xprofile*
+-rwxr-xr-x 1 bongo bongo   31 Aug 31 13:46 .xsession*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;.xprofile has no invocations of other wms in it, just some xinput lines.&lt;/p&gt;
+
+&lt;p&gt;1st Problem in IMHO: i3 does not start logging when only using the exec line in .xsession! Only .xprofile works. I followed the suggestion on archlinux wiki (I may not post links).&lt;/p&gt;
+
+&lt;p&gt;i3 seems to start but does not show anything like a terminal. No shortcuts are working etc.. Only the "busy" cursor is visible.&lt;/p&gt;
+
+&lt;p&gt;Log:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;08/31/2013 01:48:23 PM - i3 4.6 (2013-08-07, branch "tags/4.6") starting
+08/31/2013 01:48:23 PM - Parsing configfile /home/$USER/.i3/config
+deciding for version 4 due to this line: # i3 config file (v4)
+08/31/2013 01:48:23 PM - [libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+08/31/2013 01:48:23 PM - Used number 1 for workspace with name 1
+08/31/2013 01:48:23 PM - auto-starting i3status | i3bar -d
+08/31/2013 01:48:23 PM - startup id = i3/i3status/17456-0-bird_TIME0
+08/31/2013 01:48:23 PM - executing: i3status | i3bar -d
+08/31/2013 01:48:23 PM - Not a managed window, ignoring UnmapNotify event
+i3status: trying to auto-detect output_format setting
+i3status: auto-detected "i3bar"
+i3bar: invalid option -- 'd'
+Usage: i3bar -b bar_id [-s sock_path] [-h] [-v]
+
+-b, --bar_id  &amp;lt;bar_id&amp;gt;  Bar ID for which to get the configuration
+-s, --socket  &amp;lt;sock_path&amp;gt;   Connect to i3 via &amp;lt;sock_path&amp;gt;
+-h, --help    Display this help-message and exit
+-v, --version Display version number and exit
+
+ PLEASE NOTE that i3bar will be automatically started by i3
+ as soon as there is a 'bar' configuration block in your
+ config file. You should never need to start it manually.
+
+Received SIGPIPE, exiting
+08/31/2013 01:49:23 PM - Not a managed window, ignoring UnmapNotify event
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Does anyone have an idea on what I could try?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2464/i3-not-starting-invoked-by-gdm/?answer=2465#post-id-2465</link><description>This kind of problem is much better solved interactively in our #i3 IRC channel. Please come there, post your question(s) and wait patiently until somebody answers your question. Thanks.</description><pubDate>Sat, 31 Aug 2013 12:43:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2464/i3-not-starting-invoked-by-gdm/?answer=2465#post-id-2465</guid></item></channel></rss>

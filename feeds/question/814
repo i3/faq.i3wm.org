@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/814/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 25 Nov 2012 20:37:26 +0000</lastBuildDate><item><title>exec script only executing first part</title><link>https://faq.i3wm.org/question/814/exec-script-only-executing-first-part/</link><description>I am trying to bind a key to exec a shell script. The problem is that it only executes part of the script, the first statement.
+ 
+I can execute the script from a term and it works as intended.
+
+Does anyone know what could be wrong?
+
+Thanks.
+
+**i3config keybinding**
+
+    bindsym XF86AudioLowerVolume exec  $HOME/scripts/amixer/vol_down 
+
+**vol_down**
+
+    #!/bin/bash
+    amixer -q set Master 5- unmute 
+    ./update_conky_vol
+
+**update conky vol**
+
+    #!/bin/bash
+    ./.amixer 'Master' 'Left' &gt; ~/.config/conky/volume
+
+**.amixer**
+
+    #!/bin/bash
+    
+    param=$(amixer get "$1",0 | grep "$2:" | egrep -m 1 -o '[0-9]{1,3}%' | egrep -m 1 -o '[0-9]{1,3}%') 
+    echo ${param%[%]}%</description><pubDate>Sun, 25 Nov 2012 20:11:10 +0000</pubDate><guid>https://faq.i3wm.org/question/814/exec-script-only-executing-first-part/</guid></item><item><title>Answer by Michael for &lt;p&gt;I am trying to bind a key to exec a shell script. The problem is that it only executes part of the script, the first statement.&lt;/p&gt;
+
+&lt;p&gt;I can execute the script from a term and it works as intended.&lt;/p&gt;
+
+&lt;p&gt;Does anyone know what could be wrong?&lt;/p&gt;
+
+&lt;p&gt;Thanks.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;i3config keybinding&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym XF86AudioLowerVolume exec  $HOME/scripts/amixer/vol_down
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;vol_down&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+amixer -q set Master 5- unmute 
+./update_conky_vol
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;update conky vol&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+./.amixer 'Master' 'Left' &amp;gt; ~/.config/conky/volume
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;.amixer&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+param=$(amixer get "$1",0 | grep "$2:" | egrep -m 1 -o '[0-9]{1,3}%' | egrep -m 1 -o '[0-9]{1,3}%') 
+echo ${param%[%]}%
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/814/exec-script-only-executing-first-part/?answer=815#post-id-815</link><description>I think the problem is that in `vol_down`, you are running `./update_conky_vol`, but you are not ensuring that the script’s working directory is `$HOME/scripts/amixer`.
+
+Try using `$HOME/scripts/amixer/update_conky_vol` instead.</description><pubDate>Sun, 25 Nov 2012 20:27:46 +0000</pubDate><guid>https://faq.i3wm.org/question/814/exec-script-only-executing-first-part/?answer=815#post-id-815</guid></item><item><title>Comment by himself for &lt;p&gt;I think the problem is that in &lt;code&gt;vol_down&lt;/code&gt;, you are running &lt;code&gt;./update_conky_vol&lt;/code&gt;, but you are not ensuring that the script’s working directory is &lt;code&gt;$HOME/scripts/amixer&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Try using &lt;code&gt;$HOME/scripts/amixer/update_conky_vol&lt;/code&gt; instead.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/814/exec-script-only-executing-first-part/?comment=816#comment-816</link><description>Thanks so much for pointing that out, it now works as expected. </description><pubDate>Sun, 25 Nov 2012 20:37:26 +0000</pubDate><guid>https://faq.i3wm.org/question/814/exec-script-only-executing-first-part/?comment=816#comment-816</guid></item></channel></rss>

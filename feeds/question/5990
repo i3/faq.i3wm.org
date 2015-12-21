@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5990/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 18 May 2015 10:18:54 +0000</lastBuildDate><item><title>Can Linux (I) name my dual screens always the same?</title><link>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/</link><description>Question :   Is that an xrandr issue?
+
+I have one PC with several hard disks.
+Some have Antergos, Manjaro, Archlinux or even Linux Mint.
+All different kernels with just xorg or nVidia drivers.
+But all of them have i3.
+
+I use the same config file *but* now comes the question.
+
+On each of them xrandr shows the *same* monitors differently.
+DVI-0, DVI -1, DVI-2, DVI-3, DVI-0-0, DVI-1-1, even VGA-1
+
+Question:
+Is there a way to tell Linux how the monitors should be named?
+
+Someone pointed me in the direction of udev. I have been reading about udev rules but it is a bit out of my league (yet).
+Is it correct to assume that udev could solve this nagging issue?
+
+For example: I just installed nVidia driver on Antergos and it changed from DVI-I-1 and 2 to DVI-I-2 and 3.
+
+Here you have my current config to adept to these name changes:
+
+If dualscreen is on
+
+- xrandr DVI-0 and 3
+ &lt;pre&gt;
+workspace 1 output DVI-I-0
+workspace 2 output DVI-I-0
+workspace 3 output DVI-I-0
+workspace 4 output DVI-I-0
+workspace 5 output DVI-I-0
+workspace 6 output DVI-I-3
+workspace 7 output DVI-I-3
+workspace 8 output DVI-I-3
+workspace 9 output DVI-I-3
+workspace 10 output DVI-I-3
+&lt;/pre&gt;
+- xrandr DVI-0 and 1
+ &lt;pre&gt;
+workspace 1 output DVI-0
+workspace 2 output DVI-0
+workspace 3 output DVI-0
+workspace 4 output DVI-0
+workspace 5 output DVI-0
+workspace 6 output DVI-1
+workspace 7 output DVI-1
+workspace 8 output DVI-1
+workspace 9 output DVI-1
+workspace 10 output DVI-1
+&lt;/pre&gt;
+- xrandr DVI-1 and 2
+ &lt;pre&gt;
+workspace 1 output DVI-I-1
+workspace 2 output DVI-I-1
+workspace 3 output DVI-I-1
+workspace 4 output DVI-I-1
+workspace 5 output DVI-I-1
+workspace 6 output DVI-I-2
+workspace 7 output DVI-I-2
+workspace 8 output DVI-I-2
+workspace 9 output DVI-I-2
+workspace 10 output DVI-I-2
+&lt;/pre&gt;
+- xrandr DVI-2 and 3
+ &lt;pre&gt;
+workspace 1 output DVI-I-2
+workspace 2 output DVI-I-2
+workspace 3 output DVI-I-2
+workspace 4 output DVI-I-2
+workspace 5 output DVI-I-2
+workspace 6 output DVI-I-3
+workspace 7 output DVI-I-3
+workspace 8 output DVI-I-3
+workspace 9 output DVI-I-3
+workspace 10 output DVI-I-3﻿
+&lt;/pre&gt;</description><pubDate>Tue, 12 May 2015 19:15:57 +0000</pubDate><guid>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Question :   Is that an xrandr issue?&lt;/p&gt;
+
+&lt;p&gt;I have one PC with several hard disks.
+Some have Antergos, Manjaro, Archlinux or even Linux Mint.
+All different kernels with just xorg or nVidia drivers.
+But all of them have i3.&lt;/p&gt;
+
+&lt;p&gt;I use the same config file &lt;em&gt;but&lt;/em&gt; now comes the question.&lt;/p&gt;
+
+&lt;p&gt;On each of them xrandr shows the &lt;em&gt;same&lt;/em&gt; monitors differently.
+DVI-0, DVI -1, DVI-2, DVI-3, DVI-0-0, DVI-1-1, even VGA-1&lt;/p&gt;
+
+&lt;p&gt;Question:
+Is there a way to tell Linux how the monitors should be named?&lt;/p&gt;
+
+&lt;p&gt;Someone pointed me in the direction of udev. I have been reading about udev rules but it is a bit out of my league (yet).
+Is it correct to assume that udev could solve this nagging issue?&lt;/p&gt;
+
+&lt;p&gt;For example: I just installed nVidia driver on Antergos and it changed from DVI-I-1 and 2 to DVI-I-2 and 3.&lt;/p&gt;
+
+&lt;p&gt;Here you have my current config to adept to these name changes:&lt;/p&gt;
+
+&lt;p&gt;If dualscreen is on&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;xrandr DVI-0 and 3
+&lt;pre&gt;workspace 1 output DVI-I-0
+workspace 2 output DVI-I-0
+workspace 3 output DVI-I-0
+workspace 4 output DVI-I-0
+workspace 5 output DVI-I-0
+workspace 6 output DVI-I-3
+workspace 7 output DVI-I-3
+workspace 8 output DVI-I-3
+workspace 9 output DVI-I-3
+workspace 10 output DVI-I-3
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-0 and 1
+&lt;pre&gt;workspace 1 output DVI-0
+workspace 2 output DVI-0
+workspace 3 output DVI-0
+workspace 4 output DVI-0
+workspace 5 output DVI-0
+workspace 6 output DVI-1
+workspace 7 output DVI-1
+workspace 8 output DVI-1
+workspace 9 output DVI-1
+workspace 10 output DVI-1
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-1 and 2
+&lt;pre&gt;workspace 1 output DVI-I-1
+workspace 2 output DVI-I-1
+workspace 3 output DVI-I-1
+workspace 4 output DVI-I-1
+workspace 5 output DVI-I-1
+workspace 6 output DVI-I-2
+workspace 7 output DVI-I-2
+workspace 8 output DVI-I-2
+workspace 9 output DVI-I-2
+workspace 10 output DVI-I-2
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-2 and 3
+&lt;pre&gt;workspace 1 output DVI-I-2
+workspace 2 output DVI-I-2
+workspace 3 output DVI-I-2
+workspace 4 output DVI-I-2
+workspace 5 output DVI-I-2
+workspace 6 output DVI-I-3
+workspace 7 output DVI-I-3
+workspace 8 output DVI-I-3
+workspace 9 output DVI-I-3
+workspace 10 output DVI-I-3﻿
+&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/?comment=6000#comment-6000</link><description>@gurkensalat While it may not be a complete solution, it is a viable workaround. Any real solution is probably far outside the scope of i3 anyway. Please consider posting that as an answer.</description><pubDate>Mon, 18 May 2015 06:25:07 +0000</pubDate><guid>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/?comment=6000#comment-6000</guid></item><item><title>Comment by gurkensalat for &lt;p&gt;Question :   Is that an xrandr issue?&lt;/p&gt;
+
+&lt;p&gt;I have one PC with several hard disks.
+Some have Antergos, Manjaro, Archlinux or even Linux Mint.
+All different kernels with just xorg or nVidia drivers.
+But all of them have i3.&lt;/p&gt;
+
+&lt;p&gt;I use the same config file &lt;em&gt;but&lt;/em&gt; now comes the question.&lt;/p&gt;
+
+&lt;p&gt;On each of them xrandr shows the &lt;em&gt;same&lt;/em&gt; monitors differently.
+DVI-0, DVI -1, DVI-2, DVI-3, DVI-0-0, DVI-1-1, even VGA-1&lt;/p&gt;
+
+&lt;p&gt;Question:
+Is there a way to tell Linux how the monitors should be named?&lt;/p&gt;
+
+&lt;p&gt;Someone pointed me in the direction of udev. I have been reading about udev rules but it is a bit out of my league (yet).
+Is it correct to assume that udev could solve this nagging issue?&lt;/p&gt;
+
+&lt;p&gt;For example: I just installed nVidia driver on Antergos and it changed from DVI-I-1 and 2 to DVI-I-2 and 3.&lt;/p&gt;
+
+&lt;p&gt;Here you have my current config to adept to these name changes:&lt;/p&gt;
+
+&lt;p&gt;If dualscreen is on&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;xrandr DVI-0 and 3
+&lt;pre&gt;workspace 1 output DVI-I-0
+workspace 2 output DVI-I-0
+workspace 3 output DVI-I-0
+workspace 4 output DVI-I-0
+workspace 5 output DVI-I-0
+workspace 6 output DVI-I-3
+workspace 7 output DVI-I-3
+workspace 8 output DVI-I-3
+workspace 9 output DVI-I-3
+workspace 10 output DVI-I-3
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-0 and 1
+&lt;pre&gt;workspace 1 output DVI-0
+workspace 2 output DVI-0
+workspace 3 output DVI-0
+workspace 4 output DVI-0
+workspace 5 output DVI-0
+workspace 6 output DVI-1
+workspace 7 output DVI-1
+workspace 8 output DVI-1
+workspace 9 output DVI-1
+workspace 10 output DVI-1
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-1 and 2
+&lt;pre&gt;workspace 1 output DVI-I-1
+workspace 2 output DVI-I-1
+workspace 3 output DVI-I-1
+workspace 4 output DVI-I-1
+workspace 5 output DVI-I-1
+workspace 6 output DVI-I-2
+workspace 7 output DVI-I-2
+workspace 8 output DVI-I-2
+workspace 9 output DVI-I-2
+workspace 10 output DVI-I-2
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-2 and 3
+&lt;pre&gt;workspace 1 output DVI-I-2
+workspace 2 output DVI-I-2
+workspace 3 output DVI-I-2
+workspace 4 output DVI-I-2
+workspace 5 output DVI-I-2
+workspace 6 output DVI-I-3
+workspace 7 output DVI-I-3
+workspace 8 output DVI-I-3
+workspace 9 output DVI-I-3
+workspace 10 output DVI-I-3﻿
+&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/?comment=5992#comment-5992</link><description>Its not a solution but you could minimize your problem by using variables: set $firstMonitor DVI-I-1 To use them: workspace 1 output $firstMonitor That way you only have to edit one entry per output per system...</description><pubDate>Wed, 13 May 2015 16:40:51 +0000</pubDate><guid>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/?comment=5992#comment-5992</guid></item><item><title>Answer by gurkensalat for &lt;p&gt;Question :   Is that an xrandr issue?&lt;/p&gt;
+
+&lt;p&gt;I have one PC with several hard disks.
+Some have Antergos, Manjaro, Archlinux or even Linux Mint.
+All different kernels with just xorg or nVidia drivers.
+But all of them have i3.&lt;/p&gt;
+
+&lt;p&gt;I use the same config file &lt;em&gt;but&lt;/em&gt; now comes the question.&lt;/p&gt;
+
+&lt;p&gt;On each of them xrandr shows the &lt;em&gt;same&lt;/em&gt; monitors differently.
+DVI-0, DVI -1, DVI-2, DVI-3, DVI-0-0, DVI-1-1, even VGA-1&lt;/p&gt;
+
+&lt;p&gt;Question:
+Is there a way to tell Linux how the monitors should be named?&lt;/p&gt;
+
+&lt;p&gt;Someone pointed me in the direction of udev. I have been reading about udev rules but it is a bit out of my league (yet).
+Is it correct to assume that udev could solve this nagging issue?&lt;/p&gt;
+
+&lt;p&gt;For example: I just installed nVidia driver on Antergos and it changed from DVI-I-1 and 2 to DVI-I-2 and 3.&lt;/p&gt;
+
+&lt;p&gt;Here you have my current config to adept to these name changes:&lt;/p&gt;
+
+&lt;p&gt;If dualscreen is on&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;xrandr DVI-0 and 3
+&lt;pre&gt;workspace 1 output DVI-I-0
+workspace 2 output DVI-I-0
+workspace 3 output DVI-I-0
+workspace 4 output DVI-I-0
+workspace 5 output DVI-I-0
+workspace 6 output DVI-I-3
+workspace 7 output DVI-I-3
+workspace 8 output DVI-I-3
+workspace 9 output DVI-I-3
+workspace 10 output DVI-I-3
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-0 and 1
+&lt;pre&gt;workspace 1 output DVI-0
+workspace 2 output DVI-0
+workspace 3 output DVI-0
+workspace 4 output DVI-0
+workspace 5 output DVI-0
+workspace 6 output DVI-1
+workspace 7 output DVI-1
+workspace 8 output DVI-1
+workspace 9 output DVI-1
+workspace 10 output DVI-1
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-1 and 2
+&lt;pre&gt;workspace 1 output DVI-I-1
+workspace 2 output DVI-I-1
+workspace 3 output DVI-I-1
+workspace 4 output DVI-I-1
+workspace 5 output DVI-I-1
+workspace 6 output DVI-I-2
+workspace 7 output DVI-I-2
+workspace 8 output DVI-I-2
+workspace 9 output DVI-I-2
+workspace 10 output DVI-I-2
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-2 and 3
+&lt;pre&gt;workspace 1 output DVI-I-2
+workspace 2 output DVI-I-2
+workspace 3 output DVI-I-2
+workspace 4 output DVI-I-2
+workspace 5 output DVI-I-2
+workspace 6 output DVI-I-3
+workspace 7 output DVI-I-3
+workspace 8 output DVI-I-3
+workspace 9 output DVI-I-3
+workspace 10 output DVI-I-3﻿
+&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/?answer=6002#post-id-6002</link><description>(Reposting as an answer)
+You can minimize your problem by using variables:
+
+    set $firstMonitor DVI-I-1
+    set $secondMonitor DVI-I-2
+
+To use them:
+
+    workspace 1 output $firstMonitor
+    workspace 2 output $secondMonitor
+
+That way you only have to edit one entry per output per system.</description><pubDate>Mon, 18 May 2015 10:18:54 +0000</pubDate><guid>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/?answer=6002#post-id-6002</guid></item><item><title>Answer by erikdubois for &lt;p&gt;Question :   Is that an xrandr issue?&lt;/p&gt;
+
+&lt;p&gt;I have one PC with several hard disks.
+Some have Antergos, Manjaro, Archlinux or even Linux Mint.
+All different kernels with just xorg or nVidia drivers.
+But all of them have i3.&lt;/p&gt;
+
+&lt;p&gt;I use the same config file &lt;em&gt;but&lt;/em&gt; now comes the question.&lt;/p&gt;
+
+&lt;p&gt;On each of them xrandr shows the &lt;em&gt;same&lt;/em&gt; monitors differently.
+DVI-0, DVI -1, DVI-2, DVI-3, DVI-0-0, DVI-1-1, even VGA-1&lt;/p&gt;
+
+&lt;p&gt;Question:
+Is there a way to tell Linux how the monitors should be named?&lt;/p&gt;
+
+&lt;p&gt;Someone pointed me in the direction of udev. I have been reading about udev rules but it is a bit out of my league (yet).
+Is it correct to assume that udev could solve this nagging issue?&lt;/p&gt;
+
+&lt;p&gt;For example: I just installed nVidia driver on Antergos and it changed from DVI-I-1 and 2 to DVI-I-2 and 3.&lt;/p&gt;
+
+&lt;p&gt;Here you have my current config to adept to these name changes:&lt;/p&gt;
+
+&lt;p&gt;If dualscreen is on&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;xrandr DVI-0 and 3
+&lt;pre&gt;workspace 1 output DVI-I-0
+workspace 2 output DVI-I-0
+workspace 3 output DVI-I-0
+workspace 4 output DVI-I-0
+workspace 5 output DVI-I-0
+workspace 6 output DVI-I-3
+workspace 7 output DVI-I-3
+workspace 8 output DVI-I-3
+workspace 9 output DVI-I-3
+workspace 10 output DVI-I-3
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-0 and 1
+&lt;pre&gt;workspace 1 output DVI-0
+workspace 2 output DVI-0
+workspace 3 output DVI-0
+workspace 4 output DVI-0
+workspace 5 output DVI-0
+workspace 6 output DVI-1
+workspace 7 output DVI-1
+workspace 8 output DVI-1
+workspace 9 output DVI-1
+workspace 10 output DVI-1
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-1 and 2
+&lt;pre&gt;workspace 1 output DVI-I-1
+workspace 2 output DVI-I-1
+workspace 3 output DVI-I-1
+workspace 4 output DVI-I-1
+workspace 5 output DVI-I-1
+workspace 6 output DVI-I-2
+workspace 7 output DVI-I-2
+workspace 8 output DVI-I-2
+workspace 9 output DVI-I-2
+workspace 10 output DVI-I-2
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;xrandr DVI-2 and 3
+&lt;pre&gt;workspace 1 output DVI-I-2
+workspace 2 output DVI-I-2
+workspace 3 output DVI-I-2
+workspace 4 output DVI-I-2
+workspace 5 output DVI-I-2
+workspace 6 output DVI-I-3
+workspace 7 output DVI-I-3
+workspace 8 output DVI-I-3
+workspace 9 output DVI-I-3
+workspace 10 output DVI-I-3﻿
+&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/?answer=5996#post-id-5996</link><description>thanks gurkensalat 
+your variable idea works and makes it a bit more tolerable </description><pubDate>Fri, 15 May 2015 08:56:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/?answer=5996#post-id-5996</guid></item><item><title>Comment by Adaephon for &lt;p&gt;thanks gurkensalat 
+your variable idea works and makes it a bit more tolerable &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/?comment=6001#comment-6001</link><description>Please do not post comments as answers. While the ability to post comments is generally restricted by karma, you should be able to post comments on your own posts even with low karma.</description><pubDate>Mon, 18 May 2015 06:27:10 +0000</pubDate><guid>https://faq.i3wm.org/question/5990/can-linux-i-name-my-dual-screens-always-the-same/?comment=6001#comment-6001</guid></item></channel></rss>

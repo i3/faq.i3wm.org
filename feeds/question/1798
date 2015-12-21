@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1798/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 24 May 2013 19:07:31 +0000</lastBuildDate><item><title>Conky output disappears from i3bar after extended use</title><link>https://faq.i3wm.org/question/1798/conky-output-disappears-from-i3bar-after-extended-use/</link><description>I am using i3 4.5.1, i3bar 4.5.1, and Conky 1.9.0. I am using the wrapper script method on the official site for displaying output from Conky in i3bar.
+
+After a few minutes of use, i3bar will no longer display info from Conky. The bar becomes blank except for the desktop switcher and tray. Restarting i3 has the same result.
+
+Here are my configuration files:
+
+**~/.i3/config**
+
+    ...
+    bar {
+        status_command ~/sh/conky-i3.sh
+    }
+    ...
+
+**~/sh/conky-i3.sh**
+
+    #!/bin/bash 
+    echo '{"version":1}'
+    echo '['
+    echo '[],'
+    exec conky -c ~/.conkyrc
+
+**~/.conkyrc**
+
+    out_to_x no
+    out_to_console yes
+    background no
+    max_text_width 0
+    update_interval 1
+    total_run_times 0
+    double_buffer yes
+    
+    TEXT
+    [{"full_text" : "${mpd_artist} - ${mpd_album} - ${mpd_title}", "color" : "\#89cff0"},
+     {"full_text" : "${mpd_elapsed}/${mpd_length}",                "color" : "\#ff8888"},
+     {"full_text" : "${mpd_vol}%",                                 "color" : "\#eeeeee"},
+     {"full_text" : "IP: ${addr eth0}",                            "color" : "\#99ff99"},
+     {"full_text" : "RAM: ${mem}",                                 "color" : "\#aaaaff"},
+     {"full_text" : "Load: ${loadavg 1}",                          "color" : "\#fff79a"},
+     {"full_text" : "${tztime US/Eastern %a %b %d, %Y %X}",        "color" : "\#eeeeee"}],
+
+
+**Sample output from ~/sh/conky-i3.sh**
+
+    {"version":1}
+    [
+    [],
+    [{"full_text" : "(null) - (null) - (null)",          "color" : "#89cff0"},
+     {"full_text" : "0:00/0:00",                          "color" : "#ff8888"},
+     {"full_text" : "0%",                                 "color" : "#eeeeee"},
+     {"full_text" : "IP: 192.168.0.100",                  "color" : "#99ff99"},
+     {"full_text" : "RAM: 521MiB",                        "color" : "#aaaaff"},
+     {"full_text" : "Load: 0.70",                         "color" : "#fff79a"},
+     {"full_text" : "Sun May 12, 2013 03:20:16 PM",       "color" : "#eeeeee"}],
+    [{"full_text" : "(null) - (null) - (null)",           "color" : "#89cff0"},
+     {"full_text" : "0:00/0:00",                          "color" : "#ff8888"},
+     {"full_text" : "0%",                                 "color" : "#eeeeee"},
+     {"full_text" : "IP: 192.168.0.100",                  "color" : "#99ff99"},
+     {"full_text" : "RAM: 521MiB",                        "color" : "#aaaaff"},
+     {"full_text" : "Load: 0.70",                         "color" : "#fff79a"},
+     {"full_text" : "Sun May 12, 2013 03:20:17 PM",       "color" : "#eeeeee"}],
+
+**Edit:** I've found that just restarting i3 does not fix this problem, but exiting i3, stopping x, and starting a new x session fixes it.
+
+</description><pubDate>Sun, 12 May 2013 19:24:49 +0000</pubDate><guid>https://faq.i3wm.org/question/1798/conky-output-disappears-from-i3bar-after-extended-use/</guid></item><item><title>Comment by joepd for &lt;p&gt;I am using i3 4.5.1, i3bar 4.5.1, and Conky 1.9.0. I am using the wrapper script method on the official site for displaying output from Conky in i3bar.&lt;/p&gt;
+
+&lt;p&gt;After a few minutes of use, i3bar will no longer display info from Conky. The bar becomes blank except for the desktop switcher and tray. Restarting i3 has the same result.&lt;/p&gt;
+
+&lt;p&gt;Here are my configuration files:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+bar {
+    status_command ~/sh/conky-i3.sh
+}
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;~/sh/conky-i3.sh&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash 
+echo '{"version":1}'
+echo '['
+echo '[],'
+exec conky -c ~/.conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.conkyrc&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1
+total_run_times 0
+double_buffer yes
+
+TEXT
+[{"full_text" : "${mpd_artist} - ${mpd_album} - ${mpd_title}", "color" : "\#89cff0"},
+ {"full_text" : "${mpd_elapsed}/${mpd_length}",                "color" : "\#ff8888"},
+ {"full_text" : "${mpd_vol}%",                                 "color" : "\#eeeeee"},
+ {"full_text" : "IP: ${addr eth0}",                            "color" : "\#99ff99"},
+ {"full_text" : "RAM: ${mem}",                                 "color" : "\#aaaaff"},
+ {"full_text" : "Load: ${loadavg 1}",                          "color" : "\#fff79a"},
+ {"full_text" : "${tztime US/Eastern %a %b %d, %Y %X}",        "color" : "\#eeeeee"}],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Sample output from ~/sh/conky-i3.sh&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{"version":1}
+[
+[],
+[{"full_text" : "(null) - (null) - (null)",          "color" : "#89cff0"},
+ {"full_text" : "0:00/0:00",                          "color" : "#ff8888"},
+ {"full_text" : "0%",                                 "color" : "#eeeeee"},
+ {"full_text" : "IP: 192.168.0.100",                  "color" : "#99ff99"},
+ {"full_text" : "RAM: 521MiB",                        "color" : "#aaaaff"},
+ {"full_text" : "Load: 0.70",                         "color" : "#fff79a"},
+ {"full_text" : "Sun May 12, 2013 03:20:16 PM",       "color" : "#eeeeee"}],
+[{"full_text" : "(null) - (null) - (null)",           "color" : "#89cff0"},
+ {"full_text" : "0:00/0:00",                          "color" : "#ff8888"},
+ {"full_text" : "0%",                                 "color" : "#eeeeee"},
+ {"full_text" : "IP: 192.168.0.100",                  "color" : "#99ff99"},
+ {"full_text" : "RAM: 521MiB",                        "color" : "#aaaaff"},
+ {"full_text" : "Load: 0.70",                         "color" : "#fff79a"},
+ {"full_text" : "Sun May 12, 2013 03:20:17 PM",       "color" : "#eeeeee"}],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Edit:&lt;/strong&gt; I've found that just restarting i3 does not fix this problem, but exiting i3, stopping x, and starting a new x session fixes it.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1798/conky-output-disappears-from-i3bar-after-extended-use/?comment=1811#comment-1811</link><description>hrrmm... maybe weed out if this problem is a conky one or not. Maybe store the output of ~/sh/conky-i3.sh in different files (something like `while true; do conky-i3.sh \&gt;"/tmp/$(date +'%T')"; sleep 3; done`) when starting i3. See if there is any invalid json there... </description><pubDate>Tue, 14 May 2013 22:51:23 +0000</pubDate><guid>https://faq.i3wm.org/question/1798/conky-output-disappears-from-i3bar-after-extended-use/?comment=1811#comment-1811</guid></item><item><title>Comment by joepd for &lt;p&gt;I am using i3 4.5.1, i3bar 4.5.1, and Conky 1.9.0. I am using the wrapper script method on the official site for displaying output from Conky in i3bar.&lt;/p&gt;
+
+&lt;p&gt;After a few minutes of use, i3bar will no longer display info from Conky. The bar becomes blank except for the desktop switcher and tray. Restarting i3 has the same result.&lt;/p&gt;
+
+&lt;p&gt;Here are my configuration files:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+bar {
+    status_command ~/sh/conky-i3.sh
+}
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;~/sh/conky-i3.sh&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash 
+echo '{"version":1}'
+echo '['
+echo '[],'
+exec conky -c ~/.conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.conkyrc&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1
+total_run_times 0
+double_buffer yes
+
+TEXT
+[{"full_text" : "${mpd_artist} - ${mpd_album} - ${mpd_title}", "color" : "\#89cff0"},
+ {"full_text" : "${mpd_elapsed}/${mpd_length}",                "color" : "\#ff8888"},
+ {"full_text" : "${mpd_vol}%",                                 "color" : "\#eeeeee"},
+ {"full_text" : "IP: ${addr eth0}",                            "color" : "\#99ff99"},
+ {"full_text" : "RAM: ${mem}",                                 "color" : "\#aaaaff"},
+ {"full_text" : "Load: ${loadavg 1}",                          "color" : "\#fff79a"},
+ {"full_text" : "${tztime US/Eastern %a %b %d, %Y %X}",        "color" : "\#eeeeee"}],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Sample output from ~/sh/conky-i3.sh&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{"version":1}
+[
+[],
+[{"full_text" : "(null) - (null) - (null)",          "color" : "#89cff0"},
+ {"full_text" : "0:00/0:00",                          "color" : "#ff8888"},
+ {"full_text" : "0%",                                 "color" : "#eeeeee"},
+ {"full_text" : "IP: 192.168.0.100",                  "color" : "#99ff99"},
+ {"full_text" : "RAM: 521MiB",                        "color" : "#aaaaff"},
+ {"full_text" : "Load: 0.70",                         "color" : "#fff79a"},
+ {"full_text" : "Sun May 12, 2013 03:20:16 PM",       "color" : "#eeeeee"}],
+[{"full_text" : "(null) - (null) - (null)",           "color" : "#89cff0"},
+ {"full_text" : "0:00/0:00",                          "color" : "#ff8888"},
+ {"full_text" : "0%",                                 "color" : "#eeeeee"},
+ {"full_text" : "IP: 192.168.0.100",                  "color" : "#99ff99"},
+ {"full_text" : "RAM: 521MiB",                        "color" : "#aaaaff"},
+ {"full_text" : "Load: 0.70",                         "color" : "#fff79a"},
+ {"full_text" : "Sun May 12, 2013 03:20:17 PM",       "color" : "#eeeeee"}],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Edit:&lt;/strong&gt; I've found that just restarting i3 does not fix this problem, but exiting i3, stopping x, and starting a new x session fixes it.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1798/conky-output-disappears-from-i3bar-after-extended-use/?comment=1812#comment-1812</link><description>Crap. \&amp;gt should read: Bigger than &gt;....</description><pubDate>Tue, 14 May 2013 22:52:29 +0000</pubDate><guid>https://faq.i3wm.org/question/1798/conky-output-disappears-from-i3bar-after-extended-use/?comment=1812#comment-1812</guid></item><item><title>Answer by Wesley for &lt;p&gt;I am using i3 4.5.1, i3bar 4.5.1, and Conky 1.9.0. I am using the wrapper script method on the official site for displaying output from Conky in i3bar.&lt;/p&gt;
+
+&lt;p&gt;After a few minutes of use, i3bar will no longer display info from Conky. The bar becomes blank except for the desktop switcher and tray. Restarting i3 has the same result.&lt;/p&gt;
+
+&lt;p&gt;Here are my configuration files:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+bar {
+    status_command ~/sh/conky-i3.sh
+}
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;~/sh/conky-i3.sh&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash 
+echo '{"version":1}'
+echo '['
+echo '[],'
+exec conky -c ~/.conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.conkyrc&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1
+total_run_times 0
+double_buffer yes
+
+TEXT
+[{"full_text" : "${mpd_artist} - ${mpd_album} - ${mpd_title}", "color" : "\#89cff0"},
+ {"full_text" : "${mpd_elapsed}/${mpd_length}",                "color" : "\#ff8888"},
+ {"full_text" : "${mpd_vol}%",                                 "color" : "\#eeeeee"},
+ {"full_text" : "IP: ${addr eth0}",                            "color" : "\#99ff99"},
+ {"full_text" : "RAM: ${mem}",                                 "color" : "\#aaaaff"},
+ {"full_text" : "Load: ${loadavg 1}",                          "color" : "\#fff79a"},
+ {"full_text" : "${tztime US/Eastern %a %b %d, %Y %X}",        "color" : "\#eeeeee"}],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Sample output from ~/sh/conky-i3.sh&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{"version":1}
+[
+[],
+[{"full_text" : "(null) - (null) - (null)",          "color" : "#89cff0"},
+ {"full_text" : "0:00/0:00",                          "color" : "#ff8888"},
+ {"full_text" : "0%",                                 "color" : "#eeeeee"},
+ {"full_text" : "IP: 192.168.0.100",                  "color" : "#99ff99"},
+ {"full_text" : "RAM: 521MiB",                        "color" : "#aaaaff"},
+ {"full_text" : "Load: 0.70",                         "color" : "#fff79a"},
+ {"full_text" : "Sun May 12, 2013 03:20:16 PM",       "color" : "#eeeeee"}],
+[{"full_text" : "(null) - (null) - (null)",           "color" : "#89cff0"},
+ {"full_text" : "0:00/0:00",                          "color" : "#ff8888"},
+ {"full_text" : "0%",                                 "color" : "#eeeeee"},
+ {"full_text" : "IP: 192.168.0.100",                  "color" : "#99ff99"},
+ {"full_text" : "RAM: 521MiB",                        "color" : "#aaaaff"},
+ {"full_text" : "Load: 0.70",                         "color" : "#fff79a"},
+ {"full_text" : "Sun May 12, 2013 03:20:17 PM",       "color" : "#eeeeee"}],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Edit:&lt;/strong&gt; I've found that just restarting i3 does not fix this problem, but exiting i3, stopping x, and starting a new x session fixes it.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1798/conky-output-disappears-from-i3bar-after-extended-use/?answer=1888#post-id-1888</link><description>I encountered this before, I found passing the `-i 1` option to conky solved it for me at least. What that does is runs conky once, then quits.
+
+That led to the unfortunate side effect that conky did not calculate cpu usage accurately (my suspicion is that conky uses it's own averaging). So I used a custom command to list top processes instead:
+
+    `ps -eo '%C%% %c' | sort -k1 -n -r | head -2 | tr '\n' ' '`
+
+In the end I realized I did not need to use conky to get any of the info I wanted to display, they all live in a bash script now. Either way I do hope this helps you.</description><pubDate>Fri, 24 May 2013 19:07:31 +0000</pubDate><guid>https://faq.i3wm.org/question/1798/conky-output-disappears-from-i3bar-after-extended-use/?answer=1888#post-id-1888</guid></item><item><title>Answer by baumy for &lt;p&gt;I am using i3 4.5.1, i3bar 4.5.1, and Conky 1.9.0. I am using the wrapper script method on the official site for displaying output from Conky in i3bar.&lt;/p&gt;
+
+&lt;p&gt;After a few minutes of use, i3bar will no longer display info from Conky. The bar becomes blank except for the desktop switcher and tray. Restarting i3 has the same result.&lt;/p&gt;
+
+&lt;p&gt;Here are my configuration files:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+bar {
+    status_command ~/sh/conky-i3.sh
+}
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;~/sh/conky-i3.sh&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash 
+echo '{"version":1}'
+echo '['
+echo '[],'
+exec conky -c ~/.conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.conkyrc&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1
+total_run_times 0
+double_buffer yes
+
+TEXT
+[{"full_text" : "${mpd_artist} - ${mpd_album} - ${mpd_title}", "color" : "\#89cff0"},
+ {"full_text" : "${mpd_elapsed}/${mpd_length}",                "color" : "\#ff8888"},
+ {"full_text" : "${mpd_vol}%",                                 "color" : "\#eeeeee"},
+ {"full_text" : "IP: ${addr eth0}",                            "color" : "\#99ff99"},
+ {"full_text" : "RAM: ${mem}",                                 "color" : "\#aaaaff"},
+ {"full_text" : "Load: ${loadavg 1}",                          "color" : "\#fff79a"},
+ {"full_text" : "${tztime US/Eastern %a %b %d, %Y %X}",        "color" : "\#eeeeee"}],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Sample output from ~/sh/conky-i3.sh&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{"version":1}
+[
+[],
+[{"full_text" : "(null) - (null) - (null)",          "color" : "#89cff0"},
+ {"full_text" : "0:00/0:00",                          "color" : "#ff8888"},
+ {"full_text" : "0%",                                 "color" : "#eeeeee"},
+ {"full_text" : "IP: 192.168.0.100",                  "color" : "#99ff99"},
+ {"full_text" : "RAM: 521MiB",                        "color" : "#aaaaff"},
+ {"full_text" : "Load: 0.70",                         "color" : "#fff79a"},
+ {"full_text" : "Sun May 12, 2013 03:20:16 PM",       "color" : "#eeeeee"}],
+[{"full_text" : "(null) - (null) - (null)",           "color" : "#89cff0"},
+ {"full_text" : "0:00/0:00",                          "color" : "#ff8888"},
+ {"full_text" : "0%",                                 "color" : "#eeeeee"},
+ {"full_text" : "IP: 192.168.0.100",                  "color" : "#99ff99"},
+ {"full_text" : "RAM: 521MiB",                        "color" : "#aaaaff"},
+ {"full_text" : "Load: 0.70",                         "color" : "#fff79a"},
+ {"full_text" : "Sun May 12, 2013 03:20:17 PM",       "color" : "#eeeeee"}],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Edit:&lt;/strong&gt; I've found that just restarting i3 does not fix this problem, but exiting i3, stopping x, and starting a new x session fixes it.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1798/conky-output-disappears-from-i3bar-after-extended-use/?answer=1831#post-id-1831</link><description>I don't have a solution, but I do have a better workaround. I think this has something to do with multiple conky processes running. Run 'killall conky' to get rid of all of them, then reload your i3 config ($mod+shift+r by default), which should call the wrapper script again, and conky will output correctly.</description><pubDate>Fri, 17 May 2013 01:36:01 +0000</pubDate><guid>https://faq.i3wm.org/question/1798/conky-output-disappears-from-i3bar-after-extended-use/?answer=1831#post-id-1831</guid></item></channel></rss>

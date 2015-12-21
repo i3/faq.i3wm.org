@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2649/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 26 Apr 2015 22:00:46 +0000</lastBuildDate><item><title>how do I get a screensaver to work?</title><link>https://faq.i3wm.org/question/2649/how-do-i-get-a-screensaver-to-work/</link><description>In my i3 config, I have
+
+    exec gnome-screensaver
+
+I know gnome-screensaver is running in my i3 session because I can run the lock command
+
+    $ gnome-screensaver-command -l
+
+and my screen locks.
+
+However, my screensaver never locks automatically no matter how long my system sits idle.  I expect it to come on after ten minutes or so.
+
+Why is the screensaver not locking automatically?  Should I be using a different screensaver -- e.g.: xscreensaver -- instead?</description><pubDate>Tue, 08 Oct 2013 19:53:23 +0000</pubDate><guid>https://faq.i3wm.org/question/2649/how-do-i-get-a-screensaver-to-work/</guid></item><item><title>Answer by Sam73 for &lt;p&gt;In my i3 config, I have&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec gnome-screensaver
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I know gnome-screensaver is running in my i3 session because I can run the lock command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gnome-screensaver-command -l
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and my screen locks.&lt;/p&gt;
+
+&lt;p&gt;However, my screensaver never locks automatically no matter how long my system sits idle.  I expect it to come on after ten minutes or so.&lt;/p&gt;
+
+&lt;p&gt;Why is the screensaver not locking automatically?  Should I be using a different screensaver -- e.g.: xscreensaver -- instead?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2649/how-do-i-get-a-screensaver-to-work/?answer=4724#post-id-4724</link><description>from [Archlinux](https://wiki.archlinux.org/index.php/i3#Screensaver_and_power_management)
+
+    exec --no-startup-id xset dpms 600
+    exec --no-startup-id xautolock -time 10 -locker i3lock
+
+</description><pubDate>Sat, 11 Oct 2014 11:37:23 +0000</pubDate><guid>https://faq.i3wm.org/question/2649/how-do-i-get-a-screensaver-to-work/?answer=4724#post-id-4724</guid></item><item><title>Comment by frdeso for &lt;p&gt;from &lt;a href="https://wiki.archlinux.org/index.php/i3#Screensaver_and_power_management"&gt;Archlinux&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id xset dpms 600
+exec --no-startup-id xautolock -time 10 -locker i3lock
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2649/how-do-i-get-a-screensaver-to-work/?comment=5906#comment-5906</link><description>To explain a bit more. The first command sets the Energy Star feature to On and sets it to wait 10 minutes of inactivity to turn off the screens. The second command launches a program that will also wait 10 minutes of inactivity before launching the screenlocker i3lock in this case.</description><pubDate>Sun, 26 Apr 2015 22:00:46 +0000</pubDate><guid>https://faq.i3wm.org/question/2649/how-do-i-get-a-screensaver-to-work/?comment=5906#comment-5906</guid></item><item><title>Answer by Michael for &lt;p&gt;In my i3 config, I have&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec gnome-screensaver
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I know gnome-screensaver is running in my i3 session because I can run the lock command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gnome-screensaver-command -l
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and my screen locks.&lt;/p&gt;
+
+&lt;p&gt;However, my screensaver never locks automatically no matter how long my system sits idle.  I expect it to come on after ten minutes or so.&lt;/p&gt;
+
+&lt;p&gt;Why is the screensaver not locking automatically?  Should I be using a different screensaver -- e.g.: xscreensaver -- instead?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2649/how-do-i-get-a-screensaver-to-work/?answer=2650#post-id-2650</link><description>I know that some people use `xautolock` and `i3lock` together successfully. Personally, I just lock my screen using `i3lock` manually (with an i3 keybinding).</description><pubDate>Tue, 08 Oct 2013 19:57:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2649/how-do-i-get-a-screensaver-to-work/?answer=2650#post-id-2650</guid></item><item><title>Comment by jsp for &lt;p&gt;I know that some people use &lt;code&gt;xautolock&lt;/code&gt; and &lt;code&gt;i3lock&lt;/code&gt; together successfully. Personally, I just lock my screen using &lt;code&gt;i3lock&lt;/code&gt; manually (with an i3 keybinding).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2649/how-do-i-get-a-screensaver-to-work/?comment=2651#comment-2651</link><description>@Michael: I already have i3lock in a keybinding.  I wanted it to be automatic.  (My work requires it for security.)  I tried using xautolock, but it hosed my X server -- I got weird white blocks on the screen and I could not unlock with my password.  But thanks for the suggestion.</description><pubDate>Tue, 08 Oct 2013 21:04:11 +0000</pubDate><guid>https://faq.i3wm.org/question/2649/how-do-i-get-a-screensaver-to-work/?comment=2651#comment-2651</guid></item></channel></rss>

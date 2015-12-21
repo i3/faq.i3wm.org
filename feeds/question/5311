@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5311/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 12 Jan 2015 07:00:18 +0000</lastBuildDate><item><title>undo creation of new container</title><link>https://faq.i3wm.org/question/5311/undo-creation-of-new-container/</link><description>I'm unable to undo the creation of a new container. 
+
+(please bear with me if I'm not using the correct lingo, i've just changed to i3 and working my way trough the documentation).
+
+The scenario is the following:
+on a blank workspace, I switch to tabbed mode(mod+w), then open firefox and two other programs. Now I focus firefox and switch to horizontal mode (mod+h) to have a terminal besides firefox.
+When I then close the terminal, firefox remains in this new container and doesn't go back to the tabbed view I had before.
+
+Here screenshot of the relevant title bars
+
+ ![Screensot](http://i.imgur.com/0UHGJex.png)</description><pubDate>Fri, 09 Jan 2015 08:37:00 +0000</pubDate><guid>https://faq.i3wm.org/question/5311/undo-creation-of-new-container/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I'm unable to undo the creation of a new container. &lt;/p&gt;
+
+&lt;p&gt;(please bear with me if I'm not using the correct lingo, i've just changed to i3 and working my way trough the documentation).&lt;/p&gt;
+
+&lt;p&gt;The scenario is the following:
+on a blank workspace, I switch to tabbed mode(mod+w), then open firefox and two other programs. Now I focus firefox and switch to horizontal mode (mod+h) to have a terminal besides firefox.
+When I then close the terminal, firefox remains in this new container and doesn't go back to the tabbed view I had before.&lt;/p&gt;
+
+&lt;p&gt;Here screenshot of the relevant title bars&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Screensot" src="http://i.imgur.com/0UHGJex.png"/&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5311/undo-creation-of-new-container/?answer=5323#post-id-5323</link><description>In the case you describe, moving the Firefox window to the left or right should be sufficient. But in the screenshot it looks like Firefox is inside a vertically split container which is in turn inside a horizontally split container (`H[V[Navigator]]`), in which case you might need to move the window right or left twice: The first move puts it outside the vertically split container the second one then outside the horizontally split one. 
+
+---
+
+Explanation
+--
+
+Generally, to move a window outside of a container, you just have to move it over the border of the container. If it was the last window in the container, the container is removed (with the exception of the workspace container, which only goes when the workspace itself goes). 
+
+If there is only one window in a container, moving it in any direction will move it out of the container (as the window touches all container borders) and thus close the container. But if you want to keep the general placement of the window, you have to move in a direction that keeps it inside the outer container in which you want to place the window (in your case the tabbed container). For tabbed and horizontally split container move it to the right or left, for stacked or vertically split container move it up or down. 
+
+
+
+In the case of multiple nested containers with only a single window it is sufficient to move the window in the direction of the outer most container (the one in which you want to put the window) until the window is directly inside the desired container. There is no need to move the window through each single layer and switch between up or down and left or right movements, as moving the window left out of multiple nested vertically split (or stacked) containers, will move it out of all of them (the same thing for moving up or down out of nested horizontally split or tabbed containers). So if the order of the two split container around were reversed - `V[H[Navigator]]` - it would be sufficient to move it to the left (or right) once as the movement out of the horizontally split container will also take it out of the vertically split container.
+
+</description><pubDate>Mon, 12 Jan 2015 07:00:18 +0000</pubDate><guid>https://faq.i3wm.org/question/5311/undo-creation-of-new-container/?answer=5323#post-id-5323</guid></item></channel></rss>

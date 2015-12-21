@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5789/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 29 Apr 2015 20:03:45 +0000</lastBuildDate><item><title>Is it possible to match a window based on the window type? (NORMAL, DIALOG etc.)</title><link>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/</link><description>Shutter is a pretty awesome screenshot tool, but it doesn't have any distinctive instance names or window roles for its various windows. This makes it impossible to write i3 criteria to match the *main* window of the application, since it has the same role, class and instance as all the other windows.
+
+The only distinctive feature I can find about the main window is that the window type is set to "normal":
+
+    _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+
+While the other windows are "dialogs".
+
+**There doesn't seem to be a way to match window types using just the criteria though, so do you guys know of a different way to match the main window?**
+
+---
+
+Currently I am doing this:
+
+    # Shutter
+    set $shutter [class="Shutter" title="^Session"]
+    set $prtscr 107
+    for_window $shutter move scratchpad
+    bindcode $prtscr $shutter scratchpad show
+
+This causes the Shutter main window to get hidden in the scratchpad when launched, and I can summon it using the PrtScr key. The problem is that the Shutter window title only starts with "Session" when there are no screenshots in the Shutter session. As soon as I actually grab a screenshot, the window title changes and this configuration stops working.
+
+I am experimenting with using marks to solve this, but I haven't had any luck yet.
+
+I have filed a bug report:
+
+  - https:// bugs.launchpad.net /shutter/+bug/1441942
+  - https:// bugs.debian.org /cgi-bin/bugreport.cgi?bug=782181</description><pubDate>Tue, 14 Apr 2015 10:34:59 +0000</pubDate><guid>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/</guid></item><item><title>Comment by Tomas Sandven for &lt;p&gt;Shutter is a pretty awesome screenshot tool, but it doesn't have any distinctive instance names or window roles for its various windows. This makes it impossible to write i3 criteria to match the &lt;em&gt;main&lt;/em&gt; window of the application, since it has the same role, class and instance as all the other windows.&lt;/p&gt;
+
+&lt;p&gt;The only distinctive feature I can find about the main window is that the window type is set to "normal":&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While the other windows are "dialogs".&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;There doesn't seem to be a way to match window types using just the criteria though, so do you guys know of a different way to match the main window?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Currently I am doing this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Shutter
+set $shutter [class="Shutter" title="^Session"]
+set $prtscr 107
+for_window $shutter move scratchpad
+bindcode $prtscr $shutter scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This causes the Shutter main window to get hidden in the scratchpad when launched, and I can summon it using the PrtScr key. The problem is that the Shutter window title only starts with "Session" when there are no screenshots in the Shutter session. As soon as I actually grab a screenshot, the window title changes and this configuration stops working.&lt;/p&gt;
+
+&lt;p&gt;I am experimenting with using marks to solve this, but I haven't had any luck yet.&lt;/p&gt;
+
+&lt;p&gt;I have filed a bug report:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;https:// &lt;a href="http://bugs.launchpad.net"&gt;bugs.launchpad.net&lt;/a&gt; /shutter/+bug/1441942&lt;/li&gt;
+&lt;li&gt;https:// &lt;a href="http://bugs.debian.org"&gt;bugs.debian.org&lt;/a&gt; /cgi-bin/bugreport.cgi?bug=782181&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5790#comment-5790</link><description>NB: I tried to all lots of useful links to relevant parts of the documentation, but apparently my karma is too low</description><pubDate>Tue, 14 Apr 2015 10:35:37 +0000</pubDate><guid>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5790#comment-5790</guid></item><item><title>Answer by Airblader for &lt;p&gt;Shutter is a pretty awesome screenshot tool, but it doesn't have any distinctive instance names or window roles for its various windows. This makes it impossible to write i3 criteria to match the &lt;em&gt;main&lt;/em&gt; window of the application, since it has the same role, class and instance as all the other windows.&lt;/p&gt;
+
+&lt;p&gt;The only distinctive feature I can find about the main window is that the window type is set to "normal":&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While the other windows are "dialogs".&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;There doesn't seem to be a way to match window types using just the criteria though, so do you guys know of a different way to match the main window?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Currently I am doing this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Shutter
+set $shutter [class="Shutter" title="^Session"]
+set $prtscr 107
+for_window $shutter move scratchpad
+bindcode $prtscr $shutter scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This causes the Shutter main window to get hidden in the scratchpad when launched, and I can summon it using the PrtScr key. The problem is that the Shutter window title only starts with "Session" when there are no screenshots in the Shutter session. As soon as I actually grab a screenshot, the window title changes and this configuration stops working.&lt;/p&gt;
+
+&lt;p&gt;I am experimenting with using marks to solve this, but I haven't had any luck yet.&lt;/p&gt;
+
+&lt;p&gt;I have filed a bug report:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;https:// &lt;a href="http://bugs.launchpad.net"&gt;bugs.launchpad.net&lt;/a&gt; /shutter/+bug/1441942&lt;/li&gt;
+&lt;li&gt;https:// &lt;a href="http://bugs.debian.org"&gt;bugs.debian.org&lt;/a&gt; /cgi-bin/bugreport.cgi?bug=782181&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?answer=5916#post-id-5916</link><description>It's worth mentioning that based off of this thread, the feature to use window types as criteria has been added to i3 now. The syntax is
+
+    for_window [window_type="normal"] …
+
+A variety of types are supported: normal, dialog, utility, toolbar, splash, menu, dropdown\_menu, popup\_menu, tooltip.
+
+The feature will be available with the first non-bugfix release after 4.10.2 which will either be 4.11 or 5.0, I would expect.</description><pubDate>Wed, 29 Apr 2015 12:22:43 +0000</pubDate><guid>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?answer=5916#post-id-5916</guid></item><item><title>Comment by Airblader for &lt;p&gt;It's worth mentioning that based off of this thread, the feature to use window types as criteria has been added to i3 now. The syntax is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [window_type="normal"] …
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A variety of types are supported: normal, dialog, utility, toolbar, splash, menu, dropdown_menu, popup_menu, tooltip.&lt;/p&gt;
+
+&lt;p&gt;The feature will be available with the first non-bugfix release after 4.10.2 which will either be 4.11 or 5.0, I would expect.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5918#comment-5918</link><description>I've updated it a little. :)</description><pubDate>Wed, 29 Apr 2015 20:03:45 +0000</pubDate><guid>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5918#comment-5918</guid></item><item><title>Comment by Adaephon for &lt;p&gt;It's worth mentioning that based off of this thread, the feature to use window types as criteria has been added to i3 now. The syntax is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [window_type="normal"] …
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A variety of types are supported: normal, dialog, utility, toolbar, splash, menu, dropdown_menu, popup_menu, tooltip.&lt;/p&gt;
+
+&lt;p&gt;The feature will be available with the first non-bugfix release after 4.10.2 which will either be 4.11 or 5.0, I would expect.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5917#comment-5917</link><description>Great news and thanks for implementing this feature. Can you please add a bit of information on how to use it? It would make for a much better answer than my ugly workaround.</description><pubDate>Wed, 29 Apr 2015 19:23:08 +0000</pubDate><guid>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5917#comment-5917</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Shutter is a pretty awesome screenshot tool, but it doesn't have any distinctive instance names or window roles for its various windows. This makes it impossible to write i3 criteria to match the &lt;em&gt;main&lt;/em&gt; window of the application, since it has the same role, class and instance as all the other windows.&lt;/p&gt;
+
+&lt;p&gt;The only distinctive feature I can find about the main window is that the window type is set to "normal":&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While the other windows are "dialogs".&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;There doesn't seem to be a way to match window types using just the criteria though, so do you guys know of a different way to match the main window?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Currently I am doing this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Shutter
+set $shutter [class="Shutter" title="^Session"]
+set $prtscr 107
+for_window $shutter move scratchpad
+bindcode $prtscr $shutter scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This causes the Shutter main window to get hidden in the scratchpad when launched, and I can summon it using the PrtScr key. The problem is that the Shutter window title only starts with "Session" when there are no screenshots in the Shutter session. As soon as I actually grab a screenshot, the window title changes and this configuration stops working.&lt;/p&gt;
+
+&lt;p&gt;I am experimenting with using marks to solve this, but I haven't had any luck yet.&lt;/p&gt;
+
+&lt;p&gt;I have filed a bug report:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;https:// &lt;a href="http://bugs.launchpad.net"&gt;bugs.launchpad.net&lt;/a&gt; /shutter/+bug/1441942&lt;/li&gt;
+&lt;li&gt;https:// &lt;a href="http://bugs.debian.org"&gt;bugs.debian.org&lt;/a&gt; /cgi-bin/bugreport.cgi?bug=782181&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?answer=5791#post-id-5791</link><description>At the moment it is not possible to have window types as criteria.
+
+----
+
+But in this case it may not be necessary. As you can (reliably?) identify the window in question at least in its initial state, you can use `mark` to give it an unique identifier and then use that instead of `class` and `title`:
+
+    set $shutter "THIS_IS_SHUTTER"
+    set $prtscr 107
+    for_window [class="Shutter" title="^Session"] mark $shutter, move scratchpad
+    bindcode $prtscr [con_mark=$shutter] scratchpad show
+
+This marks the Shutter window and than moves it to scratchpad in one go. The mark is than used with the `con_mark` criterion.
+
+Note that it is important to use `,` to separate the `mark` and `move` commands instead of `;`, else the criterion would only be applied for the first command.</description><pubDate>Tue, 14 Apr 2015 11:11:00 +0000</pubDate><guid>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?answer=5791#post-id-5791</guid></item><item><title>Comment by Adaephon for &lt;p&gt;At the moment it is not possible to have window types as criteria.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;But in this case it may not be necessary. As you can (reliably?) identify the window in question at least in its initial state, you can use &lt;code&gt;mark&lt;/code&gt; to give it an unique identifier and then use that instead of &lt;code&gt;class&lt;/code&gt; and &lt;code&gt;title&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $shutter "THIS_IS_SHUTTER"
+set $prtscr 107
+for_window [class="Shutter" title="^Session"] mark $shutter, move scratchpad
+bindcode $prtscr [con_mark=$shutter] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This marks the Shutter window and than moves it to scratchpad in one go. The mark is than used with the &lt;code&gt;con_mark&lt;/code&gt; criterion.&lt;/p&gt;
+
+&lt;p&gt;Note that it is important to use &lt;code&gt;,&lt;/code&gt; to separate the &lt;code&gt;mark&lt;/code&gt; and &lt;code&gt;move&lt;/code&gt; commands instead of &lt;code&gt;;&lt;/code&gt;, else the criterion would only be applied for the first command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5794#comment-5794</link><description>Sorry, I do not use Shutter, so I did not actually test it with that. As for plans about this feature: at least in the [i3 bug tracker](https://github.com/i3/i3/issues) I could not find anything about that. If you want you can open an feature request there.</description><pubDate>Tue, 14 Apr 2015 12:38:27 +0000</pubDate><guid>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5794#comment-5794</guid></item><item><title>Comment by Tomas Sandven for &lt;p&gt;At the moment it is not possible to have window types as criteria.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;But in this case it may not be necessary. As you can (reliably?) identify the window in question at least in its initial state, you can use &lt;code&gt;mark&lt;/code&gt; to give it an unique identifier and then use that instead of &lt;code&gt;class&lt;/code&gt; and &lt;code&gt;title&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $shutter "THIS_IS_SHUTTER"
+set $prtscr 107
+for_window [class="Shutter" title="^Session"] mark $shutter, move scratchpad
+bindcode $prtscr [con_mark=$shutter] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This marks the Shutter window and than moves it to scratchpad in one go. The mark is than used with the &lt;code&gt;con_mark&lt;/code&gt; criterion.&lt;/p&gt;
+
+&lt;p&gt;Note that it is important to use &lt;code&gt;,&lt;/code&gt; to separate the &lt;code&gt;mark&lt;/code&gt; and &lt;code&gt;move&lt;/code&gt; commands instead of &lt;code&gt;;&lt;/code&gt;, else the criterion would only be applied for the first command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5792#comment-5792</link><description>I just tried that, and it doesn't work. Or rather, it works just like the solution I'm currently using. It turns out the main window closes while I take a screenshot, then reopens with a title that doesn't match the criteria.</description><pubDate>Tue, 14 Apr 2015 11:58:57 +0000</pubDate><guid>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5792#comment-5792</guid></item><item><title>Comment by Tomas Sandven for &lt;p&gt;At the moment it is not possible to have window types as criteria.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;But in this case it may not be necessary. As you can (reliably?) identify the window in question at least in its initial state, you can use &lt;code&gt;mark&lt;/code&gt; to give it an unique identifier and then use that instead of &lt;code&gt;class&lt;/code&gt; and &lt;code&gt;title&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $shutter "THIS_IS_SHUTTER"
+set $prtscr 107
+for_window [class="Shutter" title="^Session"] mark $shutter, move scratchpad
+bindcode $prtscr [con_mark=$shutter] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This marks the Shutter window and than moves it to scratchpad in one go. The mark is than used with the &lt;code&gt;con_mark&lt;/code&gt; criterion.&lt;/p&gt;
+
+&lt;p&gt;Note that it is important to use &lt;code&gt;,&lt;/code&gt; to separate the &lt;code&gt;mark&lt;/code&gt; and &lt;code&gt;move&lt;/code&gt; commands instead of &lt;code&gt;;&lt;/code&gt;, else the criterion would only be applied for the first command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5793#comment-5793</link><description>Also, do you know if window types as a criteria is planned, or has it been rejected for some reason?</description><pubDate>Tue, 14 Apr 2015 12:07:21 +0000</pubDate><guid>https://faq.i3wm.org/question/5789/is-it-possible-to-match-a-window-based-on-the-window-type-normal-dialog-etc/?comment=5793#comment-5793</guid></item></channel></rss>

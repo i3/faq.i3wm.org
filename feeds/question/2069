@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2069/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 27 Jun 2013 06:24:49 +0000</lastBuildDate><item><title>How to force i3 to redraw/reposition screen</title><link>https://faq.i3wm.org/question/2069/how-to-force-i3-to-redrawreposition-screen/</link><description>I have some problems with newsbeuter, chrome and i3 as shown on this image:
+
+imagebin.org/262258
+
+The problem solves when I open new terminal window.
+
+I guess this causes i3 to redraw or reposition windows so garbage in mmy newsbeutter window dissapears.
+
+Is there any way to do this manually ?</description><pubDate>Sun, 23 Jun 2013 10:03:53 +0000</pubDate><guid>https://faq.i3wm.org/question/2069/how-to-force-i3-to-redrawreposition-screen/</guid></item><item><title>Answer by Michael for &lt;p&gt;I have some problems with newsbeuter, chrome and i3 as shown on this image:&lt;/p&gt;
+
+&lt;p&gt;imagebin.org/262258&lt;/p&gt;
+
+&lt;p&gt;The problem solves when I open new terminal window.&lt;/p&gt;
+
+&lt;p&gt;I guess this causes i3 to redraw or reposition windows so garbage in mmy newsbeutter window dissapears.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to do this manually ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2069/how-to-force-i3-to-redrawreposition-screen/?answer=2099#post-id-2099</link><description>You are not very specific about your problem, but I suspect it’s the message "Created new browser window in existing session", which seems to be caused by starting chrome.
+
+I suspect that when you set your default browser in newsbeuter to a simple shell script which starts chrome but disregards the standard output/standard error, the problem goes away:
+
+    #!/bin/sh
+    exec google-chrome $* &gt;/dev/null 2&gt;&amp;1
+
+Also, as a general hint: i3 never draws window contents, it only draws borders. When an application has any kind of corruption in its window, that is usually either a driver problem or caused by the application itself. In terminal apps, Ctrl-L usually triggers a refresh.</description><pubDate>Thu, 27 Jun 2013 06:24:49 +0000</pubDate><guid>https://faq.i3wm.org/question/2069/how-to-force-i3-to-redrawreposition-screen/?answer=2099#post-id-2099</guid></item></channel></rss>

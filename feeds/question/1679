@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1679/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 24 May 2013 12:12:16 +0000</lastBuildDate><item><title>Toggle i3's Listening Behavior</title><link>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/</link><description>I was wondering if it would be possible to create a keybinding that would toggle on/off all of i3's keybindings (except the same toggle key)?
+
+The reason I am asking is that I think this would be a good way to implement a sort of "video game mode" where you wouldn't need to worry about your i3 keybindings clobbering those of the application.
+
+The most ideal situation would be the ability to add a line in the config file like:
+
+`i3_listen_toggle $mod+t`
+
+Though I am not opposed to a solution using i3-msg and scripting.
+
+Thank you!</description><pubDate>Sun, 21 Apr 2013 23:02:30 +0000</pubDate><guid>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/</guid></item><item><title>Answer by vandannen for &lt;p&gt;I was wondering if it would be possible to create a keybinding that would toggle on/off all of i3's keybindings (except the same toggle key)?&lt;/p&gt;
+
+&lt;p&gt;The reason I am asking is that I think this would be a good way to implement a sort of "video game mode" where you wouldn't need to worry about your i3 keybindings clobbering those of the application.&lt;/p&gt;
+
+&lt;p&gt;The most ideal situation would be the ability to add a line in the config file like:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3_listen_toggle $mod+t&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Though I am not opposed to a solution using i3-msg and scripting.&lt;/p&gt;
+
+&lt;p&gt;Thank you!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?answer=1681#post-id-1681</link><description>You could create a binding mode for that with no keybinding defined except for switching back to default mode:
+
+    mode "pass-through" {
+        bindsym $mod+t mode "default"
+    }
+
+    bindsym $mod+t mode "pass-through"</description><pubDate>Mon, 22 Apr 2013 09:17:35 +0000</pubDate><guid>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?answer=1681#post-id-1681</guid></item><item><title>Comment by vandannen for &lt;p&gt;You could create a binding mode for that with no keybinding defined except for switching back to default mode:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "pass-through" {
+    bindsym $mod+t mode "default"
+}
+
+bindsym $mod+t mode "pass-through"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?comment=1885#comment-1885</link><description>Currently there is no ipc event to react to when a window is focused, so I do not know a nice solution for this.</description><pubDate>Fri, 24 May 2013 12:12:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?comment=1885#comment-1885</guid></item><item><title>Comment by Matt for &lt;p&gt;You could create a binding mode for that with no keybinding defined except for switching back to default mode:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "pass-through" {
+    bindsym $mod+t mode "default"
+}
+
+bindsym $mod+t mode "pass-through"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?comment=1683#comment-1683</link><description>This works perfectly! Thanks so much!</description><pubDate>Mon, 22 Apr 2013 11:05:43 +0000</pubDate><guid>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?comment=1683#comment-1683</guid></item><item><title>Comment by teto for &lt;p&gt;You could create a binding mode for that with no keybinding defined except for switching back to default mode:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "pass-through" {
+    bindsym $mod+t mode "default"
+}
+
+bindsym $mod+t mode "pass-through"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?comment=1813#comment-1813</link><description>I would like this mode to be triggered on specific window instances. For isntance my vim shortcuts would be the same as i3 and each time I focused a vim terminal, I would like to go in passthrough mode. Is that possible ? that is to react on focus events ?</description><pubDate>Wed, 15 May 2013 11:37:39 +0000</pubDate><guid>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?comment=1813#comment-1813</guid></item><item><title>Answer by joepd for &lt;p&gt;I was wondering if it would be possible to create a keybinding that would toggle on/off all of i3's keybindings (except the same toggle key)?&lt;/p&gt;
+
+&lt;p&gt;The reason I am asking is that I think this would be a good way to implement a sort of "video game mode" where you wouldn't need to worry about your i3 keybindings clobbering those of the application.&lt;/p&gt;
+
+&lt;p&gt;The most ideal situation would be the ability to add a line in the config file like:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3_listen_toggle $mod+t&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Though I am not opposed to a solution using i3-msg and scripting.&lt;/p&gt;
+
+&lt;p&gt;Thank you!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?answer=1680#post-id-1680</link><description>Not possible, except with ugly hacks. One ugly hack could look like this: 
+
+Make two config files, one for each situation that you desire. i3.conf would be a symlink to one of the two. Make a command that toggles where your i3.conf-symlink refers to, before reloading the config. Maybe you need to make sure in your startup file that the one with the key syms is loaded. </description><pubDate>Mon, 22 Apr 2013 05:41:01 +0000</pubDate><guid>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?answer=1680#post-id-1680</guid></item><item><title>Comment by Matt for &lt;p&gt;Not possible, except with ugly hacks. One ugly hack could look like this: &lt;/p&gt;
+
+&lt;p&gt;Make two config files, one for each situation that you desire. i3.conf would be a symlink to one of the two. Make a command that toggles where your i3.conf-symlink refers to, before reloading the config. Maybe you need to make sure in your startup file that the one with the key syms is loaded. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?comment=1682#comment-1682</link><description>I had considered something along those lines, but I was really hoping for something cleaner.</description><pubDate>Mon, 22 Apr 2013 11:05:18 +0000</pubDate><guid>https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?comment=1682#comment-1682</guid></item></channel></rss>

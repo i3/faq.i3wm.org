@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3789/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 25 May 2014 18:21:51 +0000</lastBuildDate><item><title>Dropdown menus stop working in Firefox</title><link>https://faq.i3wm.org/question/3789/dropdown-menus-stop-working-in-firefox/</link><description>Hi, I've got a problem with Firefox which only occurs after an uptime of a couple of days / weeks.  Googling for the problem did get me hits but never answers which solved the problem.
+
+The problem: at some point Firefox's dropdown menus stop working.  With these I mean the menus one gets when clicking on the menu bar ("File", "Edit", "View", etc.), the right click (context) menu in the browser window, the completion menu in the address bar and completion menus for forms.  I probably forgot some.
+
+Since the log files never logged anything sensible tt finally occurred to me to see whether i3 logged any problems, and lo and behold after enabling logging for i3 I got this in `~/.xsession-errors`:
+
+    2014-05-12 09:15:29 - main.c:xkb_got_event:153 - Handling XKB event
+    2014-05-12 09:15:29 - handlers.c:handle_client_message:639 - Unknown atom in clientmessage of type 411
+    2014-05-12 09:15:29 - handlers.c:handle_unmap_notify_event:454 - UnmapNotify for 0x014284c6 (received from 0x00000292), serial 64847
+    2014-05-12 09:15:29 - handlers.c:handle_unmap_notify_event:454 - UnmapNotify for 0x014284c6 (received from 0x00000292), serial 64847
+
+I have no idea what this means, but this is the same message I get when trying to activate any of the abovementioned menus.
+
+This is with:
+
+    % i3 --version
+    i3 version 4.7.2 (2014-01-23, branch "tags/4.7.2") © 2009-2013 Michael Stapelberg and contributors
+
+On Debian Wheezy, but I get i3 from testing / unstable.</description><pubDate>Mon, 12 May 2014 07:26:49 +0000</pubDate><guid>https://faq.i3wm.org/question/3789/dropdown-menus-stop-working-in-firefox/</guid></item><item><title>Comment by aerique for &lt;p&gt;Hi, I've got a problem with Firefox which only occurs after an uptime of a couple of days / weeks.  Googling for the problem did get me hits but never answers which solved the problem.&lt;/p&gt;
+
+&lt;p&gt;The problem: at some point Firefox's dropdown menus stop working.  With these I mean the menus one gets when clicking on the menu bar ("File", "Edit", "View", etc.), the right click (context) menu in the browser window, the completion menu in the address bar and completion menus for forms.  I probably forgot some.&lt;/p&gt;
+
+&lt;p&gt;Since the log files never logged anything sensible tt finally occurred to me to see whether i3 logged any problems, and lo and behold after enabling logging for i3 I got this in &lt;code&gt;~/.xsession-errors&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2014-05-12 09:15:29 - main.c:xkb_got_event:153 - Handling XKB event
+2014-05-12 09:15:29 - handlers.c:handle_client_message:639 - Unknown atom in clientmessage of type 411
+2014-05-12 09:15:29 - handlers.c:handle_unmap_notify_event:454 - UnmapNotify for 0x014284c6 (received from 0x00000292), serial 64847
+2014-05-12 09:15:29 - handlers.c:handle_unmap_notify_event:454 - UnmapNotify for 0x014284c6 (received from 0x00000292), serial 64847
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have no idea what this means, but this is the same message I get when trying to activate any of the abovementioned menus.&lt;/p&gt;
+
+&lt;p&gt;This is with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% i3 --version
+i3 version 4.7.2 (2014-01-23, branch "tags/4.7.2") © 2009-2013 Michael Stapelberg and contributors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On Debian Wheezy, but I get i3 from testing / unstable.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3789/dropdown-menus-stop-working-in-firefox/?comment=3802#comment-3802</link><description>    % xlsatoms | grep 411
+    411	_NET_WM_STATE_HIDDEN</description><pubDate>Tue, 13 May 2014 06:57:01 +0000</pubDate><guid>https://faq.i3wm.org/question/3789/dropdown-menus-stop-working-in-firefox/?comment=3802#comment-3802</guid></item><item><title>Comment by Michael for &lt;p&gt;Hi, I've got a problem with Firefox which only occurs after an uptime of a couple of days / weeks.  Googling for the problem did get me hits but never answers which solved the problem.&lt;/p&gt;
+
+&lt;p&gt;The problem: at some point Firefox's dropdown menus stop working.  With these I mean the menus one gets when clicking on the menu bar ("File", "Edit", "View", etc.), the right click (context) menu in the browser window, the completion menu in the address bar and completion menus for forms.  I probably forgot some.&lt;/p&gt;
+
+&lt;p&gt;Since the log files never logged anything sensible tt finally occurred to me to see whether i3 logged any problems, and lo and behold after enabling logging for i3 I got this in &lt;code&gt;~/.xsession-errors&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2014-05-12 09:15:29 - main.c:xkb_got_event:153 - Handling XKB event
+2014-05-12 09:15:29 - handlers.c:handle_client_message:639 - Unknown atom in clientmessage of type 411
+2014-05-12 09:15:29 - handlers.c:handle_unmap_notify_event:454 - UnmapNotify for 0x014284c6 (received from 0x00000292), serial 64847
+2014-05-12 09:15:29 - handlers.c:handle_unmap_notify_event:454 - UnmapNotify for 0x014284c6 (received from 0x00000292), serial 64847
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have no idea what this means, but this is the same message I get when trying to activate any of the abovementioned menus.&lt;/p&gt;
+
+&lt;p&gt;This is with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% i3 --version
+i3 version 4.7.2 (2014-01-23, branch "tags/4.7.2") © 2009-2013 Michael Stapelberg and contributors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On Debian Wheezy, but I get i3 from testing / unstable.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3789/dropdown-menus-stop-working-in-firefox/?comment=3880#comment-3880</link><description>I think the message that you are seeing is unrelated.</description><pubDate>Sun, 25 May 2014 18:21:51 +0000</pubDate><guid>https://faq.i3wm.org/question/3789/dropdown-menus-stop-working-in-firefox/?comment=3880#comment-3880</guid></item><item><title>Comment by TonyC for &lt;p&gt;Hi, I've got a problem with Firefox which only occurs after an uptime of a couple of days / weeks.  Googling for the problem did get me hits but never answers which solved the problem.&lt;/p&gt;
+
+&lt;p&gt;The problem: at some point Firefox's dropdown menus stop working.  With these I mean the menus one gets when clicking on the menu bar ("File", "Edit", "View", etc.), the right click (context) menu in the browser window, the completion menu in the address bar and completion menus for forms.  I probably forgot some.&lt;/p&gt;
+
+&lt;p&gt;Since the log files never logged anything sensible tt finally occurred to me to see whether i3 logged any problems, and lo and behold after enabling logging for i3 I got this in &lt;code&gt;~/.xsession-errors&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2014-05-12 09:15:29 - main.c:xkb_got_event:153 - Handling XKB event
+2014-05-12 09:15:29 - handlers.c:handle_client_message:639 - Unknown atom in clientmessage of type 411
+2014-05-12 09:15:29 - handlers.c:handle_unmap_notify_event:454 - UnmapNotify for 0x014284c6 (received from 0x00000292), serial 64847
+2014-05-12 09:15:29 - handlers.c:handle_unmap_notify_event:454 - UnmapNotify for 0x014284c6 (received from 0x00000292), serial 64847
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have no idea what this means, but this is the same message I get when trying to activate any of the abovementioned menus.&lt;/p&gt;
+
+&lt;p&gt;This is with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% i3 --version
+i3 version 4.7.2 (2014-01-23, branch "tags/4.7.2") © 2009-2013 Michael Stapelberg and contributors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On Debian Wheezy, but I get i3 from testing / unstable.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3789/dropdown-menus-stop-working-in-firefox/?comment=3800#comment-3800</link><description>Try `xlsatoms | grep 411` to see what the name of the client message is.</description><pubDate>Tue, 13 May 2014 04:04:35 +0000</pubDate><guid>https://faq.i3wm.org/question/3789/dropdown-menus-stop-working-in-firefox/?comment=3800#comment-3800</guid></item></channel></rss>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5606/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 16 Mar 2015 09:38:31 +0000</lastBuildDate><item><title>Using setxkbmap to disabple CapsLock</title><link>https://faq.i3wm.org/question/5606/using-setxkbmap-to-disabple-capslock/</link><description>I am using this line to disable normal CapsLock behavior.
+It just refuses to work without sleep command in front of it.
+
+    exec_always --no-startup-id "sleep 1; setxkbmap -option caps:none"
+
+i tried putting this line in /etc/X11/xinit/xinitrc with same results, my system ignoring it while loading.
+
+Maybe there is proper way to do this?
+
+EDIT: @Adaephon right, it is problem with `gnome-settings-daemon`, i can not close this question</description><pubDate>Fri, 13 Mar 2015 15:26:54 +0000</pubDate><guid>https://faq.i3wm.org/question/5606/using-setxkbmap-to-disabple-capslock/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I am using this line to disable normal CapsLock behavior.
+It just refuses to work without sleep command in front of it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec_always --no-startup-id "sleep 1; setxkbmap -option caps:none"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;i tried putting this line in /etc/X11/xinit/xinitrc with same results, my system ignoring it while loading.&lt;/p&gt;
+
+&lt;p&gt;Maybe there is proper way to do this?&lt;/p&gt;
+
+&lt;p&gt;EDIT: &lt;a href="/users/730/adaephon/"&gt;@Adaephon&lt;/a&gt; right, it is problem with &lt;code&gt;gnome-settings-daemon&lt;/code&gt;, i can not close this question&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5606/using-setxkbmap-to-disabple-capslock/?comment=5619#comment-5619</link><description>It should be possible to disable CapsLock from within the Gnome settings. It *could* be possible to disencourage `gnome-settings-daemon` from changing anything keyboard related. Maybe disabling CapsLock directly in the Xorg configuration would work.</description><pubDate>Mon, 16 Mar 2015 09:38:31 +0000</pubDate><guid>https://faq.i3wm.org/question/5606/using-setxkbmap-to-disabple-capslock/?comment=5619#comment-5619</guid></item><item><title>Comment by GCoda for &lt;p&gt;I am using this line to disable normal CapsLock behavior.
+It just refuses to work without sleep command in front of it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec_always --no-startup-id "sleep 1; setxkbmap -option caps:none"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;i tried putting this line in /etc/X11/xinit/xinitrc with same results, my system ignoring it while loading.&lt;/p&gt;
+
+&lt;p&gt;Maybe there is proper way to do this?&lt;/p&gt;
+
+&lt;p&gt;EDIT: &lt;a href="/users/730/adaephon/"&gt;@Adaephon&lt;/a&gt; right, it is problem with &lt;code&gt;gnome-settings-daemon&lt;/code&gt;, i can not close this question&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5606/using-setxkbmap-to-disabple-capslock/?comment=5615#comment-5615</link><description>@Adaephon thanks, it is indeed `gnome-settings-daemon`, used it for screenshots only. You got some serious psychic powers.</description><pubDate>Sat, 14 Mar 2015 19:32:05 +0000</pubDate><guid>https://faq.i3wm.org/question/5606/using-setxkbmap-to-disabple-capslock/?comment=5615#comment-5615</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I am using this line to disable normal CapsLock behavior.
+It just refuses to work without sleep command in front of it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec_always --no-startup-id "sleep 1; setxkbmap -option caps:none"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;i tried putting this line in /etc/X11/xinit/xinitrc with same results, my system ignoring it while loading.&lt;/p&gt;
+
+&lt;p&gt;Maybe there is proper way to do this?&lt;/p&gt;
+
+&lt;p&gt;EDIT: &lt;a href="/users/730/adaephon/"&gt;@Adaephon&lt;/a&gt; right, it is problem with &lt;code&gt;gnome-settings-daemon&lt;/code&gt;, i can not close this question&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5606/using-setxkbmap-to-disabple-capslock/?comment=5607#comment-5607</link><description>Is it possible that the keyboard is modified by another automatically started command? Another call to `setxkbmap`, `gnome-settings-daemon` or something similar?</description><pubDate>Fri, 13 Mar 2015 16:23:02 +0000</pubDate><guid>https://faq.i3wm.org/question/5606/using-setxkbmap-to-disabple-capslock/?comment=5607#comment-5607</guid></item></channel></rss>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2257/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 29 Jul 2013 09:19:16 +0000</lastBuildDate><item><title>output name handling</title><link>https://faq.i3wm.org/question/2257/output-name-handling/</link><description>Hi,
+
+now I've set up my i3 and everthing works great (thanks to Michael and the team btw.) I realized, my laptop changed addresses this morning:
+
+    $ xrandr
+    Screen 0: minimum 320 x 200, current 3286 x 1353, maximum 32767 x 32767
+    LVDS2 connected 1366x768+0+585 (normal left inverted right x axis y axis) 344mm x 194mm
+       1366x768       60.1*+
+       1360x768       59.8     60.0  
+       1024x768       60.0  
+       800x600        60.3     56.2  
+       640x480        59.9  
+    VGA2 connected 1920x1200+1366+0 (normal left inverted right x axis y axis) 518mm x 324mm
+       1920x1200      60.0*+
+       1600x1200      60.0  
+       1680x1050      60.0  
+       1600x1000      60.0  
+       1280x1024      75.0  
+       1440x900       59.9  
+       1280x960       60.0  
+       1152x864       75.0  
+       1280x720       60.0  
+       1024x768       75.1     60.0  
+       832x624        74.6  
+       800x600        75.0     60.3  
+       640x480        75.0     60.0  
+       720x400        70.1  
+    HDMI2 disconnected (normal left inverted right x axis y axis)
+    DP1 disconnected (normal left inverted right x axis y axis)
+    LVDS-1 disconnected (normal left inverted right x axis y axis)
+    VGA-1 disconnected (normal left inverted right x axis y axis)
+    HDMI-1 disconnected (normal left inverted right x axis y axis)
+
+LVDS1 is now LVDS2 and VGA1 is now VGA2. I have no idea why this happened, but all my rules for i3bar and xrandr handling are now wrong.
+
+In case of i3bar I just added another output line. For xrandr I wrote a little script handling this case. I wonder if others observed this situation. Maybe it is NVidia Optimus related, I don't know.</description><pubDate>Mon, 22 Jul 2013 03:53:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2257/output-name-handling/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;now I've set up my i3 and everthing works great (thanks to Michael and the team btw.) I realized, my laptop changed addresses this morning:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xrandr
+Screen 0: minimum 320 x 200, current 3286 x 1353, maximum 32767 x 32767
+LVDS2 connected 1366x768+0+585 (normal left inverted right x axis y axis) 344mm x 194mm
+   1366x768       60.1*+
+   1360x768       59.8     60.0  
+   1024x768       60.0  
+   800x600        60.3     56.2  
+   640x480        59.9  
+VGA2 connected 1920x1200+1366+0 (normal left inverted right x axis y axis) 518mm x 324mm
+   1920x1200      60.0*+
+   1600x1200      60.0  
+   1680x1050      60.0  
+   1600x1000      60.0  
+   1280x1024      75.0  
+   1440x900       59.9  
+   1280x960       60.0  
+   1152x864       75.0  
+   1280x720       60.0  
+   1024x768       75.1     60.0  
+   832x624        74.6  
+   800x600        75.0     60.3  
+   640x480        75.0     60.0  
+   720x400        70.1  
+HDMI2 disconnected (normal left inverted right x axis y axis)
+DP1 disconnected (normal left inverted right x axis y axis)
+LVDS-1 disconnected (normal left inverted right x axis y axis)
+VGA-1 disconnected (normal left inverted right x axis y axis)
+HDMI-1 disconnected (normal left inverted right x axis y axis)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;LVDS1 is now LVDS2 and VGA1 is now VGA2. I have no idea why this happened, but all my rules for i3bar and xrandr handling are now wrong.&lt;/p&gt;
+
+&lt;p&gt;In case of i3bar I just added another output line. For xrandr I wrote a little script handling this case. I wonder if others observed this situation. Maybe it is NVidia Optimus related, I don't know.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2257/output-name-handling/?answer=2282#post-id-2282</link><description>This seems to be related to the order in which the driver modules are loaded on your computer. Given that you did not actually ask a question, this answer is somewhat unhelpful, but under these circumstances I cannot do better :).</description><pubDate>Sat, 27 Jul 2013 15:34:24 +0000</pubDate><guid>https://faq.i3wm.org/question/2257/output-name-handling/?answer=2282#post-id-2282</guid></item><item><title>Comment by grml for &lt;p&gt;This seems to be related to the order in which the driver modules are loaded on your computer. Given that you did not actually ask a question, this answer is somewhat unhelpful, but under these circumstances I cannot do better :).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2257/output-name-handling/?comment=2298#comment-2298</link><description>It helps somewhat. Actually I don't care any more, I made a little script dealing with either case. I'll post it as an answer in case anybody is interested.</description><pubDate>Mon, 29 Jul 2013 09:07:42 +0000</pubDate><guid>https://faq.i3wm.org/question/2257/output-name-handling/?comment=2298#comment-2298</guid></item><item><title>Answer by grml for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;now I've set up my i3 and everthing works great (thanks to Michael and the team btw.) I realized, my laptop changed addresses this morning:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xrandr
+Screen 0: minimum 320 x 200, current 3286 x 1353, maximum 32767 x 32767
+LVDS2 connected 1366x768+0+585 (normal left inverted right x axis y axis) 344mm x 194mm
+   1366x768       60.1*+
+   1360x768       59.8     60.0  
+   1024x768       60.0  
+   800x600        60.3     56.2  
+   640x480        59.9  
+VGA2 connected 1920x1200+1366+0 (normal left inverted right x axis y axis) 518mm x 324mm
+   1920x1200      60.0*+
+   1600x1200      60.0  
+   1680x1050      60.0  
+   1600x1000      60.0  
+   1280x1024      75.0  
+   1440x900       59.9  
+   1280x960       60.0  
+   1152x864       75.0  
+   1280x720       60.0  
+   1024x768       75.1     60.0  
+   832x624        74.6  
+   800x600        75.0     60.3  
+   640x480        75.0     60.0  
+   720x400        70.1  
+HDMI2 disconnected (normal left inverted right x axis y axis)
+DP1 disconnected (normal left inverted right x axis y axis)
+LVDS-1 disconnected (normal left inverted right x axis y axis)
+VGA-1 disconnected (normal left inverted right x axis y axis)
+HDMI-1 disconnected (normal left inverted right x axis y axis)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;LVDS1 is now LVDS2 and VGA1 is now VGA2. I have no idea why this happened, but all my rules for i3bar and xrandr handling are now wrong.&lt;/p&gt;
+
+&lt;p&gt;In case of i3bar I just added another output line. For xrandr I wrote a little script handling this case. I wonder if others observed this situation. Maybe it is NVidia Optimus related, I don't know.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2257/output-name-handling/?answer=2299#post-id-2299</link><description>Here is my bash only solution in `$HOME/bin/display`:
+
+    #!/bin/bash
+
+    PROG=${0##*/}
+
+    usage() {
+        echo $"Usage: $PROG [laptop|monitor|both]"
+        echo $"Switch to the laptop, the external monitor (VGA) or both displays."
+        echo
+        echo $"If no option is given, the name of the actual output is returned."
+    }
+
+    [[ "$1" == "-h" ]] &amp;&amp; usage &amp;&amp; exit
+
+    output () {
+        i3-msg -t get_workspaces | JSON.sh -b | \
+	    awk '/focused/ {focused = $2} /output/ {if (focused == "true") print $2}' | \
+    	sed 's/"//g'
+    }
+
+    N=$(output | sed 's/[A-Z]*//g')
+    LVDS="LVDS$N"
+    VGA="VGA$N"
+
+    case "$1" in
+        laptop)
+            xrandr --output $LVDS --auto --primary --output $VGA --off
+            ;;
+        monitor)
+            xrandr --output $LVDS --off --output $VGA --auto --primary
+            ;;
+        both)
+            xrandr --output $LVDS --auto --primary --pos 0x590 --output $VGA --auto --pos 1366x0
+            ;;
+        *)
+            echo $(output)
+            ;;
+    esac
+
+I also added some nice key bindings to my config:
+
+    # display switching
+    bindsym $mod+F8 exec display laptop
+    bindsym $mod+Shift+F8 exec display monitor
+    bindsym $mod+Ctrl+F8 exec display both
+
+    # move the whole workspace to another output
+    bindsym $mod+Ctrl+Left move workspace to output left
+    bindsym $mod+Ctrl+Right move workspace to output right
+
+
+Now I just have to convince my display manager (lightdm on Ubuntu) not to mess up my displays on boot. If anybody has an idea where to start...
+
+Regards,</description><pubDate>Mon, 29 Jul 2013 09:19:16 +0000</pubDate><guid>https://faq.i3wm.org/question/2257/output-name-handling/?answer=2299#post-id-2299</guid></item></channel></rss>

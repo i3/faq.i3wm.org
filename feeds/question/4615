@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4615/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 24 Dec 2014 02:16:53 +0000</lastBuildDate><item><title>How can I move a floating window with keys?</title><link>https://faq.i3wm.org/question/4615/how-can-i-move-a-floating-window-with-keys/</link><description>I am constantly looking for ways to reduce my mouse usage. Therefore I wanted to be able to move any floating window with my keyboard.
+
+To keep the question/answer format intact I am answering my own question.</description><pubDate>Tue, 09 Sep 2014 09:02:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4615/how-can-i-move-a-floating-window-with-keys/</guid></item><item><title>Answer by cee for &lt;p&gt;I am constantly looking for ways to reduce my mouse usage. Therefore I wanted to be able to move any floating window with my keyboard.&lt;/p&gt;
+
+&lt;p&gt;To keep the question/answer format intact I am answering my own question.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4615/how-can-i-move-a-floating-window-with-keys/?answer=4616#post-id-4616</link><description>I created an additional `mode "move"` in ~/.i3/config
+
+    ##
+    # move floating windows with keys
+    bindsym $mod+m mode "move" focus floating
+    mode "move" {
+        bindsym $mod+Tab focus right
+    
+        bindsym Left  move left
+        bindsym Down  move down
+        bindsym Up    move up
+        bindsym Right move right
+    
+        bindsym h     move left
+        bindsym j     move down
+        bindsym k     move up
+        bindsym l     move right
+    
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+
+To start the "move" mode press `Alt+m,` then the first floating window gets focus.  
+To move focus press `Alt+Tab`. You can either use the `arrow keys` or `hjkl` to move the floating window which has focus.  
+All keybindings are according to my preferences but can of course be changed to your liking.</description><pubDate>Tue, 09 Sep 2014 09:07:06 +0000</pubDate><guid>https://faq.i3wm.org/question/4615/how-can-i-move-a-floating-window-with-keys/?answer=4616#post-id-4616</guid></item><item><title>Comment by xuhdev for &lt;p&gt;I created an additional &lt;code&gt;mode "move"&lt;/code&gt; in ~/.i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;##
+# move floating windows with keys
+bindsym $mod+m mode "move" focus floating
+mode "move" {
+    bindsym $mod+Tab focus right
+
+    bindsym Left  move left
+    bindsym Down  move down
+    bindsym Up    move up
+    bindsym Right move right
+
+    bindsym h     move left
+    bindsym j     move down
+    bindsym k     move up
+    bindsym l     move right
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To start the "move" mode press &lt;code&gt;Alt+m,&lt;/code&gt; then the first floating window gets focus. &lt;br/&gt;
+To move focus press &lt;code&gt;Alt+Tab&lt;/code&gt;. You can either use the &lt;code&gt;arrow keys&lt;/code&gt; or &lt;code&gt;hjkl&lt;/code&gt; to move the floating window which has focus. &lt;br/&gt;
+All keybindings are according to my preferences but can of course be changed to your liking.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4615/how-can-i-move-a-floating-window-with-keys/?comment=5259#comment-5259</link><description>The movement seems not working..</description><pubDate>Wed, 24 Dec 2014 02:16:53 +0000</pubDate><guid>https://faq.i3wm.org/question/4615/how-can-i-move-a-floating-window-with-keys/?comment=5259#comment-5259</guid></item></channel></rss>

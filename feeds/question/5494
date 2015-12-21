@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5494/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 18 Feb 2015 07:24:57 +0000</lastBuildDate><item><title>floating mode bash script</title><link>https://faq.i3wm.org/question/5494/floating-mode-bash-script/</link><description>Hi,
+Loving i3!
+I have a bash logout script located @ ~/logout.sh
+
+So far, I have been unable to start it in floating mode.
+I have tried fiddling with this setting;
+for_window [class="???"] floating enable, border normal
+
+???what do I put here?
+
+At the moment the logout script starts fine with my 'Alt+z' keybinding but in full screen mode.
+
+All ideas welcome.
+Thanks
+Neil
+</description><pubDate>Tue, 17 Feb 2015 15:57:58 +0000</pubDate><guid>https://faq.i3wm.org/question/5494/floating-mode-bash-script/</guid></item><item><title>Answer by mrneilypops for &lt;p&gt;Hi,
+Loving i3!
+I have a bash logout script located @ ~/logout.sh&lt;/p&gt;
+
+&lt;p&gt;So far, I have been unable to start it in floating mode.
+I have tried fiddling with this setting;
+for_window [class="???"] floating enable, border normal&lt;/p&gt;
+
+&lt;p&gt;???what do I put here?&lt;/p&gt;
+
+&lt;p&gt;At the moment the logout script starts fine with my 'Alt+z' keybinding but in full screen mode.&lt;/p&gt;
+
+&lt;p&gt;All ideas welcome.
+Thanks
+Neil&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5494/floating-mode-bash-script/?answer=5496#post-id-5496</link><description>COOL!
+
+That works for me!
+
+Thank you so much - i3 ROCKS!
+
+for_window [class="Yad"] floating enable border pixel 0
+
+Kind Regards,
+Neil</description><pubDate>Tue, 17 Feb 2015 21:41:24 +0000</pubDate><guid>https://faq.i3wm.org/question/5494/floating-mode-bash-script/?answer=5496#post-id-5496</guid></item><item><title>Comment by Adaephon for &lt;p&gt;COOL!&lt;/p&gt;
+
+&lt;p&gt;That works for me!&lt;/p&gt;
+
+&lt;p&gt;Thank you so much - i3 ROCKS!&lt;/p&gt;
+
+&lt;p&gt;for_window [class="Yad"] floating enable border pixel 0&lt;/p&gt;
+
+&lt;p&gt;Kind Regards,
+Neil&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5494/floating-mode-bash-script/?comment=5497#comment-5497</link><description>Welcome to the i3 FAQ. Please do not post comments or thank you notes as answers. To show your appreciation you might want to accept or upvote cee's answer. </description><pubDate>Wed, 18 Feb 2015 07:24:57 +0000</pubDate><guid>https://faq.i3wm.org/question/5494/floating-mode-bash-script/?comment=5497#comment-5497</guid></item><item><title>Answer by cee for &lt;p&gt;Hi,
+Loving i3!
+I have a bash logout script located @ ~/logout.sh&lt;/p&gt;
+
+&lt;p&gt;So far, I have been unable to start it in floating mode.
+I have tried fiddling with this setting;
+for_window [class="???"] floating enable, border normal&lt;/p&gt;
+
+&lt;p&gt;???what do I put here?&lt;/p&gt;
+
+&lt;p&gt;At the moment the logout script starts fine with my 'Alt+z' keybinding but in full screen mode.&lt;/p&gt;
+
+&lt;p&gt;All ideas welcome.
+Thanks
+Neil&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5494/floating-mode-bash-script/?answer=5495#post-id-5495</link><description>Hi Neil and welcome to the forum.
+
+What you have to put in `[class="???"]` depends on the window you want to match. Therefore you will need to have to find a unique feature that distinguishes your window from every other window.  
+You can use a little linux/unix tool called `xprop` to get the X properties of any window. It is probably already installed on your distro. Just type `xprop` in a terminal to test it.
+
+Now you will get some information on your window such as:  
+&gt; ...  
+&gt; WM_CLASS(STRING) = "urxvt", "URxvt"  
+&gt; ...  
+
+When clicked on a simple urxvt terminal for example. (Your output includes much more information and of course the class name of the window you clicked on).
+
+Now the interesting part:  
+In my example `"urxvt"` is the `instance` name and `"URxvt"` is the `class` name that you can use to match any window.  
+**Attention** the names are both case sensitive.
+
+Most of the time a class and maybe an instance should suffice to tell your window apart from any other. But sometimes you will need more sophisticated queries. The best source for all possibilities is the [i3 documentation](http://i3wm.org/docs/userguide.html#command_criteria) or some real life samples from [my config](https://github.com/andreatta/config/blob/master/i3/config).
+
+
+</description><pubDate>Tue, 17 Feb 2015 21:04:17 +0000</pubDate><guid>https://faq.i3wm.org/question/5494/floating-mode-bash-script/?answer=5495#post-id-5495</guid></item></channel></rss>

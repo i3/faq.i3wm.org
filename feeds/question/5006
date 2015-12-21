@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5006/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 24 Nov 2014 10:02:13 +0000</lastBuildDate><item><title>How to tell i3 how to decorate new_windows via i3-msg?</title><link>https://faq.i3wm.org/question/5006/how-to-tell-i3-how-to-decorate-new_windows-via-i3-msg/</link><description>In my config file I have the line:`new_window pixel`; However, I'm trying to write a script that changes the way windows are decorated. It changes all current windows with the command `i3-msg '[ class=".*" ] border normal'` but how do I tell i3 to decorate all new windows with border normal via i3-msg?
+
+Should I just write `while true ; do sleep 30 &amp;&amp; i3-msg '[ class=".*" ] border normal' ; done`?</description><pubDate>Sun, 23 Nov 2014 21:52:20 +0000</pubDate><guid>https://faq.i3wm.org/question/5006/how-to-tell-i3-how-to-decorate-new_windows-via-i3-msg/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;In my config file I have the line:&lt;code&gt;new_window pixel&lt;/code&gt;; However, I'm trying to write a script that changes the way windows are decorated. It changes all current windows with the command &lt;code&gt;i3-msg '[ class=".*" ] border normal'&lt;/code&gt; but how do I tell i3 to decorate all new windows with border normal via i3-msg?&lt;/p&gt;
+
+&lt;p&gt;Should I just write &lt;code&gt;while true ; do sleep 30 &amp;amp;&amp;amp; i3-msg '[ class=".*" ] border normal' ; done&lt;/code&gt;?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5006/how-to-tell-i3-how-to-decorate-new_windows-via-i3-msg/?answer=5008#post-id-5008</link><description>You cannot set the value for `new_window` (or `new_float`) with `i3-msg` because this is a configuration option and `i3-msg` can only run commands.
+
+In order to change the style for new windows it is best to change the settings in the configuration file and than reload the configuration. This could be done with a script. Something like this for example:
+
+    #!/bin/bash
+    
+    I3_CONFIG="$HOME/.i3/config"
+    
+    # 1st argument is used for tiled windows, defaults to "normal 2"
+    NEW_WINDOW="${1:-normal 2}"
+    # 2nd argument is used for floating windows, defaults to the same as tiled
+    NEW_FLOAT="${2:-$1}"
+
+    # set configuration for tiled windows
+    sed "s/^new_window .*/new_window $NEW_WINDOW/" -i "$I3_CONFIG"
+    # set configuration for floating windows
+    sed "s/^new_float .*/new_float $NEW_FLOAT/" -i "$I3_CONFIG"
+     
+    # reload i3
+    i3-msg reload
+
+*Note:* this will also change the style of existing windows, but only if their style was not changed with the `border` command. (Sometimes it is necessary to shift focus in order to update all borders)
+
+**Warning:** this script modifies your i3 configuration (obviously). It may be a good idea to have a backup.
+
+</description><pubDate>Mon, 24 Nov 2014 10:02:13 +0000</pubDate><guid>https://faq.i3wm.org/question/5006/how-to-tell-i3-how-to-decorate-new_windows-via-i3-msg/?answer=5008#post-id-5008</guid></item></channel></rss>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/897/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 16 Dec 2012 11:32:59 +0000</lastBuildDate><item><title>is it possible to focus a window by name / id using i3-msg?</title><link>https://faq.i3wm.org/question/897/is-it-possible-to-focus-a-window-by-name-id-using-i3-msg/</link><description>Hi,
+
+is it possible to focus a specific application window by internal id / name, using i3-msg?
+
+I've tried:
+
+    i3-msg '[id="135748312"] focus' 
+
+which gives
+
+    [{"success":true}]
+
+but the window is not focused (or at least not shown). It is a window on the same workspace, I would like to be able to switch workspaces at the same time.
+
+(I know that
+
+    i3-msg workspace 9 focus 
+
+works)
+
+
+
+
+</description><pubDate>Thu, 13 Dec 2012 16:56:12 +0000</pubDate><guid>https://faq.i3wm.org/question/897/is-it-possible-to-focus-a-window-by-name-id-using-i3-msg/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;is it possible to focus a specific application window by internal id / name, using i3-msg?&lt;/p&gt;
+
+&lt;p&gt;I've tried:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg '[id="135748312"] focus'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which gives&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[{"success":true}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but the window is not focused (or at least not shown). It is a window on the same workspace, I would like to be able to switch workspaces at the same time.&lt;/p&gt;
+
+&lt;p&gt;(I know that&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg workspace 9 focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;works)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/897/is-it-possible-to-focus-a-window-by-name-id-using-i3-msg/?answer=907#post-id-907</link><description>As http://i3wm.org/docs/userguide.html#command_criteria explains:
+
+**id**
+Compares the X11 window ID, which you can get via xwininfo for example.
+
+**con_id**
+Compares the i3-internal container ID, which you can get via the IPC interface. Handy for scripting.
+
+So, just use `i3-msg '[con_id="135748312"] focus'`</description><pubDate>Fri, 14 Dec 2012 20:54:03 +0000</pubDate><guid>https://faq.i3wm.org/question/897/is-it-possible-to-focus-a-window-by-name-id-using-i3-msg/?answer=907#post-id-907</guid></item><item><title>Comment by ingo for &lt;p&gt;As &lt;a href="http://i3wm.org/docs/userguide.html#command_criteria"&gt;http://i3wm.org/docs/userguide.html#c...&lt;/a&gt; explains:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;id&lt;/strong&gt;
+Compares the X11 window ID, which you can get via xwininfo for example.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;con_id&lt;/strong&gt;
+Compares the i3-internal container ID, which you can get via the IPC interface. Handy for scripting.&lt;/p&gt;
+
+&lt;p&gt;So, just use &lt;code&gt;i3-msg '[con_id="135748312"] focus'&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/897/is-it-possible-to-focus-a-window-by-name-id-using-i3-msg/?comment=914#comment-914</link><description>Thanks, that's it :-)</description><pubDate>Sun, 16 Dec 2012 11:32:59 +0000</pubDate><guid>https://faq.i3wm.org/question/897/is-it-possible-to-focus-a-window-by-name-id-using-i3-msg/?comment=914#comment-914</guid></item></channel></rss>

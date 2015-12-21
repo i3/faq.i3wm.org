@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2873/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 02 Dec 2013 13:34:18 +0000</lastBuildDate><item><title>Refresh terminal after resize or destruction of other window</title><link>https://faq.i3wm.org/question/2873/refresh-terminal-after-resize-or-destruction-of-other-window/</link><description>Hi !
+
+I start one terminal, then I do stuff in it.
+After that I start another terminal on the same workspace, I do stuff in it.
+
+When I destroy the second terminal started, it doesn't show me back the "hidden" content of the first terminal.
+
+
+Is there a way (even manual) to refresh the content of it ?
+
+
+Debian wheezy, i3 from backports (i3 version 4.6 (2013-08-07, branch "tags/4.6")) and no other WM.
+
+
+Cheers !</description><pubDate>Mon, 11 Nov 2013 18:52:06 +0000</pubDate><guid>https://faq.i3wm.org/question/2873/refresh-terminal-after-resize-or-destruction-of-other-window/</guid></item><item><title>Comment by flylo for &lt;p&gt;Hi !&lt;/p&gt;
+
+&lt;p&gt;I start one terminal, then I do stuff in it.
+After that I start another terminal on the same workspace, I do stuff in it.&lt;/p&gt;
+
+&lt;p&gt;When I destroy the second terminal started, it doesn't show me back the "hidden" content of the first terminal.&lt;/p&gt;
+
+&lt;p&gt;Is there a way (even manual) to refresh the content of it ?&lt;/p&gt;
+
+&lt;p&gt;Debian wheezy, i3 from backports (i3 version 4.6 (2013-08-07, branch "tags/4.6")) and no other WM.&lt;/p&gt;
+
+&lt;p&gt;Cheers !&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2873/refresh-terminal-after-resize-or-destruction-of-other-window/?comment=2874#comment-2874</link><description>What terminal emulator are you using? How is the first terminal being "hidden"? What layout are you using with the two terminals (tabbed,tiled etc)?</description><pubDate>Mon, 11 Nov 2013 19:23:13 +0000</pubDate><guid>https://faq.i3wm.org/question/2873/refresh-terminal-after-resize-or-destruction-of-other-window/?comment=2874#comment-2874</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi !&lt;/p&gt;
+
+&lt;p&gt;I start one terminal, then I do stuff in it.
+After that I start another terminal on the same workspace, I do stuff in it.&lt;/p&gt;
+
+&lt;p&gt;When I destroy the second terminal started, it doesn't show me back the "hidden" content of the first terminal.&lt;/p&gt;
+
+&lt;p&gt;Is there a way (even manual) to refresh the content of it ?&lt;/p&gt;
+
+&lt;p&gt;Debian wheezy, i3 from backports (i3 version 4.6 (2013-08-07, branch "tags/4.6")) and no other WM.&lt;/p&gt;
+
+&lt;p&gt;Cheers !&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2873/refresh-terminal-after-resize-or-destruction-of-other-window/?answer=2877#post-id-2877</link><description>Some terminal emultors (xterm for example) do not rewrap already printed text if the window is resized. Instead everything outside of the new window is just cut off. This text is then lost and not just hidden.
+
+    +--------------+    +-------+    +--------------+
+    |$ hello       |    |$ hello|    |$ hello       |
+    |Hello World!  |    |Hello W|    |Hello W       |
+    |$             | -&gt; |$      | -&gt; |$             |
+    +--------------+    +-------+    +--------------+
+
+If you want to retain the text you will have to use another terminal emulator. ROXTerm for example really just hides the text and you can read it once more after the window has again the original size (I'm not sure if there is a way to scroll horizontally while the window is smaller). rxvt-unicode wraps each line that is to long, so that you can read everything even after a resize.
+
+ROXTerm:
+
+    +--------------+    +-------+    +--------------+
+    |$ hello       |    |$ hello|    |$ hello       |
+    |Hello World!  |    |Hello W|    |Hello World!  |
+    |$             | -&gt; |$      | -&gt; |$             |
+    +--------------+    +-------+    +--------------+
+
+rxvt-unicode:
+
+    +--------------+    +-------+    +--------------+
+    |$ hello       |    |Hello W|    |$ hello       |
+    |Hello World!  |    |orld!  |    |Hello World!  |
+    |$             | -&gt; |$      | -&gt; |$             |
+    +--------------+    +-------+    +--------------+
+
+[See here on how to change the default terminal emulator](https://faq.i3wm.org/question/2857/how-do-i-change-the-default-terminal-emulator/?answer=2858#post-id-2858)</description><pubDate>Mon, 11 Nov 2013 19:54:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2873/refresh-terminal-after-resize-or-destruction-of-other-window/?answer=2877#post-id-2877</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Some terminal emultors (xterm for example) do not rewrap already printed text if the window is resized. Instead everything outside of the new window is just cut off. This text is then lost and not just hidden.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+--------------+    +-------+    +--------------+
+|$ hello       |    |$ hello|    |$ hello       |
+|Hello World!  |    |Hello W|    |Hello W       |
+|$             | -&amp;gt; |$      | -&amp;gt; |$             |
++--------------+    +-------+    +--------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you want to retain the text you will have to use another terminal emulator. ROXTerm for example really just hides the text and you can read it once more after the window has again the original size (I'm not sure if there is a way to scroll horizontally while the window is smaller). rxvt-unicode wraps each line that is to long, so that you can read everything even after a resize.&lt;/p&gt;
+
+&lt;p&gt;ROXTerm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+--------------+    +-------+    +--------------+
+|$ hello       |    |$ hello|    |$ hello       |
+|Hello World!  |    |Hello W|    |Hello World!  |
+|$             | -&amp;gt; |$      | -&amp;gt; |$             |
++--------------+    +-------+    +--------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;rxvt-unicode:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+--------------+    +-------+    +--------------+
+|$ hello       |    |Hello W|    |$ hello       |
+|Hello World!  |    |orld!  |    |Hello World!  |
+|$             | -&amp;gt; |$      | -&amp;gt; |$             |
++--------------+    +-------+    +--------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://faq.i3wm.org/question/2857/how-do-i-change-the-default-terminal-emulator/?answer=2858#post-id-2858"&gt;See here on how to change the default terminal emulator&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2873/refresh-terminal-after-resize-or-destruction-of-other-window/?comment=3006#comment-3006</link><description>For white on black without scrollbar you can start urxvt like this `urxvt +sb -bg black -fg white`. These settings can also be made permanent in `~/.Xdefaults` (on some distributions `~/.Xressources`). For some pointers [have a look at this](https://wiki.archlinux.org/index.php/rxvt-unicode).</description><pubDate>Mon, 02 Dec 2013 13:34:18 +0000</pubDate><guid>https://faq.i3wm.org/question/2873/refresh-terminal-after-resize-or-destruction-of-other-window/?comment=3006#comment-3006</guid></item><item><title>Comment by gagou9 for &lt;p&gt;Some terminal emultors (xterm for example) do not rewrap already printed text if the window is resized. Instead everything outside of the new window is just cut off. This text is then lost and not just hidden.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+--------------+    +-------+    +--------------+
+|$ hello       |    |$ hello|    |$ hello       |
+|Hello World!  |    |Hello W|    |Hello W       |
+|$             | -&amp;gt; |$      | -&amp;gt; |$             |
++--------------+    +-------+    +--------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you want to retain the text you will have to use another terminal emulator. ROXTerm for example really just hides the text and you can read it once more after the window has again the original size (I'm not sure if there is a way to scroll horizontally while the window is smaller). rxvt-unicode wraps each line that is to long, so that you can read everything even after a resize.&lt;/p&gt;
+
+&lt;p&gt;ROXTerm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+--------------+    +-------+    +--------------+
+|$ hello       |    |$ hello|    |$ hello       |
+|Hello World!  |    |Hello W|    |Hello World!  |
+|$             | -&amp;gt; |$      | -&amp;gt; |$             |
++--------------+    +-------+    +--------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;rxvt-unicode:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+--------------+    +-------+    +--------------+
+|$ hello       |    |Hello W|    |$ hello       |
+|Hello World!  |    |orld!  |    |Hello World!  |
+|$             | -&amp;gt; |$      | -&amp;gt; |$             |
++--------------+    +-------+    +--------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://faq.i3wm.org/question/2857/how-do-i-change-the-default-terminal-emulator/?answer=2858#post-id-2858"&gt;See here on how to change the default terminal emulator&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2873/refresh-terminal-after-resize-or-destruction-of-other-window/?comment=3004#comment-3004</link><description>Hi !
+Thanks for these tips. Tried both. rxvt-unicode looks great if i find a way to disable the scrollbar and change de default colors. (I like white on black terminals)
+
+Cheers!</description><pubDate>Sun, 01 Dec 2013 21:04:59 +0000</pubDate><guid>https://faq.i3wm.org/question/2873/refresh-terminal-after-resize-or-destruction-of-other-window/?comment=3004#comment-3004</guid></item></channel></rss>

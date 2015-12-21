@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6369/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 31 Jul 2015 13:13:57 +0000</lastBuildDate><item><title>Creating a custom i3status</title><link>https://faq.i3wm.org/question/6369/creating-a-custom-i3status/</link><description> Right, now I've read trough the man page of i3status and I'm a little confused.
+
+If I wanted to add a few things, not implemented by i3status (Current up/download speed, ram usage, custom openvpn status) I need to use some other tool?
+
+I hoped to just have scripts which produce the desired stdout, which again is appended to i3status.
+
+I've come across a nice configuration, which uses conky to display the custom bar, but then I'd have the problem that (I assume) I would be missing the workspaces on the left and the tray icons on the right.
+And I still haven't fully understood the functionality of the my_i3status.sh mentioned in the man pages.
+
+Let's say I have scripts producing a minimal stdout, how can I append these to the i3status?
+
+edit: I'd also like to know how I may use a custom font (e.g awesome)</description><pubDate>Fri, 31 Jul 2015 08:16:35 +0000</pubDate><guid>https://faq.i3wm.org/question/6369/creating-a-custom-i3status/</guid></item><item><title>Answer by Airblader for &lt;p&gt;Right, now I've read trough the man page of i3status and I'm a little confused.&lt;/p&gt;
+
+&lt;p&gt;If I wanted to add a few things, not implemented by i3status (Current up/download speed, ram usage, custom openvpn status) I need to use some other tool?&lt;/p&gt;
+
+&lt;p&gt;I hoped to just have scripts which produce the desired stdout, which again is appended to i3status.&lt;/p&gt;
+
+&lt;p&gt;I've come across a nice configuration, which uses conky to display the custom bar, but then I'd have the problem that (I assume) I would be missing the workspaces on the left and the tray icons on the right.
+And I still haven't fully understood the functionality of the my_i3status.sh mentioned in the man pages.&lt;/p&gt;
+
+&lt;p&gt;Let's say I have scripts producing a minimal stdout, how can I append these to the i3status?&lt;/p&gt;
+
+&lt;p&gt;edit: I'd also like to know how I may use a custom font (e.g awesome)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6369/creating-a-custom-i3status/?answer=6370#post-id-6370</link><description> This is a common misunderstanding. There are two tools involved:
+
+* i3bar is the bar that comes with i3. It's responsible for displaying workspace buttons, the system tray and a status line. How the status line data is fed to it can be configured.
+* i3status is a tool that simply spits out system information in a few different formats. Its output can be fed to i3bar.
+
+So what you want to do is keep using i3bar, but replace i3status. For example, you could use i3blocks which allows you to define the individual blocks based on scripts. You'll still have workspace buttons and a system tray.</description><pubDate>Fri, 31 Jul 2015 10:49:49 +0000</pubDate><guid>https://faq.i3wm.org/question/6369/creating-a-custom-i3status/?answer=6370#post-id-6370</guid></item><item><title>Comment by Airblader for &lt;p&gt;This is a common misunderstanding. There are two tools involved:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;i3bar is the bar that comes with i3. It's responsible for displaying workspace buttons, the system tray and a status line. How the status line data is fed to it can be configured.&lt;/li&gt;
+&lt;li&gt;i3status is a tool that simply spits out system information in a few different formats. Its output can be fed to i3bar.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So what you want to do is keep using i3bar, but replace i3status. For example, you could use i3blocks which allows you to define the individual blocks based on scripts. You'll still have workspace buttons and a system tray.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6369/creating-a-custom-i3status/?comment=6372#comment-6372</link><description>i3blocks comes with a bunch of ready-to-go blocklets and has a good wiki on Github. I'd just look at that. :)</description><pubDate>Fri, 31 Jul 2015 13:13:57 +0000</pubDate><guid>https://faq.i3wm.org/question/6369/creating-a-custom-i3status/?comment=6372#comment-6372</guid></item><item><title>Comment by a_flamethrowing_duck for &lt;p&gt;This is a common misunderstanding. There are two tools involved:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;i3bar is the bar that comes with i3. It's responsible for displaying workspace buttons, the system tray and a status line. How the status line data is fed to it can be configured.&lt;/li&gt;
+&lt;li&gt;i3status is a tool that simply spits out system information in a few different formats. Its output can be fed to i3bar.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So what you want to do is keep using i3bar, but replace i3status. For example, you could use i3blocks which allows you to define the individual blocks based on scripts. You'll still have workspace buttons and a system tray.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6369/creating-a-custom-i3status/?comment=6371#comment-6371</link><description>thank you very much! Can you recommend a nice i3blocks guide and possibly scripts to imitate the classic i3status output?</description><pubDate>Fri, 31 Jul 2015 12:47:31 +0000</pubDate><guid>https://faq.i3wm.org/question/6369/creating-a-custom-i3status/?comment=6371#comment-6371</guid></item></channel></rss>

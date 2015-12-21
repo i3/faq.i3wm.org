@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4896/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 20 Nov 2014 23:56:25 +0000</lastBuildDate><item><title>Can I bind keys conditionally, based on the container layout?</title><link>https://faq.i3wm.org/question/4896/can-i-bind-keys-conditionally-based-on-the-container-layout/</link><description>I'd like to bind Super+J and Super+K to cycling through tabs in a tabbed container, but maintain the function of Super+J and Super+K for focusing containers that aren't tabbed. So basically it's something like this (pseudo code): 
+
+    if the layout of the currently focused container is tabbed: 
+      bind Super+J to focus right
+      bind Super+K to focus left
+    otherwise: 
+      bind Super+J to focus down
+      bind Super+K to focus up
+
+Is there a way to do this? Basically I'd like to have the bindings that worked for stacked layouts, but maintain the appearance of tabbed layouts. </description><pubDate>Fri, 31 Oct 2014 14:50:28 +0000</pubDate><guid>https://faq.i3wm.org/question/4896/can-i-bind-keys-conditionally-based-on-the-container-layout/</guid></item><item><title>Answer by teto for &lt;p&gt;I'd like to bind Super+J and Super+K to cycling through tabs in a tabbed container, but maintain the function of Super+J and Super+K for focusing containers that aren't tabbed. So basically it's something like this (pseudo code): &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if the layout of the currently focused container is tabbed: 
+  bind Super+J to focus right
+  bind Super+K to focus left
+otherwise: 
+  bind Super+J to focus down
+  bind Super+K to focus up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is there a way to do this? Basically I'd like to have the bindings that worked for stacked layouts, but maintain the appearance of tabbed layouts. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4896/can-i-bind-keys-conditionally-based-on-the-container-layout/?answer=4985#post-id-4985</link><description>This should be possible through the IPC. A python/lua wrapper can identify the layout of the current option via IPC, then it can send the appropriate command via IPC as well.
+
+github.com/acrisci/i3ipc-glib has bindings for several languages.</description><pubDate>Thu, 20 Nov 2014 23:56:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4896/can-i-bind-keys-conditionally-based-on-the-container-layout/?answer=4985#post-id-4985</guid></item></channel></rss>

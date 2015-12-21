@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1814/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 27 May 2013 18:15:41 +0000</lastBuildDate><item><title>Open in specific window</title><link>https://faq.i3wm.org/question/1814/open-in-specific-window/</link><description>Hello,
+
+There are some websites that I like to keep running in their own windows (instead of tabs), and dedicate a workspace for them (a music workspace, a webmail workspace, etc.). Therefore, I have created simple shell scripts such as 
+
+    #!/bin/bash
+    firefox -new-window www.jazzradio.com/guitarjazz
+
+to launch them and added them to my `PATH`. On my `config` file, however, I already have
+
+    assign [class="Firefox"] 2. www
+
+which opens generic Firefox on the `2. www` workspace. How could I configure i3 to open these specific pages in the right workspaces?
+
+I though about using `i3-msg`, but I figured that even if I change to the correct workspace, when I launch the script it will recognize it as Firefox window and will apply the `assign` configured in the `config` file.</description><pubDate>Wed, 15 May 2013 14:36:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1814/open-in-specific-window/</guid></item><item><title>Comment by iomartin for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;There are some websites that I like to keep running in their own windows (instead of tabs), and dedicate a workspace for them (a music workspace, a webmail workspace, etc.). Therefore, I have created simple shell scripts such as &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+firefox -new-window www.jazzradio.com/guitarjazz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to launch them and added them to my &lt;code&gt;PATH&lt;/code&gt;. On my &lt;code&gt;config&lt;/code&gt; file, however, I already have&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Firefox"] 2. www
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which opens generic Firefox on the &lt;code&gt;2. www&lt;/code&gt; workspace. How could I configure i3 to open these specific pages in the right workspaces?&lt;/p&gt;
+
+&lt;p&gt;I though about using &lt;code&gt;i3-msg&lt;/code&gt;, but I figured that even if I change to the correct workspace, when I launch the script it will recognize it as Firefox window and will apply the &lt;code&gt;assign&lt;/code&gt; configured in the &lt;code&gt;config&lt;/code&gt; file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1822#comment-1822</link><description>I'm not sure I got what you mean. Yes, I want to spread my browser windows across workspaces, one for a radio web application, one for webmail and another for general browsing.</description><pubDate>Thu, 16 May 2013 12:47:42 +0000</pubDate><guid>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1822#comment-1822</guid></item><item><title>Comment by dosimple for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;There are some websites that I like to keep running in their own windows (instead of tabs), and dedicate a workspace for them (a music workspace, a webmail workspace, etc.). Therefore, I have created simple shell scripts such as &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+firefox -new-window www.jazzradio.com/guitarjazz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to launch them and added them to my &lt;code&gt;PATH&lt;/code&gt;. On my &lt;code&gt;config&lt;/code&gt; file, however, I already have&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Firefox"] 2. www
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which opens generic Firefox on the &lt;code&gt;2. www&lt;/code&gt; workspace. How could I configure i3 to open these specific pages in the right workspaces?&lt;/p&gt;
+
+&lt;p&gt;I though about using &lt;code&gt;i3-msg&lt;/code&gt;, but I figured that even if I change to the correct workspace, when I launch the script it will recognize it as Firefox window and will apply the &lt;code&gt;assign&lt;/code&gt; configured in the &lt;code&gt;config&lt;/code&gt; file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1823#comment-1823</link><description>sorry for the abiguity, i meant reconsidering the `assign [class="Firefox"] 2. www` line altogether, to be direct.</description><pubDate>Thu, 16 May 2013 13:08:21 +0000</pubDate><guid>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1823#comment-1823</guid></item><item><title>Comment by dosimple for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;There are some websites that I like to keep running in their own windows (instead of tabs), and dedicate a workspace for them (a music workspace, a webmail workspace, etc.). Therefore, I have created simple shell scripts such as &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+firefox -new-window www.jazzradio.com/guitarjazz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to launch them and added them to my &lt;code&gt;PATH&lt;/code&gt;. On my &lt;code&gt;config&lt;/code&gt; file, however, I already have&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Firefox"] 2. www
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which opens generic Firefox on the &lt;code&gt;2. www&lt;/code&gt; workspace. How could I configure i3 to open these specific pages in the right workspaces?&lt;/p&gt;
+
+&lt;p&gt;I though about using &lt;code&gt;i3-msg&lt;/code&gt;, but I figured that even if I change to the correct workspace, when I launch the script it will recognize it as Firefox window and will apply the &lt;code&gt;assign&lt;/code&gt; configured in the &lt;code&gt;config&lt;/code&gt; file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1821#comment-1821</link><description>generally, have you considered spreading your browser windows across your workspaces (like treating any website as an application)? because, first, you want to have a radio web application seperated, next can be anything?</description><pubDate>Thu, 16 May 2013 12:36:51 +0000</pubDate><guid>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1821#comment-1821</guid></item><item><title>Answer by badboy_ for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;There are some websites that I like to keep running in their own windows (instead of tabs), and dedicate a workspace for them (a music workspace, a webmail workspace, etc.). Therefore, I have created simple shell scripts such as &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+firefox -new-window www.jazzradio.com/guitarjazz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to launch them and added them to my &lt;code&gt;PATH&lt;/code&gt;. On my &lt;code&gt;config&lt;/code&gt; file, however, I already have&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Firefox"] 2. www
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which opens generic Firefox on the &lt;code&gt;2. www&lt;/code&gt; workspace. How could I configure i3 to open these specific pages in the right workspaces?&lt;/p&gt;
+
+&lt;p&gt;I though about using &lt;code&gt;i3-msg&lt;/code&gt;, but I figured that even if I change to the correct workspace, when I launch the script it will recognize it as Firefox window and will apply the &lt;code&gt;assign&lt;/code&gt; configured in the &lt;code&gt;config&lt;/code&gt; file.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1814/open-in-specific-window/?answer=1815#post-id-1815</link><description>As specified in [command_criteria](http://i3wm.org/docs/userguide.html#command_criteria) you can also match on `title`: 
+
+    [class="Firefox" title="(?i)jazzradio.com"] 3.jazzradio</description><pubDate>Wed, 15 May 2013 14:43:21 +0000</pubDate><guid>https://faq.i3wm.org/question/1814/open-in-specific-window/?answer=1815#post-id-1815</guid></item><item><title>Comment by iomartin for &lt;p&gt;As specified in &lt;a href="http://i3wm.org/docs/userguide.html#command_criteria"&gt;command_criteria&lt;/a&gt; you can also match on &lt;code&gt;title&lt;/code&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[class="Firefox" title="(?i)jazzradio.com"] 3.jazzradio
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1901#comment-1901</link><description>I removed Vimperator, but that didn't solve it. Assigning based on the title doesn't work, since Firefox always creates the windows as "Mozilla Firefox" and only later changes their name - but by then i3 has already catched the window and placed it in the appropriate (current) window.</description><pubDate>Mon, 27 May 2013 13:30:07 +0000</pubDate><guid>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1901#comment-1901</guid></item><item><title>Comment by iomartin for &lt;p&gt;As specified in &lt;a href="http://i3wm.org/docs/userguide.html#command_criteria"&gt;command_criteria&lt;/a&gt; you can also match on &lt;code&gt;title&lt;/code&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[class="Firefox" title="(?i)jazzradio.com"] 3.jazzradio
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1818#comment-1818</link><description>Actually, I just realized that this was throwing all my Firefox instances to the jazzradio workspace. I think this is related to the fact that I use Vimperator, as noted in the documentation.</description><pubDate>Wed, 15 May 2013 17:27:51 +0000</pubDate><guid>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1818#comment-1818</guid></item><item><title>Comment by iomartin for &lt;p&gt;As specified in &lt;a href="http://i3wm.org/docs/userguide.html#command_criteria"&gt;command_criteria&lt;/a&gt; you can also match on &lt;code&gt;title&lt;/code&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[class="Firefox" title="(?i)jazzradio.com"] 3.jazzradio
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1816#comment-1816</link><description>great, thanks! I just had to change the regex a little to match it.</description><pubDate>Wed, 15 May 2013 15:33:37 +0000</pubDate><guid>https://faq.i3wm.org/question/1814/open-in-specific-window/?comment=1816#comment-1816</guid></item><item><title>Answer by iomartin for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;There are some websites that I like to keep running in their own windows (instead of tabs), and dedicate a workspace for them (a music workspace, a webmail workspace, etc.). Therefore, I have created simple shell scripts such as &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+firefox -new-window www.jazzradio.com/guitarjazz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to launch them and added them to my &lt;code&gt;PATH&lt;/code&gt;. On my &lt;code&gt;config&lt;/code&gt; file, however, I already have&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Firefox"] 2. www
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which opens generic Firefox on the &lt;code&gt;2. www&lt;/code&gt; workspace. How could I configure i3 to open these specific pages in the right workspaces?&lt;/p&gt;
+
+&lt;p&gt;I though about using &lt;code&gt;i3-msg&lt;/code&gt;, but I figured that even if I change to the correct workspace, when I launch the script it will recognize it as Firefox window and will apply the &lt;code&gt;assign&lt;/code&gt; configured in the &lt;code&gt;config&lt;/code&gt; file.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1814/open-in-specific-window/?answer=1903#post-id-1903</link><description>Not exactly pretty, but what I did was to remove the Firefox assignment from the `config`. Then I modified my shell script to the following
+
+    CURRENT_WORKSPACE=$(i3_current_workspace_focused.py)
+    i3-msg "workspace 10. ♪"
+    firefox -new-window www.jazzradio.com/guitarjazz
+    sleep 1
+    i3-msg "workspace $CURRENT_WORKSPACE"
+
+where `i3_current_workspace_focused,py` is
+
+    #!/usr/bin/python
+
+    from commands import getoutput
+    import json
+
+    workspaces = getoutput("i3-msg -t get_workspaces")
+    workspaces = json.loads(workspaces)
+
+    for w in workspaces:
+        if w['visible'] == True and w['focused'] == True:
+            print w['name']
+            break</description><pubDate>Mon, 27 May 2013 18:15:41 +0000</pubDate><guid>https://faq.i3wm.org/question/1814/open-in-specific-window/?answer=1903#post-id-1903</guid></item></channel></rss>

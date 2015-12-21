@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4217/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 19 Jul 2014 20:12:21 +0000</lastBuildDate><item><title>How to disable screensaver/monitor standby when fullscreen?</title><link>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/</link><description>The real question is: How to detect if a window has gone fullscreen (and out)?
+
+I can turn off screensaver by doing `xset s off`, but will like to detect if a window has gone fullscreen. That way I can maintain the screensaver timeout for normal work and only turn it off when watching video.</description><pubDate>Sat, 12 Jul 2014 15:13:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/</guid></item><item><title>Comment by smallming for &lt;p&gt;The real question is: How to detect if a window has gone fullscreen (and out)?&lt;/p&gt;
+
+&lt;p&gt;I can turn off screensaver by doing &lt;code&gt;xset s off&lt;/code&gt;, but will like to detect if a window has gone fullscreen. That way I can maintain the screensaver timeout for normal work and only turn it off when watching video.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?comment=4298#comment-4298</link><description>@Adaephon It is mainly videos, which can come in the form of different video players as well as browsers.</description><pubDate>Sat, 19 Jul 2014 07:32:09 +0000</pubDate><guid>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?comment=4298#comment-4298</guid></item><item><title>Comment by Adaephon for &lt;p&gt;The real question is: How to detect if a window has gone fullscreen (and out)?&lt;/p&gt;
+
+&lt;p&gt;I can turn off screensaver by doing &lt;code&gt;xset s off&lt;/code&gt;, but will like to detect if a window has gone fullscreen. That way I can maintain the screensaver timeout for normal work and only turn it off when watching video.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?comment=4232#comment-4232</link><description>Do you want this for any program in fullscreen mode or is your main concern in this watching movies without interruption? If its mainly movies, many movie players have options to turn of screen savers while playing. Which player are you using?</description><pubDate>Mon, 14 Jul 2014 09:00:10 +0000</pubDate><guid>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?comment=4232#comment-4232</guid></item><item><title>Answer by TonyC for &lt;p&gt;The real question is: How to detect if a window has gone fullscreen (and out)?&lt;/p&gt;
+
+&lt;p&gt;I can turn off screensaver by doing &lt;code&gt;xset s off&lt;/code&gt;, but will like to detect if a window has gone fullscreen. That way I can maintain the screensaver timeout for normal work and only turn it off when watching video.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?answer=4264#post-id-4264</link><description>[This script](https://github.com/acrisci/i3ipc-python/blob/master/examples/disable-standby-fs.py) from the [i3ipc-python](https://github.com/acrisci/i3ipc-python) project will do this automatically for you.
+
+Call this from your config with an `exec_always` directive. This may require the development version of i3 because of a bug where we don't get the fullscreen event when a fullscreen window closes.
+
+Let me know if it works for you.</description><pubDate>Wed, 16 Jul 2014 05:18:38 +0000</pubDate><guid>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?answer=4264#post-id-4264</guid></item><item><title>Comment by smallming for &lt;p&gt;&lt;a href="https://github.com/acrisci/i3ipc-python/blob/master/examples/disable-standby-fs.py"&gt;This script&lt;/a&gt; from the &lt;a href="https://github.com/acrisci/i3ipc-python"&gt;i3ipc-python&lt;/a&gt; project will do this automatically for you.&lt;/p&gt;
+
+&lt;p&gt;Call this from your config with an &lt;code&gt;exec_always&lt;/code&gt; directive. This may require the development version of i3 because of a bug where we don't get the fullscreen event when a fullscreen window closes.&lt;/p&gt;
+
+&lt;p&gt;Let me know if it works for you.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?comment=4299#comment-4299</link><description>Nice library there! Just a suggestion: it will be nice if there is a deb for i3ipc-python like i3ipc-glib, or making it available on pip, to automatically fulfill the dependencies.</description><pubDate>Sat, 19 Jul 2014 07:37:21 +0000</pubDate><guid>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?comment=4299#comment-4299</guid></item><item><title>Comment by TonyC for &lt;p&gt;&lt;a href="https://github.com/acrisci/i3ipc-python/blob/master/examples/disable-standby-fs.py"&gt;This script&lt;/a&gt; from the &lt;a href="https://github.com/acrisci/i3ipc-python"&gt;i3ipc-python&lt;/a&gt; project will do this automatically for you.&lt;/p&gt;
+
+&lt;p&gt;Call this from your config with an &lt;code&gt;exec_always&lt;/code&gt; directive. This may require the development version of i3 because of a bug where we don't get the fullscreen event when a fullscreen window closes.&lt;/p&gt;
+
+&lt;p&gt;Let me know if it works for you.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?comment=4302#comment-4302</link><description>Thanks. The python overrides are not required to run this script. I think I will probably end up bringing the python portion into i3ipc-glib itself and just using i3ipc-python as a meta package and examples repository.</description><pubDate>Sat, 19 Jul 2014 20:12:21 +0000</pubDate><guid>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?comment=4302#comment-4302</guid></item><item><title>Answer by smallming for &lt;p&gt;The real question is: How to detect if a window has gone fullscreen (and out)?&lt;/p&gt;
+
+&lt;p&gt;I can turn off screensaver by doing &lt;code&gt;xset s off&lt;/code&gt;, but will like to detect if a window has gone fullscreen. That way I can maintain the screensaver timeout for normal work and only turn it off when watching video.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?answer=4300#post-id-4300</link><description>As suggested, I wrote a script to parse the output of `i3-msg -t get_tree` and included it below for reference.
+
+    import json
+    import subprocess
+
+    i3_cmd = 'i3-msg -t get_tree'
+
+    def get_layout():
+        get_tree = subprocess.Popen(i3_cmd.split(), stdout=subprocess.PIPE)
+        stdout = get_tree.communicate()[0]
+        try:
+            tree = json.loads(stdout)
+        except ValueError:
+            tree = {}
+        return tree
+
+    def any_fullscreen_window(node):
+        if node['window']:
+            return node['fullscreen_mode'] == 1
+        return any(any_fullscreen_window(n) for n in node.get('nodes', ''))
+
+    def xset_screensaver(arg):
+        subprocess.call('xset s %s' % arg)
+
+    if __name__ == '__main__':
+        if any_fullscreen_window(get_layout()):
+            xset_screensaver('off')
+        else:
+            xset_screensaver('on')</description><pubDate>Sat, 19 Jul 2014 07:44:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?answer=4300#post-id-4300</guid></item><item><title>Answer by tigrezno for &lt;p&gt;The real question is: How to detect if a window has gone fullscreen (and out)?&lt;/p&gt;
+
+&lt;p&gt;I can turn off screensaver by doing &lt;code&gt;xset s off&lt;/code&gt;, but will like to detect if a window has gone fullscreen. That way I can maintain the screensaver timeout for normal work and only turn it off when watching video.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?answer=4248#post-id-4248</link><description>You can make a script and parse the output of &lt;code&gt;i3-msg -t get\_tree&lt;/code&gt;. There you should look for "fullscreen_mode".</description><pubDate>Mon, 14 Jul 2014 19:09:08 +0000</pubDate><guid>https://faq.i3wm.org/question/4217/how-to-disable-screensavermonitor-standby-when-fullscreen/?answer=4248#post-id-4248</guid></item></channel></rss>

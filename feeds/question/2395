@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2395/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 17 Jan 2015 14:45:17 +0000</lastBuildDate><item><title>How to use Qt Oxygen Theme in i3?</title><link>https://faq.i3wm.org/question/2395/how-to-use-qt-oxygen-theme-in-i3/</link><description>How can i use KDE Oxygen Theme in i3 for Qt Applications?
+
+qtconfig-qt4 won't work (it's show only old themes)</description><pubDate>Wed, 21 Aug 2013 12:45:11 +0000</pubDate><guid>https://faq.i3wm.org/question/2395/how-to-use-qt-oxygen-theme-in-i3/</guid></item><item><title>Answer by L for &lt;p&gt;How can i use KDE Oxygen Theme in i3 for Qt Applications?&lt;/p&gt;
+
+&lt;p&gt;qtconfig-qt4 won't work (it's show only old themes)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2395/how-to-use-qt-oxygen-theme-in-i3/?answer=5345#post-id-5345</link><description>After I set these environment variables clementine changed the theme to oxygen:
+
+    export GTK_RC_FILES="/etc/gtk/gtkrc:$HOME/.gtkrc:$HOME/.kde4/share/config/gtkrc"
+    export GTK2_RC_FILES="/etc/gtk-2.0/gtkrc:$HOME/.gtkrc-2.0:$HOME/.kde4/share/config/gtkrc-2.0"
+    export QT_PLUGIN_PATH="$HOME/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/"
+
+I edit ~/.profile to changes it permanent:
+
+    if [ "$XDG_CURRENT_DESKTOP" == "i3" ] ; then
+
+	export GTK_RC_FILES="/etc/gtk/gtkrc:$HOME/.gtkrc:$HOME/.kde4/share/config/gtkrc"
+	export GTK2_RC_FILES="/etc/gtk-2.0/gtkrc:$HOME/.gtkrc-2.0:$HOME/.kde4/share/config/gtkrc-2.0"
+	export QT_PLUGIN_PATH="$HOME/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/"
+    fi
+
+For gtk2-Applications:
+
+vim ~/.gtkrc-2.0
+
+    include "/usr/share/themes/oxygen-gtk/gtk-2.0/gtkrc"
+
+    style "user-font" {
+            font_name = "Sans Serif  11"
+
+    }
+
+    widget_class "*" style "user-font"
+
+    gtk-font-name="Sans Serif  11"
+
+    include "/home/$USER/.gtkrc.mine"
+
+
+For gtk3-Applications: since gtk3-16+ oxygen is no longer supported and doesn't work, so you can't use it, but to change the theme you can edit ~/.config/gtk-3.0/settings.ini, for more information see: 
+wiki.archlinux.org/index.php/Uniform\_Look\_for\_Qt\_and\_GTK\_Applications  
+wiki.archlinux.org/index.php/GTK%2B</description><pubDate>Sat, 17 Jan 2015 14:45:17 +0000</pubDate><guid>https://faq.i3wm.org/question/2395/how-to-use-qt-oxygen-theme-in-i3/?answer=5345#post-id-5345</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;How can i use KDE Oxygen Theme in i3 for Qt Applications?&lt;/p&gt;
+
+&lt;p&gt;qtconfig-qt4 won't work (it's show only old themes)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2395/how-to-use-qt-oxygen-theme-in-i3/?answer=4629#post-id-4629</link><description>Having a full kde installation I can run systemsettings and configure it under application appearance.  Probably not the most helpful answer.</description><pubDate>Mon, 15 Sep 2014 05:57:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2395/how-to-use-qt-oxygen-theme-in-i3/?answer=4629#post-id-4629</guid></item></channel></rss>

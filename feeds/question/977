@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/977/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 04 Jan 2013 17:54:04 +0000</lastBuildDate><item><title>ipv6 status color</title><link>https://faq.i3wm.org/question/977/ipv6-status-color/</link><description>Hi,
+
+I was missing colors in ipv6 module (or how should I call it?) of i3status. I've cloned the master branch, moved END\_COLOR above the OUTPUT\_FULL\_TEXT in print\_ipv6\_addr.c and here they are. Is this the correct approach?
+
+And thank you for the great WM!
+
+Luka
+
+&lt;pre&gt;&lt;code&gt;
+diff --git a/src/print_ipv6_addr.c b/src/print_ipv6_addr.c
+index 8b11e1f..840a0ec 100644
+--- a/src/print_ipv6_addr.c
++++ b/src/print_ipv6_addr.c
+@@ -123,8 +123,8 @@ void print_ipv6_info(yajl_gen json_gen, char *buffer, const char *format_up, con
+ 
+         if (addr_string == NULL) {
+                 START_COLOR("color_bad");
+-                OUTPUT_FULL_TEXT(format_down);
+                 END_COLOR;
++                OUTPUT_FULL_TEXT(format_down);
+                 return;
+         }
+ 
+@@ -140,6 +140,6 @@ void print_ipv6_info(yajl_gen json_gen, char *buffer, const char *format_up, con
+                 }
+         }
+         START_COLOR("color_good");
+-        OUTPUT_FULL_TEXT(buffer);
+         END_COLOR;
++        OUTPUT_FULL_TEXT(buffer);
+ }
+&lt;/code&gt;&lt;/pre&gt;</description><pubDate>Fri, 04 Jan 2013 17:20:49 +0000</pubDate><guid>https://faq.i3wm.org/question/977/ipv6-status-color/</guid></item><item><title>Comment by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I was missing colors in ipv6 module (or how should I call it?) of i3status. I've cloned the master branch, moved END_COLOR above the OUTPUT_FULL_TEXT in print_ipv6_addr.c and here they are. Is this the correct approach?&lt;/p&gt;
+
+&lt;p&gt;And thank you for the great WM!&lt;/p&gt;
+
+&lt;p&gt;Luka&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+diff --git a/src/print_ipv6_addr.c b/src/print_ipv6_addr.c
+index 8b11e1f..840a0ec 100644
+--- a/src/print_ipv6_addr.c
++++ b/src/print_ipv6_addr.c
+@@ -123,8 +123,8 @@ void print_ipv6_info(yajl_gen json_gen, char *buffer, const char *format_up, con
+
+         if (addr_string == NULL) {
+                 START_COLOR("color_bad");
+-                OUTPUT_FULL_TEXT(format_down);
+                 END_COLOR;
++                OUTPUT_FULL_TEXT(format_down);
+                 return;
+         }
+
+@@ -140,6 +140,6 @@ void print_ipv6_info(yajl_gen json_gen, char *buffer, const char *format_up, con
+                 }
+         }
+         START_COLOR("color_good");
+-        OUTPUT_FULL_TEXT(buffer);
+         END_COLOR;
++        OUTPUT_FULL_TEXT(buffer);
+ }
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/977/ipv6-status-color/?comment=978#comment-978</link><description>I have colors in the IPv6 module. Are you using i3bar, dzen2 or xmobar to display i3status’s output?</description><pubDate>Fri, 04 Jan 2013 17:23:20 +0000</pubDate><guid>https://faq.i3wm.org/question/977/ipv6-status-color/?comment=978#comment-978</guid></item><item><title>Comment by lukaf for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I was missing colors in ipv6 module (or how should I call it?) of i3status. I've cloned the master branch, moved END_COLOR above the OUTPUT_FULL_TEXT in print_ipv6_addr.c and here they are. Is this the correct approach?&lt;/p&gt;
+
+&lt;p&gt;And thank you for the great WM!&lt;/p&gt;
+
+&lt;p&gt;Luka&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+diff --git a/src/print_ipv6_addr.c b/src/print_ipv6_addr.c
+index 8b11e1f..840a0ec 100644
+--- a/src/print_ipv6_addr.c
++++ b/src/print_ipv6_addr.c
+@@ -123,8 +123,8 @@ void print_ipv6_info(yajl_gen json_gen, char *buffer, const char *format_up, con
+
+         if (addr_string == NULL) {
+                 START_COLOR("color_bad");
+-                OUTPUT_FULL_TEXT(format_down);
+                 END_COLOR;
++                OUTPUT_FULL_TEXT(format_down);
+                 return;
+         }
+
+@@ -140,6 +140,6 @@ void print_ipv6_info(yajl_gen json_gen, char *buffer, const char *format_up, con
+                 }
+         }
+         START_COLOR("color_good");
+-        OUTPUT_FULL_TEXT(buffer);
+         END_COLOR;
++        OUTPUT_FULL_TEXT(buffer);
+ }
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/977/ipv6-status-color/?comment=980#comment-980</link><description>I've build i3status without my change and the colors are there. i3status I was using is an older one (2.5.1 from rpm) and I have found the commit that enabled colors. Thank you.</description><pubDate>Fri, 04 Jan 2013 17:51:17 +0000</pubDate><guid>https://faq.i3wm.org/question/977/ipv6-status-color/?comment=980#comment-980</guid></item><item><title>Comment by lukaf for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I was missing colors in ipv6 module (or how should I call it?) of i3status. I've cloned the master branch, moved END_COLOR above the OUTPUT_FULL_TEXT in print_ipv6_addr.c and here they are. Is this the correct approach?&lt;/p&gt;
+
+&lt;p&gt;And thank you for the great WM!&lt;/p&gt;
+
+&lt;p&gt;Luka&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+diff --git a/src/print_ipv6_addr.c b/src/print_ipv6_addr.c
+index 8b11e1f..840a0ec 100644
+--- a/src/print_ipv6_addr.c
++++ b/src/print_ipv6_addr.c
+@@ -123,8 +123,8 @@ void print_ipv6_info(yajl_gen json_gen, char *buffer, const char *format_up, con
+
+         if (addr_string == NULL) {
+                 START_COLOR("color_bad");
+-                OUTPUT_FULL_TEXT(format_down);
+                 END_COLOR;
++                OUTPUT_FULL_TEXT(format_down);
+                 return;
+         }
+
+@@ -140,6 +140,6 @@ void print_ipv6_info(yajl_gen json_gen, char *buffer, const char *format_up, con
+                 }
+         }
+         START_COLOR("color_good");
+-        OUTPUT_FULL_TEXT(buffer);
+         END_COLOR;
++        OUTPUT_FULL_TEXT(buffer);
+ }
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/977/ipv6-status-color/?comment=979#comment-979</link><description>Hi Michael,
+
+sorry about that, I'm using i3bar.</description><pubDate>Fri, 04 Jan 2013 17:41:23 +0000</pubDate><guid>https://faq.i3wm.org/question/977/ipv6-status-color/?comment=979#comment-979</guid></item><item><title>Answer by lukaf for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I was missing colors in ipv6 module (or how should I call it?) of i3status. I've cloned the master branch, moved END_COLOR above the OUTPUT_FULL_TEXT in print_ipv6_addr.c and here they are. Is this the correct approach?&lt;/p&gt;
+
+&lt;p&gt;And thank you for the great WM!&lt;/p&gt;
+
+&lt;p&gt;Luka&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+diff --git a/src/print_ipv6_addr.c b/src/print_ipv6_addr.c
+index 8b11e1f..840a0ec 100644
+--- a/src/print_ipv6_addr.c
++++ b/src/print_ipv6_addr.c
+@@ -123,8 +123,8 @@ void print_ipv6_info(yajl_gen json_gen, char *buffer, const char *format_up, con
+
+         if (addr_string == NULL) {
+                 START_COLOR("color_bad");
+-                OUTPUT_FULL_TEXT(format_down);
+                 END_COLOR;
++                OUTPUT_FULL_TEXT(format_down);
+                 return;
+         }
+
+@@ -140,6 +140,6 @@ void print_ipv6_info(yajl_gen json_gen, char *buffer, const char *format_up, con
+                 }
+         }
+         START_COLOR("color_good");
+-        OUTPUT_FULL_TEXT(buffer);
+         END_COLOR;
++        OUTPUT_FULL_TEXT(buffer);
+ }
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/977/ipv6-status-color/?answer=981#post-id-981</link><description>Already done with commit f5c96008b0c5ec41b6f136b0af41c56f6af2ccb8. Should test before asking stupid questions :)</description><pubDate>Fri, 04 Jan 2013 17:54:04 +0000</pubDate><guid>https://faq.i3wm.org/question/977/ipv6-status-color/?answer=981#post-id-981</guid></item></channel></rss>

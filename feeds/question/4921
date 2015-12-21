@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4921/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 11 Nov 2014 20:33:16 +0000</lastBuildDate><item><title>How to close all open programs in terminal</title><link>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/</link><description>I use this command for shutdown in i3: 
+
+    systemctl poweroff
+
+I have 4 workspaces with these apps: firefox, terminal, ncmpcpp and nautilus and I want to close all these (and other open) programs before I call the `systemctl poweroff` command.
+
+Is there a command or script that could do this?</description><pubDate>Sun, 09 Nov 2014 12:28:30 +0000</pubDate><guid>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I use this command for shutdown in i3: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;systemctl poweroff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have 4 workspaces with these apps: firefox, terminal, ncmpcpp and nautilus and I want to close all these (and other open) programs before I call the &lt;code&gt;systemctl poweroff&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;Is there a command or script that could do this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?answer=4926#post-id-4926</link><description>    [class=".*"] kill
+
+this will run the *i3* command `kill` on every window. This includes the i3-bar, but as you are going to shut down anyway that should not be a problem.
+
+You can just bind it to a shortcut:
+
+    bindsym Mod4+Mod1+q [class=".*"] kill
+
+It is possible to chain the `kill` command with the `exit` command on the same shortcut. But I would advise against it, as `kill` does not wait until the windows are gone before comming back and so *i3* would likely exit before everything is closed. Especially if there are programs that ask for confirmation before closing ("Do you want to save before closing?").
+
+Or you can use `i3-nagbar` to ask whether *i3* should close all windows or just exit:
+
+    bindsym Mod4+Mod1+q exec i3-nagbar -t warning -m 'Close all windows or exit?' -b 'Close all windows' 'i3-msg [class="^(!?.*i3bar).*$"] kill' -b 'Exit i3' 'i3-msg exit'
+
+This provides two buttons, "Close all windows" and "Exit i3". The second one will exit i3, no further questions asked. The first one will run the aforementioned command with the small change `class` criteria explicitly excludes the i3-bar. That way you can see on which workspace there are still open windows and take appropriate action. As the i3-nagbar stays open until explicitly closed (or until i3 exits) you can also repeatedly press "Close all windows".
+
+
+
+</description><pubDate>Mon, 10 Nov 2014 09:58:35 +0000</pubDate><guid>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?answer=4926#post-id-4926</guid></item><item><title>Comment by Ali for &lt;pre&gt;&lt;code&gt;[class=".*"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;this will run the &lt;em&gt;i3&lt;/em&gt; command &lt;code&gt;kill&lt;/code&gt; on every window. This includes the i3-bar, but as you are going to shut down anyway that should not be a problem.&lt;/p&gt;
+
+&lt;p&gt;You can just bind it to a shortcut:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Mod1+q [class=".*"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is possible to chain the &lt;code&gt;kill&lt;/code&gt; command with the &lt;code&gt;exit&lt;/code&gt; command on the same shortcut. But I would advise against it, as &lt;code&gt;kill&lt;/code&gt; does not wait until the windows are gone before comming back and so &lt;em&gt;i3&lt;/em&gt; would likely exit before everything is closed. Especially if there are programs that ask for confirmation before closing ("Do you want to save before closing?").&lt;/p&gt;
+
+&lt;p&gt;Or you can use &lt;code&gt;i3-nagbar&lt;/code&gt; to ask whether &lt;em&gt;i3&lt;/em&gt; should close all windows or just exit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Mod1+q exec i3-nagbar -t warning -m 'Close all windows or exit?' -b 'Close all windows' 'i3-msg [class="^(!?.*i3bar).*$"] kill' -b 'Exit i3' 'i3-msg exit'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This provides two buttons, "Close all windows" and "Exit i3". The second one will exit i3, no further questions asked. The first one will run the aforementioned command with the small change &lt;code&gt;class&lt;/code&gt; criteria explicitly excludes the i3-bar. That way you can see on which workspace there are still open windows and take appropriate action. As the i3-nagbar stays open until explicitly closed (or until i3 exits) you can also repeatedly press "Close all windows".&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?comment=4930#comment-4930</link><description>Thanks. I use your command like this but not working: bindsym $mod+Alt+q for_window [class=".*"] kill</description><pubDate>Mon, 10 Nov 2014 11:10:48 +0000</pubDate><guid>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?comment=4930#comment-4930</guid></item><item><title>Comment by Ali for &lt;pre&gt;&lt;code&gt;[class=".*"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;this will run the &lt;em&gt;i3&lt;/em&gt; command &lt;code&gt;kill&lt;/code&gt; on every window. This includes the i3-bar, but as you are going to shut down anyway that should not be a problem.&lt;/p&gt;
+
+&lt;p&gt;You can just bind it to a shortcut:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Mod1+q [class=".*"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is possible to chain the &lt;code&gt;kill&lt;/code&gt; command with the &lt;code&gt;exit&lt;/code&gt; command on the same shortcut. But I would advise against it, as &lt;code&gt;kill&lt;/code&gt; does not wait until the windows are gone before comming back and so &lt;em&gt;i3&lt;/em&gt; would likely exit before everything is closed. Especially if there are programs that ask for confirmation before closing ("Do you want to save before closing?").&lt;/p&gt;
+
+&lt;p&gt;Or you can use &lt;code&gt;i3-nagbar&lt;/code&gt; to ask whether &lt;em&gt;i3&lt;/em&gt; should close all windows or just exit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Mod1+q exec i3-nagbar -t warning -m 'Close all windows or exit?' -b 'Close all windows' 'i3-msg [class="^(!?.*i3bar).*$"] kill' -b 'Exit i3' 'i3-msg exit'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This provides two buttons, "Close all windows" and "Exit i3". The second one will exit i3, no further questions asked. The first one will run the aforementioned command with the small change &lt;code&gt;class&lt;/code&gt; criteria explicitly excludes the i3-bar. That way you can see on which workspace there are still open windows and take appropriate action. As the i3-nagbar stays open until explicitly closed (or until i3 exits) you can also repeatedly press "Close all windows".&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?comment=4932#comment-4932</link><description>ERROR: Your command: for_window [class=".*"] kill</description><pubDate>Mon, 10 Nov 2014 15:18:51 +0000</pubDate><guid>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?comment=4932#comment-4932</guid></item><item><title>Comment by Adaephon for &lt;pre&gt;&lt;code&gt;[class=".*"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;this will run the &lt;em&gt;i3&lt;/em&gt; command &lt;code&gt;kill&lt;/code&gt; on every window. This includes the i3-bar, but as you are going to shut down anyway that should not be a problem.&lt;/p&gt;
+
+&lt;p&gt;You can just bind it to a shortcut:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Mod1+q [class=".*"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is possible to chain the &lt;code&gt;kill&lt;/code&gt; command with the &lt;code&gt;exit&lt;/code&gt; command on the same shortcut. But I would advise against it, as &lt;code&gt;kill&lt;/code&gt; does not wait until the windows are gone before comming back and so &lt;em&gt;i3&lt;/em&gt; would likely exit before everything is closed. Especially if there are programs that ask for confirmation before closing ("Do you want to save before closing?").&lt;/p&gt;
+
+&lt;p&gt;Or you can use &lt;code&gt;i3-nagbar&lt;/code&gt; to ask whether &lt;em&gt;i3&lt;/em&gt; should close all windows or just exit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Mod1+q exec i3-nagbar -t warning -m 'Close all windows or exit?' -b 'Close all windows' 'i3-msg [class="^(!?.*i3bar).*$"] kill' -b 'Exit i3' 'i3-msg exit'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This provides two buttons, "Close all windows" and "Exit i3". The second one will exit i3, no further questions asked. The first one will run the aforementioned command with the small change &lt;code&gt;class&lt;/code&gt; criteria explicitly excludes the i3-bar. That way you can see on which workspace there are still open windows and take appropriate action. As the i3-nagbar stays open until explicitly closed (or until i3 exits) you can also repeatedly press "Close all windows".&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?comment=4936#comment-4936</link><description>`for_window` is not a command but a configuration option. When binding to a shortcut you need only `[&lt;criteria&gt;] &lt;command&gt;`. `for_window` is used to automatically run a command when a matching window appears. In this case you would automatically close every window immediatelly.</description><pubDate>Tue, 11 Nov 2014 05:47:00 +0000</pubDate><guid>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?comment=4936#comment-4936</guid></item><item><title>Comment by Adaephon for &lt;pre&gt;&lt;code&gt;[class=".*"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;this will run the &lt;em&gt;i3&lt;/em&gt; command &lt;code&gt;kill&lt;/code&gt; on every window. This includes the i3-bar, but as you are going to shut down anyway that should not be a problem.&lt;/p&gt;
+
+&lt;p&gt;You can just bind it to a shortcut:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Mod1+q [class=".*"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is possible to chain the &lt;code&gt;kill&lt;/code&gt; command with the &lt;code&gt;exit&lt;/code&gt; command on the same shortcut. But I would advise against it, as &lt;code&gt;kill&lt;/code&gt; does not wait until the windows are gone before comming back and so &lt;em&gt;i3&lt;/em&gt; would likely exit before everything is closed. Especially if there are programs that ask for confirmation before closing ("Do you want to save before closing?").&lt;/p&gt;
+
+&lt;p&gt;Or you can use &lt;code&gt;i3-nagbar&lt;/code&gt; to ask whether &lt;em&gt;i3&lt;/em&gt; should close all windows or just exit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Mod1+q exec i3-nagbar -t warning -m 'Close all windows or exit?' -b 'Close all windows' 'i3-msg [class="^(!?.*i3bar).*$"] kill' -b 'Exit i3' 'i3-msg exit'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This provides two buttons, "Close all windows" and "Exit i3". The second one will exit i3, no further questions asked. The first one will run the aforementioned command with the small change &lt;code&gt;class&lt;/code&gt; criteria explicitly excludes the i3-bar. That way you can see on which workspace there are still open windows and take appropriate action. As the i3-nagbar stays open until explicitly closed (or until i3 exits) you can also repeatedly press "Close all windows".&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?comment=4931#comment-4931</link><description>@Ali Use `Mod1` instead of `Alt`, then it should work.</description><pubDate>Mon, 10 Nov 2014 12:28:44 +0000</pubDate><guid>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?comment=4931#comment-4931</guid></item><item><title>Comment by Ali for &lt;pre&gt;&lt;code&gt;[class=".*"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;this will run the &lt;em&gt;i3&lt;/em&gt; command &lt;code&gt;kill&lt;/code&gt; on every window. This includes the i3-bar, but as you are going to shut down anyway that should not be a problem.&lt;/p&gt;
+
+&lt;p&gt;You can just bind it to a shortcut:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Mod1+q [class=".*"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is possible to chain the &lt;code&gt;kill&lt;/code&gt; command with the &lt;code&gt;exit&lt;/code&gt; command on the same shortcut. But I would advise against it, as &lt;code&gt;kill&lt;/code&gt; does not wait until the windows are gone before comming back and so &lt;em&gt;i3&lt;/em&gt; would likely exit before everything is closed. Especially if there are programs that ask for confirmation before closing ("Do you want to save before closing?").&lt;/p&gt;
+
+&lt;p&gt;Or you can use &lt;code&gt;i3-nagbar&lt;/code&gt; to ask whether &lt;em&gt;i3&lt;/em&gt; should close all windows or just exit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Mod1+q exec i3-nagbar -t warning -m 'Close all windows or exit?' -b 'Close all windows' 'i3-msg [class="^(!?.*i3bar).*$"] kill' -b 'Exit i3' 'i3-msg exit'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This provides two buttons, "Close all windows" and "Exit i3". The second one will exit i3, no further questions asked. The first one will run the aforementioned command with the small change &lt;code&gt;class&lt;/code&gt; criteria explicitly excludes the i3-bar. That way you can see on which workspace there are still open windows and take appropriate action. As the i3-nagbar stays open until explicitly closed (or until i3 exits) you can also repeatedly press "Close all windows".&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?comment=4937#comment-4937</link><description>Thank you. Solved.</description><pubDate>Tue, 11 Nov 2014 20:33:16 +0000</pubDate><guid>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?comment=4937#comment-4937</guid></item><item><title>Answer by Ali for &lt;p&gt;I use this command for shutdown in i3: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;systemctl poweroff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have 4 workspaces with these apps: firefox, terminal, ncmpcpp and nautilus and I want to close all these (and other open) programs before I call the &lt;code&gt;systemctl poweroff&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;Is there a command or script that could do this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?answer=4929#post-id-4929</link><description>Thanks. How Can i use your command to this script?
+
+This is my exit script: 
+
+#!/bin/sh
+lock() {
+    i3lock -n -ti /home/ali/Pictures/WallPaper/madonna.png
+}
+
+case "$1" in
+    lock)
+        lock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        systemctl suspend
+        ;;
+    reboot)
+        systemctl reboot
+        ;;
+    shutdown)
+        systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+
+exit 0
+
+And this is my config:
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (p) power-off
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $i3_path/i3exit lock, mode "default"
+    bindsym e exec --no-startup-id $i3_path/i3exit logout, mode "default"
+    bindsym s exec --no-startup-id $i3_path/i3exit suspend, mode "default"
+    bindsym r exec --no-startup-id $i3_path/i3exit reboot, mode "default"
+    bindsym p exec --no-startup-id $i3_path/i3exit shutdown, mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+</description><pubDate>Mon, 10 Nov 2014 10:57:15 +0000</pubDate><guid>https://faq.i3wm.org/question/4921/how-to-close-all-open-programs-in-terminal/?answer=4929#post-id-4929</guid></item></channel></rss>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2962/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 25 Nov 2013 20:16:48 +0000</lastBuildDate><item><title>Script: How do I print the workspace number?</title><link>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/</link><description>I occasionally want to rename my workspaces and refer to them by their numbers. So I switched from `workspace` to `workspace number` and renamed them like so:
+
+`1` renamed to `1: www` 
+
+`2` renamed to `2: music`, etc
+
+as per the user guide. Furthermore, following the suggestion from section 6.5.2 of the user guide, I added the following line in my configuration file:
+
+`bindsym $mod+n exec i3-input -F 'rename workspace to %s' -P 'New name: '`
+
+However, I would like to avoid typing `"1: www"` if I could just type `www` and automatically have the workspace number assigned. In particular, I need a variable, say `$WSNUM` such that I could write the line like so:
+
+`bindsym $mod+n exec i3-input -F 'rename workspace to "$WSNUM: %s"' -P 'New name: '`
+
+Is there such a variable? How should I write this line?
+</description><pubDate>Mon, 25 Nov 2013 16:21:56 +0000</pubDate><guid>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/</guid></item><item><title>Comment by geo909 for &lt;p&gt;I occasionally want to rename my workspaces and refer to them by their numbers. So I switched from &lt;code&gt;workspace&lt;/code&gt; to &lt;code&gt;workspace number&lt;/code&gt; and renamed them like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;1&lt;/code&gt; renamed to &lt;code&gt;1: www&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;2&lt;/code&gt; renamed to &lt;code&gt;2: music&lt;/code&gt;, etc&lt;/p&gt;
+
+&lt;p&gt;as per the user guide. Furthermore, following the suggestion from section 6.5.2 of the user guide, I added the following line in my configuration file:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+n exec i3-input -F 'rename workspace to %s' -P 'New name: '&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;However, I would like to avoid typing &lt;code&gt;"1: www"&lt;/code&gt; if I could just type &lt;code&gt;www&lt;/code&gt; and automatically have the workspace number assigned. In particular, I need a variable, say &lt;code&gt;$WSNUM&lt;/code&gt; such that I could write the line like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+n exec i3-input -F 'rename workspace to "$WSNUM: %s"' -P 'New name: '&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Is there such a variable? How should I write this line?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2964#comment-2964</link><description>It seems the solution is in section 3.3 of http://i3wm.org/docs/ipc.html#_workspaces_reply (due to my karma I cannot post links). Apparently the workspace number is part of the reply for the workspaces of the IPC interface. I am trying to read through but I'm totally lost, don't know how to use it..</description><pubDate>Mon, 25 Nov 2013 18:08:02 +0000</pubDate><guid>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2964#comment-2964</guid></item><item><title>Comment by geo909 for &lt;p&gt;I occasionally want to rename my workspaces and refer to them by their numbers. So I switched from &lt;code&gt;workspace&lt;/code&gt; to &lt;code&gt;workspace number&lt;/code&gt; and renamed them like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;1&lt;/code&gt; renamed to &lt;code&gt;1: www&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;2&lt;/code&gt; renamed to &lt;code&gt;2: music&lt;/code&gt;, etc&lt;/p&gt;
+
+&lt;p&gt;as per the user guide. Furthermore, following the suggestion from section 6.5.2 of the user guide, I added the following line in my configuration file:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+n exec i3-input -F 'rename workspace to %s' -P 'New name: '&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;However, I would like to avoid typing &lt;code&gt;"1: www"&lt;/code&gt; if I could just type &lt;code&gt;www&lt;/code&gt; and automatically have the workspace number assigned. In particular, I need a variable, say &lt;code&gt;$WSNUM&lt;/code&gt; such that I could write the line like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+n exec i3-input -F 'rename workspace to "$WSNUM: %s"' -P 'New name: '&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Is there such a variable? How should I write this line?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2963#comment-2963</link><description>Oops. I think this is a duplicate of https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/ I will check it out more thoroughly and will close this question if it is so. EDIT: No, it's not exactly duplicate, plus the script in that question does not work for me. </description><pubDate>Mon, 25 Nov 2013 16:29:18 +0000</pubDate><guid>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2963#comment-2963</guid></item><item><title>Answer by TonyC for &lt;p&gt;I occasionally want to rename my workspaces and refer to them by their numbers. So I switched from &lt;code&gt;workspace&lt;/code&gt; to &lt;code&gt;workspace number&lt;/code&gt; and renamed them like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;1&lt;/code&gt; renamed to &lt;code&gt;1: www&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;2&lt;/code&gt; renamed to &lt;code&gt;2: music&lt;/code&gt;, etc&lt;/p&gt;
+
+&lt;p&gt;as per the user guide. Furthermore, following the suggestion from section 6.5.2 of the user guide, I added the following line in my configuration file:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+n exec i3-input -F 'rename workspace to %s' -P 'New name: '&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;However, I would like to avoid typing &lt;code&gt;"1: www"&lt;/code&gt; if I could just type &lt;code&gt;www&lt;/code&gt; and automatically have the workspace number assigned. In particular, I need a variable, say &lt;code&gt;$WSNUM&lt;/code&gt; such that I could write the line like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+n exec i3-input -F 'rename workspace to "$WSNUM: %s"' -P 'New name: '&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Is there such a variable? How should I write this line?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?answer=2965#post-id-2965</link><description>Use a script
+
+    WS=`python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['num'])"`; i3-input -F "rename workspace to $WS:%s" -P 'New name'
+</description><pubDate>Mon, 25 Nov 2013 18:31:35 +0000</pubDate><guid>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?answer=2965#post-id-2965</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Use a script&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WS=`python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['num'])"`; i3-input -F "rename workspace to $WS:%s" -P 'New name'
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2972#comment-2972</link><description>Or try `WS=$(python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['num'])"); i3-input -F "rename workspace to \"$WS: %s\"" -P 'New name'` if you'd like to keep the space after the colon. ( ` `` ` replaced by `$()` just for formatting)</description><pubDate>Mon, 25 Nov 2013 20:16:48 +0000</pubDate><guid>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2972#comment-2972</guid></item><item><title>Comment by TonyC for &lt;p&gt;Use a script&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WS=`python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['num'])"`; i3-input -F "rename workspace to $WS:%s" -P 'New name'
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2970#comment-2970</link><description>I think you might be adding a space after the colon. Running it just like that works for me</description><pubDate>Mon, 25 Nov 2013 18:55:15 +0000</pubDate><guid>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2970#comment-2970</guid></item><item><title>Comment by geo909 for &lt;p&gt;Use a script&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WS=`python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['num'])"`; i3-input -F "rename workspace to $WS:%s" -P 'New name'
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2971#comment-2971</link><description>Indeed, I must have done something funny.. Thank you!</description><pubDate>Mon, 25 Nov 2013 20:14:51 +0000</pubDate><guid>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2971#comment-2971</guid></item><item><title>Comment by geo909 for &lt;p&gt;Use a script&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WS=`python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['num'])"`; i3-input -F "rename workspace to $WS:%s" -P 'New name'
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2968#comment-2968</link><description>Thanks, but this doesn't work.. If I input `www` in workspace 2, it will rename it to "2:".. I run it from the command line.</description><pubDate>Mon, 25 Nov 2013 18:47:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2962/script-how-do-i-print-the-workspace-number/?comment=2968#comment-2968</guid></item></channel></rss>

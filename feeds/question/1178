@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1178/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 04 Feb 2013 09:05:42 +0000</lastBuildDate><item><title>i3 quits when Randr outputs change</title><link>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/</link><description>Hello,
+
+my laptop sits in a docking station with the lid closed and two external monitors connected. When I remove it from the dock an automated script would disable the external monitors and activate the laptop monitor.
+
+This works well for e.g. xmonad and others. However, i3 would quit this message:
+    
+    i3: No usable outputs available.
+
+This is very inconvenient, since I lose my whole X session. Is there a way to fix this?
+
+Thanks and Wishes!
+
+[Edit]
+For clarification:
+Due to limitations of xrandr I have to run two separate commands:
+
+     xrandr --nograb -d :0.0 \
+            --dpi 96 \
+            --output LVDS1 --auto --primary \
+            --output HDMI2 --off
+     xrandr --nograb -d :0.0 --output HDMI3 --off
+[/Edit]</description><pubDate>Fri, 01 Feb 2013 09:11:58 +0000</pubDate><guid>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;my laptop sits in a docking station with the lid closed and two external monitors connected. When I remove it from the dock an automated script would disable the external monitors and activate the laptop monitor.&lt;/p&gt;
+
+&lt;p&gt;This works well for e.g. xmonad and others. However, i3 would quit this message:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3: No usable outputs available.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is very inconvenient, since I lose my whole X session. Is there a way to fix this?&lt;/p&gt;
+
+&lt;p&gt;Thanks and Wishes!&lt;/p&gt;
+
+&lt;p&gt;[Edit]
+For clarification:
+Due to limitations of xrandr I have to run two separate commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; xrandr --nograb -d :0.0 \
+        --dpi 96 \
+        --output LVDS1 --auto --primary \
+        --output HDMI2 --off
+ xrandr --nograb -d :0.0 --output HDMI3 --off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;[/Edit]&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?answer=1179#post-id-1179</link><description>Yes, instead of running two commands, e.g.:
+
+    xrandr --output LVDS1 --off
+    xrandr --output HDMI1 --auto
+
+Run it in one command:
+
+    xrandr --output LVDS1 --off --output HDMI1 --auto
+
+To answer your updated question:
+
+No, there is no sane way to fix it, see https://github.com/i3/i3/issues/926</description><pubDate>Fri, 01 Feb 2013 09:24:04 +0000</pubDate><guid>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?answer=1179#post-id-1179</guid></item><item><title>Comment by jrk for &lt;p&gt;Yes, instead of running two commands, e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off
+xrandr --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run it in one command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To answer your updated question:&lt;/p&gt;
+
+&lt;p&gt;No, there is no sane way to fix it, see &lt;a href="https://github.com/i3/i3/issues/926"&gt;https://github.com/i3/i3/issues/926&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1191#comment-1191</link><description>That's what I'd expect too. Yet, upon removal from the dock, i3 quits. I'm running a script which calls xrandr upon acpi events. This should not make a difference, but when I call xrandr from e.g. urxvt, i3 doesn't quit. So this is probably only a symptom and the problem is rooted elsewhere.</description><pubDate>Mon, 04 Feb 2013 09:05:42 +0000</pubDate><guid>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1191#comment-1191</guid></item><item><title>Comment by Michael for &lt;p&gt;Yes, instead of running two commands, e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off
+xrandr --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run it in one command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To answer your updated question:&lt;/p&gt;
+
+&lt;p&gt;No, there is no sane way to fix it, see &lt;a href="https://github.com/i3/i3/issues/926"&gt;https://github.com/i3/i3/issues/926&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1189#comment-1189</link><description>But then you _also_ have at least one output enabled all the time. I still don’t see it.</description><pubDate>Mon, 04 Feb 2013 07:16:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1189#comment-1189</guid></item><item><title>Comment by jrk for &lt;p&gt;Yes, instead of running two commands, e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off
+xrandr --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run it in one command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To answer your updated question:&lt;/p&gt;
+
+&lt;p&gt;No, there is no sane way to fix it, see &lt;a href="https://github.com/i3/i3/issues/926"&gt;https://github.com/i3/i3/issues/926&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1184#comment-1184</link><description>Therefore.. I have to enable one external output, disable LVDS1 then and then enable the second external output. I hope the problem is clear now. :) My apologize for not being precise enough from the beginning!</description><pubDate>Sun, 03 Feb 2013 14:03:30 +0000</pubDate><guid>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1184#comment-1184</guid></item><item><title>Comment by jrk for &lt;p&gt;Yes, instead of running two commands, e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off
+xrandr --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run it in one command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To answer your updated question:&lt;/p&gt;
+
+&lt;p&gt;No, there is no sane way to fix it, see &lt;a href="https://github.com/i3/i3/issues/926"&gt;https://github.com/i3/i3/issues/926&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1180#comment-1180</link><description>Hi, thanks for your hint. I've updated the question, because I did not point out clearly enough, that I have to use two separate xrandr commands. (xrandr would not let me change all three outputs at a time, at least when I tried last.)</description><pubDate>Fri, 01 Feb 2013 09:36:00 +0000</pubDate><guid>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1180#comment-1180</guid></item><item><title>Comment by Michael for &lt;p&gt;Yes, instead of running two commands, e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off
+xrandr --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run it in one command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To answer your updated question:&lt;/p&gt;
+
+&lt;p&gt;No, there is no sane way to fix it, see &lt;a href="https://github.com/i3/i3/issues/926"&gt;https://github.com/i3/i3/issues/926&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1181#comment-1181</link><description>Updated my answer. Note that the commands you provided should always leave LVDS1 enabled, right? i3 won’t quit then.</description><pubDate>Sun, 03 Feb 2013 12:57:18 +0000</pubDate><guid>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1181#comment-1181</guid></item><item><title>Comment by jrk for &lt;p&gt;Yes, instead of running two commands, e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off
+xrandr --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run it in one command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --off --output HDMI1 --auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To answer your updated question:&lt;/p&gt;
+
+&lt;p&gt;No, there is no sane way to fix it, see &lt;a href="https://github.com/i3/i3/issues/926"&gt;https://github.com/i3/i3/issues/926&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1183#comment-1183</link><description>Thanks for your update. The bug represents exactly my problem. To be more precise, LVDS1 is not enabled. This is due to hardware limitations. I'm trying this on an X220 with a docking station. However, the internal Intel GPU can only handle two outputs at once, the other one stays off. Therefore..</description><pubDate>Sun, 03 Feb 2013 13:59:32 +0000</pubDate><guid>https://faq.i3wm.org/question/1178/i3-quits-when-randr-outputs-change/?comment=1183#comment-1183</guid></item></channel></rss>

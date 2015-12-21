@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4321/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 25 Jul 2014 09:56:46 +0000</lastBuildDate><item><title>terminal commands on startup</title><link>https://faq.i3wm.org/question/4321/terminal-commands-on-startup/</link><description>I am trying to run *freetalk* in the terminal on startup (expecting a terminal window to remain open, running *freetalk*). First I tried:
+
+`exec --no-startup-id i3-msg 'workspace 2; exec freetalk`
+
+That does not work. I am now trying something like:
+
+`exec --no-startup-id i3-msg 'workspace 2; exec i3-sensible-terminal'`
+
+But I don't know how to further pass commands into the terminal.</description><pubDate>Fri, 25 Jul 2014 01:26:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4321/terminal-commands-on-startup/</guid></item><item><title>Answer by aorith for &lt;p&gt;I am trying to run &lt;em&gt;freetalk&lt;/em&gt; in the terminal on startup (expecting a terminal window to remain open, running &lt;em&gt;freetalk&lt;/em&gt;). First I tried:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;exec --no-startup-id i3-msg 'workspace 2; exec freetalk&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;That does not work. I am now trying something like:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;exec --no-startup-id i3-msg 'workspace 2; exec i3-sensible-terminal'&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;But I don't know how to further pass commands into the terminal.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4321/terminal-commands-on-startup/?answer=4322#post-id-4322</link><description>try
+
+exec --no-startup-id i3-msg 'workspace 2; exec xterm -e freetalk
+
+and if you want that the terminal stays when you close that program add:
+
+exec --no-startup-id i3-msg 'workspace 2; exec xterm -e freetalk; bash
+</description><pubDate>Fri, 25 Jul 2014 09:56:46 +0000</pubDate><guid>https://faq.i3wm.org/question/4321/terminal-commands-on-startup/?answer=4322#post-id-4322</guid></item></channel></rss>

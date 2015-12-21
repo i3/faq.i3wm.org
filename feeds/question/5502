@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5502/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 20 Feb 2015 09:08:15 +0000</lastBuildDate><item><title>Unable to hibernate with bindsym</title><link>https://faq.i3wm.org/question/5502/unable-to-hibernate-with-bindsym/</link><description>I have tried various approaches to allow my user hibernate my system using the modifier key + Escape.
+
+Initially I performed this by executing `sudo hibernate | i3lock` in the terminal. Where I always had to enter my password.
+
+Then I allowed my user to execute `sudo hibernate` without password - this works in the terminal. This made `i3lock; sudo hibernate` possible and I thought it would work to `exec i3lock; sudo hibernate` on the `bindsym`, but I an i3 error, stating that there's something wrong at sudo.
+
+My idea was to allow the user to execute hibernate without sudo, so I created a symbolic link from /usr/sbin/hibernate to /usr/bin/hibernate and added the suid bit on /usr/sbin/hibernate, which doesn't seem to work. My user is not able to run it without using sudo.
+
+tl;dr
+
+How can I `bindsym` i3lock and hibernate to my modifier + Escape (Debian Jessie)
+</description><pubDate>Thu, 19 Feb 2015 14:50:53 +0000</pubDate><guid>https://faq.i3wm.org/question/5502/unable-to-hibernate-with-bindsym/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I have tried various approaches to allow my user hibernate my system using the modifier key + Escape.&lt;/p&gt;
+
+&lt;p&gt;Initially I performed this by executing &lt;code&gt;sudo hibernate | i3lock&lt;/code&gt; in the terminal. Where I always had to enter my password.&lt;/p&gt;
+
+&lt;p&gt;Then I allowed my user to execute &lt;code&gt;sudo hibernate&lt;/code&gt; without password - this works in the terminal. This made &lt;code&gt;i3lock; sudo hibernate&lt;/code&gt; possible and I thought it would work to &lt;code&gt;exec i3lock; sudo hibernate&lt;/code&gt; on the &lt;code&gt;bindsym&lt;/code&gt;, but I an i3 error, stating that there's something wrong at sudo.&lt;/p&gt;
+
+&lt;p&gt;My idea was to allow the user to execute hibernate without sudo, so I created a symbolic link from /usr/sbin/hibernate to /usr/bin/hibernate and added the suid bit on /usr/sbin/hibernate, which doesn't seem to work. My user is not able to run it without using sudo.&lt;/p&gt;
+
+&lt;p&gt;tl;dr&lt;/p&gt;
+
+&lt;p&gt;How can I &lt;code&gt;bindsym&lt;/code&gt; i3lock and hibernate to my modifier + Escape (Debian Jessie)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5502/unable-to-hibernate-with-bindsym/?answer=5505#post-id-5505</link><description>`;` is a syntactic element of the *i3* configuration. Just like in the shell it is used to separate commands in this case `exec i3lock` and `sudo hibernate`. Of course, there is no `sudo` command in *i3*, hence the error.
+
+Try quoting the shell command (everything after `exec`) with double quotes:
+
+    bindsym $mod+Escape exec "i3lock; sudo hibernate"
+</description><pubDate>Fri, 20 Feb 2015 01:19:11 +0000</pubDate><guid>https://faq.i3wm.org/question/5502/unable-to-hibernate-with-bindsym/?answer=5505#post-id-5505</guid></item><item><title>Comment by apoc for &lt;p&gt;&lt;code&gt;;&lt;/code&gt; is a syntactic element of the &lt;em&gt;i3&lt;/em&gt; configuration. Just like in the shell it is used to separate commands in this case &lt;code&gt;exec i3lock&lt;/code&gt; and &lt;code&gt;sudo hibernate&lt;/code&gt;. Of course, there is no &lt;code&gt;sudo&lt;/code&gt; command in &lt;em&gt;i3&lt;/em&gt;, hence the error.&lt;/p&gt;
+
+&lt;p&gt;Try quoting the shell command (everything after &lt;code&gt;exec&lt;/code&gt;) with double quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Escape exec "i3lock; sudo hibernate"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5502/unable-to-hibernate-with-bindsym/?comment=5506#comment-5506</link><description>To my surprise this works perfectly nice! I thought I tried this syntax already, but as it seems I didn't. Before changing it to your suggestion, I used `bindsym $mod+Escape exec bash -c "i3lock; sudo hibernate"` which didn't work - yet I don't understand why..
+
+thanks a lot for the assistance!</description><pubDate>Fri, 20 Feb 2015 09:08:15 +0000</pubDate><guid>https://faq.i3wm.org/question/5502/unable-to-hibernate-with-bindsym/?comment=5506#comment-5506</guid></item></channel></rss>

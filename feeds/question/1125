@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1125/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 29 Jan 2013 12:48:16 +0000</lastBuildDate><item><title>Scripting a floating window</title><link>https://faq.i3wm.org/question/1125/scripting-a-floating-window/</link><description>I am struggling a little with alsamixer, have a small script that I can run from dmenu
+
+      $TERMINAL --command="alsamixer"
+      i3-msg floating enable
+      i3-msg move absolute position center
+
+It does work but not how I wanted it, need a terminal window to open in the middle of workspace free form tiling [floating]
+
+Or would it be easier with a simple key bind?</description><pubDate>Sun, 27 Jan 2013 18:04:38 +0000</pubDate><guid>https://faq.i3wm.org/question/1125/scripting-a-floating-window/</guid></item><item><title>Answer by Michael for &lt;p&gt;I am struggling a little with alsamixer, have a small script that I can run from dmenu&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  $TERMINAL --command="alsamixer"
+  i3-msg floating enable
+  i3-msg move absolute position center
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It does work but not how I wanted it, need a terminal window to open in the middle of workspace free form tiling [floating]&lt;/p&gt;
+
+&lt;p&gt;Or would it be easier with a simple key bind?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?answer=1130#post-id-1130</link><description>It’s a better idea to launch your terminal with a property that you can identify in the i3 config, like so:
+
+    i3-msg exec urxvt -name alsamixer
+
+Then, in your i3 config, place the commands you want to use:
+
+    for_window [instance="^alsamixer$" class="^URxvt$"] floating enable, move absolute position center</description><pubDate>Mon, 28 Jan 2013 07:49:34 +0000</pubDate><guid>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?answer=1130#post-id-1130</guid></item><item><title>Comment by Michael for &lt;p&gt;It’s a better idea to launch your terminal with a property that you can identify in the i3 config, like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg exec urxvt -name alsamixer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, in your i3 config, place the commands you want to use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="^alsamixer$" class="^URxvt$"] floating enable, move absolute position center
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1151#comment-1151</link><description>Please don’t post comments as answers, that’s what comments are for.</description><pubDate>Tue, 29 Jan 2013 09:28:23 +0000</pubDate><guid>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1151#comment-1151</guid></item><item><title>Comment by Mr Green for &lt;p&gt;It’s a better idea to launch your terminal with a property that you can identify in the i3 config, like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg exec urxvt -name alsamixer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, in your i3 config, place the commands you want to use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="^alsamixer$" class="^URxvt$"] floating enable, move absolute position center
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1153#comment-1153</link><description>Sorry I meant to post a comment not an answer. As for having a `for_window` line for every instance of a script that needs to be run in a terminal, am thinking could I use a variable? or a mode like function so I do not need to specify that it needs to run in a terminal each time? As I already have </description><pubDate>Tue, 29 Jan 2013 11:58:45 +0000</pubDate><guid>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1153#comment-1153</guid></item><item><title>Comment by Mr Green for &lt;p&gt;It’s a better idea to launch your terminal with a property that you can identify in the i3 config, like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg exec urxvt -name alsamixer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, in your i3 config, place the commands you want to use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="^alsamixer$" class="^URxvt$"] floating enable, move absolute position center
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1138#comment-1138</link><description>See my comment above</description><pubDate>Mon, 28 Jan 2013 16:44:57 +0000</pubDate><guid>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1138#comment-1138</guid></item><item><title>Comment by Michael for &lt;p&gt;It’s a better idea to launch your terminal with a property that you can identify in the i3 config, like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg exec urxvt -name alsamixer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, in your i3 config, place the commands you want to use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="^alsamixer$" class="^URxvt$"] floating enable, move absolute position center
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1152#comment-1152</link><description>If you need to use (?i)alsamixer that means your capitalization is different from mine. i means case insensitive.</description><pubDate>Tue, 29 Jan 2013 09:28:48 +0000</pubDate><guid>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1152#comment-1152</guid></item><item><title>Answer by dkeg for &lt;p&gt;I am struggling a little with alsamixer, have a small script that I can run from dmenu&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  $TERMINAL --command="alsamixer"
+  i3-msg floating enable
+  i3-msg move absolute position center
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It does work but not how I wanted it, need a terminal window to open in the middle of workspace free form tiling [floating]&lt;/p&gt;
+
+&lt;p&gt;Or would it be easier with a simple key bind?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?answer=1140#post-id-1140</link><description>Curious, why the need to specify an absolute position of center?  Floating windows position themselves centered automatically. </description><pubDate>Tue, 29 Jan 2013 04:16:52 +0000</pubDate><guid>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?answer=1140#post-id-1140</guid></item><item><title>Comment by dkeg for &lt;p&gt;Curious, why the need to specify an absolute position of center?  Floating windows position themselves centered automatically. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1155#comment-1155</link><description>that's okay, we'll all learning.  It was just as much a question as a statement.  I just figured out how to force position elsewhere besides center for floaters!  </description><pubDate>Tue, 29 Jan 2013 12:48:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1155#comment-1155</guid></item><item><title>Comment by Mr Green for &lt;p&gt;Curious, why the need to specify an absolute position of center?  Floating windows position themselves centered automatically. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1150#comment-1150</link><description>No its not required if you do not need it, still new to i3 so working my way through the options </description><pubDate>Tue, 29 Jan 2013 08:41:29 +0000</pubDate><guid>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?comment=1150#comment-1150</guid></item><item><title>Answer by Mr Green for &lt;p&gt;I am struggling a little with alsamixer, have a small script that I can run from dmenu&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  $TERMINAL --command="alsamixer"
+  i3-msg floating enable
+  i3-msg move absolute position center
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It does work but not how I wanted it, need a terminal window to open in the middle of workspace free form tiling [floating]&lt;/p&gt;
+
+&lt;p&gt;Or would it be easier with a simple key bind?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?answer=1137#post-id-1137</link><description>I could not get your command to work until I used
+
+    "(?i)alsamixer"
+
+Running i3 4.4
+
+Is this a bug?</description><pubDate>Mon, 28 Jan 2013 16:44:27 +0000</pubDate><guid>https://faq.i3wm.org/question/1125/scripting-a-floating-window/?answer=1137#post-id-1137</guid></item></channel></rss>

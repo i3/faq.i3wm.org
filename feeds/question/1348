@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1348/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 09 Mar 2013 16:52:08 +0000</lastBuildDate><item><title>Workspace list "collapse feature" like in Gnome3</title><link>https://faq.i3wm.org/question/1348/workspace-list-collapse-feature-like-in-gnome3/</link><description>Hi,
+
+is there any way to access workspaces by there position in the workspace list rather then by there number or name? Or does anyone have an idea, how to achieve such a behavior?
+
+Let me give you an excample on what I am trying to do here:
+
+I have, let's say, 4 workspaces ("a", "b", "c", "d"), which are accessible via Mod1+1 to Mod1+4. Now I close every Window on workspace "b" and switch to workspace "a". So workspace "b" gets destroyed on the fly (as I recall correctly). The list of workspaces presented in the status bar now shows "[a] [c] [d]". And now I want to be able to switch to workspace "d" via - here comes the trick - Mod1+3, because "d" is third in list.
+
+Why would someone do this, you might ask?
+
+I'am often using mobile devices with small screens (small laptop, netbook) and I have only with few applications open. There, screenspace is very limited and every pixel is of value. So I put single windows on a new workspace just to keep them as big as possible. And therefore apllications get closed where often. On the other hand side, Mod1+1 to Mod1+5 is far easier to reach than Mod1+6 to Mod1+9 or even Mod1+0. So I find my self moving applications very often from one workspace to another workspace, which is more to the left side on the key bind list. I got the idea while playing around with GNOME3 for some days (just out of curiosity), where dynamic workspaces kinda implemented like that.
+</description><pubDate>Fri, 08 Mar 2013 17:57:41 +0000</pubDate><guid>https://faq.i3wm.org/question/1348/workspace-list-collapse-feature-like-in-gnome3/</guid></item><item><title>Answer by bedivere for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;is there any way to access workspaces by there position in the workspace list rather then by there number or name? Or does anyone have an idea, how to achieve such a behavior?&lt;/p&gt;
+
+&lt;p&gt;Let me give you an excample on what I am trying to do here:&lt;/p&gt;
+
+&lt;p&gt;I have, let's say, 4 workspaces ("a", "b", "c", "d"), which are accessible via Mod1+1 to Mod1+4. Now I close every Window on workspace "b" and switch to workspace "a". So workspace "b" gets destroyed on the fly (as I recall correctly). The list of workspaces presented in the status bar now shows "[a] [c] [d]". And now I want to be able to switch to workspace "d" via - here comes the trick - Mod1+3, because "d" is third in list.&lt;/p&gt;
+
+&lt;p&gt;Why would someone do this, you might ask?&lt;/p&gt;
+
+&lt;p&gt;I'am often using mobile devices with small screens (small laptop, netbook) and I have only with few applications open. There, screenspace is very limited and every pixel is of value. So I put single windows on a new workspace just to keep them as big as possible. And therefore apllications get closed where often. On the other hand side, Mod1+1 to Mod1+5 is far easier to reach than Mod1+6 to Mod1+9 or even Mod1+0. So I find my self moving applications very often from one workspace to another workspace, which is more to the left side on the key bind list. I got the idea while playing around with GNOME3 for some days (just out of curiosity), where dynamic workspaces kinda implemented like that.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1348/workspace-list-collapse-feature-like-in-gnome3/?answer=1361#post-id-1361</link><description>For now I developed a Perl-Programm which uses AnyEvent::I3 and the renaming feature for workspaces. I just needed to use a trick to get proper workspace names out of my configuration. I define workspace names with a specific set of variables in my configuration file, something like "set $workspace1 WorkspaceOne" which I can then grep out of the configuration file.</description><pubDate>Sat, 09 Mar 2013 16:52:08 +0000</pubDate><guid>https://faq.i3wm.org/question/1348/workspace-list-collapse-feature-like-in-gnome3/?answer=1361#post-id-1361</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;is there any way to access workspaces by there position in the workspace list rather then by there number or name? Or does anyone have an idea, how to achieve such a behavior?&lt;/p&gt;
+
+&lt;p&gt;Let me give you an excample on what I am trying to do here:&lt;/p&gt;
+
+&lt;p&gt;I have, let's say, 4 workspaces ("a", "b", "c", "d"), which are accessible via Mod1+1 to Mod1+4. Now I close every Window on workspace "b" and switch to workspace "a". So workspace "b" gets destroyed on the fly (as I recall correctly). The list of workspaces presented in the status bar now shows "[a] [c] [d]". And now I want to be able to switch to workspace "d" via - here comes the trick - Mod1+3, because "d" is third in list.&lt;/p&gt;
+
+&lt;p&gt;Why would someone do this, you might ask?&lt;/p&gt;
+
+&lt;p&gt;I'am often using mobile devices with small screens (small laptop, netbook) and I have only with few applications open. There, screenspace is very limited and every pixel is of value. So I put single windows on a new workspace just to keep them as big as possible. And therefore apllications get closed where often. On the other hand side, Mod1+1 to Mod1+5 is far easier to reach than Mod1+6 to Mod1+9 or even Mod1+0. So I find my self moving applications very often from one workspace to another workspace, which is more to the left side on the key bind list. I got the idea while playing around with GNOME3 for some days (just out of curiosity), where dynamic workspaces kinda implemented like that.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1348/workspace-list-collapse-feature-like-in-gnome3/?answer=1350#post-id-1350</link><description>This should be easy by writing a custom script using the IPC interface. See http://i3wm.org/docs/ipc.html
+
+You just need to get the list of workspaces, then access that list by index and tell i3 to switch to that workspace.</description><pubDate>Fri, 08 Mar 2013 18:13:21 +0000</pubDate><guid>https://faq.i3wm.org/question/1348/workspace-list-collapse-feature-like-in-gnome3/?answer=1350#post-id-1350</guid></item></channel></rss>

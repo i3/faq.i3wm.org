@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7311/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 23 Nov 2015 08:53:57 +0000</lastBuildDate><item><title>i3bar covers Photoshop menu</title><link>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/</link><description>I run the i3wm with the i3bar. I installed Photoshop CS6 through Wine.
+
+I have found a few quirks:
+
+ - the i3bar is overlapping the Photoshop's Menu bar (File, etc): i3wm and Photoshop
+ - resizing the Photoshop window (i.e. by placing it into floating mode or opening another application side by side) does not re-scale photoshop, instead the app just covers half of the Photoshop window.
+
+I assume these issues are related; yet the first one is more important. What would fix this issue?
+
+
+EDIT: The output of `xprop` is:
+
+    WM_STATE(WM_STATE):
+    		window state: Normal
+    		icon window: 0x0
+    _NET_WM_STATE(ATOM) = _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_STATE_MAXIMIZED_HORZ
+    _NET_WM_ICON(CARDINAL) = 
+    _NET_WM_NAME(UTF8_STRING) = "Adobe Photoshop CS6 Extended"
+    WM_ICON_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+    WM_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+    WM_HINTS(WM_HINTS):
+    		Client accepts input or input focus: False
+    		Initial state is Normal State.
+    		bitmap id # to use for icon: 0x3e01171
+    		bitmap id # of mask for icon: 0x3e01173
+    		window id # of group leader: 0x4600003
+    _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+    _MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x3e, 0x0, 0x97cf0000, 0x7d7afd80
+    WM_NORMAL_HINTS(WM_SIZE_HINTS):
+    		window gravity: Static
+    _NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x3e0000f
+    XdndAware(ATOM) = ATOM
+    _NET_WM_PID(CARDINAL) = 19848
+    WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+    WM_CLIENT_MACHINE(STRING) = "alonso"
+    WM_CLASS(STRING) = "Photoshop.exe", "Wine"
+    WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, WM_TAKE_FOCUS
+
+</description><pubDate>Sat, 14 Nov 2015 12:31:27 +0000</pubDate><guid>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/</guid></item><item><title>Comment by alonsodon for &lt;p&gt;I run the i3wm with the i3bar. I installed Photoshop CS6 through Wine.&lt;/p&gt;
+
+&lt;p&gt;I have found a few quirks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the i3bar is overlapping the Photoshop's Menu bar (File, etc): i3wm and Photoshop&lt;/li&gt;
+&lt;li&gt;resizing the Photoshop window (i.e. by placing it into floating mode or opening another application side by side) does not re-scale photoshop, instead the app just covers half of the Photoshop window.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I assume these issues are related; yet the first one is more important. What would fix this issue?&lt;/p&gt;
+
+&lt;p&gt;EDIT: The output of &lt;code&gt;xprop&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_STATE(ATOM) = _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_STATE_MAXIMIZED_HORZ
+_NET_WM_ICON(CARDINAL) = 
+_NET_WM_NAME(UTF8_STRING) = "Adobe Photoshop CS6 Extended"
+WM_ICON_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: False
+        Initial state is Normal State.
+        bitmap id # to use for icon: 0x3e01171
+        bitmap id # of mask for icon: 0x3e01173
+        window id # of group leader: 0x4600003
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x3e, 0x0, 0x97cf0000, 0x7d7afd80
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        window gravity: Static
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x3e0000f
+XdndAware(ATOM) = ATOM
+_NET_WM_PID(CARDINAL) = 19848
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "alonso"
+WM_CLASS(STRING) = "Photoshop.exe", "Wine"
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, WM_TAKE_FOCUS
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?comment=7329#comment-7329</link><description>I have moved the issue to github (https://github.com/i3/i3/issues/2066) and added all requested information</description><pubDate>Sun, 15 Nov 2015 10:29:42 +0000</pubDate><guid>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?comment=7329#comment-7329</guid></item><item><title>Comment by Airblader for &lt;p&gt;I run the i3wm with the i3bar. I installed Photoshop CS6 through Wine.&lt;/p&gt;
+
+&lt;p&gt;I have found a few quirks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the i3bar is overlapping the Photoshop's Menu bar (File, etc): i3wm and Photoshop&lt;/li&gt;
+&lt;li&gt;resizing the Photoshop window (i.e. by placing it into floating mode or opening another application side by side) does not re-scale photoshop, instead the app just covers half of the Photoshop window.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I assume these issues are related; yet the first one is more important. What would fix this issue?&lt;/p&gt;
+
+&lt;p&gt;EDIT: The output of &lt;code&gt;xprop&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_STATE(ATOM) = _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_STATE_MAXIMIZED_HORZ
+_NET_WM_ICON(CARDINAL) = 
+_NET_WM_NAME(UTF8_STRING) = "Adobe Photoshop CS6 Extended"
+WM_ICON_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: False
+        Initial state is Normal State.
+        bitmap id # to use for icon: 0x3e01171
+        bitmap id # of mask for icon: 0x3e01173
+        window id # of group leader: 0x4600003
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x3e, 0x0, 0x97cf0000, 0x7d7afd80
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        window gravity: Static
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x3e0000f
+XdndAware(ATOM) = ATOM
+_NET_WM_PID(CARDINAL) = 19848
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "alonso"
+WM_CLASS(STRING) = "Photoshop.exe", "Wine"
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, WM_TAKE_FOCUS
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?comment=7315#comment-7315</link><description>Thanks. Can you please do the same for "xwininfo -all" and also provide an i3 logfile? In fact, it'd be better if you opened this on Github as a bug report, which will make communication easier. Please see the debugging docs on the i3 website on how to properly pull the logfile.</description><pubDate>Sat, 14 Nov 2015 15:15:12 +0000</pubDate><guid>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?comment=7315#comment-7315</guid></item><item><title>Comment by alonsodon for &lt;p&gt;I run the i3wm with the i3bar. I installed Photoshop CS6 through Wine.&lt;/p&gt;
+
+&lt;p&gt;I have found a few quirks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the i3bar is overlapping the Photoshop's Menu bar (File, etc): i3wm and Photoshop&lt;/li&gt;
+&lt;li&gt;resizing the Photoshop window (i.e. by placing it into floating mode or opening another application side by side) does not re-scale photoshop, instead the app just covers half of the Photoshop window.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I assume these issues are related; yet the first one is more important. What would fix this issue?&lt;/p&gt;
+
+&lt;p&gt;EDIT: The output of &lt;code&gt;xprop&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_STATE(ATOM) = _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_STATE_MAXIMIZED_HORZ
+_NET_WM_ICON(CARDINAL) = 
+_NET_WM_NAME(UTF8_STRING) = "Adobe Photoshop CS6 Extended"
+WM_ICON_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: False
+        Initial state is Normal State.
+        bitmap id # to use for icon: 0x3e01171
+        bitmap id # of mask for icon: 0x3e01173
+        window id # of group leader: 0x4600003
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x3e, 0x0, 0x97cf0000, 0x7d7afd80
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        window gravity: Static
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x3e0000f
+XdndAware(ATOM) = ATOM
+_NET_WM_PID(CARDINAL) = 19848
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "alonso"
+WM_CLASS(STRING) = "Photoshop.exe", "Wine"
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, WM_TAKE_FOCUS
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?comment=7314#comment-7314</link><description>I have added the output of xprop to the description</description><pubDate>Sat, 14 Nov 2015 14:23:16 +0000</pubDate><guid>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?comment=7314#comment-7314</guid></item><item><title>Comment by Airblader for &lt;p&gt;I run the i3wm with the i3bar. I installed Photoshop CS6 through Wine.&lt;/p&gt;
+
+&lt;p&gt;I have found a few quirks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the i3bar is overlapping the Photoshop's Menu bar (File, etc): i3wm and Photoshop&lt;/li&gt;
+&lt;li&gt;resizing the Photoshop window (i.e. by placing it into floating mode or opening another application side by side) does not re-scale photoshop, instead the app just covers half of the Photoshop window.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I assume these issues are related; yet the first one is more important. What would fix this issue?&lt;/p&gt;
+
+&lt;p&gt;EDIT: The output of &lt;code&gt;xprop&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_STATE(ATOM) = _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_STATE_MAXIMIZED_HORZ
+_NET_WM_ICON(CARDINAL) = 
+_NET_WM_NAME(UTF8_STRING) = "Adobe Photoshop CS6 Extended"
+WM_ICON_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: False
+        Initial state is Normal State.
+        bitmap id # to use for icon: 0x3e01171
+        bitmap id # of mask for icon: 0x3e01173
+        window id # of group leader: 0x4600003
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x3e, 0x0, 0x97cf0000, 0x7d7afd80
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        window gravity: Static
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x3e0000f
+XdndAware(ATOM) = ATOM
+_NET_WM_PID(CARDINAL) = 19848
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "alonso"
+WM_CLASS(STRING) = "Photoshop.exe", "Wine"
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, WM_TAKE_FOCUS
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?comment=7313#comment-7313</link><description>The second problem is either a Wine or a Photoshop problem. For the first one this is likely the case as well, but can you run xprop, select the Photoshop window and post the output here?</description><pubDate>Sat, 14 Nov 2015 13:02:17 +0000</pubDate><guid>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?comment=7313#comment-7313</guid></item><item><title>Comment by alonsodon for &lt;p&gt;I run the i3wm with the i3bar. I installed Photoshop CS6 through Wine.&lt;/p&gt;
+
+&lt;p&gt;I have found a few quirks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the i3bar is overlapping the Photoshop's Menu bar (File, etc): i3wm and Photoshop&lt;/li&gt;
+&lt;li&gt;resizing the Photoshop window (i.e. by placing it into floating mode or opening another application side by side) does not re-scale photoshop, instead the app just covers half of the Photoshop window.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I assume these issues are related; yet the first one is more important. What would fix this issue?&lt;/p&gt;
+
+&lt;p&gt;EDIT: The output of &lt;code&gt;xprop&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_STATE(ATOM) = _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_STATE_MAXIMIZED_HORZ
+_NET_WM_ICON(CARDINAL) = 
+_NET_WM_NAME(UTF8_STRING) = "Adobe Photoshop CS6 Extended"
+WM_ICON_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: False
+        Initial state is Normal State.
+        bitmap id # to use for icon: 0x3e01171
+        bitmap id # of mask for icon: 0x3e01173
+        window id # of group leader: 0x4600003
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x3e, 0x0, 0x97cf0000, 0x7d7afd80
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        window gravity: Static
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x3e0000f
+XdndAware(ATOM) = ATOM
+_NET_WM_PID(CARDINAL) = 19848
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "alonso"
+WM_CLASS(STRING) = "Photoshop.exe", "Wine"
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, WM_TAKE_FOCUS
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?comment=7312#comment-7312</link><description>Image: http://i.imgur.com/WJW5Htd.png</description><pubDate>Sat, 14 Nov 2015 12:31:34 +0000</pubDate><guid>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?comment=7312#comment-7312</guid></item><item><title>Answer by alonsodon for &lt;p&gt;I run the i3wm with the i3bar. I installed Photoshop CS6 through Wine.&lt;/p&gt;
+
+&lt;p&gt;I have found a few quirks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the i3bar is overlapping the Photoshop's Menu bar (File, etc): i3wm and Photoshop&lt;/li&gt;
+&lt;li&gt;resizing the Photoshop window (i.e. by placing it into floating mode or opening another application side by side) does not re-scale photoshop, instead the app just covers half of the Photoshop window.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I assume these issues are related; yet the first one is more important. What would fix this issue?&lt;/p&gt;
+
+&lt;p&gt;EDIT: The output of &lt;code&gt;xprop&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_STATE(ATOM) = _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_STATE_MAXIMIZED_HORZ
+_NET_WM_ICON(CARDINAL) = 
+_NET_WM_NAME(UTF8_STRING) = "Adobe Photoshop CS6 Extended"
+WM_ICON_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: False
+        Initial state is Normal State.
+        bitmap id # to use for icon: 0x3e01171
+        bitmap id # of mask for icon: 0x3e01173
+        window id # of group leader: 0x4600003
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x3e, 0x0, 0x97cf0000, 0x7d7afd80
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        window gravity: Static
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x3e0000f
+XdndAware(ATOM) = ATOM
+_NET_WM_PID(CARDINAL) = 19848
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "alonso"
+WM_CLASS(STRING) = "Photoshop.exe", "Wine"
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, WM_TAKE_FOCUS
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?answer=7333#post-id-7333</link><description> The solution is to dissalow the window manager to decorate the window.
+
+This can be done by running "winecfg", go to the "Graphics" tab and uncheck "Allow the window manager to decorate the windows."
+
+This resolves both issue I noted in the question: the i3bar covering the menu, and the resizing quirks when Photoshop does not fill the entire screen.</description><pubDate>Sun, 15 Nov 2015 18:51:16 +0000</pubDate><guid>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?answer=7333#post-id-7333</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;I run the i3wm with the i3bar. I installed Photoshop CS6 through Wine.&lt;/p&gt;
+
+&lt;p&gt;I have found a few quirks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the i3bar is overlapping the Photoshop's Menu bar (File, etc): i3wm and Photoshop&lt;/li&gt;
+&lt;li&gt;resizing the Photoshop window (i.e. by placing it into floating mode or opening another application side by side) does not re-scale photoshop, instead the app just covers half of the Photoshop window.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I assume these issues are related; yet the first one is more important. What would fix this issue?&lt;/p&gt;
+
+&lt;p&gt;EDIT: The output of &lt;code&gt;xprop&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_STATE(ATOM) = _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_STATE_MAXIMIZED_HORZ
+_NET_WM_ICON(CARDINAL) = 
+_NET_WM_NAME(UTF8_STRING) = "Adobe Photoshop CS6 Extended"
+WM_ICON_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: False
+        Initial state is Normal State.
+        bitmap id # to use for icon: 0x3e01171
+        bitmap id # of mask for icon: 0x3e01173
+        window id # of group leader: 0x4600003
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x3e, 0x0, 0x97cf0000, 0x7d7afd80
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        window gravity: Static
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x3e0000f
+XdndAware(ATOM) = ATOM
+_NET_WM_PID(CARDINAL) = 19848
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "alonso"
+WM_CLASS(STRING) = "Photoshop.exe", "Wine"
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, WM_TAKE_FOCUS
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?answer=7403#post-id-7403</link><description>Perhaps it would be better to make photoshop fullscreen.  This can be accomplished by using for_window and criteria obtained by examining the output of xprop or xwininfo. </description><pubDate>Mon, 23 Nov 2015 08:53:57 +0000</pubDate><guid>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/?answer=7403#post-id-7403</guid></item></channel></rss>

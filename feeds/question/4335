@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4335/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 29 Jul 2014 07:36:05 +0000</lastBuildDate><item><title>move focus to monitor</title><link>https://faq.i3wm.org/question/4335/move-focus-to-monitor/</link><description>Is there a way to bind a "move focus to monitor left" shortcut?
+
+I am using a dual monitor setup and would like to switch focus between whatever there is currently in focus on either screen.
+
+I know that I can use the arrows to move focus left or right, but one could have multiple vertical tabs open on both screens. Changing focus from the leftmost on the left screen to the rightmost on the right screen is a pain.
+
+I know that one can focus the parent and then use the arrows, but this still seems odd.
+
+
+
+Update:
+Thank you both, Adaephon and konni.
+
+"focus output left" works like a charm!</description><pubDate>Mon, 28 Jul 2014 13:27:40 +0000</pubDate><guid>https://faq.i3wm.org/question/4335/move-focus-to-monitor/</guid></item><item><title>Answer by jarda-wien for &lt;p&gt;Is there a way to bind a "move focus to monitor left" shortcut?&lt;/p&gt;
+
+&lt;p&gt;I am using a dual monitor setup and would like to switch focus between whatever there is currently in focus on either screen.&lt;/p&gt;
+
+&lt;p&gt;I know that I can use the arrows to move focus left or right, but one could have multiple vertical tabs open on both screens. Changing focus from the leftmost on the left screen to the rightmost on the right screen is a pain.&lt;/p&gt;
+
+&lt;p&gt;I know that one can focus the parent and then use the arrows, but this still seems odd.&lt;/p&gt;
+
+&lt;p&gt;Update:
+Thank you both, Adaephon and konni.&lt;/p&gt;
+
+&lt;p&gt;"focus output left" works like a charm!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4335/move-focus-to-monitor/?answer=4347#post-id-4347</link><description>Thank you both, Adaephon and konni.
+
+"focus output left" works like a charm!</description><pubDate>Tue, 29 Jul 2014 07:36:05 +0000</pubDate><guid>https://faq.i3wm.org/question/4335/move-focus-to-monitor/?answer=4347#post-id-4347</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Is there a way to bind a "move focus to monitor left" shortcut?&lt;/p&gt;
+
+&lt;p&gt;I am using a dual monitor setup and would like to switch focus between whatever there is currently in focus on either screen.&lt;/p&gt;
+
+&lt;p&gt;I know that I can use the arrows to move focus left or right, but one could have multiple vertical tabs open on both screens. Changing focus from the leftmost on the left screen to the rightmost on the right screen is a pain.&lt;/p&gt;
+
+&lt;p&gt;I know that one can focus the parent and then use the arrows, but this still seems odd.&lt;/p&gt;
+
+&lt;p&gt;Update:
+Thank you both, Adaephon and konni.&lt;/p&gt;
+
+&lt;p&gt;"focus output left" works like a charm!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4335/move-focus-to-monitor/?answer=4343#post-id-4343</link><description>The `focus` command can also used for outputs (See [Section 6.4 of the *User's Guide*](http://i3wm.org/docs/userguide.html#_focusing_moving_containers))
+
+    focus output &lt;&lt;left|right|down|up&gt;|output&gt;
+
+So you can set something like this in your configuration:
+
+    bindsym $mod+Control+Left focus output left
+    bindsym $mod+Control+Right focus output right
+
+----
+
+BTW: The same works for the `move` command (Although it seems to be undocumented in the *User's Guide*)
+
+    bindsym $mod+Control+Shift+Left move output left
+    bindsym $mod+Control+Shift+Right move output right
+
+    </description><pubDate>Tue, 29 Jul 2014 05:36:50 +0000</pubDate><guid>https://faq.i3wm.org/question/4335/move-focus-to-monitor/?answer=4343#post-id-4343</guid></item><item><title>Answer by konni for &lt;p&gt;Is there a way to bind a "move focus to monitor left" shortcut?&lt;/p&gt;
+
+&lt;p&gt;I am using a dual monitor setup and would like to switch focus between whatever there is currently in focus on either screen.&lt;/p&gt;
+
+&lt;p&gt;I know that I can use the arrows to move focus left or right, but one could have multiple vertical tabs open on both screens. Changing focus from the leftmost on the left screen to the rightmost on the right screen is a pain.&lt;/p&gt;
+
+&lt;p&gt;I know that one can focus the parent and then use the arrows, but this still seems odd.&lt;/p&gt;
+
+&lt;p&gt;Update:
+Thank you both, Adaephon and konni.&lt;/p&gt;
+
+&lt;p&gt;"focus output left" works like a charm!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4335/move-focus-to-monitor/?answer=4336#post-id-4336</link><description>xrandr -q, check the names,
+
+    bindsym $mod+i focus output DP-0
+    bindsym $mod+u focus output DVI-I-1</description><pubDate>Mon, 28 Jul 2014 13:43:02 +0000</pubDate><guid>https://faq.i3wm.org/question/4335/move-focus-to-monitor/?answer=4336#post-id-4336</guid></item></channel></rss>

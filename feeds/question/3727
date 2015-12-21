@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3727/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 29 May 2014 15:40:23 +0000</lastBuildDate><item><title>How to resize container to a predefined size?</title><link>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/</link><description>I want my container/window to be, say, 1 screen wide and 1/3 screen high. How can I split screen to a preset size?</description><pubDate>Thu, 24 Apr 2014 13:40:11 +0000</pubDate><guid>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;I want my container/window to be, say, 1 screen wide and 1/3 screen high. How can I split screen to a preset size?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?comment=3892#comment-3892</link><description>abbot, what you describe in your second comment above is the foundation of the Subtle window manager. It's entire management scheme is based on that sort of layout manipulation. It might be better to check out Subtle than to struggle getting i3 to do something it wasn't really designed for.</description><pubDate>Thu, 29 May 2014 15:40:23 +0000</pubDate><guid>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?comment=3892#comment-3892</guid></item><item><title>Comment by abbot for &lt;p&gt;I want my container/window to be, say, 1 screen wide and 1/3 screen high. How can I split screen to a preset size?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?comment=3774#comment-3774</link><description>KJ44, I want to be able to switch between preset workspace height splits like 50/50-&gt;67/33-&gt;75/25-&gt;50/50 with a hotkey. Now I can use resize mode to tweak the workspace split each time, but it is just bloody annoying as I always end up with roughly one of the splits I mentioned...</description><pubDate>Tue, 06 May 2014 13:28:45 +0000</pubDate><guid>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?comment=3774#comment-3774</guid></item><item><title>Comment by KJ44 for &lt;p&gt;I want my container/window to be, say, 1 screen wide and 1/3 screen high. How can I split screen to a preset size?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?comment=3777#comment-3777</link><description>Hi abbot .. I've posted a substantial answer that works ergonomically for me, there should be enough detail there for you to do it in your own style. </description><pubDate>Tue, 06 May 2014 17:53:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?comment=3777#comment-3777</guid></item><item><title>Comment by KJ44 for &lt;p&gt;I want my container/window to be, say, 1 screen wide and 1/3 screen high. How can I split screen to a preset size?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?comment=3764#comment-3764</link><description>In general you will be fighting i3 for how the workspace should divide if you insist on specific dimensions, but the simplest way for a 1/3 screen height is to put your window in its own workspace and create two other windows each containing a terminal.</description><pubDate>Sun, 04 May 2014 13:24:21 +0000</pubDate><guid>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?comment=3764#comment-3764</guid></item><item><title>Answer by KJ44 for &lt;p&gt;I want my container/window to be, say, 1 screen wide and 1/3 screen high. How can I split screen to a preset size?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?answer=3776#post-id-3776</link><description>This resize mode will balance a window split in two (binding 's') and subsequently allows the split point to be moved with arrow keys. It is easier to use than to describe. 
+
+The trick is to toggle the container mode tiled =&gt; floating =&gt; tiled to establish a 50:50 split then resize from a known baseline. 
+
+I like to compose operations which is why I use modes but it should be straightforward to hard code the desired composite operation given the baseline 50:50 split, except that one will have fun with the direction of the split (exercise for the reader ;).
+
+
+    # Resize windows (as an alternative to using the mouse).
+    mode "Resize" {
+        # Change focus.
+        # Doing this before resizing may be preferable.
+        bindsym $mod+j focus down
+        bindsym $mod+k focus up
+        bindsym $mod+l focus right
+                                                                                                                                                                            
+        # Resize the border in the desired direction.
+        bindsym h       resize grow   left 10 px or 10 ppt
+        bindsym Shift+H resize shrink left 10 px or 10 ppt
+        bindsym j       resize grow   down 10 px or 10 ppt
+        bindsym Shift+J resize shrink down 10 px or 10 ppt
+        bindsym k       resize grow   up 10 px or 10 ppt
+        bindsym Shift+K resize shrink up 10 px or 10 ppt
+        bindsym l       resize grow   right 10 px or 10 ppt
+        bindsym Shift+L resize shrink right 10 px or 10 ppt
+    
+        # Resize width and height symmetrically.
+        bindsym Left  resize shrink left  10 px or 10 ppt, resize shrink right 10 px or 10 ppt
+        bindsym Down  resize shrink down  10 px or 10 ppt, resize shrink up    10 px or 10 ppt
+        bindsym Up    resize grow   up    10 px or 10 ppt, resize grow   down  10 px or 10 ppt
+        bindsym Right resize grow   right 10 px or 10 ppt, resize grow   left  10 px or 10 ppt
+    
+        bindsym v resize grow   up 100 px or 100 ppt, resize grow  down 100 px or 100 ppt
+        bindsym b resize grow left 100 px or 100 ppt, resize grow right 100 px or 100 ppt
+    
+        # Assuming a workspace split into two, this balances the split.
+        bindsym s floating toggle, floating toggle
+    
+        # Go back to normal. 
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym    Tab mode "default"
+    }</description><pubDate>Tue, 06 May 2014 17:51:17 +0000</pubDate><guid>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?answer=3776#post-id-3776</guid></item><item><title>Answer by cowsquad for &lt;p&gt;I want my container/window to be, say, 1 screen wide and 1/3 screen high. How can I split screen to a preset size?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?answer=3763#post-id-3763</link><description>I think you can do something like this my man. This is for firefox. So in order to find the instance and class names, you can use xprop command, then click on the application you are trying to use and find the following info:
+ **WM_CLASS(STRING) = "Navigator", "Firefox"**
+
+    WM_CLIENT_LEADER(WINDOW): window id # 0xe00001
+    _NET_WM_PID(CARDINAL) = 31236
+    WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+    WM_CLIENT_MACHINE(STRING) = "ubuntuLTS"
+    WM_NORMAL_HINTS(WM_SIZE_HINTS):
+    		program specified minimum size: 300 by 134
+    		program specified maximum size: 32767 by 32767
+    		window gravity: NorthWest
+    WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS, _NET_WM_PING, _NET_WM_SYNC_REQUEST
+    **WM_CLASS(STRING) = "Navigator", "Firefox"**
+
+
+The first string is the instance's name, in this example is "Navigator". The second one, after the comma is the class name, in this case "Firefox"
+
+So after gathering that info you can input this on you i3 config file
+
+    for_window [instance="Navigator"] resize grow left 200, resize grow right 200, resize grow down 150, resize grow up 100
+                                               </description><pubDate>Sun, 04 May 2014 03:34:19 +0000</pubDate><guid>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?answer=3763#post-id-3763</guid></item><item><title>Comment by abbot for &lt;p&gt;I think you can do something like this my man. This is for firefox. So in order to find the instance and class names, you can use xprop command, then click on the application you are trying to use and find the following info:
+ &lt;strong&gt;WM_CLASS(STRING) = "Navigator", "Firefox"&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_CLIENT_LEADER(WINDOW): window id # 0xe00001
+_NET_WM_PID(CARDINAL) = 31236
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "ubuntuLTS"
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        program specified minimum size: 300 by 134
+        program specified maximum size: 32767 by 32767
+        window gravity: NorthWest
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS, _NET_WM_PING, _NET_WM_SYNC_REQUEST
+**WM_CLASS(STRING) = "Navigator", "Firefox"**
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first string is the instance's name, in this example is "Navigator". The second one, after the comma is the class name, in this case "Firefox"&lt;/p&gt;
+
+&lt;p&gt;So after gathering that info you can input this on you i3 config file&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="Navigator"] resize grow left 200, resize grow right 200, resize grow down 150, resize grow up 100
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?comment=3775#comment-3775</link><description>That's not it. I want to be able to switch between preset workspace height splits like 50/50-&gt;67/33-&gt;75/25-&gt;50/50 with a hotkey. Now I can use resize mode to tweak the workspace split each time, but it is just bloody annoying as I always end up with roughly one of the splits I mentioned...</description><pubDate>Tue, 06 May 2014 13:30:09 +0000</pubDate><guid>https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/?comment=3775#comment-3775</guid></item></channel></rss>

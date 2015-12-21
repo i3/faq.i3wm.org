@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4663/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 21 Aug 2015 18:42:14 +0000</lastBuildDate><item><title>i3bar border cannot get rid of</title><link>https://faq.i3wm.org/question/4663/i3bar-border-cannot-get-rid-of/</link><description>Hello!
+
+On the i3bar area (I'm using i3status with it), there is this little black line underneath it. It sits in between the titlebars and the bar itself. I was wondering, is there anyway to get rid of this thing? It's been driving me crazy.</description><pubDate>Sun, 21 Sep 2014 00:24:15 +0000</pubDate><guid>https://faq.i3wm.org/question/4663/i3bar-border-cannot-get-rid-of/</guid></item><item><title>Answer by pawelkl for &lt;p&gt;Hello!&lt;/p&gt;
+
+&lt;p&gt;On the i3bar area (I'm using i3status with it), there is this little black line underneath it. It sits in between the titlebars and the bar itself. I was wondering, is there anyway to get rid of this thing? It's been driving me crazy.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4663/i3bar-border-cannot-get-rid-of/?answer=6489#post-id-6489</link><description> To get "no border" when making block with background I use `i3blocks`
+
+in file `~/.config/i3blocks/config` above any [BLOCK] put:
+
+    separator_block_width=-16
+    markup=pango
+
+example:
+
+    separator_block_width=-16
+    markup=pango
+    [SOME_BLOCK]
+    full_text=&lt;span bgcolor='#ff0000' &gt;LOL&lt;/span&gt;
+
+some blocks are too short then - so I put spaces at the end of `full_text` (after `&lt;/span&gt;`!)
+
+value `-16` probably You need to corelate with i3bar font size (`bar` section in ~/.config/i3/config )
+
+You can also use normal i3status and then put two needed lines in every block so it could be "borderless"</description><pubDate>Fri, 21 Aug 2015 18:42:14 +0000</pubDate><guid>https://faq.i3wm.org/question/4663/i3bar-border-cannot-get-rid-of/?answer=6489#post-id-6489</guid></item></channel></rss>

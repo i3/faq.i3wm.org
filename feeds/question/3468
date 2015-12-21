@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3468/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 27 Mar 2014 04:26:29 +0000</lastBuildDate><item><title>Run a command when i3 exits?</title><link>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/</link><description>Hi, I know you can use "exec" in your i3 config file to run something when you log in, but is there any way to have it run something when you sign out?</description><pubDate>Mon, 03 Mar 2014 22:44:51 +0000</pubDate><guid>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/</guid></item><item><title>Answer by KJ44 for &lt;p&gt;Hi, I know you can use "exec" in your i3 config file to run something when you log in, but is there any way to have it run something when you sign out?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?answer=3483#post-id-3483</link><description>This should give you the general idea. 
+
+    bindsym $mod+e mode "Exit"
+    
+    # Exit i3 in various ways.                                                                                                                                           
+                                                                                                                                          
+    mode "Exit" {
+        bindsym h exec gksu "/sbin/shutdown -h now"
+        bindsym r exec gksu "/sbin/shutdown -r now"
+        bindsym x exit
+    
+        # back to normal: Enter or Escape                                                                                                                                
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+</description><pubDate>Wed, 05 Mar 2014 19:01:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?answer=3483#post-id-3483</guid></item><item><title>Comment by KJ44 for &lt;p&gt;This should give you the general idea. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+e mode "Exit"
+
+# Exit i3 in various ways.                                                                                                                                           
+
+mode "Exit" {
+    bindsym h exec gksu "/sbin/shutdown -h now"
+    bindsym r exec gksu "/sbin/shutdown -r now"
+    bindsym x exit
+
+    # back to normal: Enter or Escape                                                                                                                                
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3511#comment-3511</link><description>Maybe i3-msg? Sorry, but you aren't explaining what you want in enough detail. What causes i3 to be signalled in your use case. </description><pubDate>Mon, 10 Mar 2014 21:22:48 +0000</pubDate><guid>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3511#comment-3511</guid></item><item><title>Comment by KJ44 for &lt;p&gt;This should give you the general idea. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+e mode "Exit"
+
+# Exit i3 in various ways.                                                                                                                                           
+
+mode "Exit" {
+    bindsym h exec gksu "/sbin/shutdown -h now"
+    bindsym r exec gksu "/sbin/shutdown -r now"
+    bindsym x exit
+
+    # back to normal: Enter or Escape                                                                                                                                
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3485#comment-3485</link><description>You can insert scripts to do what you want based on the above. Bear in mind that if you try to chain 'exit' after  your script, it might not have time enough to do its job before i3 exits.</description><pubDate>Wed, 05 Mar 2014 19:04:43 +0000</pubDate><guid>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3485#comment-3485</guid></item><item><title>Comment by annoyed for &lt;p&gt;This should give you the general idea. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+e mode "Exit"
+
+# Exit i3 in various ways.                                                                                                                                           
+
+mode "Exit" {
+    bindsym h exec gksu "/sbin/shutdown -h now"
+    bindsym r exec gksu "/sbin/shutdown -r now"
+    bindsym x exit
+
+    # back to normal: Enter or Escape                                                                                                                                
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3527#comment-3527</link><description>I generally just straight up shutdown my computer rather than log off, so "systemd poweroff".</description><pubDate>Sat, 15 Mar 2014 05:28:03 +0000</pubDate><guid>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3527#comment-3527</guid></item><item><title>Comment by annoyed for &lt;p&gt;This should give you the general idea. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+e mode "Exit"
+
+# Exit i3 in various ways.                                                                                                                                           
+
+mode "Exit" {
+    bindsym h exec gksu "/sbin/shutdown -h now"
+    bindsym r exec gksu "/sbin/shutdown -r now"
+    bindsym x exit
+
+    # back to normal: Enter or Escape                                                                                                                                
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3498#comment-3498</link><description>Is there anyway I can make i3 enter this mode automatically? Like, if I don't want to have to press a key combination (for cases where I'm not signaling i3 to close normally)?</description><pubDate>Sun, 09 Mar 2014 08:13:21 +0000</pubDate><guid>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3498#comment-3498</guid></item><item><title>Answer by TonyC for &lt;p&gt;Hi, I know you can use "exec" in your i3 config file to run something when you log in, but is there any way to have it run something when you sign out?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?answer=3524#post-id-3524</link><description>You can do this with the new i3ipc library ([Python](https://github.com/acrisci/i3ipc-python), [Lua](https://github.com/acrisci/i3ipc-lua), [JavaScript](https://github.com/acrisci/i3ipc-gjs))
+
+    #!/usr/bin/env python3
+    
+    from gi.repository import i3ipc
+    
+    def on_shutdown(conn):
+        print('goodbye, world')
+    
+    conn = i3ipc.Connection()
+    
+    conn.on('ipc_shutdown', on_shutdown)
+    
+    conn.main()
+
+The event will fire whenever the connection to the ipc is lost (including on `i3-msg restart`) and the main loop will end afterwards.
+
+Now put this line in your config:
+
+    exec_always --no-startup-id ~/bin/i3-shutdown.py</description><pubDate>Fri, 14 Mar 2014 02:55:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?answer=3524#post-id-3524</guid></item><item><title>Comment by TonyC for &lt;p&gt;You can do this with the new i3ipc library (&lt;a href="https://github.com/acrisci/i3ipc-python"&gt;Python&lt;/a&gt;, &lt;a href="https://github.com/acrisci/i3ipc-lua"&gt;Lua&lt;/a&gt;, &lt;a href="https://github.com/acrisci/i3ipc-gjs"&gt;JavaScript&lt;/a&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python3
+
+from gi.repository import i3ipc
+
+def on_shutdown(conn):
+    print('goodbye, world')
+
+conn = i3ipc.Connection()
+
+conn.on('ipc_shutdown', on_shutdown)
+
+conn.main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The event will fire whenever the connection to the ipc is lost (including on &lt;code&gt;i3-msg restart&lt;/code&gt;) and the main loop will end afterwards.&lt;/p&gt;
+
+&lt;p&gt;Now put this line in your config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec_always --no-startup-id ~/bin/i3-shutdown.py
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3577#comment-3577</link><description>what about a pip or luarocks package?</description><pubDate>Thu, 27 Mar 2014 04:26:29 +0000</pubDate><guid>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3577#comment-3577</guid></item><item><title>Comment by annoyed for &lt;p&gt;You can do this with the new i3ipc library (&lt;a href="https://github.com/acrisci/i3ipc-python"&gt;Python&lt;/a&gt;, &lt;a href="https://github.com/acrisci/i3ipc-lua"&gt;Lua&lt;/a&gt;, &lt;a href="https://github.com/acrisci/i3ipc-gjs"&gt;JavaScript&lt;/a&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python3
+
+from gi.repository import i3ipc
+
+def on_shutdown(conn):
+    print('goodbye, world')
+
+conn = i3ipc.Connection()
+
+conn.on('ipc_shutdown', on_shutdown)
+
+conn.main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The event will fire whenever the connection to the ipc is lost (including on &lt;code&gt;i3-msg restart&lt;/code&gt;) and the main loop will end afterwards.&lt;/p&gt;
+
+&lt;p&gt;Now put this line in your config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec_always --no-startup-id ~/bin/i3-shutdown.py
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3528#comment-3528</link><description>I would LOVE this solution if i3ipc was in my distribution's repositories. I'm using version 4.6 of i3 on openSUSE.</description><pubDate>Sat, 15 Mar 2014 05:33:11 +0000</pubDate><guid>https://faq.i3wm.org/question/3468/run-a-command-when-i3-exits/?comment=3528#comment-3528</guid></item></channel></rss>

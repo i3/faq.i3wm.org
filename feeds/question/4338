@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4338/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 29 Nov 2015 21:57:19 +0000</lastBuildDate><item><title>How to launch terminal application directly?</title><link>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/</link><description>How do I launch any terminal application (think of mc, aptitude, tin, screen, vim, etc.) directly in i3 without manually opening a terminal first?</description><pubDate>Mon, 28 Jul 2014 21:07:57 +0000</pubDate><guid>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/</guid></item><item><title>Answer by nscott32 for &lt;p&gt;How do I launch any terminal application (think of mc, aptitude, tin, screen, vim, etc.) directly in i3 without manually opening a terminal first?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/?answer=7502#post-id-7502</link><description>I use it to launch ranger file manager with a shortcut to `exec termite -e ranger`, I want to be able to launch it from a special directory but I have some troubles with `exec termite -e 'ranger ~/mydirectory'`, a termite window open and close immediately...
+
+I've tried it directly in a terminal, not with binding keys, it does the same thing.
+ 
+</description><pubDate>Sun, 29 Nov 2015 21:57:19 +0000</pubDate><guid>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/?answer=7502#post-id-7502</guid></item><item><title>Answer by Seba for &lt;p&gt;How do I launch any terminal application (think of mc, aptitude, tin, screen, vim, etc.) directly in i3 without manually opening a terminal first?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/?answer=4339#post-id-4339</link><description>Ok, found out by myself in case of terminal is xterm:
+
+    exec xterm -e vim
+
+If you have parameters for the terminal application, it should become:
+
+    exec xterm -e "screen -R -D"
+
+This also works for keybindings, etc.</description><pubDate>Mon, 28 Jul 2014 21:23:00 +0000</pubDate><guid>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/?answer=4339#post-id-4339</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;Ok, found out by myself in case of terminal is xterm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec xterm -e vim
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you have parameters for the terminal application, it should become:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec xterm -e "screen -R -D"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This also works for keybindings, etc.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/?comment=4340#comment-4340</link><description>Name a terminal emulator. Any one at all. The command is almost certainly "[terminal name] -e [command]." No offense, but this is elementary stuff; web searches are your friend.</description><pubDate>Mon, 28 Jul 2014 21:26:51 +0000</pubDate><guid>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/?comment=4340#comment-4340</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;Ok, found out by myself in case of terminal is xterm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec xterm -e vim
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you have parameters for the terminal application, it should become:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec xterm -e "screen -R -D"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This also works for keybindings, etc.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/?comment=4361#comment-4361</link><description>i3 has built-in [logging capabilities](http://i3wm.org/docs/userguide.html#shmlog).</description><pubDate>Thu, 31 Jul 2014 00:37:30 +0000</pubDate><guid>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/?comment=4361#comment-4361</guid></item><item><title>Comment by Seba for &lt;p&gt;Ok, found out by myself in case of terminal is xterm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec xterm -e vim
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you have parameters for the terminal application, it should become:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec xterm -e "screen -R -D"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This also works for keybindings, etc.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/?comment=4341#comment-4341</link><description>Guess what, my first try was xterm -e, but I did not correctly quote the parameters and so nothing happened. Unfortunately, you don't see the error message. The window goes simply away. That makes it hard for an i3 novice to debug the situation.</description><pubDate>Mon, 28 Jul 2014 21:51:06 +0000</pubDate><guid>https://faq.i3wm.org/question/4338/how-to-launch-terminal-application-directly/?comment=4341#comment-4341</guid></item></channel></rss>

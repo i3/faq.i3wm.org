@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6659/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 22 Sep 2015 22:56:55 +0000</lastBuildDate><item><title>bindsym for screenshot partially not working</title><link>https://faq.i3wm.org/question/6659/bindsym-for-screenshot-partially-not-working/</link><description>I want to have different ways of making a screenshot, handy with a key combination.
+
+So this is what I came up with.. Print for the regular screenshots, Shift+print for selection only and $mod+print+shift for the active window.
+
+    bindsym Print exec "scrot -m '/home/user/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png'"
+    bindsym Shift+Print exec "scrot -s '/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
+    bindsym $mod+Shift+Print exec "scrot -u -d 4 '/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'" 
+
+Regular screenshots and screenshots of the active window work fine. The Shift+Print, for the selection screenshot doesn't work at all. The command itself works perfectly fine in the terminal, but not when run with the key combination.
+
+What am I missing?</description><pubDate>Tue, 22 Sep 2015 15:19:05 +0000</pubDate><guid>https://faq.i3wm.org/question/6659/bindsym-for-screenshot-partially-not-working/</guid></item><item><title>Answer by Airblader for &lt;p&gt;I want to have different ways of making a screenshot, handy with a key combination.&lt;/p&gt;
+
+&lt;p&gt;So this is what I came up with.. Print for the regular screenshots, Shift+print for selection only and $mod+print+shift for the active window.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Print exec "scrot -m '/home/user/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png'"
+bindsym Shift+Print exec "scrot -s '/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
+bindsym $mod+Shift+Print exec "scrot -u -d 4 '/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Regular screenshots and screenshots of the active window work fine. The Shift+Print, for the selection screenshot doesn't work at all. The command itself works perfectly fine in the terminal, but not when run with the key combination.&lt;/p&gt;
+
+&lt;p&gt;What am I missing?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6659/bindsym-for-screenshot-partially-not-working/?answer=6662#post-id-6662</link><description>I figured it out now. It's actually a known problem, I was just blind. Sorry, I also missed this in my answer on the other thread. You need to add "--release":
+
+    bindsym --release Print exec "scrot -m '/home/user/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png'"
+    bindsym --release Shift+Print exec "scrot -s '/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
+    bindsym --release $mod+Shift+Print exec "scrot -u -d 4 '/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"</description><pubDate>Tue, 22 Sep 2015 18:33:07 +0000</pubDate><guid>https://faq.i3wm.org/question/6659/bindsym-for-screenshot-partially-not-working/?answer=6662#post-id-6662</guid></item><item><title>Comment by a_flamethrowing_duck for &lt;p&gt;I figured it out now. It's actually a known problem, I was just blind. Sorry, I also missed this in my answer on the other thread. You need to add "--release":&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym --release Print exec "scrot -m '/home/user/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png'"
+bindsym --release Shift+Print exec "scrot -s '/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
+bindsym --release $mod+Shift+Print exec "scrot -u -d 4 '/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png'"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6659/bindsym-for-screenshot-partially-not-working/?comment=6666#comment-6666</link><description>very nice! works perfectly now.. thank you so much!</description><pubDate>Tue, 22 Sep 2015 22:56:55 +0000</pubDate><guid>https://faq.i3wm.org/question/6659/bindsym-for-screenshot-partially-not-working/?comment=6666#comment-6666</guid></item></channel></rss>

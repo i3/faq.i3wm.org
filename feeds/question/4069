@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4069/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 01 Jul 2014 15:07:02 +0000</lastBuildDate><item><title>"sh -c exec" memory usage</title><link>https://faq.i3wm.org/question/4069/sh-c-exec-memory-usage/</link><description>So I've seen that using the i3 directive "exec" processes are launched with "sh -c", leaving the htop view full of "sh -c" commands.
+
+I tried using bash exec by doing this:
+
+    bindsym $mod+m exec exec xterm
+
+and the result is no more "sh -c" in the process output.
+
+The question is: am I saving memory by doing this?</description><pubDate>Sun, 29 Jun 2014 21:47:35 +0000</pubDate><guid>https://faq.i3wm.org/question/4069/sh-c-exec-memory-usage/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;So I've seen that using the i3 directive "exec" processes are launched with "sh -c", leaving the htop view full of "sh -c" commands.&lt;/p&gt;
+
+&lt;p&gt;I tried using bash exec by doing this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m exec exec xterm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and the result is no more "sh -c" in the process output.&lt;/p&gt;
+
+&lt;p&gt;The question is: am I saving memory by doing this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4069/sh-c-exec-memory-usage/?answer=4070#post-id-4070</link><description>Yes you are saving memory. By calling the command `exec` you are replacing `sh` with the command (`xterm` in your example). So you are saving the memory `sh` would use.
+
+----
+
+The question is, how much do you save? 
+
+On my system (Ubuntu 14.04, amd64) `sh` is a dash and needs 464 kB residential memory and about 4.5 MB virtual memory. Of course virtual memory includes shared libraries, which are only loaded once and are probably loaded anyway for some other process. So effectively I could save about 0.5 MB. At the moment I have 10 instances of `sh -c` running, so that would be about 5 MB. Not all that much. Even if it were 100 instances, it would still only be 50 MB. It may be a concern on very minimal or old systems with less then a gigabyte of memory, but then I don't think you'll have much success running 100 separate applications on your desktop there.
+
+If `/bin/sh` is a `bash`, it would take about 2 MB residential memory (on my system). Granted that is quite a bit more, but still, unless you start huge amounts of programs it is unlikely to matter on a modern system.
+
+----
+
+That being said, I see no reason not to use `exec exec` for simple commands (only one command and its parameters). Obviously you cannot use any shell constructs that way, as the shell is replaced after the first command and any further command will never be run. (for example `exec sleep 10; xclock` or `exec sleep 10 &amp;&amp; xclock`; both will wait for 10 seconds, but `xclock` will not be executed)</description><pubDate>Mon, 30 Jun 2014 06:33:12 +0000</pubDate><guid>https://faq.i3wm.org/question/4069/sh-c-exec-memory-usage/?answer=4070#post-id-4070</guid></item><item><title>Comment by tigrezno for &lt;p&gt;Yes you are saving memory. By calling the command &lt;code&gt;exec&lt;/code&gt; you are replacing &lt;code&gt;sh&lt;/code&gt; with the command (&lt;code&gt;xterm&lt;/code&gt; in your example). So you are saving the memory &lt;code&gt;sh&lt;/code&gt; would use.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;The question is, how much do you save? &lt;/p&gt;
+
+&lt;p&gt;On my system (Ubuntu 14.04, amd64) &lt;code&gt;sh&lt;/code&gt; is a dash and needs 464 kB residential memory and about 4.5 MB virtual memory. Of course virtual memory includes shared libraries, which are only loaded once and are probably loaded anyway for some other process. So effectively I could save about 0.5 MB. At the moment I have 10 instances of &lt;code&gt;sh -c&lt;/code&gt; running, so that would be about 5 MB. Not all that much. Even if it were 100 instances, it would still only be 50 MB. It may be a concern on very minimal or old systems with less then a gigabyte of memory, but then I don't think you'll have much success running 100 separate applications on your desktop there.&lt;/p&gt;
+
+&lt;p&gt;If &lt;code&gt;/bin/sh&lt;/code&gt; is a &lt;code&gt;bash&lt;/code&gt;, it would take about 2 MB residential memory (on my system). Granted that is quite a bit more, but still, unless you start huge amounts of programs it is unlikely to matter on a modern system.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;That being said, I see no reason not to use &lt;code&gt;exec exec&lt;/code&gt; for simple commands (only one command and its parameters). Obviously you cannot use any shell constructs that way, as the shell is replaced after the first command and any further command will never be run. (for example &lt;code&gt;exec sleep 10; xclock&lt;/code&gt; or &lt;code&gt;exec sleep 10 &amp;amp;&amp;amp; xclock&lt;/code&gt;; both will wait for 10 seconds, but &lt;code&gt;xclock&lt;/code&gt; will not be executed)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4069/sh-c-exec-memory-usage/?comment=4090#comment-4090</link><description>Understood. Thanks!</description><pubDate>Tue, 01 Jul 2014 15:07:02 +0000</pubDate><guid>https://faq.i3wm.org/question/4069/sh-c-exec-memory-usage/?comment=4090#comment-4090</guid></item></channel></rss>

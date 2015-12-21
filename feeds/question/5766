@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5766/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 11 Apr 2015 14:58:19 +0000</lastBuildDate><item><title>prevent i3 from changing vim's split size</title><link>https://faq.i3wm.org/question/5766/prevent-i3-from-changing-vims-split-size/</link><description>Hello, as usual I have a terminal binded to $mod+Return and in addiction I also like having it always opening split on the right side:
+
+    for_window [class="st-256color|URxvt"] border 1pixel, move right
+
+The problem is that whenever I'm working on a vim full-sized window which has a vertical split, upon starting and quitting this terminal, the vim's window split bar will be placed where the terminal border was and not where the split bar was.
+
+I also have "set equalalways" on vimrc.
+
+Is there a way of preventing this situation?
+</description><pubDate>Fri, 10 Apr 2015 11:52:22 +0000</pubDate><guid>https://faq.i3wm.org/question/5766/prevent-i3-from-changing-vims-split-size/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hello, as usual I have a terminal binded to $mod+Return and in addiction I also like having it always opening split on the right side:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="st-256color|URxvt"] border 1pixel, move right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem is that whenever I'm working on a vim full-sized window which has a vertical split, upon starting and quitting this terminal, the vim's window split bar will be placed where the terminal border was and not where the split bar was.&lt;/p&gt;
+
+&lt;p&gt;I also have "set equalalways" on vimrc.&lt;/p&gt;
+
+&lt;p&gt;Is there a way of preventing this situation?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5766/prevent-i3-from-changing-vims-split-size/?answer=5772#post-id-5772</link><description>Try setting
+
+    autocmd VimResized * wincmd =
+
+in your `~/.vimrc`.
+
+Explanation:
+------------
+
+Not *i3*, but *vim* itself moves the split bar. When the window containing *vim* is shrunk, *vim* will move split bars, so that all split bars and at least one column of every (*vim* internal) window are still visible. When the window is grown, *vim* will not move the split bars back. This is independent of `equalalways`, which works only when creating new splits or closing (*vim* internal) windows, but not when resizing the surrounding window.
+
+You can manually equalize the vim splits with **CTRL-W_=** or `set noea ea`
+
+The above setting waits for the resize event and calls **CTRL-W_=** for you, equalizing splits each time the window is resized.
+</description><pubDate>Sat, 11 Apr 2015 14:58:19 +0000</pubDate><guid>https://faq.i3wm.org/question/5766/prevent-i3-from-changing-vims-split-size/?answer=5772#post-id-5772</guid></item></channel></rss>

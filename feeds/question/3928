@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3928/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 09 Jun 2014 16:11:59 +0000</lastBuildDate><item><title>Configuring proxy settings</title><link>https://faq.i3wm.org/question/3928/configuring-proxy-settings/</link><description>I use i3 on top of Linux Mint 14. When I boot into my normal Cinnamon session, I am able to access a very handy network window that lets me easily change my proxy settings. The window is the one accessed from the "Network" program when I open up the window. I tried to attach a picture, but my karma is too low.
+
+How I could get to either that window or an equivalent one for changing which proxy server I am connecting to? If there are terminal instructions for changing my proxy settings, that would be just as good.</description><pubDate>Mon, 09 Jun 2014 15:43:46 +0000</pubDate><guid>https://faq.i3wm.org/question/3928/configuring-proxy-settings/</guid></item><item><title>Answer by phairland for &lt;p&gt;I use i3 on top of Linux Mint 14. When I boot into my normal Cinnamon session, I am able to access a very handy network window that lets me easily change my proxy settings. The window is the one accessed from the "Network" program when I open up the window. I tried to attach a picture, but my karma is too low.&lt;/p&gt;
+
+&lt;p&gt;How I could get to either that window or an equivalent one for changing which proxy server I am connecting to? If there are terminal instructions for changing my proxy settings, that would be just as good.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3928/configuring-proxy-settings/?answer=3929#post-id-3929</link><description>I have found Linux Mint to be problematic if your server uses proxy settings to get online. Ubuntu  also require changes to the network settings if you use a proxy, but this only involves a simple change in the Network Settings panel. This doesn't work in Linux Mint, the settings can be entered but will not remain saved.
+
+ - Use a terminal to open `/etc/environment` using a text editor as superuser. E.g. `sudo gedit /etc/environment`.
+ - Add the following lines to the text document that appears, replacing myproxy.server.com with your proxy address.
+
+    
+
+&gt; 
+  
+    http_proxy=http://myproxy.server.com:8080/ 
+    https_proxy=http://myproxy.server.com:8080/
+    ftp_proxy=http://myproxy.server.com:8080/
+    no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+    HTTP_PROXY=http://myproxy.server.com:8080/ 
+    HTTPS_PROXY=http://myproxy.server.com:8080/
+    FTP_PROXY=http://myproxy.server.com:8080/
+    NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"
+
+-  Save the file, then  navigate to `/etc/apt/apt.conf.d/` and create a new file there named 95proxies and include the following code (remembering to add your own proxy address in place of myproxy.server.com)
+
+&gt; 
+  
+    Acquire::http::proxy "http://myproxy.server.com:8080/";
+    Acquire::ftp::proxy "ftp://myproxy.server.com:8080/";
+    Acquire::https::proxy "https://myproxy.server.com:8080/";
+
+Reboot and once you have logged in you will find that your proxy settings are in place for Network Settings, apt-get and Update manager. It's a pain but it does give you an idea about using the command line in a Linux terminal.
+
+</description><pubDate>Mon, 09 Jun 2014 16:11:59 +0000</pubDate><guid>https://faq.i3wm.org/question/3928/configuring-proxy-settings/?answer=3929#post-id-3929</guid></item></channel></rss>

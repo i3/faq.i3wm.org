@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3648/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 16 Apr 2014 13:42:18 +0000</lastBuildDate><item><title>i3bar updated only after `status_command` process exits</title><link>https://faq.i3wm.org/question/3648/i3bar-updated-only-after-status_command-process-exits/</link><description>Hello,
+
+I am using the following ruby script to parse the status output by conky and produce a json string:
+
+    #!/usr/bin/ruby
+    require 'json'
+    
+    puts '{"version":1}'
+    
+    puts '['
+    
+    puts '[],'
+    
+    IO.popen("conky -c $HOME/.conkyrc_json").each do |line|
+      conky = JSON.parse(line)
+    
+      out = "["
+    
+      out &lt;&lt; "{\"full_text\": \"#{conky['network']}\", \"color\": \"\#FFFFFF\"},"
+    
+      out &lt;&lt; "],"
+    
+      puts out
+    end
+
+
+If I simply run this script, i3bar doesn't render any text, it just shows tray icons.
+
+However, if in the end of the loop I add a `exit` statement, i3bar shows the text produced in the last loop, but since the ruby wrapper then exits, the text in i3bar is never updated.
+
+Do I need to send an extra signal to i3bar? How can I force i3bar to update without exiting my wrapper script?
+
+Thank you</description><pubDate>Tue, 15 Apr 2014 11:49:19 +0000</pubDate><guid>https://faq.i3wm.org/question/3648/i3bar-updated-only-after-status_command-process-exits/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I am using the following ruby script to parse the status output by conky and produce a json string:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/ruby
+require 'json'
+
+puts '{"version":1}'
+
+puts '['
+
+puts '[],'
+
+IO.popen("conky -c $HOME/.conkyrc_json").each do |line|
+  conky = JSON.parse(line)
+
+  out = "["
+
+  out &amp;lt;&amp;lt; "{\"full_text\": \"#{conky['network']}\", \"color\": \"\#FFFFFF\"},"
+
+  out &amp;lt;&amp;lt; "],"
+
+  puts out
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I simply run this script, i3bar doesn't render any text, it just shows tray icons.&lt;/p&gt;
+
+&lt;p&gt;However, if in the end of the loop I add a &lt;code&gt;exit&lt;/code&gt; statement, i3bar shows the text produced in the last loop, but since the ruby wrapper then exits, the text in i3bar is never updated.&lt;/p&gt;
+
+&lt;p&gt;Do I need to send an extra signal to i3bar? How can I force i3bar to update without exiting my wrapper script?&lt;/p&gt;
+
+&lt;p&gt;Thank you&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3648/i3bar-updated-only-after-status_command-process-exits/?comment=3649#comment-3649</link><description>I'm not sure how it is done in ruby, but you may need to either explicitly flush stdout after `puts` or switch on line-based buffering. Otherwise the output of your command will only be passed to i3bar once the output buffer (usually around 8kb) is full.</description><pubDate>Tue, 15 Apr 2014 13:17:29 +0000</pubDate><guid>https://faq.i3wm.org/question/3648/i3bar-updated-only-after-status_command-process-exits/?comment=3649#comment-3649</guid></item><item><title>Answer by badboy_ for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I am using the following ruby script to parse the status output by conky and produce a json string:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/ruby
+require 'json'
+
+puts '{"version":1}'
+
+puts '['
+
+puts '[],'
+
+IO.popen("conky -c $HOME/.conkyrc_json").each do |line|
+  conky = JSON.parse(line)
+
+  out = "["
+
+  out &amp;lt;&amp;lt; "{\"full_text\": \"#{conky['network']}\", \"color\": \"\#FFFFFF\"},"
+
+  out &amp;lt;&amp;lt; "],"
+
+  puts out
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I simply run this script, i3bar doesn't render any text, it just shows tray icons.&lt;/p&gt;
+
+&lt;p&gt;However, if in the end of the loop I add a &lt;code&gt;exit&lt;/code&gt; statement, i3bar shows the text produced in the last loop, but since the ruby wrapper then exits, the text in i3bar is never updated.&lt;/p&gt;
+
+&lt;p&gt;Do I need to send an extra signal to i3bar? How can I force i3bar to update without exiting my wrapper script?&lt;/p&gt;
+
+&lt;p&gt;Thank you&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3648/i3bar-updated-only-after-status_command-process-exits/?answer=3652#post-id-3652</link><description>Try `$stdout.flush` to flush the output (as Adaephon said in the comment already)</description><pubDate>Tue, 15 Apr 2014 17:18:53 +0000</pubDate><guid>https://faq.i3wm.org/question/3648/i3bar-updated-only-after-status_command-process-exits/?answer=3652#post-id-3652</guid></item><item><title>Comment by simao for &lt;p&gt;Try &lt;code&gt;$stdout.flush&lt;/code&gt; to flush the output (as Adaephon said in the comment already)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3648/i3bar-updated-only-after-status_command-process-exits/?comment=3656#comment-3656</link><description>I was doing something wrong before, I tried this again and it works. Thanks</description><pubDate>Wed, 16 Apr 2014 13:42:18 +0000</pubDate><guid>https://faq.i3wm.org/question/3648/i3bar-updated-only-after-status_command-process-exits/?comment=3656#comment-3656</guid></item><item><title>Comment by simao for &lt;p&gt;Try &lt;code&gt;$stdout.flush&lt;/code&gt; to flush the output (as Adaephon said in the comment already)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3648/i3bar-updated-only-after-status_command-process-exits/?comment=3654#comment-3654</link><description>Yeah I tried that but still nothing changes..</description><pubDate>Wed, 16 Apr 2014 08:33:53 +0000</pubDate><guid>https://faq.i3wm.org/question/3648/i3bar-updated-only-after-status_command-process-exits/?comment=3654#comment-3654</guid></item></channel></rss>

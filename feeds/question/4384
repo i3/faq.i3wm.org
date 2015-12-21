@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4384/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 22 Oct 2015 10:56:45 +0000</lastBuildDate><item><title>Custom dmenu alternative with terminal, but dock mode script broken</title><link>https://faq.i3wm.org/question/4384/custom-dmenu-alternative-with-terminal-but-dock-mode-script-broken/</link><description>I have been trying to play with this on and off for a while.  I like dmenu, but I make use of a lot customized character encodings and RTL languages (Arabic, Hebrew, Persian).  I would like to use dmenu, but it mangles this terribly.  For terminal use, I have to use mlterm because of these constraints.  I would like to have a terminal-based menu manager, like dmenu, or rather bashrun and even closer slmenu.
+
+I thought the best of both worlds would be bashrun, but is not quite what I want as the completions were strange and it runs slow.  Slmenu also seems to have problems with the input I have tried in non-English characters.
+
+So, I would rather write up my own scripts and run them directly in the terminal (mlterm).  Of course I can do that easily, but I also want to have it pop-up on the bottom like `dmenu -b` I am currently using extensively for customized menus and ops.
+
+I found a Github gist that almost does what I want to emulate `_NET_WM_WINDOW_TYPE_DOCK` call required by i3 (i3wm.org/docs/wsbar.html) dock mode and other WMs.  I modified it from urxvt to mlterm.  Problem is focus is still on the previous app (and cannot do much because of `-SIGSTOP`.  Secondly, regardless of changing the `bottom` variable for `_NET_WM_STRUT_PARTIAL` variable to different sizes, it always appears to take 1/3 to 1/4 of the bottom of the screen.  Freedesktop documentation (standards.freedesktop.org/wm-spec/1.3/ar01s05.html) suggests it should not work this way.  Code below.
+
+    #!/usr/bin/env bash
+    TERM=mlterm
+    TERMNAME=mlterm-dock
+    XSCREENWIDTH=$(xrandr | grep \* | sed -e 's/x.*//' -e 's/^ *//')
+    TERMHEIGHT=10
+    TERMWIDTH=$XSCREENWIDTH
+    killall -SIGSTOP i3
+    $TERM --geometry=$TERMWIDTHx$TERMHEIGHT --name="$TERMNAME" &amp;
+    sleep 1
+    TERMXID=0x$(xwininfo -root -tree | grep "$TERMNAME" | sed -e 's/.*0x//' -e 's/ .*//')
+    xprop -id $TERMXID -f _NET_WM_STRUT_PARTIAL 32cccccccccccc -set _NET_WM_STRUT_PARTIAL "0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, $TERMWIDTH"
+    xprop -id $TERMXID -f _NET_WM_WINDOW_TYPE 32a -set _NET_WM_WINDOW_TYPE _NET_WM_WINDOW_TYPE_DOCK
+    killall -SIGCONT i3
+
+So is there a better way to accomplish this.  Ideas?</description><pubDate>Sun, 03 Aug 2014 21:17:21 +0000</pubDate><guid>https://faq.i3wm.org/question/4384/custom-dmenu-alternative-with-terminal-but-dock-mode-script-broken/</guid></item><item><title>Comment by Nicolás for &lt;p&gt;I have been trying to play with this on and off for a while.  I like dmenu, but I make use of a lot customized character encodings and RTL languages (Arabic, Hebrew, Persian).  I would like to use dmenu, but it mangles this terribly.  For terminal use, I have to use mlterm because of these constraints.  I would like to have a terminal-based menu manager, like dmenu, or rather bashrun and even closer slmenu.&lt;/p&gt;
+
+&lt;p&gt;I thought the best of both worlds would be bashrun, but is not quite what I want as the completions were strange and it runs slow.  Slmenu also seems to have problems with the input I have tried in non-English characters.&lt;/p&gt;
+
+&lt;p&gt;So, I would rather write up my own scripts and run them directly in the terminal (mlterm).  Of course I can do that easily, but I also want to have it pop-up on the bottom like &lt;code&gt;dmenu -b&lt;/code&gt; I am currently using extensively for customized menus and ops.&lt;/p&gt;
+
+&lt;p&gt;I found a Github gist that almost does what I want to emulate &lt;code&gt;_NET_WM_WINDOW_TYPE_DOCK&lt;/code&gt; call required by i3 (i3wm.org/docs/wsbar.html) dock mode and other WMs.  I modified it from urxvt to mlterm.  Problem is focus is still on the previous app (and cannot do much because of &lt;code&gt;-SIGSTOP&lt;/code&gt;.  Secondly, regardless of changing the &lt;code&gt;bottom&lt;/code&gt; variable for &lt;code&gt;_NET_WM_STRUT_PARTIAL&lt;/code&gt; variable to different sizes, it always appears to take 1/3 to 1/4 of the bottom of the screen.  Freedesktop documentation (standards.freedesktop.org/wm-spec/1.3/ar01s05.html) suggests it should not work this way.  Code below.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env bash
+TERM=mlterm
+TERMNAME=mlterm-dock
+XSCREENWIDTH=$(xrandr | grep \* | sed -e 's/x.*//' -e 's/^ *//')
+TERMHEIGHT=10
+TERMWIDTH=$XSCREENWIDTH
+killall -SIGSTOP i3
+$TERM --geometry=$TERMWIDTHx$TERMHEIGHT --name="$TERMNAME" &amp;amp;
+sleep 1
+TERMXID=0x$(xwininfo -root -tree | grep "$TERMNAME" | sed -e 's/.*0x//' -e 's/ .*//')
+xprop -id $TERMXID -f _NET_WM_STRUT_PARTIAL 32cccccccccccc -set _NET_WM_STRUT_PARTIAL "0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, $TERMWIDTH"
+xprop -id $TERMXID -f _NET_WM_WINDOW_TYPE 32a -set _NET_WM_WINDOW_TYPE _NET_WM_WINDOW_TYPE_DOCK
+killall -SIGCONT i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So is there a better way to accomplish this.  Ideas?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4384/custom-dmenu-alternative-with-terminal-but-dock-mode-script-broken/?comment=7008#comment-7008</link><description>Any news? It would be great to have something like this working!</description><pubDate>Thu, 22 Oct 2015 10:56:45 +0000</pubDate><guid>https://faq.i3wm.org/question/4384/custom-dmenu-alternative-with-terminal-but-dock-mode-script-broken/?comment=7008#comment-7008</guid></item></channel></rss>

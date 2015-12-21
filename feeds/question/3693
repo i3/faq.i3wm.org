@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3693/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 21 Apr 2014 17:50:59 +0000</lastBuildDate><item><title>Bind containers to workspace that created them</title><link>https://faq.i3wm.org/question/3693/bind-containers-to-workspace-that-created-them/</link><description>Hi,
+
+I'm using GNU/Octave a lot, and when I launch a script with several plots and switch workspace, the plot windows appear on the new workspace.
+
+Ok, clarification :
+On workspace 1, I launch a term with GNU/Octave. In Octave, I start a script. The script will do some computations (which can last several minutes) and plot figures in new containers (one per figure). I will switch workspace once the script is started (i don't like to wait), but I want the plot containers to appear on the same workspaces as GNU/Octave.
+
+How can I make them appear on the old one ?
+
+Thanks !
+
+**EDIT :** Clarification</description><pubDate>Sun, 20 Apr 2014 09:58:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3693/bind-containers-to-workspace-that-created-them/</guid></item><item><title>Comment by matael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm using GNU/Octave a lot, and when I launch a script with several plots and switch workspace, the plot windows appear on the new workspace.&lt;/p&gt;
+
+&lt;p&gt;Ok, clarification :
+On workspace 1, I launch a term with GNU/Octave. In Octave, I start a script. The script will do some computations (which can last several minutes) and plot figures in new containers (one per figure). I will switch workspace once the script is started (i don't like to wait), but I want the plot containers to appear on the same workspaces as GNU/Octave.&lt;/p&gt;
+
+&lt;p&gt;How can I make them appear on the old one ?&lt;/p&gt;
+
+&lt;p&gt;Thanks !&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT :&lt;/strong&gt; Clarification&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3693/bind-containers-to-workspace-that-created-them/?comment=3697#comment-3697</link><description>I edited the original post.</description><pubDate>Mon, 21 Apr 2014 08:42:33 +0000</pubDate><guid>https://faq.i3wm.org/question/3693/bind-containers-to-workspace-that-created-them/?comment=3697#comment-3697</guid></item><item><title>Comment by phairland for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm using GNU/Octave a lot, and when I launch a script with several plots and switch workspace, the plot windows appear on the new workspace.&lt;/p&gt;
+
+&lt;p&gt;Ok, clarification :
+On workspace 1, I launch a term with GNU/Octave. In Octave, I start a script. The script will do some computations (which can last several minutes) and plot figures in new containers (one per figure). I will switch workspace once the script is started (i don't like to wait), but I want the plot containers to appear on the same workspaces as GNU/Octave.&lt;/p&gt;
+
+&lt;p&gt;How can I make them appear on the old one ?&lt;/p&gt;
+
+&lt;p&gt;Thanks !&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT :&lt;/strong&gt; Clarification&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3693/bind-containers-to-workspace-that-created-them/?comment=3694#comment-3694</link><description>I can't understand how can you open a program even with several windows and when you switch workspace, then one of the window appears on the workspace you just switch ??? Could you clarify the situation.</description><pubDate>Mon, 21 Apr 2014 06:14:23 +0000</pubDate><guid>https://faq.i3wm.org/question/3693/bind-containers-to-workspace-that-created-them/?comment=3694#comment-3694</guid></item><item><title>Answer by phairland for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm using GNU/Octave a lot, and when I launch a script with several plots and switch workspace, the plot windows appear on the new workspace.&lt;/p&gt;
+
+&lt;p&gt;Ok, clarification :
+On workspace 1, I launch a term with GNU/Octave. In Octave, I start a script. The script will do some computations (which can last several minutes) and plot figures in new containers (one per figure). I will switch workspace once the script is started (i don't like to wait), but I want the plot containers to appear on the same workspaces as GNU/Octave.&lt;/p&gt;
+
+&lt;p&gt;How can I make them appear on the old one ?&lt;/p&gt;
+
+&lt;p&gt;Thanks !&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT :&lt;/strong&gt; Clarification&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3693/bind-containers-to-workspace-that-created-them/?answer=3700#post-id-3700</link><description>Check the user's guide 4.12 section entitled: Automatically putting clients on specific workspaces
+
+It might help checking the name/class of the window that opens into the workspace. Then create a rule in your i3 config that specifies that every time certain class of window opens will put it in a specific workspace.
+
+Syntax:
+
+    assign &lt;criteria&gt; [→] workspace
+
+Examples:
+
+    # Assign URxvt terminals to workspace 2
+    assign [class="URxvt"] 2
+    
+    # Same thing, but more precise (exact match instead of substring)
+    assign [class="^URxvt$"] 2
+    
+    # Same thing, but with a beautiful arrow :)
+    assign [class="^URxvt$"] → 2
+    
+    # Assignment to a named workspace
+    assign [class="^URxvt$"] → work
+    
+    # Start urxvt -name irssi
+    assign [class="^URxvt$" instance="^irssi$"] → 3
+
+</description><pubDate>Mon, 21 Apr 2014 17:37:05 +0000</pubDate><guid>https://faq.i3wm.org/question/3693/bind-containers-to-workspace-that-created-them/?answer=3700#post-id-3700</guid></item><item><title>Comment by matael for &lt;p&gt;Check the user's guide 4.12 section entitled: Automatically putting clients on specific workspaces&lt;/p&gt;
+
+&lt;p&gt;It might help checking the name/class of the window that opens into the workspace. Then create a rule in your i3 config that specifies that every time certain class of window opens will put it in a specific workspace.&lt;/p&gt;
+
+&lt;p&gt;Syntax:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign &amp;lt;criteria&amp;gt; [→] workspace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Examples:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Assign URxvt terminals to workspace 2
+assign [class="URxvt"] 2
+
+# Same thing, but more precise (exact match instead of substring)
+assign [class="^URxvt$"] 2
+
+# Same thing, but with a beautiful arrow :)
+assign [class="^URxvt$"] → 2
+
+# Assignment to a named workspace
+assign [class="^URxvt$"] → work
+
+# Start urxvt -name irssi
+assign [class="^URxvt$" instance="^irssi$"] → 3
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3693/bind-containers-to-workspace-that-created-them/?comment=3701#comment-3701</link><description>Yes, I know that but it would perfect if the windows could appear on the same workspace as the application that instanciate them without rule (no matter if the workspace is on focus or not)</description><pubDate>Mon, 21 Apr 2014 17:50:59 +0000</pubDate><guid>https://faq.i3wm.org/question/3693/bind-containers-to-workspace-that-created-them/?comment=3701#comment-3701</guid></item></channel></rss>

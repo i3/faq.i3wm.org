@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/464/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 13 Dec 2014 09:45:05 +0000</lastBuildDate><item><title>Prevent new windows/popups from stealing focus</title><link>https://faq.i3wm.org/question/464/prevent-new-windowspopups-from-stealing-focus/</link><description>Is it possible to prevent new windows or pop ups from stealing focus in i3 like it is possible for KDE as described [here](http://sellingfreesoftwareforaliving.blogspot.de/2010/11/focus-stealing-settings-in-kde-and.html)?
+
+For instance, I would like to continue working in the current program even if a new window pops up (for example a notification message for an incoming IM message). Please note, I don't want to deactivate the pop up itself, just the focus stealing.
+
+Thanks! :-)</description><pubDate>Tue, 11 Sep 2012 07:46:03 +0000</pubDate><guid>https://faq.i3wm.org/question/464/prevent-new-windowspopups-from-stealing-focus/</guid></item><item><title>Answer by joepd for &lt;p&gt;Is it possible to prevent new windows or pop ups from stealing focus in i3 like it is possible for KDE as described &lt;a href="http://sellingfreesoftwareforaliving.blogspot.de/2010/11/focus-stealing-settings-in-kde-and.html"&gt;here&lt;/a&gt;?&lt;/p&gt;
+
+&lt;p&gt;For instance, I would like to continue working in the current program even if a new window pops up (for example a notification message for an incoming IM message). Please note, I don't want to deactivate the pop up itself, just the focus stealing.&lt;/p&gt;
+
+&lt;p&gt;Thanks! :-)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/464/prevent-new-windowspopups-from-stealing-focus/?answer=465#post-id-465</link><description>I think it is safe to say that i3 will not provide for a graphical configuration interface for programs that are not part of i3. 
+
+I've never had a notification stealing focus. i3 just obeys the Xorg-flags that a new window requests, so you need to look into your notification application. Maybe it is user configurable somewhere, maybe it is a bug. 
+
+Edit: Here are [some of the notification systems](http://faq.i3wm.org/question/121/whats-a-good-notification-daemon-for-i3/) in use by i3-users. </description><pubDate>Tue, 11 Sep 2012 08:02:11 +0000</pubDate><guid>https://faq.i3wm.org/question/464/prevent-new-windowspopups-from-stealing-focus/?answer=465#post-id-465</guid></item><item><title>Answer by Michael for &lt;p&gt;Is it possible to prevent new windows or pop ups from stealing focus in i3 like it is possible for KDE as described &lt;a href="http://sellingfreesoftwareforaliving.blogspot.de/2010/11/focus-stealing-settings-in-kde-and.html"&gt;here&lt;/a&gt;?&lt;/p&gt;
+
+&lt;p&gt;For instance, I would like to continue working in the current program even if a new window pops up (for example a notification message for an incoming IM message). Please note, I don't want to deactivate the pop up itself, just the focus stealing.&lt;/p&gt;
+
+&lt;p&gt;Thanks! :-)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/464/prevent-new-windowspopups-from-stealing-focus/?answer=471#post-id-471</link><description>I’ve thought about this before. There’s multiple things to note here:
+
+1. Any X11 client (= application which connects to the X11 server) can use the `SetInputFocus` request and set focus to whereever it wants.
+2. Modern X11 clients rather send a `_NET_ACTIVE_WINDOW` ClientMessage to the window manager to make it set focus. i3 used to not implement these at all, but we do now.
+
+So the only thing i3 can do is allow to adjust whether `_NET_ACTIVE_WINDOW` messages are honored (currently not possible). This doesn’t solve the focus-stealing problem entirely, though.
+
+One hackish workaround I’ve come up with is to use an X11 proxy which would filter out `SetInputFocus` calls from certain applications…</description><pubDate>Tue, 11 Sep 2012 09:39:27 +0000</pubDate><guid>https://faq.i3wm.org/question/464/prevent-new-windowspopups-from-stealing-focus/?answer=471#post-id-471</guid></item><item><title>Comment by Tiddo for &lt;p&gt;I’ve thought about this before. There’s multiple things to note here:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Any X11 client (= application which connects to the X11 server) can use the &lt;code&gt;SetInputFocus&lt;/code&gt; request and set focus to whereever it wants.&lt;/li&gt;
+&lt;li&gt;Modern X11 clients rather send a &lt;code&gt;_NET_ACTIVE_WINDOW&lt;/code&gt; ClientMessage to the window manager to make it set focus. i3 used to not implement these at all, but we do now.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So the only thing i3 can do is allow to adjust whether &lt;code&gt;_NET_ACTIVE_WINDOW&lt;/code&gt; messages are honored (currently not possible). This doesn’t solve the focus-stealing problem entirely, though.&lt;/p&gt;
+
+&lt;p&gt;One hackish workaround I’ve come up with is to use an X11 proxy which would filter out &lt;code&gt;SetInputFocus&lt;/code&gt; calls from certain applications…&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/464/prevent-new-windowspopups-from-stealing-focus/?comment=5170#comment-5170</link><description>@Stephen - I see that this already has been merged. From which version should it be working, and does it require an option to be set? I've had problems with windows stealing focus (mostly IntelliJ) for a long time, but I still haven't found a way to prevent it.</description><pubDate>Sat, 13 Dec 2014 09:45:05 +0000</pubDate><guid>https://faq.i3wm.org/question/464/prevent-new-windowspopups-from-stealing-focus/?comment=5170#comment-5170</guid></item><item><title>Comment by Stephen for &lt;p&gt;I’ve thought about this before. There’s multiple things to note here:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Any X11 client (= application which connects to the X11 server) can use the &lt;code&gt;SetInputFocus&lt;/code&gt; request and set focus to whereever it wants.&lt;/li&gt;
+&lt;li&gt;Modern X11 clients rather send a &lt;code&gt;_NET_ACTIVE_WINDOW&lt;/code&gt; ClientMessage to the window manager to make it set focus. i3 used to not implement these at all, but we do now.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So the only thing i3 can do is allow to adjust whether &lt;code&gt;_NET_ACTIVE_WINDOW&lt;/code&gt; messages are honored (currently not possible). This doesn’t solve the focus-stealing problem entirely, though.&lt;/p&gt;
+
+&lt;p&gt;One hackish workaround I’ve come up with is to use an X11 proxy which would filter out &lt;code&gt;SetInputFocus&lt;/code&gt; calls from certain applications…&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/464/prevent-new-windowspopups-from-stealing-focus/?comment=3883#comment-3883</link><description>Will this patch fix this issue? http://cr.i3wm.org/patch/534</description><pubDate>Mon, 26 May 2014 04:45:52 +0000</pubDate><guid>https://faq.i3wm.org/question/464/prevent-new-windowspopups-from-stealing-focus/?comment=3883#comment-3883</guid></item></channel></rss>

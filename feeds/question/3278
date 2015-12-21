@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3278/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 22 Jan 2014 17:40:47 +0000</lastBuildDate><item><title>Problem loading i3 on new OpenBSD 5.4 install</title><link>https://faq.i3wm.org/question/3278/problem-loading-i3-on-new-openbsd-54-install/</link><description>I installed i3 downloaded from OpenBSD's repos. Laptop is AcerOne 756 w/4gig mem, 350gig HD, all dedicated to OpenBSD 5.4 
+
+At console, after I login OpenBSD, I type `i3 -V` and it responds...
+
+    01/18/14 10:20:32 - i3 4.5.2 (2013-03-18, branch "tags/4/5/2") starting
+    i3: Cannot open display
+
+</description><pubDate>Sat, 18 Jan 2014 20:30:44 +0000</pubDate><guid>https://faq.i3wm.org/question/3278/problem-loading-i3-on-new-openbsd-54-install/</guid></item><item><title>Answer by i3in' for &lt;p&gt;I installed i3 downloaded from OpenBSD's repos. Laptop is AcerOne 756 w/4gig mem, 350gig HD, all dedicated to OpenBSD 5.4 &lt;/p&gt;
+
+&lt;p&gt;At console, after I login OpenBSD, I type &lt;code&gt;i3 -V&lt;/code&gt; and it responds...&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;01/18/14 10:20:32 - i3 4.5.2 (2013-03-18, branch "tags/4/5/2") starting
+i3: Cannot open display
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/3278/problem-loading-i3-on-new-openbsd-54-install/?answer=3304#post-id-3304</link><description>Thank you Michael.
+
+OpenBSD login, followed by `startx` can load xdm or GDM but then installed `i3` request only produces...
+
+    ERROR: Another window manager seems to be running (X error 10)
+
+That was a big help cee...
+
+To get i3 to load, I only needed to follow your file creation, in the log format, with the command...
+
+    mkdir ~/.i3
+
+so `startx` would not get stopped, complaining about the &gt;&gt; redirect line. 
+
+ 
+
+</description><pubDate>Wed, 22 Jan 2014 17:40:47 +0000</pubDate><guid>https://faq.i3wm.org/question/3278/problem-loading-i3-on-new-openbsd-54-install/?answer=3304#post-id-3304</guid></item><item><title>Answer by cee for &lt;p&gt;I installed i3 downloaded from OpenBSD's repos. Laptop is AcerOne 756 w/4gig mem, 350gig HD, all dedicated to OpenBSD 5.4 &lt;/p&gt;
+
+&lt;p&gt;At console, after I login OpenBSD, I type &lt;code&gt;i3 -V&lt;/code&gt; and it responds...&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;01/18/14 10:20:32 - i3 4.5.2 (2013-03-18, branch "tags/4/5/2") starting
+i3: Cannot open display
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/3278/problem-loading-i3-on-new-openbsd-54-install/?answer=3300#post-id-3300</link><description>You can just add following line to your ~/.xinitrc:
+
+    exec i3
+
+If you don't have an .xinitrc, just create one.
+If you want to have debug information about i3 start then you can use 
+
+    exec i3 -V &gt;&gt; ~/.i3/i3log 2&gt;&amp;1  
+
+in your .xinitrc.
+
+You will just have a terminal login and no fancy GUI, but I prefer it that way.
+
+At the moment you have to type `startx` manually after login, but it shouldn't be a big problem to startx from your loginshell. Normally you can just add a line to your ~/.zprofile or whatever shell you are using.
+
+**Disclaimer**: This works on ArchLinux, but should not be much different on openBSD. Please do correct me if I am wrong.
+
+</description><pubDate>Wed, 22 Jan 2014 10:30:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3278/problem-loading-i3-on-new-openbsd-54-install/?answer=3300#post-id-3300</guid></item><item><title>Answer by Michael for &lt;p&gt;I installed i3 downloaded from OpenBSD's repos. Laptop is AcerOne 756 w/4gig mem, 350gig HD, all dedicated to OpenBSD 5.4 &lt;/p&gt;
+
+&lt;p&gt;At console, after I login OpenBSD, I type &lt;code&gt;i3 -V&lt;/code&gt; and it responds...&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;01/18/14 10:20:32 - i3 4.5.2 (2013-03-18, branch "tags/4/5/2") starting
+i3: Cannot open display
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/3278/problem-loading-i3-on-new-openbsd-54-install/?answer=3281#post-id-3281</link><description>Install a display manager such as GDM (or xdm if you like it more minimalistic), which will start X and launch a window manager (such as i3) for you.</description><pubDate>Sat, 18 Jan 2014 20:38:47 +0000</pubDate><guid>https://faq.i3wm.org/question/3278/problem-loading-i3-on-new-openbsd-54-install/?answer=3281#post-id-3281</guid></item></channel></rss>

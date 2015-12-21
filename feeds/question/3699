@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3699/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 04 Jun 2015 11:51:08 +0000</lastBuildDate><item><title>How can I open an application when I open a certain workspace for the first time?</title><link>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/</link><description>For instance when I open workspace 4 for the first time I would like firefox to open automatically in that workspace. How can I achieve this?</description><pubDate>Mon, 21 Apr 2014 14:16:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/</guid></item><item><title>Answer by TonyC for &lt;p&gt;For instance when I open workspace 4 for the first time I would like firefox to open automatically in that workspace. How can I achieve this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?answer=3702#post-id-3702</link><description>Check out [this script](https://github.com/acrisci/i3ipc-python/blob/master/examples/app-on-ws-init.py) from the [i3ipc-python](https://github.com/acrisci/i3ipc-python) project
+
+    usage: app-on-ws-init.py [-h] [--workspace NAME] [--command CMD]
+
+    Open an application on a given workspace when it is initialized
+
+    optional arguments:
+      -h, --help        show this help message and exit
+      --workspace NAME  The name of the workspace
+      --command CMD     The command to run on the newly initted workspace
+
+Add an `exec_always` line to your config with this script and `--workspace=4 --command=firefox`</description><pubDate>Mon, 21 Apr 2014 18:29:47 +0000</pubDate><guid>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?answer=3702#post-id-3702</guid></item><item><title>Comment by sharethewisdom for &lt;p&gt;Check out &lt;a href="https://github.com/acrisci/i3ipc-python/blob/master/examples/app-on-ws-init.py"&gt;this script&lt;/a&gt; from the &lt;a href="https://github.com/acrisci/i3ipc-python"&gt;i3ipc-python&lt;/a&gt; project&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;usage: app-on-ws-init.py [-h] [--workspace NAME] [--command CMD]
+
+Open an application on a given workspace when it is initialized
+
+optional arguments:
+  -h, --help        show this help message and exit
+  --workspace NAME  The name of the workspace
+  --command CMD     The command to run on the newly initted workspace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add an &lt;code&gt;exec_always&lt;/code&gt; line to your config with this script and &lt;code&gt;--workspace=4 --command=firefox&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=6062#comment-6062</link><description>Could someone help me adapt this script so that I can specify a list of workspaces on which the same command is executed? I would like a terminal window to open when one of the workspaces 1 trough 8 are initiated. Running a single script would be a more sane thing to do.</description><pubDate>Thu, 04 Jun 2015 11:51:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=6062#comment-6062</guid></item><item><title>Comment by TonyC for &lt;p&gt;Check out &lt;a href="https://github.com/acrisci/i3ipc-python/blob/master/examples/app-on-ws-init.py"&gt;this script&lt;/a&gt; from the &lt;a href="https://github.com/acrisci/i3ipc-python"&gt;i3ipc-python&lt;/a&gt; project&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;usage: app-on-ws-init.py [-h] [--workspace NAME] [--command CMD]
+
+Open an application on a given workspace when it is initialized
+
+optional arguments:
+  -h, --help        show this help message and exit
+  --workspace NAME  The name of the workspace
+  --command CMD     The command to run on the newly initted workspace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add an &lt;code&gt;exec_always&lt;/code&gt; line to your config with this script and &lt;code&gt;--workspace=4 --command=firefox&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=3705#comment-3705</link><description>Right now, you should have the python overrides installed from the i3ipc-python project page. That is meant to fix some quirks in the library but probably won't be necessary in the future. https://github.com/acrisci/i3ipc-python/releases/tag/v0.1.1</description><pubDate>Mon, 21 Apr 2014 20:32:15 +0000</pubDate><guid>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=3705#comment-3705</guid></item><item><title>Comment by TonyC for &lt;p&gt;Check out &lt;a href="https://github.com/acrisci/i3ipc-python/blob/master/examples/app-on-ws-init.py"&gt;this script&lt;/a&gt; from the &lt;a href="https://github.com/acrisci/i3ipc-python"&gt;i3ipc-python&lt;/a&gt; project&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;usage: app-on-ws-init.py [-h] [--workspace NAME] [--command CMD]
+
+Open an application on a given workspace when it is initialized
+
+optional arguments:
+  -h, --help        show this help message and exit
+  --workspace NAME  The name of the workspace
+  --command CMD     The command to run on the newly initted workspace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add an &lt;code&gt;exec_always&lt;/code&gt; line to your config with this script and &lt;code&gt;--workspace=4 --command=firefox&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=3706#comment-3706</link><description>I fixed that one so it doesn't require the overrides so you should be good.</description><pubDate>Mon, 21 Apr 2014 20:40:42 +0000</pubDate><guid>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=3706#comment-3706</guid></item><item><title>Comment by Binary0010 for &lt;p&gt;Check out &lt;a href="https://github.com/acrisci/i3ipc-python/blob/master/examples/app-on-ws-init.py"&gt;this script&lt;/a&gt; from the &lt;a href="https://github.com/acrisci/i3ipc-python"&gt;i3ipc-python&lt;/a&gt; project&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;usage: app-on-ws-init.py [-h] [--workspace NAME] [--command CMD]
+
+Open an application on a given workspace when it is initialized
+
+optional arguments:
+  -h, --help        show this help message and exit
+  --workspace NAME  The name of the workspace
+  --command CMD     The command to run on the newly initted workspace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add an &lt;code&gt;exec_always&lt;/code&gt; line to your config with this script and &lt;code&gt;--workspace=4 --command=firefox&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=3704#comment-3704</link><description>[binary0010@Hephaestus .i3]$ ./apps-on-ws-init.py --workspace=4 --command=spotify
+Traceback (most recent call last):
+  File "./apps-on-ws-init.py", line 23, in &lt;module&gt;
+    i3.main()
+AttributeError: 'Connection' object has no attribute 'main'</description><pubDate>Mon, 21 Apr 2014 19:13:54 +0000</pubDate><guid>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=3704#comment-3704</guid></item><item><title>Comment by Binary0010 for &lt;p&gt;Check out &lt;a href="https://github.com/acrisci/i3ipc-python/blob/master/examples/app-on-ws-init.py"&gt;this script&lt;/a&gt; from the &lt;a href="https://github.com/acrisci/i3ipc-python"&gt;i3ipc-python&lt;/a&gt; project&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;usage: app-on-ws-init.py [-h] [--workspace NAME] [--command CMD]
+
+Open an application on a given workspace when it is initialized
+
+optional arguments:
+  -h, --help        show this help message and exit
+  --workspace NAME  The name of the workspace
+  --command CMD     The command to run on the newly initted workspace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add an &lt;code&gt;exec_always&lt;/code&gt; line to your config with this script and &lt;code&gt;--workspace=4 --command=firefox&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=3703#comment-3703</link><description>I am getting the following error:</description><pubDate>Mon, 21 Apr 2014 19:13:43 +0000</pubDate><guid>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=3703#comment-3703</guid></item><item><title>Comment by Binary0010 for &lt;p&gt;Check out &lt;a href="https://github.com/acrisci/i3ipc-python/blob/master/examples/app-on-ws-init.py"&gt;this script&lt;/a&gt; from the &lt;a href="https://github.com/acrisci/i3ipc-python"&gt;i3ipc-python&lt;/a&gt; project&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;usage: app-on-ws-init.py [-h] [--workspace NAME] [--command CMD]
+
+Open an application on a given workspace when it is initialized
+
+optional arguments:
+  -h, --help        show this help message and exit
+  --workspace NAME  The name of the workspace
+  --command CMD     The command to run on the newly initted workspace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add an &lt;code&gt;exec_always&lt;/code&gt; line to your config with this script and &lt;code&gt;--workspace=4 --command=firefox&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=3707#comment-3707</link><description>This works great...Thanks!</description><pubDate>Mon, 21 Apr 2014 20:59:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3699/how-can-i-open-an-application-when-i-open-a-certain-workspace-for-the-first-time/?comment=3707#comment-3707</guid></item></channel></rss>

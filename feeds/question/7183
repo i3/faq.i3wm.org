@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7183/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 08 Nov 2015 03:02:01 +0000</lastBuildDate><item><title>Opening program in scratchpad without focus</title><link>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/</link><description>I wish to open vlc as floating in scratchpad, but not focusing it :
+
+    for_window  [class="vlc"] floating enable;  [class="vlc"] move position 300px 200px; [class="vlc"] move scratchpad; [class="vlc"] scratchpad show; focus tiling;
+    
+
+focus tiling should focus back to tiling windows. Instad vlc remains focused when opened. Effect is the same with or without "focus tiling".
+Any ideas ?</description><pubDate>Thu, 05 Nov 2015 10:36:07 +0000</pubDate><guid>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/</guid></item><item><title>Comment by cancarne for &lt;p&gt;I wish to open vlc as floating in scratchpad, but not focusing it :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window  [class="vlc"] floating enable;  [class="vlc"] move position 300px 200px; [class="vlc"] move scratchpad; [class="vlc"] scratchpad show; focus tiling;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;focus tiling should focus back to tiling windows. Instad vlc remains focused when opened. Effect is the same with or without "focus tiling".
+Any ideas ?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?comment=7192#comment-7192</link><description>Works great, thanks ! So some pause is needed for vlc to "fully open", i guess ... 
+Solved !</description><pubDate>Thu, 05 Nov 2015 20:42:44 +0000</pubDate><guid>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?comment=7192#comment-7192</guid></item><item><title>Comment by Anon1234 for &lt;p&gt;I wish to open vlc as floating in scratchpad, but not focusing it :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window  [class="vlc"] floating enable;  [class="vlc"] move position 300px 200px; [class="vlc"] move scratchpad; [class="vlc"] scratchpad show; focus tiling;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;focus tiling should focus back to tiling windows. Instad vlc remains focused when opened. Effect is the same with or without "focus tiling".
+Any ideas ?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?comment=7185#comment-7185</link><description>for_window [class="(?i)^vlc$"] floating enable, move position 300px 200px, move scratchpad, scratchpad show, exec sleep 1 &amp;&amp; i3-msg focus tiling</description><pubDate>Thu, 05 Nov 2015 15:05:58 +0000</pubDate><guid>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?comment=7185#comment-7185</guid></item><item><title>Answer by Airblader for &lt;p&gt;I wish to open vlc as floating in scratchpad, but not focusing it :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window  [class="vlc"] floating enable;  [class="vlc"] move position 300px 200px; [class="vlc"] move scratchpad; [class="vlc"] scratchpad show; focus tiling;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;focus tiling should focus back to tiling windows. Instad vlc remains focused when opened. Effect is the same with or without "focus tiling".
+Any ideas ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?answer=7189#post-id-7189</link><description>As Anon1234 pointed out in the comment, you should just put all commands together:
+
+    for_window [class=(?i)vlc] floating enable, move position 300 200, move scratchpad, scratchpad show
+
+As for not focussing the window, you can use
+
+    no_focus [class=(?i)vlc]
+
+in your config. </description><pubDate>Thu, 05 Nov 2015 19:51:11 +0000</pubDate><guid>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?answer=7189#post-id-7189</guid></item><item><title>Comment by cancarne for &lt;p&gt;As Anon1234 pointed out in the comment, you should just put all commands together:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class=(?i)vlc] floating enable, move position 300 200, move scratchpad, scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As for not focussing the window, you can use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;no_focus [class=(?i)vlc]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in your config. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?comment=7220#comment-7220</link><description>Oh, sorry, i have version 4.8. Will check 4.11. Cheers ! :)</description><pubDate>Sun, 08 Nov 2015 03:02:01 +0000</pubDate><guid>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?comment=7220#comment-7220</guid></item><item><title>Comment by Airblader for &lt;p&gt;As Anon1234 pointed out in the comment, you should just put all commands together:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class=(?i)vlc] floating enable, move position 300 200, move scratchpad, scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As for not focussing the window, you can use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;no_focus [class=(?i)vlc]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in your config. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?comment=7195#comment-7195</link><description>What error? Do you have a current version of i3?</description><pubDate>Thu, 05 Nov 2015 21:30:11 +0000</pubDate><guid>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?comment=7195#comment-7195</guid></item><item><title>Comment by cancarne for &lt;p&gt;As Anon1234 pointed out in the comment, you should just put all commands together:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class=(?i)vlc] floating enable, move position 300 200, move scratchpad, scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As for not focussing the window, you can use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;no_focus [class=(?i)vlc]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in your config. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?comment=7194#comment-7194</link><description>For some strange reason no_focus gives me an error. That is the first thing i tried :
+no_focus [class="vlc"] , which i saw in i3 guide.</description><pubDate>Thu, 05 Nov 2015 20:55:15 +0000</pubDate><guid>https://faq.i3wm.org/question/7183/opening-program-in-scratchpad-without-focus/?comment=7194#comment-7194</guid></item></channel></rss>

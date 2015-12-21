@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5145/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 16 Mar 2015 08:26:43 +0000</lastBuildDate><item><title>rdesktop "maximized"</title><link>https://faq.i3wm.org/question/5145/rdesktop-maximized/</link><description>I want to open rdesktop in a "maximized" frame, to cover the whole screen but the bar. For this purpose I set the geometry equal with the display resolution but on vertical I substracted the bar height. The problem is that rdesktop frame opens with an offset, never "maximized".
+</description><pubDate>Tue, 09 Dec 2014 11:29:19 +0000</pubDate><guid>https://faq.i3wm.org/question/5145/rdesktop-maximized/</guid></item><item><title>Answer by joepd for &lt;p&gt;I want to open rdesktop in a "maximized" frame, to cover the whole screen but the bar. For this purpose I set the geometry equal with the display resolution but on vertical I substracted the bar height. The problem is that rdesktop frame opens with an offset, never "maximized".&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5145/rdesktop-maximized/?answer=5149#post-id-5149</link><description>Thanks for asking, this is a good reason to fix this annoying thing for myself... The key line in the debug log seems to be this: 
+
+    09.12.2014 21:26:17 - This window is a dialog window, setting floating
+
+A bit of digging leads to commit 8ed95ae58cb371a24214ec0474199f5551829cd6 that was made as a fix to Bug [1182](http://bugs.i3wm.org/report/ticket/1182). Apparently, it has been deemed reasonable to assume that when an application requests a specific size, that it needs to be treated as a floating window. 
+
+&lt;del&gt;Luckily, `rdesktop` also allows the size to depend on the screen size. With `-g 100%`, I managed to get the nice behavior back without specifying custom matchers in `i3.conf`.&lt;/del&gt;
+
+__Edit:__ Thanks, Daniel, for pointing out that this does not work in a multimonitor setup. Also, in a single monitor setup, ``rdesktop`` is not aware of ``i3bar``, and a portion disappears from the screen. I ended up making a matcher in my ``i3.conf``: 
+
+    
+    for_window [class="^rdesktop"] move workspace number 5; floating disable</description><pubDate>Tue, 09 Dec 2014 21:11:04 +0000</pubDate><guid>https://faq.i3wm.org/question/5145/rdesktop-maximized/?answer=5149#post-id-5149</guid></item><item><title>Comment by daniel for &lt;p&gt;Thanks for asking, this is a good reason to fix this annoying thing for myself... The key line in the debug log seems to be this: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;09.12.2014 21:26:17 - This window is a dialog window, setting floating
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A bit of digging leads to commit 8ed95ae58cb371a24214ec0474199f5551829cd6 that was made as a fix to Bug &lt;a href="http://bugs.i3wm.org/report/ticket/1182"&gt;1182&lt;/a&gt;. Apparently, it has been deemed reasonable to assume that when an application requests a specific size, that it needs to be treated as a floating window. &lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;Luckily, &lt;code&gt;rdesktop&lt;/code&gt; also allows the size to depend on the screen size. With &lt;code&gt;-g 100%&lt;/code&gt;, I managed to get the nice behavior back without specifying custom matchers in &lt;code&gt;i3.conf&lt;/code&gt;.&lt;/del&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Edit:&lt;/strong&gt; Thanks, Daniel, for pointing out that this does not work in a multimonitor setup. Also, in a single monitor setup, &lt;code&gt;rdesktop&lt;/code&gt; is not aware of &lt;code&gt;i3bar&lt;/code&gt;, and a portion disappears from the screen. I ended up making a matcher in my &lt;code&gt;i3.conf&lt;/code&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^rdesktop"] move workspace number 5; floating disable
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5145/rdesktop-maximized/?comment=5156#comment-5156</link><description>I didn't mention I am using a dual monitor setup. Running rdesktop with -g 100% expands the frame on both displays.</description><pubDate>Wed, 10 Dec 2014 14:58:14 +0000</pubDate><guid>https://faq.i3wm.org/question/5145/rdesktop-maximized/?comment=5156#comment-5156</guid></item><item><title>Comment by daniel for &lt;p&gt;Thanks for asking, this is a good reason to fix this annoying thing for myself... The key line in the debug log seems to be this: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;09.12.2014 21:26:17 - This window is a dialog window, setting floating
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A bit of digging leads to commit 8ed95ae58cb371a24214ec0474199f5551829cd6 that was made as a fix to Bug &lt;a href="http://bugs.i3wm.org/report/ticket/1182"&gt;1182&lt;/a&gt;. Apparently, it has been deemed reasonable to assume that when an application requests a specific size, that it needs to be treated as a floating window. &lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;Luckily, &lt;code&gt;rdesktop&lt;/code&gt; also allows the size to depend on the screen size. With &lt;code&gt;-g 100%&lt;/code&gt;, I managed to get the nice behavior back without specifying custom matchers in &lt;code&gt;i3.conf&lt;/code&gt;.&lt;/del&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Edit:&lt;/strong&gt; Thanks, Daniel, for pointing out that this does not work in a multimonitor setup. Also, in a single monitor setup, &lt;code&gt;rdesktop&lt;/code&gt; is not aware of &lt;code&gt;i3bar&lt;/code&gt;, and a portion disappears from the screen. I ended up making a matcher in my &lt;code&gt;i3.conf&lt;/code&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^rdesktop"] move workspace number 5; floating disable
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5145/rdesktop-maximized/?comment=5618#comment-5618</link><description>I upgraded i3 to 4.9 and it seems that the issue is fixed. Thank you!</description><pubDate>Mon, 16 Mar 2015 08:26:43 +0000</pubDate><guid>https://faq.i3wm.org/question/5145/rdesktop-maximized/?comment=5618#comment-5618</guid></item></channel></rss>

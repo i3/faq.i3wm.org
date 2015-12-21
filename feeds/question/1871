@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1871/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 24 May 2013 04:59:12 +0000</lastBuildDate><item><title>negated command (for_window)</title><link>https://faq.i3wm.org/question/1871/negated-command-for_window/</link><description>I am trying to make a tool-window (and splash screen) floating with for_window, but want the main window to act normal (non floating).
+The application is DDD (Data Display Debugger).
+
+for_window [class="Ddd"] floating enable&lt;br/&gt;
+does work. Is it possible to append something like:
+
+[instance!="command_shell"]&lt;br/&gt;
+Note the ! before =, to negate the instance.
+
+What I try to achieve in words:
+Make all windows with class="Ddd" floating, **EXCEPT** where instance="command_shell".
+
+PS: I have got the proper definition with xprop -spy.</description><pubDate>Thu, 23 May 2013 10:18:12 +0000</pubDate><guid>https://faq.i3wm.org/question/1871/negated-command-for_window/</guid></item><item><title>Comment by joepd for &lt;p&gt;I am trying to make a tool-window (and splash screen) floating with for_window, but want the main window to act normal (non floating).
+The application is DDD (Data Display Debugger).&lt;/p&gt;
+
+&lt;p&gt;for_window [class="Ddd"] floating enable&lt;br/&gt;
+does work. Is it possible to append something like:&lt;/p&gt;
+
+&lt;p&gt;[instance!="command_shell"]&lt;br/&gt;
+Note the ! before =, to negate the instance.&lt;/p&gt;
+
+&lt;p&gt;What I try to achieve in words:
+Make all windows with class="Ddd" floating, &lt;strong&gt;EXCEPT&lt;/strong&gt; where instance="command_shell".&lt;/p&gt;
+
+&lt;p&gt;PS: I have got the proper definition with xprop -spy.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1871/negated-command-for_window/?comment=1876#comment-1876</link><description>Closing question, as it is a duplicate of https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/. </description><pubDate>Fri, 24 May 2013 04:59:12 +0000</pubDate><guid>https://faq.i3wm.org/question/1871/negated-command-for_window/?comment=1876#comment-1876</guid></item><item><title>Answer by mschaefer for &lt;p&gt;I am trying to make a tool-window (and splash screen) floating with for_window, but want the main window to act normal (non floating).
+The application is DDD (Data Display Debugger).&lt;/p&gt;
+
+&lt;p&gt;for_window [class="Ddd"] floating enable&lt;br/&gt;
+does work. Is it possible to append something like:&lt;/p&gt;
+
+&lt;p&gt;[instance!="command_shell"]&lt;br/&gt;
+Note the ! before =, to negate the instance.&lt;/p&gt;
+
+&lt;p&gt;What I try to achieve in words:
+Make all windows with class="Ddd" floating, &lt;strong&gt;EXCEPT&lt;/strong&gt; where instance="command_shell".&lt;/p&gt;
+
+&lt;p&gt;PS: I have got the proper definition with xprop -spy.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1871/negated-command-for_window/?answer=1872#post-id-1872</link><description>The i3 documentation for [command criteria](http://i3wm.org/docs/userguide.html#command_criteria) states that arbitrary regular expressions can be used. I am no expert in regex, but I think you should be able to build something that fits your needs.</description><pubDate>Thu, 23 May 2013 13:37:09 +0000</pubDate><guid>https://faq.i3wm.org/question/1871/negated-command-for_window/?answer=1872#post-id-1872</guid></item><item><title>Answer by cee for &lt;p&gt;I am trying to make a tool-window (and splash screen) floating with for_window, but want the main window to act normal (non floating).
+The application is DDD (Data Display Debugger).&lt;/p&gt;
+
+&lt;p&gt;for_window [class="Ddd"] floating enable&lt;br/&gt;
+does work. Is it possible to append something like:&lt;/p&gt;
+
+&lt;p&gt;[instance!="command_shell"]&lt;br/&gt;
+Note the ! before =, to negate the instance.&lt;/p&gt;
+
+&lt;p&gt;What I try to achieve in words:
+Make all windows with class="Ddd" floating, &lt;strong&gt;EXCEPT&lt;/strong&gt; where instance="command_shell".&lt;/p&gt;
+
+&lt;p&gt;PS: I have got the proper definition with xprop -spy.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1871/negated-command-for_window/?answer=1873#post-id-1873</link><description>Thank you.&lt;br/&gt;
+I am no expert at Regex as well.
+It seems, that **(?!something)** would match, if **something** is not found.
+
+It does not work for me yet.&lt;br/&gt;
+To me it's still unclear if this regex would work, if it is supported in i3 and if the syntax in my conf file is correct.
+
+For now I have it like this:
+for_window [class="Ddd" instance="tool"] floating enabled
+
+This of course does not work for the splash screen, but the most important thing is, that the tool window is floating.
+
+If anybody can enlighten me, I would be very happy. But I can live with this solution. (Still bugs me a little to not have the perfect solution, though)
+</description><pubDate>Thu, 23 May 2013 13:57:27 +0000</pubDate><guid>https://faq.i3wm.org/question/1871/negated-command-for_window/?answer=1873#post-id-1873</guid></item></channel></rss>

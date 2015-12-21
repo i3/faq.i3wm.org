@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7588/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 08 Dec 2015 04:26:34 +0000</lastBuildDate><item><title>keybinding</title><link>https://faq.i3wm.org/question/7588/keybinding/</link><description>This may sound odd but here we go.
+I'm a heavy keyboard user and I notice that a lot of tools (emacs, vim, ratpoison) seem to cope well with me making a LOT of mistakes. By mistakes I mean: typing (as in code or e-mails etc) while in the wrong mode, or sending key combinations for which there is no binding in my *rc.
+
+I'll give a couple of examples so that it make more sense:
+
+ - emacs - I type `C-x C-nonsense` and get a friendly error
+ - emacs - I type `C-x blah` accidently and spam `C-g` until any random command or mode I just oppened goes away.
+ - ratpoison - I type `C-r` (or whatevere the ratpoison prefix is) and instantly all further keypresses are interpreted as ratpoison commands.
+ - tmux - same as ratpoison.
+
+So my problem is that with i3 - there isn't really a 'prefix' key like in tmux and ratpoison and emacs (I don't use vim very often). I simulated the idea of a prefix by creating a 'wm' mode in i3.
+However, while in this mode, any keypresses are passed on to the window in focus unless they are overridden with `bindsym`. So my question:
+
+**Is there a way to prevent ALL keypresses EXCEPT those overridden with `bindsym` from being passed to the window in focus? At least just for a particular mode? How can I acheieve this?**
+
+That way I can have a prefix style operation rather than a vim-like operation (nothing wrong with vim - but since I'm so used to emacs I keep hitting `C-x` by accident and end up in some crazy mode).
+
+I guess my real problem is that I need to think before I type - but that ain't gonna happen any time soon.</description><pubDate>Mon, 07 Dec 2015 20:13:20 +0000</pubDate><guid>https://faq.i3wm.org/question/7588/keybinding/</guid></item><item><title>Answer by i3convert for &lt;p&gt;This may sound odd but here we go.
+I'm a heavy keyboard user and I notice that a lot of tools (emacs, vim, ratpoison) seem to cope well with me making a LOT of mistakes. By mistakes I mean: typing (as in code or e-mails etc) while in the wrong mode, or sending key combinations for which there is no binding in my *rc.&lt;/p&gt;
+
+&lt;p&gt;I'll give a couple of examples so that it make more sense:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;emacs - I type &lt;code&gt;C-x C-nonsense&lt;/code&gt; and get a friendly error&lt;/li&gt;
+&lt;li&gt;emacs - I type &lt;code&gt;C-x blah&lt;/code&gt; accidently and spam &lt;code&gt;C-g&lt;/code&gt; until any random command or mode I just oppened goes away.&lt;/li&gt;
+&lt;li&gt;ratpoison - I type &lt;code&gt;C-r&lt;/code&gt; (or whatevere the ratpoison prefix is) and instantly all further keypresses are interpreted as ratpoison commands.&lt;/li&gt;
+&lt;li&gt;tmux - same as ratpoison.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So my problem is that with i3 - there isn't really a 'prefix' key like in tmux and ratpoison and emacs (I don't use vim very often). I simulated the idea of a prefix by creating a 'wm' mode in i3.
+However, while in this mode, any keypresses are passed on to the window in focus unless they are overridden with &lt;code&gt;bindsym&lt;/code&gt;. So my question:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Is there a way to prevent ALL keypresses EXCEPT those overridden with &lt;code&gt;bindsym&lt;/code&gt; from being passed to the window in focus? At least just for a particular mode? How can I acheieve this?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;That way I can have a prefix style operation rather than a vim-like operation (nothing wrong with vim - but since I'm so used to emacs I keep hitting &lt;code&gt;C-x&lt;/code&gt; by accident and end up in some crazy mode).&lt;/p&gt;
+
+&lt;p&gt;I guess my real problem is that I need to think before I type - but that ain't gonna happen any time soon.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7588/keybinding/?answer=7599#post-id-7599</link><description>That's a great question! I was wondering about exactly the same thing at some point. Unfortunately, there is no way to specify the default behavior (of unassigned keys) as far as I'm aware, but this could be a great feature request in my opinion.
+
+One currently possible solution would be to write a script for generating your config file. It would add the empty command ( `nop` ) for unspecified keys. This shouldn't be too hard, at least when it comes to covering the most popular keys.</description><pubDate>Tue, 08 Dec 2015 04:26:34 +0000</pubDate><guid>https://faq.i3wm.org/question/7588/keybinding/?answer=7599#post-id-7599</guid></item></channel></rss>

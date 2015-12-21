@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4517/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 10 May 2015 21:18:28 +0000</lastBuildDate><item><title>Desktop Programs to Use with i3</title><link>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/</link><description>I switched to i3 on one of my machines (Debian testing) after using various traditional desktop environments for years, and I am still lacking alternatives to some auxiliary programs which are shipped with such desktop environments. I could of course install those programs separately, but I'd prefer a lightweight solution with as few dependencies as possible.
+
+After visiting many web pages with titles of the form "the best *n* Linux *bla bla programs*" and some digging around in distro wikis, I am still looking for suggestions for following types of programs:
+
+ * **file manager with automount support** (I am currently accessing files directly from console and handling mounts with udisksd.)
+ * **network manager** (Gnome and KDE front ends of NetworkManager come with many dependencies, so I'm currently using wicd, which lacks VPN support.)
+ * **sound manager** (AlsaMixer is not bad, but clicking a trayer icon is easier than opening a terminal window and typing "alsamixer".)
+ * **image viewer** (Until now I used my web browser as an image viewer.)
+ * **PDF reader** (I don't want to use Adobe's proprietary reader, so I am currently using Xpdf, but I really miss features like mouse wheel zooming, printing options etc.)
+</description><pubDate>Mon, 18 Aug 2014 14:41:26 +0000</pubDate><guid>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;I switched to i3 on one of my machines (Debian testing) after using various traditional desktop environments for years, and I am still lacking alternatives to some auxiliary programs which are shipped with such desktop environments. I could of course install those programs separately, but I'd prefer a lightweight solution with as few dependencies as possible.&lt;/p&gt;
+
+&lt;p&gt;After visiting many web pages with titles of the form "the best &lt;em&gt;n&lt;/em&gt; Linux &lt;em&gt;bla bla programs&lt;/em&gt;" and some digging around in distro wikis, I am still looking for suggestions for following types of programs:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;file manager with automount support&lt;/strong&gt; (I am currently accessing files directly from console and handling mounts with udisksd.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;network manager&lt;/strong&gt; (Gnome and KDE front ends of NetworkManager come with many dependencies, so I'm currently using wicd, which lacks VPN support.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;sound manager&lt;/strong&gt; (AlsaMixer is not bad, but clicking a trayer icon is easier than opening a terminal window and typing "alsamixer".)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;image viewer&lt;/strong&gt; (Until now I used my web browser as an image viewer.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF reader&lt;/strong&gt; (I don't want to use Adobe's proprietary reader, so I am currently using Xpdf, but I really miss features like mouse wheel zooming, printing options etc.)&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4519#post-id-4519</link><description>[List of desktop-agnostic applications](https://wiki.archlinux.org/index.php/Common_Applications)
+
+Volume control:
+
+    bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ unmute
+    bindsym XF86AudioLowerVolume exec amixer set Master 5%- unmute
+    bindsym XF86AudioMute exec amixer set Master nmute
+
+And I'll tell you a little secret about software: Power, versatility, low resource usage and a light code base almost never go hand-in-hand with dumbed-down convenience. Automatically mounting external drives is a good example. Any file manager that includes that as a feature is almost certainly going to be part of a desktop environment, or at least will not be any lighter than what you'd find in one from a desktop environment. If you want the lightest file management solution you'll have to do without auto-mounting---unless you're willing to write your own udev rules, or use any of the handful of third-party scripts to automount outside the file manager that are floating around.</description><pubDate>Mon, 18 Aug 2014 15:41:04 +0000</pubDate><guid>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4519#post-id-4519</guid></item><item><title>Comment by han for &lt;p&gt;&lt;a href="https://wiki.archlinux.org/index.php/Common_Applications"&gt;List of desktop-agnostic applications&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Volume control:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer set Master 5%- unmute
+bindsym XF86AudioMute exec amixer set Master nmute
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And I'll tell you a little secret about software: Power, versatility, low resource usage and a light code base almost never go hand-in-hand with dumbed-down convenience. Automatically mounting external drives is a good example. Any file manager that includes that as a feature is almost certainly going to be part of a desktop environment, or at least will not be any lighter than what you'd find in one from a desktop environment. If you want the lightest file management solution you'll have to do without auto-mounting---unless you're willing to write your own udev rules, or use any of the handful of third-party scripts to automount outside the file manager that are floating around.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?comment=5987#comment-5987</link><description>Works for me. Simple, needs no special attention, but trying to figure out how to bind my real mute key to the bindsym execution.</description><pubDate>Sun, 10 May 2015 21:18:28 +0000</pubDate><guid>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?comment=5987#comment-5987</guid></item><item><title>Answer by nsnwu for &lt;p&gt;I switched to i3 on one of my machines (Debian testing) after using various traditional desktop environments for years, and I am still lacking alternatives to some auxiliary programs which are shipped with such desktop environments. I could of course install those programs separately, but I'd prefer a lightweight solution with as few dependencies as possible.&lt;/p&gt;
+
+&lt;p&gt;After visiting many web pages with titles of the form "the best &lt;em&gt;n&lt;/em&gt; Linux &lt;em&gt;bla bla programs&lt;/em&gt;" and some digging around in distro wikis, I am still looking for suggestions for following types of programs:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;file manager with automount support&lt;/strong&gt; (I am currently accessing files directly from console and handling mounts with udisksd.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;network manager&lt;/strong&gt; (Gnome and KDE front ends of NetworkManager come with many dependencies, so I'm currently using wicd, which lacks VPN support.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;sound manager&lt;/strong&gt; (AlsaMixer is not bad, but clicking a trayer icon is easier than opening a terminal window and typing "alsamixer".)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;image viewer&lt;/strong&gt; (Until now I used my web browser as an image viewer.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF reader&lt;/strong&gt; (I don't want to use Adobe's proprietary reader, so I am currently using Xpdf, but I really miss features like mouse wheel zooming, printing options etc.)&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4575#post-id-4575</link><description> - Automount / File Manager
+
+`udiskie` is a very nice automounter (with optional tray icon). I highly recommend `ranger` as a file manager, gorgeous software - well worth getting to know. As mentioned it doesn't automount but there's no need to conflate these tasks.
+
+
+- PDF Reader
+
+Seconding `zathura` (I'm using it with the nice mupdf rendering backend) - contrary to smlx's answer it does have printing etc.
+
+- Network Manager
+
+Check out `connman`. It's fast and light, although I can't recommend a specific frontend, the GTK one is OK but not great.
+</description><pubDate>Sat, 23 Aug 2014 15:15:04 +0000</pubDate><guid>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4575#post-id-4575</guid></item><item><title>Comment by cee for &lt;ul&gt;
+&lt;li&gt;Automount / File Manager&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;udiskie&lt;/code&gt; is a very nice automounter (with optional tray icon). I highly recommend &lt;code&gt;ranger&lt;/code&gt; as a file manager, gorgeous software - well worth getting to know. As mentioned it doesn't automount but there's no need to conflate these tasks.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PDF Reader&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Seconding &lt;code&gt;zathura&lt;/code&gt; (I'm using it with the nice mupdf rendering backend) - contrary to smlx's answer it does have printing etc.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Network Manager&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Check out &lt;code&gt;connman&lt;/code&gt;. It's fast and light, although I can't recommend a specific frontend, the GTK one is OK but not great.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?comment=4580#comment-4580</link><description>ranger is great +1</description><pubDate>Sun, 24 Aug 2014 18:26:29 +0000</pubDate><guid>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?comment=4580#comment-4580</guid></item><item><title>Answer by smlx for &lt;p&gt;I switched to i3 on one of my machines (Debian testing) after using various traditional desktop environments for years, and I am still lacking alternatives to some auxiliary programs which are shipped with such desktop environments. I could of course install those programs separately, but I'd prefer a lightweight solution with as few dependencies as possible.&lt;/p&gt;
+
+&lt;p&gt;After visiting many web pages with titles of the form "the best &lt;em&gt;n&lt;/em&gt; Linux &lt;em&gt;bla bla programs&lt;/em&gt;" and some digging around in distro wikis, I am still looking for suggestions for following types of programs:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;file manager with automount support&lt;/strong&gt; (I am currently accessing files directly from console and handling mounts with udisksd.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;network manager&lt;/strong&gt; (Gnome and KDE front ends of NetworkManager come with many dependencies, so I'm currently using wicd, which lacks VPN support.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;sound manager&lt;/strong&gt; (AlsaMixer is not bad, but clicking a trayer icon is easier than opening a terminal window and typing "alsamixer".)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;image viewer&lt;/strong&gt; (Until now I used my web browser as an image viewer.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF reader&lt;/strong&gt; (I don't want to use Adobe's proprietary reader, so I am currently using Xpdf, but I really miss features like mouse wheel zooming, printing options etc.)&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4573#post-id-4573</link><description>I went through a similar process a few years ago when first switching to a tiling WM. Here's what I've settled on:
+
+* file manager with automount support - I use `spacefm-gtk3`; it uses udisks for automount. But `thunar` or `pcmanfm` are also good options (both use gvfs). Also check out `ranger` for a cool CLI file manager (though it doesn't do automount).
+
+* network manager - I just installed `network-manager-gnome`. At some point, if you want the functionality you'll just have to install the dependencies (and the dependencies aren't *too* bad..).
+
+* sound manager - I use `pasystray` - full pulseaudio control from the system tray.
+
+* image viewer - I use `sxiv` - it's the vim of image viewers.
+
+* PDF reader - `zathura` is great to quickly read small documents, but on the occasions that I need the extra features (like print, table of contents), I use `evince`.
+
+There were also some other features I missed from a full DE:
+
+* Clipboard manager - I use `parcellite`.
+
+* Notification daemon. `dunst` is too simple for my liking. For example it doesn't handle multi-head setups well, and custom placement of notifications isn't possible. I use `xfce4-notifyd` instead.
+
+* Power management - very handy for a laptop. I use `xfce4-powermanager`.
+
+Note: I've used the Debian package names, but most should be available in other distros.
+</description><pubDate>Sat, 23 Aug 2014 10:00:04 +0000</pubDate><guid>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4573#post-id-4573</guid></item><item><title>Answer by blendi for &lt;p&gt;I switched to i3 on one of my machines (Debian testing) after using various traditional desktop environments for years, and I am still lacking alternatives to some auxiliary programs which are shipped with such desktop environments. I could of course install those programs separately, but I'd prefer a lightweight solution with as few dependencies as possible.&lt;/p&gt;
+
+&lt;p&gt;After visiting many web pages with titles of the form "the best &lt;em&gt;n&lt;/em&gt; Linux &lt;em&gt;bla bla programs&lt;/em&gt;" and some digging around in distro wikis, I am still looking for suggestions for following types of programs:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;file manager with automount support&lt;/strong&gt; (I am currently accessing files directly from console and handling mounts with udisksd.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;network manager&lt;/strong&gt; (Gnome and KDE front ends of NetworkManager come with many dependencies, so I'm currently using wicd, which lacks VPN support.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;sound manager&lt;/strong&gt; (AlsaMixer is not bad, but clicking a trayer icon is easier than opening a terminal window and typing "alsamixer".)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;image viewer&lt;/strong&gt; (Until now I used my web browser as an image viewer.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF reader&lt;/strong&gt; (I don't want to use Adobe's proprietary reader, so I am currently using Xpdf, but I really miss features like mouse wheel zooming, printing options etc.)&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4522#post-id-4522</link><description>
+file manager with automount support:
+  - Thunar with volman (just launch "thunar --deamon" on start)
+
+PDF reader:
+  - if u use firefox as ur Browser u can use Firefox for pdf's</description><pubDate>Mon, 18 Aug 2014 17:15:47 +0000</pubDate><guid>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4522#post-id-4522</guid></item><item><title>Answer by Kaligule for &lt;p&gt;I switched to i3 on one of my machines (Debian testing) after using various traditional desktop environments for years, and I am still lacking alternatives to some auxiliary programs which are shipped with such desktop environments. I could of course install those programs separately, but I'd prefer a lightweight solution with as few dependencies as possible.&lt;/p&gt;
+
+&lt;p&gt;After visiting many web pages with titles of the form "the best &lt;em&gt;n&lt;/em&gt; Linux &lt;em&gt;bla bla programs&lt;/em&gt;" and some digging around in distro wikis, I am still looking for suggestions for following types of programs:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;file manager with automount support&lt;/strong&gt; (I am currently accessing files directly from console and handling mounts with udisksd.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;network manager&lt;/strong&gt; (Gnome and KDE front ends of NetworkManager come with many dependencies, so I'm currently using wicd, which lacks VPN support.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;sound manager&lt;/strong&gt; (AlsaMixer is not bad, but clicking a trayer icon is easier than opening a terminal window and typing "alsamixer".)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;image viewer&lt;/strong&gt; (Until now I used my web browser as an image viewer.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF reader&lt;/strong&gt; (I don't want to use Adobe's proprietary reader, so I am currently using Xpdf, but I really miss features like mouse wheel zooming, printing options etc.)&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4564#post-id-4564</link><description>#### Network manager
+
+In my config on I use:
+
+    # network manager (always runs)
+    # (I have no idea why --no-startup-id might be a clever choice, it is used on various websites)
+    exec nm-applet
+
+nm-applet is nice since it fits great into my i3bar and does have a nice clickable menu if you want that
+
+#### File Manager with automount
+
+Sorry, never used one.
+
+#### PDF
+
+I like okular, but some friends of mine tell me that mupdf is more "pure unix". There are around 10^10^10 pdfviewer out there, choose one.
+
+#### Sound
+
+Like ANOKNUSA said before it is not hard to create shortcuts for this. I use exactly his lines of code in my configuration file.</description><pubDate>Fri, 22 Aug 2014 12:26:09 +0000</pubDate><guid>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4564#post-id-4564</guid></item><item><title>Answer by cee for &lt;p&gt;I switched to i3 on one of my machines (Debian testing) after using various traditional desktop environments for years, and I am still lacking alternatives to some auxiliary programs which are shipped with such desktop environments. I could of course install those programs separately, but I'd prefer a lightweight solution with as few dependencies as possible.&lt;/p&gt;
+
+&lt;p&gt;After visiting many web pages with titles of the form "the best &lt;em&gt;n&lt;/em&gt; Linux &lt;em&gt;bla bla programs&lt;/em&gt;" and some digging around in distro wikis, I am still looking for suggestions for following types of programs:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;file manager with automount support&lt;/strong&gt; (I am currently accessing files directly from console and handling mounts with udisksd.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;network manager&lt;/strong&gt; (Gnome and KDE front ends of NetworkManager come with many dependencies, so I'm currently using wicd, which lacks VPN support.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;sound manager&lt;/strong&gt; (AlsaMixer is not bad, but clicking a trayer icon is easier than opening a terminal window and typing "alsamixer".)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;image viewer&lt;/strong&gt; (Until now I used my web browser as an image viewer.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDF reader&lt;/strong&gt; (I don't want to use Adobe's proprietary reader, so I am currently using Xpdf, but I really miss features like mouse wheel zooming, printing options etc.)&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4567#post-id-4567</link><description>Here are my 2cents:  
+I like my computer plain and simple, but I still want all the goodies. ;-)
+
+So here are some of my currently used "desktop" programs  
+  
+**filemanager**  
+
+&gt; `pcmanfm`  
+It's great to acces any samba share with `gvfs-smb`
+
+**network manager**
+
+&gt; `nm-applet`
+
+**sound manager**
+
+    set $psst --no-startup-id
+    set $update &amp;&amp; killall -SIGUSR1 i3status
+    bindsym XF86AudioLowerVolume    exec $psst pactl set-sink-volume 1 -- -5% &amp;&amp; pactl set-sink-mute 1 0 $update
+    bindsym XF86AudioRaiseVolume    exec $psst pactl set-sink-volume 1 -- +5% &amp;&amp; pactl set-sink-mute 1 0 $update
+    bindsym XF86AudioMute           exec $psst pactl set-sink-mute 1 toggle $update
+
+Only use the multimedia keys from my notebook.
+
+**image viewer**
+&gt; `feh`
+
+**pdf viewer**
+&gt; I used to use `apvlv`, no switched to `zathura` and I am very happy with it. Both viewers support vim keybindings, what more could you ask for.
+</description><pubDate>Fri, 22 Aug 2014 21:07:21 +0000</pubDate><guid>https://faq.i3wm.org/question/4517/desktop-programs-to-use-with-i3/?answer=4567#post-id-4567</guid></item></channel></rss>

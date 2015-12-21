@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2312/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 01 Aug 2013 02:38:25 +0000</lastBuildDate><item><title>Using win key to launch dmenu_run</title><link>https://faq.i3wm.org/question/2312/using-win-key-to-launch-dmenu_run/</link><description>Hi,
+
+I want dmenu_run to execute whenever I press the win key with no other keys.
+I've tried this in my i3 config file to no avail:
+
+bindsym Mod4 exec dmenu_run
+
+set $win Mod4
+bindsym $win exec dmenu_run
+
+bindsym $Mod4 exec dmenu_run
+
+And a few other variations, yet I'm not getting functionality that I want.  Any input?
+</description><pubDate>Tue, 30 Jul 2013 20:06:06 +0000</pubDate><guid>https://faq.i3wm.org/question/2312/using-win-key-to-launch-dmenu_run/</guid></item><item><title>Answer by syl20bnr for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I want dmenu_run to execute whenever I press the win key with no other keys.
+I've tried this in my i3 config file to no avail:&lt;/p&gt;
+
+&lt;p&gt;bindsym Mod4 exec dmenu_run&lt;/p&gt;
+
+&lt;p&gt;set $win Mod4
+bindsym $win exec dmenu_run&lt;/p&gt;
+
+&lt;p&gt;bindsym $Mod4 exec dmenu_run&lt;/p&gt;
+
+&lt;p&gt;And a few other variations, yet I'm not getting functionality that I want.  Any input?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2312/using-win-key-to-launch-dmenu_run/?answer=2316#post-id-2316</link><description>To achieve this you have to use the command *bindcode* instead of *bindsym*.
+
+In a terminal execute the command *xev* and press the key you want to use. You should be able to spot the keycode of the pressed key.
+
+Then bind the found keycode X like this:
+
+    bindcode X exec dmenu_run</description><pubDate>Thu, 01 Aug 2013 02:38:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2312/using-win-key-to-launch-dmenu_run/?answer=2316#post-id-2316</guid></item><item><title>Answer by joepd for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I want dmenu_run to execute whenever I press the win key with no other keys.
+I've tried this in my i3 config file to no avail:&lt;/p&gt;
+
+&lt;p&gt;bindsym Mod4 exec dmenu_run&lt;/p&gt;
+
+&lt;p&gt;set $win Mod4
+bindsym $win exec dmenu_run&lt;/p&gt;
+
+&lt;p&gt;bindsym $Mod4 exec dmenu_run&lt;/p&gt;
+
+&lt;p&gt;And a few other variations, yet I'm not getting functionality that I want.  Any input?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2312/using-win-key-to-launch-dmenu_run/?answer=2313#post-id-2313</link><description>`modifier`-keys are named appropriately: They modify other keys. What you want is hence not possible. 
+
+Your follow-up question will be about the reason. I imagine that the reason is avoiding code complexity to cater for corner cases. There are plenty of keys on your keyboard :) </description><pubDate>Wed, 31 Jul 2013 06:47:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2312/using-win-key-to-launch-dmenu_run/?answer=2313#post-id-2313</guid></item></channel></rss>

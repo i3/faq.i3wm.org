@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3541/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 27 Mar 2015 12:26:58 +0000</lastBuildDate><item><title>using dvorak in i3</title><link>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/</link><description>I want to use the dvorak layout in i3. I tried installing xkb-switch but it doesn't have Dvorak listed. I was wondering if there was any way to do it.</description><pubDate>Mon, 17 Mar 2014 21:44:06 +0000</pubDate><guid>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/</guid></item><item><title>Answer by Tahtisilma for &lt;p&gt;I want to use the dvorak layout in i3. I tried installing xkb-switch but it doesn't have Dvorak listed. I was wondering if there was any way to do it.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/?answer=3584#post-id-3584</link><description>I am using Debian so I give answer that works on that distribution. You should be able to find similar commands on your distribution.
+
+I am using two keyboard layouts: dvorak for programmers with switched escape key with caps lock with polish letters and polish layout. I wanted layout to be changed both in terminal and X applications. I needed to edit my `/etc/default/keyboard` file to look like:
+
+    XKBLAYOUT="pl,pl"
+    XKBVARIANT="dvp,basic"
+    XKBOPTIONS="caps:swapescape,group:sclk_toggle"
+
+The equivalent command would be:
+
+    setxkbmap -layout "pl,pl" -variant "dvp," -option "caps:swapescape,grp:sclk_toggle"
+
+But that will change layout only under X applications. In your case you may want to change `pl` to `us` and `dvp` to `dvorak` so for example command would be:
+
+    setxkbmap -layout "us" -variant "dvorak"
+
+Consult `man keyboard` for description of the config file and `man xkeyboard-config` for possible layouts options.
+
+To have nice icon for switching layouts I use `fbxkb`.
+</description><pubDate>Fri, 28 Mar 2014 13:48:37 +0000</pubDate><guid>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/?answer=3584#post-id-3584</guid></item><item><title>Comment by Tahtisilma for &lt;p&gt;I am using Debian so I give answer that works on that distribution. You should be able to find similar commands on your distribution.&lt;/p&gt;
+
+&lt;p&gt;I am using two keyboard layouts: dvorak for programmers with switched escape key with caps lock with polish letters and polish layout. I wanted layout to be changed both in terminal and X applications. I needed to edit my &lt;code&gt;/etc/default/keyboard&lt;/code&gt; file to look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;XKBLAYOUT="pl,pl"
+XKBVARIANT="dvp,basic"
+XKBOPTIONS="caps:swapescape,group:sclk_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The equivalent command would be:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setxkbmap -layout "pl,pl" -variant "dvp," -option "caps:swapescape,grp:sclk_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But that will change layout only under X applications. In your case you may want to change &lt;code&gt;pl&lt;/code&gt; to &lt;code&gt;us&lt;/code&gt; and &lt;code&gt;dvp&lt;/code&gt; to &lt;code&gt;dvorak&lt;/code&gt; so for example command would be:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setxkbmap -layout "us" -variant "dvorak"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Consult &lt;code&gt;man keyboard&lt;/code&gt; for description of the config file and &lt;code&gt;man xkeyboard-config&lt;/code&gt; for possible layouts options.&lt;/p&gt;
+
+&lt;p&gt;To have nice icon for switching layouts I use &lt;code&gt;fbxkb&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/?comment=5675#comment-5675</link><description>@elviejo79 Modify /etc/default/keyboard or run sudo dpkg-reconfigure keyboard-configuration . That will work on Debian based systems like Ubuntu etc. </description><pubDate>Fri, 27 Mar 2015 12:26:58 +0000</pubDate><guid>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/?comment=5675#comment-5675</guid></item><item><title>Comment by elviejo79 for &lt;p&gt;I am using Debian so I give answer that works on that distribution. You should be able to find similar commands on your distribution.&lt;/p&gt;
+
+&lt;p&gt;I am using two keyboard layouts: dvorak for programmers with switched escape key with caps lock with polish letters and polish layout. I wanted layout to be changed both in terminal and X applications. I needed to edit my &lt;code&gt;/etc/default/keyboard&lt;/code&gt; file to look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;XKBLAYOUT="pl,pl"
+XKBVARIANT="dvp,basic"
+XKBOPTIONS="caps:swapescape,group:sclk_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The equivalent command would be:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setxkbmap -layout "pl,pl" -variant "dvp," -option "caps:swapescape,grp:sclk_toggle"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But that will change layout only under X applications. In your case you may want to change &lt;code&gt;pl&lt;/code&gt; to &lt;code&gt;us&lt;/code&gt; and &lt;code&gt;dvp&lt;/code&gt; to &lt;code&gt;dvorak&lt;/code&gt; so for example command would be:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setxkbmap -layout "us" -variant "dvorak"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Consult &lt;code&gt;man keyboard&lt;/code&gt; for description of the config file and &lt;code&gt;man xkeyboard-config&lt;/code&gt; for possible layouts options.&lt;/p&gt;
+
+&lt;p&gt;To have nice icon for switching layouts I use &lt;code&gt;fbxkb&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/?comment=5644#comment-5644</link><description>When I execute: setxkbmap  the layout is changed, however when I restart i3wm, the layout is back to qwerty... how to make the configuration change permanent?</description><pubDate>Sun, 22 Mar 2015 17:31:57 +0000</pubDate><guid>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/?comment=5644#comment-5644</guid></item><item><title>Answer by Tyberius Prime for &lt;p&gt;I want to use the dvorak layout in i3. I tried installing xkb-switch but it doesn't have Dvorak listed. I was wondering if there was any way to do it.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/?answer=3544#post-id-3544</link><description>I use `setxkbmap dvorak`</description><pubDate>Wed, 19 Mar 2014 15:32:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/?answer=3544#post-id-3544</guid></item><item><title>Answer by joepd for &lt;p&gt;I want to use the dvorak layout in i3. I tried installing xkb-switch but it doesn't have Dvorak listed. I was wondering if there was any way to do it.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/?answer=3543#post-id-3543</link><description>Yes, there is a way to do it: Xorg has had support for funny keyboard layouts since the thirties or the sixties, I cannot remember. Different distrubutions have their own _convenience scripts_ to configure that kind of stuff. Do a `locate dvorak` on your machine, and check the easiest way to adjust the Variants parameter of your Xorg configuration. Good luck! </description><pubDate>Tue, 18 Mar 2014 23:33:58 +0000</pubDate><guid>https://faq.i3wm.org/question/3541/using-dvorak-in-i3/?answer=3543#post-id-3543</guid></item></channel></rss>

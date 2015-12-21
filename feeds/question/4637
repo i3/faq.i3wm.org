@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4637/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 01 Jun 2015 05:15:50 +0000</lastBuildDate><item><title>[SOLVED] How to disable all default keybinding?</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/</link><description>I am building web kiosk with chrome in kiosk mode and decide for i3 from my own post on superuser.com (google how-to-force-xscreensaver-to-stay-on-top)
+
+My problem is the key binding - I need the kiosk to be foolproof. In previous wm (matchbox) xmodmap was great, but with i3 it seems it is completely ignored (for example disabling F11 in xmodmap was unachievable - loaded from .xinitrc). But disabling with bindcode and bindsym could work.
+
+Can I use exhausting bindcode/bindsym configuration where I effectively disable all i3 stuff? Is there a list or command to list all active keybindings? Can I just do something like:
+`bindsym $mod exec /bin/true`
+
+or something similar and be done with it?
+
+I need to make F1-12 keys and their combinations to do nothing and also some other shortcuts (ctrl+n, and combination with mod key). Plus I want to eliminate all i3 special keybinding. With another wm (matchbox) I used xmodmap to render F11 useless (toggle fullscreen) and other F-keys too.
+
+EDIT:
+
+So, xmodmap I didn't make to work with i3, so at least I understood a little bit how i3 config file works (I think), but one last problem remains. I need to disable WinKey+F1-12 and when I try `bindsym Mod4+F1 exec --no-startup-id /bin/true` it does not work, for disabling F11 key this does work `bindsym F11 exec --no-startup-id /bin/true` so I guess syntax is ok.
+
+EDIT 2:
+
+After a while I returned to this Kiosk problem and finally solved it!
+
+I managed to disable all F-keys, combinations with Win-key (Super_L) and also succeed in disabling Menu key and Right-Click button!
+
+I cannot post files so just snippets - I needed to have this in my i3 config:
+`bindcode 67 --no-startup-id /bin/true`
+.
+.
+.
+
+but it didn't work alone (and not without it also...), but I added this MAGIC:
+`exec_always --no-startup-id /usr/bin/xmodmap /home/live/.Xmodmap`
+and in .Xmodmap is:
+`keycode 67 = NoSymbol`
+.
+.
+.
+`keycode 133= NoSymbol` &lt;&lt;&lt; THIS IS WIN-KEY
+and added also this for menu key and right-click:
+`keycode 135= NoSymbol` &lt;&lt;&lt; I have czech layout (xev is your friend)
+`pointer = 1 2 32 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 3`
+thanks to this guy (google up: xmodmap disable right click) - first link
+
+P.S. sorry for formatting, but not my fault - no pre tag...</description><pubDate>Thu, 18 Sep 2014 10:51:58 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/</guid></item><item><title>Comment by osp for &lt;p&gt;I am building web kiosk with chrome in kiosk mode and decide for i3 from my own post on &lt;a href="http://superuser.com"&gt;superuser.com&lt;/a&gt; (google how-to-force-xscreensaver-to-stay-on-top)&lt;/p&gt;
+
+&lt;p&gt;My problem is the key binding - I need the kiosk to be foolproof. In previous wm (matchbox) xmodmap was great, but with i3 it seems it is completely ignored (for example disabling F11 in xmodmap was unachievable - loaded from .xinitrc). But disabling with bindcode and bindsym could work.&lt;/p&gt;
+
+&lt;p&gt;Can I use exhausting bindcode/bindsym configuration where I effectively disable all i3 stuff? Is there a list or command to list all active keybindings? Can I just do something like:
+&lt;code&gt;bindsym $mod exec /bin/true&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or something similar and be done with it?&lt;/p&gt;
+
+&lt;p&gt;I need to make F1-12 keys and their combinations to do nothing and also some other shortcuts (ctrl+n, and combination with mod key). Plus I want to eliminate all i3 special keybinding. With another wm (matchbox) I used xmodmap to render F11 useless (toggle fullscreen) and other F-keys too.&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;So, xmodmap I didn't make to work with i3, so at least I understood a little bit how i3 config file works (I think), but one last problem remains. I need to disable WinKey+F1-12 and when I try &lt;code&gt;bindsym Mod4+F1 exec --no-startup-id /bin/true&lt;/code&gt; it does not work, for disabling F11 key this does work &lt;code&gt;bindsym F11 exec --no-startup-id /bin/true&lt;/code&gt; so I guess syntax is ok.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2:&lt;/p&gt;
+
+&lt;p&gt;After a while I returned to this Kiosk problem and finally solved it!&lt;/p&gt;
+
+&lt;p&gt;I managed to disable all F-keys, combinations with Win-key (Super_L) and also succeed in disabling Menu key and Right-Click button!&lt;/p&gt;
+
+&lt;p&gt;I cannot post files so just snippets - I needed to have this in my i3 config:
+&lt;code&gt;bindcode 67 --no-startup-id /bin/true&lt;/code&gt;
+.
+.
+.&lt;/p&gt;
+
+&lt;p&gt;but it didn't work alone (and not without it also...), but I added this MAGIC:
+&lt;code&gt;exec_always --no-startup-id /usr/bin/xmodmap /home/live/.Xmodmap&lt;/code&gt;
+and in .Xmodmap is:
+&lt;code&gt;keycode 67 = NoSymbol&lt;/code&gt;
+.
+.
+.
+&lt;code&gt;keycode 133= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; THIS IS WIN-KEY
+and added also this for menu key and right-click:
+&lt;code&gt;keycode 135= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; I have czech layout (xev is your friend)
+&lt;code&gt;pointer = 1 2 32 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 3&lt;/code&gt;
+thanks to this guy (google up: xmodmap disable right click) - first link&lt;/p&gt;
+
+&lt;p&gt;P.S. sorry for formatting, but not my fault - no pre tag...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4653#comment-4653</link><description>The only thing what works is disabling opening of new window with this in i3 config file: `bindsym ctrl+n exec --no-startup-id /bin/true` but also I need badly to disable those F1-12 keys</description><pubDate>Fri, 19 Sep 2014 07:03:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4653#comment-4653</guid></item><item><title>Comment by osp for &lt;p&gt;I am building web kiosk with chrome in kiosk mode and decide for i3 from my own post on &lt;a href="http://superuser.com"&gt;superuser.com&lt;/a&gt; (google how-to-force-xscreensaver-to-stay-on-top)&lt;/p&gt;
+
+&lt;p&gt;My problem is the key binding - I need the kiosk to be foolproof. In previous wm (matchbox) xmodmap was great, but with i3 it seems it is completely ignored (for example disabling F11 in xmodmap was unachievable - loaded from .xinitrc). But disabling with bindcode and bindsym could work.&lt;/p&gt;
+
+&lt;p&gt;Can I use exhausting bindcode/bindsym configuration where I effectively disable all i3 stuff? Is there a list or command to list all active keybindings? Can I just do something like:
+&lt;code&gt;bindsym $mod exec /bin/true&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or something similar and be done with it?&lt;/p&gt;
+
+&lt;p&gt;I need to make F1-12 keys and their combinations to do nothing and also some other shortcuts (ctrl+n, and combination with mod key). Plus I want to eliminate all i3 special keybinding. With another wm (matchbox) I used xmodmap to render F11 useless (toggle fullscreen) and other F-keys too.&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;So, xmodmap I didn't make to work with i3, so at least I understood a little bit how i3 config file works (I think), but one last problem remains. I need to disable WinKey+F1-12 and when I try &lt;code&gt;bindsym Mod4+F1 exec --no-startup-id /bin/true&lt;/code&gt; it does not work, for disabling F11 key this does work &lt;code&gt;bindsym F11 exec --no-startup-id /bin/true&lt;/code&gt; so I guess syntax is ok.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2:&lt;/p&gt;
+
+&lt;p&gt;After a while I returned to this Kiosk problem and finally solved it!&lt;/p&gt;
+
+&lt;p&gt;I managed to disable all F-keys, combinations with Win-key (Super_L) and also succeed in disabling Menu key and Right-Click button!&lt;/p&gt;
+
+&lt;p&gt;I cannot post files so just snippets - I needed to have this in my i3 config:
+&lt;code&gt;bindcode 67 --no-startup-id /bin/true&lt;/code&gt;
+.
+.
+.&lt;/p&gt;
+
+&lt;p&gt;but it didn't work alone (and not without it also...), but I added this MAGIC:
+&lt;code&gt;exec_always --no-startup-id /usr/bin/xmodmap /home/live/.Xmodmap&lt;/code&gt;
+and in .Xmodmap is:
+&lt;code&gt;keycode 67 = NoSymbol&lt;/code&gt;
+.
+.
+.
+&lt;code&gt;keycode 133= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; THIS IS WIN-KEY
+and added also this for menu key and right-click:
+&lt;code&gt;keycode 135= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; I have czech layout (xev is your friend)
+&lt;code&gt;pointer = 1 2 32 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 3&lt;/code&gt;
+thanks to this guy (google up: xmodmap disable right click) - first link&lt;/p&gt;
+
+&lt;p&gt;P.S. sorry for formatting, but not my fault - no pre tag...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4687#comment-4687</link><description>to ANOKNUSA: yeah, I know about that option, funny I didn't think of it, but maybe there would be another problems like how to force the window to be "maximized" etc. - anyway, with how the setup is now, I am kinda happy.</description><pubDate>Thu, 02 Oct 2014 09:19:15 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4687#comment-4687</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;I am building web kiosk with chrome in kiosk mode and decide for i3 from my own post on &lt;a href="http://superuser.com"&gt;superuser.com&lt;/a&gt; (google how-to-force-xscreensaver-to-stay-on-top)&lt;/p&gt;
+
+&lt;p&gt;My problem is the key binding - I need the kiosk to be foolproof. In previous wm (matchbox) xmodmap was great, but with i3 it seems it is completely ignored (for example disabling F11 in xmodmap was unachievable - loaded from .xinitrc). But disabling with bindcode and bindsym could work.&lt;/p&gt;
+
+&lt;p&gt;Can I use exhausting bindcode/bindsym configuration where I effectively disable all i3 stuff? Is there a list or command to list all active keybindings? Can I just do something like:
+&lt;code&gt;bindsym $mod exec /bin/true&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or something similar and be done with it?&lt;/p&gt;
+
+&lt;p&gt;I need to make F1-12 keys and their combinations to do nothing and also some other shortcuts (ctrl+n, and combination with mod key). Plus I want to eliminate all i3 special keybinding. With another wm (matchbox) I used xmodmap to render F11 useless (toggle fullscreen) and other F-keys too.&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;So, xmodmap I didn't make to work with i3, so at least I understood a little bit how i3 config file works (I think), but one last problem remains. I need to disable WinKey+F1-12 and when I try &lt;code&gt;bindsym Mod4+F1 exec --no-startup-id /bin/true&lt;/code&gt; it does not work, for disabling F11 key this does work &lt;code&gt;bindsym F11 exec --no-startup-id /bin/true&lt;/code&gt; so I guess syntax is ok.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2:&lt;/p&gt;
+
+&lt;p&gt;After a while I returned to this Kiosk problem and finally solved it!&lt;/p&gt;
+
+&lt;p&gt;I managed to disable all F-keys, combinations with Win-key (Super_L) and also succeed in disabling Menu key and Right-Click button!&lt;/p&gt;
+
+&lt;p&gt;I cannot post files so just snippets - I needed to have this in my i3 config:
+&lt;code&gt;bindcode 67 --no-startup-id /bin/true&lt;/code&gt;
+.
+.
+.&lt;/p&gt;
+
+&lt;p&gt;but it didn't work alone (and not without it also...), but I added this MAGIC:
+&lt;code&gt;exec_always --no-startup-id /usr/bin/xmodmap /home/live/.Xmodmap&lt;/code&gt;
+and in .Xmodmap is:
+&lt;code&gt;keycode 67 = NoSymbol&lt;/code&gt;
+.
+.
+.
+&lt;code&gt;keycode 133= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; THIS IS WIN-KEY
+and added also this for menu key and right-click:
+&lt;code&gt;keycode 135= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; I have czech layout (xev is your friend)
+&lt;code&gt;pointer = 1 2 32 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 3&lt;/code&gt;
+thanks to this guy (google up: xmodmap disable right click) - first link&lt;/p&gt;
+
+&lt;p&gt;P.S. sorry for formatting, but not my fault - no pre tag...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4686#comment-4686</link><description>Kinda surprised no one bothered to mention that if you're running only one X application, you don't even need a window manager. 'xinit /path/to/application $* -- :1' will start the specified application in X, and nothing else. Only the application's keybindings will take effect.</description><pubDate>Wed, 01 Oct 2014 19:16:04 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4686#comment-4686</guid></item><item><title>Comment by vandannen for &lt;p&gt;I am building web kiosk with chrome in kiosk mode and decide for i3 from my own post on &lt;a href="http://superuser.com"&gt;superuser.com&lt;/a&gt; (google how-to-force-xscreensaver-to-stay-on-top)&lt;/p&gt;
+
+&lt;p&gt;My problem is the key binding - I need the kiosk to be foolproof. In previous wm (matchbox) xmodmap was great, but with i3 it seems it is completely ignored (for example disabling F11 in xmodmap was unachievable - loaded from .xinitrc). But disabling with bindcode and bindsym could work.&lt;/p&gt;
+
+&lt;p&gt;Can I use exhausting bindcode/bindsym configuration where I effectively disable all i3 stuff? Is there a list or command to list all active keybindings? Can I just do something like:
+&lt;code&gt;bindsym $mod exec /bin/true&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or something similar and be done with it?&lt;/p&gt;
+
+&lt;p&gt;I need to make F1-12 keys and their combinations to do nothing and also some other shortcuts (ctrl+n, and combination with mod key). Plus I want to eliminate all i3 special keybinding. With another wm (matchbox) I used xmodmap to render F11 useless (toggle fullscreen) and other F-keys too.&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;So, xmodmap I didn't make to work with i3, so at least I understood a little bit how i3 config file works (I think), but one last problem remains. I need to disable WinKey+F1-12 and when I try &lt;code&gt;bindsym Mod4+F1 exec --no-startup-id /bin/true&lt;/code&gt; it does not work, for disabling F11 key this does work &lt;code&gt;bindsym F11 exec --no-startup-id /bin/true&lt;/code&gt; so I guess syntax is ok.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2:&lt;/p&gt;
+
+&lt;p&gt;After a while I returned to this Kiosk problem and finally solved it!&lt;/p&gt;
+
+&lt;p&gt;I managed to disable all F-keys, combinations with Win-key (Super_L) and also succeed in disabling Menu key and Right-Click button!&lt;/p&gt;
+
+&lt;p&gt;I cannot post files so just snippets - I needed to have this in my i3 config:
+&lt;code&gt;bindcode 67 --no-startup-id /bin/true&lt;/code&gt;
+.
+.
+.&lt;/p&gt;
+
+&lt;p&gt;but it didn't work alone (and not without it also...), but I added this MAGIC:
+&lt;code&gt;exec_always --no-startup-id /usr/bin/xmodmap /home/live/.Xmodmap&lt;/code&gt;
+and in .Xmodmap is:
+&lt;code&gt;keycode 67 = NoSymbol&lt;/code&gt;
+.
+.
+.
+&lt;code&gt;keycode 133= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; THIS IS WIN-KEY
+and added also this for menu key and right-click:
+&lt;code&gt;keycode 135= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; I have czech layout (xev is your friend)
+&lt;code&gt;pointer = 1 2 32 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 3&lt;/code&gt;
+thanks to this guy (google up: xmodmap disable right click) - first link&lt;/p&gt;
+
+&lt;p&gt;P.S. sorry for formatting, but not my fault - no pre tag...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4647#comment-4647</link><description>i3 only uses keybindings that you define in the config file; so if you do not define any, there won't be any. eliminating default keybindings is therefore achieved by just leaving them out. you should be able to use xmodmap to "disable" keys in general, e.g. for f1 `keycode 67 = NoSymbol`.</description><pubDate>Thu, 18 Sep 2014 20:47:30 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4647#comment-4647</guid></item><item><title>Comment by osp for &lt;p&gt;I am building web kiosk with chrome in kiosk mode and decide for i3 from my own post on &lt;a href="http://superuser.com"&gt;superuser.com&lt;/a&gt; (google how-to-force-xscreensaver-to-stay-on-top)&lt;/p&gt;
+
+&lt;p&gt;My problem is the key binding - I need the kiosk to be foolproof. In previous wm (matchbox) xmodmap was great, but with i3 it seems it is completely ignored (for example disabling F11 in xmodmap was unachievable - loaded from .xinitrc). But disabling with bindcode and bindsym could work.&lt;/p&gt;
+
+&lt;p&gt;Can I use exhausting bindcode/bindsym configuration where I effectively disable all i3 stuff? Is there a list or command to list all active keybindings? Can I just do something like:
+&lt;code&gt;bindsym $mod exec /bin/true&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or something similar and be done with it?&lt;/p&gt;
+
+&lt;p&gt;I need to make F1-12 keys and their combinations to do nothing and also some other shortcuts (ctrl+n, and combination with mod key). Plus I want to eliminate all i3 special keybinding. With another wm (matchbox) I used xmodmap to render F11 useless (toggle fullscreen) and other F-keys too.&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;So, xmodmap I didn't make to work with i3, so at least I understood a little bit how i3 config file works (I think), but one last problem remains. I need to disable WinKey+F1-12 and when I try &lt;code&gt;bindsym Mod4+F1 exec --no-startup-id /bin/true&lt;/code&gt; it does not work, for disabling F11 key this does work &lt;code&gt;bindsym F11 exec --no-startup-id /bin/true&lt;/code&gt; so I guess syntax is ok.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2:&lt;/p&gt;
+
+&lt;p&gt;After a while I returned to this Kiosk problem and finally solved it!&lt;/p&gt;
+
+&lt;p&gt;I managed to disable all F-keys, combinations with Win-key (Super_L) and also succeed in disabling Menu key and Right-Click button!&lt;/p&gt;
+
+&lt;p&gt;I cannot post files so just snippets - I needed to have this in my i3 config:
+&lt;code&gt;bindcode 67 --no-startup-id /bin/true&lt;/code&gt;
+.
+.
+.&lt;/p&gt;
+
+&lt;p&gt;but it didn't work alone (and not without it also...), but I added this MAGIC:
+&lt;code&gt;exec_always --no-startup-id /usr/bin/xmodmap /home/live/.Xmodmap&lt;/code&gt;
+and in .Xmodmap is:
+&lt;code&gt;keycode 67 = NoSymbol&lt;/code&gt;
+.
+.
+.
+&lt;code&gt;keycode 133= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; THIS IS WIN-KEY
+and added also this for menu key and right-click:
+&lt;code&gt;keycode 135= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; I have czech layout (xev is your friend)
+&lt;code&gt;pointer = 1 2 32 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 3&lt;/code&gt;
+thanks to this guy (google up: xmodmap disable right click) - first link&lt;/p&gt;
+
+&lt;p&gt;P.S. sorry for formatting, but not my fault - no pre tag...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4652#comment-4652</link><description>I made ~/.Xmodmap file with these lines `keycode 67 = NoSymbol` from keycode 67-76 and 95-96 and I am loading it in .xinitrc: `xmodmap ~/.Xmodmap` but still not working - when I hit F11 browser switches between fullscreen and normal mode.</description><pubDate>Fri, 19 Sep 2014 06:57:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4652#comment-4652</guid></item><item><title>Answer by kousu for &lt;p&gt;I am building web kiosk with chrome in kiosk mode and decide for i3 from my own post on &lt;a href="http://superuser.com"&gt;superuser.com&lt;/a&gt; (google how-to-force-xscreensaver-to-stay-on-top)&lt;/p&gt;
+
+&lt;p&gt;My problem is the key binding - I need the kiosk to be foolproof. In previous wm (matchbox) xmodmap was great, but with i3 it seems it is completely ignored (for example disabling F11 in xmodmap was unachievable - loaded from .xinitrc). But disabling with bindcode and bindsym could work.&lt;/p&gt;
+
+&lt;p&gt;Can I use exhausting bindcode/bindsym configuration where I effectively disable all i3 stuff? Is there a list or command to list all active keybindings? Can I just do something like:
+&lt;code&gt;bindsym $mod exec /bin/true&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or something similar and be done with it?&lt;/p&gt;
+
+&lt;p&gt;I need to make F1-12 keys and their combinations to do nothing and also some other shortcuts (ctrl+n, and combination with mod key). Plus I want to eliminate all i3 special keybinding. With another wm (matchbox) I used xmodmap to render F11 useless (toggle fullscreen) and other F-keys too.&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;So, xmodmap I didn't make to work with i3, so at least I understood a little bit how i3 config file works (I think), but one last problem remains. I need to disable WinKey+F1-12 and when I try &lt;code&gt;bindsym Mod4+F1 exec --no-startup-id /bin/true&lt;/code&gt; it does not work, for disabling F11 key this does work &lt;code&gt;bindsym F11 exec --no-startup-id /bin/true&lt;/code&gt; so I guess syntax is ok.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2:&lt;/p&gt;
+
+&lt;p&gt;After a while I returned to this Kiosk problem and finally solved it!&lt;/p&gt;
+
+&lt;p&gt;I managed to disable all F-keys, combinations with Win-key (Super_L) and also succeed in disabling Menu key and Right-Click button!&lt;/p&gt;
+
+&lt;p&gt;I cannot post files so just snippets - I needed to have this in my i3 config:
+&lt;code&gt;bindcode 67 --no-startup-id /bin/true&lt;/code&gt;
+.
+.
+.&lt;/p&gt;
+
+&lt;p&gt;but it didn't work alone (and not without it also...), but I added this MAGIC:
+&lt;code&gt;exec_always --no-startup-id /usr/bin/xmodmap /home/live/.Xmodmap&lt;/code&gt;
+and in .Xmodmap is:
+&lt;code&gt;keycode 67 = NoSymbol&lt;/code&gt;
+.
+.
+.
+&lt;code&gt;keycode 133= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; THIS IS WIN-KEY
+and added also this for menu key and right-click:
+&lt;code&gt;keycode 135= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; I have czech layout (xev is your friend)
+&lt;code&gt;pointer = 1 2 32 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 3&lt;/code&gt;
+thanks to this guy (google up: xmodmap disable right click) - first link&lt;/p&gt;
+
+&lt;p&gt;P.S. sorry for formatting, but not my fault - no pre tag...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?answer=6044#post-id-6044</link><description>I recently stumbled into the same mission, and I came up with a script. This question prompted me to clean it up and publish it: [xkiosk](https://github.com/kousu/xkiosk/blob/master/xkiosk).
+
+For posterity, the trick to disabling all of i3 are in these lines (this works as of i3 4.10.2. it seems that the config file is still in flux):
+
+    # disable keybindings
+    # (by not writing any)
+
+    # disable titlebars
+    # there isn't any way to totally disable them afaik
+    # but we can make them reallllly smalllllll (because it's .ttf)
+    font pango:monospace 0
+    bindsym button2 nop  # disable clicks on titlebars
+
+    # in new windows do happen, make them tabbed
+    # but by disabling clicks on titlebars they cannot be switched between
+    workspace_layout tabbed
+
+    ## disable borders around windows
+    new_window none
+    new_float none
+
+    # hide the status bar
+    # XXX a very recent change to i3 changed from workspace_bar no -&gt; bar { mode invisible } being the way to hide the bar.
+    bar { mode invisible }
+
+
+I hadn't published it before because I think kiosks cover a much wider range of use cases than I am picturing. There's a lot not covered in xkiosk, like disabling the Firefox debugger or turning on xidle to kick the user out after a time, but I'd appreciate feedback to drag it towards something covering most cases.</description><pubDate>Mon, 01 Jun 2015 04:44:37 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?answer=6044#post-id-6044</guid></item><item><title>Comment by Airblader for &lt;p&gt;I recently stumbled into the same mission, and I came up with a script. This question prompted me to clean it up and publish it: &lt;a href="https://github.com/kousu/xkiosk/blob/master/xkiosk"&gt;xkiosk&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For posterity, the trick to disabling all of i3 are in these lines (this works as of i3 4.10.2. it seems that the config file is still in flux):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# disable keybindings
+# (by not writing any)
+
+# disable titlebars
+# there isn't any way to totally disable them afaik
+# but we can make them reallllly smalllllll (because it's .ttf)
+font pango:monospace 0
+bindsym button2 nop  # disable clicks on titlebars
+
+# in new windows do happen, make them tabbed
+# but by disabling clicks on titlebars they cannot be switched between
+workspace_layout tabbed
+
+## disable borders around windows
+new_window none
+new_float none
+
+# hide the status bar
+# XXX a very recent change to i3 changed from workspace_bar no -&amp;gt; bar { mode invisible } being the way to hide the bar.
+bar { mode invisible }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I hadn't published it before because I think kiosks cover a much wider range of use cases than I am picturing. There's a lot not covered in xkiosk, like disabling the Firefox debugger or turning on xidle to kick the user out after a time, but I'd appreciate feedback to drag it towards something covering most cases.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=6046#comment-6046</link><description>That change you are referring to in the bottom is not really recent… ;)</description><pubDate>Mon, 01 Jun 2015 05:15:50 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=6046#comment-6046</guid></item><item><title>Answer by osp for &lt;p&gt;I am building web kiosk with chrome in kiosk mode and decide for i3 from my own post on &lt;a href="http://superuser.com"&gt;superuser.com&lt;/a&gt; (google how-to-force-xscreensaver-to-stay-on-top)&lt;/p&gt;
+
+&lt;p&gt;My problem is the key binding - I need the kiosk to be foolproof. In previous wm (matchbox) xmodmap was great, but with i3 it seems it is completely ignored (for example disabling F11 in xmodmap was unachievable - loaded from .xinitrc). But disabling with bindcode and bindsym could work.&lt;/p&gt;
+
+&lt;p&gt;Can I use exhausting bindcode/bindsym configuration where I effectively disable all i3 stuff? Is there a list or command to list all active keybindings? Can I just do something like:
+&lt;code&gt;bindsym $mod exec /bin/true&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or something similar and be done with it?&lt;/p&gt;
+
+&lt;p&gt;I need to make F1-12 keys and their combinations to do nothing and also some other shortcuts (ctrl+n, and combination with mod key). Plus I want to eliminate all i3 special keybinding. With another wm (matchbox) I used xmodmap to render F11 useless (toggle fullscreen) and other F-keys too.&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;So, xmodmap I didn't make to work with i3, so at least I understood a little bit how i3 config file works (I think), but one last problem remains. I need to disable WinKey+F1-12 and when I try &lt;code&gt;bindsym Mod4+F1 exec --no-startup-id /bin/true&lt;/code&gt; it does not work, for disabling F11 key this does work &lt;code&gt;bindsym F11 exec --no-startup-id /bin/true&lt;/code&gt; so I guess syntax is ok.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2:&lt;/p&gt;
+
+&lt;p&gt;After a while I returned to this Kiosk problem and finally solved it!&lt;/p&gt;
+
+&lt;p&gt;I managed to disable all F-keys, combinations with Win-key (Super_L) and also succeed in disabling Menu key and Right-Click button!&lt;/p&gt;
+
+&lt;p&gt;I cannot post files so just snippets - I needed to have this in my i3 config:
+&lt;code&gt;bindcode 67 --no-startup-id /bin/true&lt;/code&gt;
+.
+.
+.&lt;/p&gt;
+
+&lt;p&gt;but it didn't work alone (and not without it also...), but I added this MAGIC:
+&lt;code&gt;exec_always --no-startup-id /usr/bin/xmodmap /home/live/.Xmodmap&lt;/code&gt;
+and in .Xmodmap is:
+&lt;code&gt;keycode 67 = NoSymbol&lt;/code&gt;
+.
+.
+.
+&lt;code&gt;keycode 133= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; THIS IS WIN-KEY
+and added also this for menu key and right-click:
+&lt;code&gt;keycode 135= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; I have czech layout (xev is your friend)
+&lt;code&gt;pointer = 1 2 32 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 3&lt;/code&gt;
+thanks to this guy (google up: xmodmap disable right click) - first link&lt;/p&gt;
+
+&lt;p&gt;P.S. sorry for formatting, but not my fault - no pre tag...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?answer=4643#post-id-4643</link><description>I was able to make this ugly hackish config file to cripple the F-keys, but still don't understand why this doesn't work: `bindsym $mod+F1 exec --no-startup-id /bin/true` when I set $mod to Mod4 (win key): pastebin.com/5mA5MK17, I was unable to make sane formatting here, also I cannot use attachments and post links :)</description><pubDate>Thu, 18 Sep 2014 11:49:19 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?answer=4643#post-id-4643</guid></item><item><title>Comment by vandannen for &lt;p&gt;I was able to make this ugly hackish config file to cripple the F-keys, but still don't understand why this doesn't work: &lt;code&gt;bindsym $mod+F1 exec --no-startup-id /bin/true&lt;/code&gt; when I set $mod to Mod4 (win key): pastebin.com/5mA5MK17, I was unable to make sane formatting here, also I cannot use attachments and post links :)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4644#comment-4644</link><description>I am not sure what you want to achieve right now. Maybe edit the question and explain in more detail what the goal is here.</description><pubDate>Thu, 18 Sep 2014 17:32:03 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4644#comment-4644</guid></item><item><title>Comment by osp for &lt;p&gt;I was able to make this ugly hackish config file to cripple the F-keys, but still don't understand why this doesn't work: &lt;code&gt;bindsym $mod+F1 exec --no-startup-id /bin/true&lt;/code&gt; when I set $mod to Mod4 (win key): pastebin.com/5mA5MK17, I was unable to make sane formatting here, also I cannot use attachments and post links :)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4645#comment-4645</link><description>I edited it, I just need to make the F1-12 unusable and possibly other key combinations - don't know how to better describe it.</description><pubDate>Thu, 18 Sep 2014 17:42:13 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4645#comment-4645</guid></item><item><title>Comment by Michael for &lt;p&gt;I was able to make this ugly hackish config file to cripple the F-keys, but still don't understand why this doesn't work: &lt;code&gt;bindsym $mod+F1 exec --no-startup-id /bin/true&lt;/code&gt; when I set $mod to Mod4 (win key): pastebin.com/5mA5MK17, I was unable to make sane formatting here, also I cannot use attachments and post links :)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4649#comment-4649</link><description>Just don’t define this as a mode, but make the contents of your mode the contents of the i3 config file.</description><pubDate>Fri, 19 Sep 2014 06:02:41 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4649#comment-4649</guid></item><item><title>Answer by vandannen for &lt;p&gt;I am building web kiosk with chrome in kiosk mode and decide for i3 from my own post on &lt;a href="http://superuser.com"&gt;superuser.com&lt;/a&gt; (google how-to-force-xscreensaver-to-stay-on-top)&lt;/p&gt;
+
+&lt;p&gt;My problem is the key binding - I need the kiosk to be foolproof. In previous wm (matchbox) xmodmap was great, but with i3 it seems it is completely ignored (for example disabling F11 in xmodmap was unachievable - loaded from .xinitrc). But disabling with bindcode and bindsym could work.&lt;/p&gt;
+
+&lt;p&gt;Can I use exhausting bindcode/bindsym configuration where I effectively disable all i3 stuff? Is there a list or command to list all active keybindings? Can I just do something like:
+&lt;code&gt;bindsym $mod exec /bin/true&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;or something similar and be done with it?&lt;/p&gt;
+
+&lt;p&gt;I need to make F1-12 keys and their combinations to do nothing and also some other shortcuts (ctrl+n, and combination with mod key). Plus I want to eliminate all i3 special keybinding. With another wm (matchbox) I used xmodmap to render F11 useless (toggle fullscreen) and other F-keys too.&lt;/p&gt;
+
+&lt;p&gt;EDIT:&lt;/p&gt;
+
+&lt;p&gt;So, xmodmap I didn't make to work with i3, so at least I understood a little bit how i3 config file works (I think), but one last problem remains. I need to disable WinKey+F1-12 and when I try &lt;code&gt;bindsym Mod4+F1 exec --no-startup-id /bin/true&lt;/code&gt; it does not work, for disabling F11 key this does work &lt;code&gt;bindsym F11 exec --no-startup-id /bin/true&lt;/code&gt; so I guess syntax is ok.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2:&lt;/p&gt;
+
+&lt;p&gt;After a while I returned to this Kiosk problem and finally solved it!&lt;/p&gt;
+
+&lt;p&gt;I managed to disable all F-keys, combinations with Win-key (Super_L) and also succeed in disabling Menu key and Right-Click button!&lt;/p&gt;
+
+&lt;p&gt;I cannot post files so just snippets - I needed to have this in my i3 config:
+&lt;code&gt;bindcode 67 --no-startup-id /bin/true&lt;/code&gt;
+.
+.
+.&lt;/p&gt;
+
+&lt;p&gt;but it didn't work alone (and not without it also...), but I added this MAGIC:
+&lt;code&gt;exec_always --no-startup-id /usr/bin/xmodmap /home/live/.Xmodmap&lt;/code&gt;
+and in .Xmodmap is:
+&lt;code&gt;keycode 67 = NoSymbol&lt;/code&gt;
+.
+.
+.
+&lt;code&gt;keycode 133= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; THIS IS WIN-KEY
+and added also this for menu key and right-click:
+&lt;code&gt;keycode 135= NoSymbol&lt;/code&gt; &amp;lt;&amp;lt;&amp;lt; I have czech layout (xev is your friend)
+&lt;code&gt;pointer = 1 2 32 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 3&lt;/code&gt;
+thanks to this guy (google up: xmodmap disable right click) - first link&lt;/p&gt;
+
+&lt;p&gt;P.S. sorry for formatting, but not my fault - no pre tag...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?answer=4638#post-id-4638</link><description>you could use modes to toggle default i3 keybindings on and off. See for a pass-through mode, which would effectively disable all keybindings except the ones you define in the mode itself: [pass-through mode](https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?answer=1681#post-id-1681)</description><pubDate>Thu, 18 Sep 2014 10:56:24 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?answer=4638#post-id-4638</guid></item><item><title>Comment by osp for &lt;p&gt;you could use modes to toggle default i3 keybindings on and off. See for a pass-through mode, which would effectively disable all keybindings except the ones you define in the mode itself: &lt;a href="https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?answer=1681#post-id-1681"&gt;pass-through mode&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4640#comment-4640</link><description>That pass-through thing seems to be the way to go - I have one question: Could I have i3 config file like this:
+`mode "kiosk" {
+}`
+So there would be no way to get default mode?</description><pubDate>Thu, 18 Sep 2014 11:02:47 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4640#comment-4640</guid></item><item><title>Comment by osp for &lt;p&gt;you could use modes to toggle default i3 keybindings on and off. See for a pass-through mode, which would effectively disable all keybindings except the ones you define in the mode itself: &lt;a href="https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?answer=1681#post-id-1681"&gt;pass-through mode&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4642#comment-4642</link><description>Hm, I am still unsuccessfull to achieve of disabling F1-12 keys and - can you help me with that config file? I have to make a new answer - it has more then 200 characters or so.</description><pubDate>Thu, 18 Sep 2014 11:38:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4642#comment-4642</guid></item><item><title>Comment by vandannen for &lt;p&gt;you could use modes to toggle default i3 keybindings on and off. See for a pass-through mode, which would effectively disable all keybindings except the ones you define in the mode itself: &lt;a href="https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?answer=1681#post-id-1681"&gt;pass-through mode&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4641#comment-4641</link><description>sure, you could do that, but then you would have no keybinding to switch back to "default" mode, where all your keybindings are defined. "default" mode actually conforms to keybindings that are defined outside of any mode in the config file.</description><pubDate>Thu, 18 Sep 2014 11:11:40 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4641#comment-4641</guid></item><item><title>Comment by osp for &lt;p&gt;you could use modes to toggle default i3 keybindings on and off. See for a pass-through mode, which would effectively disable all keybindings except the ones you define in the mode itself: &lt;a href="https://faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/?answer=1681#post-id-1681"&gt;pass-through mode&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4639#comment-4639</link><description>wow, that was fast :)</description><pubDate>Thu, 18 Sep 2014 11:00:26 +0000</pubDate><guid>https://faq.i3wm.org/question/4637/solved-how-to-disable-all-default-keybinding/?comment=4639#comment-4639</guid></item></channel></rss>

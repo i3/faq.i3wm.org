@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3985/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 22 Jan 2015 16:51:23 +0000</lastBuildDate><item><title>how to specify left shift</title><link>https://faq.i3wm.org/question/3985/how-to-specify-left-shift/</link><description>Is it possible to differentiate left-shift key from right-shift key in my i3 config bindsym commands?</description><pubDate>Sat, 14 Jun 2014 20:23:51 +0000</pubDate><guid>https://faq.i3wm.org/question/3985/how-to-specify-left-shift/</guid></item><item><title>Answer by phairland for &lt;p&gt;Is it possible to differentiate left-shift key from right-shift key in my i3 config bindsym commands?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3985/how-to-specify-left-shift/?answer=3992#post-id-3992</link><description>Depending on your keyboard layout you can use bindcode command to distinguish between the two.
+
+Run `xbindkeys -k`, it will prompt you to press a key and it will give a number code. Use that code with bindcode.
+You can install xbindkeys from most linux distributions.
+
+For example after running that command I press left key on my keyboard:
+
+    Press combination of keys or/and click under the window.
+    You can use one of the two lines after "NoCommand"
+    in $HOME/.xbindkeysrc to bind a key.
+    "(Scheme function)"
+        m:0x1 + c:37
+        Shift + Shift_L
+
+Then I press right shift:
+
+    Press combination of keys or/and click under the window.
+    You can use one of the two lines after "NoCommand"
+    in $HOME/.xbindkeysrc to bind a key.
+    "(Scheme function)"
+        m:0x1 + c:105
+        Shift + Shift_R
+
+So the way to distinguish both keys are:
+
+    bindcode 37
+    bindcode 105 
+
+</description><pubDate>Sun, 15 Jun 2014 13:08:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3985/how-to-specify-left-shift/?answer=3992#post-id-3992</guid></item><item><title>Comment by TheRaven for &lt;p&gt;Depending on your keyboard layout you can use bindcode command to distinguish between the two.&lt;/p&gt;
+
+&lt;p&gt;Run &lt;code&gt;xbindkeys -k&lt;/code&gt;, it will prompt you to press a key and it will give a number code. Use that code with bindcode.
+You can install xbindkeys from most linux distributions.&lt;/p&gt;
+
+&lt;p&gt;For example after running that command I press left key on my keyboard:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Press combination of keys or/and click under the window.
+You can use one of the two lines after "NoCommand"
+in $HOME/.xbindkeysrc to bind a key.
+"(Scheme function)"
+    m:0x1 + c:37
+    Shift + Shift_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then I press right shift:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Press combination of keys or/and click under the window.
+You can use one of the two lines after "NoCommand"
+in $HOME/.xbindkeysrc to bind a key.
+"(Scheme function)"
+    m:0x1 + c:105
+    Shift + Shift_R
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So the way to distinguish both keys are:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode 37
+bindcode 105
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3985/how-to-specify-left-shift/?comment=5377#comment-5377</link><description>Phantastic phairland! I was contemplating how nice this type of feature would be within i3 and here it is. My thanks.</description><pubDate>Thu, 22 Jan 2015 16:51:23 +0000</pubDate><guid>https://faq.i3wm.org/question/3985/how-to-specify-left-shift/?comment=5377#comment-5377</guid></item></channel></rss>

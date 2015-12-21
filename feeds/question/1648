@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1648/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 18 Apr 2013 11:14:10 +0000</lastBuildDate><item><title>Send function keys from i3</title><link>https://faq.i3wm.org/question/1648/send-function-keys-from-i3/</link><description>Hello,
+
+I have mapped my function keys to worspace switching. Now, I have a new keyboard which has extra keys that are mapped to XF86Launch1 to 9.
+
+I would like to re-map those back to function keys, because they are out of reach, but I still want to keep the possibility to use function keys.
+
+I tried to do it in XModMap, but without any success. What it does is it remaps but then i3wm changes the workspace:
+
+    keycode 192 = F1
+
+Is there any way to remap or send the proper key within i3wm configuration using exec command?</description><pubDate>Thu, 18 Apr 2013 07:32:39 +0000</pubDate><guid>https://faq.i3wm.org/question/1648/send-function-keys-from-i3/</guid></item><item><title>Comment by lzap for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have mapped my function keys to worspace switching. Now, I have a new keyboard which has extra keys that are mapped to XF86Launch1 to 9.&lt;/p&gt;
+
+&lt;p&gt;I would like to re-map those back to function keys, because they are out of reach, but I still want to keep the possibility to use function keys.&lt;/p&gt;
+
+&lt;p&gt;I tried to do it in XModMap, but without any success. What it does is it remaps but then i3wm changes the workspace:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 192 = F1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is there any way to remap or send the proper key within i3wm configuration using exec command?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1648/send-function-keys-from-i3/?comment=1650#comment-1650</link><description>Yeah. I understand. What I want to have: F1 - switch workspace while XF86Launch1 would generate "F1" key. Basically, I want to swap them.</description><pubDate>Thu, 18 Apr 2013 08:05:06 +0000</pubDate><guid>https://faq.i3wm.org/question/1648/send-function-keys-from-i3/?comment=1650#comment-1650</guid></item><item><title>Comment by sur5r for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have mapped my function keys to worspace switching. Now, I have a new keyboard which has extra keys that are mapped to XF86Launch1 to 9.&lt;/p&gt;
+
+&lt;p&gt;I would like to re-map those back to function keys, because they are out of reach, but I still want to keep the possibility to use function keys.&lt;/p&gt;
+
+&lt;p&gt;I tried to do it in XModMap, but without any success. What it does is it remaps but then i3wm changes the workspace:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 192 = F1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is there any way to remap or send the proper key within i3wm configuration using exec command?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1648/send-function-keys-from-i3/?comment=1649#comment-1649</link><description>To me, it seems like everything behaves like you intended. Pressing the button that formerly sent XF86Launch1 now sends F1 and so on, thus i3 switches workspaces as you configured it to switch workspaces on F1 to F12. Pleasy clarify.</description><pubDate>Thu, 18 Apr 2013 07:43:49 +0000</pubDate><guid>https://faq.i3wm.org/question/1648/send-function-keys-from-i3/?comment=1649#comment-1649</guid></item><item><title>Answer by sur5r for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have mapped my function keys to worspace switching. Now, I have a new keyboard which has extra keys that are mapped to XF86Launch1 to 9.&lt;/p&gt;
+
+&lt;p&gt;I would like to re-map those back to function keys, because they are out of reach, but I still want to keep the possibility to use function keys.&lt;/p&gt;
+
+&lt;p&gt;I tried to do it in XModMap, but without any success. What it does is it remaps but then i3wm changes the workspace:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 192 = F1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is there any way to remap or send the proper key within i3wm configuration using exec command?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1648/send-function-keys-from-i3/?answer=1651#post-id-1651</link><description>So you want to swap F1-F9 with XF86Launch1-XF86Launch9.
+
+Example:
+Assuming F1 to F9 is originally on keycodes 67 to 75 and XF86Launch1 to 9 is on keycodes 192-200, then you would have to feed the following to xmodmap:
+
+    keycode 67 = XF86Launch1
+    keycode 68 = XF86Launch2
+    keycode 69 = XF86Launch3
+    keycode 70 = XF86Launch4
+    keycode 71 = XF86Launch5
+    keycode 72 = XF86Launch6
+    keycode 73 = XF86Launch7
+    keycode 74 = XF86Launch8
+    keycode 75 = XF86Launch9
+    
+    keycode 192 = F1
+    keycode 193 = F2
+    keycode 194 = F3
+    keycode 195 = F4
+    keycode 196 = F5
+    keycode 197 = F6
+    keycode 198 = F7
+    keycode 199 = F8
+    keycode 200 = F9
+
+You have to check the keycodes on your system, of course.</description><pubDate>Thu, 18 Apr 2013 08:42:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1648/send-function-keys-from-i3/?answer=1651#post-id-1651</guid></item><item><title>Comment by lzap for &lt;p&gt;So you want to swap F1-F9 with XF86Launch1-XF86Launch9.&lt;/p&gt;
+
+&lt;p&gt;Example:
+Assuming F1 to F9 is originally on keycodes 67 to 75 and XF86Launch1 to 9 is on keycodes 192-200, then you would have to feed the following to xmodmap:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 67 = XF86Launch1
+keycode 68 = XF86Launch2
+keycode 69 = XF86Launch3
+keycode 70 = XF86Launch4
+keycode 71 = XF86Launch5
+keycode 72 = XF86Launch6
+keycode 73 = XF86Launch7
+keycode 74 = XF86Launch8
+keycode 75 = XF86Launch9
+
+keycode 192 = F1
+keycode 193 = F2
+keycode 194 = F3
+keycode 195 = F4
+keycode 196 = F5
+keycode 197 = F6
+keycode 198 = F7
+keycode 199 = F8
+keycode 200 = F9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You have to check the keycodes on your system, of course.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1648/send-function-keys-from-i3/?comment=1652#comment-1652</link><description>Right, and I need to also remap my i3 configuration to use these - this was the snag. ty</description><pubDate>Thu, 18 Apr 2013 11:14:10 +0000</pubDate><guid>https://faq.i3wm.org/question/1648/send-function-keys-from-i3/?comment=1652#comment-1652</guid></item></channel></rss>

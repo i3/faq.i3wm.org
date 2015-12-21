@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6004/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 20 May 2015 00:44:01 +0000</lastBuildDate><item><title>Creating a new workspace</title><link>https://faq.i3wm.org/question/6004/creating-a-new-workspace/</link><description> I want to be able to open a new workspace with a simple keyboard shortcut, without having to press an unused number key. I found this command:
+
+    i3-msg workspace $(($(i3-msg -t get_workspaces | tr , '\n' | grep '"num":' | cut -d : -f 2 | sort -rn | head -1) + 1))
+from here:  https://github.com/sandeel/i3-new-workspace/blob/master/i3-new-workspace
+
+If I just enter it on my terminal it works exactly as advertised but when I add it to the config file like this:
+
+    bindsym $mod+n exec i3-msg workspace $(($(i3-msg -t get_workspaces | tr , '\n' | grep '"num":' | cut -d : -f 2 | sort -rn | head -1) + 1))
+and reload the config file, pressing $mod+n doesn't result in a new workspace.
+
+I'm new to i3 and I'm sure I'm missing something very obvious, but I just can't figure it out.</description><pubDate>Tue, 19 May 2015 13:52:41 +0000</pubDate><guid>https://faq.i3wm.org/question/6004/creating-a-new-workspace/</guid></item><item><title>Answer by aunsn for &lt;p&gt;I want to be able to open a new workspace with a simple keyboard shortcut, without having to press an unused number key. I found this command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg workspace $(($(i3-msg -t get_workspaces | tr , '\n' | grep '"num":' | cut -d : -f 2 | sort -rn | head -1) + 1))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;from here:  &lt;a href="https://github.com/sandeel/i3-new-workspace/blob/master/i3-new-workspace"&gt;https://github.com/sandeel/i3-new-wor...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If I just enter it on my terminal it works exactly as advertised but when I add it to the config file like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+n exec i3-msg workspace $(($(i3-msg -t get_workspaces | tr , '\n' | grep '"num":' | cut -d : -f 2 | sort -rn | head -1) + 1))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and reload the config file, pressing $mod+n doesn't result in a new workspace.&lt;/p&gt;
+
+&lt;p&gt;I'm new to i3 and I'm sure I'm missing something very obvious, but I just can't figure it out.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6004/creating-a-new-workspace/?answer=6007#post-id-6007</link><description>Put your line in a script somewhere (for instance in ~/.i3/empty_workspace.sh), adding "#!/bin/bash" at the begining, make it executable and add this to your config file
+
+    bindsym $mod+n exec --no-startup-id ~/.i3/empty_workspace.sh
+
+
+It doesn't really answer your question but it solves your problem ;)</description><pubDate>Tue, 19 May 2015 19:08:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6004/creating-a-new-workspace/?answer=6007#post-id-6007</guid></item><item><title>Comment by Airblader for &lt;p&gt;Put your line in a script somewhere (for instance in ~/.i3/empty_workspace.sh), adding "#!/bin/bash" at the begining, make it executable and add this to your config file&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+n exec --no-startup-id ~/.i3/empty_workspace.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It doesn't really answer your question but it solves your problem ;)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6004/creating-a-new-workspace/?comment=6009#comment-6009</link><description>@walter It's due to escaping. It can be solved without externing it into a script, but I think it's the better solution because it keeps the config more readable and maintainable.</description><pubDate>Wed, 20 May 2015 00:44:01 +0000</pubDate><guid>https://faq.i3wm.org/question/6004/creating-a-new-workspace/?comment=6009#comment-6009</guid></item><item><title>Comment by walter for &lt;p&gt;Put your line in a script somewhere (for instance in ~/.i3/empty_workspace.sh), adding "#!/bin/bash" at the begining, make it executable and add this to your config file&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+n exec --no-startup-id ~/.i3/empty_workspace.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It doesn't really answer your question but it solves your problem ;)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6004/creating-a-new-workspace/?comment=6008#comment-6008</link><description>I'm not sure why, but at least this works. Thanks.</description><pubDate>Tue, 19 May 2015 21:42:15 +0000</pubDate><guid>https://faq.i3wm.org/question/6004/creating-a-new-workspace/?comment=6008#comment-6008</guid></item></channel></rss>

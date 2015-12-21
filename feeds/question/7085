@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7085/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 29 Oct 2015 06:11:55 +0000</lastBuildDate><item><title>How to disable urgency hints per application?</title><link>https://faq.i3wm.org/question/7085/how-to-disable-urgency-hints-per-application/</link><description>I have an application that keeps sending repeated urgency hints, and I'd like to ignore them. Unfortunately this doesn't seem to work.
+
+    for_window [class="keepass2"] urgency disable</description><pubDate>Thu, 29 Oct 2015 00:26:34 +0000</pubDate><guid>https://faq.i3wm.org/question/7085/how-to-disable-urgency-hints-per-application/</guid></item><item><title>Answer by Airblader for &lt;p&gt;I have an application that keeps sending repeated urgency hints, and I'd like to ignore them. Unfortunately this doesn't seem to work.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="keepass2"] urgency disable
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/7085/how-to-disable-urgency-hints-per-application/?answer=7087#post-id-7087</link><description>Why would it work? Where did you read that this is a valid command? 
+
+There's no such feature in i3. If the application spams urgency hints, file a bug with the application. Urgency is really only for urgency and at the very least they could consider adding an option to disable them altogether. 
+
+One thing you could try, however, is using urgent=latest to react to urgency hints and triggering wmctrl to disable the hint again if it was keepass. This might work, but is a workaround and will likely flash the hint for a brief moment. It would look something like this
+
+    for_window [urgent=latest] exec --no-startup-id wmctrl -r keepass -b remove,demands_attention
+
+You may have to adapt the keepass argument so that it actually matches the window. If keepass uses non-generic names, you will have to extend the script to match the window somehow.</description><pubDate>Thu, 29 Oct 2015 06:11:55 +0000</pubDate><guid>https://faq.i3wm.org/question/7085/how-to-disable-urgency-hints-per-application/?answer=7087#post-id-7087</guid></item></channel></rss>

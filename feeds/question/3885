@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3885/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 28 May 2014 18:52:04 +0000</lastBuildDate><item><title>Generate Workspace Names from Criteria</title><link>https://faq.i3wm.org/question/3885/generate-workspace-names-from-criteria/</link><description>Is it possible to generate workspace names on-the-fly using window criteria? Something akin to
+
+    i3-msg move container to workspace [class]
+
+Obviously that syntax doesn't work, but it illustrates the idea. I've looked over the User's Guide, and there doesn't seem to be a way to do it built into i3's standard controls. Is it possible using the IPC, however? The desired outcome is to use a single keystroke to send certain windows to their own unique workspaces.</description><pubDate>Mon, 26 May 2014 13:01:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3885/generate-workspace-names-from-criteria/</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;Is it possible to generate workspace names on-the-fly using window criteria? Something akin to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg move container to workspace [class]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Obviously that syntax doesn't work, but it illustrates the idea. I've looked over the User's Guide, and there doesn't seem to be a way to do it built into i3's standard controls. Is it possible using the IPC, however? The desired outcome is to use a single keystroke to send certain windows to their own unique workspaces.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3885/generate-workspace-names-from-criteria/?answer=3890#post-id-3890</link><description>Inspired by an answer in [this thread,](https://faq.i3wm.org/question/2473/run-or-focus-in-i3/) I just slapped together a quick fix in Bash that does the trick. It uses xdotool to get the WINDOW_NAME variable of the currently focused window and passes it to i3-msg. Just give it a keybinding in the config file.
+
+    #!/usr/bin/bash
+    #
+    # Use xdotool to get the WINDOW_NAME of the focused window and pass it to
+    # i3-msg, moving the focused window to a unique workspace
+    
+    function getinfo {
+    xdotool getwindowname $(xdotool getwindowfocus)
+    }
+
+    i3-msg "move window to workspace $( getinfo )"
+
+EDIT: Thanks to GitHub user [yiuin](https://github.com/yiuin/i3-wm-scripts), I've come up with a way to do this that's simpler (doesn't require xdotool) and more versatile (the user can control the names of workspaces/labels) using two scripts found in yiuin's repository. My [GitHub repository](https://github.com/anoknusa/i3-stuff/) contains two scripts for this---**shelve** and **pull**. **shelve** uses i3-msg and dmenu to apply a mark to a container and move it to a workspace named after the mark. **pull** then does this in reverse, listing marked containers and pulling the selected container to the currently focused workspace.</description><pubDate>Wed, 28 May 2014 18:52:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3885/generate-workspace-names-from-criteria/?answer=3890#post-id-3890</guid></item></channel></rss>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4694/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 02 May 2015 22:28:35 +0000</lastBuildDate><item><title>wallpaper from unity in ubuntu 14.04</title><link>https://faq.i3wm.org/question/4694/wallpaper-from-unity-in-ubuntu-1404/</link><description>Hello,
+
+I would like to set the i3 wallpaper the same as in Unity. Sadly some of the unity settings are not transfered to i3. Is it possible to use those without installing feh or other tools to further customize i3?
+
+Maybe some other Ubuntu user can share his experiences here since I started on i3 just a few days ago.</description><pubDate>Mon, 06 Oct 2014 20:16:18 +0000</pubDate><guid>https://faq.i3wm.org/question/4694/wallpaper-from-unity-in-ubuntu-1404/</guid></item><item><title>Answer by han for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I would like to set the i3 wallpaper the same as in Unity. Sadly some of the unity settings are not transfered to i3. Is it possible to use those without installing feh or other tools to further customize i3?&lt;/p&gt;
+
+&lt;p&gt;Maybe some other Ubuntu user can share his experiences here since I started on i3 just a few days ago.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4694/wallpaper-from-unity-in-ubuntu-1404/?answer=5929#post-id-5929</link><description>I'd like to suggest a one more option for `feh` background way of configuring the i3 background. I've found that `--bg-fill` option of feh is more elastic, because if another output is connected, the background image scaling will be more predictable on all outputs regardless of outputs config (for example those exec statements for xrandr with output settings)
+
+Example:
+
+`exec --no-startup-id feh --bg-fill /path/to/image.png`
+
+in ~/.i3/config
+
+GM</description><pubDate>Sat, 02 May 2015 22:28:35 +0000</pubDate><guid>https://faq.i3wm.org/question/4694/wallpaper-from-unity-in-ubuntu-1404/?answer=5929#post-id-5929</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I would like to set the i3 wallpaper the same as in Unity. Sadly some of the unity settings are not transfered to i3. Is it possible to use those without installing feh or other tools to further customize i3?&lt;/p&gt;
+
+&lt;p&gt;Maybe some other Ubuntu user can share his experiences here since I started on i3 just a few days ago.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4694/wallpaper-from-unity-in-ubuntu-1404/?answer=4698#post-id-4698</link><description>*i3* does not (and probably never will) provide its own way to set a wallpaper. External tools, like `feh` or `nitrogen`, are the intended way to do this in *i3*.
+
+Also, any settings that *seem* to be transfered from unity to *i3* are not specific to *Unity* at all. For example, themes and fonts used by applications may be changed by *Unity* but the configuration files do not belong to *Unity* (much like the wallpaper can be set by *Unity* but also by other programs).
+
+----
+
+Example `nitrogen`:
+
+1. Install the package *nitrogen*: `sudo apt-get install nitrogen`
+2. Start `nitrogen`
+3. Set directories containing wallpapers in *Preferences* 
+4. Select wallpaper and *Apply*
+5. Add `exec --no-startup-id nitrogen --restore` to `~/.i3/config` in order to restore wallpaper on *i3* restart.
+
+</description><pubDate>Tue, 07 Oct 2014 05:20:33 +0000</pubDate><guid>https://faq.i3wm.org/question/4694/wallpaper-from-unity-in-ubuntu-1404/?answer=4698#post-id-4698</guid></item><item><title>Comment by Danny for &lt;p&gt;&lt;em&gt;i3&lt;/em&gt; does not (and probably never will) provide its own way to set a wallpaper. External tools, like &lt;code&gt;feh&lt;/code&gt; or &lt;code&gt;nitrogen&lt;/code&gt;, are the intended way to do this in &lt;em&gt;i3&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also, any settings that &lt;em&gt;seem&lt;/em&gt; to be transfered from unity to &lt;em&gt;i3&lt;/em&gt; are not specific to &lt;em&gt;Unity&lt;/em&gt; at all. For example, themes and fonts used by applications may be changed by &lt;em&gt;Unity&lt;/em&gt; but the configuration files do not belong to &lt;em&gt;Unity&lt;/em&gt; (much like the wallpaper can be set by &lt;em&gt;Unity&lt;/em&gt; but also by other programs).&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Example &lt;code&gt;nitrogen&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Install the package &lt;em&gt;nitrogen&lt;/em&gt;: &lt;code&gt;sudo apt-get install nitrogen&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Start &lt;code&gt;nitrogen&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Set directories containing wallpapers in &lt;em&gt;Preferences&lt;/em&gt; &lt;/li&gt;
+&lt;li&gt;Select wallpaper and &lt;em&gt;Apply&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;exec --no-startup-id nitrogen --restore&lt;/code&gt; to &lt;code&gt;~/.i3/config&lt;/code&gt; in order to restore wallpaper on &lt;em&gt;i3&lt;/em&gt; restart.&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/4694/wallpaper-from-unity-in-ubuntu-1404/?comment=4705#comment-4705</link><description>Nitrogen was used in Ubuntu, but its not on my LTS. Do you know how to turn that on?</description><pubDate>Tue, 07 Oct 2014 15:38:14 +0000</pubDate><guid>https://faq.i3wm.org/question/4694/wallpaper-from-unity-in-ubuntu-1404/?comment=4705#comment-4705</guid></item><item><title>Answer by cee for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I would like to set the i3 wallpaper the same as in Unity. Sadly some of the unity settings are not transfered to i3. Is it possible to use those without installing feh or other tools to further customize i3?&lt;/p&gt;
+
+&lt;p&gt;Maybe some other Ubuntu user can share his experiences here since I started on i3 just a few days ago.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4694/wallpaper-from-unity-in-ubuntu-1404/?answer=4697#post-id-4697</link><description>I guess to install feh is the easiest solution.
+And with 185KB it probably won't take up too much space on your disk.
+
+With following line added to your ~/.i3/config file your done;
+
+    exec --no-startup-id feh --bg-scale ~/PATH/TO/YOUR/IMAGE</description><pubDate>Tue, 07 Oct 2014 05:15:48 +0000</pubDate><guid>https://faq.i3wm.org/question/4694/wallpaper-from-unity-in-ubuntu-1404/?answer=4697#post-id-4697</guid></item></channel></rss>

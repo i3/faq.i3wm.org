@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5909/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 30 Apr 2015 17:10:08 +0000</lastBuildDate><item><title>Change focus to a diferent monitor then put there a certain workspace</title><link>https://faq.i3wm.org/question/5909/change-focus-to-a-diferent-monitor-then-put-there-a-certain-workspace/</link><description>While having my focus on my left-display in xmonad I use `Mod+E` to change to the right-display and `Mod+Number` to put **there** certain workspace.
+
+With `focus output left/right` I can achieve the former behaviour but when I change the workspace in my focused monitor, that workspace will be called into the monitor where it was first opened.
+
+I can work around this with `move workspace to output right` if that workspace appeared on my left monitor, but it quickly become troublesome:
+
+1. Wherever my focus is, call the workspace I want to move with `Mod+Number`
+2. Observe where it appeared, then **Think and Understand** where it is, and where I want it to be next.
+3. Move it. **Done**
+
+That 2nd step is what I want to avoid since confuses me and breaks my workflow. There's a way to this?
+
+ 1. Select the monitor where I want the workspace.
+ 2. Call it. **Done**</description><pubDate>Mon, 27 Apr 2015 16:44:20 +0000</pubDate><guid>https://faq.i3wm.org/question/5909/change-focus-to-a-diferent-monitor-then-put-there-a-certain-workspace/</guid></item><item><title>Comment by Airblader for &lt;p&gt;While having my focus on my left-display in xmonad I use &lt;code&gt;Mod+E&lt;/code&gt; to change to the right-display and &lt;code&gt;Mod+Number&lt;/code&gt; to put &lt;strong&gt;there&lt;/strong&gt; certain workspace.&lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;focus output left/right&lt;/code&gt; I can achieve the former behaviour but when I change the workspace in my focused monitor, that workspace will be called into the monitor where it was first opened.&lt;/p&gt;
+
+&lt;p&gt;I can work around this with &lt;code&gt;move workspace to output right&lt;/code&gt; if that workspace appeared on my left monitor, but it quickly become troublesome:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Wherever my focus is, call the workspace I want to move with &lt;code&gt;Mod+Number&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Observe where it appeared, then &lt;strong&gt;Think and Understand&lt;/strong&gt; where it is, and where I want it to be next.&lt;/li&gt;
+&lt;li&gt;Move it. &lt;strong&gt;Done&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That 2nd step is what I want to avoid since confuses me and breaks my workflow. There's a way to this?&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Select the monitor where I want the workspace.&lt;/li&gt;
+&lt;li&gt;Call it. &lt;strong&gt;Done&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/5909/change-focus-to-a-diferent-monitor-then-put-there-a-certain-workspace/?comment=5910#comment-5910</link><description>i3 itself doesn't support this, but you can write a simple IPC script that filters the active output from the `get_outputs` command.</description><pubDate>Mon, 27 Apr 2015 19:18:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5909/change-focus-to-a-diferent-monitor-then-put-there-a-certain-workspace/?comment=5910#comment-5910</guid></item><item><title>Answer by i3convert for &lt;p&gt;While having my focus on my left-display in xmonad I use &lt;code&gt;Mod+E&lt;/code&gt; to change to the right-display and &lt;code&gt;Mod+Number&lt;/code&gt; to put &lt;strong&gt;there&lt;/strong&gt; certain workspace.&lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;focus output left/right&lt;/code&gt; I can achieve the former behaviour but when I change the workspace in my focused monitor, that workspace will be called into the monitor where it was first opened.&lt;/p&gt;
+
+&lt;p&gt;I can work around this with &lt;code&gt;move workspace to output right&lt;/code&gt; if that workspace appeared on my left monitor, but it quickly become troublesome:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Wherever my focus is, call the workspace I want to move with &lt;code&gt;Mod+Number&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Observe where it appeared, then &lt;strong&gt;Think and Understand&lt;/strong&gt; where it is, and where I want it to be next.&lt;/li&gt;
+&lt;li&gt;Move it. &lt;strong&gt;Done&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That 2nd step is what I want to avoid since confuses me and breaks my workflow. There's a way to this?&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Select the monitor where I want the workspace.&lt;/li&gt;
+&lt;li&gt;Call it. &lt;strong&gt;Done&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+ </title><link>https://faq.i3wm.org/question/5909/change-focus-to-a-diferent-monitor-then-put-there-a-certain-workspace/?answer=5913#post-id-5913</link><description>I think what you are after is [i3-wk-switcher](https://travisf.net/i3-wk-switcher/), which provides xmonad-style desktop switching.
+
+P.S. I did not try it, but if you do, please share your experience.</description><pubDate>Wed, 29 Apr 2015 05:16:33 +0000</pubDate><guid>https://faq.i3wm.org/question/5909/change-focus-to-a-diferent-monitor-then-put-there-a-certain-workspace/?answer=5913#post-id-5913</guid></item><item><title>Comment by reikaze for &lt;p&gt;I think what you are after is &lt;a href="https://travisf.net/i3-wk-switcher/"&gt;i3-wk-switcher&lt;/a&gt;, which provides xmonad-style desktop switching.&lt;/p&gt;
+
+&lt;p&gt;P.S. I did not try it, but if you do, please share your experience.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5909/change-focus-to-a-diferent-monitor-then-put-there-a-certain-workspace/?comment=5919#comment-5919</link><description>It's exactly the droid I'm looking. It works like expected.</description><pubDate>Thu, 30 Apr 2015 17:10:08 +0000</pubDate><guid>https://faq.i3wm.org/question/5909/change-focus-to-a-diferent-monitor-then-put-there-a-certain-workspace/?comment=5919#comment-5919</guid></item></channel></rss>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/414/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 08 Sep 2012 03:01:19 +0000</lastBuildDate><item><title>Configuration for Empathy</title><link>https://faq.i3wm.org/question/414/configuration-for-empathy/</link><description>I just started using i3 and wanted to get floating windows for whenever someones initiates a conversation (IM) over Empathy with me or vice-versa, but couldn't get the chat window to resize to a smaller window. Currently the chat window does float but it takes the entire height of the screen. I tried a few **resize** statements but it didn't seem to make any difference. So far here's what I have:
+
+    # Empathy                                                                                                            
+    for_window [title="^Contact List"] floating enable
+    for_window [class="^Empathy$"] floating enable 
+
+Thanks in advance for any pointers!</description><pubDate>Wed, 29 Aug 2012 20:01:25 +0000</pubDate><guid>https://faq.i3wm.org/question/414/configuration-for-empathy/</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;I just started using i3 and wanted to get floating windows for whenever someones initiates a conversation (IM) over Empathy with me or vice-versa, but couldn't get the chat window to resize to a smaller window. Currently the chat window does float but it takes the entire height of the screen. I tried a few &lt;strong&gt;resize&lt;/strong&gt; statements but it didn't seem to make any difference. So far here's what I have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Empathy                                                                                                            
+for_window [title="^Contact List"] floating enable
+for_window [class="^Empathy$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks in advance for any pointers!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/414/configuration-for-empathy/?answer=415#post-id-415</link><description>I am using Pidgin, but I believe the problem is similar with yours. I notice this as well, specially when you just change your configuration the first time... I am not sure about the code running it, but somehow i3 remembers (caches?) the dimension of the window (probably if it has no standard definitions from which i3 relies on to display the window - it is pretty much a standard, but recent DE kind of solve that for them so many applications just got careless about it, I reckon).
+
+In short, after you open the window, which in in the same dimension as it was tiled, just manually (with the mouse, or key bindings) resize the window, then close it. The next time you open it, it should be fixed.
+
+By the way, this is my config for pidgin:
+
+    for_window [class="^Pidgin$"] floating enable
+    for_window [class="^Pidgin$" title="^Buddy List$"] floating disable
+
+(I want the list to be tiled. Note: The order of the commands does matter)</description><pubDate>Wed, 29 Aug 2012 22:21:35 +0000</pubDate><guid>https://faq.i3wm.org/question/414/configuration-for-empathy/?answer=415#post-id-415</guid></item><item><title>Comment by omaciel for &lt;p&gt;I am using Pidgin, but I believe the problem is similar with yours. I notice this as well, specially when you just change your configuration the first time... I am not sure about the code running it, but somehow i3 remembers (caches?) the dimension of the window (probably if it has no standard definitions from which i3 relies on to display the window - it is pretty much a standard, but recent DE kind of solve that for them so many applications just got careless about it, I reckon).&lt;/p&gt;
+
+&lt;p&gt;In short, after you open the window, which in in the same dimension as it was tiled, just manually (with the mouse, or key bindings) resize the window, then close it. The next time you open it, it should be fixed.&lt;/p&gt;
+
+&lt;p&gt;By the way, this is my config for pidgin:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Pidgin$"] floating enable
+for_window [class="^Pidgin$" title="^Buddy List$"] floating disable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(I want the list to be tiled. Note: The order of the commands does matter)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/414/configuration-for-empathy/?comment=441#comment-441</link><description>Hey Bruno, thanks for your reply. That worked for me, once I resized the windows themselves. :)</description><pubDate>Sat, 08 Sep 2012 03:01:19 +0000</pubDate><guid>https://faq.i3wm.org/question/414/configuration-for-empathy/?comment=441#comment-441</guid></item></channel></rss>

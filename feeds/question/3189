@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3189/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 10 Jan 2014 11:27:07 +0000</lastBuildDate><item><title>How can I sort windows inside a container automatically?</title><link>https://faq.i3wm.org/question/3189/how-can-i-sort-windows-inside-a-container-automatically/</link><description>I am using [`clusterssh`](http://sourceforge.net/projects/clusterssh/) to manage a large number of systems. `clusterssh` opens a terminal for each host plus an input window. The problem with that is that the windows are not created in the order specified on the command line, but in a rather random order. That is:
+
+    $ cssh server1 server2 server3
+
+may very well create this layout:
+
+    +---------------------+
+    | server3             |
+    +---------------------+
+    | server1             |
+    +---------------------+
+    | server2             |
+    +---------------------+
+    | input               |
+    +---------------------+
+
+While not really a problem with only three windows, trying to find the right window out of 40 is rather cumbersome. And manually sorting them even more so.
+
+(Ironically, on floating window managers CSSH can create a tiled and sorted layout of terminal windows)
+
+So the question is: is there an easy way to sort all windows in a container by name? 
+
+I know, I can get the layout tree from the IPC, but there seems to be no way to modify it other than using the commands available for key bindings (`focus`, `move`,...).
+
+</description><pubDate>Thu, 09 Jan 2014 12:36:40 +0000</pubDate><guid>https://faq.i3wm.org/question/3189/how-can-i-sort-windows-inside-a-container-automatically/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I am using &lt;a href="http://sourceforge.net/projects/clusterssh/"&gt;&lt;code&gt;clusterssh&lt;/code&gt;&lt;/a&gt; to manage a large number of systems. &lt;code&gt;clusterssh&lt;/code&gt; opens a terminal for each host plus an input window. The problem with that is that the windows are not created in the order specified on the command line, but in a rather random order. That is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cssh server1 server2 server3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;may very well create this layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------------------+
+| server3             |
++---------------------+
+| server1             |
++---------------------+
+| server2             |
++---------------------+
+| input               |
++---------------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While not really a problem with only three windows, trying to find the right window out of 40 is rather cumbersome. And manually sorting them even more so.&lt;/p&gt;
+
+&lt;p&gt;(Ironically, on floating window managers CSSH can create a tiled and sorted layout of terminal windows)&lt;/p&gt;
+
+&lt;p&gt;So the question is: is there an easy way to sort all windows in a container by name? &lt;/p&gt;
+
+&lt;p&gt;I know, I can get the layout tree from the IPC, but there seems to be no way to modify it other than using the commands available for key bindings (&lt;code&gt;focus&lt;/code&gt;, &lt;code&gt;move&lt;/code&gt;,...).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3189/how-can-i-sort-windows-inside-a-container-automatically/?answer=3190#post-id-3190</link><description>Here is a solution I came up with using Python, [ziberna's i3-library](https://github.com/ziberna/i3-py)
+
+    #!/usr/bin/env python
+    
+    parentContainer = i3.parent(currentWindow['id'])
+    if parentContainer['layout'] in ['splitv', 'stacked']:
+        direction = 'up'
+    else:
+        direction = 'left'
+    
+    nodes = parentContainer['nodes']
+    
+    for i in range(len(nodes)):
+        for j in range(i):
+            moves = 0
+            if nodes[i]['name'] &lt; nodes[j]['name']:
+                moves += 1
+            if moves:
+                i3.focus(con_id=nodes[i]['id'])
+                for m in range(moves):
+                    i3.move(direction)
+    
+    i3.focus(con_id=currentWindow['id'])
+
+Compared with Bubble-sort this cuts down on the refocusing needed, as each window is only focused once for sorting.
+
+While it works, I'm still not really happy with it:
+
+- Moving a lot of windows, each multiple times, takes seconds (depending on the initial order)
+- Anything that changes focus during the sorting, will prevent proper sorting and could even lead to hang-ups (could be at least partially prevented if criteria could be used with `move`)
+non-adjecent windows.
+
+This algorithm (like Bubble-sort) already does only the minimum number of `move` operations for in-place sorting ([see here for some theory on that](https://en.wikipedia.org/wiki/Permutation#Inversions)). 
+
+This means that for any real improvements, the windows would probably have to be moved elsewhere for sorting and than moved back.
+
+------
+
+I tried sorting by moving the windows temporarily to scratchpad or another workspace. While this needs on average far less move commands, it needs even more time. I guess the problem is, that the windows are resized on every move.
+
+Anyway, here is the code for the scratchpad version for reference.
+
+    #!/usr/bin/env python
+    
+    import i3
+    
+    currentWindow = i3.filter(focused=True)[0]
+    
+    parentContainer = i3.parent(currentWindow['id'])
+    if parentContainer['layout'] in ['splitv', 'stacked']:
+        direction = 'down'
+    else:
+        direction = 'right'
+    
+    nodes = parentContainer['nodes']
+    
+    snodes = sorted(nodes, key=lambda n:n['name'])
+    
+    for node in snodes[1:]:
+        i3.focus(con_id=node['id'])
+        i3.move('scratchpad')
+    
+    i3.focus(con_id=nodes[0]['id'])
+    
+    for node in snodes[1:]:
+        i3.focus(con_id=node['id'])
+        i3.floating('disable')
+    
+    i3.focus(con_id=currentWindow['id'])
+
+The workspace version is similar, but slower and confuses with switches to another workspace during sorting.</description><pubDate>Thu, 09 Jan 2014 13:41:22 +0000</pubDate><guid>https://faq.i3wm.org/question/3189/how-can-i-sort-windows-inside-a-container-automatically/?answer=3190#post-id-3190</guid></item><item><title>Comment by joepd for &lt;p&gt;Here is a solution I came up with using Python, &lt;a href="https://github.com/ziberna/i3-py"&gt;ziberna's i3-library&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+parentContainer = i3.parent(currentWindow['id'])
+if parentContainer['layout'] in ['splitv', 'stacked']:
+    direction = 'up'
+else:
+    direction = 'left'
+
+nodes = parentContainer['nodes']
+
+for i in range(len(nodes)):
+    for j in range(i):
+        moves = 0
+        if nodes[i]['name'] &amp;lt; nodes[j]['name']:
+            moves += 1
+        if moves:
+            i3.focus(con_id=nodes[i]['id'])
+            for m in range(moves):
+                i3.move(direction)
+
+i3.focus(con_id=currentWindow['id'])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Compared with Bubble-sort this cuts down on the refocusing needed, as each window is only focused once for sorting.&lt;/p&gt;
+
+&lt;p&gt;While it works, I'm still not really happy with it:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Moving a lot of windows, each multiple times, takes seconds (depending on the initial order)&lt;/li&gt;
+&lt;li&gt;Anything that changes focus during the sorting, will prevent proper sorting and could even lead to hang-ups (could be at least partially prevented if criteria could be used with &lt;code&gt;move&lt;/code&gt;)
+non-adjecent windows.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This algorithm (like Bubble-sort) already does only the minimum number of &lt;code&gt;move&lt;/code&gt; operations for in-place sorting (&lt;a href="https://en.wikipedia.org/wiki/Permutation#Inversions"&gt;see here for some theory on that&lt;/a&gt;). &lt;/p&gt;
+
+&lt;p&gt;This means that for any real improvements, the windows would probably have to be moved elsewhere for sorting and than moved back.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I tried sorting by moving the windows temporarily to scratchpad or another workspace. While this needs on average far less move commands, it needs even more time. I guess the problem is, that the windows are resized on every move.&lt;/p&gt;
+
+&lt;p&gt;Anyway, here is the code for the scratchpad version for reference.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+import i3
+
+currentWindow = i3.filter(focused=True)[0]
+
+parentContainer = i3.parent(currentWindow['id'])
+if parentContainer['layout'] in ['splitv', 'stacked']:
+    direction = 'down'
+else:
+    direction = 'right'
+
+nodes = parentContainer['nodes']
+
+snodes = sorted(nodes, key=lambda n:n['name'])
+
+for node in snodes[1:]:
+    i3.focus(con_id=node['id'])
+    i3.move('scratchpad')
+
+i3.focus(con_id=nodes[0]['id'])
+
+for node in snodes[1:]:
+    i3.focus(con_id=node['id'])
+    i3.floating('disable')
+
+i3.focus(con_id=currentWindow['id'])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The workspace version is similar, but slower and confuses with switches to another workspace during sorting.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3189/how-can-i-sort-windows-inside-a-container-automatically/?comment=3191#comment-3191</link><description>I like it :) One obvious improvement would be to make the sort internally in python, and execute the focus and move commands afterwards. You can select the windows for sorting based on their window name, or you could mark them for easy focusing. </description><pubDate>Thu, 09 Jan 2014 18:39:54 +0000</pubDate><guid>https://faq.i3wm.org/question/3189/how-can-i-sort-windows-inside-a-container-automatically/?comment=3191#comment-3191</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Here is a solution I came up with using Python, &lt;a href="https://github.com/ziberna/i3-py"&gt;ziberna's i3-library&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+parentContainer = i3.parent(currentWindow['id'])
+if parentContainer['layout'] in ['splitv', 'stacked']:
+    direction = 'up'
+else:
+    direction = 'left'
+
+nodes = parentContainer['nodes']
+
+for i in range(len(nodes)):
+    for j in range(i):
+        moves = 0
+        if nodes[i]['name'] &amp;lt; nodes[j]['name']:
+            moves += 1
+        if moves:
+            i3.focus(con_id=nodes[i]['id'])
+            for m in range(moves):
+                i3.move(direction)
+
+i3.focus(con_id=currentWindow['id'])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Compared with Bubble-sort this cuts down on the refocusing needed, as each window is only focused once for sorting.&lt;/p&gt;
+
+&lt;p&gt;While it works, I'm still not really happy with it:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Moving a lot of windows, each multiple times, takes seconds (depending on the initial order)&lt;/li&gt;
+&lt;li&gt;Anything that changes focus during the sorting, will prevent proper sorting and could even lead to hang-ups (could be at least partially prevented if criteria could be used with &lt;code&gt;move&lt;/code&gt;)
+non-adjecent windows.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This algorithm (like Bubble-sort) already does only the minimum number of &lt;code&gt;move&lt;/code&gt; operations for in-place sorting (&lt;a href="https://en.wikipedia.org/wiki/Permutation#Inversions"&gt;see here for some theory on that&lt;/a&gt;). &lt;/p&gt;
+
+&lt;p&gt;This means that for any real improvements, the windows would probably have to be moved elsewhere for sorting and than moved back.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I tried sorting by moving the windows temporarily to scratchpad or another workspace. While this needs on average far less move commands, it needs even more time. I guess the problem is, that the windows are resized on every move.&lt;/p&gt;
+
+&lt;p&gt;Anyway, here is the code for the scratchpad version for reference.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+import i3
+
+currentWindow = i3.filter(focused=True)[0]
+
+parentContainer = i3.parent(currentWindow['id'])
+if parentContainer['layout'] in ['splitv', 'stacked']:
+    direction = 'down'
+else:
+    direction = 'right'
+
+nodes = parentContainer['nodes']
+
+snodes = sorted(nodes, key=lambda n:n['name'])
+
+for node in snodes[1:]:
+    i3.focus(con_id=node['id'])
+    i3.move('scratchpad')
+
+i3.focus(con_id=nodes[0]['id'])
+
+for node in snodes[1:]:
+    i3.focus(con_id=node['id'])
+    i3.floating('disable')
+
+i3.focus(con_id=currentWindow['id'])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The workspace version is similar, but slower and confuses with switches to another workspace during sorting.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3189/how-can-i-sort-windows-inside-a-container-automatically/?comment=3193#comment-3193</link><description>As i3 is lacking the ability to just put windows where they need to be, sorting before moving does not really help. Also it is moving and focusing that takes most of the time. Bubble-sort is already doing the minimum amount of swapping/moving, so I can only cut back on the focusing needed.</description><pubDate>Fri, 10 Jan 2014 11:27:07 +0000</pubDate><guid>https://faq.i3wm.org/question/3189/how-can-i-sort-windows-inside-a-container-automatically/?comment=3193#comment-3193</guid></item></channel></rss>

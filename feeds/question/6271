@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6271/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 13 Jul 2015 18:42:23 +0000</lastBuildDate><item><title>"There is an error in your config file"</title><link>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/</link><description> Hello all,
+
+I logged in to my Ubuntu 14.04 machine i3 today after having added the following lines to my i3 config file.
+
+    last_full_capacity = true 
+    hide_seconds = true
+    integer_battery_capacity = true
+    low_threshold:10
+    threshold_type:time
+
+
+
+However, I noticed the following message after logging in:
+&lt;pre&gt;
+ERROR: CONFIG: Line 125: #Battery - Show true last full charge percentage - not factuory full charge
+ERROR: CONFIG: Line 126: last_full_capacity = true
+ERROR: CONFIG: Line 127: hide_seconds = true
+ERROR: CONFIG:           ^^^^^^^^^^^^^^^^^^^
+ERROR: CONFIG: Line 128: integer_battery_capacity = true
+ERROR: CONFIG: Line 129: low_threshold:10
+ERROR: CONFIG: Expected one of these tokens: &lt;end&gt;, '#', 'set', 'bindsym', 'bindcode', 'bind', 'bar', 'font', 'mode', 'floating_minimum_size', 'floating_maximum_size', 'floating_modifier', 'default_orientation', 'workspace_layout', 'new_window', 'new_float', 'hide_edge_borders', 'for_window', 'assign', 'focus_follows_mouse', 'mouse_warping', 'force_focus_wrapping', 'force_xinerama', 'force-xinerama', 'workspace_auto_back_and_forth', 'fake_outputs', 'fake-outputs', 'force_display_urgency_hint', 'workspace', 'ipc_socket', 'ipc-socket', 'restart_state', 'popup_during_fullscreen', 'exec_always', 'exec', 'client.background', 'client.focused_inactive', 'client.focused', 'client.unfocused', 'client.urgent', 'client.placeholder'
+&lt;/pre&gt;
+Did I not enter the the lines properly?</description><pubDate>Sun, 12 Jul 2015 18:33:48 +0000</pubDate><guid>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/</guid></item><item><title>Answer by oberon for &lt;p&gt;Hello all,&lt;/p&gt;
+
+&lt;p&gt;I logged in to my Ubuntu 14.04 machine i3 today after having added the following lines to my i3 config file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;last_full_capacity = true 
+hide_seconds = true
+integer_battery_capacity = true
+low_threshold:10
+threshold_type:time
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, I noticed the following message after logging in:&lt;/p&gt;
+
+&lt;pre&gt;ERROR: CONFIG: Line 125: #Battery - Show true last full charge percentage - not factuory full charge
+ERROR: CONFIG: Line 126: last_full_capacity = true
+ERROR: CONFIG: Line 127: hide_seconds = true
+ERROR: CONFIG:           ^^^^^^^^^^^^^^^^^^^
+ERROR: CONFIG: Line 128: integer_battery_capacity = true
+ERROR: CONFIG: Line 129: low_threshold:10
+ERROR: CONFIG: Expected one of these tokens: &amp;lt;end&amp;gt;, '#', 'set', 'bindsym', 'bindcode', 'bind', 'bar', 'font', 'mode', 'floating_minimum_size', 'floating_maximum_size', 'floating_modifier', 'default_orientation', 'workspace_layout', 'new_window', 'new_float', 'hide_edge_borders', 'for_window', 'assign', 'focus_follows_mouse', 'mouse_warping', 'force_focus_wrapping', 'force_xinerama', 'force-xinerama', 'workspace_auto_back_and_forth', 'fake_outputs', 'fake-outputs', 'force_display_urgency_hint', 'workspace', 'ipc_socket', 'ipc-socket', 'restart_state', 'popup_during_fullscreen', 'exec_always', 'exec', 'client.background', 'client.focused_inactive', 'client.focused', 'client.unfocused', 'client.urgent', 'client.placeholder'
+&lt;/pre&gt;
+
+&lt;p&gt;Did I not enter the the lines properly?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/?answer=6272#post-id-6272</link><description>All those settings are supposed to be in the config file for the i3status bar, typically **~/.i3status.conf**, and NOT in your i3 config file!
+Please read here: http://i3wm.org/i3status/manpage.html</description><pubDate>Sun, 12 Jul 2015 22:06:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/?answer=6272#post-id-6272</guid></item><item><title>Answer by mechpro for &lt;p&gt;Hello all,&lt;/p&gt;
+
+&lt;p&gt;I logged in to my Ubuntu 14.04 machine i3 today after having added the following lines to my i3 config file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;last_full_capacity = true 
+hide_seconds = true
+integer_battery_capacity = true
+low_threshold:10
+threshold_type:time
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, I noticed the following message after logging in:&lt;/p&gt;
+
+&lt;pre&gt;ERROR: CONFIG: Line 125: #Battery - Show true last full charge percentage - not factuory full charge
+ERROR: CONFIG: Line 126: last_full_capacity = true
+ERROR: CONFIG: Line 127: hide_seconds = true
+ERROR: CONFIG:           ^^^^^^^^^^^^^^^^^^^
+ERROR: CONFIG: Line 128: integer_battery_capacity = true
+ERROR: CONFIG: Line 129: low_threshold:10
+ERROR: CONFIG: Expected one of these tokens: &amp;lt;end&amp;gt;, '#', 'set', 'bindsym', 'bindcode', 'bind', 'bar', 'font', 'mode', 'floating_minimum_size', 'floating_maximum_size', 'floating_modifier', 'default_orientation', 'workspace_layout', 'new_window', 'new_float', 'hide_edge_borders', 'for_window', 'assign', 'focus_follows_mouse', 'mouse_warping', 'force_focus_wrapping', 'force_xinerama', 'force-xinerama', 'workspace_auto_back_and_forth', 'fake_outputs', 'fake-outputs', 'force_display_urgency_hint', 'workspace', 'ipc_socket', 'ipc-socket', 'restart_state', 'popup_during_fullscreen', 'exec_always', 'exec', 'client.background', 'client.focused_inactive', 'client.focused', 'client.unfocused', 'client.urgent', 'client.placeholder'
+&lt;/pre&gt;
+
+&lt;p&gt;Did I not enter the the lines properly?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/?answer=6273#post-id-6273</link><description>Thanks - I feel a bit slow for not checking that. Another follow up question. The documentation states that my i3 status config should be located here:
+
+
+
+    ~/.i3status.conf
+
+    ~/.config/i3status/config (or $XDG_CONFIG_HOME/i3status/config if set)
+
+    /etc/i3status.conf
+
+    /etc/xdg/i3status/config (or $XDG_CONFIG_DIRS/i3status/config if set)
+
+
+However, the only one I found was  in /etc/i3.status.config and when I tried to edit it, it was only read only</description><pubDate>Mon, 13 Jul 2015 04:27:59 +0000</pubDate><guid>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/?answer=6273#post-id-6273</guid></item><item><title>Comment by mechpro for &lt;p&gt;Thanks - I feel a bit slow for not checking that. Another follow up question. The documentation states that my i3 status config should be located here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/.i3status.conf
+
+~/.config/i3status/config (or $XDG_CONFIG_HOME/i3status/config if set)
+
+/etc/i3status.conf
+
+/etc/xdg/i3status/config (or $XDG_CONFIG_DIRS/i3status/config if set)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, the only one I found was  in /etc/i3.status.config and when I tried to edit it, it was only read only&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/?comment=6283#comment-6283</link><description>My apologies, thank you</description><pubDate>Mon, 13 Jul 2015 18:42:23 +0000</pubDate><guid>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/?comment=6283#comment-6283</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Thanks - I feel a bit slow for not checking that. Another follow up question. The documentation states that my i3 status config should be located here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/.i3status.conf
+
+~/.config/i3status/config (or $XDG_CONFIG_HOME/i3status/config if set)
+
+/etc/i3status.conf
+
+/etc/xdg/i3status/config (or $XDG_CONFIG_DIRS/i3status/config if set)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, the only one I found was  in /etc/i3.status.config and when I tried to edit it, it was only read only&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/?comment=6277#comment-6277</link><description>Please, do to post questions as answers to other questions. If you want to add some information you can edit the question. If it is (like here) an entirely different issue, please post it as new question.</description><pubDate>Mon, 13 Jul 2015 08:22:56 +0000</pubDate><guid>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/?comment=6277#comment-6277</guid></item><item><title>Comment by Airblader for &lt;p&gt;Thanks - I feel a bit slow for not checking that. Another follow up question. The documentation states that my i3 status config should be located here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/.i3status.conf
+
+~/.config/i3status/config (or $XDG_CONFIG_HOME/i3status/config if set)
+
+/etc/i3status.conf
+
+/etc/xdg/i3status/config (or $XDG_CONFIG_DIRS/i3status/config if set)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, the only one I found was  in /etc/i3.status.config and when I tried to edit it, it was only read only&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/?comment=6274#comment-6274</link><description>The one in /etc/ is just the default config. Just do a "cp /etc/i3status.conf ~/.i3status.conf" to create it in the correct place and edit it there.</description><pubDate>Mon, 13 Jul 2015 07:11:38 +0000</pubDate><guid>https://faq.i3wm.org/question/6271/there-is-an-error-in-your-config-file/?comment=6274#comment-6274</guid></item></channel></rss>

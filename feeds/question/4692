@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4692/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 07 Oct 2014 20:36:09 +0000</lastBuildDate><item><title>focus workspace &amp; window after for_window</title><link>https://faq.i3wm.org/question/4692/focus-workspace-window-after-for_window/</link><description>I've been playing around with 'assign' and 'for_window' 
+
+First I add
+
+    assign [class="VirtualBox"] 9
+
+(for the test, I always open VirtualBox from workspace 2)
+This works proper, as soon as the workspace+window is opened, workspace 9's indicator appears, in red; and my focus is still on the same workspace (2) and window.
+
+Now I want to add a layout change to that same class:
+
+    assign [class="VirtualBox"] 9
+    for_window [class="VirtualBox"] layout stacking
+
+This time, workspace 9 appears in the background, not red but grey colored. Focus is still on the same workspace (all windows lose focus). 
+BUT instead of being blue (which indicates focus for both workspace and window) everything is grey. This tells me the focus is somewhere else.
+
+To get focus back to the workspace I see in front of me, I have to explicitly press $mod+workspaceNumber
+
+Is there a better way?
+
+I tried:
+
+    assign [class="VirtualBox"] 9
+    for_window [class="VirtualBox"] layout stacking, focus tiling
+since the manual says "focus_tililing: return focus to last tiling container", but it doesn't seem to have to correct effect.</description><pubDate>Mon, 06 Oct 2014 20:00:07 +0000</pubDate><guid>https://faq.i3wm.org/question/4692/focus-workspace-window-after-for_window/</guid></item><item><title>Comment by TonyC for &lt;p&gt;I've been playing around with 'assign' and 'for_window' &lt;/p&gt;
+
+&lt;p&gt;First I add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="VirtualBox"] 9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(for the test, I always open VirtualBox from workspace 2)
+This works proper, as soon as the workspace+window is opened, workspace 9's indicator appears, in red; and my focus is still on the same workspace (2) and window.&lt;/p&gt;
+
+&lt;p&gt;Now I want to add a layout change to that same class:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="VirtualBox"] 9
+for_window [class="VirtualBox"] layout stacking
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This time, workspace 9 appears in the background, not red but grey colored. Focus is still on the same workspace (all windows lose focus). 
+BUT instead of being blue (which indicates focus for both workspace and window) everything is grey. This tells me the focus is somewhere else.&lt;/p&gt;
+
+&lt;p&gt;To get focus back to the workspace I see in front of me, I have to explicitly press $mod+workspaceNumber&lt;/p&gt;
+
+&lt;p&gt;Is there a better way?&lt;/p&gt;
+
+&lt;p&gt;I tried:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="VirtualBox"] 9
+for_window [class="VirtualBox"] layout stacking, focus tiling
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;since the manual says "focus_tililing: return focus to last tiling container", but it doesn't seem to have to correct effect.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4692/focus-workspace-window-after-for_window/?comment=4708#comment-4708</link><description>Maybe I don't understand the question, but it could be as simple as this: `for_window [class="VirtualBox"] move to workspace 9, layout stacking`</description><pubDate>Tue, 07 Oct 2014 20:36:09 +0000</pubDate><guid>https://faq.i3wm.org/question/4692/focus-workspace-window-after-for_window/?comment=4708#comment-4708</guid></item></channel></rss>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/951/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 15 Jan 2013 22:04:19 +0000</lastBuildDate><item><title>Banshee Media Player</title><link>https://faq.i3wm.org/question/951/banshee-media-player/</link><description>I can't seem to set the Banshee window to always appear on a set workspace.
+
+**From Config:**
+
+    set $bansheeSpace 8: Music    
+    assign [class="^Banshee$"] $bansheeSpace
+
+
+As far as I can tell, the class name is 'Banshee'
+
+**Output of xlsclients -l:** 
+
+    Window 0x2e00001:
+      Machine:  blah.foo.bar
+      Name:  Banshee
+      Icon Name:  Banshee
+      Command:  Banshee      
+      Instance/Class:  Banshee/Banshee      
+      
+But I can't seem to crack it.  Is anyone else having a similar problem?</description><pubDate>Thu, 27 Dec 2012 21:12:30 +0000</pubDate><guid>https://faq.i3wm.org/question/951/banshee-media-player/</guid></item><item><title>Answer by Michael for &lt;p&gt;I can't seem to set the Banshee window to always appear on a set workspace.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;From Config:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $bansheeSpace 8: Music    
+assign [class="^Banshee$"] $bansheeSpace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As far as I can tell, the class name is 'Banshee'&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Output of xlsclients -l:&lt;/strong&gt; &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Window 0x2e00001:
+  Machine:  blah.foo.bar
+  Name:  Banshee
+  Icon Name:  Banshee
+  Command:  Banshee      
+  Instance/Class:  Banshee/Banshee
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But I can't seem to crack it.  Is anyone else having a similar problem?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/951/banshee-media-player/?answer=963#post-id-963</link><description>To quote the userguide:
+
+&gt; To get the class and instance, you can use xprop. After clicking on the window, you will see the following output:
+&gt; 
+&gt; WM_CLASS(STRING) = "irssi", "URxvt"
+&gt; 
+&gt; The first part of the WM_CLASS is the instance ("irssi" in this example), the second part is the class ("URxvt" in this example).
+
+When I run xprop on banshee, I get:
+
+&gt; WM_CLASS(STRING) = "Banshee", "banshee"
+
+And when I use the following in my config file, Banshee starts up on the workspace “8: Music“:
+
+    set $bansheeSpace 8: Music
+    assign [class="^banshee$"] $bansheeSpace
+
+In case you run into a similar issue in the future, you can check i3’s log to figure it out, see http://i3wm.org/docs/debugging.html</description><pubDate>Wed, 02 Jan 2013 18:57:02 +0000</pubDate><guid>https://faq.i3wm.org/question/951/banshee-media-player/?answer=963#post-id-963</guid></item><item><title>Comment by TheQueasle for &lt;p&gt;To quote the userguide:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;To get the class and instance, you can use xprop. After clicking on the window, you will see the following output:&lt;/p&gt;
+  
+  &lt;p&gt;WM_CLASS(STRING) = "irssi", "URxvt"&lt;/p&gt;
+  
+  &lt;p&gt;The first part of the WM_CLASS is the instance ("irssi" in this example), the second part is the class ("URxvt" in this example).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When I run xprop on banshee, I get:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;WM_CLASS(STRING) = "Banshee", "banshee"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And when I use the following in my config file, Banshee starts up on the workspace “8: Music“:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $bansheeSpace 8: Music
+assign [class="^banshee$"] $bansheeSpace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In case you run into a similar issue in the future, you can check i3’s log to figure it out, see &lt;a href="http://i3wm.org/docs/debugging.html"&gt;http://i3wm.org/docs/debugging.html&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/951/banshee-media-player/?comment=1060#comment-1060</link><description>Right...I appreciate the answer.  I guess I should have been more verbose with the troubleshooting steps I took to get to this point...the FAQ is my last stop in troubleshooting.
+I'll try again with a fresh install after I upgrade to Fedora 18, and then move to the logs if that fails as well.
+
+</description><pubDate>Tue, 15 Jan 2013 22:04:19 +0000</pubDate><guid>https://faq.i3wm.org/question/951/banshee-media-player/?comment=1060#comment-1060</guid></item></channel></rss>

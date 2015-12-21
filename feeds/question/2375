@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2375/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 19 Aug 2013 11:35:34 +0000</lastBuildDate><item><title>How do I change the default orientation?</title><link>https://faq.i3wm.org/question/2375/how-do-i-change-the-default-orientation/</link><description>Hey,
+
+I'd like to change the default orientation such that new windows (or whatever they're called) split the screen horizontally -- one on top, one at the bottom. How do I do that? I've tried adding
+
+default_orientation horizontal
+
+to ~/.i3/config, but it doesn't seem to change anything. I'm using Debian 7.1 (maybe something's awry with file permissions? I'll try chmod +x).</description><pubDate>Sun, 18 Aug 2013 21:05:36 +0000</pubDate><guid>https://faq.i3wm.org/question/2375/how-do-i-change-the-default-orientation/</guid></item><item><title>Answer by badboy_ for &lt;p&gt;Hey,&lt;/p&gt;
+
+&lt;p&gt;I'd like to change the default orientation such that new windows (or whatever they're called) split the screen horizontally -- one on top, one at the bottom. How do I do that? I've tried adding&lt;/p&gt;
+
+&lt;p&gt;default_orientation horizontal&lt;/p&gt;
+
+&lt;p&gt;to ~/.i3/config, but it doesn't seem to change anything. I'm using Debian 7.1 (maybe something's awry with file permissions? I'll try chmod +x).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2375/how-do-i-change-the-default-orientation/?answer=2386#post-id-2386</link><description>Did you try `default_orientation vertical` ?
+
+I'll cite the [userguide](http://i3wm.org/docs/userguide.html#_orientation_for_new_workspaces)
+
+&gt; New workspaces get a reasonable default orientation: Wide-screen monitors (anything 
+&gt; wider than high) get horizontal orientation, rotated monitors (anything higher than wide)
+&gt; get vertical orientation.
+&gt; With the default_orientation configuration directive, you can override that behaviour.</description><pubDate>Mon, 19 Aug 2013 09:58:59 +0000</pubDate><guid>https://faq.i3wm.org/question/2375/how-do-i-change-the-default-orientation/?answer=2386#post-id-2386</guid></item><item><title>Comment by cee for &lt;p&gt;Did you try &lt;code&gt;default_orientation vertical&lt;/code&gt; ?&lt;/p&gt;
+
+&lt;p&gt;I'll cite the &lt;a href="http://i3wm.org/docs/userguide.html#_orientation_for_new_workspaces"&gt;userguide&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;New workspaces get a reasonable default orientation: Wide-screen monitors (anything 
+  wider than high) get horizontal orientation, rotated monitors (anything higher than wide)
+  get vertical orientation.
+  With the default_orientation configuration directive, you can override that behaviour.&lt;/p&gt;
+&lt;/blockquote&gt;
+</title><link>https://faq.i3wm.org/question/2375/how-do-i-change-the-default-orientation/?comment=2390#comment-2390</link><description>Yes, that's probably it. @Anonymous: Did you recognize, that splitting horizontally means the containers are next to each other on the same horizontally line?</description><pubDate>Mon, 19 Aug 2013 11:35:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2375/how-do-i-change-the-default-orientation/?comment=2390#comment-2390</guid></item><item><title>Answer by cee for &lt;p&gt;Hey,&lt;/p&gt;
+
+&lt;p&gt;I'd like to change the default orientation such that new windows (or whatever they're called) split the screen horizontally -- one on top, one at the bottom. How do I do that? I've tried adding&lt;/p&gt;
+
+&lt;p&gt;default_orientation horizontal&lt;/p&gt;
+
+&lt;p&gt;to ~/.i3/config, but it doesn't seem to change anything. I'm using Debian 7.1 (maybe something's awry with file permissions? I'll try chmod +x).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2375/how-do-i-change-the-default-orientation/?answer=2378#post-id-2378</link><description>Try this&lt;br/&gt;
+
+    exec i3-msg split v
+
+&lt;br/&gt;It seems to work for me.</description><pubDate>Mon, 19 Aug 2013 07:37:36 +0000</pubDate><guid>https://faq.i3wm.org/question/2375/how-do-i-change-the-default-orientation/?answer=2378#post-id-2378</guid></item></channel></rss>

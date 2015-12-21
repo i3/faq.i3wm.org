@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1767/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 08 May 2013 20:10:00 +0000</lastBuildDate><item><title>Can't get for_window to work with Audacious</title><link>https://faq.i3wm.org/question/1767/cant-get-for_window-to-work-with-audacious/</link><description>I'm trying to have Audacious float when opened, however it doesn't.
+
+Here's what I have in my config:
+
+    for_window [class="audacious"] floating enable
+
+I think it might be because the window title has the current song before it followed by Audacious, so maybe I just need a wildcard character?</description><pubDate>Wed, 08 May 2013 18:36:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1767/cant-get-for_window-to-work-with-audacious/</guid></item><item><title>Answer by vandannen for &lt;p&gt;I'm trying to have Audacious float when opened, however it doesn't.&lt;/p&gt;
+
+&lt;p&gt;Here's what I have in my config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="audacious"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I think it might be because the window title has the current song before it followed by Audacious, so maybe I just need a wildcard character?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1767/cant-get-for_window-to-work-with-audacious/?answer=1770#post-id-1770</link><description>Make sure that you match the correct class for the specified program. You can use `xprop` in order to check for the properties of a window. 
+
+As specified in the [user guide](http://i3wm.org/docs/userguide.html#_list_of_commands): "class: Compares the window class (the second part of WM_CLASS)". So, in this case, you need to use capital letters or match case-insensitive:
+
+    for_window [class="Audacious"] floating enable
+    or
+    for_window [class="(?i)audacious"] floating enable</description><pubDate>Wed, 08 May 2013 20:05:22 +0000</pubDate><guid>https://faq.i3wm.org/question/1767/cant-get-for_window-to-work-with-audacious/?answer=1770#post-id-1770</guid></item><item><title>Comment by Matthew for &lt;p&gt;Make sure that you match the correct class for the specified program. You can use &lt;code&gt;xprop&lt;/code&gt; in order to check for the properties of a window. &lt;/p&gt;
+
+&lt;p&gt;As specified in the &lt;a href="http://i3wm.org/docs/userguide.html#_list_of_commands"&gt;user guide&lt;/a&gt;: "class: Compares the window class (the second part of WM_CLASS)". So, in this case, you need to use capital letters or match case-insensitive:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Audacious"] floating enable
+or
+for_window [class="(?i)audacious"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1767/cant-get-for_window-to-work-with-audacious/?comment=1771#comment-1771</link><description>Thanks, it was case sensitive! Didn't realize that.</description><pubDate>Wed, 08 May 2013 20:10:00 +0000</pubDate><guid>https://faq.i3wm.org/question/1767/cant-get-for_window-to-work-with-audacious/?comment=1771#comment-1771</guid></item></channel></rss>

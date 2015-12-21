@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5355/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 20 Jan 2015 19:19:15 +0000</lastBuildDate><item><title>Show split mode of container (status bar?)</title><link>https://faq.i3wm.org/question/5355/show-split-mode-of-container-status-bar/</link><description>A container can be in horizontal or vertical split mode. I might have changed its "initial default" mode or not (I have one horizontal and one vertical screen), so when I get back to that workspace and screen, I usually don't know which mode is currently active for all my containers there.
+
+Therefore, I have observed myself doing the following steps rather too often:
+
+1. I try to open a terminal first to see what would happen,
+2. close that terminal again,
+3. possibly change the split mode, and
+4. only then open the program I want.
+
+If, instead, i3wm were to show me the current "split mode" the container is in, I would not need to check that first by trying to open a terminal to learn the split mode the container is in.
+
+So my questions are:
+
+1. Am I doing anything wrong here, maybe?
+2. If not, how can I get a [visual] indicator of the current container's split mode?</description><pubDate>Tue, 20 Jan 2015 09:13:32 +0000</pubDate><guid>https://faq.i3wm.org/question/5355/show-split-mode-of-container-status-bar/</guid></item><item><title>Answer by svg for &lt;p&gt;A container can be in horizontal or vertical split mode. I might have changed its "initial default" mode or not (I have one horizontal and one vertical screen), so when I get back to that workspace and screen, I usually don't know which mode is currently active for all my containers there.&lt;/p&gt;
+
+&lt;p&gt;Therefore, I have observed myself doing the following steps rather too often:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;I try to open a terminal first to see what would happen,&lt;/li&gt;
+&lt;li&gt;close that terminal again,&lt;/li&gt;
+&lt;li&gt;possibly change the split mode, and&lt;/li&gt;
+&lt;li&gt;only then open the program I want.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If, instead, i3wm were to show me the current "split mode" the container is in, I would not need to check that first by trying to open a terminal to learn the split mode the container is in.&lt;/p&gt;
+
+&lt;p&gt;So my questions are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Am I doing anything wrong here, maybe?&lt;/li&gt;
+&lt;li&gt;If not, how can I get a [visual] indicator of the current container's split mode?&lt;/li&gt;
+&lt;/ol&gt;
+ </title><link>https://faq.i3wm.org/question/5355/show-split-mode-of-container-status-bar/?answer=5356#post-id-5356</link><description>Instead of testing by launching a container, just confirm $mod+v of $mod+h what setting you want, given this in your i3 config:
+
+bindsym $mod+v split vertical
+bindsym $mod+h split horizontal
+
+Also, if your containers have borders, and you didn't hide any of them, depending on your color settings, it will show a different color on the (right or bottom) side of the container to indicate the current split mode. I can't find any reference to this in the docs, and cannot say which setting exactly defines this, but if you try out some different colours for different types of borders, you might get to see what I mean.
+</description><pubDate>Tue, 20 Jan 2015 09:28:11 +0000</pubDate><guid>https://faq.i3wm.org/question/5355/show-split-mode-of-container-status-bar/?answer=5356#post-id-5356</guid></item><item><title>Comment by Michael Rose for &lt;p&gt;Instead of testing by launching a container, just confirm $mod+v of $mod+h what setting you want, given this in your i3 config:&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+v split vertical
+bindsym $mod+h split horizontal&lt;/p&gt;
+
+&lt;p&gt;Also, if your containers have borders, and you didn't hide any of them, depending on your color settings, it will show a different color on the (right or bottom) side of the container to indicate the current split mode. I can't find any reference to this in the docs, and cannot say which setting exactly defines this, but if you try out some different colours for different types of borders, you might get to see what I mean.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5355/show-split-mode-of-container-status-bar/?comment=5361#comment-5361</link><description>to configure the color of the border indication examine the docs regarding configuring colors
+the focused window is client.focused the 4th hex color is the indicator color like so
+
+    #class                  border  backgr  text    indicator
+
+    client.focused          #111111 #3D0DFF #FFFFFF #900000   
+
+</description><pubDate>Tue, 20 Jan 2015 19:19:15 +0000</pubDate><guid>https://faq.i3wm.org/question/5355/show-split-mode-of-container-status-bar/?comment=5361#comment-5361</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;A container can be in horizontal or vertical split mode. I might have changed its "initial default" mode or not (I have one horizontal and one vertical screen), so when I get back to that workspace and screen, I usually don't know which mode is currently active for all my containers there.&lt;/p&gt;
+
+&lt;p&gt;Therefore, I have observed myself doing the following steps rather too often:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;I try to open a terminal first to see what would happen,&lt;/li&gt;
+&lt;li&gt;close that terminal again,&lt;/li&gt;
+&lt;li&gt;possibly change the split mode, and&lt;/li&gt;
+&lt;li&gt;only then open the program I want.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If, instead, i3wm were to show me the current "split mode" the container is in, I would not need to check that first by trying to open a terminal to learn the split mode the container is in.&lt;/p&gt;
+
+&lt;p&gt;So my questions are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Am I doing anything wrong here, maybe?&lt;/li&gt;
+&lt;li&gt;If not, how can I get a [visual] indicator of the current container's split mode?&lt;/li&gt;
+&lt;/ol&gt;
+ </title><link>https://faq.i3wm.org/question/5355/show-split-mode-of-container-status-bar/?answer=5357#post-id-5357</link><description>Please see https://faq.i3wm.org/question/50/what-about-this-light-blue-line/
+
+I3 shows you where the next window will be placed by coloring the border on the side where the window will be placed a different color this is referred to as an indicator. If you have no border at all or have this color set to the same as your normal border color you will not have been able to see this.
+
+Regarding configuring colors please see.
+
+http://i3wm.org/docs/userguide.html#_changing_colors
+
+For better usability set the indicator to a distinctive color or just press whatever hotkey you have bound to split horizontal or split vertical before opening a new window to ensure it appears in the right location.</description><pubDate>Tue, 20 Jan 2015 09:37:24 +0000</pubDate><guid>https://faq.i3wm.org/question/5355/show-split-mode-of-container-status-bar/?answer=5357#post-id-5357</guid></item><item><title>Comment by fnl for &lt;p&gt;Please see &lt;a href="https://faq.i3wm.org/question/50/what-about-this-light-blue-line/"&gt;https://faq.i3wm.org/question/50/what...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I3 shows you where the next window will be placed by coloring the border on the side where the window will be placed a different color this is referred to as an indicator. If you have no border at all or have this color set to the same as your normal border color you will not have been able to see this.&lt;/p&gt;
+
+&lt;p&gt;Regarding configuring colors please see.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://i3wm.org/docs/userguide.html"&gt;http://i3wm.org/docs/userguide.html#&lt;/a&gt;&lt;em&gt;changing&lt;/em&gt;colors&lt;/p&gt;
+
+&lt;p&gt;For better usability set the indicator to a distinctive color or just press whatever hotkey you have bound to split horizontal or split vertical before opening a new window to ensure it appears in the right location.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5355/show-split-mode-of-container-status-bar/?comment=5360#comment-5360</link><description>Maybe it's just me, but I think this feature should be mentioned in the User Guide, in the "3. Tree" chapter, or even already in "2.2 Changing the container layout". With this indicator, it's much easier for me to get to the window layout I want, particularly when I come back to a workspace again.</description><pubDate>Tue, 20 Jan 2015 10:22:45 +0000</pubDate><guid>https://faq.i3wm.org/question/5355/show-split-mode-of-container-status-bar/?comment=5360#comment-5360</guid></item></channel></rss>

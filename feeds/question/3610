@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3610/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 17 Apr 2014 12:47:19 +0000</lastBuildDate><item><title>Launching when already on the desired workspace</title><link>https://faq.i3wm.org/question/3610/launching-when-already-on-the-desired-workspace/</link><description>I have a script that either launches a program on an explicitly named workspace, or switches to that workspace if the program is already running there as indicated by xdotool.
+
+Suppose I launch Google Chrome; it appears on workspace 'gc'. If I quit the program, and stay on workspace 'gc', then launch the program again, i3 switches to another workspace.
+
+I've hacked a solution as below, I'm just curious as to why i3 chooses another workspace as described. Can anyone explain please?
+
+    if [ -z "$W" ]; then
+        # Launch the program.                                                                                                                                        
+        if [ $# -ge 3 ]; then
+            if [ "$3" == 'none' ]; then
+        	cmd="exec ${@:4}"
+            else
+                # Changing to the previous workspace ensures that we                                                                                                 
+                # launch on the target workspace, when already there.                                                                                                
+                cmd="workspace_back_and_forth; workspace $3; exec ${@:4}"
+            fi
+            i3-msg "$cmd"
+	fi
+    else
+        # Focus the window.                                                                                                                                          
+	# Used 'sed' to escape any whitespace to suit 'i3-msg'.                                                                                                      
+	i3-msg "[$1=$(echo $2 | sed s/\\x20/\\\\x20/g)] focus"
+    fi
+ 
+PS Sorry, I haven't quite mastered the insertion of code snippets.</description><pubDate>Tue, 01 Apr 2014 16:14:09 +0000</pubDate><guid>https://faq.i3wm.org/question/3610/launching-when-already-on-the-desired-workspace/</guid></item><item><title>Comment by Michael for &lt;p&gt;I have a script that either launches a program on an explicitly named workspace, or switches to that workspace if the program is already running there as indicated by xdotool.&lt;/p&gt;
+
+&lt;p&gt;Suppose I launch Google Chrome; it appears on workspace 'gc'. If I quit the program, and stay on workspace 'gc', then launch the program again, i3 switches to another workspace.&lt;/p&gt;
+
+&lt;p&gt;I've hacked a solution as below, I'm just curious as to why i3 chooses another workspace as described. Can anyone explain please?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if [ -z "$W" ]; then
+    # Launch the program.                                                                                                                                        
+    if [ $# -ge 3 ]; then
+        if [ "$3" == 'none' ]; then
+        cmd="exec ${@:4}"
+        else
+            # Changing to the previous workspace ensures that we                                                                                                 
+            # launch on the target workspace, when already there.                                                                                                
+            cmd="workspace_back_and_forth; workspace $3; exec ${@:4}"
+        fi
+        i3-msg "$cmd"
+fi
+else
+    # Focus the window.                                                                                                                                          
+# Used 'sed' to escape any whitespace to suit 'i3-msg'.                                                                                                      
+i3-msg "[$1=$(echo $2 | sed s/\\x20/\\\\x20/g)] focus"
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PS Sorry, I haven't quite mastered the insertion of code snippets.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3610/launching-when-already-on-the-desired-workspace/?comment=3672#comment-3672</link><description>For the record: phyks posted this at https://github.com/i3/i3/issues/1224</description><pubDate>Thu, 17 Apr 2014 12:47:19 +0000</pubDate><guid>https://faq.i3wm.org/question/3610/launching-when-already-on-the-desired-workspace/?comment=3672#comment-3672</guid></item><item><title>Answer by Phyks for &lt;p&gt;I have a script that either launches a program on an explicitly named workspace, or switches to that workspace if the program is already running there as indicated by xdotool.&lt;/p&gt;
+
+&lt;p&gt;Suppose I launch Google Chrome; it appears on workspace 'gc'. If I quit the program, and stay on workspace 'gc', then launch the program again, i3 switches to another workspace.&lt;/p&gt;
+
+&lt;p&gt;I've hacked a solution as below, I'm just curious as to why i3 chooses another workspace as described. Can anyone explain please?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if [ -z "$W" ]; then
+    # Launch the program.                                                                                                                                        
+    if [ $# -ge 3 ]; then
+        if [ "$3" == 'none' ]; then
+        cmd="exec ${@:4}"
+        else
+            # Changing to the previous workspace ensures that we                                                                                                 
+            # launch on the target workspace, when already there.                                                                                                
+            cmd="workspace_back_and_forth; workspace $3; exec ${@:4}"
+        fi
+        i3-msg "$cmd"
+fi
+else
+    # Focus the window.                                                                                                                                          
+# Used 'sed' to escape any whitespace to suit 'i3-msg'.                                                                                                      
+i3-msg "[$1=$(echo $2 | sed s/\\x20/\\\\x20/g)] focus"
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PS Sorry, I haven't quite mastered the insertion of code snippets.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3610/launching-when-already-on-the-desired-workspace/?answer=3642#post-id-3642</link><description>Hi,
+
+I'm having exactly the same problem. This is because I have set `workspace_auto_back_and_forth yes` in my i3 config file (and I guess you did the same).
+
+Thanks for your hacky solution. But, I'm wondering if this is not a bug that should be fixed ? Or if a way to explicitly tell `move container to workspace` to not take this into account is / could be implemented ?
+
+In fact, I'm encountering a bit different problem as I want to move an existing window with a for_window statement. I could use xdotool, but that starts to become really hacky stuff.
+
+Thanks</description><pubDate>Sat, 12 Apr 2014 13:50:27 +0000</pubDate><guid>https://faq.i3wm.org/question/3610/launching-when-already-on-the-desired-workspace/?answer=3642#post-id-3642</guid></item><item><title>Comment by KJ44 for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm having exactly the same problem. This is because I have set &lt;code&gt;workspace_auto_back_and_forth yes&lt;/code&gt; in my i3 config file (and I guess you did the same).&lt;/p&gt;
+
+&lt;p&gt;Thanks for your hacky solution. But, I'm wondering if this is not a bug that should be fixed ? Or if a way to explicitly tell &lt;code&gt;move container to workspace&lt;/code&gt; to not take this into account is / could be implemented ?&lt;/p&gt;
+
+&lt;p&gt;In fact, I'm encountering a bit different problem as I want to move an existing window with a for_window statement. I could use xdotool, but that starts to become really hacky stuff.&lt;/p&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3610/launching-when-already-on-the-desired-workspace/?comment=3646#comment-3646</link><description>Before my workaround, I somehow, sometimes, managed to create a workspace called "back and forth", this may be a clue. I think, perhaps, the problem only appears with one empty (scratchpad) workspace and one tiled workspace.</description><pubDate>Mon, 14 Apr 2014 19:29:31 +0000</pubDate><guid>https://faq.i3wm.org/question/3610/launching-when-already-on-the-desired-workspace/?comment=3646#comment-3646</guid></item></channel></rss>

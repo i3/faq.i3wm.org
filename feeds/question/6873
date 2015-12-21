@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6873/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 11 Oct 2015 07:56:09 +0000</lastBuildDate><item><title>workspace number not working?</title><link>https://faq.i3wm.org/question/6873/workspace-number-not-working/</link><description>I'm using i3-4.10 and I'm having problems with "workspace number X".
+
+I have this:
+
+    workspace "0:hdmi"     output HDMI-0
+    workspace "1:main"     output DVI-D-1
+    workspace "2:extra"    output DVI-D-1
+
+    bindsym $mod+0         workspace number 0
+    bindsym $mod+1         workspace number 1
+    bindsym $mod+2         workspace number 2
+
+The result of this is workspaces named as: 0, 1 and 2, instead of "hdmi, main and extra".
+
+What am I doing wrong?</description><pubDate>Fri, 09 Oct 2015 23:34:00 +0000</pubDate><guid>https://faq.i3wm.org/question/6873/workspace-number-not-working/</guid></item><item><title>Answer by Airblader for &lt;p&gt;I'm using i3-4.10 and I'm having problems with "workspace number X".&lt;/p&gt;
+
+&lt;p&gt;I have this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace "0:hdmi"     output HDMI-0
+workspace "1:main"     output DVI-D-1
+workspace "2:extra"    output DVI-D-1
+
+bindsym $mod+0         workspace number 0
+bindsym $mod+1         workspace number 1
+bindsym $mod+2         workspace number 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The result of this is workspaces named as: 0, 1 and 2, instead of "hdmi, main and extra".&lt;/p&gt;
+
+&lt;p&gt;What am I doing wrong?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6873/workspace-number-not-working/?answer=6891#post-id-6891</link><description>This is expected behavior. Straight from our userguide:
+
+&gt; Also, you will be able to use workspace number 1 to switch to the workspace which begins with number 1, regardless of which name it has. This is useful in case you are changing the workspace’s name dynamically. To combine both commands you can use workspace number 1: mail to specify a default name if there’s currently no workspace starting with a "1". 
+
+My recommendation is to use variables to define workspace names and use those variables in all commands.</description><pubDate>Sat, 10 Oct 2015 22:11:31 +0000</pubDate><guid>https://faq.i3wm.org/question/6873/workspace-number-not-working/?answer=6891#post-id-6891</guid></item><item><title>Comment by tigrezno for &lt;p&gt;This is expected behavior. Straight from our userguide:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Also, you will be able to use workspace number 1 to switch to the workspace which begins with number 1, regardless of which name it has. This is useful in case you are changing the workspace’s name dynamically. To combine both commands you can use workspace number 1: mail to specify a default name if there’s currently no workspace starting with a "1". &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;My recommendation is to use variables to define workspace names and use those variables in all commands.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6873/workspace-number-not-working/?comment=6896#comment-6896</link><description>mmm then I misunderstood the guide. I thought that "workspace number" allowed you to specify only a number instead of the complete name, but it will ignore your workspace names in the config.</description><pubDate>Sun, 11 Oct 2015 07:56:09 +0000</pubDate><guid>https://faq.i3wm.org/question/6873/workspace-number-not-working/?comment=6896#comment-6896</guid></item><item><title>Answer by tigrezno for &lt;p&gt;I'm using i3-4.10 and I'm having problems with "workspace number X".&lt;/p&gt;
+
+&lt;p&gt;I have this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace "0:hdmi"     output HDMI-0
+workspace "1:main"     output DVI-D-1
+workspace "2:extra"    output DVI-D-1
+
+bindsym $mod+0         workspace number 0
+bindsym $mod+1         workspace number 1
+bindsym $mod+2         workspace number 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The result of this is workspaces named as: 0, 1 and 2, instead of "hdmi, main and extra".&lt;/p&gt;
+
+&lt;p&gt;What am I doing wrong?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6873/workspace-number-not-working/?answer=6880#post-id-6880</link><description>I changed the config as you said, like this: "1: main", "2: extra"... and tried with debug enabled.
+
+There is something wrong here. See my log for workspace "1: main"
+
+    config_parser.c:parse_config:313 - CONFIG(line  11): workspace "1: main"    output DVI-D-1
+    config_parser.c:parse_config:313 - CONFIG(line  16): bindsym Mod4+1              workspace number 1
+    config_directives.c:cfg_workspace:333 - Assigning workspace "1: main" to output "DVI-D-1"
+    Initializing first assigned workspace "1: main" for output "DVI-D-1"
+
+When I start i3 I get the "main" workspace, that's ok. But now:
+
+    commands_parser.c:parse_command:271 - COMMAND: *workspace number 2*
+    There is no workspace with number 2, creating a new one.
+    Creating new workspace "2"
+    Closing old workspace (0x2484af0 / 1: main), it is empty
+
+So workspace 2 is not recognized at all. After switching to workspace "1: main" again:
+
+    commands_parser.c:parse_command:271 - COMMAND: *workspace number 1*
+    There is no workspace with number 1, creating a new one.
+    Creating new workspace "1"
+
+And there, "1: main" workspace won't exists anymore.
+    </description><pubDate>Sat, 10 Oct 2015 08:42:27 +0000</pubDate><guid>https://faq.i3wm.org/question/6873/workspace-number-not-working/?answer=6880#post-id-6880</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;I'm using i3-4.10 and I'm having problems with "workspace number X".&lt;/p&gt;
+
+&lt;p&gt;I have this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace "0:hdmi"     output HDMI-0
+workspace "1:main"     output DVI-D-1
+workspace "2:extra"    output DVI-D-1
+
+bindsym $mod+0         workspace number 0
+bindsym $mod+1         workspace number 1
+bindsym $mod+2         workspace number 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The result of this is workspaces named as: 0, 1 and 2, instead of "hdmi, main and extra".&lt;/p&gt;
+
+&lt;p&gt;What am I doing wrong?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6873/workspace-number-not-working/?answer=6877#post-id-6877</link><description>example of a working config
+
+       workspace "1: test" output HDMI-0
+       bindsym $mod+1 workspace number 1
+
+Note the space between 1 and test
+</description><pubDate>Sat, 10 Oct 2015 02:50:47 +0000</pubDate><guid>https://faq.i3wm.org/question/6873/workspace-number-not-working/?answer=6877#post-id-6877</guid></item><item><title>Comment by tigrezno for &lt;p&gt;example of a working config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   workspace "1: test" output HDMI-0
+   bindsym $mod+1 workspace number 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the space between 1 and test&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6873/workspace-number-not-working/?comment=6881#comment-6881</link><description>Hi, I can't respond here due to character limitation, but I've added another top comment with log information.</description><pubDate>Sat, 10 Oct 2015 08:43:23 +0000</pubDate><guid>https://faq.i3wm.org/question/6873/workspace-number-not-working/?comment=6881#comment-6881</guid></item></channel></rss>

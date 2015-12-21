@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5979/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 10 May 2015 14:25:06 +0000</lastBuildDate><item><title>Fullscreen accross certain monitors?</title><link>https://faq.i3wm.org/question/5979/fullscreen-accross-certain-monitors/</link><description> Hi, does anyone know if its possible to have a window go fullscreen across a proper subset &gt;1 of one's monitors?  Allow me to clarify what I mean.  I have my monitors arranged as so (DP# just being the DisplayPort-#):
+
+    +------+-----+-----+-----+
+    | DP1  |     |     |     |
+    +------+ DP4 | DP5 | DP1 |
+    | DP9  |     |     |     |
+    +------+-----+-----+-----+
+
+What I was hoping to do is have a window go fullscreen on DP1, DP4, and DP5.  I realize there is the `fulscreen global` option, but because DP1 and DP9 have a lower PPI than DP1, 4, and 5, there is part of whatever cut off on the top of DP1 and the bottom of DP9.
+
+I realize this is a niche case that very little people (if any) car about, but on the off chance anyone knows, it'd be awesome if you could post the solution.  otherwise I might look into a feature request
+
+general info:
+
+    drake@unimatrix434:~$ i3 -v; uname -a
+    i3 version 4.7.2 (2014-01-23, branch "tags/4.7.2") © 2009-2013 Michael Stapelberg and contributors
+    Linux unimatrix434 3.13.0-44-generic #73-Ubuntu SMP Tue Dec 16 00:22:43 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+
+</description><pubDate>Sun, 10 May 2015 01:27:47 +0000</pubDate><guid>https://faq.i3wm.org/question/5979/fullscreen-accross-certain-monitors/</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;Hi, does anyone know if its possible to have a window go fullscreen across a proper subset &amp;gt;1 of one's monitors?  Allow me to clarify what I mean.  I have my monitors arranged as so (DP# just being the DisplayPort-#):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+------+-----+-----+-----+
+| DP1  |     |     |     |
++------+ DP4 | DP5 | DP1 |
+| DP9  |     |     |     |
++------+-----+-----+-----+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What I was hoping to do is have a window go fullscreen on DP1, DP4, and DP5.  I realize there is the &lt;code&gt;fulscreen global&lt;/code&gt; option, but because DP1 and DP9 have a lower PPI than DP1, 4, and 5, there is part of whatever cut off on the top of DP1 and the bottom of DP9.&lt;/p&gt;
+
+&lt;p&gt;I realize this is a niche case that very little people (if any) car about, but on the off chance anyone knows, it'd be awesome if you could post the solution.  otherwise I might look into a feature request&lt;/p&gt;
+
+&lt;p&gt;general info:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;drake@unimatrix434:~$ i3 -v; uname -a
+i3 version 4.7.2 (2014-01-23, branch "tags/4.7.2") © 2009-2013 Michael Stapelberg and contributors
+Linux unimatrix434 3.13.0-44-generic #73-Ubuntu SMP Tue Dec 16 00:22:43 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/5979/fullscreen-accross-certain-monitors/?answer=5983#post-id-5983</link><description>Make a script that floats the current window via i3-msg then uses xdotool to move it to the corner of dp4 and resize it to be the appropriate size to fit across all 3 monitors.  
+
+    sortafloat.sh      
+    #!/usr/bin/env sh
+    i3-msg floating enable
+    xdotool getactivewindow windowmove xcord ycord
+    xdotool getactivewindow windowsize xsize ysize
+
+bindsym something sortafloat.sh
+
+This is as close as you can get there is no way to be actually be fullscreen across more than one display but not all of them. </description><pubDate>Sun, 10 May 2015 04:30:56 +0000</pubDate><guid>https://faq.i3wm.org/question/5979/fullscreen-accross-certain-monitors/?answer=5983#post-id-5983</guid></item><item><title>Comment by drak3 for &lt;p&gt;Make a script that floats the current window via i3-msg then uses xdotool to move it to the corner of dp4 and resize it to be the appropriate size to fit across all 3 monitors.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sortafloat.sh      
+#!/usr/bin/env sh
+i3-msg floating enable
+xdotool getactivewindow windowmove xcord ycord
+xdotool getactivewindow windowsize xsize ysize
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;bindsym something sortafloat.sh&lt;/p&gt;
+
+&lt;p&gt;This is as close as you can get there is no way to be actually be fullscreen across more than one display but not all of them. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5979/fullscreen-accross-certain-monitors/?comment=5984#comment-5984</link><description>thanks for the help!  this kinda does what I was hoping.  doesn't work for fullscreen video though.  but I don't think thats unexpected.  it'll work well enough for everything else, though.</description><pubDate>Sun, 10 May 2015 14:25:06 +0000</pubDate><guid>https://faq.i3wm.org/question/5979/fullscreen-accross-certain-monitors/?comment=5984#comment-5984</guid></item></channel></rss>

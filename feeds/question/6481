@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6481/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 24 Aug 2015 16:13:31 +0000</lastBuildDate><item><title>How to set $TERMINAL with tmux</title><link>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/</link><description> Hey there,
+
+I tried to change the behaviour of i3-sensible-terminal to open my terminal of choice with tmux. In my case I tried to set $TERMINAL = "xfce4-terminal -e tmux"
+
+But the script of i3-sensible-terminal calls "command -v $TERMINAL" which prints 
+
+/usr/bin/xfce4-terminal 
+
+/usr/bin/tmux
+
+which indicates it thinks that $TERMINAL are actually two commands and not one thus only opening xfce4-terminal
+
+So how can I set it to use "xfce4-terminal -e tmux" as one command?
+
+Thanks :)</description><pubDate>Thu, 20 Aug 2015 13:29:56 +0000</pubDate><guid>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/</guid></item><item><title>Answer by i3convert for &lt;p&gt;Hey there,&lt;/p&gt;
+
+&lt;p&gt;I tried to change the behaviour of i3-sensible-terminal to open my terminal of choice with tmux. In my case I tried to set $TERMINAL = "xfce4-terminal -e tmux"&lt;/p&gt;
+
+&lt;p&gt;But the script of i3-sensible-terminal calls "command -v $TERMINAL" which prints &lt;/p&gt;
+
+&lt;p&gt;/usr/bin/xfce4-terminal &lt;/p&gt;
+
+&lt;p&gt;/usr/bin/tmux&lt;/p&gt;
+
+&lt;p&gt;which indicates it thinks that $TERMINAL are actually two commands and not one thus only opening xfce4-terminal&lt;/p&gt;
+
+&lt;p&gt;So how can I set it to use "xfce4-terminal -e tmux" as one command?&lt;/p&gt;
+
+&lt;p&gt;Thanks :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?answer=6482#post-id-6482</link><description> 1. Why do you run `i3-sensible-terminal` instead of just running `xfce4-terminal -e tmux`? Do you expect that `xfce4-terminal` would not be available?
+ 2. Another option would be to write your own script that would run the entire command. Create, say, `/home/your_user_name/bin/myterminal.sh` that looks as follows:
+
+        #!/bin/bash
+        xfce4-terminal -e tmux
+and set `TERMINAL=/home/your_user_name/bin/myterminal.sh`. The problem with this is that this won't check whether `xfce4-terminal` is available. The script `i3-sensible-terminal` will only check if `/home/your_user_name/bin/myterminal.sh` if available.
+ 3. If you run `i3-sensible-terminal` from your config file, your setting of the variable `$TERMINAL` may not be available. In this case you could still run `exec --no-startup-id bash -c "TERMINAL=/home/your_user_name/bin/myterminal.sh i3-sensible-terminal"` to provide the right value of `$TERMINAL`.
+
+The bottom line is the first answer. You probably just want to run your command instead of `i3-sensible terminal`.</description><pubDate>Thu, 20 Aug 2015 15:46:13 +0000</pubDate><guid>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?answer=6482#post-id-6482</guid></item><item><title>Comment by degill for &lt;ol&gt;
+&lt;li&gt;Why do you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; instead of just running &lt;code&gt;xfce4-terminal -e tmux&lt;/code&gt;? Do you expect that &lt;code&gt;xfce4-terminal&lt;/code&gt; would not be available?&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another option would be to write your own script that would run the entire command. Create, say, &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; that looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xfce4-terminal -e tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and set &lt;code&gt;TERMINAL=/home/your_user_name/bin/myterminal.sh&lt;/code&gt;. The problem with this is that this won't check whether &lt;code&gt;xfce4-terminal&lt;/code&gt; is available. The script &lt;code&gt;i3-sensible-terminal&lt;/code&gt; will only check if &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; if available.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;If you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; from your config file, your setting of the variable &lt;code&gt;$TERMINAL&lt;/code&gt; may not be available. In this case you could still run &lt;code&gt;exec --no-startup-id bash -c "TERMINAL=/home/your_user_name/bin/myterminal.sh i3-sensible-terminal"&lt;/code&gt; to provide the right value of &lt;code&gt;$TERMINAL&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The bottom line is the first answer. You probably just want to run your command instead of &lt;code&gt;i3-sensible terminal&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6483#comment-6483</link><description>Thanks i3convert. That does work. I just hoped I could get around without making a script for that (I have ton of them now). But thanks :)</description><pubDate>Thu, 20 Aug 2015 20:59:44 +0000</pubDate><guid>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6483#comment-6483</guid></item><item><title>Comment by degill for &lt;ol&gt;
+&lt;li&gt;Why do you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; instead of just running &lt;code&gt;xfce4-terminal -e tmux&lt;/code&gt;? Do you expect that &lt;code&gt;xfce4-terminal&lt;/code&gt; would not be available?&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another option would be to write your own script that would run the entire command. Create, say, &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; that looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xfce4-terminal -e tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and set &lt;code&gt;TERMINAL=/home/your_user_name/bin/myterminal.sh&lt;/code&gt;. The problem with this is that this won't check whether &lt;code&gt;xfce4-terminal&lt;/code&gt; is available. The script &lt;code&gt;i3-sensible-terminal&lt;/code&gt; will only check if &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; if available.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;If you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; from your config file, your setting of the variable &lt;code&gt;$TERMINAL&lt;/code&gt; may not be available. In this case you could still run &lt;code&gt;exec --no-startup-id bash -c "TERMINAL=/home/your_user_name/bin/myterminal.sh i3-sensible-terminal"&lt;/code&gt; to provide the right value of &lt;code&gt;$TERMINAL&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The bottom line is the first answer. You probably just want to run your command instead of &lt;code&gt;i3-sensible terminal&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6484#comment-6484</link><description>I am sorry. I jumped the gun. Your idea works, but not everywhere. When I issue "i3-sensible-terminal" it correctly executes my script and thus starting xfce4-terminal with tmux. But if I let i3 start a terminal for me (e.g. when I have a error in my i3/config) then my script is *not* executed :-/</description><pubDate>Thu, 20 Aug 2015 22:03:33 +0000</pubDate><guid>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6484#comment-6484</guid></item><item><title>Comment by i3convert for &lt;ol&gt;
+&lt;li&gt;Why do you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; instead of just running &lt;code&gt;xfce4-terminal -e tmux&lt;/code&gt;? Do you expect that &lt;code&gt;xfce4-terminal&lt;/code&gt; would not be available?&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another option would be to write your own script that would run the entire command. Create, say, &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; that looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xfce4-terminal -e tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and set &lt;code&gt;TERMINAL=/home/your_user_name/bin/myterminal.sh&lt;/code&gt;. The problem with this is that this won't check whether &lt;code&gt;xfce4-terminal&lt;/code&gt; is available. The script &lt;code&gt;i3-sensible-terminal&lt;/code&gt; will only check if &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; if available.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;If you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; from your config file, your setting of the variable &lt;code&gt;$TERMINAL&lt;/code&gt; may not be available. In this case you could still run &lt;code&gt;exec --no-startup-id bash -c "TERMINAL=/home/your_user_name/bin/myterminal.sh i3-sensible-terminal"&lt;/code&gt; to provide the right value of &lt;code&gt;$TERMINAL&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The bottom line is the first answer. You probably just want to run your command instead of &lt;code&gt;i3-sensible terminal&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6485#comment-6485</link><description>I don't understand your comment. What do you mean by "when I have a error in my i3/config"? Perhaps you should fix it :) More seriously, probably you are complaining some variable not being set when the script is running. I'm extending my answer.</description><pubDate>Fri, 21 Aug 2015 04:05:09 +0000</pubDate><guid>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6485#comment-6485</guid></item><item><title>Comment by i3convert for &lt;ol&gt;
+&lt;li&gt;Why do you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; instead of just running &lt;code&gt;xfce4-terminal -e tmux&lt;/code&gt;? Do you expect that &lt;code&gt;xfce4-terminal&lt;/code&gt; would not be available?&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another option would be to write your own script that would run the entire command. Create, say, &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; that looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xfce4-terminal -e tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and set &lt;code&gt;TERMINAL=/home/your_user_name/bin/myterminal.sh&lt;/code&gt;. The problem with this is that this won't check whether &lt;code&gt;xfce4-terminal&lt;/code&gt; is available. The script &lt;code&gt;i3-sensible-terminal&lt;/code&gt; will only check if &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; if available.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;If you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; from your config file, your setting of the variable &lt;code&gt;$TERMINAL&lt;/code&gt; may not be available. In this case you could still run &lt;code&gt;exec --no-startup-id bash -c "TERMINAL=/home/your_user_name/bin/myterminal.sh i3-sensible-terminal"&lt;/code&gt; to provide the right value of &lt;code&gt;$TERMINAL&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The bottom line is the first answer. You probably just want to run your command instead of &lt;code&gt;i3-sensible terminal&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6486#comment-6486</link><description>Finally, why don't you just run `xfce4-terminal -e tmux` when it's needed instead of `i3-sensible-terminal`?</description><pubDate>Fri, 21 Aug 2015 04:06:41 +0000</pubDate><guid>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6486#comment-6486</guid></item><item><title>Comment by degill for &lt;ol&gt;
+&lt;li&gt;Why do you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; instead of just running &lt;code&gt;xfce4-terminal -e tmux&lt;/code&gt;? Do you expect that &lt;code&gt;xfce4-terminal&lt;/code&gt; would not be available?&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another option would be to write your own script that would run the entire command. Create, say, &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; that looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xfce4-terminal -e tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and set &lt;code&gt;TERMINAL=/home/your_user_name/bin/myterminal.sh&lt;/code&gt;. The problem with this is that this won't check whether &lt;code&gt;xfce4-terminal&lt;/code&gt; is available. The script &lt;code&gt;i3-sensible-terminal&lt;/code&gt; will only check if &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; if available.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;If you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; from your config file, your setting of the variable &lt;code&gt;$TERMINAL&lt;/code&gt; may not be available. In this case you could still run &lt;code&gt;exec --no-startup-id bash -c "TERMINAL=/home/your_user_name/bin/myterminal.sh i3-sensible-terminal"&lt;/code&gt; to provide the right value of &lt;code&gt;$TERMINAL&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The bottom line is the first answer. You probably just want to run your command instead of &lt;code&gt;i3-sensible terminal&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6501#comment-6501</link><description>What I meant with "when I have an error" is: If, just as an example, I have an error in my i3config, then i3 pops up a i3-nagbar where I can hit "edit config" and i3 opens my prefered terminal, which is determined by i3-sensible-terminal :)</description><pubDate>Mon, 24 Aug 2015 16:10:40 +0000</pubDate><guid>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6501#comment-6501</guid></item><item><title>Comment by degill for &lt;ol&gt;
+&lt;li&gt;Why do you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; instead of just running &lt;code&gt;xfce4-terminal -e tmux&lt;/code&gt;? Do you expect that &lt;code&gt;xfce4-terminal&lt;/code&gt; would not be available?&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another option would be to write your own script that would run the entire command. Create, say, &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; that looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xfce4-terminal -e tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and set &lt;code&gt;TERMINAL=/home/your_user_name/bin/myterminal.sh&lt;/code&gt;. The problem with this is that this won't check whether &lt;code&gt;xfce4-terminal&lt;/code&gt; is available. The script &lt;code&gt;i3-sensible-terminal&lt;/code&gt; will only check if &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; if available.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;If you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; from your config file, your setting of the variable &lt;code&gt;$TERMINAL&lt;/code&gt; may not be available. In this case you could still run &lt;code&gt;exec --no-startup-id bash -c "TERMINAL=/home/your_user_name/bin/myterminal.sh i3-sensible-terminal"&lt;/code&gt; to provide the right value of &lt;code&gt;$TERMINAL&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The bottom line is the first answer. You probably just want to run your command instead of &lt;code&gt;i3-sensible terminal&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6502#comment-6502</link><description>Regarding 1) I want to use i3-sensible-terminal so that I can just use that in my scripts instead of hardcoding xfce4-terminal. Since i3-sensibal-terminal just ready $TERMINAL I can have the same script with different terminal (in theory). But if I hardcode xfce4-terminal I need to edit my scripts</description><pubDate>Mon, 24 Aug 2015 16:12:39 +0000</pubDate><guid>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6502#comment-6502</guid></item><item><title>Comment by degill for &lt;ol&gt;
+&lt;li&gt;Why do you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; instead of just running &lt;code&gt;xfce4-terminal -e tmux&lt;/code&gt;? Do you expect that &lt;code&gt;xfce4-terminal&lt;/code&gt; would not be available?&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another option would be to write your own script that would run the entire command. Create, say, &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; that looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xfce4-terminal -e tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and set &lt;code&gt;TERMINAL=/home/your_user_name/bin/myterminal.sh&lt;/code&gt;. The problem with this is that this won't check whether &lt;code&gt;xfce4-terminal&lt;/code&gt; is available. The script &lt;code&gt;i3-sensible-terminal&lt;/code&gt; will only check if &lt;code&gt;/home/your_user_name/bin/myterminal.sh&lt;/code&gt; if available.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;If you run &lt;code&gt;i3-sensible-terminal&lt;/code&gt; from your config file, your setting of the variable &lt;code&gt;$TERMINAL&lt;/code&gt; may not be available. In this case you could still run &lt;code&gt;exec --no-startup-id bash -c "TERMINAL=/home/your_user_name/bin/myterminal.sh i3-sensible-terminal"&lt;/code&gt; to provide the right value of &lt;code&gt;$TERMINAL&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The bottom line is the first answer. You probably just want to run your command instead of &lt;code&gt;i3-sensible terminal&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6503#comment-6503</link><description>I guess I will stick to hardcoding though since option 2) didnt seem to work :-/</description><pubDate>Mon, 24 Aug 2015 16:13:31 +0000</pubDate><guid>https://faq.i3wm.org/question/6481/how-to-set-terminal-with-tmux/?comment=6503#comment-6503</guid></item></channel></rss>

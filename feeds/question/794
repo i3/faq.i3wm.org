@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/794/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 05 Jun 2015 13:36:45 +0000</lastBuildDate><item><title>Some exec commands not being executed on i3 startup</title><link>https://faq.i3wm.org/question/794/some-exec-commands-not-being-executed-on-i3-startup/</link><description>I'm running i3 version 4.3 on Ubuntu Precise.
+
+I have the "exec" commands below in my .i3/config. (username removed), and am invoking i3 using the display manager (LightDM?) session, not using a .xsession.
+
+Only a subset of them appear to be taking any effect. Specifically, everything up to bluetooth-applet appears to be being executed correctly.
+
+* My "i3init" script is called correctly and the environment variables for gnome-keyring-daemon are correctly set.
+* Gnome-settings-daemon, nm-applet, and bluetooth-applet are all started, and the latter two appear in the dock.
+
+However:
+
+* My custom keybindings are not taking effect (remapping capslock to escape, remapping the "menu" key to "compose"
+* My .Xresources file doesn't appear to be being merged correctly; when I start uxrvt, all colours are set to pink. I need to run "xrdb -merge ..." again before my colourschemes are obeyed.
+* There are no instances of autocutsel running
+* My background image is not set.
+* Also, seemingly my custom configuration commands (e.g. mod+p -&gt; dmenu) are not being processed. This is resolved by hitting mod+shift+c after logging in, at which point my keybindings work. Not sure if this is the same root cause or something different; I'll open a separate question if required.
+
+All the commands below work successfully in executed in a terminal. I've tried them with and without the `--no-startup-id` option.
+
+Can anyone suggest some possible further debugging steps?
+
+&lt;pre&gt;
+    # i3init; starts gnome-keyring-daemon
+    exec "i3init"
+    
+    # Start some applets
+    exec "/usr/bin/gnome-settings-daemon"
+    exec "/usr/bin/nm-applet"
+    exec "/usr/bin/bluetooth-applet"
+    
+    # Xresources, xmodmap, start urxvt daemon
+    
+    exec --no-startup-id "/usr/bin/xmodmap /home/&lt;user&gt;/.keymap"
+    exec --no-startup-id "/usr/bin/urxvtd -q -f -o"
+    exec --no-startup-id "/usr/bin/xrdb -merge /home/&lt;user&gt;/.Xresources"
+    
+    # Start autocutsel to sync clipboards
+    exec --no-startup-id "/usr/bin/autocutsel -f -s PRIMARY"
+    exec --no-startup-id "/usr/bin/autocutsel -f -s CLIPBOARD"
+    exec --no-startup-id "/usr/bin/autocutsel -f -s SECONDARY"
+    
+    # Set background
+    exec --no-startup-id "/usr/bin/feh --bg-scale /path/to/some/image.jpg"
+&lt;/pre&gt;</description><pubDate>Thu, 22 Nov 2012 19:36:06 +0000</pubDate><guid>https://faq.i3wm.org/question/794/some-exec-commands-not-being-executed-on-i3-startup/</guid></item><item><title>Answer by Chris Jefferson for &lt;p&gt;I'm running i3 version 4.3 on Ubuntu Precise.&lt;/p&gt;
+
+&lt;p&gt;I have the "exec" commands below in my .i3/config. (username removed), and am invoking i3 using the display manager (LightDM?) session, not using a .xsession.&lt;/p&gt;
+
+&lt;p&gt;Only a subset of them appear to be taking any effect. Specifically, everything up to bluetooth-applet appears to be being executed correctly.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;My "i3init" script is called correctly and the environment variables for gnome-keyring-daemon are correctly set.&lt;/li&gt;
+&lt;li&gt;Gnome-settings-daemon, nm-applet, and bluetooth-applet are all started, and the latter two appear in the dock.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;However:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;My custom keybindings are not taking effect (remapping capslock to escape, remapping the "menu" key to "compose"&lt;/li&gt;
+&lt;li&gt;My .Xresources file doesn't appear to be being merged correctly; when I start uxrvt, all colours are set to pink. I need to run "xrdb -merge ..." again before my colourschemes are obeyed.&lt;/li&gt;
+&lt;li&gt;There are no instances of autocutsel running&lt;/li&gt;
+&lt;li&gt;My background image is not set.&lt;/li&gt;
+&lt;li&gt;Also, seemingly my custom configuration commands (e.g. mod+p -&amp;gt; dmenu) are not being processed. This is resolved by hitting mod+shift+c after logging in, at which point my keybindings work. Not sure if this is the same root cause or something different; I'll open a separate question if required.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All the commands below work successfully in executed in a terminal. I've tried them with and without the &lt;code&gt;--no-startup-id&lt;/code&gt; option.&lt;/p&gt;
+
+&lt;p&gt;Can anyone suggest some possible further debugging steps?&lt;/p&gt;
+
+&lt;pre&gt;    # i3init; starts gnome-keyring-daemon
+    exec "i3init"
+
+    # Start some applets
+    exec "/usr/bin/gnome-settings-daemon"
+    exec "/usr/bin/nm-applet"
+    exec "/usr/bin/bluetooth-applet"
+
+    # Xresources, xmodmap, start urxvt daemon
+
+    exec --no-startup-id "/usr/bin/xmodmap /home/&amp;lt;user&amp;gt;/.keymap"
+    exec --no-startup-id "/usr/bin/urxvtd -q -f -o"
+    exec --no-startup-id "/usr/bin/xrdb -merge /home/&amp;lt;user&amp;gt;/.Xresources"
+
+    # Start autocutsel to sync clipboards
+    exec --no-startup-id "/usr/bin/autocutsel -f -s PRIMARY"
+    exec --no-startup-id "/usr/bin/autocutsel -f -s CLIPBOARD"
+    exec --no-startup-id "/usr/bin/autocutsel -f -s SECONDARY"
+
+    # Set background
+    exec --no-startup-id "/usr/bin/feh --bg-scale /path/to/some/image.jpg"
+&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/794/some-exec-commands-not-being-executed-on-i3-startup/?answer=797#post-id-797</link><description>I think your problem is that exec does not take a quoted string when you want to pass arguments.
+
+Try replacing your strings with (for example)
+
+    exec --no-startup-id /usr/bin/autocutsel -f -s PRIMARY</description><pubDate>Thu, 22 Nov 2012 22:41:25 +0000</pubDate><guid>https://faq.i3wm.org/question/794/some-exec-commands-not-being-executed-on-i3-startup/?answer=797#post-id-797</guid></item><item><title>Comment by eddie-dunn for &lt;p&gt;I think your problem is that exec does not take a quoted string when you want to pass arguments.&lt;/p&gt;
+
+&lt;p&gt;Try replacing your strings with (for example)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id /usr/bin/autocutsel -f -s PRIMARY
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/794/some-exec-commands-not-being-executed-on-i3-startup/?comment=6074#comment-6074</link><description>Do you know why arguments can't be passed in quoted strings? Seems a bit counter-intuitive, as I usually encounter the reverse case, i.e. that extra arguments can't be passed unless the command is quoted.</description><pubDate>Fri, 05 Jun 2015 13:36:45 +0000</pubDate><guid>https://faq.i3wm.org/question/794/some-exec-commands-not-being-executed-on-i3-startup/?comment=6074#comment-6074</guid></item></channel></rss>

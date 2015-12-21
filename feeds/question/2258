@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2258/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 30 Jul 2013 01:05:32 +0000</lastBuildDate><item><title>MPD i3status</title><link>https://faq.i3wm.org/question/2258/mpd-i3status/</link><description>Is there a way that I can put what song MPD is playing on i3status? If so can someone push in the right direction?
+
+</description><pubDate>Mon, 22 Jul 2013 18:44:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/</guid></item><item><title>Answer by sycamorex for &lt;p&gt;Is there a way that I can put what song MPD is playing on i3status? If so can someone push in the right direction?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?answer=2261#post-id-2261</link><description>If you use ncmpcpp as a client, you could save it in eg. ~/.i3status.sh:
+
+    i3status --config ~/.i3status.conf | while :
+    do
+            playing=$(ncmpcpp --now-playing)
+            echo "$playing" || exit 1
+    done
+
+
+In i3 config, you can point to that script in the bar { } section:
+
+    status_command /home/user/.i3status.sh
+
+
+EDIT/UPDATE:
+To combine i3status output with ncmpcpp:
+
+    i3status --config ~/.i3status.conf | while :
+    do
+            read line
+            playing=$(ncmpcpp --now-playing)
+            echo "$playing | $line" || exit 1
+    done
+
+As Michael pointed out below, unless you keep your .i3config.conf in a different folder from the default (~/) or your i3config file has a custom file name, the "--config ~/.i3status.conf" part is unnecessary.
+</description><pubDate>Tue, 23 Jul 2013 18:06:33 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?answer=2261#post-id-2261</guid></item><item><title>Comment by sycamorex for &lt;p&gt;If you use ncmpcpp as a client, you could save it in eg. ~/.i3status.sh:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In i3 config, you can point to that script in the bar { } section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;status_command /home/user/.i3status.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;EDIT/UPDATE:
+To combine i3status output with ncmpcpp:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        read line
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing | $line" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As Michael pointed out below, unless you keep your .i3config.conf in a different folder from the default (~/) or your i3config file has a custom file name, the "--config ~/.i3status.conf" part is unnecessary.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2267#comment-2267</link><description>See my update above.</description><pubDate>Wed, 24 Jul 2013 17:16:11 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2267#comment-2267</guid></item><item><title>Comment by sycamorex for &lt;p&gt;If you use ncmpcpp as a client, you could save it in eg. ~/.i3status.sh:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In i3 config, you can point to that script in the bar { } section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;status_command /home/user/.i3status.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;EDIT/UPDATE:
+To combine i3status output with ncmpcpp:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        read line
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing | $line" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As Michael pointed out below, unless you keep your .i3config.conf in a different folder from the default (~/) or your i3config file has a custom file name, the "--config ~/.i3status.conf" part is unnecessary.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2269#comment-2269</link><description>Obviously, you need to modify the path to your i3status config file and make sure the relevant entries in that file are uncommented.</description><pubDate>Wed, 24 Jul 2013 20:02:45 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2269#comment-2269</guid></item><item><title>Comment by sycamorex for &lt;p&gt;If you use ncmpcpp as a client, you could save it in eg. ~/.i3status.sh:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In i3 config, you can point to that script in the bar { } section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;status_command /home/user/.i3status.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;EDIT/UPDATE:
+To combine i3status output with ncmpcpp:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        read line
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing | $line" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As Michael pointed out below, unless you keep your .i3config.conf in a different folder from the default (~/) or your i3config file has a custom file name, the "--config ~/.i3status.conf" part is unnecessary.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2284#comment-2284</link><description>True. I keep it (with different names on my computer) as I have separate i3status configs for each monitor.</description><pubDate>Sat, 27 Jul 2013 15:56:09 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2284#comment-2284</guid></item><item><title>Comment by mainlygreen for &lt;p&gt;If you use ncmpcpp as a client, you could save it in eg. ~/.i3status.sh:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In i3 config, you can point to that script in the bar { } section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;status_command /home/user/.i3status.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;EDIT/UPDATE:
+To combine i3status output with ncmpcpp:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        read line
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing | $line" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As Michael pointed out below, unless you keep your .i3config.conf in a different folder from the default (~/) or your i3config file has a custom file name, the "--config ~/.i3status.conf" part is unnecessary.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2262#comment-2262</link><description>Thank you so much that worked! Is there a way I can make it show i3status and the script?</description><pubDate>Wed, 24 Jul 2013 02:45:51 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2262#comment-2262</guid></item><item><title>Comment by mainlygreen for &lt;p&gt;If you use ncmpcpp as a client, you could save it in eg. ~/.i3status.sh:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In i3 config, you can point to that script in the bar { } section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;status_command /home/user/.i3status.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;EDIT/UPDATE:
+To combine i3status output with ncmpcpp:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        read line
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing | $line" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As Michael pointed out below, unless you keep your .i3config.conf in a different folder from the default (~/) or your i3config file has a custom file name, the "--config ~/.i3status.conf" part is unnecessary.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2268#comment-2268</link><description>I tried that but it only showed the ncmpcpp output </description><pubDate>Wed, 24 Jul 2013 19:39:54 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2268#comment-2268</guid></item><item><title>Comment by Michael for &lt;p&gt;If you use ncmpcpp as a client, you could save it in eg. ~/.i3status.sh:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In i3 config, you can point to that script in the bar { } section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;status_command /home/user/.i3status.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;EDIT/UPDATE:
+To combine i3status output with ncmpcpp:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        read line
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing | $line" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As Michael pointed out below, unless you keep your .i3config.conf in a different folder from the default (~/) or your i3config file has a custom file name, the "--config ~/.i3status.conf" part is unnecessary.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2281#comment-2281</link><description>The --config ~/.i3status.conf is unnecessary, since that is the default location.</description><pubDate>Sat, 27 Jul 2013 15:32:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2281#comment-2281</guid></item><item><title>Comment by mainlygreen for &lt;p&gt;If you use ncmpcpp as a client, you could save it in eg. ~/.i3status.sh:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In i3 config, you can point to that script in the bar { } section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;status_command /home/user/.i3status.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;EDIT/UPDATE:
+To combine i3status output with ncmpcpp:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status --config ~/.i3status.conf | while :
+do
+        read line
+        playing=$(ncmpcpp --now-playing)
+        echo "$playing | $line" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As Michael pointed out below, unless you keep your .i3config.conf in a different folder from the default (~/) or your i3config file has a custom file name, the "--config ~/.i3status.conf" part is unnecessary.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2270#comment-2270</link><description>Sorry about that I am kind of new to this so I didn't know what to check. Thanks again!</description><pubDate>Wed, 24 Jul 2013 20:22:53 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2270#comment-2270</guid></item><item><title>Answer by sur5r for &lt;p&gt;Is there a way that I can put what song MPD is playing on i3status? If so can someone push in the right direction?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?answer=2260#post-id-2260</link><description>There's a section called "EXTERNAL SCRIPTS/PROGRAMS WITH I3STATUS" in the man page for i3status. I think that should help you.</description><pubDate>Tue, 23 Jul 2013 10:48:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?answer=2260#post-id-2260</guid></item><item><title>Answer by enkore for &lt;p&gt;Is there a way that I can put what song MPD is playing on i3status? If so can someone push in the right direction?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?answer=2304#post-id-2304</link><description>I'd recommend using i3pystatus, which has a module for this built in</description><pubDate>Tue, 30 Jul 2013 00:53:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?answer=2304#post-id-2304</guid></item><item><title>Comment by mainlygreen for &lt;p&gt;I'd recommend using i3pystatus, which has a module for this built in&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2306#comment-2306</link><description>I would use it but I am kind of new to this and its confusing for me so I decided not to.</description><pubDate>Tue, 30 Jul 2013 01:05:32 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?comment=2306#comment-2306</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;Is there a way that I can put what song MPD is playing on i3status? If so can someone push in the right direction?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2258/mpd-i3status/?answer=2271#post-id-2271</link><description>You could use conky alternatively.</description><pubDate>Thu, 25 Jul 2013 00:44:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2258/mpd-i3status/?answer=2271#post-id-2271</guid></item></channel></rss>

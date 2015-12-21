@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/564/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 01 Oct 2012 19:10:03 +0000</lastBuildDate><item><title>Changing colors dynamically (dark/light theme)</title><link>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/</link><description>I would like to switch between a dark and a light theme, preferably with a single keybinding that toggles between the two.
+
+Using any color configuration statements, like `client.unfocused`, in a `bindsym` didn't work. I guess that's because `client.unfocused` is not command and `bindsym` requires a command.
+
+**Is there a way to change colors dynamically?**
+
+----
+
+My current workaround
+
+I have split my config files in my `~/.i3` directory into several files, like `00config` and `01theme`.
+The latter really is a symlink to the current theme file.
+I reload my config like this:
+
+    bindsym $mod+Shift+R  exec "cat ~/.i3/[0-9][0-9]* &gt;~/.i3/config &amp;&amp; i3-msg reload"
+
+This works, but I wondered if there is an easier, simpler way to do it.</description><pubDate>Sun, 30 Sep 2012 20:55:36 +0000</pubDate><guid>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/</guid></item><item><title>Comment by weinzierl for &lt;p&gt;I would like to switch between a dark and a light theme, preferably with a single keybinding that toggles between the two.&lt;/p&gt;
+
+&lt;p&gt;Using any color configuration statements, like &lt;code&gt;client.unfocused&lt;/code&gt;, in a &lt;code&gt;bindsym&lt;/code&gt; didn't work. I guess that's because &lt;code&gt;client.unfocused&lt;/code&gt; is not command and &lt;code&gt;bindsym&lt;/code&gt; requires a command.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Is there a way to change colors dynamically?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;My current workaround&lt;/p&gt;
+
+&lt;p&gt;I have split my config files in my &lt;code&gt;~/.i3&lt;/code&gt; directory into several files, like &lt;code&gt;00config&lt;/code&gt; and &lt;code&gt;01theme&lt;/code&gt;.
+The latter really is a symlink to the current theme file.
+I reload my config like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+R  exec "cat ~/.i3/[0-9][0-9]* &amp;gt;~/.i3/config &amp;amp;&amp;amp; i3-msg reload"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This works, but I wondered if there is an easier, simpler way to do it.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?comment=572#comment-572</link><description>@Izap: You could set up something similar for xterm. You would build up either ~/.Xdefaults or ~/.Xresources from fragment files and then instead of reloading i3 you would xrdb load .Xresources or .Xdefaults respectively.</description><pubDate>Mon, 01 Oct 2012 19:10:03 +0000</pubDate><guid>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?comment=572#comment-572</guid></item><item><title>Comment by lzap for &lt;p&gt;I would like to switch between a dark and a light theme, preferably with a single keybinding that toggles between the two.&lt;/p&gt;
+
+&lt;p&gt;Using any color configuration statements, like &lt;code&gt;client.unfocused&lt;/code&gt;, in a &lt;code&gt;bindsym&lt;/code&gt; didn't work. I guess that's because &lt;code&gt;client.unfocused&lt;/code&gt; is not command and &lt;code&gt;bindsym&lt;/code&gt; requires a command.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Is there a way to change colors dynamically?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;My current workaround&lt;/p&gt;
+
+&lt;p&gt;I have split my config files in my &lt;code&gt;~/.i3&lt;/code&gt; directory into several files, like &lt;code&gt;00config&lt;/code&gt; and &lt;code&gt;01theme&lt;/code&gt;.
+The latter really is a symlink to the current theme file.
+I reload my config like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+R  exec "cat ~/.i3/[0-9][0-9]* &amp;gt;~/.i3/config &amp;amp;&amp;amp; i3-msg reload"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This works, but I wondered if there is an easier, simpler way to do it.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?comment=569#comment-569</link><description>Interesting, can I do the same for xterms only? </description><pubDate>Mon, 01 Oct 2012 13:22:33 +0000</pubDate><guid>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?comment=569#comment-569</guid></item><item><title>Answer by Michael for &lt;p&gt;I would like to switch between a dark and a light theme, preferably with a single keybinding that toggles between the two.&lt;/p&gt;
+
+&lt;p&gt;Using any color configuration statements, like &lt;code&gt;client.unfocused&lt;/code&gt;, in a &lt;code&gt;bindsym&lt;/code&gt; didn't work. I guess that's because &lt;code&gt;client.unfocused&lt;/code&gt; is not command and &lt;code&gt;bindsym&lt;/code&gt; requires a command.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Is there a way to change colors dynamically?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;My current workaround&lt;/p&gt;
+
+&lt;p&gt;I have split my config files in my &lt;code&gt;~/.i3&lt;/code&gt; directory into several files, like &lt;code&gt;00config&lt;/code&gt; and &lt;code&gt;01theme&lt;/code&gt;.
+The latter really is a symlink to the current theme file.
+I reload my config like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+R  exec "cat ~/.i3/[0-9][0-9]* &amp;gt;~/.i3/config &amp;amp;&amp;amp; i3-msg reload"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This works, but I wondered if there is an easier, simpler way to do it.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?answer=565#post-id-565</link><description>Your "workaround" is the intended way to do this until we implement setting (parts of) the config at runtime.</description><pubDate>Sun, 30 Sep 2012 20:56:54 +0000</pubDate><guid>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?answer=565#post-id-565</guid></item><item><title>Comment by weinzierl for &lt;p&gt;Your "workaround" is the intended way to do this until we implement setting (parts of) the config at runtime.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?comment=571#comment-571</link><description>Many thanks. Posted the question about variable names under http://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/</description><pubDate>Mon, 01 Oct 2012 19:05:51 +0000</pubDate><guid>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?comment=571#comment-571</guid></item><item><title>Comment by Michael for &lt;p&gt;Your "workaround" is the intended way to do this until we implement setting (parts of) the config at runtime.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?comment=568#comment-568</link><description>Correct, there are commands and configuration directives. For the variables, you might need to change the order. But please open a new question for each problem/question you are having.</description><pubDate>Mon, 01 Oct 2012 10:27:30 +0000</pubDate><guid>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?comment=568#comment-568</guid></item><item><title>Comment by weinzierl for &lt;p&gt;Your "workaround" is the intended way to do this until we implement setting (parts of) the config at runtime.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?comment=566#comment-566</link><description>Just to be sure if I understand correctly: There are commands (what is described in "6. List of commands" in the manual) and there are other things, let's call them statements. Commands can be used in bindsym and sent with i3-msg, statements are read only when the configuration is loaded.</description><pubDate>Sun, 30 Sep 2012 21:17:10 +0000</pubDate><guid>https://faq.i3wm.org/question/564/changing-colors-dynamically-darklight-theme/?comment=566#comment-566</guid></item></channel></rss>

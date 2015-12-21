@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4818/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 08 Oct 2015 09:39:59 +0000</lastBuildDate><item><title>Screenshot of focused window</title><link>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/</link><description>I want to be able to do screen shots of the focused by pressing a button. Should be easy.
+
+## First try: scrot
+_(since it seems to be the most recomended tool for screenshots in i3wm)_
+######Whole screen
+
+&gt; bindsym XF86Display exec "scrot ~/Downloads/Screenshot_%Y-%m-%d_%H:%M:%S.png"
+
+Works fine
+######Focussed Window
+Well... Some people in the internet seem to think there is a -u flag for scrot but in the yum-installed Fedora version (0.8) there definitely is not. Bad luck.
+
+## Second try: ImageMagick
+_(since many people tell me it can do anything I want)_
+
+######Whole screen
+
+
+&gt; bindsym XF86Display exec "import -window root ~/Downloads/Screenshot_$(date +%F_%H:%M:%S).png"
+
+The date is not as elegant as in scrot, works fine though.
+
+######Focussed window
+
+Tricky. I don't know the id of the focused window. But there is a workaround:
+
+&gt; import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` ~/Downloads/Screenshot_$(date +%F_%H:%M:%S).png
+
+I can click on the window I want to screenshot and there we go. A bit of a hack (found here: http: //www .trueelena.org/computers/howto/screenshots_with_imagemagick.html ), but anyway. Works in the console. But in i3config:
+
+&gt; bindsym XF86Display exec "import -window `xwininfo | awk '/.*Window id:.*/ {print $4}'` ~/Downloads/Screenshot_$(date +%F_%H:%M:%S).png"
+
+Doesn't work. I am asked to click on a window, but no screenshot is saved. I am not sure why.
+
+Could someone give me a hand, please? </description><pubDate>Tue, 21 Oct 2014 18:28:52 +0000</pubDate><guid>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/</guid></item><item><title>Answer by SpicyCat for &lt;p&gt;I want to be able to do screen shots of the focused by pressing a button. Should be easy.&lt;/p&gt;
+
+&lt;h2&gt;First try: scrot&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;(since it seems to be the most recomended tool for screenshots in i3wm)&lt;/em&gt;&lt;/p&gt;
+
+&lt;h6&gt;Whole screen&lt;/h6&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym XF86Display exec "scrot ~/Downloads/Screenshot&lt;em&gt;%Y-%m-%d&lt;/em&gt;%H:%M:%S.png"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Works fine&lt;/p&gt;
+
+&lt;h6&gt;Focussed Window&lt;/h6&gt;
+
+&lt;p&gt;Well... Some people in the internet seem to think there is a -u flag for scrot but in the yum-installed Fedora version (0.8) there definitely is not. Bad luck.&lt;/p&gt;
+
+&lt;h2&gt;Second try: ImageMagick&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;(since many people tell me it can do anything I want)&lt;/em&gt;&lt;/p&gt;
+
+&lt;h6&gt;Whole screen&lt;/h6&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym XF86Display exec "import -window root ~/Downloads/Screenshot&lt;em&gt;$(date +%F&lt;/em&gt;%H:%M:%S).png"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The date is not as elegant as in scrot, works fine though.&lt;/p&gt;
+
+&lt;h6&gt;Focussed window&lt;/h6&gt;
+
+&lt;p&gt;Tricky. I don't know the id of the focused window. But there is a workaround:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;import -window &lt;code&gt;xwininfo | awk '/.*Window id:.*/ {print $4}'&lt;/code&gt; ~/Downloads/Screenshot&lt;em&gt;$(date +%F&lt;/em&gt;%H:%M:%S).png&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I can click on the window I want to screenshot and there we go. A bit of a hack (found here: http: //www .trueelena.org/computers/howto/screenshots&lt;em&gt;with&lt;/em&gt;imagemagick.html ), but anyway. Works in the console. But in i3config:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym XF86Display exec "import -window &lt;code&gt;xwininfo | awk '/.*Window id:.*/ {print $4}'&lt;/code&gt; ~/Downloads/Screenshot&lt;em&gt;$(date +%F&lt;/em&gt;%H:%M:%S).png"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Doesn't work. I am asked to click on a window, but no screenshot is saved. I am not sure why.&lt;/p&gt;
+
+&lt;p&gt;Could someone give me a hand, please? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/?answer=6855#post-id-6855</link><description> **ksnapshot**
+
+[Check my answer to another similar question](https://faq.i3wm.org/question/202/what-do-you-guys-use-for-printscreen/?answer=6567#post-id-6567)</description><pubDate>Thu, 08 Oct 2015 09:39:59 +0000</pubDate><guid>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/?answer=6855#post-id-6855</guid></item><item><title>Answer by elviejo79 for &lt;p&gt;I want to be able to do screen shots of the focused by pressing a button. Should be easy.&lt;/p&gt;
+
+&lt;h2&gt;First try: scrot&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;(since it seems to be the most recomended tool for screenshots in i3wm)&lt;/em&gt;&lt;/p&gt;
+
+&lt;h6&gt;Whole screen&lt;/h6&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym XF86Display exec "scrot ~/Downloads/Screenshot&lt;em&gt;%Y-%m-%d&lt;/em&gt;%H:%M:%S.png"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Works fine&lt;/p&gt;
+
+&lt;h6&gt;Focussed Window&lt;/h6&gt;
+
+&lt;p&gt;Well... Some people in the internet seem to think there is a -u flag for scrot but in the yum-installed Fedora version (0.8) there definitely is not. Bad luck.&lt;/p&gt;
+
+&lt;h2&gt;Second try: ImageMagick&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;(since many people tell me it can do anything I want)&lt;/em&gt;&lt;/p&gt;
+
+&lt;h6&gt;Whole screen&lt;/h6&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym XF86Display exec "import -window root ~/Downloads/Screenshot&lt;em&gt;$(date +%F&lt;/em&gt;%H:%M:%S).png"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The date is not as elegant as in scrot, works fine though.&lt;/p&gt;
+
+&lt;h6&gt;Focussed window&lt;/h6&gt;
+
+&lt;p&gt;Tricky. I don't know the id of the focused window. But there is a workaround:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;import -window &lt;code&gt;xwininfo | awk '/.*Window id:.*/ {print $4}'&lt;/code&gt; ~/Downloads/Screenshot&lt;em&gt;$(date +%F&lt;/em&gt;%H:%M:%S).png&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I can click on the window I want to screenshot and there we go. A bit of a hack (found here: http: //www .trueelena.org/computers/howto/screenshots&lt;em&gt;with&lt;/em&gt;imagemagick.html ), but anyway. Works in the console. But in i3config:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym XF86Display exec "import -window &lt;code&gt;xwininfo | awk '/.*Window id:.*/ {print $4}'&lt;/code&gt; ~/Downloads/Screenshot&lt;em&gt;$(date +%F&lt;/em&gt;%H:%M:%S).png"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Doesn't work. I am asked to click on a window, but no screenshot is saved. I am not sure why.&lt;/p&gt;
+
+&lt;p&gt;Could someone give me a hand, please? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/?answer=6754#post-id-6754</link><description> When I use:
+
+    $scrot --version
+    scrot version 0.8
+
+
+you get the -u flag which:
+&gt; -u, --focused             use the currently focused window
+
+and doing:
+
+    ~$ scrot -u '%Y%m%d_%H%M%S.png' -e 'mv $f ~/images/shots/'
+
+Does in fact create a screeshot of the currently focused window and sends it to the  /shots/ directory.
+
+For further reference -s: 
+
+    -s, --select              interactively choose a window or rectangle
+                                   with the mouse
+
+That is th option that I prefer</description><pubDate>Wed, 30 Sep 2015 22:44:38 +0000</pubDate><guid>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/?answer=6754#post-id-6754</guid></item><item><title>Answer by cee for &lt;p&gt;I want to be able to do screen shots of the focused by pressing a button. Should be easy.&lt;/p&gt;
+
+&lt;h2&gt;First try: scrot&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;(since it seems to be the most recomended tool for screenshots in i3wm)&lt;/em&gt;&lt;/p&gt;
+
+&lt;h6&gt;Whole screen&lt;/h6&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym XF86Display exec "scrot ~/Downloads/Screenshot&lt;em&gt;%Y-%m-%d&lt;/em&gt;%H:%M:%S.png"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Works fine&lt;/p&gt;
+
+&lt;h6&gt;Focussed Window&lt;/h6&gt;
+
+&lt;p&gt;Well... Some people in the internet seem to think there is a -u flag for scrot but in the yum-installed Fedora version (0.8) there definitely is not. Bad luck.&lt;/p&gt;
+
+&lt;h2&gt;Second try: ImageMagick&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;(since many people tell me it can do anything I want)&lt;/em&gt;&lt;/p&gt;
+
+&lt;h6&gt;Whole screen&lt;/h6&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym XF86Display exec "import -window root ~/Downloads/Screenshot&lt;em&gt;$(date +%F&lt;/em&gt;%H:%M:%S).png"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The date is not as elegant as in scrot, works fine though.&lt;/p&gt;
+
+&lt;h6&gt;Focussed window&lt;/h6&gt;
+
+&lt;p&gt;Tricky. I don't know the id of the focused window. But there is a workaround:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;import -window &lt;code&gt;xwininfo | awk '/.*Window id:.*/ {print $4}'&lt;/code&gt; ~/Downloads/Screenshot&lt;em&gt;$(date +%F&lt;/em&gt;%H:%M:%S).png&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I can click on the window I want to screenshot and there we go. A bit of a hack (found here: http: //www .trueelena.org/computers/howto/screenshots&lt;em&gt;with&lt;/em&gt;imagemagick.html ), but anyway. Works in the console. But in i3config:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bindsym XF86Display exec "import -window &lt;code&gt;xwininfo | awk '/.*Window id:.*/ {print $4}'&lt;/code&gt; ~/Downloads/Screenshot&lt;em&gt;$(date +%F&lt;/em&gt;%H:%M:%S).png"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Doesn't work. I am asked to click on a window, but no screenshot is saved. I am not sure why.&lt;/p&gt;
+
+&lt;p&gt;Could someone give me a hand, please? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/?answer=4822#post-id-4822</link><description>I rarely use screenshots.  
+But when I do, I use scrot, select the region I want and open gimp.  
+That all with one keyboard shortcut. What's not to love about i3 ;-)
+
+    bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ &amp;&amp; gimp /tmp/$f' --release
+
+Or for the whole screen
+
+    bindsym Ctrl+Print exec scrot -e 'mv $f /tmp/ &amp;&amp; gimp /tmp/$f'
+
+Disclaimer:  
+The two lines are shamelessly taken from another entry in this forum.</description><pubDate>Tue, 21 Oct 2014 21:10:31 +0000</pubDate><guid>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/?answer=4822#post-id-4822</guid></item><item><title>Comment by cee for &lt;p&gt;I rarely use screenshots. &lt;br/&gt;
+But when I do, I use scrot, select the region I want and open gimp. &lt;br/&gt;
+That all with one keyboard shortcut. What's not to love about i3 ;-)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ &amp;amp;&amp;amp; gimp /tmp/$f' --release
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or for the whole screen&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Ctrl+Print exec scrot -e 'mv $f /tmp/ &amp;amp;&amp;amp; gimp /tmp/$f'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Disclaimer: &lt;br/&gt;
+The two lines are shamelessly taken from another entry in this forum.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/?comment=4829#comment-4829</link><description>Yes, that is true. But as I said I rarely use screenshots and so this is sufficient for me.</description><pubDate>Wed, 22 Oct 2014 08:49:03 +0000</pubDate><guid>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/?comment=4829#comment-4829</guid></item><item><title>Comment by Kaligule for &lt;p&gt;I rarely use screenshots. &lt;br/&gt;
+But when I do, I use scrot, select the region I want and open gimp. &lt;br/&gt;
+That all with one keyboard shortcut. What's not to love about i3 ;-)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ &amp;amp;&amp;amp; gimp /tmp/$f' --release
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or for the whole screen&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Ctrl+Print exec scrot -e 'mv $f /tmp/ &amp;amp;&amp;amp; gimp /tmp/$f'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Disclaimer: &lt;br/&gt;
+The two lines are shamelessly taken from another entry in this forum.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/?comment=4827#comment-4827</link><description>This is ok, but doesn't solve the problem of screenshoting exactly 1 window. I don't want to select a region, but shoot the active window.</description><pubDate>Wed, 22 Oct 2014 08:33:37 +0000</pubDate><guid>https://faq.i3wm.org/question/4818/screenshot-of-focused-window/?comment=4827#comment-4827</guid></item></channel></rss>

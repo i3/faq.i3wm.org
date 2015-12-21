@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3429/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 17 Apr 2014 12:58:15 +0000</lastBuildDate><item><title>Weird startup workspace behavior</title><link>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/</link><description>I have this code snippet in my config. It opens up the "Web" workspace just fine, but with the others, they just open up on the same workspace. I'm confused. It seems random on the workspace that the rest of them open on. It's really weird. Did I make a typo that I can't see for the life of me?    
+
+
+    #Startup Application on named workspaces
+    exec i3-msg 'workspace 1:Web ; exec chromium' 
+    exec i3-msg 'workspace 2:Term ; exec rxvt -rv'
+    exec i3-msg 'workspace 8:IRC ; exec rxvt -rv -e irssi'
+    exec i3-msg 'workspace 9:Music ; exec clementine'</description><pubDate>Wed, 26 Feb 2014 14:58:07 +0000</pubDate><guid>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/</guid></item><item><title>Comment by dylan for &lt;p&gt;I have this code snippet in my config. It opens up the "Web" workspace just fine, but with the others, they just open up on the same workspace. I'm confused. It seems random on the workspace that the rest of them open on. It's really weird. Did I make a typo that I can't see for the life of me?    &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Startup Application on named workspaces
+exec i3-msg 'workspace 1:Web ; exec chromium' 
+exec i3-msg 'workspace 2:Term ; exec rxvt -rv'
+exec i3-msg 'workspace 8:IRC ; exec rxvt -rv -e irssi'
+exec i3-msg 'workspace 9:Music ; exec clementine'
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?comment=3436#comment-3436</link><description>I've bound these exact commands to shortcuts and it works perfectly. Why doesn't it work on startup?</description><pubDate>Wed, 26 Feb 2014 20:23:54 +0000</pubDate><guid>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?comment=3436#comment-3436</guid></item><item><title>Answer by Pinyaka for &lt;p&gt;I have this code snippet in my config. It opens up the "Web" workspace just fine, but with the others, they just open up on the same workspace. I'm confused. It seems random on the workspace that the rest of them open on. It's really weird. Did I make a typo that I can't see for the life of me?    &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Startup Application on named workspaces
+exec i3-msg 'workspace 1:Web ; exec chromium' 
+exec i3-msg 'workspace 2:Term ; exec rxvt -rv'
+exec i3-msg 'workspace 8:IRC ; exec rxvt -rv -e irssi'
+exec i3-msg 'workspace 9:Music ; exec clementine'
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?answer=3489#post-id-3489</link><description>i3 doesn't wait for commands to finish, so if the command doesn't notice which workspace you started the execution from, it will show up on whichever workspace is selected when the window opens.</description><pubDate>Thu, 06 Mar 2014 18:04:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?answer=3489#post-id-3489</guid></item><item><title>Comment by Michael for &lt;p&gt;i3 doesn't wait for commands to finish, so if the command doesn't notice which workspace you started the execution from, it will show up on whichever workspace is selected when the window opens.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?comment=3676#comment-3676</link><description>This is not entirely correct. i3 does remember on which workspace you started an application and will open the applications windows on that workspace. This requires startup-ids to be supported by that application, though.</description><pubDate>Thu, 17 Apr 2014 12:56:39 +0000</pubDate><guid>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?comment=3676#comment-3676</guid></item><item><title>Answer by joepd for &lt;p&gt;I have this code snippet in my config. It opens up the "Web" workspace just fine, but with the others, they just open up on the same workspace. I'm confused. It seems random on the workspace that the rest of them open on. It's really weird. Did I make a typo that I can't see for the life of me?    &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Startup Application on named workspaces
+exec i3-msg 'workspace 1:Web ; exec chromium' 
+exec i3-msg 'workspace 2:Term ; exec rxvt -rv'
+exec i3-msg 'workspace 8:IRC ; exec rxvt -rv -e irssi'
+exec i3-msg 'workspace 9:Music ; exec clementine'
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?answer=3537#post-id-3537</link><description>Why it does not work? [Race conditions](http://en.wikipedia.org/wiki/Race_condition) that might be circumvented by the ``--no-startup-id``-flag for applications that support it. 
+
+How to make it work? [for_window](https://faq.i3wm.org/question/2172/how-do-i-find-the-criteria-for-use-with-i3-config-commands-like-for_window-eg-to-force-splashscreens-and-dialogs-to-show-in-floating-mode/). </description><pubDate>Sat, 15 Mar 2014 22:29:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?answer=3537#post-id-3537</guid></item><item><title>Comment by Michael for &lt;p&gt;Why it does not work? &lt;a href="http://en.wikipedia.org/wiki/Race_condition"&gt;Race conditions&lt;/a&gt; that might be circumvented by the &lt;code&gt;--no-startup-id&lt;/code&gt;-flag for applications that support it. &lt;/p&gt;
+
+&lt;p&gt;How to make it work? &lt;a href="https://faq.i3wm.org/question/2172/how-do-i-find-the-criteria-for-use-with-i3-config-commands-like-for_window-eg-to-force-splashscreens-and-dialogs-to-show-in-floating-mode/"&gt;for_window&lt;/a&gt;. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?comment=3678#comment-3678</link><description>Note that using for_window in this case is a hack and should not be necessary. Instead, the proper solution is to make rxvt (and perhaps clementine?) support startup ids. I know that in urxvt, they work (I implemented them there ;)).</description><pubDate>Thu, 17 Apr 2014 12:58:15 +0000</pubDate><guid>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?comment=3678#comment-3678</guid></item><item><title>Answer by gunjanthesystem for &lt;p&gt;I have this code snippet in my config. It opens up the "Web" workspace just fine, but with the others, they just open up on the same workspace. I'm confused. It seems random on the workspace that the rest of them open on. It's really weird. Did I make a typo that I can't see for the life of me?    &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Startup Application on named workspaces
+exec i3-msg 'workspace 1:Web ; exec chromium' 
+exec i3-msg 'workspace 2:Term ; exec rxvt -rv'
+exec i3-msg 'workspace 8:IRC ; exec rxvt -rv -e irssi'
+exec i3-msg 'workspace 9:Music ; exec clementine'
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?answer=3491#post-id-3491</link><description>Try this:
+
+exec --no-startup-id i3-msg 'workspace 1:Web ; exec chromium; workspace 2:Term ; exec rxvt -rv;workspace 8:IRC ; exec rxvt -rv -e irssi';workspace 9:Music ; exec clementine'</description><pubDate>Fri, 07 Mar 2014 12:58:34 +0000</pubDate><guid>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?answer=3491#post-id-3491</guid></item><item><title>Comment by Michael for &lt;p&gt;Try this:&lt;/p&gt;
+
+&lt;p&gt;exec --no-startup-id i3-msg 'workspace 1:Web ; exec chromium; workspace 2:Term ; exec rxvt -rv;workspace 8:IRC ; exec rxvt -rv -e irssi';workspace 9:Music ; exec clementine'&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?comment=3677#comment-3677</link><description>What’s correct in this answer is the --no-startup-id for running i3-msg itself (since i3-msg is not a GUI application). But why would concatening all the commands together be any different than what the original poster does?</description><pubDate>Thu, 17 Apr 2014 12:57:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3429/weird-startup-workspace-behavior/?comment=3677#comment-3677</guid></item></channel></rss>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4815/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 23 Oct 2014 08:48:39 +0000</lastBuildDate><item><title>adding shell script to i3status.conf</title><link>https://faq.i3wm.org/question/4815/adding-shell-script-to-i3statusconf/</link><description>    status_command i3status -c "${HOME}"/.i3/i3status.conf
+
+here is my  `i3status.conf`
+
+
+    general {
+      output_format = "i3bar"
+      colors = true
+      interval = 2
+      color_good = "#00bfd5"
+      color_bad = "#cc3333"
+    }
+    order += "wireless wlan0"
+      wireless wlan0 {
+      format_up = "W: (%quality at %essid) %ip"
+      format_down = "W:"
+    }
+
+
+If i add another order.. say 
+
+    order+="Gmail"
+    Gmail {
+      format="Unread sh checkmail.sh"
+    }
+
+It does not update my statusbar.
+
+here is my `checkmail.sh`
+
+    #!/bin/bash
+
+    i3status | while:
+    do
+        gmail=`perl gmail.pl`
+        echo "GMAIL | $gmail" || exit 1
+    done
+
+</description><pubDate>Tue, 21 Oct 2014 13:32:31 +0000</pubDate><guid>https://faq.i3wm.org/question/4815/adding-shell-script-to-i3statusconf/</guid></item><item><title>Answer by Adaephon for &lt;pre&gt;&lt;code&gt;status_command i3status -c "${HOME}"/.i3/i3status.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;here is my  &lt;code&gt;i3status.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;general {
+  output_format = "i3bar"
+  colors = true
+  interval = 2
+  color_good = "#00bfd5"
+  color_bad = "#cc3333"
+}
+order += "wireless wlan0"
+  wireless wlan0 {
+  format_up = "W: (%quality at %essid) %ip"
+  format_down = "W:"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If i add another order.. say &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;order+="Gmail"
+Gmail {
+  format="Unread sh checkmail.sh"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It does not update my statusbar.&lt;/p&gt;
+
+&lt;p&gt;here is my &lt;code&gt;checkmail.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+i3status | while:
+do
+    gmail=`perl gmail.pl`
+    echo "GMAIL | $gmail" || exit 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/4815/adding-shell-script-to-i3statusconf/?answer=4838#post-id-4838</link><description>
+First of all, there is no way to add a shell script to i3status, it explicitly say so in the `i3status` manpage: "there is no module to run arbitrary scripts or commands"
+
+---
+That being said, you can add i3status to a shell script.
+
+For that you do not need to (read: must not) add a `Gmail` section to your `i3status.conf`. (The sections need to be of a specific type like `wireless` and sometimes require an additional argument like `wlan0`. They cannot be arbitrarily named (`Gmail`).)
+
+Instead you have to edit your `~/.i3/config` and set `status_command` in the `bar` section to call `checkmail.sh` instead of `i3status`. For example
+
+    bar {
+        status_command /path/to/checkmail.sh
+    }
+
+Also, your `checkmail.sh` will need to be closer to the example in the `i3status` manpage in order to work:
+
+    #!/bin/bash
+
+    i3status | while :
+    do
+        read line
+        gmail=`perl gmail.pl`
+        echo "GMAIL $gmail | $line" || exit 1
+    done
+
+Note the space between `while` and `:` which is really needed. The `read line` will read the output of `i3status` into the parameter `line` so that it can then be combined with the output of `perl gmail.pl`.
+
+----
+
+You may also want to have a look at [py3status](https://pypi.python.org/pypi/py3status) which is an i3status-wrapper that allows for user-made extensions.
+</description><pubDate>Thu, 23 Oct 2014 08:48:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4815/adding-shell-script-to-i3statusconf/?answer=4838#post-id-4838</guid></item></channel></rss>

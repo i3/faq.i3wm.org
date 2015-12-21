@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4224/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 23 Aug 2014 01:48:04 +0000</lastBuildDate><item><title>Reduce space used by stacking containers titlebars</title><link>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/</link><description>I am setting up i3 to fit my needs, and many of my layouts include stacking containers as children of a horizontal container. I end up having a couple of windows within each stacked container. 
+
+The space taken up by the title bar for each windows is a waste, since I don't personally use it. I am looking for a way to remove it entirely.
+
+I attempted `new_winow 1pixel`.
+Which doesn't actually help, since the titles show up when in a stacked container.
+
+I also tried to use a tabbed container instead. This is manageable, however I really want the behavior of moving vertically to access the next window in the container. I traverse across sections of the screen horizontally, and switch between windows within a container vertically. A tabbed layout makes accessing both completely horizontal.
+
+So is there a way to remove the stacked window titles at the top of stacked containers? A means to remove title bars entirely? Or a means to have tabbed layouts get traversed by vertical movement : visually look like stacks, but functionally act like tabs?
+
+If there really isn't  a way through standard configuration, I imagine this would be possible via scripting, since I have no need for both stacks and tabs, I could make a context sensitive `bindsym $mod+Left ` that examines the current tree, and acts differently depending on the container. I'd love any similar examples/resources on how to approach that, it certainly seems possible via the API.</description><pubDate>Sun, 13 Jul 2014 20:31:07 +0000</pubDate><guid>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I am setting up i3 to fit my needs, and many of my layouts include stacking containers as children of a horizontal container. I end up having a couple of windows within each stacked container. &lt;/p&gt;
+
+&lt;p&gt;The space taken up by the title bar for each windows is a waste, since I don't personally use it. I am looking for a way to remove it entirely.&lt;/p&gt;
+
+&lt;p&gt;I attempted &lt;code&gt;new_winow 1pixel&lt;/code&gt;.
+Which doesn't actually help, since the titles show up when in a stacked container.&lt;/p&gt;
+
+&lt;p&gt;I also tried to use a tabbed container instead. This is manageable, however I really want the behavior of moving vertically to access the next window in the container. I traverse across sections of the screen horizontally, and switch between windows within a container vertically. A tabbed layout makes accessing both completely horizontal.&lt;/p&gt;
+
+&lt;p&gt;So is there a way to remove the stacked window titles at the top of stacked containers? A means to remove title bars entirely? Or a means to have tabbed layouts get traversed by vertical movement : visually look like stacks, but functionally act like tabs?&lt;/p&gt;
+
+&lt;p&gt;If there really isn't  a way through standard configuration, I imagine this would be possible via scripting, since I have no need for both stacks and tabs, I could make a context sensitive &lt;code&gt;bindsym $mod+Left&lt;/code&gt; that examines the current tree, and acts differently depending on the container. I'd love any similar examples/resources on how to approach that, it certainly seems possible via the API.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/?answer=4228#post-id-4228</link><description>There is no way to remove the title bars in stacked or tabbed layouts. 
+
+But there are two ways I can think of to work around this:
+
+1. Reduce font size
+
+  The size of the titlebar depends entirely on the font size. If you are thinking of using 1pixel borders anyway and have no need of the titlebar, you can just use font size 0:
+
+    &lt;pre&gt;font "pango:SomeFont 0"&lt;/pre&gt;
+
+  This makes the title bars only a few pixels high. It uses much less space while still keeping an indicator that there are several windows in a tabbed container.
+
+2. Use tabbed layout but change focus bindings
+
+  You can restrict focus from moving outside the current parent container
+
+  &lt;pre&gt;force_focus_wrapping yes&lt;/pre&gt;
+
+  With this enabled focus will wrap to the other side of the container instead of leaving it. In order to leave the container, you'll have to focus it instead of the window with `focus parent` first, before focusing right or left. To simplify matters you could bind one pair of keys for focusing inside a container and another to focus the parent and than in any direction (You can bind multiple commands to a key without needing a script). For example (modified default configuration):
+
+    bindsym $mod+j focus parent; focus left
+    bindsym $mod+k focus left
+    bindsym $mod+l focus right
+    bindsym $mod+semicolon focus parent; focus right
+
+  This keeps title bars but saves space by using tabbed layout, while making it feel like stacked layout.
+
+  Note that movement is not restricted by `force_focus_warpping`. Also focusing orthogonally to the container orientation (up/down in tabbed and horizontal containers, left/right in stacked and vertical containers) will not be restricted.
+</description><pubDate>Mon, 14 Jul 2014 07:10:45 +0000</pubDate><guid>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/?answer=4228#post-id-4228</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;There is no way to remove the title bars in stacked or tabbed layouts. &lt;/p&gt;
+
+&lt;p&gt;But there are two ways I can think of to work around this:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Reduce font size&lt;/p&gt;
+
+&lt;p&gt;The size of the titlebar depends entirely on the font size. If you are thinking of using 1pixel borders anyway and have no need of the titlebar, you can just use font size 0:&lt;/p&gt;
+
+&lt;pre&gt;font "pango:SomeFont 0"&lt;/pre&gt;
+
+&lt;p&gt;This makes the title bars only a few pixels high. It uses much less space while still keeping an indicator that there are several windows in a tabbed container.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Use tabbed layout but change focus bindings&lt;/p&gt;
+
+&lt;p&gt;You can restrict focus from moving outside the current parent container&lt;/p&gt;
+
+&lt;pre&gt;force_focus_wrapping yes&lt;/pre&gt;
+
+&lt;p&gt;With this enabled focus will wrap to the other side of the container instead of leaving it. In order to leave the container, you'll have to focus it instead of the window with &lt;code&gt;focus parent&lt;/code&gt; first, before focusing right or left. To simplify matters you could bind one pair of keys for focusing inside a container and another to focus the parent and than in any direction (You can bind multiple commands to a key without needing a script). For example (modified default configuration):&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+j focus parent; focus left
+bindsym $mod+k focus left
+bindsym $mod+l focus right
+bindsym $mod+semicolon focus parent; focus right&lt;/p&gt;
+
+&lt;p&gt;This keeps title bars but saves space by using tabbed layout, while making it feel like stacked layout.&lt;/p&gt;
+
+&lt;p&gt;Note that movement is not restricted by &lt;code&gt;force_focus_warpping&lt;/code&gt;. Also focusing orthogonally to the container orientation (up/down in tabbed and horizontal containers, left/right in stacked and vertical containers) will not be restricted.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/?comment=4251#comment-4251</link><description>I'd like to just add that I opened a [feature request](https://github.com/i3/i3/issues/1311) for something like this recently, and it was considered too complex to implement with too little benefit. That's fine by me, since i3 is pretty great as it is.</description><pubDate>Tue, 15 Jul 2014 00:41:06 +0000</pubDate><guid>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/?comment=4251#comment-4251</guid></item><item><title>Comment by mikedmcfarland for &lt;p&gt;There is no way to remove the title bars in stacked or tabbed layouts. &lt;/p&gt;
+
+&lt;p&gt;But there are two ways I can think of to work around this:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Reduce font size&lt;/p&gt;
+
+&lt;p&gt;The size of the titlebar depends entirely on the font size. If you are thinking of using 1pixel borders anyway and have no need of the titlebar, you can just use font size 0:&lt;/p&gt;
+
+&lt;pre&gt;font "pango:SomeFont 0"&lt;/pre&gt;
+
+&lt;p&gt;This makes the title bars only a few pixels high. It uses much less space while still keeping an indicator that there are several windows in a tabbed container.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Use tabbed layout but change focus bindings&lt;/p&gt;
+
+&lt;p&gt;You can restrict focus from moving outside the current parent container&lt;/p&gt;
+
+&lt;pre&gt;force_focus_wrapping yes&lt;/pre&gt;
+
+&lt;p&gt;With this enabled focus will wrap to the other side of the container instead of leaving it. In order to leave the container, you'll have to focus it instead of the window with &lt;code&gt;focus parent&lt;/code&gt; first, before focusing right or left. To simplify matters you could bind one pair of keys for focusing inside a container and another to focus the parent and than in any direction (You can bind multiple commands to a key without needing a script). For example (modified default configuration):&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+j focus parent; focus left
+bindsym $mod+k focus left
+bindsym $mod+l focus right
+bindsym $mod+semicolon focus parent; focus right&lt;/p&gt;
+
+&lt;p&gt;This keeps title bars but saves space by using tabbed layout, while making it feel like stacked layout.&lt;/p&gt;
+
+&lt;p&gt;Note that movement is not restricted by &lt;code&gt;force_focus_warpping&lt;/code&gt;. Also focusing orthogonally to the container orientation (up/down in tabbed and horizontal containers, left/right in stacked and vertical containers) will not be restricted.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/?comment=4572#comment-4572</link><description>Thanks, reducing the font size actually worked out pretty well. I can live with a little loss of space.</description><pubDate>Sat, 23 Aug 2014 01:48:04 +0000</pubDate><guid>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/?comment=4572#comment-4572</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;I am setting up i3 to fit my needs, and many of my layouts include stacking containers as children of a horizontal container. I end up having a couple of windows within each stacked container. &lt;/p&gt;
+
+&lt;p&gt;The space taken up by the title bar for each windows is a waste, since I don't personally use it. I am looking for a way to remove it entirely.&lt;/p&gt;
+
+&lt;p&gt;I attempted &lt;code&gt;new_winow 1pixel&lt;/code&gt;.
+Which doesn't actually help, since the titles show up when in a stacked container.&lt;/p&gt;
+
+&lt;p&gt;I also tried to use a tabbed container instead. This is manageable, however I really want the behavior of moving vertically to access the next window in the container. I traverse across sections of the screen horizontally, and switch between windows within a container vertically. A tabbed layout makes accessing both completely horizontal.&lt;/p&gt;
+
+&lt;p&gt;So is there a way to remove the stacked window titles at the top of stacked containers? A means to remove title bars entirely? Or a means to have tabbed layouts get traversed by vertical movement : visually look like stacks, but functionally act like tabs?&lt;/p&gt;
+
+&lt;p&gt;If there really isn't  a way through standard configuration, I imagine this would be possible via scripting, since I have no need for both stacks and tabs, I could make a context sensitive &lt;code&gt;bindsym $mod+Left&lt;/code&gt; that examines the current tree, and acts differently depending on the container. I'd love any similar examples/resources on how to approach that, it certainly seems possible via the API.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/?answer=4252#post-id-4252</link><description>One workaround is to use as few nested containers as possible, which is probably good practice anyway. For example, you can have one container with two or three stacked windows, and then vertically arrange windows outside and below it. You can move windows between those containers as necessary. This would at least get rid of the "nested indicator" titlebars that only exist to tell you "There are windows here!"
+
+Another is to use the **shelve** and **pull** scripts from my [GitHub repository](https://github.com/anoknusa/i3-stuff/). These scripts allow you to apply a mark to a container via dmenu, move it to a unique workspace named after the mark, and then move it back to the current workspace when desired.</description><pubDate>Tue, 15 Jul 2014 01:03:48 +0000</pubDate><guid>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/?answer=4252#post-id-4252</guid></item><item><title>Comment by mikedmcfarland for &lt;p&gt;One workaround is to use as few nested containers as possible, which is probably good practice anyway. For example, you can have one container with two or three stacked windows, and then vertically arrange windows outside and below it. You can move windows between those containers as necessary. This would at least get rid of the "nested indicator" titlebars that only exist to tell you "There are windows here!"&lt;/p&gt;
+
+&lt;p&gt;Another is to use the &lt;strong&gt;shelve&lt;/strong&gt; and &lt;strong&gt;pull&lt;/strong&gt; scripts from my &lt;a href="https://github.com/anoknusa/i3-stuff/"&gt;GitHub repository&lt;/a&gt;. These scripts allow you to apply a mark to a container via dmenu, move it to a unique workspace named after the mark, and then move it back to the current workspace when desired.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/?comment=4571#comment-4571</link><description>That link is broken FYI</description><pubDate>Sat, 23 Aug 2014 01:46:53 +0000</pubDate><guid>https://faq.i3wm.org/question/4224/reduce-space-used-by-stacking-containers-titlebars/?comment=4571#comment-4571</guid></item></channel></rss>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6174/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 23 Jun 2015 17:44:05 +0000</lastBuildDate><item><title>Script only has effect when i3 is restarted</title><link>https://faq.i3wm.org/question/6174/script-only-has-effect-when-i3-is-restarted/</link><description> I have the following last line in my .i3/config file:
+
+    exec_always --no-startup-id /home/will/etc/will-laptop/scripts/office-monitor-setup.sh
+
+The script (below) just executes some xrandr stuff, but the modified resolutions don't take effect the first time i3 is started. If I *restart* i3 or execute the script from a command line, it seems to run just fine. I've tried removing the path with no effect. I've tried running it as `exec i3-msg 'exec office-monitor-setup.sh'` with no effect. The i3 debugging output says that it's running the script and there's no error or anything. Any help?
+
+
+**office-monitor-setup.sh**:
+
+    #!/bin/bash
+    
+    Primary="HDMI1"
+    Secondary="VGA1"
+    Default="LVDS1"
+
+    if (xrandr | grep "$Primary connected"); then
+        xrandr --output $Primary --primary --mode 1920x1080 --refresh 60
+        xrandr --output $Default --off
+        if (xrandr | grep "$Secondary connected"); then
+            xrandr --output $Secondary --pos 1920x0 --mode 1600x1200  --refresh 60
+        fi
+    fi
+    
+    nitrogen --restore</description><pubDate>Mon, 22 Jun 2015 21:10:25 +0000</pubDate><guid>https://faq.i3wm.org/question/6174/script-only-has-effect-when-i3-is-restarted/</guid></item><item><title>Answer by oberon for &lt;p&gt;I have the following last line in my .i3/config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec_always --no-startup-id /home/will/etc/will-laptop/scripts/office-monitor-setup.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script (below) just executes some xrandr stuff, but the modified resolutions don't take effect the first time i3 is started. If I &lt;em&gt;restart&lt;/em&gt; i3 or execute the script from a command line, it seems to run just fine. I've tried removing the path with no effect. I've tried running it as &lt;code&gt;exec i3-msg 'exec office-monitor-setup.sh'&lt;/code&gt; with no effect. The i3 debugging output says that it's running the script and there's no error or anything. Any help?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;office-monitor-setup.sh&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+Primary="HDMI1"
+Secondary="VGA1"
+Default="LVDS1"
+
+if (xrandr | grep "$Primary connected"); then
+    xrandr --output $Primary --primary --mode 1920x1080 --refresh 60
+    xrandr --output $Default --off
+    if (xrandr | grep "$Secondary connected"); then
+        xrandr --output $Secondary --pos 1920x0 --mode 1600x1200  --refresh 60
+    fi
+fi
+
+nitrogen --restore
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/6174/script-only-has-effect-when-i3-is-restarted/?answer=6177#post-id-6177</link><description>Would it be possible that the script needs to be delayed to be effective? You could try running it after a leading `exec sleep 5 &amp;&amp; ...`</description><pubDate>Tue, 23 Jun 2015 06:47:17 +0000</pubDate><guid>https://faq.i3wm.org/question/6174/script-only-has-effect-when-i3-is-restarted/?answer=6177#post-id-6177</guid></item><item><title>Comment by Pinyaka for &lt;p&gt;Would it be possible that the script needs to be delayed to be effective? You could try running it after a leading &lt;code&gt;exec sleep 5 &amp;amp;&amp;amp; ...&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6174/script-only-has-effect-when-i3-is-restarted/?comment=6190#comment-6190</link><description>That seems a bit kludgey, but it showed that the problem is with xrandr and not with i3.</description><pubDate>Tue, 23 Jun 2015 17:44:05 +0000</pubDate><guid>https://faq.i3wm.org/question/6174/script-only-has-effect-when-i3-is-restarted/?comment=6190#comment-6190</guid></item></channel></rss>

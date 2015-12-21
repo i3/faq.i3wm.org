@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3199/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 13 Jan 2014 16:27:52 +0000</lastBuildDate><item><title>Why doesn't regex work the same in the i3 config?</title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/</link><description>I definitely can move only the windows **with 'Private Browsing'** in the title using a terminal to run this command: &lt;pre&gt;i3-msg [title=".*Private.Browsing.*"] move to workspace "Private Browsing"&lt;/pre&gt; and this works too:
+&lt;pre&gt;i3-msg [title=".*\(Private.Browsing\).*"] move to workspace "Private Browsing"&lt;/pre&gt;
+
+In the i3 config,
+these commands work:
+&lt;pre&gt;
+assign [class=".*Firefox.*"] "Firefox Window"
+assign [title=".*Firefox.*"] "Firefox Window 2"
+assign [title=".*Mozilla.*"] "Firefox Window 3"
+&lt;/pre&gt;
+
+these don't work (and they are identical to the ones above):
+&lt;pre&gt;
+assign [title=".*Private.*"] "Firefox Window 4" 
+assign [title=".*Private.Browsing.*"] "Firefox Window 5"
+assign [title=".*\(Private Browsing\).*"] "Private Browsing"
+&lt;/pre&gt;
+
+This is what I got when I xpropped the normal and private windows:
+&lt;pre&gt;
+WM_NAME(STRING) = "Mozilla Firefox Start Page - Mozilla Firefox"
+WM_NAME(STRING) = "Private Browsing - Mozilla Firefox (Private Browsing)"
+&lt;/pre&gt;
+
+So, **all** of the commands work from a terminal, but only some work in i3. What's happening here?
+</description><pubDate>Sun, 12 Jan 2014 07:27:02 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;I definitely can move only the windows &lt;strong&gt;with 'Private Browsing'&lt;/strong&gt; in the title using a terminal to run this command: &lt;/p&gt;&lt;pre&gt;i3-msg [title=".&lt;em&gt;Private.Browsing.&lt;/em&gt;"] move to workspace "Private Browsing"&lt;/pre&gt; and this works too:&lt;p&gt;&lt;/p&gt;
+
+&lt;pre&gt;i3-msg [title=".*\(Private.Browsing\).*"] move to workspace "Private Browsing"&lt;/pre&gt;
+
+In the i3 config,
+these commands work:
+&lt;pre&gt;assign [class=".*Firefox.*"] "Firefox Window"
+assign [title=".*Firefox.*"] "Firefox Window 2"
+assign [title=".*Mozilla.*"] "Firefox Window 3"
+&lt;/pre&gt;
+
+&lt;p&gt;these don't work (and they are identical to the ones above):&lt;/p&gt;
+
+&lt;pre&gt;assign [title=".*Private.*"] "Firefox Window 4" 
+assign [title=".*Private.Browsing.*"] "Firefox Window 5"
+assign [title=".*\(Private Browsing\).*"] "Private Browsing"
+&lt;/pre&gt;
+
+&lt;p&gt;This is what I got when I xpropped the normal and private windows:&lt;/p&gt;
+
+&lt;pre&gt;WM_NAME(STRING) = "Mozilla Firefox Start Page - Mozilla Firefox"
+WM_NAME(STRING) = "Private Browsing - Mozilla Firefox (Private Browsing)"
+&lt;/pre&gt;
+
+&lt;p&gt;So, &lt;strong&gt;all&lt;/strong&gt; of the commands work from a terminal, but only some work in i3. What's happening here?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3202#comment-3202</link><description>That was my question too, and it wasn't resolved then. However, this is specifically about regex not working (not necessarily about Firefox), considering that I've got examples of it working in terminal and it not working in the i3 config.</description><pubDate>Sun, 12 Jan 2014 07:53:20 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3202#comment-3202</guid></item><item><title>Comment by joepd for &lt;p&gt;I definitely can move only the windows &lt;strong&gt;with 'Private Browsing'&lt;/strong&gt; in the title using a terminal to run this command: &lt;/p&gt;&lt;pre&gt;i3-msg [title=".&lt;em&gt;Private.Browsing.&lt;/em&gt;"] move to workspace "Private Browsing"&lt;/pre&gt; and this works too:&lt;p&gt;&lt;/p&gt;
+
+&lt;pre&gt;i3-msg [title=".*\(Private.Browsing\).*"] move to workspace "Private Browsing"&lt;/pre&gt;
+
+In the i3 config,
+these commands work:
+&lt;pre&gt;assign [class=".*Firefox.*"] "Firefox Window"
+assign [title=".*Firefox.*"] "Firefox Window 2"
+assign [title=".*Mozilla.*"] "Firefox Window 3"
+&lt;/pre&gt;
+
+&lt;p&gt;these don't work (and they are identical to the ones above):&lt;/p&gt;
+
+&lt;pre&gt;assign [title=".*Private.*"] "Firefox Window 4" 
+assign [title=".*Private.Browsing.*"] "Firefox Window 5"
+assign [title=".*\(Private Browsing\).*"] "Private Browsing"
+&lt;/pre&gt;
+
+&lt;p&gt;This is what I got when I xpropped the normal and private windows:&lt;/p&gt;
+
+&lt;pre&gt;WM_NAME(STRING) = "Mozilla Firefox Start Page - Mozilla Firefox"
+WM_NAME(STRING) = "Private Browsing - Mozilla Firefox (Private Browsing)"
+&lt;/pre&gt;
+
+&lt;p&gt;So, &lt;strong&gt;all&lt;/strong&gt; of the commands work from a terminal, but only some work in i3. What's happening here?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3201#comment-3201</link><description>Dupe: https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/</description><pubDate>Sun, 12 Jan 2014 07:49:23 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3201#comment-3201</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;I definitely can move only the windows &lt;strong&gt;with 'Private Browsing'&lt;/strong&gt; in the title using a terminal to run this command: &lt;/p&gt;&lt;pre&gt;i3-msg [title=".&lt;em&gt;Private.Browsing.&lt;/em&gt;"] move to workspace "Private Browsing"&lt;/pre&gt; and this works too:&lt;p&gt;&lt;/p&gt;
+
+&lt;pre&gt;i3-msg [title=".*\(Private.Browsing\).*"] move to workspace "Private Browsing"&lt;/pre&gt;
+
+In the i3 config,
+these commands work:
+&lt;pre&gt;assign [class=".*Firefox.*"] "Firefox Window"
+assign [title=".*Firefox.*"] "Firefox Window 2"
+assign [title=".*Mozilla.*"] "Firefox Window 3"
+&lt;/pre&gt;
+
+&lt;p&gt;these don't work (and they are identical to the ones above):&lt;/p&gt;
+
+&lt;pre&gt;assign [title=".*Private.*"] "Firefox Window 4" 
+assign [title=".*Private.Browsing.*"] "Firefox Window 5"
+assign [title=".*\(Private Browsing\).*"] "Private Browsing"
+&lt;/pre&gt;
+
+&lt;p&gt;This is what I got when I xpropped the normal and private windows:&lt;/p&gt;
+
+&lt;pre&gt;WM_NAME(STRING) = "Mozilla Firefox Start Page - Mozilla Firefox"
+WM_NAME(STRING) = "Private Browsing - Mozilla Firefox (Private Browsing)"
+&lt;/pre&gt;
+
+&lt;p&gt;So, &lt;strong&gt;all&lt;/strong&gt; of the commands work from a terminal, but only some work in i3. What's happening here?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3218#comment-3218</link><description>Okay, I was wrong.</description><pubDate>Mon, 13 Jan 2014 11:30:35 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3218#comment-3218</guid></item><item><title>Answer by TonyC for &lt;p&gt;I definitely can move only the windows &lt;strong&gt;with 'Private Browsing'&lt;/strong&gt; in the title using a terminal to run this command: &lt;/p&gt;&lt;pre&gt;i3-msg [title=".&lt;em&gt;Private.Browsing.&lt;/em&gt;"] move to workspace "Private Browsing"&lt;/pre&gt; and this works too:&lt;p&gt;&lt;/p&gt;
+
+&lt;pre&gt;i3-msg [title=".*\(Private.Browsing\).*"] move to workspace "Private Browsing"&lt;/pre&gt;
+
+In the i3 config,
+these commands work:
+&lt;pre&gt;assign [class=".*Firefox.*"] "Firefox Window"
+assign [title=".*Firefox.*"] "Firefox Window 2"
+assign [title=".*Mozilla.*"] "Firefox Window 3"
+&lt;/pre&gt;
+
+&lt;p&gt;these don't work (and they are identical to the ones above):&lt;/p&gt;
+
+&lt;pre&gt;assign [title=".*Private.*"] "Firefox Window 4" 
+assign [title=".*Private.Browsing.*"] "Firefox Window 5"
+assign [title=".*\(Private Browsing\).*"] "Private Browsing"
+&lt;/pre&gt;
+
+&lt;p&gt;This is what I got when I xpropped the normal and private windows:&lt;/p&gt;
+
+&lt;pre&gt;WM_NAME(STRING) = "Mozilla Firefox Start Page - Mozilla Firefox"
+WM_NAME(STRING) = "Private Browsing - Mozilla Firefox (Private Browsing)"
+&lt;/pre&gt;
+
+&lt;p&gt;So, &lt;strong&gt;all&lt;/strong&gt; of the commands work from a terminal, but only some work in i3. What's happening here?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?answer=3220#post-id-3220</link><description>Like Adaephon said, the window is changing its title after the window is created. The `assign` config command is only effective when the window is first initialized.
+
+If you want to issue a command for a window that will execute whenever the window meets the criteria, you have to use [for_window](http://i3wm.org/docs/userguide.html#_arbitrary_commands_for_specific_windows_for_window).
+
+    for_window [title=".*Private.*"] move to workspace "Firefox Window 4" 
+    for_window [title=".*Private.Browsing.*"] move to workspace "Firefox Window 5"
+    for_window [title=".*\(Private Browsing\).*"] move to workspace "Private Browsing"</description><pubDate>Mon, 13 Jan 2014 12:15:05 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?answer=3220#post-id-3220</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Like Adaephon said, the window is changing its title after the window is created. The &lt;code&gt;assign&lt;/code&gt; config command is only effective when the window is first initialized.&lt;/p&gt;
+
+&lt;p&gt;If you want to issue a command for a window that will execute whenever the window meets the criteria, you have to use &lt;a href="http://i3wm.org/docs/userguide.html#_arbitrary_commands_for_specific_windows_for_window"&gt;for_window&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [title=".*Private.*"] move to workspace "Firefox Window 4" 
+for_window [title=".*Private.Browsing.*"] move to workspace "Firefox Window 5"
+for_window [title=".*\(Private Browsing\).*"] move to workspace "Private Browsing"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3222#comment-3222</link><description>Great solution to the underlying problem. Could you also (instead?) post it as answer to the [original question](https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace)? It would fit better there.</description><pubDate>Mon, 13 Jan 2014 12:37:00 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3222#comment-3222</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;Like Adaephon said, the window is changing its title after the window is created. The &lt;code&gt;assign&lt;/code&gt; config command is only effective when the window is first initialized.&lt;/p&gt;
+
+&lt;p&gt;If you want to issue a command for a window that will execute whenever the window meets the criteria, you have to use &lt;a href="http://i3wm.org/docs/userguide.html#_arbitrary_commands_for_specific_windows_for_window"&gt;for_window&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [title=".*Private.*"] move to workspace "Firefox Window 4" 
+for_window [title=".*Private.Browsing.*"] move to workspace "Firefox Window 5"
+for_window [title=".*\(Private Browsing\).*"] move to workspace "Private Browsing"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3223#comment-3223</link><description>Okay that works well. Thanks, TonyC!</description><pubDate>Mon, 13 Jan 2014 12:53:28 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3223#comment-3223</guid></item><item><title>Comment by TonyC for &lt;p&gt;Like Adaephon said, the window is changing its title after the window is created. The &lt;code&gt;assign&lt;/code&gt; config command is only effective when the window is first initialized.&lt;/p&gt;
+
+&lt;p&gt;If you want to issue a command for a window that will execute whenever the window meets the criteria, you have to use &lt;a href="http://i3wm.org/docs/userguide.html#_arbitrary_commands_for_specific_windows_for_window"&gt;for_window&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [title=".*Private.*"] move to workspace "Firefox Window 4" 
+for_window [title=".*Private.Browsing.*"] move to workspace "Firefox Window 5"
+for_window [title=".*\(Private Browsing\).*"] move to workspace "Private Browsing"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3225#comment-3225</link><description>np. I think this should be closed as a duplicate since it turns out not to be a regexp problem.</description><pubDate>Mon, 13 Jan 2014 16:27:52 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3225#comment-3225</guid></item><item><title>Answer by Michael for &lt;p&gt;I definitely can move only the windows &lt;strong&gt;with 'Private Browsing'&lt;/strong&gt; in the title using a terminal to run this command: &lt;/p&gt;&lt;pre&gt;i3-msg [title=".&lt;em&gt;Private.Browsing.&lt;/em&gt;"] move to workspace "Private Browsing"&lt;/pre&gt; and this works too:&lt;p&gt;&lt;/p&gt;
+
+&lt;pre&gt;i3-msg [title=".*\(Private.Browsing\).*"] move to workspace "Private Browsing"&lt;/pre&gt;
+
+In the i3 config,
+these commands work:
+&lt;pre&gt;assign [class=".*Firefox.*"] "Firefox Window"
+assign [title=".*Firefox.*"] "Firefox Window 2"
+assign [title=".*Mozilla.*"] "Firefox Window 3"
+&lt;/pre&gt;
+
+&lt;p&gt;these don't work (and they are identical to the ones above):&lt;/p&gt;
+
+&lt;pre&gt;assign [title=".*Private.*"] "Firefox Window 4" 
+assign [title=".*Private.Browsing.*"] "Firefox Window 5"
+assign [title=".*\(Private Browsing\).*"] "Private Browsing"
+&lt;/pre&gt;
+
+&lt;p&gt;This is what I got when I xpropped the normal and private windows:&lt;/p&gt;
+
+&lt;pre&gt;WM_NAME(STRING) = "Mozilla Firefox Start Page - Mozilla Firefox"
+WM_NAME(STRING) = "Private Browsing - Mozilla Firefox (Private Browsing)"
+&lt;/pre&gt;
+
+&lt;p&gt;So, &lt;strong&gt;all&lt;/strong&gt; of the commands work from a terminal, but only some work in i3. What's happening here?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?answer=3207#post-id-3207</link><description>This answer doesn’t specifically address why the regexp does not work, but tells you how to debug it:
+
+See http://i3wm.org/docs/debugging.html on how to get to the log file. In there, you’ll see messages like this:
+
+    2014-01-12 10:25:11 - assignments.c:run_assignments:20 - Checking if any assignments match this window
+    2014-01-12 10:25:11 - Checking window 0x00e008c9 (class URxvt)
+    2014-01-12 10:25:11 - Regular expression "^mcabber$" does not match "urxvt"
+
+So there you have the regular expression as i3 parsed it plus the specific string that it is trying to match against. The matching is done using libpcre, so check the PCRE manual for details on the syntax etc.</description><pubDate>Sun, 12 Jan 2014 09:26:34 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?answer=3207#post-id-3207</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I definitely can move only the windows &lt;strong&gt;with 'Private Browsing'&lt;/strong&gt; in the title using a terminal to run this command: &lt;/p&gt;&lt;pre&gt;i3-msg [title=".&lt;em&gt;Private.Browsing.&lt;/em&gt;"] move to workspace "Private Browsing"&lt;/pre&gt; and this works too:&lt;p&gt;&lt;/p&gt;
+
+&lt;pre&gt;i3-msg [title=".*\(Private.Browsing\).*"] move to workspace "Private Browsing"&lt;/pre&gt;
+
+In the i3 config,
+these commands work:
+&lt;pre&gt;assign [class=".*Firefox.*"] "Firefox Window"
+assign [title=".*Firefox.*"] "Firefox Window 2"
+assign [title=".*Mozilla.*"] "Firefox Window 3"
+&lt;/pre&gt;
+
+&lt;p&gt;these don't work (and they are identical to the ones above):&lt;/p&gt;
+
+&lt;pre&gt;assign [title=".*Private.*"] "Firefox Window 4" 
+assign [title=".*Private.Browsing.*"] "Firefox Window 5"
+assign [title=".*\(Private Browsing\).*"] "Private Browsing"
+&lt;/pre&gt;
+
+&lt;p&gt;This is what I got when I xpropped the normal and private windows:&lt;/p&gt;
+
+&lt;pre&gt;WM_NAME(STRING) = "Mozilla Firefox Start Page - Mozilla Firefox"
+WM_NAME(STRING) = "Private Browsing - Mozilla Firefox (Private Browsing)"
+&lt;/pre&gt;
+
+&lt;p&gt;So, &lt;strong&gt;all&lt;/strong&gt; of the commands work from a terminal, but only some work in i3. What's happening here?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?answer=3214#post-id-3214</link><description>The problem is not due to any difference in parsing the regex. 
+
+The issue in this case (and in your [other question](https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace)) is, that "Private Browsing" is not part of the title, when the window is created. Firefox adds this only after the window is initialized. If you watch closely, you can see, that the title of the new window is "Mozilla Firefox" at first.
+
+`assign` is designed to only affect newly created windows, as such it can only use the attributes with which a window is created. When you use the criteria on the command line with `i3-msg` (or in any key binding in the config), the current attributes of a window are used. 
+
+-----
+
+I managed to get the new window with `xprop` before the title was reset. Here the relevant parts:
+
+    WM_CLASS(STRING) = "Navigator", "Firefox"
+    WM_NAME(STRING) = "Mozilla Firefox"
+
+Unfortunatelly there seems to be no distinguishing attribute between normal and private windows on creation time.
+</description><pubDate>Mon, 13 Jan 2014 10:30:35 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?answer=3214#post-id-3214</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;The problem is not due to any difference in parsing the regex. &lt;/p&gt;
+
+&lt;p&gt;The issue in this case (and in your &lt;a href="https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace"&gt;other question&lt;/a&gt;) is, that "Private Browsing" is not part of the title, when the window is created. Firefox adds this only after the window is initialized. If you watch closely, you can see, that the title of the new window is "Mozilla Firefox" at first.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign&lt;/code&gt; is designed to only affect newly created windows, as such it can only use the attributes with which a window is created. When you use the criteria on the command line with &lt;code&gt;i3-msg&lt;/code&gt; (or in any key binding in the config), the current attributes of a window are used. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I managed to get the new window with &lt;code&gt;xprop&lt;/code&gt; before the title was reset. Here the relevant parts:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_CLASS(STRING) = "Navigator", "Firefox"
+WM_NAME(STRING) = "Mozilla Firefox"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unfortunatelly there seems to be no distinguishing attribute between normal and private windows on creation time.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3217#comment-3217</link><description>Okay that makes sense. Thanks heaps!</description><pubDate>Mon, 13 Jan 2014 11:29:21 +0000</pubDate><guid>https://faq.i3wm.org/question/3199/why-doesnt-regex-work-the-same-in-the-i3-config/?comment=3217#comment-3217</guid></item></channel></rss>

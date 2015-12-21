@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/136/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 25 Jun 2012 17:48:42 +0000</lastBuildDate><item><title>Size of new windows</title><link>https://faq.i3wm.org/question/136/size-of-new-windows/</link><description>First of all let me say I love i3, thanks for all the hard work.
+
+My question is, would it be possible, by editing the config, to open new windows in a certain size? In wmii, e.g., when you move a window to the left (or right) of some stacked set of windows, it would fill less than half of the screen. In i3, it always fills exactly half of the screen. I kinda liked the wmii way, so is there a way I can implement this in i3?
+
+thanks</description><pubDate>Sun, 17 Jun 2012 12:45:52 +0000</pubDate><guid>https://faq.i3wm.org/question/136/size-of-new-windows/</guid></item><item><title>Answer by Atsutane for &lt;p&gt;First of all let me say I love i3, thanks for all the hard work.&lt;/p&gt;
+
+&lt;p&gt;My question is, would it be possible, by editing the config, to open new windows in a certain size? In wmii, e.g., when you move a window to the left (or right) of some stacked set of windows, it would fill less than half of the screen. In i3, it always fills exactly half of the screen. I kinda liked the wmii way, so is there a way I can implement this in i3?&lt;/p&gt;
+
+&lt;p&gt;thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/136/size-of-new-windows/?answer=146#post-id-146</link><description>If you want this for a certain set maybe this configuration from [GraveyardPC's post](https://bbs.archlinux.org/viewtopic.php?pid=1037908#p1037908) helps you:
+
+    # gimp
+    assign [class="Gimp"] gimp
+    bindsym Mod1+g workspace gimp
+    for_window [title="GIMP Startup"] move workspace gimp
+    for_window [window_role="gimp-toolbox"] floating disable; layout stacking; move left; resize shrink right 31px or 31 ppt
+</description><pubDate>Tue, 19 Jun 2012 17:33:12 +0000</pubDate><guid>https://faq.i3wm.org/question/136/size-of-new-windows/?answer=146#post-id-146</guid></item><item><title>Answer by joepd for &lt;p&gt;First of all let me say I love i3, thanks for all the hard work.&lt;/p&gt;
+
+&lt;p&gt;My question is, would it be possible, by editing the config, to open new windows in a certain size? In wmii, e.g., when you move a window to the left (or right) of some stacked set of windows, it would fill less than half of the screen. In i3, it always fills exactly half of the screen. I kinda liked the wmii way, so is there a way I can implement this in i3?&lt;/p&gt;
+
+&lt;p&gt;thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/136/size-of-new-windows/?answer=137#post-id-137</link><description>This is not possible yet. 
+
+Though it might be possible when making use of the IPC interface (and the scripting libraries abusing this). Has anyone managed to script this kind of behavior? </description><pubDate>Sun, 17 Jun 2012 13:14:33 +0000</pubDate><guid>https://faq.i3wm.org/question/136/size-of-new-windows/?answer=137#post-id-137</guid></item><item><title>Answer by MeanEYE for &lt;p&gt;First of all let me say I love i3, thanks for all the hard work.&lt;/p&gt;
+
+&lt;p&gt;My question is, would it be possible, by editing the config, to open new windows in a certain size? In wmii, e.g., when you move a window to the left (or right) of some stacked set of windows, it would fill less than half of the screen. In i3, it always fills exactly half of the screen. I kinda liked the wmii way, so is there a way I can implement this in i3?&lt;/p&gt;
+
+&lt;p&gt;thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/136/size-of-new-windows/?answer=164#post-id-164</link><description>You could try playing with [Devil's Pie](http://www.foosel.org/linux/devilspie). It's a small window matching utility designed for things like this. I didn't test it on i3 but it should work.
+
+Edit: This will not work as i3 doesn't listen to size requests from tiled windows.</description><pubDate>Mon, 25 Jun 2012 17:48:42 +0000</pubDate><guid>https://faq.i3wm.org/question/136/size-of-new-windows/?answer=164#post-id-164</guid></item></channel></rss>

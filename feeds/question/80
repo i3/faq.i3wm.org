@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/80/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 03 Jul 2014 08:59:29 +0000</lastBuildDate><item><title>How to enable logs in Ubuntu</title><link>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/</link><description>I wanted to check out the logs for a crash I could reproduce, but the command gives me:
+
+    $ i3-dump-log 
+    i3-dump-log: Cannot get I3_SHMLOG_PATH atom contents. Is i3 running on this display?
+
+I read that we need to "active" the logging, but I did not understand how/where to do it. Do you know where should I place the command for logging (.xsession file did not work, .i3/config did not work):
+
+    exec /usr/bin/i3 -V -d all &gt;~/i3log-$(date +'%F-%k-%M-%S') 2&gt;&amp;1
+
+thanks,</description><pubDate>Thu, 07 Jun 2012 06:02:11 +0000</pubDate><guid>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/</guid></item><item><title>Answer by Tucos for &lt;p&gt;I wanted to check out the logs for a crash I could reproduce, but the command gives me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ i3-dump-log 
+i3-dump-log: Cannot get I3_SHMLOG_PATH atom contents. Is i3 running on this display?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I read that we need to "active" the logging, but I did not understand how/where to do it. Do you know where should I place the command for logging (.xsession file did not work, .i3/config did not work):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec /usr/bin/i3 -V -d all &amp;gt;~/i3log-$(date +'%F-%k-%M-%S') 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;thanks,&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?answer=81#post-id-81</link><description>Shared memory logging is by default only enabled in development builds. If you're using a build from git, then you might simply need to run `DISPLAY=:0 i3-dump-log`.
+As for regular logging, your command should be fine and it should be in ~/.xsession if using a display manager and in ~/.xinitrc if using startx.
+
+For further info you can take a look at [the Debugging How To for development builds](http://build.i3wm.org/docs/debugging.html) or [the regular debugging howto](http://i3wm.org/docs/debugging-release-version.html)</description><pubDate>Thu, 07 Jun 2012 09:21:58 +0000</pubDate><guid>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?answer=81#post-id-81</guid></item><item><title>Comment by Michael for &lt;p&gt;Shared memory logging is by default only enabled in development builds. If you're using a build from git, then you might simply need to run &lt;code&gt;DISPLAY=:0 i3-dump-log&lt;/code&gt;.
+As for regular logging, your command should be fine and it should be in ~/.xsession if using a display manager and in ~/.xinitrc if using startx.&lt;/p&gt;
+
+&lt;p&gt;For further info you can take a look at &lt;a href="http://build.i3wm.org/docs/debugging.html"&gt;the Debugging How To for development builds&lt;/a&gt; or &lt;a href="http://i3wm.org/docs/debugging-release-version.html"&gt;the regular debugging howto&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?comment=91#comment-91</link><description>bruno: after entering your username, select the session type "custom" at the bottom of your screen.</description><pubDate>Thu, 07 Jun 2012 21:41:50 +0000</pubDate><guid>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?comment=91#comment-91</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Shared memory logging is by default only enabled in development builds. If you're using a build from git, then you might simply need to run &lt;code&gt;DISPLAY=:0 i3-dump-log&lt;/code&gt;.
+As for regular logging, your command should be fine and it should be in ~/.xsession if using a display manager and in ~/.xinitrc if using startx.&lt;/p&gt;
+
+&lt;p&gt;For further info you can take a look at &lt;a href="http://build.i3wm.org/docs/debugging.html"&gt;the Debugging How To for development builds&lt;/a&gt; or &lt;a href="http://i3wm.org/docs/debugging-release-version.html"&gt;the regular debugging howto&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?comment=85#comment-85</link><description>In Ubuntu, with gdm, .xsession is never called... any ideas?</description><pubDate>Thu, 07 Jun 2012 14:03:53 +0000</pubDate><guid>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?comment=85#comment-85</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;Shared memory logging is by default only enabled in development builds. If you're using a build from git, then you might simply need to run &lt;code&gt;DISPLAY=:0 i3-dump-log&lt;/code&gt;.
+As for regular logging, your command should be fine and it should be in ~/.xsession if using a display manager and in ~/.xinitrc if using startx.&lt;/p&gt;
+
+&lt;p&gt;For further info you can take a look at &lt;a href="http://build.i3wm.org/docs/debugging.html"&gt;the Debugging How To for development builds&lt;/a&gt; or &lt;a href="http://i3wm.org/docs/debugging-release-version.html"&gt;the regular debugging howto&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?comment=4106#comment-4106</link><description>I run a session using “i3 (with debug long)”, and running `DISPLAY=:0 i3-dump-log` still give the same as the OP encountered. I wanted to submit a but report, but can't get a debug log. I installed i3 from Synaptic.</description><pubDate>Thu, 03 Jul 2014 08:59:29 +0000</pubDate><guid>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?comment=4106#comment-4106</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Shared memory logging is by default only enabled in development builds. If you're using a build from git, then you might simply need to run &lt;code&gt;DISPLAY=:0 i3-dump-log&lt;/code&gt;.
+As for regular logging, your command should be fine and it should be in ~/.xsession if using a display manager and in ~/.xinitrc if using startx.&lt;/p&gt;
+
+&lt;p&gt;For further info you can take a look at &lt;a href="http://build.i3wm.org/docs/debugging.html"&gt;the Debugging How To for development builds&lt;/a&gt; or &lt;a href="http://i3wm.org/docs/debugging-release-version.html"&gt;the regular debugging howto&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?comment=110#comment-110</link><description>Michael, the new Ubuntu 12.04 does not have the option Custom anymore.
+
+I got it working by entering into a terminal (Ctrl+Alt+F1) and:
+/etc/init.d/lightdm stop; startx
+(the i3 call must be in .xinitrc)</description><pubDate>Sun, 10 Jun 2012 09:54:23 +0000</pubDate><guid>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?comment=110#comment-110</guid></item><item><title>Answer by joepd for &lt;p&gt;I wanted to check out the logs for a crash I could reproduce, but the command gives me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ i3-dump-log 
+i3-dump-log: Cannot get I3_SHMLOG_PATH atom contents. Is i3 running on this display?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I read that we need to "active" the logging, but I did not understand how/where to do it. Do you know where should I place the command for logging (.xsession file did not work, .i3/config did not work):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec /usr/bin/i3 -V -d all &amp;gt;~/i3log-$(date +'%F-%k-%M-%S') 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;thanks,&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?answer=88#post-id-88</link><description>Please discriminate between a dump-log, and the lines that i3 is printing on STDOUT. 
+
+The dump is some blob of data that records the state of i3, handy for developers to see what has been leading up to unexpected behavior. This is not intended to be read by mere mortals. 
+
+For the dump-log: i3 needs to be compiled with support for this. This is disabled if you install your package from a repository, as the package is considered stable. 
+
+The exec-line is about starting i3 manually. If you use xinit to launch i3, you should remove 'exec'. This line starts i3 in verbose mode, and sends STDOUT and STDERR to the mentioned file, in stead of cluttering your TTY. 
+
+But it depends on how you launch i3 where you should put such a line. </description><pubDate>Thu, 07 Jun 2012 16:36:20 +0000</pubDate><guid>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?answer=88#post-id-88</guid></item><item><title>Comment by Michael for &lt;p&gt;Please discriminate between a dump-log, and the lines that i3 is printing on STDOUT. &lt;/p&gt;
+
+&lt;p&gt;The dump is some blob of data that records the state of i3, handy for developers to see what has been leading up to unexpected behavior. This is not intended to be read by mere mortals. &lt;/p&gt;
+
+&lt;p&gt;For the dump-log: i3 needs to be compiled with support for this. This is disabled if you install your package from a repository, as the package is considered stable. &lt;/p&gt;
+
+&lt;p&gt;The exec-line is about starting i3 manually. If you use xinit to launch i3, you should remove 'exec'. This line starts i3 in verbose mode, and sends STDOUT and STDERR to the mentioned file, in stead of cluttering your TTY. &lt;/p&gt;
+
+&lt;p&gt;But it depends on how you launch i3 where you should put such a line. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?comment=89#comment-89</link><description>You are wrong in several points: i3-dump-log prints out the same text log that i3 logs to stdout. Also, it does not have to be compiled in, you can enable it in every version. It’s just enabled by default in the developer versions.</description><pubDate>Thu, 07 Jun 2012 21:39:55 +0000</pubDate><guid>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?comment=89#comment-89</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;I wanted to check out the logs for a crash I could reproduce, but the command gives me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ i3-dump-log 
+i3-dump-log: Cannot get I3_SHMLOG_PATH atom contents. Is i3 running on this display?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I read that we need to "active" the logging, but I did not understand how/where to do it. Do you know where should I place the command for logging (.xsession file did not work, .i3/config did not work):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec /usr/bin/i3 -V -d all &amp;gt;~/i3log-$(date +'%F-%k-%M-%S') 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;thanks,&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?answer=1373#post-id-1373</link><description>I just learned that .xinitrc is never called, so .xsession should be just a symlink to .xinitrc (from thie [https://wiki.ubuntu.com/CustomXSession](https://wiki.ubuntu.com/CustomXSession)). So to make it just work properly on Ubuntu, follow these steps:
+
+1. Create a *.xinitrc* file:
+
+        exec /usr/bin/i3 -V &gt;/tmp/i3-$(date +'%F-%k-%M-%S').log 2&gt;&amp;1
+
+
+2. Create a symlink for *.xsession*:
+
+
+        $ ln -s ~/.xinitrc ~/.xsession
+
+
+3. Edit desktop options for lightdm, at: */usr/share/xsessions/i3.desktop*
+
+        [Desktop Entry]
+        Name=i3
+        Comment=improved dynamic tiling window manager
+        Exec=/etc/X11/Xsession
+        Type=Application
+    
+
+And voila!</description><pubDate>Tue, 12 Mar 2013 10:03:32 +0000</pubDate><guid>https://faq.i3wm.org/question/80/how-to-enable-logs-in-ubuntu/?answer=1373#post-id-1373</guid></item></channel></rss>

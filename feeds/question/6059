@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6059/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 03 Jun 2015 19:42:43 +0000</lastBuildDate><item><title>How to count number of windows of certain type?</title><link>https://faq.i3wm.org/question/6059/how-to-count-number-of-windows-of-certain-type/</link><description>Hi all,
+
+I often find myself using python scripts that generate a lot of graphs.  I'd like to create a script that will count the number of graphs in a workspace and then line them up in a grid - ie if 6 are plotted, arange them all in a 2x3 grid.  I know I am going to have to script this - no problem, but the first thing I need to figure out is how to programtically cycle through all the windows in a workspace.  I know how to use xprop to get the window type, but I can't seem to find something like (pseudo code):
+      
+for window in workspce; goto window; ...
+
+of course, after goto window, you can get the type and keep track of things, etc.  Just need to get started.  Any help is appreciated!
+</description><pubDate>Wed, 03 Jun 2015 17:09:55 +0000</pubDate><guid>https://faq.i3wm.org/question/6059/how-to-count-number-of-windows-of-certain-type/</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I often find myself using python scripts that generate a lot of graphs.  I'd like to create a script that will count the number of graphs in a workspace and then line them up in a grid - ie if 6 are plotted, arange them all in a 2x3 grid.  I know I am going to have to script this - no problem, but the first thing I need to figure out is how to programtically cycle through all the windows in a workspace.  I know how to use xprop to get the window type, but I can't seem to find something like (pseudo code):&lt;/p&gt;
+
+&lt;p&gt;for window in workspce; goto window; ...&lt;/p&gt;
+
+&lt;p&gt;of course, after goto window, you can get the type and keep track of things, etc.  Just need to get started.  Any help is appreciated!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6059/how-to-count-number-of-windows-of-certain-type/?answer=6060#post-id-6060</link><description>wmctrl -l can list the windows starting with the window id which can be fed to xprop.  There are also convenient libraries to use to interact with your shell easier
+
+https://pypi.python.org/pypi/shell/1.0.1
+https://amoffat.github.io/sh/
+
+That said you might want something more i3 oriented as you it sounds like you want the windows in your workspace not all that match a criteria as you may someday have more than one workspace with matching windows. 
+
+In theory you could get all you need from i3-msg -t get_tree and use jq to process the resulting json but since you mentioned python you probably want
+
+https://github.com/acrisci/i3ipc-python</description><pubDate>Wed, 03 Jun 2015 17:41:09 +0000</pubDate><guid>https://faq.i3wm.org/question/6059/how-to-count-number-of-windows-of-certain-type/?answer=6060#post-id-6060</guid></item><item><title>Comment by tenspd137 for &lt;p&gt;wmctrl -l can list the windows starting with the window id which can be fed to xprop.  There are also convenient libraries to use to interact with your shell easier&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://pypi.python.org/pypi/shell/1.0.1"&gt;https://pypi.python.org/pypi/shell/1.0.1&lt;/a&gt;
+&lt;a href="https://amoffat.github.io/sh/"&gt;https://amoffat.github.io/sh/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;That said you might want something more i3 oriented as you it sounds like you want the windows in your workspace not all that match a criteria as you may someday have more than one workspace with matching windows. &lt;/p&gt;
+
+&lt;p&gt;In theory you could get all you need from i3-msg -t get_tree and use jq to process the resulting json but since you mentioned python you probably want&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/acrisci/i3ipc-python"&gt;https://github.com/acrisci/i3ipc-python&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6059/how-to-count-number-of-windows-of-certain-type/?comment=6061#comment-6061</link><description>Thanks!  I will try that.  Of course, this is a "Gee-job" at work, so it might take me a little time to figure it all out, but you pointed me to some useful stuff, so I am going to give you credit for the answer :)  Thanks!</description><pubDate>Wed, 03 Jun 2015 19:42:43 +0000</pubDate><guid>https://faq.i3wm.org/question/6059/how-to-count-number-of-windows-of-certain-type/?comment=6061#comment-6061</guid></item></channel></rss>

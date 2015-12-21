@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3787/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 12 May 2014 13:06:05 +0000</lastBuildDate><item><title>i3statusbar</title><link>https://faq.i3wm.org/question/3787/i3statusbar/</link><description>My code:
+"{ "full_text" : "RAM: ${mem}" , "color" : ${if_match ${memperc}&gt;80}"\#aa1515"${else}${if_match ${memperc}&gt;60}"\#c9b400"${else}"\#56944e"${endif}},
+"
+
+When the memperc is over 80% I got this red text in the bar:
+"Error: Could not parse JSON (parse error: after key and value, inside map, I except ',' or '}')"
+
+What's wrong with my setup?</description><pubDate>Sun, 11 May 2014 18:38:24 +0000</pubDate><guid>https://faq.i3wm.org/question/3787/i3statusbar/</guid></item><item><title>Answer by joepd for &lt;p&gt;My code:
+"{ "full&lt;em&gt;text" : "RAM: ${mem}" , "color" : ${if&lt;/em&gt;match ${memperc}&amp;gt;80}"#aa1515"${else}${if_match ${memperc}&amp;gt;60}"#c9b400"${else}"#56944e"${endif}},
+"&lt;/p&gt;
+
+&lt;p&gt;When the memperc is over 80% I got this red text in the bar:
+"Error: Could not parse JSON (parse error: after key and value, inside map, I except ',' or '}')"&lt;/p&gt;
+
+&lt;p&gt;What's wrong with my setup?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3787/i3statusbar/?answer=3788#post-id-3788</link><description>You open two `if_match`-es, so you should also close both. Whether that solves your problem, I have not tested. In general, it will help if you use newlines and indentation. It is surprising how helpful that is to spot syntactical errors. </description><pubDate>Mon, 12 May 2014 05:22:52 +0000</pubDate><guid>https://faq.i3wm.org/question/3787/i3statusbar/?answer=3788#post-id-3788</guid></item><item><title>Comment by i-sty for &lt;p&gt;You open two &lt;code&gt;if_match&lt;/code&gt;-es, so you should also close both. Whether that solves your problem, I have not tested. In general, it will help if you use newlines and indentation. It is surprising how helpful that is to spot syntactical errors. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3787/i3statusbar/?comment=3794#comment-3794</link><description>Thank you joepd! That solved my problem!</description><pubDate>Mon, 12 May 2014 13:06:05 +0000</pubDate><guid>https://faq.i3wm.org/question/3787/i3statusbar/?comment=3794#comment-3794</guid></item></channel></rss>

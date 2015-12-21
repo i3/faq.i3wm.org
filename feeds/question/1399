@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1399/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 29 May 2013 09:34:11 +0000</lastBuildDate><item><title>py3status not working</title><link>https://faq.i3wm.org/question/1399/py3status-not-working/</link><description>I just wanted to switch from i3status to py3status. The tutorial on this site as well as the manual on the site of the developer tells me that I just have to replace i3status with py3status in status_command, so it looks like this:
+
+bar {
+status\_command py3status -c ~/.i3/config_i3status
+}
+
+But this is not working. All I get is that the plain JSON formatted code is printed instead of the status bar over and over again. Does anyone have the same problem? Output format in my config_i3status is set to output\_format="i3bar" as it should be.
+
+Any ideas?</description><pubDate>Thu, 14 Mar 2013 15:40:43 +0000</pubDate><guid>https://faq.i3wm.org/question/1399/py3status-not-working/</guid></item><item><title>Comment by mschaefer for &lt;p&gt;I just wanted to switch from i3status to py3status. The tutorial on this site as well as the manual on the site of the developer tells me that I just have to replace i3status with py3status in status_command, so it looks like this:&lt;/p&gt;
+
+&lt;p&gt;bar {
+status_command py3status -c ~/.i3/config_i3status
+}&lt;/p&gt;
+
+&lt;p&gt;But this is not working. All I get is that the plain JSON formatted code is printed instead of the status bar over and over again. Does anyone have the same problem? Output format in my config_i3status is set to output_format="i3bar" as it should be.&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1399/py3status-not-working/?comment=1400#comment-1400</link><description>Okay, now the problem disappeared and I am not able to reproduce the odd behaviour. Only thing I did was adding an own module class, but going back to the old setup - as said - does not reproduce broken behaviour. Strange...</description><pubDate>Thu, 14 Mar 2013 15:58:48 +0000</pubDate><guid>https://faq.i3wm.org/question/1399/py3status-not-working/?comment=1400#comment-1400</guid></item><item><title>Answer by mschaefer for &lt;p&gt;I just wanted to switch from i3status to py3status. The tutorial on this site as well as the manual on the site of the developer tells me that I just have to replace i3status with py3status in status_command, so it looks like this:&lt;/p&gt;
+
+&lt;p&gt;bar {
+status_command py3status -c ~/.i3/config_i3status
+}&lt;/p&gt;
+
+&lt;p&gt;But this is not working. All I get is that the plain JSON formatted code is printed instead of the status bar over and over again. Does anyone have the same problem? Output format in my config_i3status is set to output_format="i3bar" as it should be.&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1399/py3status-not-working/?answer=1409#post-id-1409</link><description>Okay now I can answer this myself. When I was playing around with own modules I put some code under the Py3status class definition to debug it from the command line. This was what caused the odd behaviour.</description><pubDate>Fri, 15 Mar 2013 13:14:20 +0000</pubDate><guid>https://faq.i3wm.org/question/1399/py3status-not-working/?answer=1409#post-id-1409</guid></item><item><title>Comment by mschaefer for &lt;p&gt;Okay now I can answer this myself. When I was playing around with own modules I put some code under the Py3status class definition to debug it from the command line. This was what caused the odd behaviour.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1399/py3status-not-working/?comment=1922#comment-1922</link><description>Oh right, I did not mark this as 'solved'. Thanks for the reminder, and for py3status of course ;-)</description><pubDate>Wed, 29 May 2013 09:34:11 +0000</pubDate><guid>https://faq.i3wm.org/question/1399/py3status-not-working/?comment=1922#comment-1922</guid></item><item><title>Comment by Ultrabug for &lt;p&gt;Okay now I can answer this myself. When I was playing around with own modules I put some code under the Py3status class definition to debug it from the command line. This was what caused the odd behaviour.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1399/py3status-not-working/?comment=1917#comment-1917</link><description>Just saw this post, I believe it's solved and I hope you enjoy py3status :)
+
+As py3status developer, I'll try to follow more this FAQ for any question that might arise.
+
+Cheers</description><pubDate>Tue, 28 May 2013 15:13:19 +0000</pubDate><guid>https://faq.i3wm.org/question/1399/py3status-not-working/?comment=1917#comment-1917</guid></item></channel></rss>

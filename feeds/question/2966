@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2966/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 29 Nov 2013 18:51:25 +0000</lastBuildDate><item><title>What is wrong in this use of 'focus parent' ?</title><link>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/</link><description>Inside my i3config, I have a bindsym like so:
+
+`bindsym $mod+F1 split h; exec pcmanfm; exec pcmanfm; focus parent; split v; exec terminal`
+
+I was expecting that if I go to an empty workspace and hit `mod+F1`, I should get the following layout (EDIT: cannot post images or links due to low carma):
+
+![](http://s9.postimg.org/ka2kgjglb/layout.jpg)
+
+However I only get a horizontal split of 3 windows, lxterminal beeing on the top.
+The same happens if I change the split commands like so: `exec i3-msg layout splith`, etc. 
+
+Could somebody please explaing what I'm doing wrong and how I should correct it?
+</description><pubDate>Mon, 25 Nov 2013 18:43:05 +0000</pubDate><guid>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/</guid></item><item><title>Comment by geo909 for &lt;p&gt;Inside my i3config, I have a bindsym like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+F1 split h; exec pcmanfm; exec pcmanfm; focus parent; split v; exec terminal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I was expecting that if I go to an empty workspace and hit &lt;code&gt;mod+F1&lt;/code&gt;, I should get the following layout (EDIT: cannot post images or links due to low carma):&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="http://s9.postimg.org/ka2kgjglb/layout.jpg"/&gt;&lt;/p&gt;
+
+&lt;p&gt;However I only get a horizontal split of 3 windows, lxterminal beeing on the top.
+The same happens if I change the split commands like so: &lt;code&gt;exec i3-msg layout splith&lt;/code&gt;, etc. &lt;/p&gt;
+
+&lt;p&gt;Could somebody please explaing what I'm doing wrong and how I should correct it?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2969#comment-2969</link><description>@badboy Sorry to appear greedy.. could you please use the image so that it appears in the message and people don't have to click? Thank you!</description><pubDate>Mon, 25 Nov 2013 18:52:58 +0000</pubDate><guid>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2969#comment-2969</guid></item><item><title>Comment by geo909 for &lt;p&gt;Inside my i3config, I have a bindsym like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+F1 split h; exec pcmanfm; exec pcmanfm; focus parent; split v; exec terminal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I was expecting that if I go to an empty workspace and hit &lt;code&gt;mod+F1&lt;/code&gt;, I should get the following layout (EDIT: cannot post images or links due to low carma):&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="http://s9.postimg.org/ka2kgjglb/layout.jpg"/&gt;&lt;/p&gt;
+
+&lt;p&gt;However I only get a horizontal split of 3 windows, lxterminal beeing on the top.
+The same happens if I change the split commands like so: &lt;code&gt;exec i3-msg layout splith&lt;/code&gt;, etc. &lt;/p&gt;
+
+&lt;p&gt;Could somebody please explaing what I'm doing wrong and how I should correct it?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2967#comment-2967</link><description>Please, could somebody with higher karma fix the link for me?</description><pubDate>Mon, 25 Nov 2013 18:43:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2967#comment-2967</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Inside my i3config, I have a bindsym like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+F1 split h; exec pcmanfm; exec pcmanfm; focus parent; split v; exec terminal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I was expecting that if I go to an empty workspace and hit &lt;code&gt;mod+F1&lt;/code&gt;, I should get the following layout (EDIT: cannot post images or links due to low carma):&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="http://s9.postimg.org/ka2kgjglb/layout.jpg"/&gt;&lt;/p&gt;
+
+&lt;p&gt;However I only get a horizontal split of 3 windows, lxterminal beeing on the top.
+The same happens if I change the split commands like so: &lt;code&gt;exec i3-msg layout splith&lt;/code&gt;, etc. &lt;/p&gt;
+
+&lt;p&gt;Could somebody please explaing what I'm doing wrong and how I should correct it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?answer=2973#post-id-2973</link><description>Your usage of `focus parent` is correct. The problem lies elsewhere.
+
+There are two problems with that approach:
+
+1. On a empty workspace there is no container on which `layout splith` or `splith` would work.
+2. `exec` does not return only after the program has fully started or at least has a window, but returns immediatelly after startup has initalized.
+
+The solution to the first problem is to create the first window, before changing the layout to `splith`.
+
+The second problem is a bit more tricky. You could probably use i3 IPC and register to to [window events](http://i3wm.org/docs/ipc.html#_window_event).
+
+An easy (but not reliable in every case) solution could be an external script:
+
+    #!/bin/sh
+    i3-msg 'exec pcmanfm'
+    sleep .5
+    i3-msg 'layout splith; exec pcmanfm'
+    sleep .5
+    i3-msg 'focus parent; layout splitv; exec terminal'
+
+The duration of the sleeps will of course depend on the program you start. Safe this script, for example as 'startup.sh', make it executable and bind it to your shortcut:
+
+    bindsym $mod+F1 exec --no-startup-id /path/to/startup.sh
+
+</description><pubDate>Mon, 25 Nov 2013 21:27:23 +0000</pubDate><guid>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?answer=2973#post-id-2973</guid></item><item><title>Comment by geo909 for &lt;p&gt;Your usage of &lt;code&gt;focus parent&lt;/code&gt; is correct. The problem lies elsewhere.&lt;/p&gt;
+
+&lt;p&gt;There are two problems with that approach:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;On a empty workspace there is no container on which &lt;code&gt;layout splith&lt;/code&gt; or &lt;code&gt;splith&lt;/code&gt; would work.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exec&lt;/code&gt; does not return only after the program has fully started or at least has a window, but returns immediatelly after startup has initalized.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The solution to the first problem is to create the first window, before changing the layout to &lt;code&gt;splith&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The second problem is a bit more tricky. You could probably use i3 IPC and register to to &lt;a href="http://i3wm.org/docs/ipc.html#_window_event"&gt;window events&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;An easy (but not reliable in every case) solution could be an external script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+i3-msg 'exec pcmanfm'
+sleep .5
+i3-msg 'layout splith; exec pcmanfm'
+sleep .5
+i3-msg 'focus parent; layout splitv; exec terminal'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The duration of the sleeps will of course depend on the program you start. Safe this script, for example as 'startup.sh', make it executable and bind it to your shortcut:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+F1 exec --no-startup-id /path/to/startup.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2997#comment-2997</link><description>Weird.. Still doesn't work.. I accepted the answer though as it seems that the method is working for you. I also started trying vifm, so for the moment I won't look further into this, I think.. Thank you!</description><pubDate>Fri, 29 Nov 2013 18:51:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2997#comment-2997</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Your usage of &lt;code&gt;focus parent&lt;/code&gt; is correct. The problem lies elsewhere.&lt;/p&gt;
+
+&lt;p&gt;There are two problems with that approach:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;On a empty workspace there is no container on which &lt;code&gt;layout splith&lt;/code&gt; or &lt;code&gt;splith&lt;/code&gt; would work.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exec&lt;/code&gt; does not return only after the program has fully started or at least has a window, but returns immediatelly after startup has initalized.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The solution to the first problem is to create the first window, before changing the layout to &lt;code&gt;splith&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The second problem is a bit more tricky. You could probably use i3 IPC and register to to &lt;a href="http://i3wm.org/docs/ipc.html#_window_event"&gt;window events&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;An easy (but not reliable in every case) solution could be an external script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+i3-msg 'exec pcmanfm'
+sleep .5
+i3-msg 'layout splith; exec pcmanfm'
+sleep .5
+i3-msg 'focus parent; layout splitv; exec terminal'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The duration of the sleeps will of course depend on the program you start. Safe this script, for example as 'startup.sh', make it executable and bind it to your shortcut:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+F1 exec --no-startup-id /path/to/startup.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2996#comment-2996</link><description>Thanks, I fixed the typo. As for the script not working, I tested it with xclock and xlogo. I now testet with pcmanfm and had to raise the sleep to one second to work reliably. If you start `pcmanfm -d`, a daemon is started and subsequent `pcmanfm` start only client, reducing "time to window".</description><pubDate>Thu, 28 Nov 2013 10:16:41 +0000</pubDate><guid>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2996#comment-2996</guid></item><item><title>Comment by geo909 for &lt;p&gt;Your usage of &lt;code&gt;focus parent&lt;/code&gt; is correct. The problem lies elsewhere.&lt;/p&gt;
+
+&lt;p&gt;There are two problems with that approach:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;On a empty workspace there is no container on which &lt;code&gt;layout splith&lt;/code&gt; or &lt;code&gt;splith&lt;/code&gt; would work.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exec&lt;/code&gt; does not return only after the program has fully started or at least has a window, but returns immediatelly after startup has initalized.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The solution to the first problem is to create the first window, before changing the layout to &lt;code&gt;splith&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The second problem is a bit more tricky. You could probably use i3 IPC and register to to &lt;a href="http://i3wm.org/docs/ipc.html#_window_event"&gt;window events&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;An easy (but not reliable in every case) solution could be an external script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+i3-msg 'exec pcmanfm'
+sleep .5
+i3-msg 'layout splith; exec pcmanfm'
+sleep .5
+i3-msg 'focus parent; layout splitv; exec terminal'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The duration of the sleeps will of course depend on the program you start. Safe this script, for example as 'startup.sh', make it executable and bind it to your shortcut:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+F1 exec --no-startup-id /path/to/startup.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2985#comment-2985</link><description>Thanks.. Unfortunately your script doesn't work. It opens the three programs in a vertical split. I increased the sleep times, but it's still the same. In any case, I think it makes more sense to switch to a dual panel file manager with terminal in handy, like emelfm2..</description><pubDate>Wed, 27 Nov 2013 12:38:41 +0000</pubDate><guid>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2985#comment-2985</guid></item><item><title>Comment by geo909 for &lt;p&gt;Your usage of &lt;code&gt;focus parent&lt;/code&gt; is correct. The problem lies elsewhere.&lt;/p&gt;
+
+&lt;p&gt;There are two problems with that approach:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;On a empty workspace there is no container on which &lt;code&gt;layout splith&lt;/code&gt; or &lt;code&gt;splith&lt;/code&gt; would work.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exec&lt;/code&gt; does not return only after the program has fully started or at least has a window, but returns immediatelly after startup has initalized.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The solution to the first problem is to create the first window, before changing the layout to &lt;code&gt;splith&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The second problem is a bit more tricky. You could probably use i3 IPC and register to to &lt;a href="http://i3wm.org/docs/ipc.html#_window_event"&gt;window events&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;An easy (but not reliable in every case) solution could be an external script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+i3-msg 'exec pcmanfm'
+sleep .5
+i3-msg 'layout splith; exec pcmanfm'
+sleep .5
+i3-msg 'focus parent; layout splitv; exec terminal'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The duration of the sleeps will of course depend on the program you start. Safe this script, for example as 'startup.sh', make it executable and bind it to your shortcut:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+F1 exec --no-startup-id /path/to/startup.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2986#comment-2986</link><description>Btw it's `--no-startup-id` not `not-startup-id`, but this is not the problem</description><pubDate>Wed, 27 Nov 2013 12:39:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2966/what-is-wrong-in-this-use-of-focus-parent/?comment=2986#comment-2986</guid></item></channel></rss>

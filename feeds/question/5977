@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5977/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 15 May 2015 01:05:44 +0000</lastBuildDate><item><title>How to set the new_window property for cherry-picked applications?</title><link>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/</link><description>I use:
+
+    new_window 1pixel
+As the default setting for border style. However for some applications that I use in floating mode I would like to have the window title shown, specially when working over messy windows in the background.
+I tried for example:
+
+    for_window [class="Emacs"] new_window normal
+    for_window [class="Copyq"] new_window normal
+But it doesn't works.
+Is there a way I can set specific applications (preferably by their window classes, as title will vary) to show the title bar while keeping the rest honoring the global settings?</description><pubDate>Sat, 09 May 2015 01:20:28 +0000</pubDate><guid>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/</guid></item><item><title>Answer by drak3 for &lt;p&gt;I use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As the default setting for border style. However for some applications that I use in floating mode I would like to have the window title shown, specially when working over messy windows in the background.
+I tried for example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Emacs"] new_window normal
+for_window [class="Copyq"] new_window normal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it doesn't works.
+Is there a way I can set specific applications (preferably by their window classes, as title will vary) to show the title bar while keeping the rest honoring the global settings?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?answer=5980#post-id-5980</link><description>take a look at [this](http://i3wm.org/docs/userguide.html#_border_style_for_new_windows).  it works for me if i put both:
+
+    new_window 1pixel
+    new_float normal
+
+in my config, though like the docs say, it only works for windows starting out floating.  launching something and making it floating doesn't seem to work.</description><pubDate>Sun, 10 May 2015 01:38:41 +0000</pubDate><guid>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?answer=5980#post-id-5980</guid></item><item><title>Comment by msx for &lt;p&gt;take a look at &lt;a href="http://i3wm.org/docs/userguide.html#_border_style_for_new_windows"&gt;this&lt;/a&gt;.  it works for me if i put both:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window 1pixel
+new_float normal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in my config, though like the docs say, it only works for windows starting out floating.  launching something and making it floating doesn't seem to work.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?comment=5988#comment-5988</link><description>Can't tell @drak3 as I'm very new to i3wm. I'm currently running 4.9.something, however I plan to switch to i3-gaps 4.10.x soon :)</description><pubDate>Sun, 10 May 2015 21:50:37 +0000</pubDate><guid>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?comment=5988#comment-5988</guid></item><item><title>Comment by drak3 for &lt;p&gt;take a look at &lt;a href="http://i3wm.org/docs/userguide.html#_border_style_for_new_windows"&gt;this&lt;/a&gt;.  it works for me if i put both:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window 1pixel
+new_float normal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in my config, though like the docs say, it only works for windows starting out floating.  launching something and making it floating doesn't seem to work.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?comment=5986#comment-5986</link><description>np.  I don't recall that being there before either.  maybe it was updated somewhat recently?</description><pubDate>Sun, 10 May 2015 20:42:35 +0000</pubDate><guid>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?comment=5986#comment-5986</guid></item><item><title>Comment by msx for &lt;p&gt;take a look at &lt;a href="http://i3wm.org/docs/userguide.html#_border_style_for_new_windows"&gt;this&lt;/a&gt;.  it works for me if i put both:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window 1pixel
+new_float normal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in my config, though like the docs say, it only works for windows starting out floating.  launching something and making it floating doesn't seem to work.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?comment=5985#comment-5985</link><description>So the man pages are useful after all? Just kidding, somehow I missed that. Works perfectly, thank you!</description><pubDate>Sun, 10 May 2015 20:00:43 +0000</pubDate><guid>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?comment=5985#comment-5985</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As the default setting for border style. However for some applications that I use in floating mode I would like to have the window title shown, specially when working over messy windows in the background.
+I tried for example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Emacs"] new_window normal
+for_window [class="Copyq"] new_window normal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it doesn't works.
+Is there a way I can set specific applications (preferably by their window classes, as title will vary) to show the title bar while keeping the rest honoring the global settings?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?answer=5989#post-id-5989</link><description> The issue here is that `new_window` is a configuration option and `for_window` expects a command. The [command to change the border style is `border`](http://i3wm.org/docs/userguide.html#_changing_border_style).
+
+So, in order to set the `normal` border style only for some applications, you want to use:
+
+    for_window [class="Emacs"] border normal
+    for_window [class="Copyq"] border normal
+
+This will set the border of any (floating *or* tiled) window that matches the criteria. So Emacs will have a normal border even if it is tiled. But in contrast to the [`new_float` option](http://i3wm.org/docs/userguide.html#_border_style_for_new_windows) this *will* work even if the window does not start out as floating.
+
+As you mentioned, that you use these applications in floating mode, you can even combine setting the border style with sending the window to the floating layer:
+
+    for_window [class="Emacs"] floating enable, border normal
+    for_window [class="Copyq"] floating enable, border normal
+
+----
+
+If you want to have certain windows to have another border style only when floating or if you want all floating windows to have the same border style (but differnt from tiled windows), you'll have to use [*i3's* IPC interface](http://i3wm.org/docs/ipc.html#_window_event) and listen to window events sent when a window transitions from tiled to floating or vice versa.</description><pubDate>Mon, 11 May 2015 07:37:40 +0000</pubDate><guid>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?answer=5989#post-id-5989</guid></item><item><title>Comment by msx for &lt;p&gt;The issue here is that &lt;code&gt;new_window&lt;/code&gt; is a configuration option and &lt;code&gt;for_window&lt;/code&gt; expects a command. The &lt;a href="http://i3wm.org/docs/userguide.html#_changing_border_style"&gt;command to change the border style is &lt;code&gt;border&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, in order to set the &lt;code&gt;normal&lt;/code&gt; border style only for some applications, you want to use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Emacs"] border normal
+for_window [class="Copyq"] border normal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will set the border of any (floating &lt;em&gt;or&lt;/em&gt; tiled) window that matches the criteria. So Emacs will have a normal border even if it is tiled. But in contrast to the &lt;a href="http://i3wm.org/docs/userguide.html#_border_style_for_new_windows"&gt;&lt;code&gt;new_float&lt;/code&gt; option&lt;/a&gt; this &lt;em&gt;will&lt;/em&gt; work even if the window does not start out as floating.&lt;/p&gt;
+
+&lt;p&gt;As you mentioned, that you use these applications in floating mode, you can even combine setting the border style with sending the window to the floating layer:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Emacs"] floating enable, border normal
+for_window [class="Copyq"] floating enable, border normal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;If you want to have certain windows to have another border style only when floating or if you want all floating windows to have the same border style (but differnt from tiled windows), you'll have to use &lt;a href="http://i3wm.org/docs/ipc.html#_window_event"&gt;&lt;em&gt;i3's&lt;/em&gt; IPC interface&lt;/a&gt; and listen to window events sent when a window transitions from tiled to floating or vice versa.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?comment=5995#comment-5995</link><description>Can't thank you enough for your thorough and kind reply, still I will try a lucky shot: thank you!</description><pubDate>Fri, 15 May 2015 01:05:44 +0000</pubDate><guid>https://faq.i3wm.org/question/5977/how-to-set-the-new_window-property-for-cherry-picked-applications/?comment=5995#comment-5995</guid></item></channel></rss>

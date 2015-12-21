@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/538/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 26 Jan 2013 12:52:38 +0000</lastBuildDate><item><title>scratchpad with custom geometry</title><link>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/</link><description>Hi!
+Is there any way to define scratchpad window position in the config? I want it to appear in the right bottom corner.
+relevant strings from my config are following:
+
+bindsym $mod+x  scratchpad show
+
+for_window [instance="scratchpad"] border 1pixel, floating enable; move scratchpad
+
+exec urxvtc -name scratchpad -geometry 80x20-2-50
+
+
+why doesn't it work?
+thanks</description><pubDate>Sat, 22 Sep 2012 21:52:55 +0000</pubDate><guid>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi!
+Is there any way to define scratchpad window position in the config? I want it to appear in the right bottom corner.
+relevant strings from my config are following:&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+x  scratchpad show&lt;/p&gt;
+
+&lt;p&gt;for_window [instance="scratchpad"] border 1pixel, floating enable; move scratchpad&lt;/p&gt;
+
+&lt;p&gt;exec urxvtc -name scratchpad -geometry 80x20-2-50&lt;/p&gt;
+
+&lt;p&gt;why doesn't it work?
+thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/?answer=541#post-id-541</link><description>Scratchpad currently (v4.3) resizes the window to be 75% of your output’s height and 50% of your output’s width. I agree that this should probably not be done for floating windows, patches welcome.</description><pubDate>Sat, 22 Sep 2012 21:57:38 +0000</pubDate><guid>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/?answer=541#post-id-541</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi!
+Is there any way to define scratchpad window position in the config? I want it to appear in the right bottom corner.
+relevant strings from my config are following:&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+x  scratchpad show&lt;/p&gt;
+
+&lt;p&gt;for_window [instance="scratchpad"] border 1pixel, floating enable; move scratchpad&lt;/p&gt;
+
+&lt;p&gt;exec urxvtc -name scratchpad -geometry 80x20-2-50&lt;/p&gt;
+
+&lt;p&gt;why doesn't it work?
+thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/?answer=540#post-id-540</link><description>Scratchpad currently (v4.3) resizes the window to be 75% of your output’s height and 50% of your output’s width. I agree that this should probably not be done for floating windows, patches welcome.</description><pubDate>Sat, 22 Sep 2012 21:57:20 +0000</pubDate><guid>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/?answer=540#post-id-540</guid></item><item><title>Answer by Lingzhu Xiang for &lt;p&gt;Hi!
+Is there any way to define scratchpad window position in the config? I want it to appear in the right bottom corner.
+relevant strings from my config are following:&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+x  scratchpad show&lt;/p&gt;
+
+&lt;p&gt;for_window [instance="scratchpad"] border 1pixel, floating enable; move scratchpad&lt;/p&gt;
+
+&lt;p&gt;exec urxvtc -name scratchpad -geometry 80x20-2-50&lt;/p&gt;
+
+&lt;p&gt;why doesn't it work?
+thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/?answer=1119#post-id-1119</link><description>I found adding a criterion to `scratchpad show` kept the geometry. So you can try this:
+
+    bindsym $mod+x [instance="scratchpad"] scratchpad show</description><pubDate>Sat, 26 Jan 2013 05:10:38 +0000</pubDate><guid>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/?answer=1119#post-id-1119</guid></item><item><title>Comment by Michael for &lt;p&gt;I found adding a criterion to &lt;code&gt;scratchpad show&lt;/code&gt; kept the geometry. So you can try this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+x [instance="scratchpad"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/?comment=1120#comment-1120</link><description>There is no difference between criterion or non-criterion scratchpad show commands (at least none is intended). Note that the current git version (“next” branch) does keep the geometry of floating windows when moving them to scratchpad.</description><pubDate>Sat, 26 Jan 2013 08:19:55 +0000</pubDate><guid>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/?comment=1120#comment-1120</guid></item><item><title>Comment by Lingzhu Xiang for &lt;p&gt;I found adding a criterion to &lt;code&gt;scratchpad show&lt;/code&gt; kept the geometry. So you can try this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+x [instance="scratchpad"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/?comment=1121#comment-1121</link><description>I read and tested a bit. Without criterion, urxvt's parent is shown with state SCRATCHPAD\_FRESH hence the resizing. With the criterion, urxvt itself is shown with state SCRATCHPAD\_NONE. No resizing. i3 version 4.4 (2012-12-12, branch "tags/4.4"). Unintended feature indeed.</description><pubDate>Sat, 26 Jan 2013 12:52:38 +0000</pubDate><guid>https://faq.i3wm.org/question/538/scratchpad-with-custom-geometry/?comment=1121#comment-1121</guid></item></channel></rss>

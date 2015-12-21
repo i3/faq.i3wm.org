@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/970/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 19 Mar 2013 22:01:18 +0000</lastBuildDate><item><title>How to open a program to float mode with specific dimensions?</title><link>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/</link><description>As the title says. :)
+But just only once. When normally opened the program would go tiled.
+
+I need this on my config which will run that program at startup.
+
+(the program is urxvtc, and yes, it has that geometry setting which can do the magic I need, but I ask this because if I needed some other program to open that way)</description><pubDate>Thu, 03 Jan 2013 22:24:34 +0000</pubDate><guid>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/</guid></item><item><title>Answer by dkeg for &lt;p&gt;As the title says. :)
+But just only once. When normally opened the program would go tiled.&lt;/p&gt;
+
+&lt;p&gt;I need this on my config which will run that program at startup.&lt;/p&gt;
+
+&lt;p&gt;(the program is urxvtc, and yes, it has that geometry setting which can do the magic I need, but I ask this because if I needed some other program to open that way)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/?answer=1105#post-id-1105</link><description>you can have it set in either your autostart or as a set keybinding.  Either or both will work
+
+as stated above you can specify
+
+&lt;pre&gt;for_window [class='Urxvt'] floating enable&lt;/pre&gt;
+
+then specify a keybinding
+&lt;pre&gt;bindsym $MOD+Enter exec urxvt -g 78x24&lt;/pre&gt;
+
+and / or specify a position on the screen
+&lt;pre&gt;
+bindysm $MOD+Enter exec urxvt -g [height]x[width][+,-]x[+,-]y
+bindsym $MOD+Enter exec urxvt -g 78x24+50+20
+&lt;/pre&gt;
+
+The above will put in in the upper left
+
+
+</description><pubDate>Tue, 22 Jan 2013 23:26:13 +0000</pubDate><guid>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/?answer=1105#post-id-1105</guid></item><item><title>Comment by dkeg for &lt;p&gt;you can have it set in either your autostart or as a set keybinding.  Either or both will work&lt;/p&gt;
+
+&lt;p&gt;as stated above you can specify&lt;/p&gt;
+
+&lt;pre&gt;for_window [class='Urxvt'] floating enable&lt;/pre&gt;
+
+then specify a keybinding
+&lt;pre&gt;bindsym $MOD+Enter exec urxvt -g 78x24&lt;/pre&gt;
+
+and / or specify a position on the screen
+&lt;pre&gt;bindysm $MOD+Enter exec urxvt -g [height]x[width][+,-]x[+,-]y
+bindsym $MOD+Enter exec urxvt -g 78x24+50+20
+&lt;/pre&gt;
+
+&lt;p&gt;The above will put in in the upper left&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/?comment=1453#comment-1453</link><description>yes, you are correct, I had realized later at some point and / or may have just read through your post to quickly, don't remember which. </description><pubDate>Tue, 19 Mar 2013 22:01:18 +0000</pubDate><guid>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/?comment=1453#comment-1453</guid></item><item><title>Comment by Zucca for &lt;p&gt;you can have it set in either your autostart or as a set keybinding.  Either or both will work&lt;/p&gt;
+
+&lt;p&gt;as stated above you can specify&lt;/p&gt;
+
+&lt;pre&gt;for_window [class='Urxvt'] floating enable&lt;/pre&gt;
+
+then specify a keybinding
+&lt;pre&gt;bindsym $MOD+Enter exec urxvt -g 78x24&lt;/pre&gt;
+
+and / or specify a position on the screen
+&lt;pre&gt;bindysm $MOD+Enter exec urxvt -g [height]x[width][+,-]x[+,-]y
+bindsym $MOD+Enter exec urxvt -g 78x24+50+20
+&lt;/pre&gt;
+
+&lt;p&gt;The above will put in in the upper left&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/?comment=1452#comment-1452</link><description>-g  switch is only valid with most terminal apps and some other simple X apps. (-g is not i3 related switch)
+That will not work with Audacious for example.</description><pubDate>Tue, 19 Mar 2013 20:53:54 +0000</pubDate><guid>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/?comment=1452#comment-1452</guid></item><item><title>Answer by Michael for &lt;p&gt;As the title says. :)
+But just only once. When normally opened the program would go tiled.&lt;/p&gt;
+
+&lt;p&gt;I need this on my config which will run that program at startup.&lt;/p&gt;
+
+&lt;p&gt;(the program is urxvtc, and yes, it has that geometry setting which can do the magic I need, but I ask this because if I needed some other program to open that way)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/?answer=975#post-id-975</link><description>You can use urxvt’s -name property and then match on that:
+
+    # autostart urxvt with instance set to "foo"
+    exec urxvtc -name foo
+    
+    for_window [instance="^foo$"] floating enable
+
+Also make sure you know about the scratchpad functionality (see the userguide), maybe that already does what you want (you don’t specify what you want…)</description><pubDate>Thu, 03 Jan 2013 23:43:26 +0000</pubDate><guid>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/?answer=975#post-id-975</guid></item><item><title>Comment by Zucca for &lt;p&gt;You can use urxvt’s -name property and then match on that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# autostart urxvt with instance set to "foo"
+exec urxvtc -name foo
+
+for_window [instance="^foo$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also make sure you know about the scratchpad functionality (see the userguide), maybe that already does what you want (you don’t specify what you want…)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/?comment=990#comment-990</link><description>That alone won't force an application window to a centain (user spicified) size. :\</description><pubDate>Sun, 06 Jan 2013 22:07:10 +0000</pubDate><guid>https://faq.i3wm.org/question/970/how-to-open-a-program-to-float-mode-with-specific-dimensions/?comment=990#comment-990</guid></item></channel></rss>

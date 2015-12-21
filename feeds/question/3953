@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3953/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 12 Jun 2014 08:08:07 +0000</lastBuildDate><item><title>Execute an .sh file using bindsym</title><link>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/</link><description>Hello. In .i3/config I have wrote this:
+
+    set $alt Mod1
+    bindsym $alt+Shift ~/.i3/lang_change.sh
+
+and it returns this error when im trying to restart i3
+
+&gt; Syntax error, unexpected
+&gt; &lt;string&gt;,expecting &lt;number&gt; or &lt;word&gt;
+&gt; or '+' 
+&gt; 
+&gt; in file ...../.3/config, line 22 
+&gt; 
+&gt; bindsym $alt+Shift
+&gt; *~/.i3/lang_change.sh*
+
+How can i execute that script when ALT+SHIFT is pressed ?
+
+Thank you.</description><pubDate>Wed, 11 Jun 2014 22:07:09 +0000</pubDate><guid>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/</guid></item><item><title>Answer by triplc for &lt;p&gt;Hello. In .i3/config I have wrote this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $alt Mod1
+bindsym $alt+Shift ~/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it returns this error when im trying to restart i3&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Syntax error, unexpected
+  &amp;lt;string&amp;gt;,expecting &amp;lt;number&amp;gt; or &amp;lt;word&amp;gt;
+  or '+' &lt;/p&gt;
+  
+  &lt;p&gt;in file ...../.3/config, line 22 &lt;/p&gt;
+  
+  &lt;p&gt;bindsym $alt+Shift
+  &lt;em&gt;~/.i3/lang_change.sh&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;How can i execute that script when ALT+SHIFT is pressed ?&lt;/p&gt;
+
+&lt;p&gt;Thank you.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?answer=3955#post-id-3955</link><description>As per suggestion from Adaephon:
+
+You have to use `exec` in order to bind external commands:
+
+    bindcode Shift+64   exec /home/yourname/.i3/lang_change.sh
+
+or
+
+    bindcode Mod1+50    exec /home/yourname/.i3/lang_change.sh
+
+or
+
+    bindcode Mod1+62    exec /home/yourname/.i3/lang_change.sh
+</description><pubDate>Thu, 12 Jun 2014 01:25:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?answer=3955#post-id-3955</guid></item><item><title>Comment by Adaephon for &lt;p&gt;As per suggestion from Adaephon:&lt;/p&gt;
+
+&lt;p&gt;You have to use &lt;code&gt;exec&lt;/code&gt; in order to bind external commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Shift+64   exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+50    exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+62    exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?comment=3960#comment-3960</link><description>This fixes the error. But it will still not work, because you cannot bind modifier keys (Shift, Control, Alt, Super) by their keyboard symbol. [You have to use the keyboard codes in that case.](https://faq.i3wm.org/question/2854/keybinding-for-the-both-shifts-keys/?answer=2861#post-id-2861)</description><pubDate>Thu, 12 Jun 2014 06:55:16 +0000</pubDate><guid>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?comment=3960#comment-3960</guid></item><item><title>Comment by Adaephon for &lt;p&gt;As per suggestion from Adaephon:&lt;/p&gt;
+
+&lt;p&gt;You have to use &lt;code&gt;exec&lt;/code&gt; in order to bind external commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Shift+64   exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+50    exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+62    exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?comment=3963#comment-3963</link><description>With `bindcode` only the last key is given by its code, modifiers for this key are still given by their name (`Mod1`, `Mod4`, `Shift`, `Control`). So Alt+Shift (hold Alt, then press Shift) has to be written as `Mod1+50` (Shift_L) and/or `Mod1+62` (Shift_R). `Shift+64` would be hold Shift, press Alt.</description><pubDate>Thu, 12 Jun 2014 07:49:40 +0000</pubDate><guid>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?comment=3963#comment-3963</guid></item><item><title>Comment by F.N for &lt;p&gt;As per suggestion from Adaephon:&lt;/p&gt;
+
+&lt;p&gt;You have to use &lt;code&gt;exec&lt;/code&gt; in order to bind external commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Shift+64   exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+50    exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+62    exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?comment=3962#comment-3962</link><description>So with xmodmap -pke | grep Alt , i saw that the keycode of Alt_L Meta_L is 64. Then i wrote this in config but still has a problem  with the + symbol. bindcode 64+Shift exec /home/me/.i3/lang_change.sh</description><pubDate>Thu, 12 Jun 2014 07:13:38 +0000</pubDate><guid>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?comment=3962#comment-3962</guid></item><item><title>Comment by F.N for &lt;p&gt;As per suggestion from Adaephon:&lt;/p&gt;
+
+&lt;p&gt;You have to use &lt;code&gt;exec&lt;/code&gt; in order to bind external commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Shift+64   exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+50    exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+62    exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?comment=3961#comment-3961</link><description>Hmm doesn't work with this solution and returns 'unexpected &lt;modifier&gt; Mod41+Shift exec /home/yourname/.i3/lang_change.sh'  Mod41 occurs because it is $mod is set on Mod4.   </description><pubDate>Thu, 12 Jun 2014 06:59:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?comment=3961#comment-3961</guid></item><item><title>Comment by F.N for &lt;p&gt;As per suggestion from Adaephon:&lt;/p&gt;
+
+&lt;p&gt;You have to use &lt;code&gt;exec&lt;/code&gt; in order to bind external commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Shift+64   exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+50    exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+62    exec /home/yourname/.i3/lang_change.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?comment=3964#comment-3964</link><description>Thank you.Now it works.</description><pubDate>Thu, 12 Jun 2014 08:08:07 +0000</pubDate><guid>https://faq.i3wm.org/question/3953/execute-an-sh-file-using-bindsym/?comment=3964#comment-3964</guid></item></channel></rss>

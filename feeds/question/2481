@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2481/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 05 Sep 2013 16:52:29 +0000</lastBuildDate><item><title>How to show CLI application name in window title?</title><link>https://faq.i3wm.org/question/2481/how-to-show-cli-application-name-in-window-title/</link><description>So, I'm curious if it is possible (and how, obviously) to show a CLI application in the terminal title bar (similar to how every non-CLI app does?  I typically use `gnome-terminal`, which has an option to show the application where necessary, but `xterm` seems to exhibit the same behavior, i.e., nothing is displayed.  This would be helpful when using things like `htop` and `slurm`  plus a standard terminal in stacking or tabbed layout.</description><pubDate>Wed, 04 Sep 2013 20:00:13 +0000</pubDate><guid>https://faq.i3wm.org/question/2481/how-to-show-cli-application-name-in-window-title/</guid></item><item><title>Answer by DocOC for &lt;p&gt;So, I'm curious if it is possible (and how, obviously) to show a CLI application in the terminal title bar (similar to how every non-CLI app does?  I typically use &lt;code&gt;gnome-terminal&lt;/code&gt;, which has an option to show the application where necessary, but &lt;code&gt;xterm&lt;/code&gt; seems to exhibit the same behavior, i.e., nothing is displayed.  This would be helpful when using things like &lt;code&gt;htop&lt;/code&gt; and &lt;code&gt;slurm&lt;/code&gt;  plus a standard terminal in stacking or tabbed layout.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2481/how-to-show-cli-application-name-in-window-title/?answer=2482#post-id-2482</link><description>You can add the following code to your .bashrc or .bash_profile (depending on whether you have your term set to open as a login shell or not.). I have it set to show the userame@host: path $ current_command, but you can alter the last echo -ne line to just show the command if you wish by deleting the ${USER}@${HOSTNAME}: ${PWD} \$ part, and leaving just echo -ne "\033]0;${BASH_COMMAND}\007"
+
+
+    case "$TERM" in
+    xterm*|rxvt*|screen*)
+        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+
+        # Show the currently running command in the terminal title:
+        # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
+        show_command_in_title_bar()
+        {
+            case "$BASH_COMMAND" in
+                *\033]0*)
+                    # The command is trying to set the title bar as well;
+                    # this is most likely the execution of $PROMPT_COMMAND.
+                    # In any case nested escapes confuse the terminal, so don't
+                    # output them.
+                    ;;
+                *)
+                    echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD} \$ ${BASH_COMMAND}\007"
+                    ;;
+            esac
+        }
+        trap show_command_in_title_bar DEBUG
+        ;;
+    *)
+        ;;
+    esac
+</description><pubDate>Wed, 04 Sep 2013 22:13:14 +0000</pubDate><guid>https://faq.i3wm.org/question/2481/how-to-show-cli-application-name-in-window-title/?answer=2482#post-id-2482</guid></item><item><title>Comment by drak3 for &lt;p&gt;You can add the following code to your .bashrc or .bash&lt;em&gt;profile (depending on whether you have your term set to open as a login shell or not.). I have it set to show the userame@host: path $ current&lt;/em&gt;command, but you can alter the last echo -ne line to just show the command if you wish by deleting the ${USER}@${HOSTNAME}: ${PWD} \$ part, and leaving just echo -ne "\033]0;${BASH_COMMAND}\007"&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;case "$TERM" in
+xterm*|rxvt*|screen*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+
+    # Show the currently running command in the terminal title:
+    # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
+    show_command_in_title_bar()
+    {
+        case "$BASH_COMMAND" in
+            *\033]0*)
+                # The command is trying to set the title bar as well;
+                # this is most likely the execution of $PROMPT_COMMAND.
+                # In any case nested escapes confuse the terminal, so don't
+                # output them.
+                ;;
+            *)
+                echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD} \$ ${BASH_COMMAND}\007"
+                ;;
+        esac
+    }
+    trap show_command_in_title_bar DEBUG
+    ;;
+*)
+    ;;
+esac
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2481/how-to-show-cli-application-name-in-window-title/?comment=2486#comment-2486</link><description>Thank you very much, kind sir!</description><pubDate>Thu, 05 Sep 2013 16:52:29 +0000</pubDate><guid>https://faq.i3wm.org/question/2481/how-to-show-cli-application-name-in-window-title/?comment=2486#comment-2486</guid></item></channel></rss>

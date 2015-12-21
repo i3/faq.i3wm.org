@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1763/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 08 May 2013 15:26:17 +0000</lastBuildDate><item><title>'assign' directive messes up my workspace label system</title><link>https://faq.i3wm.org/question/1763/assign-directive-messes-up-my-workspace-label-system/</link><description>So I have a config with workspace labels:
+
+    bindsym $mod+1 workspace 1:www
+    bindsym $mod+2 workspace 2:dev-www
+    bindsym $mod+7 workspace 3:comm
+    bindsym $mod+8 workspace 4:music
+
+Now yesterday I found something very interesting: assign
+
+    assign [class="Google-chrome"] 1:www
+    assign [class="Chromium-browser"] 1:www
+    assign [class="Firefox"] 2:dev-www
+    assign [class="Skype"] 3:comm
+    assign [class="Guayadeque"] 4:music
+
+This works fine. So I start firefox and it's opening on workspace 2:dev-www, I start chromium and it opens at 1:www, skype at 3:comm - great, I really love this.
+
+However, assuming I am at workspace 3:comm, and chromium is running, when I now press $mod+1, a new workspace 1:www opens and I don't get to the one where chromium is running. This happens with all the other workspaces mapped with 'assign'.
+
+This is quite annoying. Any idea how I can fix that? Maybe I don't need the bindsym if I have an assign?
+</description><pubDate>Wed, 08 May 2013 15:07:37 +0000</pubDate><guid>https://faq.i3wm.org/question/1763/assign-directive-messes-up-my-workspace-label-system/</guid></item><item><title>Answer by Michael for &lt;p&gt;So I have a config with workspace labels:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1 workspace 1:www
+bindsym $mod+2 workspace 2:dev-www
+bindsym $mod+7 workspace 3:comm
+bindsym $mod+8 workspace 4:music
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now yesterday I found something very interesting: assign&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Google-chrome"] 1:www
+assign [class="Chromium-browser"] 1:www
+assign [class="Firefox"] 2:dev-www
+assign [class="Skype"] 3:comm
+assign [class="Guayadeque"] 4:music
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This works fine. So I start firefox and it's opening on workspace 2:dev-www, I start chromium and it opens at 1:www, skype at 3:comm - great, I really love this.&lt;/p&gt;
+
+&lt;p&gt;However, assuming I am at workspace 3:comm, and chromium is running, when I now press $mod+1, a new workspace 1:www opens and I don't get to the one where chromium is running. This happens with all the other workspaces mapped with 'assign'.&lt;/p&gt;
+
+&lt;p&gt;This is quite annoying. Any idea how I can fix that? Maybe I don't need the bindsym if I have an assign?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1763/assign-directive-messes-up-my-workspace-label-system/?answer=1764#post-id-1764</link><description>Most likely trailing whitespace or some other difference in your config between those lines.</description><pubDate>Wed, 08 May 2013 15:16:21 +0000</pubDate><guid>https://faq.i3wm.org/question/1763/assign-directive-messes-up-my-workspace-label-system/?answer=1764#post-id-1764</guid></item><item><title>Comment by fab for &lt;p&gt;Most likely trailing whitespace or some other difference in your config between those lines.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1763/assign-directive-messes-up-my-workspace-label-system/?comment=1766#comment-1766</link><description>Indeed :) all those lines were having a single space at the end :)</description><pubDate>Wed, 08 May 2013 15:26:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1763/assign-directive-messes-up-my-workspace-label-system/?comment=1766#comment-1766</guid></item></channel></rss>

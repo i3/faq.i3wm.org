@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1439/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 19 Mar 2013 14:02:36 +0000</lastBuildDate><item><title>Accessing named workspaces assigned to outputs by number</title><link>https://faq.i3wm.org/question/1439/accessing-named-workspaces-assigned-to-outputs-by-number/</link><description>I have the following lines in my i3 config: 
+
+    bindsym $mod+1     workspace number 1
+    workspace "1: mail"   output HDMI2
+
+I would expect pressing `$mod+1` to take me to 1: mail, but it instead takes me to workspace 1. Which behavior is expected?</description><pubDate>Mon, 18 Mar 2013 16:58:46 +0000</pubDate><guid>https://faq.i3wm.org/question/1439/accessing-named-workspaces-assigned-to-outputs-by-number/</guid></item><item><title>Comment by Jesse for &lt;p&gt;I have the following lines in my i3 config: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1     workspace number 1
+workspace "1: mail"   output HDMI2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I would expect pressing &lt;code&gt;$mod+1&lt;/code&gt; to take me to 1: mail, but it instead takes me to workspace 1. Which behavior is expected?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1439/accessing-named-workspaces-assigned-to-outputs-by-number/?comment=1442#comment-1442</link><description>I originally had the full workspace name in every workspace command, but I was trying to simplify and consolidate my work and home configs. If this behavior is intended -- that workspace 1 and workspace number 1 are different -- I can use variables to solve my problem. If not, I'll send a patch.</description><pubDate>Mon, 18 Mar 2013 20:56:32 +0000</pubDate><guid>https://faq.i3wm.org/question/1439/accessing-named-workspaces-assigned-to-outputs-by-number/?comment=1442#comment-1442</guid></item><item><title>Answer by vandannen for &lt;p&gt;I have the following lines in my i3 config: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1     workspace number 1
+workspace "1: mail"   output HDMI2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I would expect pressing &lt;code&gt;$mod+1&lt;/code&gt; to take me to 1: mail, but it instead takes me to workspace 1. Which behavior is expected?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1439/accessing-named-workspaces-assigned-to-outputs-by-number/?answer=1441#post-id-1441</link><description>I can confirm this, but there is one exception: if a corresponding workspace, e.g. "1: mail", was created prior to issuing the command "workspace number 1", the command will focus the previously created workspace. So, this only seems to work for already existing workspaces, though I do not know whether this is intended.</description><pubDate>Mon, 18 Mar 2013 18:47:06 +0000</pubDate><guid>https://faq.i3wm.org/question/1439/accessing-named-workspaces-assigned-to-outputs-by-number/?answer=1441#post-id-1441</guid></item><item><title>Answer by Michael for &lt;p&gt;I have the following lines in my i3 config: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1     workspace number 1
+workspace "1: mail"   output HDMI2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I would expect pressing &lt;code&gt;$mod+1&lt;/code&gt; to take me to 1: mail, but it instead takes me to workspace 1. Which behavior is expected?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1439/accessing-named-workspaces-assigned-to-outputs-by-number/?answer=1446#post-id-1446</link><description>Use:
+
+    workspace number 1: mail
+
+This will switch to workspace number 1, or create “1: mail” if no such workspace exists.</description><pubDate>Tue, 19 Mar 2013 14:02:36 +0000</pubDate><guid>https://faq.i3wm.org/question/1439/accessing-named-workspaces-assigned-to-outputs-by-number/?answer=1446#post-id-1446</guid></item></channel></rss>

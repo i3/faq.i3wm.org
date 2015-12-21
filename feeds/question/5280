@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5280/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 02 Jan 2015 10:02:25 +0000</lastBuildDate><item><title>Colours in i3bar not showing correctly</title><link>https://faq.i3wm.org/question/5280/colours-in-i3bar-not-showing-correctly/</link><description>I'm trying to use the solarized colour scheme in my i3 config, but the colours are coming slightly strange, for example the cream colour showing up as grey instead. The colours show up correctly in my terminal though.
+
+I can't figure out what's going on, so could someone point me in the right direction? Thanks!
+
+    set $base02           #073642
+    set $base01           #586e75
+    set $base00           #657b83
+    set $base0            #839496
+    set $base1            #93a1a1
+    set $base2            #eee8d5
+    set $base3            #fdf6e3
+    set $yellow           #b58900
+    set $orange           #cb4b16
+    set $red              #dc322f
+    set $magenta          #d33682
+    set $violet           #6c71c4
+    set $blue             #268bd2
+    set $cyan             #2aa198
+    set $green            #859900
+    set $custom           #1c5766
+
+    # class                 border   backgr.  text     indicator
+    client.focused          $green   $green   $base3   $green
+    client.focused_inactive $base02  $base02  $base2   $violet
+    client.unfocused        $base02  $base02  $base1   $base01
+    client.urgent           $magenta $magenta $base3   $red
+
+    bar{
+      colors {
+             # bar colours
+             background $base03
+             statusline $blue
+             separator  $red
+ 
+             # class            border   backgr.  text
+             focused_workspace  $base3   $green   $base3
+             active_workspace   $base3   $violet  $base3
+             inactive_workspace $base01  $base1   $base03
+             urgent_workspace   $magenta $magenta $base3
+         }
+   
+screenshot: https://i. imgur.com/U5gTueE.png
+Sorry about the link, I don't have enough karma
+
+EDIT: Solved. Seems to be the colour naming convention, once its changed it works fine.</description><pubDate>Tue, 30 Dec 2014 20:25:44 +0000</pubDate><guid>https://faq.i3wm.org/question/5280/colours-in-i3bar-not-showing-correctly/</guid></item><item><title>Answer by joepd for &lt;p&gt;I'm trying to use the solarized colour scheme in my i3 config, but the colours are coming slightly strange, for example the cream colour showing up as grey instead. The colours show up correctly in my terminal though.&lt;/p&gt;
+
+&lt;p&gt;I can't figure out what's going on, so could someone point me in the right direction? Thanks!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $base02           #073642
+set $base01           #586e75
+set $base00           #657b83
+set $base0            #839496
+set $base1            #93a1a1
+set $base2            #eee8d5
+set $base3            #fdf6e3
+set $yellow           #b58900
+set $orange           #cb4b16
+set $red              #dc322f
+set $magenta          #d33682
+set $violet           #6c71c4
+set $blue             #268bd2
+set $cyan             #2aa198
+set $green            #859900
+set $custom           #1c5766
+
+# class                 border   backgr.  text     indicator
+client.focused          $green   $green   $base3   $green
+client.focused_inactive $base02  $base02  $base2   $violet
+client.unfocused        $base02  $base02  $base1   $base01
+client.urgent           $magenta $magenta $base3   $red
+
+bar{
+  colors {
+         # bar colours
+         background $base03
+         statusline $blue
+         separator  $red
+
+         # class            border   backgr.  text
+         focused_workspace  $base3   $green   $base3
+         active_workspace   $base3   $violet  $base3
+         inactive_workspace $base01  $base1   $base03
+         urgent_workspace   $magenta $magenta $base3
+     }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;screenshot: &lt;a href="https://i"&gt;https://i&lt;/a&gt;. imgur.com/U5gTueE.png
+Sorry about the link, I don't have enough karma&lt;/p&gt;
+
+&lt;p&gt;EDIT: Solved. Seems to be the colour naming convention, once its changed it works fine.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5280/colours-in-i3bar-not-showing-correctly/?answer=5291#post-id-5291</link><description>The variable mechanism in i3.conf is rudimentary: It can only do one substitution per line. This is why some people have made some theme framework (e.g. `i3-style`) to work around this limitation. </description><pubDate>Fri, 02 Jan 2015 10:02:25 +0000</pubDate><guid>https://faq.i3wm.org/question/5280/colours-in-i3bar-not-showing-correctly/?answer=5291#post-id-5291</guid></item></channel></rss>

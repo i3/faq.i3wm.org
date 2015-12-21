@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6346/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 27 Jul 2015 14:53:22 +0000</lastBuildDate><item><title>Bind alt+tab to workspace next</title><link>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/</link><description>Hi community,
+
+I have two small very related questions. A small legend (from xmodmap) for them:
+
+    keycode 23 = Left Tab
+    keycode 50 = Left Alt
+
+1) Can I bind just alt+tab (without $mod) to `workspace next`? 
+I currently have `bindcode $mod+23 workspace next`, which is fine, but I felt alt+tab is more natural. Can I do this without $mod? I tried `bindcode 23+50 workspace next`, but alt by itself switches workspaces if I do that.
+
+2) The following bind does not work, I am not sure why: `bindcode $mod+50+23 workspace prev`. Well, it works: it binds $mod + shift, but not $mod +shift+tab.
+
+Thank you!</description><pubDate>Sun, 26 Jul 2015 19:10:44 +0000</pubDate><guid>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi community,&lt;/p&gt;
+
+&lt;p&gt;I have two small very related questions. A small legend (from xmodmap) for them:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 23 = Left Tab
+keycode 50 = Left Alt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;1) Can I bind just alt+tab (without $mod) to &lt;code&gt;workspace next&lt;/code&gt;? 
+I currently have &lt;code&gt;bindcode $mod+23 workspace next&lt;/code&gt;, which is fine, but I felt alt+tab is more natural. Can I do this without $mod? I tried &lt;code&gt;bindcode 23+50 workspace next&lt;/code&gt;, but alt by itself switches workspaces if I do that.&lt;/p&gt;
+
+&lt;p&gt;2) The following bind does not work, I am not sure why: &lt;code&gt;bindcode $mod+50+23 workspace prev&lt;/code&gt;. Well, it works: it binds $mod + shift, but not $mod +shift+tab.&lt;/p&gt;
+
+&lt;p&gt;Thank you!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?answer=6351#post-id-6351</link><description>You can get the expected behaviour with `bindcode`:
+
+    bindcode Mod1+23 workspace next
+    bindcode Mod1+Shift+23 workspace prev
+
+`bindcode` expects a key code only for the last key, not the modifiers. As you noticed *i3* stops parsing the keychain for `bindcode` when encountering the first key code. As per the [User's Guide](http://i3wm.org/docs/userguide.html#keybindings) the syntax for the `bindcode` setting is
+
+    bindcode [--release] [Modifiers+]keycode command
+
+Where `[Modifiers+]` is a optional (`+`-separated) list of any of these: `Mod1`, `Mod2`, `Mod3`, `Mod4`, `Mod5`, `Shift`, `Control` and `Mode_switch`. Not all of which may be defined for your keyboard layout (check with `xmodmap -pm`). `Mod1` commonly maps to **Alt** an `Mod4` to **Super** (aka **Win-Key**). 
+
+`$mod` is just a variable (probably set to `Mod4` in your case) which *i3* just replaces when parsing the configuration. It is not an integral part of all possible key bindings. In *i3* you can bind any key (even modifiers themselves) without any modifiers or with any combination of modifiers. 
+
+----
+
+Similarly `bindsym` expects the same list of modifiers and not the key symbols of the modifiers.</description><pubDate>Mon, 27 Jul 2015 07:48:04 +0000</pubDate><guid>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?answer=6351#post-id-6351</guid></item><item><title>Comment by Airblader for &lt;p&gt;You can get the expected behaviour with &lt;code&gt;bindcode&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+23 workspace next
+bindcode Mod1+Shift+23 workspace prev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;bindcode&lt;/code&gt; expects a key code only for the last key, not the modifiers. As you noticed &lt;em&gt;i3&lt;/em&gt; stops parsing the keychain for &lt;code&gt;bindcode&lt;/code&gt; when encountering the first key code. As per the &lt;a href="http://i3wm.org/docs/userguide.html#keybindings"&gt;User's Guide&lt;/a&gt; the syntax for the &lt;code&gt;bindcode&lt;/code&gt; setting is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode [--release] [Modifiers+]keycode command
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where &lt;code&gt;[Modifiers+]&lt;/code&gt; is a optional (&lt;code&gt;+&lt;/code&gt;-separated) list of any of these: &lt;code&gt;Mod1&lt;/code&gt;, &lt;code&gt;Mod2&lt;/code&gt;, &lt;code&gt;Mod3&lt;/code&gt;, &lt;code&gt;Mod4&lt;/code&gt;, &lt;code&gt;Mod5&lt;/code&gt;, &lt;code&gt;Shift&lt;/code&gt;, &lt;code&gt;Control&lt;/code&gt; and &lt;code&gt;Mode_switch&lt;/code&gt;. Not all of which may be defined for your keyboard layout (check with &lt;code&gt;xmodmap -pm&lt;/code&gt;). &lt;code&gt;Mod1&lt;/code&gt; commonly maps to &lt;strong&gt;Alt&lt;/strong&gt; an &lt;code&gt;Mod4&lt;/code&gt; to &lt;strong&gt;Super&lt;/strong&gt; (aka &lt;strong&gt;Win-Key&lt;/strong&gt;). &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$mod&lt;/code&gt; is just a variable (probably set to &lt;code&gt;Mod4&lt;/code&gt; in your case) which &lt;em&gt;i3&lt;/em&gt; just replaces when parsing the configuration. It is not an integral part of all possible key bindings. In &lt;em&gt;i3&lt;/em&gt; you can bind any key (even modifiers themselves) without any modifiers or with any combination of modifiers. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Similarly &lt;code&gt;bindsym&lt;/code&gt; expects the same list of modifiers and not the key symbols of the modifiers.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?comment=6355#comment-6355</link><description>If you use that flag the action is executed on key up and not on key down.</description><pubDate>Mon, 27 Jul 2015 14:53:22 +0000</pubDate><guid>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?comment=6355#comment-6355</guid></item><item><title>Comment by serge poele for &lt;p&gt;You can get the expected behaviour with &lt;code&gt;bindcode&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+23 workspace next
+bindcode Mod1+Shift+23 workspace prev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;bindcode&lt;/code&gt; expects a key code only for the last key, not the modifiers. As you noticed &lt;em&gt;i3&lt;/em&gt; stops parsing the keychain for &lt;code&gt;bindcode&lt;/code&gt; when encountering the first key code. As per the &lt;a href="http://i3wm.org/docs/userguide.html#keybindings"&gt;User's Guide&lt;/a&gt; the syntax for the &lt;code&gt;bindcode&lt;/code&gt; setting is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode [--release] [Modifiers+]keycode command
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where &lt;code&gt;[Modifiers+]&lt;/code&gt; is a optional (&lt;code&gt;+&lt;/code&gt;-separated) list of any of these: &lt;code&gt;Mod1&lt;/code&gt;, &lt;code&gt;Mod2&lt;/code&gt;, &lt;code&gt;Mod3&lt;/code&gt;, &lt;code&gt;Mod4&lt;/code&gt;, &lt;code&gt;Mod5&lt;/code&gt;, &lt;code&gt;Shift&lt;/code&gt;, &lt;code&gt;Control&lt;/code&gt; and &lt;code&gt;Mode_switch&lt;/code&gt;. Not all of which may be defined for your keyboard layout (check with &lt;code&gt;xmodmap -pm&lt;/code&gt;). &lt;code&gt;Mod1&lt;/code&gt; commonly maps to &lt;strong&gt;Alt&lt;/strong&gt; an &lt;code&gt;Mod4&lt;/code&gt; to &lt;strong&gt;Super&lt;/strong&gt; (aka &lt;strong&gt;Win-Key&lt;/strong&gt;). &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$mod&lt;/code&gt; is just a variable (probably set to &lt;code&gt;Mod4&lt;/code&gt; in your case) which &lt;em&gt;i3&lt;/em&gt; just replaces when parsing the configuration. It is not an integral part of all possible key bindings. In &lt;em&gt;i3&lt;/em&gt; you can bind any key (even modifiers themselves) without any modifiers or with any combination of modifiers. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Similarly &lt;code&gt;bindsym&lt;/code&gt; expects the same list of modifiers and not the key symbols of the modifiers.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?comment=6353#comment-6353</link><description>Ah, I can upvote stuff now. :) Excellent.</description><pubDate>Mon, 27 Jul 2015 12:08:28 +0000</pubDate><guid>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?comment=6353#comment-6353</guid></item><item><title>Comment by serge poele for &lt;p&gt;You can get the expected behaviour with &lt;code&gt;bindcode&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode Mod1+23 workspace next
+bindcode Mod1+Shift+23 workspace prev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;bindcode&lt;/code&gt; expects a key code only for the last key, not the modifiers. As you noticed &lt;em&gt;i3&lt;/em&gt; stops parsing the keychain for &lt;code&gt;bindcode&lt;/code&gt; when encountering the first key code. As per the &lt;a href="http://i3wm.org/docs/userguide.html#keybindings"&gt;User's Guide&lt;/a&gt; the syntax for the &lt;code&gt;bindcode&lt;/code&gt; setting is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode [--release] [Modifiers+]keycode command
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where &lt;code&gt;[Modifiers+]&lt;/code&gt; is a optional (&lt;code&gt;+&lt;/code&gt;-separated) list of any of these: &lt;code&gt;Mod1&lt;/code&gt;, &lt;code&gt;Mod2&lt;/code&gt;, &lt;code&gt;Mod3&lt;/code&gt;, &lt;code&gt;Mod4&lt;/code&gt;, &lt;code&gt;Mod5&lt;/code&gt;, &lt;code&gt;Shift&lt;/code&gt;, &lt;code&gt;Control&lt;/code&gt; and &lt;code&gt;Mode_switch&lt;/code&gt;. Not all of which may be defined for your keyboard layout (check with &lt;code&gt;xmodmap -pm&lt;/code&gt;). &lt;code&gt;Mod1&lt;/code&gt; commonly maps to &lt;strong&gt;Alt&lt;/strong&gt; an &lt;code&gt;Mod4&lt;/code&gt; to &lt;strong&gt;Super&lt;/strong&gt; (aka &lt;strong&gt;Win-Key&lt;/strong&gt;). &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$mod&lt;/code&gt; is just a variable (probably set to &lt;code&gt;Mod4&lt;/code&gt; in your case) which &lt;em&gt;i3&lt;/em&gt; just replaces when parsing the configuration. It is not an integral part of all possible key bindings. In &lt;em&gt;i3&lt;/em&gt; you can bind any key (even modifiers themselves) without any modifiers or with any combination of modifiers. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Similarly &lt;code&gt;bindsym&lt;/code&gt; expects the same list of modifiers and not the key symbols of the modifiers.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?comment=6352#comment-6352</link><description>@Adaephon. Thank you! This is very helpful although I am a little surprised with the behavior (that i3 only expects key code for the last key). However, I trust there is a reason for that.
+Can I ask this? What is [--release] in `bindcode` ? I understand the rest of it, but not that. Thank you.</description><pubDate>Mon, 27 Jul 2015 12:07:53 +0000</pubDate><guid>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?comment=6352#comment-6352</guid></item><item><title>Answer by analogbyte for &lt;p&gt;Hi community,&lt;/p&gt;
+
+&lt;p&gt;I have two small very related questions. A small legend (from xmodmap) for them:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 23 = Left Tab
+keycode 50 = Left Alt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;1) Can I bind just alt+tab (without $mod) to &lt;code&gt;workspace next&lt;/code&gt;? 
+I currently have &lt;code&gt;bindcode $mod+23 workspace next&lt;/code&gt;, which is fine, but I felt alt+tab is more natural. Can I do this without $mod? I tried &lt;code&gt;bindcode 23+50 workspace next&lt;/code&gt;, but alt by itself switches workspaces if I do that.&lt;/p&gt;
+
+&lt;p&gt;2) The following bind does not work, I am not sure why: &lt;code&gt;bindcode $mod+50+23 workspace prev&lt;/code&gt;. Well, it works: it binds $mod + shift, but not $mod +shift+tab.&lt;/p&gt;
+
+&lt;p&gt;Thank you!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?answer=6348#post-id-6348</link><description> You should avoid using bindcode when you can I guess, bindsym does most of the work for you. You should use these bindings for what you want:
+
+    bindsym Mod1+Tab workspace next
+    bindsym Mod1+Shift+Tab workspace prev
+
+Edit: Oh, and $mod is only set to Mod4 somewhere in your config. You could also change the $mod to Mod1 there, affecting all bindings.</description><pubDate>Sun, 26 Jul 2015 20:40:19 +0000</pubDate><guid>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?answer=6348#post-id-6348</guid></item><item><title>Comment by serge poele for &lt;p&gt;You should avoid using bindcode when you can I guess, bindsym does most of the work for you. You should use these bindings for what you want:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+Tab workspace next
+bindsym Mod1+Shift+Tab workspace prev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit: Oh, and $mod is only set to Mod4 somewhere in your config. You could also change the $mod to Mod1 there, affecting all bindings.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?comment=6349#comment-6349</link><description>Thank you @analogbyte. This works well. I like using codes because when I change the layout to another language, I can't run some bindings. However, these are not affected during layout change, so you are right, this is better. Thank you! NOTE: I can't upvote the answer, but I would :).</description><pubDate>Sun, 26 Jul 2015 21:18:43 +0000</pubDate><guid>https://faq.i3wm.org/question/6346/bind-alttab-to-workspace-next/?comment=6349#comment-6349</guid></item></channel></rss>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/786/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 22 Nov 2012 08:10:12 +0000</lastBuildDate><item><title>Only show normal border when remote shell</title><link>https://faq.i3wm.org/question/786/only-show-normal-border-when-remote-shell/</link><description>I generally use the 1pixel border to save screen space. I would like to show a normal bar only on windows containing a urxvt that shows a remote shell and on all local terminals the default 1pixel border.
+
+While this works (1pixel border as default and normal as soon as I ssh on the precise64 host):
+
+    for_window [class="URxvt" title="^.*@precise64.*$"] border normal
+
+Since I don't want to list all remote hosts I work on, I would just want to exclude my localhost (hparch) from the matcher, instead of including all others. Unfortunately this wont work:
+
+    for_window [class="URxvt" title="^(?!.*@hparch).*$"] border normal
+
+I checked the regex with pcregrep, so it seems to work. Might there be a problem with the way i3 parses the regex?
+
+Problem already appeared [here](http://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/) but also no real solution.</description><pubDate>Wed, 21 Nov 2012 14:21:54 +0000</pubDate><guid>https://faq.i3wm.org/question/786/only-show-normal-border-when-remote-shell/</guid></item><item><title>Answer by Michael for &lt;p&gt;I generally use the 1pixel border to save screen space. I would like to show a normal bar only on windows containing a urxvt that shows a remote shell and on all local terminals the default 1pixel border.&lt;/p&gt;
+
+&lt;p&gt;While this works (1pixel border as default and normal as soon as I ssh on the precise64 host):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="URxvt" title="^.*@precise64.*$"] border normal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Since I don't want to list all remote hosts I work on, I would just want to exclude my localhost (hparch) from the matcher, instead of including all others. Unfortunately this wont work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="URxvt" title="^(?!.*@hparch).*$"] border normal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I checked the regex with pcregrep, so it seems to work. Might there be a problem with the way i3 parses the regex?&lt;/p&gt;
+
+&lt;p&gt;Problem already appeared &lt;a href="http://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/"&gt;here&lt;/a&gt; but also no real solution.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/786/only-show-normal-border-when-remote-shell/?answer=787#post-id-787</link><description>My title bars contain "hostname: directory", e.g. "x200: ~", so here is what works for me:
+
+    for_window [class="URxvt" title="^[^:]+:(?&lt;!x200:)"] border normal
+
+You might just have to modify your regexp a bit. Have a look at http://i3wm.org/docs/debugging.html to enable the logfile. It will tell you whether a regexp matches or not. pcregrep (which you mentioned) is a faster alternative, though. By the way, I couldn’t get your regexp to work in pcregrep.
+
+Also, why not use a shell alias like this one in the first place instead of doing hackish unreliable title matching? :-)
+
+    alias ssh='i3-msg border normal &amp;&amp; ssh'</description><pubDate>Wed, 21 Nov 2012 22:46:18 +0000</pubDate><guid>https://faq.i3wm.org/question/786/only-show-normal-border-when-remote-shell/?answer=787#post-id-787</guid></item><item><title>Comment by dabai for &lt;p&gt;My title bars contain "hostname: directory", e.g. "x200: ~", so here is what works for me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="URxvt" title="^[^:]+:(?&amp;lt;!x200:)"] border normal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You might just have to modify your regexp a bit. Have a look at &lt;a href="http://i3wm.org/docs/debugging.html"&gt;http://i3wm.org/docs/debugging.html&lt;/a&gt; to enable the logfile. It will tell you whether a regexp matches or not. pcregrep (which you mentioned) is a faster alternative, though. By the way, I couldn’t get your regexp to work in pcregrep.&lt;/p&gt;
+
+&lt;p&gt;Also, why not use a shell alias like this one in the first place instead of doing hackish unreliable title matching? :-)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias ssh='i3-msg border normal &amp;amp;&amp;amp; ssh'
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/786/only-show-normal-border-when-remote-shell/?comment=791#comment-791</link><description>OMG, guess I lost sight of the obvious over tweaking the regex :) Thanks a lot!</description><pubDate>Thu, 22 Nov 2012 08:10:12 +0000</pubDate><guid>https://faq.i3wm.org/question/786/only-show-normal-border-when-remote-shell/?comment=791#comment-791</guid></item></channel></rss>

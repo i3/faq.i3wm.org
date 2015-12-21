@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4374/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 05 Aug 2014 19:18:08 +0000</lastBuildDate><item><title>How to set "new_window pixel" only for non-float windows?</title><link>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/</link><description>I want floating windows to **have** a title bar and non-floating windows to **not have** a title bar.
+
+Here's my relevant config:
+
+    hide_edge_borders both
+    new_window pixel
+    new_float normal 2
+
+However whatever I do, setting `new_window` affects both floating and non-floating windows.
+
+Is it possible to change this behaviour?</description><pubDate>Sun, 03 Aug 2014 11:47:03 +0000</pubDate><guid>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/</guid></item><item><title>Comment by TonyC for &lt;p&gt;I want floating windows to &lt;strong&gt;have&lt;/strong&gt; a title bar and non-floating windows to &lt;strong&gt;not have&lt;/strong&gt; a title bar.&lt;/p&gt;
+
+&lt;p&gt;Here's my relevant config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;hide_edge_borders both
+new_window pixel
+new_float normal 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However whatever I do, setting &lt;code&gt;new_window&lt;/code&gt; affects both floating and non-floating windows.&lt;/p&gt;
+
+&lt;p&gt;Is it possible to change this behaviour?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?comment=4390#comment-4390</link><description>I'm pretty sure this one is fixed in the development version.</description><pubDate>Tue, 05 Aug 2014 00:38:13 +0000</pubDate><guid>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?comment=4390#comment-4390</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I want floating windows to &lt;strong&gt;have&lt;/strong&gt; a title bar and non-floating windows to &lt;strong&gt;not have&lt;/strong&gt; a title bar.&lt;/p&gt;
+
+&lt;p&gt;Here's my relevant config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;hide_edge_borders both
+new_window pixel
+new_float normal 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However whatever I do, setting &lt;code&gt;new_window&lt;/code&gt; affects both floating and non-floating windows.&lt;/p&gt;
+
+&lt;p&gt;Is it possible to change this behaviour?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?answer=4386#post-id-4386</link><description>There seems to be a slight problem when using `1pixel` or `pixel` without explicit size.
+
+It seems to work, if the size is explicitly set:
+
+    new_window pixel 1
+    new_window normal 2</description><pubDate>Mon, 04 Aug 2014 09:37:01 +0000</pubDate><guid>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?answer=4386#post-id-4386</guid></item><item><title>Comment by axper for &lt;p&gt;There seems to be a slight problem when using &lt;code&gt;1pixel&lt;/code&gt; or &lt;code&gt;pixel&lt;/code&gt; without explicit size.&lt;/p&gt;
+
+&lt;p&gt;It seems to work, if the size is explicitly set:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window pixel 1
+new_window normal 2
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?comment=4394#comment-4394</link><description>@Adaephon Yes, 4.8 (2014-06-15) on Arch. Here's my full config: https://github.com/axper/config-home/blob/master/.i3/config</description><pubDate>Tue, 05 Aug 2014 16:01:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?comment=4394#comment-4394</guid></item><item><title>Comment by Adaephon for &lt;p&gt;There seems to be a slight problem when using &lt;code&gt;1pixel&lt;/code&gt; or &lt;code&gt;pixel&lt;/code&gt; without explicit size.&lt;/p&gt;
+
+&lt;p&gt;It seems to work, if the size is explicitly set:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window pixel 1
+new_window normal 2
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?comment=4397#comment-4397</link><description>Very strange: On my Arch I seem to have the same problem, whereas it seemed to work fine on the Ubuntu machine I used for the previous tests. I'll have to check on the Ubuntu again, but I think, a bug report is in order…</description><pubDate>Tue, 05 Aug 2014 19:18:08 +0000</pubDate><guid>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?comment=4397#comment-4397</guid></item><item><title>Comment by Adaephon for &lt;p&gt;There seems to be a slight problem when using &lt;code&gt;1pixel&lt;/code&gt; or &lt;code&gt;pixel&lt;/code&gt; without explicit size.&lt;/p&gt;
+
+&lt;p&gt;It seems to work, if the size is explicitly set:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window pixel 1
+new_window normal 2
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?comment=4392#comment-4392</link><description>Hmm, are you using the current version, 4.8?</description><pubDate>Tue, 05 Aug 2014 13:10:53 +0000</pubDate><guid>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?comment=4392#comment-4392</guid></item><item><title>Comment by axper for &lt;p&gt;There seems to be a slight problem when using &lt;code&gt;1pixel&lt;/code&gt; or &lt;code&gt;pixel&lt;/code&gt; without explicit size.&lt;/p&gt;
+
+&lt;p&gt;It seems to work, if the size is explicitly set:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window pixel 1
+new_window normal 2
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?comment=4388#comment-4388</link><description>Nope, still the same with `new_window pixel 1`.</description><pubDate>Mon, 04 Aug 2014 16:45:38 +0000</pubDate><guid>https://faq.i3wm.org/question/4374/how-to-set-new_window-pixel-only-for-non-float-windows/?comment=4388#comment-4388</guid></item></channel></rss>

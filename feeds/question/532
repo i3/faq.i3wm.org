@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/532/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 21 Sep 2012 10:36:14 +0000</lastBuildDate><item><title>popup_during_fullscreen: why can't we just show it</title><link>https://faq.i3wm.org/question/532/popup_during_fullscreen-why-cant-we-just-show-it/</link><description>In the user documentation, we can see these bits:
+
+&gt; When you are in fullscreen mode, some
+&gt; applications still open popup windows
+&gt; (take Xpdf for example). This is
+&gt; because these applications may not be
+&gt; aware that they are in fullscreen mode
+&gt; (they do not check the corresponding
+&gt; hint). There are two things which are
+&gt; possible to do in this situation:
+&gt; 
+&gt;  &gt;   1. Just ignore the popup (don’t map it). This won’t interrupt you while
+&gt;  &gt;   you are in fullscreen. However, some apps might react badly to this (deadlock until you go out of fullscreen).
+&gt;     
+&gt; 
+&gt;  &gt;   2. Leave fullscreen mode. This is the default.
+
+
+I can't understand why we can't just show the popup, floating over the application, like it's done any other time ?
+
+I think that most of the time, the popups **from the fullscreen application** are just mandatory, there is no way you can't ignore it ?
+
+
+For instance, I'm thinking about a text editor, `File-&gt;Open` raises a popup, and it's logical for the application to block until you selected a file, and there is no way for the app not use this popup, every if it checked the `fullscreen` flag ...
+
+
+Is there any "system level" reason to prevent that, or am I missing something ?
+</description><pubDate>Fri, 21 Sep 2012 08:42:49 +0000</pubDate><guid>https://faq.i3wm.org/question/532/popup_during_fullscreen-why-cant-we-just-show-it/</guid></item><item><title>Answer by Michael for &lt;p&gt;In the user documentation, we can see these bits:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;When you are in fullscreen mode, some
+  applications still open popup windows
+  (take Xpdf for example). This is
+  because these applications may not be
+  aware that they are in fullscreen mode
+  (they do not check the corresponding
+  hint). There are two things which are
+  possible to do in this situation:&lt;/p&gt;
+  
+  &lt;blockquote&gt;
+    &lt;ol&gt;
+    &lt;li&gt;&lt;p&gt;Just ignore the popup (don’t map it). This won’t interrupt you while
+    you are in fullscreen. However, some apps might react badly to this (deadlock until you go out of fullscreen).&lt;/p&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;p&gt;Leave fullscreen mode. This is the default.&lt;/p&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I can't understand why we can't just show the popup, floating over the application, like it's done any other time ?&lt;/p&gt;
+
+&lt;p&gt;I think that most of the time, the popups &lt;strong&gt;from the fullscreen application&lt;/strong&gt; are just mandatory, there is no way you can't ignore it ?&lt;/p&gt;
+
+&lt;p&gt;For instance, I'm thinking about a text editor, &lt;code&gt;File-&amp;gt;Open&lt;/code&gt; raises a popup, and it's logical for the application to block until you selected a file, and there is no way for the app not use this popup, every if it checked the &lt;code&gt;fullscreen&lt;/code&gt; flag ...&lt;/p&gt;
+
+&lt;p&gt;Is there any "system level" reason to prevent that, or am I missing something ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/532/popup_during_fullscreen-why-cant-we-just-show-it/?answer=533#post-id-533</link><description>It’s just not implemented. See https://github.com/i3/i3/issues/663. darkraven seems to be working on it.</description><pubDate>Fri, 21 Sep 2012 10:02:22 +0000</pubDate><guid>https://faq.i3wm.org/question/532/popup_during_fullscreen-why-cant-we-just-show-it/?answer=533#post-id-533</guid></item><item><title>Comment by kevin for &lt;p&gt;It’s just not implemented. See &lt;a href="https://github.com/i3/i3/issues/663"&gt;https://github.com/i3/i3/issues/663&lt;/a&gt;. darkraven seems to be working on it.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/532/popup_during_fullscreen-why-cant-we-just-show-it/?comment=534#comment-534</link><description>great, thanks! (BTW, the link is broken, the &lt;dot&gt; has been included in the URL)</description><pubDate>Fri, 21 Sep 2012 10:36:14 +0000</pubDate><guid>https://faq.i3wm.org/question/532/popup_during_fullscreen-why-cant-we-just-show-it/?comment=534#comment-534</guid></item></channel></rss>

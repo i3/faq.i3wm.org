@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1457/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 21 Mar 2013 16:33:32 +0000</lastBuildDate><item><title>Assign program to specific workspace ON specific output</title><link>https://faq.i3wm.org/question/1457/assign-program-to-specific-workspace-on-specific-output/</link><description>Using the following two lines I configured my i3 in such a way that my mail application appears on workspace "9:mail" on output "LVDS1":
+
+    assign [class="(?i)thunderbird"] 9:mail
+    workspace 9:mail output LVDS1
+
+However, with this configuration, the workspace "9:mail" is created already on startup of i3 instead of a workspace 1 or 2 (depending on number of external monitors), even if thunderbird has not been started. Is there a way to prevent this?
+</description><pubDate>Thu, 21 Mar 2013 15:20:26 +0000</pubDate><guid>https://faq.i3wm.org/question/1457/assign-program-to-specific-workspace-on-specific-output/</guid></item><item><title>Answer by vandannen for &lt;p&gt;Using the following two lines I configured my i3 in such a way that my mail application appears on workspace "9:mail" on output "LVDS1":&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="(?i)thunderbird"] 9:mail
+workspace 9:mail output LVDS1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, with this configuration, the workspace "9:mail" is created already on startup of i3 instead of a workspace 1 or 2 (depending on number of external monitors), even if thunderbird has not been started. Is there a way to prevent this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1457/assign-program-to-specific-workspace-on-specific-output/?answer=1458#post-id-1458</link><description>For each output, i3 will start on the workspace that was declared first in the config file. So, I would suggest to explicitly declare theses workspaces.
+
+In order to start on workspace 1 for the first monitor and on workspace 6 for the second one (where the name of the monitor/output depends on your configuration, like LVDS0 and LVDS1):
+
+    workspace 1 output LVDS0
+    workspace 6 output LVDS1
+    ...
+    workspace 9:mail output LVDS1</description><pubDate>Thu, 21 Mar 2013 15:41:19 +0000</pubDate><guid>https://faq.i3wm.org/question/1457/assign-program-to-specific-workspace-on-specific-output/?answer=1458#post-id-1458</guid></item><item><title>Comment by mschaefer for &lt;p&gt;For each output, i3 will start on the workspace that was declared first in the config file. So, I would suggest to explicitly declare theses workspaces.&lt;/p&gt;
+
+&lt;p&gt;In order to start on workspace 1 for the first monitor and on workspace 6 for the second one (where the name of the monitor/output depends on your configuration, like LVDS0 and LVDS1):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 1 output LVDS0
+workspace 6 output LVDS1
+...
+workspace 9:mail output LVDS1
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1457/assign-program-to-specific-workspace-on-specific-output/?comment=1459#comment-1459</link><description>Thanks, that's working!</description><pubDate>Thu, 21 Mar 2013 16:33:32 +0000</pubDate><guid>https://faq.i3wm.org/question/1457/assign-program-to-specific-workspace-on-specific-output/?comment=1459#comment-1459</guid></item></channel></rss>

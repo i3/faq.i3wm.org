@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4150/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 14 Jul 2014 13:00:23 +0000</lastBuildDate><item><title>Strange focus behaviour on multi-monitor setup</title><link>https://faq.i3wm.org/question/4150/strange-focus-behaviour-on-multi-monitor-setup/</link><description>Currently I have this problem:
+&lt;pre&gt;
+monitor0             monitor1
+0:hdmi               1:term
+(empty)              (xterm1, xterm2, xterm3)
+&lt;/pre&gt;
+
+When I switch focus left while in the "xterm1" container, my focus is moved to workspace "0:hdmi" in monitor0, even when it's empty.
+
+I can't understand this behaviour. If I only use one monitor, the focus is not switched to other workspaces when you reach the last container. But the behaviour (strangely IMHO) changes to a "shared focus space" when you plug other outputs.
+
+Is there a way to limit my commands to the current workspace? I want to work in a single workspace at a time.
+
+Also, I've seen that floating windows will open in my other monitor, so it looks like both workspaces are like active and shared at the same time. 
+
+It's really confusing and frustrating, because it's a problem when my HDMI output is switched off but dialogs are opened there.
+
+tl;dr: I don't want shared workspaces/screens. Can I change that?</description><pubDate>Mon, 07 Jul 2014 16:08:18 +0000</pubDate><guid>https://faq.i3wm.org/question/4150/strange-focus-behaviour-on-multi-monitor-setup/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Currently I have this problem:&lt;/p&gt;
+
+&lt;pre&gt;monitor0             monitor1
+0:hdmi               1:term
+(empty)              (xterm1, xterm2, xterm3)
+&lt;/pre&gt;
+
+&lt;p&gt;When I switch focus left while in the "xterm1" container, my focus is moved to workspace "0:hdmi" in monitor0, even when it's empty.&lt;/p&gt;
+
+&lt;p&gt;I can't understand this behaviour. If I only use one monitor, the focus is not switched to other workspaces when you reach the last container. But the behaviour (strangely IMHO) changes to a "shared focus space" when you plug other outputs.&lt;/p&gt;
+
+&lt;p&gt;Is there a way to limit my commands to the current workspace? I want to work in a single workspace at a time.&lt;/p&gt;
+
+&lt;p&gt;Also, I've seen that floating windows will open in my other monitor, so it looks like both workspaces are like active and shared at the same time. &lt;/p&gt;
+
+&lt;p&gt;It's really confusing and frustrating, because it's a problem when my HDMI output is switched off but dialogs are opened there.&lt;/p&gt;
+
+&lt;p&gt;tl;dr: I don't want shared workspaces/screens. Can I change that?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4150/strange-focus-behaviour-on-multi-monitor-setup/?answer=4229#post-id-4229</link><description>**(Partial) Workaround**
+
+There is no way to completely deactivate this behaviour, but you can alleviate it somewhat by setting `force_focus_wrapping yes` in your config. This will keep the cursor inside a container. As long as you have at least two containers side by side it will not leave the current container or workspace. To leave a container you have to do `focus parent` first. The drawback is that it affects any container and thus obviously may require some adaption in your workflow.
+
+To prevent windows from opening on a switched off output, you have to disable the display with `xrandr --output NAME --off` and possibly `reload`/`restart` i3.
+
+----
+
+**Why does it even behave this way?**
+
+Workspaces have three possible focus states: 'focused', 'active' and 'inactive'. The workspace you are currently working on is 'focused'. If you have multiple outputs the other visible workspaces are 'active'. Any other workspace is 'inactive'. 
+
+The focusing behaviour of i3 is designed to be intuitive. So if you call `focus left` i3 will try to focus the next thing to the left of your current position. In your case that is the active workspace '0:hdmi'. With only one output i3 does not switch workspaces because there are no other active workspaces.
+
+As for the dialogs: Usually i3 will place on the currently focused workspace floating right in the middle. (Sadly) some programs seem to try to (re)position the dialogs themselves and sometimes come to strange conclusions about sensible placement. Although you switched off your display it is still active in your X server and may thus be percieved as the perfect position for a dialog window.</description><pubDate>Mon, 14 Jul 2014 08:50:07 +0000</pubDate><guid>https://faq.i3wm.org/question/4150/strange-focus-behaviour-on-multi-monitor-setup/?answer=4229#post-id-4229</guid></item><item><title>Comment by tigrezno for &lt;p&gt;&lt;strong&gt;(Partial) Workaround&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There is no way to completely deactivate this behaviour, but you can alleviate it somewhat by setting &lt;code&gt;force_focus_wrapping yes&lt;/code&gt; in your config. This will keep the cursor inside a container. As long as you have at least two containers side by side it will not leave the current container or workspace. To leave a container you have to do &lt;code&gt;focus parent&lt;/code&gt; first. The drawback is that it affects any container and thus obviously may require some adaption in your workflow.&lt;/p&gt;
+
+&lt;p&gt;To prevent windows from opening on a switched off output, you have to disable the display with &lt;code&gt;xrandr --output NAME --off&lt;/code&gt; and possibly &lt;code&gt;reload&lt;/code&gt;/&lt;code&gt;restart&lt;/code&gt; i3.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Why does it even behave this way?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Workspaces have three possible focus states: 'focused', 'active' and 'inactive'. The workspace you are currently working on is 'focused'. If you have multiple outputs the other visible workspaces are 'active'. Any other workspace is 'inactive'. &lt;/p&gt;
+
+&lt;p&gt;The focusing behaviour of i3 is designed to be intuitive. So if you call &lt;code&gt;focus left&lt;/code&gt; i3 will try to focus the next thing to the left of your current position. In your case that is the active workspace '0:hdmi'. With only one output i3 does not switch workspaces because there are no other active workspaces.&lt;/p&gt;
+
+&lt;p&gt;As for the dialogs: Usually i3 will place on the currently focused workspace floating right in the middle. (Sadly) some programs seem to try to (re)position the dialogs themselves and sometimes come to strange conclusions about sensible placement. Although you switched off your display it is still active in your X server and may thus be percieved as the perfect position for a dialog window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4150/strange-focus-behaviour-on-multi-monitor-setup/?comment=4245#comment-4245</link><description>Thanks for the explanation!</description><pubDate>Mon, 14 Jul 2014 13:00:23 +0000</pubDate><guid>https://faq.i3wm.org/question/4150/strange-focus-behaviour-on-multi-monitor-setup/?comment=4245#comment-4245</guid></item></channel></rss>

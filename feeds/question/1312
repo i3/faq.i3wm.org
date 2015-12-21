@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1312/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 21 Jul 2015 17:17:35 +0000</lastBuildDate><item><title>Problem with moving windows between workspaces on us keyboard layout</title><link>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/</link><description>**EDIT: As the comment of njsg states, the obvious solution are keycodes instead of keysyms. Using 'bindcode $mod+Shift+10,11,12,...' works; xev is your friend for finding the keycodes!**
+
+Hello,
+
+I'm pretty new to i3 and I ran into a serious problem with workspace switching. Since i am from Germany, my laptop keyboard has german layout. However, at work I use an external keyboard with us layout since for programming I like that layout better. I have thus written a small script that allows me to switch between german and us layout and I have successfully bound it to my F11 key. The command within the script are
+
+'setxkbmap -layout de' and 'setxkbmap -layout us -variant intl'
+
+So much for the setting, because I don't know if the problem is related to that. My problem is as follows: Having us layout enabled, whenever I press $mod+Shift+num, this does work only for a few numbers, namely 1,4,5,7,9,0 (strangely, the last three key combinations actually move the window to workspace 6,8,9 instead of 7,9,10). For the other numbers, doing it on a terminal gives @,#,^,* (which is Shift+num without the mod key). I have tries this with both mod4 and mod1 as mod key with the result being the same. However, with the german layout everything works well.
+
+So do I have to change the keymap in a different fashion? Switching to us layout WITHOUT specifying -variant intl didn't change anything. I would be very glad for suggestions!
+
+Best,
+Michael</description><pubDate>Tue, 05 Mar 2013 14:57:38 +0000</pubDate><guid>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/</guid></item><item><title>Comment by mschaefer for &lt;p&gt;&lt;strong&gt;EDIT: As the comment of njsg states, the obvious solution are keycodes instead of keysyms. Using 'bindcode $mod+Shift+10,11,12,...' works; xev is your friend for finding the keycodes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I'm pretty new to i3 and I ran into a serious problem with workspace switching. Since i am from Germany, my laptop keyboard has german layout. However, at work I use an external keyboard with us layout since for programming I like that layout better. I have thus written a small script that allows me to switch between german and us layout and I have successfully bound it to my F11 key. The command within the script are&lt;/p&gt;
+
+&lt;p&gt;'setxkbmap -layout de' and 'setxkbmap -layout us -variant intl'&lt;/p&gt;
+
+&lt;p&gt;So much for the setting, because I don't know if the problem is related to that. My problem is as follows: Having us layout enabled, whenever I press $mod+Shift+num, this does work only for a few numbers, namely 1,4,5,7,9,0 (strangely, the last three key combinations actually move the window to workspace 6,8,9 instead of 7,9,10). For the other numbers, doing it on a terminal gives @,#,^,* (which is Shift+num without the mod key). I have tries this with both mod4 and mod1 as mod key with the result being the same. However, with the german layout everything works well.&lt;/p&gt;
+
+&lt;p&gt;So do I have to change the keymap in a different fashion? Switching to us layout WITHOUT specifying -variant intl didn't change anything. I would be very glad for suggestions!&lt;/p&gt;
+
+&lt;p&gt;Best,
+Michael&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1375#comment-1375</link><description>Sorry njsg, I didn't read your comment, I just went back to this topic to post that I found the exact same solution ;-) Nevertheless, thank you!</description><pubDate>Tue, 12 Mar 2013 11:13:36 +0000</pubDate><guid>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1375#comment-1375</guid></item><item><title>Comment by mschaefer for &lt;p&gt;&lt;strong&gt;EDIT: As the comment of njsg states, the obvious solution are keycodes instead of keysyms. Using 'bindcode $mod+Shift+10,11,12,...' works; xev is your friend for finding the keycodes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I'm pretty new to i3 and I ran into a serious problem with workspace switching. Since i am from Germany, my laptop keyboard has german layout. However, at work I use an external keyboard with us layout since for programming I like that layout better. I have thus written a small script that allows me to switch between german and us layout and I have successfully bound it to my F11 key. The command within the script are&lt;/p&gt;
+
+&lt;p&gt;'setxkbmap -layout de' and 'setxkbmap -layout us -variant intl'&lt;/p&gt;
+
+&lt;p&gt;So much for the setting, because I don't know if the problem is related to that. My problem is as follows: Having us layout enabled, whenever I press $mod+Shift+num, this does work only for a few numbers, namely 1,4,5,7,9,0 (strangely, the last three key combinations actually move the window to workspace 6,8,9 instead of 7,9,10). For the other numbers, doing it on a terminal gives @,#,^,* (which is Shift+num without the mod key). I have tries this with both mod4 and mod1 as mod key with the result being the same. However, with the german layout everything works well.&lt;/p&gt;
+
+&lt;p&gt;So do I have to change the keymap in a different fashion? Switching to us layout WITHOUT specifying -variant intl didn't change anything. I would be very glad for suggestions!&lt;/p&gt;
+
+&lt;p&gt;Best,
+Michael&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1319#comment-1319</link><description>Thanks, I was already writing my reply to MeanEYE when your post arrived!</description><pubDate>Tue, 05 Mar 2013 15:34:28 +0000</pubDate><guid>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1319#comment-1319</guid></item><item><title>Comment by njsg for &lt;p&gt;&lt;strong&gt;EDIT: As the comment of njsg states, the obvious solution are keycodes instead of keysyms. Using 'bindcode $mod+Shift+10,11,12,...' works; xev is your friend for finding the keycodes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I'm pretty new to i3 and I ran into a serious problem with workspace switching. Since i am from Germany, my laptop keyboard has german layout. However, at work I use an external keyboard with us layout since for programming I like that layout better. I have thus written a small script that allows me to switch between german and us layout and I have successfully bound it to my F11 key. The command within the script are&lt;/p&gt;
+
+&lt;p&gt;'setxkbmap -layout de' and 'setxkbmap -layout us -variant intl'&lt;/p&gt;
+
+&lt;p&gt;So much for the setting, because I don't know if the problem is related to that. My problem is as follows: Having us layout enabled, whenever I press $mod+Shift+num, this does work only for a few numbers, namely 1,4,5,7,9,0 (strangely, the last three key combinations actually move the window to workspace 6,8,9 instead of 7,9,10). For the other numbers, doing it on a terminal gives @,#,^,* (which is Shift+num without the mod key). I have tries this with both mod4 and mod1 as mod key with the result being the same. However, with the german layout everything works well.&lt;/p&gt;
+
+&lt;p&gt;So do I have to change the keymap in a different fashion? Switching to us layout WITHOUT specifying -variant intl didn't change anything. I would be very glad for suggestions!&lt;/p&gt;
+
+&lt;p&gt;Best,
+Michael&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1314#comment-1314</link><description>Check your i3 configuration file, the "issue" is that the "move to workspace" commands aren't specified as mod+shift+num, but as mod+shift+char, where char is what you get with shift+num.</description><pubDate>Tue, 05 Mar 2013 15:14:38 +0000</pubDate><guid>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1314#comment-1314</guid></item><item><title>Comment by njsg for &lt;p&gt;&lt;strong&gt;EDIT: As the comment of njsg states, the obvious solution are keycodes instead of keysyms. Using 'bindcode $mod+Shift+10,11,12,...' works; xev is your friend for finding the keycodes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I'm pretty new to i3 and I ran into a serious problem with workspace switching. Since i am from Germany, my laptop keyboard has german layout. However, at work I use an external keyboard with us layout since for programming I like that layout better. I have thus written a small script that allows me to switch between german and us layout and I have successfully bound it to my F11 key. The command within the script are&lt;/p&gt;
+
+&lt;p&gt;'setxkbmap -layout de' and 'setxkbmap -layout us -variant intl'&lt;/p&gt;
+
+&lt;p&gt;So much for the setting, because I don't know if the problem is related to that. My problem is as follows: Having us layout enabled, whenever I press $mod+Shift+num, this does work only for a few numbers, namely 1,4,5,7,9,0 (strangely, the last three key combinations actually move the window to workspace 6,8,9 instead of 7,9,10). For the other numbers, doing it on a terminal gives @,#,^,* (which is Shift+num without the mod key). I have tries this with both mod4 and mod1 as mod key with the result being the same. However, with the german layout everything works well.&lt;/p&gt;
+
+&lt;p&gt;So do I have to change the keymap in a different fashion? Switching to us layout WITHOUT specifying -variant intl didn't change anything. I would be very glad for suggestions!&lt;/p&gt;
+
+&lt;p&gt;Best,
+Michael&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1324#comment-1324</link><description>As you are switching between layouts, I *think* it is possible to specify keycodes instead of symbols, so that the mappings work for both keyboard layouts.</description><pubDate>Tue, 05 Mar 2013 15:48:04 +0000</pubDate><guid>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1324#comment-1324</guid></item><item><title>Answer by MeanEYE for &lt;p&gt;&lt;strong&gt;EDIT: As the comment of njsg states, the obvious solution are keycodes instead of keysyms. Using 'bindcode $mod+Shift+10,11,12,...' works; xev is your friend for finding the keycodes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I'm pretty new to i3 and I ran into a serious problem with workspace switching. Since i am from Germany, my laptop keyboard has german layout. However, at work I use an external keyboard with us layout since for programming I like that layout better. I have thus written a small script that allows me to switch between german and us layout and I have successfully bound it to my F11 key. The command within the script are&lt;/p&gt;
+
+&lt;p&gt;'setxkbmap -layout de' and 'setxkbmap -layout us -variant intl'&lt;/p&gt;
+
+&lt;p&gt;So much for the setting, because I don't know if the problem is related to that. My problem is as follows: Having us layout enabled, whenever I press $mod+Shift+num, this does work only for a few numbers, namely 1,4,5,7,9,0 (strangely, the last three key combinations actually move the window to workspace 6,8,9 instead of 7,9,10). For the other numbers, doing it on a terminal gives @,#,^,* (which is Shift+num without the mod key). I have tries this with both mod4 and mod1 as mod key with the result being the same. However, with the german layout everything works well.&lt;/p&gt;
+
+&lt;p&gt;So do I have to change the keymap in a different fashion? Switching to us layout WITHOUT specifying -variant intl didn't change anything. I would be very glad for suggestions!&lt;/p&gt;
+
+&lt;p&gt;Best,
+Michael&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?answer=1313#post-id-1313</link><description>If you are using `Shift` as a part of modifiers you can't use numbers as they turn into symbols then.
+
+    bindsym $mod+1 workspace "1: Chat"
+    bindsym $mod+2 workspace "2: Web"
+    bindsym $mod+3 workspace "3: Code"
+    bindsym $mod+4 workspace "4: Misc"
+    bindsym $mod+5 workspace "5: FM"
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+    bindsym Ctrl+Mod1+Left workspace prev
+    bindsym Ctrl+Mod1+Right workspace next
+
+    bindsym $mod+Shift+exclam move workspace "1: Chat"
+    bindsym $mod+Shift+at move workspace "2: Web"
+    bindsym $mod+Shift+numbersign move workspace "3: Code"
+    bindsym $mod+Shift+dollar move workspace "4: Misc"
+    bindsym $mod+Shift+percent move workspace "5: FM"
+    bindsym $mod+Shift+asciicircum move workspace 6
+    bindsym $mod+Shift+ampersand move workspace 7
+    bindsym $mod+Shift+asterisk move workspace 8
+    bindsym $mod+Shift+parenleft move workspace 9
+    bindsym $mod+Shift+parenright move workspace 10</description><pubDate>Tue, 05 Mar 2013 15:13:46 +0000</pubDate><guid>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?answer=1313#post-id-1313</guid></item><item><title>Comment by dfc for &lt;p&gt;If you are using &lt;code&gt;Shift&lt;/code&gt; as a part of modifiers you can't use numbers as they turn into symbols then.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1 workspace "1: Chat"
+bindsym $mod+2 workspace "2: Web"
+bindsym $mod+3 workspace "3: Code"
+bindsym $mod+4 workspace "4: Misc"
+bindsym $mod+5 workspace "5: FM"
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym Ctrl+Mod1+Left workspace prev
+bindsym Ctrl+Mod1+Right workspace next
+
+bindsym $mod+Shift+exclam move workspace "1: Chat"
+bindsym $mod+Shift+at move workspace "2: Web"
+bindsym $mod+Shift+numbersign move workspace "3: Code"
+bindsym $mod+Shift+dollar move workspace "4: Misc"
+bindsym $mod+Shift+percent move workspace "5: FM"
+bindsym $mod+Shift+asciicircum move workspace 6
+bindsym $mod+Shift+ampersand move workspace 7
+bindsym $mod+Shift+asterisk move workspace 8
+bindsym $mod+Shift+parenleft move workspace 9
+bindsym $mod+Shift+parenright move workspace 10
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=6325#comment-6325</link><description>the i3 users guide uses shift plus numbers. `bindsym $mod+Shift+1 move container to workspace 1`</description><pubDate>Tue, 21 Jul 2015 17:17:35 +0000</pubDate><guid>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=6325#comment-6325</guid></item><item><title>Answer by mschaefer for &lt;p&gt;&lt;strong&gt;EDIT: As the comment of njsg states, the obvious solution are keycodes instead of keysyms. Using 'bindcode $mod+Shift+10,11,12,...' works; xev is your friend for finding the keycodes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I'm pretty new to i3 and I ran into a serious problem with workspace switching. Since i am from Germany, my laptop keyboard has german layout. However, at work I use an external keyboard with us layout since for programming I like that layout better. I have thus written a small script that allows me to switch between german and us layout and I have successfully bound it to my F11 key. The command within the script are&lt;/p&gt;
+
+&lt;p&gt;'setxkbmap -layout de' and 'setxkbmap -layout us -variant intl'&lt;/p&gt;
+
+&lt;p&gt;So much for the setting, because I don't know if the problem is related to that. My problem is as follows: Having us layout enabled, whenever I press $mod+Shift+num, this does work only for a few numbers, namely 1,4,5,7,9,0 (strangely, the last three key combinations actually move the window to workspace 6,8,9 instead of 7,9,10). For the other numbers, doing it on a terminal gives @,#,^,* (which is Shift+num without the mod key). I have tries this with both mod4 and mod1 as mod key with the result being the same. However, with the german layout everything works well.&lt;/p&gt;
+
+&lt;p&gt;So do I have to change the keymap in a different fashion? Switching to us layout WITHOUT specifying -variant intl didn't change anything. I would be very glad for suggestions!&lt;/p&gt;
+
+&lt;p&gt;Best,
+Michael&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?answer=1318#post-id-1318</link><description>First of all, thank you for the fast reply :-) You mention not to use numbers together with Shift. Okay, maybe my post was a bit mistakable. I did not put a "bindsym $mod+Shift+1 ..." into my config file; I just wanted to say that I press these buttons :-)
+
+Nevertheless, you post brings me to the bottom of the problem. Instead of that what you posted, my config file (which comes from i3-config-wizard) has the sequence of characters on a german keyboard (exclam,quotedbl,section,...) which explains the malfunction as well as the strange behaviour on some numbers.
+
+So as I see it my setting can never work with Shift. For the moment I exchanged Shift with CTRL which now works perfectly!
+
+
+P.S.: Is it possible to mark a question as "solved" or something?</description><pubDate>Tue, 05 Mar 2013 15:33:05 +0000</pubDate><guid>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?answer=1318#post-id-1318</guid></item><item><title>Comment by MeanEYE for &lt;p&gt;First of all, thank you for the fast reply :-) You mention not to use numbers together with Shift. Okay, maybe my post was a bit mistakable. I did not put a "bindsym $mod+Shift+1 ..." into my config file; I just wanted to say that I press these buttons :-)&lt;/p&gt;
+
+&lt;p&gt;Nevertheless, you post brings me to the bottom of the problem. Instead of that what you posted, my config file (which comes from i3-config-wizard) has the sequence of characters on a german keyboard (exclam,quotedbl,section,...) which explains the malfunction as well as the strange behaviour on some numbers.&lt;/p&gt;
+
+&lt;p&gt;So as I see it my setting can never work with Shift. For the moment I exchanged Shift with CTRL which now works perfectly!&lt;/p&gt;
+
+&lt;p&gt;P.S.: Is it possible to mark a question as "solved" or something?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1323#comment-1323</link><description>Yup, it is. Click on checked signed near the answer you find satisfying.</description><pubDate>Tue, 05 Mar 2013 15:38:14 +0000</pubDate><guid>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1323#comment-1323</guid></item><item><title>Comment by MeanEYE for &lt;p&gt;First of all, thank you for the fast reply :-) You mention not to use numbers together with Shift. Okay, maybe my post was a bit mistakable. I did not put a "bindsym $mod+Shift+1 ..." into my config file; I just wanted to say that I press these buttons :-)&lt;/p&gt;
+
+&lt;p&gt;Nevertheless, you post brings me to the bottom of the problem. Instead of that what you posted, my config file (which comes from i3-config-wizard) has the sequence of characters on a german keyboard (exclam,quotedbl,section,...) which explains the malfunction as well as the strange behaviour on some numbers.&lt;/p&gt;
+
+&lt;p&gt;So as I see it my setting can never work with Shift. For the moment I exchanged Shift with CTRL which now works perfectly!&lt;/p&gt;
+
+&lt;p&gt;P.S.: Is it possible to mark a question as "solved" or something?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1321#comment-1321</link><description>Glad you solved it. :D</description><pubDate>Tue, 05 Mar 2013 15:36:20 +0000</pubDate><guid>https://faq.i3wm.org/question/1312/problem-with-moving-windows-between-workspaces-on-us-keyboard-layout/?comment=1321#comment-1321</guid></item></channel></rss>

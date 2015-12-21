@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3131/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 05 Jan 2014 03:54:55 +0000</lastBuildDate><item><title>i3status: no colour and other issues</title><link>https://faq.i3wm.org/question/3131/i3status-no-colour-and-other-issues/</link><description>I am on Debian Sid. I just upgraded to this i3 version:
+
+    i3 version 4.7 (2013-12-22, branch "tags/4.7") © 2009-2013 Michael Stapelberg and contributors
+
+The problem is, I seem to have lost the colours on the i3status bar. Everything is in white even though I have this in my `i3status.conf` file:
+
+    general {
+            colors = true
+            interval = 5
+    }
+
+Another weird thing: after the upgrade, whenever I update my `i3status.conf`, I have to reload the configuration multiple times before I can finally see the bar.
+
+How do I debug/fix this?
+</description><pubDate>Mon, 30 Dec 2013 04:59:46 +0000</pubDate><guid>https://faq.i3wm.org/question/3131/i3status-no-colour-and-other-issues/</guid></item><item><title>Comment by Michael for &lt;p&gt;I am on Debian Sid. I just upgraded to this i3 version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3 version 4.7 (2013-12-22, branch "tags/4.7") © 2009-2013 Michael Stapelberg and contributors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem is, I seem to have lost the colours on the i3status bar. Everything is in white even though I have this in my &lt;code&gt;i3status.conf&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;general {
+        colors = true
+        interval = 5
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Another weird thing: after the upgrade, whenever I update my &lt;code&gt;i3status.conf&lt;/code&gt;, I have to reload the configuration multiple times before I can finally see the bar.&lt;/p&gt;
+
+&lt;p&gt;How do I debug/fix this?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3131/i3status-no-colour-and-other-issues/?comment=3165#comment-3165</link><description>This issue has already been fixed in commit 14b43bdec2af2737457a00e65ccc129025e508c1 in i3status. We’ll do a new release soonish.
+
+Also, please don’t use the FAQ to report bugs, the only way to report bugs is the bugtracker.</description><pubDate>Sat, 04 Jan 2014 21:29:57 +0000</pubDate><guid>https://faq.i3wm.org/question/3131/i3status-no-colour-and-other-issues/?comment=3165#comment-3165</guid></item><item><title>Comment by mneywn for &lt;p&gt;I am on Debian Sid. I just upgraded to this i3 version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3 version 4.7 (2013-12-22, branch "tags/4.7") © 2009-2013 Michael Stapelberg and contributors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem is, I seem to have lost the colours on the i3status bar. Everything is in white even though I have this in my &lt;code&gt;i3status.conf&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;general {
+        colors = true
+        interval = 5
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Another weird thing: after the upgrade, whenever I update my &lt;code&gt;i3status.conf&lt;/code&gt;, I have to reload the configuration multiple times before I can finally see the bar.&lt;/p&gt;
+
+&lt;p&gt;How do I debug/fix this?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3131/i3status-no-colour-and-other-issues/?comment=3172#comment-3172</link><description>Sorry, I didn't know this was a bug. I thought something was wrong with my configuration.</description><pubDate>Sun, 05 Jan 2014 03:54:55 +0000</pubDate><guid>https://faq.i3wm.org/question/3131/i3status-no-colour-and-other-issues/?comment=3172#comment-3172</guid></item><item><title>Answer by adder for &lt;p&gt;I am on Debian Sid. I just upgraded to this i3 version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3 version 4.7 (2013-12-22, branch "tags/4.7") © 2009-2013 Michael Stapelberg and contributors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem is, I seem to have lost the colours on the i3status bar. Everything is in white even though I have this in my &lt;code&gt;i3status.conf&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;general {
+        colors = true
+        interval = 5
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Another weird thing: after the upgrade, whenever I update my &lt;code&gt;i3status.conf&lt;/code&gt;, I have to reload the configuration multiple times before I can finally see the bar.&lt;/p&gt;
+
+&lt;p&gt;How do I debug/fix this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3131/i3status-no-colour-and-other-issues/?answer=3148#post-id-3148</link><description>I had the same issue with the colour. For some reason, the new i3status doesn't have a default for the `output_format`and it reverts to `none`.
+In .i3status.conf, add this to the "general" block:
+
+    output_format = i3bar
+
+and the colours will be restored.</description><pubDate>Thu, 02 Jan 2014 11:53:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3131/i3status-no-colour-and-other-issues/?answer=3148#post-id-3148</guid></item><item><title>Comment by mneywn for &lt;p&gt;I had the same issue with the colour. For some reason, the new i3status doesn't have a default for the &lt;code&gt;output_format&lt;/code&gt;and it reverts to &lt;code&gt;none&lt;/code&gt;.
+In .i3status.conf, add this to the "general" block:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;output_format = i3bar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and the colours will be restored.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3131/i3status-no-colour-and-other-issues/?comment=3151#comment-3151</link><description>Thanks so much! This fixed it!</description><pubDate>Thu, 02 Jan 2014 19:31:37 +0000</pubDate><guid>https://faq.i3wm.org/question/3131/i3status-no-colour-and-other-issues/?comment=3151#comment-3151</guid></item></channel></rss>

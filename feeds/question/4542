@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4542/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 28 Aug 2014 23:12:24 +0000</lastBuildDate><item><title>How'd I move 4 windows in a 2x2 grid?</title><link>https://faq.i3wm.org/question/4542/howd-i-move-4-windows-in-a-2x2-grid/</link><description>How'd I move 4 windows in a 2x2 grid?</description><pubDate>Wed, 20 Aug 2014 15:52:22 +0000</pubDate><guid>https://faq.i3wm.org/question/4542/howd-i-move-4-windows-in-a-2x2-grid/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;How'd I move 4 windows in a 2x2 grid?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4542/howd-i-move-4-windows-in-a-2x2-grid/?comment=4547#comment-4547</link><description>This depends highly on your starting layout and the settings of `workspace_layout` and probably `default_orientation`. </description><pubDate>Thu, 21 Aug 2014 05:35:41 +0000</pubDate><guid>https://faq.i3wm.org/question/4542/howd-i-move-4-windows-in-a-2x2-grid/?comment=4547#comment-4547</guid></item><item><title>Answer by matma6 for &lt;p&gt;How'd I move 4 windows in a 2x2 grid?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4542/howd-i-move-4-windows-in-a-2x2-grid/?answer=4587#post-id-4587</link><description>I also have this problem. I noticed that it's really helpful to pack window into container. In this problem you do this:
+
+ 1. Move window outside
+ 2. Set needed layout
+ 3. Pack it into container
+ 4. Move another window - it will land into container
+ 5. You're done
+
+I can make a movie about these steps. Note this is generalization of Adaephon post. Third step is done thanks to stacked layout, but I need a shortcut for this.</description><pubDate>Thu, 28 Aug 2014 23:12:24 +0000</pubDate><guid>https://faq.i3wm.org/question/4542/howd-i-move-4-windows-in-a-2x2-grid/?answer=4587#post-id-4587</guid></item><item><title>Answer by Adaephon for &lt;p&gt;How'd I move 4 windows in a 2x2 grid?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4542/howd-i-move-4-windows-in-a-2x2-grid/?answer=4548#post-id-4548</link><description>I usually work with `workspace_layout stacked` and `default_orientation vertical`. That means any new container is at first stacked. I also rarely have horizontal split containers, so if I move a window to the left or right it usually goes into another container or opens a new one.
+
+The most likely starting position for four windows in my setup is all of them stacked in a single container:
+
+    +-window 1----------------+
+    +-window 2----------------+
+    +-window 3----------------+
+    +-window 4----------------+
+    |                         |
+    |                         |
+    +-------------------------+
+
+To get them in a 2x2 grid, I first would focus the window I want on the right top and move it to the right. 
+
+Lets say currently "window 4" is selected and I want "window 3" on the top right. So I would do:
+
+    focus up
+    move right
+
+This would get me this layout:
+
+    +-window 1---+-window 3---+
+    +-window 2---+            |
+    +-window 4---+            |
+    |            |            |
+    |            |            |
+    |            |            |
+    +------------+------------+
+
+Then I would focus the window I want in the bottom right corner and also move it right.
+
+Lets say "window 4"
+
+    focus left
+    move right
+
+"window 4" is immediately focused in the left container because it was the last focused window before "window 3". The layout now looks like this:
+
+    +-window 1---+-window 3---+
+    +-window 2---+-window 4---+
+    |            |            |
+    |            |            |
+    |            |            |
+    |            |            |
+    +------------+------------+
+   
+All that remains to be done is setting the layout of both containers to `splitv`
+
+    layout splitv
+    focus left 
+    layout splitv
+
+The screen now looks like the intended 2x2 grid. It consists of two vertically split containers side-by-side.
+
+    +-window 1---+-window 3---+
+    |            |            |
+    |            |            |
+    +-window 2---+-window 4---+
+    |            |            |
+    |            |            |
+    +------------+------------+</description><pubDate>Thu, 21 Aug 2014 05:59:42 +0000</pubDate><guid>https://faq.i3wm.org/question/4542/howd-i-move-4-windows-in-a-2x2-grid/?answer=4548#post-id-4548</guid></item></channel></rss>

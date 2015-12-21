@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2675/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 05 Jul 2014 17:30:48 +0000</lastBuildDate><item><title>When Flash Player fullscreen, move to another window</title><link>https://faq.i3wm.org/question/2675/when-flash-player-fullscreen-move-to-another-window/</link><description>I'm trying to move the flash player when it goes full screen (ie youtube), and move it to another window and keep it there. Is this functionality allowed in i3wm? If so, how am I able to map the flash player to the appropriate window?
+
+This is the command in my config, which if works fine with other programs (ie vlc)
+
+     for_window [class="(?i)flash"] rename workspace 5 to "5: video",move container to workspace "5: video",workspace "5: video"
+</description><pubDate>Thu, 10 Oct 2013 21:25:35 +0000</pubDate><guid>https://faq.i3wm.org/question/2675/when-flash-player-fullscreen-move-to-another-window/</guid></item><item><title>Answer by Michael for &lt;p&gt;I'm trying to move the flash player when it goes full screen (ie youtube), and move it to another window and keep it there. Is this functionality allowed in i3wm? If so, how am I able to map the flash player to the appropriate window?&lt;/p&gt;
+
+&lt;p&gt;This is the command in my config, which if works fine with other programs (ie vlc)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; for_window [class="(?i)flash"] rename workspace 5 to "5: video",move container to workspace "5: video",workspace "5: video"
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/2675/when-flash-player-fullscreen-move-to-another-window/?answer=2676#post-id-2676</link><description>One of the flash player’s features is that it will drop out of fullscreen on a number of occasions, such as when moving the mouse pointer to a different monitor. You didn’t say what happens, but I think the flash player might also go out of fullscreen (i.e. close) when you move it to a non-visible workspace.
+
+There is http://deve.loping.net/projects/ignoflash/downloads/ which apparently patches flash to disable that behavior. Worth a try. Or using HTML5 video instead ;).</description><pubDate>Thu, 10 Oct 2013 21:33:42 +0000</pubDate><guid>https://faq.i3wm.org/question/2675/when-flash-player-fullscreen-move-to-another-window/?answer=2676#post-id-2676</guid></item><item><title>Comment by flylo for &lt;p&gt;One of the flash player’s features is that it will drop out of fullscreen on a number of occasions, such as when moving the mouse pointer to a different monitor. You didn’t say what happens, but I think the flash player might also go out of fullscreen (i.e. close) when you move it to a non-visible workspace.&lt;/p&gt;
+
+&lt;p&gt;There is &lt;a href="http://deve.loping.net/projects/ignoflash/downloads/"&gt;http://deve.loping.net/projects/ignof...&lt;/a&gt; which apparently patches flash to disable that behavior. Worth a try. Or using HTML5 video instead ;).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2675/when-flash-player-fullscreen-move-to-another-window/?comment=2678#comment-2678</link><description>I would assume that it closes when it exits out of fullscreen mode - I wasn't able to check.
+Thanks for your suggestion, I'll have a look. It's not a huge deal though, was just me hacking about.
+Thanks for your help :)</description><pubDate>Thu, 10 Oct 2013 21:48:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2675/when-flash-player-fullscreen-move-to-another-window/?comment=2678#comment-2678</guid></item><item><title>Answer by stealz for &lt;p&gt;I'm trying to move the flash player when it goes full screen (ie youtube), and move it to another window and keep it there. Is this functionality allowed in i3wm? If so, how am I able to map the flash player to the appropriate window?&lt;/p&gt;
+
+&lt;p&gt;This is the command in my config, which if works fine with other programs (ie vlc)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; for_window [class="(?i)flash"] rename workspace 5 to "5: video",move container to workspace "5: video",workspace "5: video"
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/2675/when-flash-player-fullscreen-move-to-another-window/?answer=3737#post-id-3737</link><description>it is a flashplayer problem, it will exit fullscreen when it loses focus.
+
+there is a hex hack for the libflashplayer.so around,
+you can try http://simonmott.co.uk/blog/view/11 for a possible version.
+
+the idea is to open libflashplayer.so or libgcflashplayer.so with a hex editor and search it for _NET_ACTIVE_WINDOW and replace one of the letters, for example to _AET_ACTIVE_WINDOW 
+
+that will fix the issue of closing fullscreen flash when losing focus</description><pubDate>Fri, 25 Apr 2014 22:02:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2675/when-flash-player-fullscreen-move-to-another-window/?answer=3737#post-id-3737</guid></item><item><title>Comment by phairland for &lt;p&gt;it is a flashplayer problem, it will exit fullscreen when it loses focus.&lt;/p&gt;
+
+&lt;p&gt;there is a hex hack for the libflashplayer.so around,
+you can try &lt;a href="http://simonmott.co.uk/blog/view/11"&gt;http://simonmott.co.uk/blog/view/11&lt;/a&gt; for a possible version.&lt;/p&gt;
+
+&lt;p&gt;the idea is to open libflashplayer.so or libgcflashplayer.so with a hex editor and search it for &lt;em&gt;NET&lt;/em&gt;ACTIVE&lt;em&gt;WINDOW and replace one of the letters, for example to _AET&lt;/em&gt;ACTIVE_WINDOW &lt;/p&gt;
+
+&lt;p&gt;that will fix the issue of closing fullscreen flash when losing focus&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2675/when-flash-player-fullscreen-move-to-another-window/?comment=4138#comment-4138</link><description>This works in my case.</description><pubDate>Sat, 05 Jul 2014 17:30:48 +0000</pubDate><guid>https://faq.i3wm.org/question/2675/when-flash-player-fullscreen-move-to-another-window/?comment=4138#comment-4138</guid></item></channel></rss>

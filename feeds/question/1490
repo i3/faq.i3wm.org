@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1490/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 02 Apr 2013 11:08:34 +0000</lastBuildDate><item><title>Is it possible to dynamically switch a container layout type ?</title><link>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/</link><description>Dear i3 community,
+
+Is it possible to switch a parent container from vertical to horizontal layout (and vice versa) ? I struggle sometimes to make a H container with 3 terminals in the bottom of the screen to be a V container and on the left or right of the screen.
+
+Cheers,
+syl20bnr</description><pubDate>Fri, 29 Mar 2013 15:04:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/</guid></item><item><title>Answer by ppeev for &lt;p&gt;Dear i3 community,&lt;/p&gt;
+
+&lt;p&gt;Is it possible to switch a parent container from vertical to horizontal layout (and vice versa) ? I struggle sometimes to make a H container with 3 terminals in the bottom of the screen to be a V container and on the left or right of the screen.&lt;/p&gt;
+
+&lt;p&gt;Cheers,
+syl20bnr&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?answer=1508#post-id-1508</link><description>you want to press your mod key + e to achieve what you want. what the other user told you is how to change the layout before opening a new container. $mod+e changes them on the fly.</description><pubDate>Mon, 01 Apr 2013 21:27:44 +0000</pubDate><guid>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?answer=1508#post-id-1508</guid></item><item><title>Comment by Michael for &lt;p&gt;you want to press your mod key + e to achieve what you want. what the other user told you is how to change the layout before opening a new container. $mod+e changes them on the fly.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?comment=1510#comment-1510</link><description>“the other user” named the command, which works on the fly. See the userguide, you can bind commands to keys ($mod+e is bound to layout toggle split by default) or send them interactively using i3-msg.</description><pubDate>Tue, 02 Apr 2013 11:01:46 +0000</pubDate><guid>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?comment=1510#comment-1510</guid></item><item><title>Comment by ppeev for &lt;p&gt;you want to press your mod key + e to achieve what you want. what the other user told you is how to change the layout before opening a new container. $mod+e changes them on the fly.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?comment=1513#comment-1513</link><description>yep, sorry I thought you meant split h and split v, but still I think it will be easier for the man to just press $mod+e to achieve what he wanted(switch between vertical and horizontal AND vice versa) with one button combo which is already binded, instead of making room for two new button combos...</description><pubDate>Tue, 02 Apr 2013 11:08:34 +0000</pubDate><guid>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?comment=1513#comment-1513</guid></item><item><title>Answer by Michael for &lt;p&gt;Dear i3 community,&lt;/p&gt;
+
+&lt;p&gt;Is it possible to switch a parent container from vertical to horizontal layout (and vice versa) ? I struggle sometimes to make a H container with 3 terminals in the bottom of the screen to be a V container and on the left or right of the screen.&lt;/p&gt;
+
+&lt;p&gt;Cheers,
+syl20bnr&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?answer=1491#post-id-1491</link><description>The command you are looking for is
+
+    layout splitv
+
+or
+
+    layout splith
+
+for vertical/horizontal split, respectively.</description><pubDate>Fri, 29 Mar 2013 15:08:41 +0000</pubDate><guid>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?answer=1491#post-id-1491</guid></item><item><title>Answer by mschaefer for &lt;p&gt;Dear i3 community,&lt;/p&gt;
+
+&lt;p&gt;Is it possible to switch a parent container from vertical to horizontal layout (and vice versa) ? I struggle sometimes to make a H container with 3 terminals in the bottom of the screen to be a V container and on the left or right of the screen.&lt;/p&gt;
+
+&lt;p&gt;Cheers,
+syl20bnr&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?answer=1500#post-id-1500</link><description>@Michael: Sorry to put this as an answer but 250 characters is not enough ;-) Are you sure your answer solves the issue? I think I have the same problem of changing from three windows in a row to a layout with one window on the left and the remaining two one below the other on the right side. I can only achieve this in the following way:
+
+1) switching the middle container to vertical layout
+2) moving the right window to a different workspace
+3) directly moving it back to the original one
+
+If instead of 2) and 3) I try to move the right window down using $mod+Downarrow the window move down, but spreads over the entire width of the workspace. Do I do something from, is this by design or is it a bug?</description><pubDate>Sun, 31 Mar 2013 12:02:49 +0000</pubDate><guid>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?answer=1500#post-id-1500</guid></item><item><title>Comment by Michael for &lt;p&gt;&lt;a href="/users/1/michael/"&gt;@Michael&lt;/a&gt;: Sorry to put this as an answer but 250 characters is not enough ;-) Are you sure your answer solves the issue? I think I have the same problem of changing from three windows in a row to a layout with one window on the left and the remaining two one below the other on the right side. I can only achieve this in the following way:&lt;/p&gt;
+
+&lt;p&gt;1) switching the middle container to vertical layout
+2) moving the right window to a different workspace
+3) directly moving it back to the original one&lt;/p&gt;
+
+&lt;p&gt;If instead of 2) and 3) I try to move the right window down using $mod+Downarrow the window move down, but spreads over the entire width of the workspace. Do I do something from, is this by design or is it a bug?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?comment=1506#comment-1506</link><description>Please ask this in a new question. I will delete this answer now because it doesn’t fit the scheme (answers are not supposed to be new questions). Please also watch http://www.youtube.com/watch?v=AWA8Pl57UBY</description><pubDate>Sun, 31 Mar 2013 14:34:26 +0000</pubDate><guid>https://faq.i3wm.org/question/1490/is-it-possible-to-dynamically-switch-a-container-layout-type/?comment=1506#comment-1506</guid></item></channel></rss>

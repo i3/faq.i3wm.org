@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2557/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 21 Sep 2013 00:18:44 +0000</lastBuildDate><item><title>Is it possible to use Alt key for shortcut ?</title><link>https://faq.i3wm.org/question/2557/is-it-possible-to-use-alt-key-for-shortcut/</link><description>Everything is on the title.
+I'm using Windows key as $mod, and I want to use Alt key for some shortcuts but it's doesn't work.
+
+Is it normal ?
+Is there a workaround ?</description><pubDate>Fri, 20 Sep 2013 18:23:40 +0000</pubDate><guid>https://faq.i3wm.org/question/2557/is-it-possible-to-use-alt-key-for-shortcut/</guid></item><item><title>Answer by syl20bnr for &lt;p&gt;Everything is on the title.
+I'm using Windows key as $mod, and I want to use Alt key for some shortcuts but it's doesn't work.&lt;/p&gt;
+
+&lt;p&gt;Is it normal ?
+Is there a workaround ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2557/is-it-possible-to-use-alt-key-for-shortcut/?answer=2558#post-id-2558</link><description>1) To use it as a modifier:
+
+    bindsym Mod1+semicolon exec i3-input -P "i3-msg"    
+
+2) To use it as a key instead of a modifier:
+
+Use the command `bindcode` instead of `bindsym`.
+
+In a terminal execute the command `xev` and press the key you want to use. You should be able to spot the keycode of the pressed key.
+
+Then bind the found keycode X like this:
+
+    bindcode X exec dmenu_run
+</description><pubDate>Sat, 21 Sep 2013 00:18:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2557/is-it-possible-to-use-alt-key-for-shortcut/?answer=2558#post-id-2558</guid></item></channel></rss>

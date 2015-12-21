@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4966/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 18 Nov 2014 21:28:50 +0000</lastBuildDate><item><title>conditional window splits</title><link>https://faq.i3wm.org/question/4966/conditional-window-splits/</link><description>Is it possible in stacking layout mode to have a window split conditionally on the current dimensions?
+
+For example, if the height is greater than the width, I'd like the tile to be split vertically.  If the width is greater than the height, split horizontally.  
+
+Rationale: There is a small, but noticable cognitive load when manually prefixing my action with mod+v, mod+h.
+
+If this is not currently possible in i3, would it be worth filing a ticket to add a conditional tiling policy indicator to .i3/config?
+</description><pubDate>Tue, 18 Nov 2014 18:30:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4966/conditional-window-splits/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Is it possible in stacking layout mode to have a window split conditionally on the current dimensions?&lt;/p&gt;
+
+&lt;p&gt;For example, if the height is greater than the width, I'd like the tile to be split vertically.  If the width is greater than the height, split horizontally.  &lt;/p&gt;
+
+&lt;p&gt;Rationale: There is a small, but noticable cognitive load when manually prefixing my action with mod+v, mod+h.&lt;/p&gt;
+
+&lt;p&gt;If this is not currently possible in i3, would it be worth filing a ticket to add a conditional tiling policy indicator to .i3/config?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4966/conditional-window-splits/?answer=4967#post-id-4967</link><description>With `xdotool` and a bit of `awk` and shell magic that is no problem:
+
+Save this script as `split_optimal.sh`:
+
+    #!/bin/sh
+    xdotool getactivewindow getwindowgeometry | awk '/Geometry/{split($2, dim, "x"); if (dim[1] &gt; dim[2]) {exit 1}}' &amp;&amp; i3-msg split vertical || i3-msg split horizontal
+
+and then put a shortcut to it in your `~/.i3/config`
+
+    bindsym $mod+s exec --no-startup-id /path/to/split_optimal.sh
+
+This retrieves the current windows dimensions, checks if it is wider than high and runs `i3-msg split vertical` in that case, else it runs `i3-msg split horizontal`.</description><pubDate>Tue, 18 Nov 2014 21:15:44 +0000</pubDate><guid>https://faq.i3wm.org/question/4966/conditional-window-splits/?answer=4967#post-id-4967</guid></item><item><title>Comment by Jeff Bauer for &lt;p&gt;With &lt;code&gt;xdotool&lt;/code&gt; and a bit of &lt;code&gt;awk&lt;/code&gt; and shell magic that is no problem:&lt;/p&gt;
+
+&lt;p&gt;Save this script as &lt;code&gt;split_optimal.sh&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+xdotool getactivewindow getwindowgeometry | awk '/Geometry/{split($2, dim, "x"); if (dim[1] &amp;gt; dim[2]) {exit 1}}' &amp;amp;&amp;amp; i3-msg split vertical || i3-msg split horizontal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and then put a shortcut to it in your &lt;code&gt;~/.i3/config&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+s exec --no-startup-id /path/to/split_optimal.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This retrieves the current windows dimensions, checks if it is wider than high and runs &lt;code&gt;i3-msg split vertical&lt;/code&gt; in that case, else it runs &lt;code&gt;i3-msg split horizontal&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4966/conditional-window-splits/?comment=4968#comment-4968</link><description>Awesome hack!  Seeing what you did there gives me some other ideas about using xdotool.</description><pubDate>Tue, 18 Nov 2014 21:28:50 +0000</pubDate><guid>https://faq.i3wm.org/question/4966/conditional-window-splits/?comment=4968#comment-4968</guid></item></channel></rss>

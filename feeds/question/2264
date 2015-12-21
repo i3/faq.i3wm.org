@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2264/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 24 Jul 2013 17:14:35 +0000</lastBuildDate><item><title>Multi-monitor behavior with single monitor</title><link>https://faq.i3wm.org/question/2264/multi-monitor-behavior-with-single-monitor/</link><description>Is it possible to split a single monitor into multiple virtual X11 outputs, so that I have 2 i3bars and can display 2 workspaces simultaneously side by side?
+
+My use case is being able to keep one workspace (or set of windows) visible while I switch through another, while only have one monitor.
+
+If it's not possible in the way I described, I can think of an approach that might work. I'd always stay in one workspace. Instead of switching between workspaces, I'll have 2 side-by-side containers, each in tabbed mode. In terms of layout, I think this perfectly represents my goal (other than wasting some vertical space for i3bar plus the top titlebars). But it feels like it would be very cumbersome to use, since I'd lose the convenience of hotkeys for "workspace 1" or "move container to workspace 1". If this is the closest approach, is there something I could script up to get similar functioning hotkeys?</description><pubDate>Wed, 24 Jul 2013 15:56:01 +0000</pubDate><guid>https://faq.i3wm.org/question/2264/multi-monitor-behavior-with-single-monitor/</guid></item><item><title>Answer by Michael for &lt;p&gt;Is it possible to split a single monitor into multiple virtual X11 outputs, so that I have 2 i3bars and can display 2 workspaces simultaneously side by side?&lt;/p&gt;
+
+&lt;p&gt;My use case is being able to keep one workspace (or set of windows) visible while I switch through another, while only have one monitor.&lt;/p&gt;
+
+&lt;p&gt;If it's not possible in the way I described, I can think of an approach that might work. I'd always stay in one workspace. Instead of switching between workspaces, I'll have 2 side-by-side containers, each in tabbed mode. In terms of layout, I think this perfectly represents my goal (other than wasting some vertical space for i3bar plus the top titlebars). But it feels like it would be very cumbersome to use, since I'd lose the convenience of hotkeys for "workspace 1" or "move container to workspace 1". If this is the closest approach, is there something I could script up to get similar functioning hotkeys?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2264/multi-monitor-behavior-with-single-monitor/?answer=2265#post-id-2265</link><description>An undocumented and not encouraged way to achieve what you want can be found at https://faq.i3wm.org/question/1659/force-one-i3-instanceworkspace-across-multiple-monitors/
+
+That said, there is no better way, and it is such a niche-feature that there likely won’t be one in the future either.</description><pubDate>Wed, 24 Jul 2013 15:59:57 +0000</pubDate><guid>https://faq.i3wm.org/question/2264/multi-monitor-behavior-with-single-monitor/?answer=2265#post-id-2265</guid></item><item><title>Answer by V0id for &lt;p&gt;Is it possible to split a single monitor into multiple virtual X11 outputs, so that I have 2 i3bars and can display 2 workspaces simultaneously side by side?&lt;/p&gt;
+
+&lt;p&gt;My use case is being able to keep one workspace (or set of windows) visible while I switch through another, while only have one monitor.&lt;/p&gt;
+
+&lt;p&gt;If it's not possible in the way I described, I can think of an approach that might work. I'd always stay in one workspace. Instead of switching between workspaces, I'll have 2 side-by-side containers, each in tabbed mode. In terms of layout, I think this perfectly represents my goal (other than wasting some vertical space for i3bar plus the top titlebars). But it feels like it would be very cumbersome to use, since I'd lose the convenience of hotkeys for "workspace 1" or "move container to workspace 1". If this is the closest approach, is there something I could script up to get similar functioning hotkeys?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2264/multi-monitor-behavior-with-single-monitor/?answer=2266#post-id-2266</link><description>Maybe not optimal, but once you have setup your left / right containers, you could:
+
+1. create marks (with a specific pattern, eg `w1_l` and `w1_r` for workspace 1) on both left and right containers,
+2. have some bindsyms like:
+
+    `bindsym $mod+Shift+Left exec --no-startup-id i3focus.sh l`
+
+    `bindsym $mod+Shift+Right exec --no-startup-id i3focus.sh r`
+
+
+with `i3focus.sh` being something like (untested, incomplete, but you get the idea):
+
+    #!/bin/sh
+    # TODO parse
+    #    i3-msg -t get_workspaces
+    # to retrieve the focused workspace number
+    focused_workspace_num=1
+    i3-msg "[con_mark=w${focused_workspace_num}_$1] focus, focus child"
+
+This would allow you to quickly switch between left and right containers.</description><pubDate>Wed, 24 Jul 2013 17:14:35 +0000</pubDate><guid>https://faq.i3wm.org/question/2264/multi-monitor-behavior-with-single-monitor/?answer=2266#post-id-2266</guid></item></channel></rss>

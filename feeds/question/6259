@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6259/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 09 Jul 2015 15:42:09 +0000</lastBuildDate><item><title>Sound doesn't work</title><link>https://faq.i3wm.org/question/6259/sound-doesnt-work/</link><description>I installed i3 yesterday and up until now I was able to heard a sound but now I can't, the headphones are still working, I checked them at another computer with Windows. 
+
+My config file:
+
+    ####################
+    # My Configuration #
+    ####################
+    exec synapse
+    exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+    exec setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,il
+    exec feh --bg-scale ~/Pictures/background.jpg
+    exec --no-startup-id nm-applet
+    
+    bindsym $mod+F1 exec firefox
+    
+    client.focused          #1C2023 #1C2023 #00BAA7 #00DA8E
+    client.focused_inactive #1C2023 #1C2023 #ffffff #484e50
+    client.unfocused        #1C2023 #1C2023 #888888 #292d2e
+    client.urgent           #C10004 #900000 #ffffff #900000
+    
+    font pango: Ubuntu Mono 10</description><pubDate>Thu, 09 Jul 2015 14:46:56 +0000</pubDate><guid>https://faq.i3wm.org/question/6259/sound-doesnt-work/</guid></item><item><title>Answer by oberon for &lt;p&gt;I installed i3 yesterday and up until now I was able to heard a sound but now I can't, the headphones are still working, I checked them at another computer with Windows. &lt;/p&gt;
+
+&lt;p&gt;My config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;####################
+# My Configuration #
+####################
+exec synapse
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,il
+exec feh --bg-scale ~/Pictures/background.jpg
+exec --no-startup-id nm-applet
+
+bindsym $mod+F1 exec firefox
+
+client.focused          #1C2023 #1C2023 #00BAA7 #00DA8E
+client.focused_inactive #1C2023 #1C2023 #ffffff #484e50
+client.unfocused        #1C2023 #1C2023 #888888 #292d2e
+client.urgent           #C10004 #900000 #ffffff #900000
+
+font pango: Ubuntu Mono 10
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/6259/sound-doesnt-work/?answer=6260#post-id-6260</link><description>You have not specified what you are using for sound. Alsa? Pulseaudio?
+In case you want to use pulse you will need to autostart it:
+
+    exec --no-startup-id pulseaudio
+
+Maybe you will also want to think about using a tray mixer like Volumeicon or pa-applet ...
+In any case you should be able to check your audio-settings with alsa-mixer or pavucontrol respectively - maybe the sound is muted at the moment?</description><pubDate>Thu, 09 Jul 2015 15:42:09 +0000</pubDate><guid>https://faq.i3wm.org/question/6259/sound-doesnt-work/?answer=6260#post-id-6260</guid></item></channel></rss>

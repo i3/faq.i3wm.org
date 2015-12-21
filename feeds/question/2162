@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2162/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 13 Jul 2013 13:18:57 +0000</lastBuildDate><item><title>Opening new applications in a specific workspace</title><link>https://faq.i3wm.org/question/2162/opening-new-applications-in-a-specific-workspace/</link><description>Is it possible to always open new applications in a specific workspace?
+
+When you open big applications or apps displaying windows when opening (e.g., libreoffice, eclipse...), this is quite annoying to have them open in current workspace. You have to wait for them to load, unless you have specifically specified that this application has to move to some workspace.
+That's why I'd like new windows to always open in a dedicated workspace.
+
+I tried doing: assign [class="*"] 9
+but wildcards don't seem to be handled. Besides, even if it worked, I see a problem: even after moving an application to another workspace, its windows would keep opening in workspace 9.
+
+Is there a way to do this?</description><pubDate>Tue, 09 Jul 2013 17:32:58 +0000</pubDate><guid>https://faq.i3wm.org/question/2162/opening-new-applications-in-a-specific-workspace/</guid></item><item><title>Comment by ack006 for &lt;p&gt;Is it possible to always open new applications in a specific workspace?&lt;/p&gt;
+
+&lt;p&gt;When you open big applications or apps displaying windows when opening (e.g., libreoffice, eclipse...), this is quite annoying to have them open in current workspace. You have to wait for them to load, unless you have specifically specified that this application has to move to some workspace.
+That's why I'd like new windows to always open in a dedicated workspace.&lt;/p&gt;
+
+&lt;p&gt;I tried doing: assign [class="*"] 9
+but wildcards don't seem to be handled. Besides, even if it worked, I see a problem: even after moving an application to another workspace, its windows would keep opening in workspace 9.&lt;/p&gt;
+
+&lt;p&gt;Is there a way to do this?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2162/opening-new-applications-in-a-specific-workspace/?comment=2204#comment-2204</link><description>I may have a way to accomplish what you're asking, but it involves setting and eventually deleting a mark on a window. The latter doesn't seem possible, so I'm waiting for comments on a bug report about this: https://github.com/i3/i3/issues/1051</description><pubDate>Sat, 13 Jul 2013 13:18:57 +0000</pubDate><guid>https://faq.i3wm.org/question/2162/opening-new-applications-in-a-specific-workspace/?comment=2204#comment-2204</guid></item><item><title>Answer by Tohwi for &lt;p&gt;Is it possible to always open new applications in a specific workspace?&lt;/p&gt;
+
+&lt;p&gt;When you open big applications or apps displaying windows when opening (e.g., libreoffice, eclipse...), this is quite annoying to have them open in current workspace. You have to wait for them to load, unless you have specifically specified that this application has to move to some workspace.
+That's why I'd like new windows to always open in a dedicated workspace.&lt;/p&gt;
+
+&lt;p&gt;I tried doing: assign [class="*"] 9
+but wildcards don't seem to be handled. Besides, even if it worked, I see a problem: even after moving an application to another workspace, its windows would keep opening in workspace 9.&lt;/p&gt;
+
+&lt;p&gt;Is there a way to do this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2162/opening-new-applications-in-a-specific-workspace/?answer=2165#post-id-2165</link><description>This is not really what I was asking, but it actually helped me.
+
+A matching is already applied on the class name given to the "assign" option, so what I tried to do can be achieved by giving an empty class name. i3 will refuse class="", but doing something like class="^" will work fine.
+
+However, with this solution I will still have the problem that *any* new window will be created in workspace 9, not only windows of new applications.</description><pubDate>Tue, 09 Jul 2013 19:26:26 +0000</pubDate><guid>https://faq.i3wm.org/question/2162/opening-new-applications-in-a-specific-workspace/?answer=2165#post-id-2165</guid></item><item><title>Comment by joepd for &lt;p&gt;This is not really what I was asking, but it actually helped me.&lt;/p&gt;
+
+&lt;p&gt;A matching is already applied on the class name given to the "assign" option, so what I tried to do can be achieved by giving an empty class name. i3 will refuse class="", but doing something like class="^" will work fine.&lt;/p&gt;
+
+&lt;p&gt;However, with this solution I will still have the problem that &lt;em&gt;any&lt;/em&gt; new window will be created in workspace 9, not only windows of new applications.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2162/opening-new-applications-in-a-specific-workspace/?comment=2167#comment-2167</link><description>i3 does not keep track of where the window was spawned from. You could possibly achieve that with IPC. Or you could make two config files, one with this match-all rule, and one without. You then can then tell i3 to reload the config file, and point to the other one. An ugly hack, but if it works... </description><pubDate>Tue, 09 Jul 2013 21:55:19 +0000</pubDate><guid>https://faq.i3wm.org/question/2162/opening-new-applications-in-a-specific-workspace/?comment=2167#comment-2167</guid></item><item><title>Answer by Michael for &lt;p&gt;Is it possible to always open new applications in a specific workspace?&lt;/p&gt;
+
+&lt;p&gt;When you open big applications or apps displaying windows when opening (e.g., libreoffice, eclipse...), this is quite annoying to have them open in current workspace. You have to wait for them to load, unless you have specifically specified that this application has to move to some workspace.
+That's why I'd like new windows to always open in a dedicated workspace.&lt;/p&gt;
+
+&lt;p&gt;I tried doing: assign [class="*"] 9
+but wildcards don't seem to be handled. Besides, even if it worked, I see a problem: even after moving an application to another workspace, its windows would keep opening in workspace 9.&lt;/p&gt;
+
+&lt;p&gt;Is there a way to do this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2162/opening-new-applications-in-a-specific-workspace/?answer=2163#post-id-2163</link><description>See last paragraph of http://i3wm.org/docs/userguide.html#_automatically_putting_clients_on_specific_workspaces</description><pubDate>Tue, 09 Jul 2013 18:17:38 +0000</pubDate><guid>https://faq.i3wm.org/question/2162/opening-new-applications-in-a-specific-workspace/?answer=2163#post-id-2163</guid></item></channel></rss>

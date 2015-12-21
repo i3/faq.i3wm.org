@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3456/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 18 Apr 2014 10:41:28 +0000</lastBuildDate><item><title>How can I use i3 with NX (NoMachine)?</title><link>https://faq.i3wm.org/question/3456/how-can-i-use-i3-with-nx-nomachine/</link><description>My server is Ubuntu 12.10, and I'm remoting in using NoMachine Player to NXserver 3.5   Gnome-2d works fine with NX, but I've just set up i3 as my window manager, and it works fine when I'm local on the machine.  I tried connecting with NoMachine Player, using the options "Run in virtual desktop" and "Run the default X client script on the server", I then created a ~/.xsession file and added "exec i3" to it.
+
+It dies as soon as it connects, and I got this output by capturing i3 -V to a log file:
+
+    02/27/2014 11:48:41 AM - i3 4.7.2 (2014-01-23, branch "tags/4.7.2") starting
+    02/27/2014 11:48:41 AM - Parsing configfile /home/emoses/.i3/config
+    deciding for version 4 due to this line: # i3 config file (v4)
+    02/27/2014 11:48:41 AM - [libi3] libi3/font.c Using Pango font Consolas, size 12
+    02/27/2014 11:48:41 AM - [libi3] libi3/font.c X11 root window dictates 74.990476 DPI
+    02/27/2014 11:48:42 AM - ERROR: Could not get RandR primary output
+    02/27/2014 11:48:42 AM - Used number 3 for workspace with name 3
+    02/27/2014 11:48:42 AM - This is not an in-place restart, copying root window contents to a pixmap
+    02/27/2014 11:48:42 AM - auto-starting xbindkeys -f ~/.xbindkeysrc
+    02/27/2014 11:48:42 AM - executing: xbindkeys -f ~/.xbindkeysrc
+    02/27/2014 11:48:42 AM - auto-starting pidgin
+    02/27/2014 11:48:42 AM - startup id = i3/pidgin/1002-0-emoses-wsl1_TIME0
+    02/27/2014 11:48:42 AM - executing: pidgin
+    02/27/2014 11:48:42 AM - auto-starting google-chrome
+    02/27/2014 11:48:42 AM - startup id = i3/google-chrome/1002-1-emoses-wsl1_TIME0
+    02/27/2014 11:48:42 AM - executing: google-chrome
+    02/27/2014 11:48:42 AM - auto-starting gnome-sound-applet
+    02/27/2014 11:48:42 AM - startup id = i3/gnome-sound-applet/1002-2-emoses-wsl1_TIME0
+    02/27/2014 11:48:42 AM - executing: gnome-sound-applet
+    02/27/2014 11:48:42 AM - Starting bar process: i3bar --bar_id=bar-0 --socket="/tmp/i3-emoses.xYupLT/ipc-socket.1002"
+    02/27/2014 11:48:42 AM - executing: i3bar --bar_id=bar-0 --socket="/tmp/i3-emoses.xYupLT/ipc-socket.1002"
+    02/27/2014 11:48:42 AM - Not a managed window, ignoring UnmapNotify event
+    02/27/2014 11:48:42 AM - Not a managed window, ignoring UnmapNotify event
+    02/27/2014 11:48:42 AM - Not a managed window, ignoring UnmapNotify event
+    02/27/2014 11:48:42 AM - IPC: looking for config for bar ID "bar-0"
+    02/27/2014 11:48:42 AM - workspace visible? fs = 0x13a0210, ws = 0x13a0210
+    [i3bar/src/xcb.c:838] ERROR: X11 connection was closed unexpectedly - maybe your X server terminated / crashed?
+    Pidgin: Fatal IO error 11 (Resource temporarily unavailable) on X server :1039.
+    
+    (gnome-sound-applet:1016): Gdk-WARNING **: gnome-sound-applet: Fatal IO error 11 (Resource temporarily unavailable) on X server :1039.
+    
+    [libi3] libi3/font.c Using Pango font Consolas, size 12
+    [libi3] libi3/font.c X11 root window dictates 74.990476 DPI
+    02/27/2014 11:48:42 AM - Checking window 0x00e00007 (class (null))
+    02/27/2014 11:48:42 AM - dock status does not match
+    02/27/2014 11:48:42 AM - Checking window 0x00e00007 (class (null))
+    02/27/2014 11:48:42 AM - dock status does not match
+    02/27/2014 11:48:42 AM - workspace visible? fs = 0x13a0210, ws = 0x13a0210
+    02/27/2014 11:48:42 AM - workspace visible? fs = 0x13a0210, ws = 0x13a0210
+    02/27/2014 11:48:42 AM - [libi3] ERROR: IPC: received EOF instead of reply
+    XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":1039"
+          after 7 requests (6 known processed) with 0 events remaining.
+    
+    ** (google-chrome:1014): WARNING **: Could not connect: Connection refused
+    
+    (google-chrome:1014): Gtk-WARNING **: cannot open display: :1039
+    
+
+</description><pubDate>Thu, 27 Feb 2014 20:08:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3456/how-can-i-use-i3-with-nx-nomachine/</guid></item><item><title>Comment by Michael for &lt;div class="snippet"&gt;&lt;p&gt;My server is Ubuntu 12.10, and I'm remoting in using NoMachine Player to NXserver 3.5   Gnome-2d works fine with NX, but I've just set up i3 as my window manager, and it works fine when I'm local on the machine.  I tried connecting with NoMachine Player, using the options "Run in virtual desktop" and "Run the default X client script on the server", I then created a ~/.xsession file and added "exec i3" to it.&lt;/p&gt;
+
+&lt;p&gt;It dies as soon as it connects, and I got this output by capturing i3 -V to a log file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;02/27/2014 11:48:41 AM - i3 4.7.2 (2014-01-23, branch "tags/4.7.2") starting
+02/27/2014 11:48:41 AM - Parsing configfile /home/emoses/.i3/config
+deciding for version 4 due to this line: # i3 config file (v4)
+02/27/2014 11:48:41 AM - [libi3] libi3/font.c Using Pango font Consolas, size 12
+02/27/2014 11:48:41 AM - [libi3] libi3/font.c X11 root window dictates 74.990476 DPI
+02/27/2014 11:48:42 AM - ERROR: Could not get RandR primary output
+02/27/2014 11:48:42 AM - Used number 3 for workspace with name 3
+02/27/2014 11:48:42 AM - This is not an in-place restart, copying root window contents to a pixmap
+02/27/2014 11:48:42 AM - auto-starting xbindkeys -f ~/.xbindkeysrc
+02/27/2014 11:48:42 AM - executing: xbindkeys -f ~/.xbindkeysrc
+02/27/2014 11:48:42 AM - auto-starting pidgin
+02/27/2014 11:48:42 AM - startup id = i3/pidgin/1002-0-emoses-wsl1_TIME0
+02/27/2014 11:48:42 AM - executing: pidgin
+02/27/2014 11:48:42 AM - auto-starting google-chrome
+02/27/2014 11:48:42 AM - startup id = i3/google-chrome/1002-1-emoses-wsl1_TIME0
+02/27/2014 11:48:42 AM - executing: google-chrome
+02/27/2014 11:48:42 AM - auto-starting gnome-sound-applet
+02/27/2014 11:48:42 AM - startup id = i3/gnome-sound-applet/1002-2-emoses-wsl1_TIME0
+02/27/2014 11:48:42 AM - executing: gnome-sound-applet
+02/27/2014 11:48:42 AM - Starting bar process: i3bar --bar_id=bar-0 --socket="/tmp/i3-emoses.xYupLT/ipc-socket.1002"
+02/27/2014 11:48:42 AM - executing: i3bar --bar_id=bar-0 --socket="/tmp/i3-emoses.xYupLT/ipc-socket.1002"
+02/27/2014 11:48:42 AM - Not a managed window, ignoring UnmapNotify event
+02/27/2014 11:48:42 AM - Not a managed window, ignoring UnmapNotify event
+02/27/2014 11:48:42 AM - Not a managed window, ignoring UnmapNotify event
+02/27/2014 11:48:42 AM - IPC: looking for config for bar ID "bar-0"
+02/27/2014 11:48:42 AM - workspace visible? fs = 0x13a0210, ws = 0x13a0210
+[i3bar/src/xcb.c:838] ERROR: X11 connection was closed unexpectedly - maybe your X server terminated / crashed?
+Pidgin: Fatal IO error 11 (Resource temporarily unavailable) on X server :1039.
+
+(gnome-sound-applet:1016): Gdk-WARNING **: gnome-sound-applet: Fatal IO error 11 (Resource temporarily unavailable) on X server :1039.
+
+[libi3] libi3/font.c Using Pango font Consolas, size 12
+[libi3 ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/3456/how-can-i-use-i3-with-nx-nomachine/?comment=3684#comment-3684</link><description>This is a bug report and hence should be posted at http://bugs.i3wm.org/</description><pubDate>Fri, 18 Apr 2014 10:41:28 +0000</pubDate><guid>https://faq.i3wm.org/question/3456/how-can-i-use-i3-with-nx-nomachine/?comment=3684#comment-3684</guid></item></channel></rss>

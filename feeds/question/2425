@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2425/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 26 Sep 2013 17:46:28 +0000</lastBuildDate><item><title>Idea for Restoring Windows on Login</title><link>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/</link><description>I have an idea for restoring a specific window setup on login.
+
+for a given window setup, there is a sequence of key combinations which should yield this setup.  My idea is to store this sequence in a script to be run on login.  Catch is, I have no idea how to store this sequence of key combinations.
+
+I'm wondering if anyone knows how this might be done?</description><pubDate>Mon, 26 Aug 2013 16:26:43 +0000</pubDate><guid>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/</guid></item><item><title>Answer by drak3 for &lt;p&gt;I have an idea for restoring a specific window setup on login.&lt;/p&gt;
+
+&lt;p&gt;for a given window setup, there is a sequence of key combinations which should yield this setup.  My idea is to store this sequence in a script to be run on login.  Catch is, I have no idea how to store this sequence of key combinations.&lt;/p&gt;
+
+&lt;p&gt;I'm wondering if anyone knows how this might be done?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?answer=2426#post-id-2426</link><description>Ok, so far I've managed to kinda figure this out.
+
+I use `xdotool` to issue commands to X through a shell script.  It would have to be run on login.  (I have to do it manually, but I think thats bc Ubuntu is stupid)  The example below switches to tabbed layout, uses dmenu to search for gnome-terminal, opens it, then runs `archey`.
+
+    xdotool key Alt_L+w
+    xdotool key Alt_L+d
+    xdotool type gnome-terminal
+    xdotool key Return
+    sleep .5  #small delay to allow terminal to open
+    xdotool type archey
+    xdotool key Return
+
+Use `xev` to determine what the key codes are.  For some unknown reason `xdotool key Alt_L+Return` does not open a new terminal...
+
+Obviously change things as needed, for you, but this seems to work.
+
+I hope this will be useful to somebody.</description><pubDate>Mon, 26 Aug 2013 20:49:46 +0000</pubDate><guid>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?answer=2426#post-id-2426</guid></item><item><title>Comment by drak3 for &lt;p&gt;Ok, so far I've managed to kinda figure this out.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;code&gt;xdotool&lt;/code&gt; to issue commands to X through a shell script.  It would have to be run on login.  (I have to do it manually, but I think thats bc Ubuntu is stupid)  The example below switches to tabbed layout, uses dmenu to search for gnome-terminal, opens it, then runs &lt;code&gt;archey&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xdotool key Alt_L+w
+xdotool key Alt_L+d
+xdotool type gnome-terminal
+xdotool key Return
+sleep .5  #small delay to allow terminal to open
+xdotool type archey
+xdotool key Return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use &lt;code&gt;xev&lt;/code&gt; to determine what the key codes are.  For some unknown reason &lt;code&gt;xdotool key Alt_L+Return&lt;/code&gt; does not open a new terminal...&lt;/p&gt;
+
+&lt;p&gt;Obviously change things as needed, for you, but this seems to work.&lt;/p&gt;
+
+&lt;p&gt;I hope this will be useful to somebody.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?comment=2613#comment-2613</link><description>Thanks!  this makes launching utilities much less awkward, but how would it be used to reposition windows?</description><pubDate>Thu, 26 Sep 2013 17:46:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?comment=2613#comment-2613</guid></item><item><title>Comment by Michael for &lt;p&gt;Ok, so far I've managed to kinda figure this out.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;code&gt;xdotool&lt;/code&gt; to issue commands to X through a shell script.  It would have to be run on login.  (I have to do it manually, but I think thats bc Ubuntu is stupid)  The example below switches to tabbed layout, uses dmenu to search for gnome-terminal, opens it, then runs &lt;code&gt;archey&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xdotool key Alt_L+w
+xdotool key Alt_L+d
+xdotool type gnome-terminal
+xdotool key Return
+sleep .5  #small delay to allow terminal to open
+xdotool type archey
+xdotool key Return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use &lt;code&gt;xev&lt;/code&gt; to determine what the key codes are.  For some unknown reason &lt;code&gt;xdotool key Alt_L+Return&lt;/code&gt; does not open a new terminal...&lt;/p&gt;
+
+&lt;p&gt;Obviously change things as needed, for you, but this seems to work.&lt;/p&gt;
+
+&lt;p&gt;I hope this will be useful to somebody.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?comment=2606#comment-2606</link><description>You don’t pass Alt+Enter, you pass whatever you would bind to Alt+Enter to it. E.g., if Alt+Enter is bound to “exec urxvt”, just send “exec urxvt”. This works with every key binding.</description><pubDate>Thu, 26 Sep 2013 16:48:06 +0000</pubDate><guid>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?comment=2606#comment-2606</guid></item><item><title>Comment by drak3 for &lt;p&gt;Ok, so far I've managed to kinda figure this out.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;code&gt;xdotool&lt;/code&gt; to issue commands to X through a shell script.  It would have to be run on login.  (I have to do it manually, but I think thats bc Ubuntu is stupid)  The example below switches to tabbed layout, uses dmenu to search for gnome-terminal, opens it, then runs &lt;code&gt;archey&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xdotool key Alt_L+w
+xdotool key Alt_L+d
+xdotool type gnome-terminal
+xdotool key Return
+sleep .5  #small delay to allow terminal to open
+xdotool type archey
+xdotool key Return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use &lt;code&gt;xev&lt;/code&gt; to determine what the key codes are.  For some unknown reason &lt;code&gt;xdotool key Alt_L+Return&lt;/code&gt; does not open a new terminal...&lt;/p&gt;
+
+&lt;p&gt;Obviously change things as needed, for you, but this seems to work.&lt;/p&gt;
+
+&lt;p&gt;I hope this will be useful to somebody.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?comment=2436#comment-2436</link><description>tbh, passing the key sequences to the WM seems simpler, and I haven't the slightest clue how i'd go about using this to pass something like alt+enter to i3.  maybe its just way too late, but the example of issuing "exit" seems overly simple.</description><pubDate>Tue, 27 Aug 2013 07:11:22 +0000</pubDate><guid>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?comment=2436#comment-2436</guid></item><item><title>Comment by Michael for &lt;p&gt;Ok, so far I've managed to kinda figure this out.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;code&gt;xdotool&lt;/code&gt; to issue commands to X through a shell script.  It would have to be run on login.  (I have to do it manually, but I think thats bc Ubuntu is stupid)  The example below switches to tabbed layout, uses dmenu to search for gnome-terminal, opens it, then runs &lt;code&gt;archey&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xdotool key Alt_L+w
+xdotool key Alt_L+d
+xdotool type gnome-terminal
+xdotool key Return
+sleep .5  #small delay to allow terminal to open
+xdotool type archey
+xdotool key Return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use &lt;code&gt;xev&lt;/code&gt; to determine what the key codes are.  For some unknown reason &lt;code&gt;xdotool key Alt_L+Return&lt;/code&gt; does not open a new terminal...&lt;/p&gt;
+
+&lt;p&gt;Obviously change things as needed, for you, but this seems to work.&lt;/p&gt;
+
+&lt;p&gt;I hope this will be useful to somebody.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?comment=2429#comment-2429</link><description>You can also use the i3 ipc interface to do this more easily: http://i3wm.org/docs/ipc.html</description><pubDate>Tue, 27 Aug 2013 06:49:26 +0000</pubDate><guid>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?comment=2429#comment-2429</guid></item><item><title>Comment by Michael for &lt;p&gt;Ok, so far I've managed to kinda figure this out.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;code&gt;xdotool&lt;/code&gt; to issue commands to X through a shell script.  It would have to be run on login.  (I have to do it manually, but I think thats bc Ubuntu is stupid)  The example below switches to tabbed layout, uses dmenu to search for gnome-terminal, opens it, then runs &lt;code&gt;archey&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xdotool key Alt_L+w
+xdotool key Alt_L+d
+xdotool type gnome-terminal
+xdotool key Return
+sleep .5  #small delay to allow terminal to open
+xdotool type archey
+xdotool key Return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use &lt;code&gt;xev&lt;/code&gt; to determine what the key codes are.  For some unknown reason &lt;code&gt;xdotool key Alt_L+Return&lt;/code&gt; does not open a new terminal...&lt;/p&gt;
+
+&lt;p&gt;Obviously change things as needed, for you, but this seems to work.&lt;/p&gt;
+
+&lt;p&gt;I hope this will be useful to somebody.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?comment=2430#comment-2430</link><description>see also https://github.com/drbig/i3-exec-wait</description><pubDate>Tue, 27 Aug 2013 06:49:54 +0000</pubDate><guid>https://faq.i3wm.org/question/2425/idea-for-restoring-windows-on-login/?comment=2430#comment-2430</guid></item></channel></rss>

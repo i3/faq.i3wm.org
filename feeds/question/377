@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/377/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 07 Nov 2015 20:39:37 +0000</lastBuildDate><item><title>Disconnecting external monitor</title><link>https://faq.i3wm.org/question/377/disconnecting-external-monitor/</link><description>Hello,
+
+I use multi-monitor setup with eight workspaces, four on each:
+
+    workspace 1 output HDMI1
+    workspace 2 output HDMI1
+    workspace 3 output HDMI1
+    workspace 4 output HDMI1
+    workspace 5 output LVDS1
+    workspace 6 output LVDS1
+    workspace 7 output LVDS1
+    workspace 8 output LVDS1
+
+When I start my laptop WITHOUT any external monitor, i3 assumes HDMI1 -&gt; LVDS1 so everything work fine (I have all workspaces on my laptop screen). The issue is when I disconnect my laptop from dock - all running applications from 1-4 workpaces are unavaiable to me. I can only "feel" they are still there (but I dont see them). Processes are still running.
+
+While this is not bad behavior (good for meetings when you need quickly do something and than return to your desk), I would like to tell i3 to move all of them to LVDS1 when I plan for example to finish my work only on laptop.
+
+Is there any way to do this? Some kind of script that would move all workspaces to LVDS1. I would call this one_screen.sh. And also a second script (two_screens.sh) that would put my original setting back.
+
+So far I am pretty impressed with i3, the final test will be to test Elluminate desktop sharing software (I have to use it). It's a Java app with some weird features, so far so good (recorded meetings work), need to test sharing next week.
+</description><pubDate>Sun, 26 Aug 2012 19:39:37 +0000</pubDate><guid>https://faq.i3wm.org/question/377/disconnecting-external-monitor/</guid></item><item><title>Comment by lzap for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I use multi-monitor setup with eight workspaces, four on each:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 1 output HDMI1
+workspace 2 output HDMI1
+workspace 3 output HDMI1
+workspace 4 output HDMI1
+workspace 5 output LVDS1
+workspace 6 output LVDS1
+workspace 7 output LVDS1
+workspace 8 output LVDS1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I start my laptop WITHOUT any external monitor, i3 assumes HDMI1 -&amp;gt; LVDS1 so everything work fine (I have all workspaces on my laptop screen). The issue is when I disconnect my laptop from dock - all running applications from 1-4 workpaces are unavaiable to me. I can only "feel" they are still there (but I dont see them). Processes are still running.&lt;/p&gt;
+
+&lt;p&gt;While this is not bad behavior (good for meetings when you need quickly do something and than return to your desk), I would like to tell i3 to move all of them to LVDS1 when I plan for example to finish my work only on laptop.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to do this? Some kind of script that would move all workspaces to LVDS1. I would call this one&lt;em&gt;screen.sh. And also a second script (two&lt;/em&gt;screens.sh) that would put my original setting back.&lt;/p&gt;
+
+&lt;p&gt;So far I am pretty impressed with i3, the final test will be to test Elluminate desktop sharing software (I have to use it). It's a Java app with some weird features, so far so good (recorded meetings work), need to test sharing next week.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?comment=379#comment-379</link><description>Hmmm this could do it: i3-msg workspace N output XYZ. Will need to try with an external monitor connected. Currently (without it) this works (i3-msg workspace 1 output VGA1), workspace disappears but after I switch to it it goes back to LVDS1. Strange, it did not work like this when I undocked it.</description><pubDate>Sun, 26 Aug 2012 19:57:10 +0000</pubDate><guid>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?comment=379#comment-379</guid></item><item><title>Answer by Michael for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I use multi-monitor setup with eight workspaces, four on each:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 1 output HDMI1
+workspace 2 output HDMI1
+workspace 3 output HDMI1
+workspace 4 output HDMI1
+workspace 5 output LVDS1
+workspace 6 output LVDS1
+workspace 7 output LVDS1
+workspace 8 output LVDS1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I start my laptop WITHOUT any external monitor, i3 assumes HDMI1 -&amp;gt; LVDS1 so everything work fine (I have all workspaces on my laptop screen). The issue is when I disconnect my laptop from dock - all running applications from 1-4 workpaces are unavaiable to me. I can only "feel" they are still there (but I dont see them). Processes are still running.&lt;/p&gt;
+
+&lt;p&gt;While this is not bad behavior (good for meetings when you need quickly do something and than return to your desk), I would like to tell i3 to move all of them to LVDS1 when I plan for example to finish my work only on laptop.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to do this? Some kind of script that would move all workspaces to LVDS1. I would call this one&lt;em&gt;screen.sh. And also a second script (two&lt;/em&gt;screens.sh) that would put my original setting back.&lt;/p&gt;
+
+&lt;p&gt;So far I am pretty impressed with i3, the final test will be to test Elluminate desktop sharing software (I have to use it). It's a Java app with some weird features, so far so good (recorded meetings work), need to test sharing next week.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?answer=387#post-id-387</link><description>Merely disconnecting the laptop from dock is (most likely) not sufficient to trigger a RandR event, so i3 does not know about the change in your monitor configuration.
+
+Instead, when undocking, you should run `xrandr --output HDMI1 --off` and i3 will automatically do what you want. You could add this to the/a script which is run when an undock event is detected (this is outside the scope of i3 and I don’t know exactly where that happens, maybe somebody else can help).</description><pubDate>Mon, 27 Aug 2012 09:56:12 +0000</pubDate><guid>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?answer=387#post-id-387</guid></item><item><title>Comment by c0ldg0ld for &lt;p&gt;Merely disconnecting the laptop from dock is (most likely) not sufficient to trigger a RandR event, so i3 does not know about the change in your monitor configuration.&lt;/p&gt;
+
+&lt;p&gt;Instead, when undocking, you should run &lt;code&gt;xrandr --output HDMI1 --off&lt;/code&gt; and i3 will automatically do what you want. You could add this to the/a script which is run when an undock event is detected (this is outside the scope of i3 and I don’t know exactly where that happens, maybe somebody else can help).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?comment=7215#comment-7215</link><description>Were you able to get this resolved or figure out how to make the dock disconnect button trigger a script?</description><pubDate>Sat, 07 Nov 2015 20:39:37 +0000</pubDate><guid>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?comment=7215#comment-7215</guid></item><item><title>Comment by c0ldg0ld for &lt;p&gt;Merely disconnecting the laptop from dock is (most likely) not sufficient to trigger a RandR event, so i3 does not know about the change in your monitor configuration.&lt;/p&gt;
+
+&lt;p&gt;Instead, when undocking, you should run &lt;code&gt;xrandr --output HDMI1 --off&lt;/code&gt; and i3 will automatically do what you want. You could add this to the/a script which is run when an undock event is detected (this is outside the scope of i3 and I don’t know exactly where that happens, maybe somebody else can help).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?comment=7214#comment-7214</link><description>lzap, I also have an x201 tablet with the dock and run into the same issue.  I can disconenct from doc (even if I push the disconnect button first) and I'll have to kill and relaunch i3 to get my desktop to show up on the laptop screen.  (I'm using two 24" screens and no laptop screen normally)</description><pubDate>Sat, 07 Nov 2015 20:39:05 +0000</pubDate><guid>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?comment=7214#comment-7214</guid></item><item><title>Comment by lzap for &lt;p&gt;Merely disconnecting the laptop from dock is (most likely) not sufficient to trigger a RandR event, so i3 does not know about the change in your monitor configuration.&lt;/p&gt;
+
+&lt;p&gt;Instead, when undocking, you should run &lt;code&gt;xrandr --output HDMI1 --off&lt;/code&gt; and i3 will automatically do what you want. You could add this to the/a script which is run when an undock event is detected (this is outside the scope of i3 and I don’t know exactly where that happens, maybe somebody else can help).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?comment=419#comment-419</link><description>Many thanks for all your help, I wrote a big blogpost about i3. Totally in love: http://lukas.zapletalovi.com/2012/08/new-in-fedora-17-i3-42-tiling-wm.html :-)</description><pubDate>Fri, 31 Aug 2012 13:13:05 +0000</pubDate><guid>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?comment=419#comment-419</guid></item><item><title>Comment by lzap for &lt;p&gt;Merely disconnecting the laptop from dock is (most likely) not sufficient to trigger a RandR event, so i3 does not know about the change in your monitor configuration.&lt;/p&gt;
+
+&lt;p&gt;Instead, when undocking, you should run &lt;code&gt;xrandr --output HDMI1 --off&lt;/code&gt; and i3 will automatically do what you want. You could add this to the/a script which is run when an undock event is detected (this is outside the scope of i3 and I don’t know exactly where that happens, maybe somebody else can help).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?comment=388#comment-388</link><description>Thanks. But when I undock by X201, I can see the output is no longer active when I execute xrandr command. I mean HDMI1 is not listed in the output, but i3 still does not move them to the LVDS1. Strange.</description><pubDate>Mon, 27 Aug 2012 10:48:31 +0000</pubDate><guid>https://faq.i3wm.org/question/377/disconnecting-external-monitor/?comment=388#comment-388</guid></item></channel></rss>

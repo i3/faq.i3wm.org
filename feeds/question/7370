@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7370/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 19 Nov 2015 14:54:14 +0000</lastBuildDate><item><title>The configured command for this shortcut could not run successfully error?</title><link>https://faq.i3wm.org/question/7370/the-configured-command-for-this-shortcut-could-not-run-successfully-error/</link><description>I get the following error messages when trying to move windows to either of the workspaces "Web" and "Code":
+
+    ERROR: Expected one of these tokens: 'window', 'container', 'to', 'workspace', 'output', 'mark', 'scratchpad', 'left', 'right', 'up', 'down', 'position', 'absolute'
+    ERROR: Your command: move container to Web
+    ERROR:                                 ^^^
+    ERROR: Expected one of these tokens: 'window', 'container', 'to', 'workspace', 'output', 'mark', 'scratchpad', 'left', 'right', 'up', 'down', 'position', 'absolute'
+    ERROR: Your command: move container to Code 
+    ERROR:                                 ^^^^
+
+Here is the part of my configuration where I configured these workspaces:
+
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to Web
+    bindsym $mod+Shift+2 move container to Code
+
+    bindsym $mod+1 workspace Web
+    bindsym $mod+2 workspace Code
+
+</description><pubDate>Thu, 19 Nov 2015 13:59:20 +0000</pubDate><guid>https://faq.i3wm.org/question/7370/the-configured-command-for-this-shortcut-could-not-run-successfully-error/</guid></item><item><title>Answer by Airblader for &lt;p&gt;I get the following error messages when trying to move windows to either of the workspaces "Web" and "Code":&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: Expected one of these tokens: 'window', 'container', 'to', 'workspace', 'output', 'mark', 'scratchpad', 'left', 'right', 'up', 'down', 'position', 'absolute'
+ERROR: Your command: move container to Web
+ERROR:                                 ^^^
+ERROR: Expected one of these tokens: 'window', 'container', 'to', 'workspace', 'output', 'mark', 'scratchpad', 'left', 'right', 'up', 'down', 'position', 'absolute'
+ERROR: Your command: move container to Code 
+ERROR:                                 ^^^^
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the part of my configuration where I configured these workspaces:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# move focused container to workspace
+bindsym $mod+Shift+1 move container to Web
+bindsym $mod+Shift+2 move container to Code
+
+bindsym $mod+1 workspace Web
+bindsym $mod+2 workspace Code
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/7370/the-configured-command-for-this-shortcut-could-not-run-successfully-error/?answer=7371#post-id-7371</link><description>It should be  
+
+    bindsym $mod+Shift+1 move container to workspace Web
+    bindsym $mod+Shift+2 move container to workspace Code
+
+You're missing the keyword "workspace". </description><pubDate>Thu, 19 Nov 2015 14:54:14 +0000</pubDate><guid>https://faq.i3wm.org/question/7370/the-configured-command-for-this-shortcut-could-not-run-successfully-error/?answer=7371#post-id-7371</guid></item></channel></rss>

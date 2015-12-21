@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3936/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 27 May 2015 14:03:23 +0000</lastBuildDate><item><title>How can I change the position of i3-input prompt?</title><link>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/</link><description>I have four monitors, and regardless of the active workspace, i3-input prompt always opens up on top left monitor. Why is it so, since it hasn't even been defined as primary monitor? Is it possible to re-position it?
+
+ </description><pubDate>Tue, 10 Jun 2014 04:12:17 +0000</pubDate><guid>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I have four monitors, and regardless of the active workspace, i3-input prompt always opens up on top left monitor. Why is it so, since it hasn't even been defined as primary monitor? Is it possible to re-position it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?answer=3942#post-id-3942</link><description>TL;DR
+
+You cannot without changing the source code.
+
+----
+
+The position of the `i3-input` window is hardcoded to geometry `500x(fontheight+8)+50+50`. That means upper left corner of the virtual screen spanning all displays. There are no configuration or command line options that allow changing that.
+
+As far as I can tell, it is not mapped in the i3 window tree (`i3-msg -t get_tree`). Therefore it cannot be moved to a specific workspace or output with i3 commands. It even will remain visible if the workspace on the display, on which it is displayed, is changed.
+
+While the window could theoretically be moved with `xdotool`, it does not have a title or window class, which could be used to reference the window.
+
+At the moment, if you really want to change the position you can do so only in the source code in `i3-input/main.c`, search for "dimensions":
+
+    50, 50, 500, font.height + 8, /* dimensions */
+
+Even better would be if you could give the window a name, so that it can be found with `xdotool` or similar programs. Maybe you could even submit a patch for that.
+
+###Update version 4.11
+
+As of version 4.11 the placement of the *i3-input* window is improved. While still not configurable the i3-input window now appears inside the currently focused window.
+
+</description><pubDate>Tue, 10 Jun 2014 07:04:00 +0000</pubDate><guid>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?answer=3942#post-id-3942</guid></item><item><title>Comment by montiainen for &lt;p&gt;TL;DR&lt;/p&gt;
+
+&lt;p&gt;You cannot without changing the source code.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;The position of the &lt;code&gt;i3-input&lt;/code&gt; window is hardcoded to geometry &lt;code&gt;500x(fontheight+8)+50+50&lt;/code&gt;. That means upper left corner of the virtual screen spanning all displays. There are no configuration or command line options that allow changing that.&lt;/p&gt;
+
+&lt;p&gt;As far as I can tell, it is not mapped in the i3 window tree (&lt;code&gt;i3-msg -t get_tree&lt;/code&gt;). Therefore it cannot be moved to a specific workspace or output with i3 commands. It even will remain visible if the workspace on the display, on which it is displayed, is changed.&lt;/p&gt;
+
+&lt;p&gt;While the window could theoretically be moved with &lt;code&gt;xdotool&lt;/code&gt;, it does not have a title or window class, which could be used to reference the window.&lt;/p&gt;
+
+&lt;p&gt;At the moment, if you really want to change the position you can do so only in the source code in &lt;code&gt;i3-input/main.c&lt;/code&gt;, search for "dimensions":&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;50, 50, 500, font.height + 8, /* dimensions */
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Even better would be if you could give the window a name, so that it can be found with &lt;code&gt;xdotool&lt;/code&gt; or similar programs. Maybe you could even submit a patch for that.&lt;/p&gt;
+
+&lt;h3&gt;Update version 4.11&lt;/h3&gt;
+
+&lt;p&gt;As of version 4.11 the placement of the &lt;em&gt;i3-input&lt;/em&gt; window is improved. While still not configurable the i3-input window now appears inside the currently focused window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?comment=3951#comment-3951</link><description>I don't have enough karma to post links.</description><pubDate>Wed, 11 Jun 2014 06:21:23 +0000</pubDate><guid>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?comment=3951#comment-3951</guid></item><item><title>Comment by montiainen for &lt;p&gt;TL;DR&lt;/p&gt;
+
+&lt;p&gt;You cannot without changing the source code.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;The position of the &lt;code&gt;i3-input&lt;/code&gt; window is hardcoded to geometry &lt;code&gt;500x(fontheight+8)+50+50&lt;/code&gt;. That means upper left corner of the virtual screen spanning all displays. There are no configuration or command line options that allow changing that.&lt;/p&gt;
+
+&lt;p&gt;As far as I can tell, it is not mapped in the i3 window tree (&lt;code&gt;i3-msg -t get_tree&lt;/code&gt;). Therefore it cannot be moved to a specific workspace or output with i3 commands. It even will remain visible if the workspace on the display, on which it is displayed, is changed.&lt;/p&gt;
+
+&lt;p&gt;While the window could theoretically be moved with &lt;code&gt;xdotool&lt;/code&gt;, it does not have a title or window class, which could be used to reference the window.&lt;/p&gt;
+
+&lt;p&gt;At the moment, if you really want to change the position you can do so only in the source code in &lt;code&gt;i3-input/main.c&lt;/code&gt;, search for "dimensions":&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;50, 50, 500, font.height + 8, /* dimensions */
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Even better would be if you could give the window a name, so that it can be found with &lt;code&gt;xdotool&lt;/code&gt; or similar programs. Maybe you could even submit a patch for that.&lt;/p&gt;
+
+&lt;h3&gt;Update version 4.11&lt;/h3&gt;
+
+&lt;p&gt;As of version 4.11 the placement of the &lt;em&gt;i3-input&lt;/em&gt; window is improved. While still not configurable the i3-input window now appears inside the currently focused window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?comment=3950#comment-3950</link><description>Based on your answer I made a [patch](http://cr.i3wm.org/patch/570) using my very limited C know-how. It seems to be working:
+
+    #!/bin/sh
+    xdotool search --sync test windowmove 1000 1000 &amp;
+    i3-input -n test
+
+, prompt opens up on different location.
+
+Thank you very much for your fine answer!</description><pubDate>Wed, 11 Jun 2014 06:15:19 +0000</pubDate><guid>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?comment=3950#comment-3950</guid></item><item><title>Answer by gurkensalat for &lt;p&gt;I have four monitors, and regardless of the active workspace, i3-input prompt always opens up on top left monitor. Why is it so, since it hasn't even been defined as primary monitor? Is it possible to re-position it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?answer=6023#post-id-6023</link><description> To answer the question directly, it is possible to reposition i3-input using xdotool with a short delay (in this case 0.1s):
+
+    #!/bin/bash
+    i3-input "$@" &amp;
+    pid=$!
+    sleep 0.1
+    xdotool getwindowfocus windowmove 500 500
+    # xdotool getwindowfocus windowmove $(($RANDOM%1420)) $(($RANDOM%1060))
+    wait $pid
+
+</description><pubDate>Wed, 27 May 2015 14:03:23 +0000</pubDate><guid>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?answer=6023#post-id-6023</guid></item><item><title>Answer by GenghisKen for &lt;p&gt;I have four monitors, and regardless of the active workspace, i3-input prompt always opens up on top left monitor. Why is it so, since it hasn't even been defined as primary monitor? Is it possible to re-position it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?answer=6005#post-id-6005</link><description>Zenity++.  I put the renaming logic into a script, enhanced to maintain the workspace number:
+
+    #! /bin/bash
+    #
+    # Script to prompt to rename the current workspace.
+    #
+    # Cadged from
+    #  https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/
+    #
+    WSNUMBER=$(ruby -rjson -e 'puts(JSON.parse(`i3-msg -t get_workspaces`).find { |ws| ws["focused"] }["num"])')
+    NEWNAME="`zenity --entry --text 'Rename workspace to: '`"
+    if [[ ! "${NEWNAME}" =~ ^[0-9]+: ]] ; then
+        NEWNAME="${WSNUMBER}:${NEWNAME}"
+    fi
+    i3-msg "rename workspace to \"${NEWNAME}\""
+
+</description><pubDate>Tue, 19 May 2015 14:52:03 +0000</pubDate><guid>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?answer=6005#post-id-6005</guid></item><item><title>Comment by Airblader for &lt;p&gt;Zenity++.  I put the renaming logic into a script, enhanced to maintain the workspace number:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#! /bin/bash
+#
+# Script to prompt to rename the current workspace.
+#
+# Cadged from
+#  https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/
+#
+WSNUMBER=$(ruby -rjson -e 'puts(JSON.parse(`i3-msg -t get_workspaces`).find { |ws| ws["focused"] }["num"])')
+NEWNAME="`zenity --entry --text 'Rename workspace to: '`"
+if [[ ! "${NEWNAME}" =~ ^[0-9]+: ]] ; then
+    NEWNAME="${WSNUMBER}:${NEWNAME}"
+fi
+i3-msg "rename workspace to \"${NEWNAME}\""
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?comment=6006#comment-6006</link><description>In case you don't know: with the next release of i3, the i3-input window will be positioned at the currently focused window.</description><pubDate>Tue, 19 May 2015 15:49:50 +0000</pubDate><guid>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?comment=6006#comment-6006</guid></item><item><title>Answer by charon_bz for &lt;p&gt;I have four monitors, and regardless of the active workspace, i3-input prompt always opens up on top left monitor. Why is it so, since it hasn't even been defined as primary monitor? Is it possible to re-position it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?answer=5968#post-id-5968</link><description>My workaround is using zenity + i3-msg
+
+As an exmaple for renaming workspace, instead of:
+
+    bindsym $mod+Shift+A exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
+I use:
+
+    bindsym $mod+Shift+A exec i3-msg rename workspace to `zenity --entry --text "Rename workspace to:"`</description><pubDate>Fri, 08 May 2015 09:46:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3936/how-can-i-change-the-position-of-i3-input-prompt/?answer=5968#post-id-5968</guid></item></channel></rss>

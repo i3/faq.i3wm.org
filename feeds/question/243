@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/243/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 08 Mar 2013 00:05:52 +0000</lastBuildDate><item><title>How do I use an exclude regex in i3 config</title><link>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/</link><description>By being a Perl based regular expression, I was wondering if there is any extra command to do the opposite of a matching criteria (as PCRE actually do not provide an easy solution for that - thus applications such as grep offer -v option for example).
+
+I basically want to force floating mode for all Pidgin chat windows, besides the main window. The reason for it is simple: I never leave finished chat windows opened, and I want them to call more attention.
+
+    # the main window has the title: "Buddy List", and any other chat
+    # windows has the contact nickname/name on it
+    for_window [class="^Pidgin$" title="^XXXXXXX$"] floating enable
+
+By forcing an exclude match criteria on "Buddy List", I reckon a contact with this name would fall in the same rule, then being left as tiled window, but this is unlikely, and IMO, acceptable.
+
+If such setting is not possible, would it be worth it to implement it? Something like having the same options implemented with a preceding "v" for invert-match: 
+
+    for_window [class="^Pidgin$" vtitle="^Buddy List$"] floating enable
+</description><pubDate>Wed, 11 Jul 2012 14:37:55 +0000</pubDate><guid>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;By being a Perl based regular expression, I was wondering if there is any extra command to do the opposite of a matching criteria (as PCRE actually do not provide an easy solution for that - thus applications such as grep offer -v option for example).&lt;/p&gt;
+
+&lt;p&gt;I basically want to force floating mode for all Pidgin chat windows, besides the main window. The reason for it is simple: I never leave finished chat windows opened, and I want them to call more attention.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# the main window has the title: "Buddy List", and any other chat
+# windows has the contact nickname/name on it
+for_window [class="^Pidgin$" title="^XXXXXXX$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By forcing an exclude match criteria on "Buddy List", I reckon a contact with this name would fall in the same rule, then being left as tiled window, but this is unlikely, and IMO, acceptable.&lt;/p&gt;
+
+&lt;p&gt;If such setting is not possible, would it be worth it to implement it? Something like having the same options implemented with a preceding "v" for invert-match: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Pidgin$" vtitle="^Buddy List$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/?answer=244#post-id-244</link><description>Looks like I could answer my own question (still, the exclude regex would be a nice one though)...
+
+It looks like the decision to place the window is executed in sequence as defined in the config file, so by placing something like:
+
+    for_window [class="^Pidgin$"] floating enable
+    for_window [class="^Pidgin$" title="^Buddy List$"] floating disable
+
+I was able to achieve what I was looking for.</description><pubDate>Wed, 11 Jul 2012 14:58:11 +0000</pubDate><guid>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/?answer=244#post-id-244</guid></item><item><title>Answer by Philippe for &lt;p&gt;By being a Perl based regular expression, I was wondering if there is any extra command to do the opposite of a matching criteria (as PCRE actually do not provide an easy solution for that - thus applications such as grep offer -v option for example).&lt;/p&gt;
+
+&lt;p&gt;I basically want to force floating mode for all Pidgin chat windows, besides the main window. The reason for it is simple: I never leave finished chat windows opened, and I want them to call more attention.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# the main window has the title: "Buddy List", and any other chat
+# windows has the contact nickname/name on it
+for_window [class="^Pidgin$" title="^XXXXXXX$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By forcing an exclude match criteria on "Buddy List", I reckon a contact with this name would fall in the same rule, then being left as tiled window, but this is unlikely, and IMO, acceptable.&lt;/p&gt;
+
+&lt;p&gt;If such setting is not possible, would it be worth it to implement it? Something like having the same options implemented with a preceding "v" for invert-match: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Pidgin$" vtitle="^Buddy List$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/?answer=685#post-id-685</link><description>Here is another solution to your problem:
+
+    for_window [class="(?i)firefox" instance="^(?!Navigator$)"] floating enable
+
+But it seems that you have to put those ^ and $ to have it working, so there is no way to express "instance does not contain 'Navigator'".</description><pubDate>Tue, 23 Oct 2012 15:49:42 +0000</pubDate><guid>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/?answer=685#post-id-685</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Here is another solution to your problem:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="(?i)firefox" instance="^(?!Navigator$)"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it seems that you have to put those ^ and $ to have it working, so there is no way to express "instance does not contain 'Navigator'".&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/?comment=709#comment-709</link><description>Yes, not-match is unnatural for regular expressions :-(</description><pubDate>Thu, 01 Nov 2012 07:35:09 +0000</pubDate><guid>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/?comment=709#comment-709</guid></item><item><title>Comment by virtualeyes for &lt;p&gt;Here is another solution to your problem:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="(?i)firefox" instance="^(?!Navigator$)"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it seems that you have to put those ^ and $ to have it working, so there is no way to express "instance does not contain 'Navigator'".&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/?comment=1344#comment-1344</link><description>actually works, I have Gnote search window on scratchpad, but individual note windows set to float with for_window [.... title="^(?!Search All Notes$))"] floating enable</description><pubDate>Fri, 08 Mar 2013 00:05:52 +0000</pubDate><guid>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/?comment=1344#comment-1344</guid></item><item><title>Answer by Philippe for &lt;p&gt;By being a Perl based regular expression, I was wondering if there is any extra command to do the opposite of a matching criteria (as PCRE actually do not provide an easy solution for that - thus applications such as grep offer -v option for example).&lt;/p&gt;
+
+&lt;p&gt;I basically want to force floating mode for all Pidgin chat windows, besides the main window. The reason for it is simple: I never leave finished chat windows opened, and I want them to call more attention.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# the main window has the title: "Buddy List", and any other chat
+# windows has the contact nickname/name on it
+for_window [class="^Pidgin$" title="^XXXXXXX$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By forcing an exclude match criteria on "Buddy List", I reckon a contact with this name would fall in the same rule, then being left as tiled window, but this is unlikely, and IMO, acceptable.&lt;/p&gt;
+
+&lt;p&gt;If such setting is not possible, would it be worth it to implement it? Something like having the same options implemented with a preceding "v" for invert-match: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Pidgin$" vtitle="^Buddy List$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/?answer=686#post-id-686</link><description>Here is another solution to your problem:
+
+    for_window [class="^Pidgin$" title="^(?!Buddy List$)"] floating enable</description><pubDate>Tue, 23 Oct 2012 15:52:09 +0000</pubDate><guid>https://faq.i3wm.org/question/243/how-do-i-use-an-exclude-regex-in-i3-config/?answer=686#post-id-686</guid></item></channel></rss>

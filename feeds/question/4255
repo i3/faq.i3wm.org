@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4255/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 24 Nov 2015 07:12:29 +0000</lastBuildDate><item><title>i3-py executing commands out of order</title><link>https://faq.i3wm.org/question/4255/i3-py-executing-commands-out-of-order/</link><description>I working on a script to switch the workspaces on my displays (similar to: http://i3wm.org/docs/user-contributed/swapping-workspaces.html). Approximately one time in five that I run the script, it executes my commands out of order causing some workspaces to be moved twice and others not at all. I was able to fix this by sleeping for 0.1s on each loop, but this is obviously not the ideal way to solve this bug.
+
+How should I be ensuring that each line succeeds before the next is run?
+
+    #!/usr/bin/python2.7
+    from time import sleep
+    import i3
+
+    # save focused workspace
+    def find_active_workspace():
+        workspaces = i3.get_workspaces()
+        for workspace in workspaces:
+            if workspace['focused'] == True:
+                return workspace['name']
+        else:
+            return False
+    active_workspace = find_active_workspace()
+
+    # move everything
+    outputs = i3.get_outputs()
+    for output in range(0, 4):
+        i3.workspace(outputs[output]['current_workspace'])
+        i3.command('move', 'workspace to output up')
+        sleep(0.1)
+
+    # restore focus to previously focused
+    sleep(0.1)
+    if active_workspace:
+        i3.command("workspace", active_workspace)
+
+I'm new to scripting so any other comments on the code would also be appreciated.
+
+Thanks!</description><pubDate>Tue, 15 Jul 2014 15:31:13 +0000</pubDate><guid>https://faq.i3wm.org/question/4255/i3-py-executing-commands-out-of-order/</guid></item><item><title>Comment by TonyC for &lt;p&gt;I working on a script to switch the workspaces on my displays (similar to: &lt;a href="http://i3wm.org/docs/user-contributed/swapping-workspaces.html"&gt;http://i3wm.org/docs/user-contributed...&lt;/a&gt;). Approximately one time in five that I run the script, it executes my commands out of order causing some workspaces to be moved twice and others not at all. I was able to fix this by sleeping for 0.1s on each loop, but this is obviously not the ideal way to solve this bug.&lt;/p&gt;
+
+&lt;p&gt;How should I be ensuring that each line succeeds before the next is run?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/python2.7
+from time import sleep
+import i3
+
+# save focused workspace
+def find_active_workspace():
+    workspaces = i3.get_workspaces()
+    for workspace in workspaces:
+        if workspace['focused'] == True:
+            return workspace['name']
+    else:
+        return False
+active_workspace = find_active_workspace()
+
+# move everything
+outputs = i3.get_outputs()
+for output in range(0, 4):
+    i3.workspace(outputs[output]['current_workspace'])
+    i3.command('move', 'workspace to output up')
+    sleep(0.1)
+
+# restore focus to previously focused
+sleep(0.1)
+if active_workspace:
+    i3.command("workspace", active_workspace)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm new to scripting so any other comments on the code would also be appreciated.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4255/i3-py-executing-commands-out-of-order/?comment=4263#comment-4263</link><description>i3-py is no longer maintained and has a lot of bugs. The current best scripting library is [i3ipc-python](https://github.com/acrisci/i3ipc-python). Even calling out to i3-msg would be better.</description><pubDate>Tue, 15 Jul 2014 21:22:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4255/i3-py-executing-commands-out-of-order/?comment=4263#comment-4263</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;I working on a script to switch the workspaces on my displays (similar to: &lt;a href="http://i3wm.org/docs/user-contributed/swapping-workspaces.html"&gt;http://i3wm.org/docs/user-contributed...&lt;/a&gt;). Approximately one time in five that I run the script, it executes my commands out of order causing some workspaces to be moved twice and others not at all. I was able to fix this by sleeping for 0.1s on each loop, but this is obviously not the ideal way to solve this bug.&lt;/p&gt;
+
+&lt;p&gt;How should I be ensuring that each line succeeds before the next is run?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/python2.7
+from time import sleep
+import i3
+
+# save focused workspace
+def find_active_workspace():
+    workspaces = i3.get_workspaces()
+    for workspace in workspaces:
+        if workspace['focused'] == True:
+            return workspace['name']
+    else:
+        return False
+active_workspace = find_active_workspace()
+
+# move everything
+outputs = i3.get_outputs()
+for output in range(0, 4):
+    i3.workspace(outputs[output]['current_workspace'])
+    i3.command('move', 'workspace to output up')
+    sleep(0.1)
+
+# restore focus to previously focused
+sleep(0.1)
+if active_workspace:
+    i3.command("workspace", active_workspace)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm new to scripting so any other comments on the code would also be appreciated.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4255/i3-py-executing-commands-out-of-order/?answer=7410#post-id-7410</link><description>Some things are actually easier in shell example in fish
+
+    function get-ws-in
+        i3-msg -t get_workspaces  | jq .[]  | jq -r "select(.$argv[2] == $argv[3]).$argv[1]"
+    end
+
+    function swap-windows
+        set workspaces (get-ws-in name visible true)
+        set outputs (get-ws-in output visible true)
+        i3-msg "[workspace=$workspaces[1]] move container to workspace leftws"
+        i3-msg "[workspace=$workspaces[2]] move container to workspace rightws"
+        i3-msg "[workspace=leftws] move container to output $outputs[2]"
+        i3-msg "[workspace=rightws] move container to output $outputs[1]"
+    end
+
+or simplified to
+
+    function swap-windows2
+        set workspaces (get-ws-in name visible true)
+        set outputs (get-ws-in output visible true)
+        i3-msg "[workspace=$workspaces[1]] move container to workspace ph"
+        i3-msg "[workspace=$workspaces[2]] move container to output $outputs[1]"
+        i3-msg "[workspace=ph] move container to output $outputs[2]"
+    end
+
+This saves one swap by moving everything on left monitor to ph, everything on right monitor to left monitor then everything on ph to right monitor.
+
+Basically i3 msg can match not only attributes inherent to the window like its class but for example based on its workspace.  Since you can tell i3 do something to everything in workspace foo its trivial to say move everything in foo to placeholder1 everthing in bar to placeholder2 then move everything in placeholder1 to left output everthing in placeholder2 to right output.</description><pubDate>Mon, 23 Nov 2015 09:45:43 +0000</pubDate><guid>https://faq.i3wm.org/question/4255/i3-py-executing-commands-out-of-order/?answer=7410#post-id-7410</guid></item><item><title>Comment by Airblader for &lt;p&gt;Some things are actually easier in shell example in fish&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function get-ws-in
+    i3-msg -t get_workspaces  | jq .[]  | jq -r "select(.$argv[2] == $argv[3]).$argv[1]"
+end
+
+function swap-windows
+    set workspaces (get-ws-in name visible true)
+    set outputs (get-ws-in output visible true)
+    i3-msg "[workspace=$workspaces[1]] move container to workspace leftws"
+    i3-msg "[workspace=$workspaces[2]] move container to workspace rightws"
+    i3-msg "[workspace=leftws] move container to output $outputs[2]"
+    i3-msg "[workspace=rightws] move container to output $outputs[1]"
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or simplified to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function swap-windows2
+    set workspaces (get-ws-in name visible true)
+    set outputs (get-ws-in output visible true)
+    i3-msg "[workspace=$workspaces[1]] move container to workspace ph"
+    i3-msg "[workspace=$workspaces[2]] move container to output $outputs[1]"
+    i3-msg "[workspace=ph] move container to output $outputs[2]"
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This saves one swap by moving everything on left monitor to ph, everything on right monitor to left monitor then everything on ph to right monitor.&lt;/p&gt;
+
+&lt;p&gt;Basically i3 msg can match not only attributes inherent to the window like its class but for example based on its workspace.  Since you can tell i3 do something to everything in workspace foo its trivial to say move everything in foo to placeholder1 everthing in bar to placeholder2 then move everything in placeholder1 to left output everthing in placeholder2 to right output.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4255/i3-py-executing-commands-out-of-order/?comment=7419#comment-7419</link><description>Just as a note, the workspace criterion needs a recent i3 version. Your average 4.8 that comes with Debian won't be able to use it.</description><pubDate>Tue, 24 Nov 2015 07:12:29 +0000</pubDate><guid>https://faq.i3wm.org/question/4255/i3-py-executing-commands-out-of-order/?comment=7419#comment-7419</guid></item></channel></rss>

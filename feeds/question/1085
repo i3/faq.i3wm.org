@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1085/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 18 Jan 2013 13:21:09 +0000</lastBuildDate><item><title>scripting i3. How ?</title><link>https://faq.i3wm.org/question/1085/scripting-i3-how/</link><description>So my main concern is that the language used for .config is not a real scripting language but some sort of English dialect. Like those jokes about people trying to talk with the shell in pure English :).
+Then again that is not a trivial matter to program and Michael said he is not going in that direction and they also moved to a home made informative parser, which is nice I guess. 
+
+So what is left for me to do? I want to fell the tree structure with my keyboard and adjust it accordingly.
+First of how do I now if a command passed to i3-msg executed successively all I get is
+[{"success":true}]?
+What sort of information i3 output's to me? I need to be able to query stuff.
+
+So I saw that i3-msg has some functionality like printing the tree structure and workspaces , outputs and similar but what should I do with this?
+I guess the tree is stored somewhere in some file and that I need to adjust it by changing that file "manually" ???
+In that case I would really need more powerful robust commands instead of doing it by hand or implementing my own function's (aka plugin).
+
+In the end it would be best if there was a nice scripting language for i3 so that users can make there own UI and workflow and developers job wold be to provide the user with robust and powerful function's</description><pubDate>Fri, 18 Jan 2013 11:18:25 +0000</pubDate><guid>https://faq.i3wm.org/question/1085/scripting-i3-how/</guid></item><item><title>Answer by Michael for &lt;p&gt;So my main concern is that the language used for .config is not a real scripting language but some sort of English dialect. Like those jokes about people trying to talk with the shell in pure English :).
+Then again that is not a trivial matter to program and Michael said he is not going in that direction and they also moved to a home made informative parser, which is nice I guess. &lt;/p&gt;
+
+&lt;p&gt;So what is left for me to do? I want to fell the tree structure with my keyboard and adjust it accordingly.
+First of how do I now if a command passed to i3-msg executed successively all I get is
+[{"success":true}]?
+What sort of information i3 output's to me? I need to be able to query stuff.&lt;/p&gt;
+
+&lt;p&gt;So I saw that i3-msg has some functionality like printing the tree structure and workspaces , outputs and similar but what should I do with this?
+I guess the tree is stored somewhere in some file and that I need to adjust it by changing that file "manually" ???
+In that case I would really need more powerful robust commands instead of doing it by hand or implementing my own function's (aka plugin).&lt;/p&gt;
+
+&lt;p&gt;In the end it would be best if there was a nice scripting language for i3 so that users can make there own UI and workflow and developers job wold be to provide the user with robust and powerful function's&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1085/scripting-i3-how/?answer=1086#post-id-1086</link><description>I think you are looking for http://i3wm.org/docs/ipc.html which documents what is possible and how it’s done, both on the wire and referring to libraries in various languages (e.g. i3-py).
+
+I just want to comment specifically on your last paragraph:
+
+&gt; In the end it would be best if there was a nice scripting language for i3 so that users can make there own UI and workflow and developers job wold be to provide the user with robust and powerful function's
+
+I disagree. i3 aims to provide a usable window manager, not a framework for writing your own window manager. If you don’t find i3 usable as-is, you should go look elsewhere. Have a look at awesome, XMonad, wmfs, etc…</description><pubDate>Fri, 18 Jan 2013 11:24:39 +0000</pubDate><guid>https://faq.i3wm.org/question/1085/scripting-i3-how/?answer=1086#post-id-1086</guid></item><item><title>Comment by Goran for &lt;p&gt;I think you are looking for &lt;a href="http://i3wm.org/docs/ipc.html"&gt;http://i3wm.org/docs/ipc.html&lt;/a&gt; which documents what is possible and how it’s done, both on the wire and referring to libraries in various languages (e.g. i3-py).&lt;/p&gt;
+
+&lt;p&gt;I just want to comment specifically on your last paragraph:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In the end it would be best if there was a nice scripting language for i3 so that users can make there own UI and workflow and developers job wold be to provide the user with robust and powerful function's&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I disagree. i3 aims to provide a usable window manager, not a framework for writing your own window manager. If you don’t find i3 usable as-is, you should go look elsewhere. Have a look at awesome, XMonad, wmfs, etc…&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1085/scripting-i3-how/?comment=1087#comment-1087</link><description>Michale  tnx for the replay. The problem with your last remark is that neither of mentioned window managers has a simple scripting language :). Just one question. If you "easily" could make it a 'framework' as you say. Would you do it ?  </description><pubDate>Fri, 18 Jan 2013 11:48:52 +0000</pubDate><guid>https://faq.i3wm.org/question/1085/scripting-i3-how/?comment=1087#comment-1087</guid></item><item><title>Comment by Michael for &lt;p&gt;I think you are looking for &lt;a href="http://i3wm.org/docs/ipc.html"&gt;http://i3wm.org/docs/ipc.html&lt;/a&gt; which documents what is possible and how it’s done, both on the wire and referring to libraries in various languages (e.g. i3-py).&lt;/p&gt;
+
+&lt;p&gt;I just want to comment specifically on your last paragraph:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In the end it would be best if there was a nice scripting language for i3 so that users can make there own UI and workflow and developers job wold be to provide the user with robust and powerful function's&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I disagree. i3 aims to provide a usable window manager, not a framework for writing your own window manager. If you don’t find i3 usable as-is, you should go look elsewhere. Have a look at awesome, XMonad, wmfs, etc…&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1085/scripting-i3-how/?comment=1088#comment-1088</link><description>The problem with creating such a framework is that it is not easy ;-). You have to think of _a lot_ of cases and essentially provide the user with a higher level of abstraction than talking to X11 directly. I think most users would not care for such a framework.</description><pubDate>Fri, 18 Jan 2013 13:21:09 +0000</pubDate><guid>https://faq.i3wm.org/question/1085/scripting-i3-how/?comment=1088#comment-1088</guid></item></channel></rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4774/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 21 Oct 2014 13:14:00 +0000</lastBuildDate><item><title>Dzen2 instead of i3bar</title><link>https://faq.i3wm.org/question/4774/dzen2-instead-of-i3bar/</link><description>I'd like to use Dzen2 instead of i3bar. I'm comfortable with using i3-msg to display workspace information on a Dzen2 instance, but I'd also like to display the title of the active window.
+
+I understand that the window title information is contained in the JSON dump returned by running "i3-msg -t get_tree", but I'm not sure of a reliable way to retrieve the title of the active window from this dump. I'm thinking I'll use a python script to do it, but I don't understand the structure of the i3 tree well enough.
+
+Any guidance on how to retrieve this information is much appreciated.</description><pubDate>Thu, 16 Oct 2014 14:44:06 +0000</pubDate><guid>https://faq.i3wm.org/question/4774/dzen2-instead-of-i3bar/</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;I'd like to use Dzen2 instead of i3bar. I'm comfortable with using i3-msg to display workspace information on a Dzen2 instance, but I'd also like to display the title of the active window.&lt;/p&gt;
+
+&lt;p&gt;I understand that the window title information is contained in the JSON dump returned by running "i3-msg -t get_tree", but I'm not sure of a reliable way to retrieve the title of the active window from this dump. I'm thinking I'll use a python script to do it, but I don't understand the structure of the i3 tree well enough.&lt;/p&gt;
+
+&lt;p&gt;Any guidance on how to retrieve this information is much appreciated.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4774/dzen2-instead-of-i3bar/?answer=4777#post-id-4777</link><description>You could use `xdotool`, which can be found in many distribution repositories. The NETWM_NAME property of the currently focused window can be grabbed with
+
+    xdotool getwindowname $(xdotool getwindowfocus)
+
+Otherwise you'd need to write a script to parse the JSON tree output.</description><pubDate>Thu, 16 Oct 2014 16:46:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4774/dzen2-instead-of-i3bar/?answer=4777#post-id-4777</guid></item><item><title>Comment by AlexJ136 for &lt;p&gt;You could use &lt;code&gt;xdotool&lt;/code&gt;, which can be found in many distribution repositories. The NETWM_NAME property of the currently focused window can be grabbed with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xdotool getwindowname $(xdotool getwindowfocus)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Otherwise you'd need to write a script to parse the JSON tree output.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4774/dzen2-instead-of-i3bar/?comment=4782#comment-4782</link><description>I had to run `xdotool getwindowfocus | xargs xdotool getwindowname`, which works great. Thanks for pointing me at xdotool.</description><pubDate>Thu, 16 Oct 2014 21:28:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4774/dzen2-instead-of-i3bar/?comment=4782#comment-4782</guid></item><item><title>Comment by Adaephon for &lt;p&gt;You could use &lt;code&gt;xdotool&lt;/code&gt;, which can be found in many distribution repositories. The NETWM_NAME property of the currently focused window can be grabbed with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xdotool getwindowname $(xdotool getwindowfocus)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Otherwise you'd need to write a script to parse the JSON tree output.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4774/dzen2-instead-of-i3bar/?comment=4814#comment-4814</link><description>You also can use `xdotool getwindowfocus getwindowname`. This utilizes the command chaining feature of `xdotool`. You could also use `getactivewindow` instead of `getwindowfocus` as the man page states that it may be more reliable.</description><pubDate>Tue, 21 Oct 2014 13:14:00 +0000</pubDate><guid>https://faq.i3wm.org/question/4774/dzen2-instead-of-i3bar/?comment=4814#comment-4814</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;You could use &lt;code&gt;xdotool&lt;/code&gt;, which can be found in many distribution repositories. The NETWM_NAME property of the currently focused window can be grabbed with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xdotool getwindowname $(xdotool getwindowfocus)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Otherwise you'd need to write a script to parse the JSON tree output.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4774/dzen2-instead-of-i3bar/?comment=4785#comment-4785</link><description>I didn't consider that my line works in Bash/Zsh, and not necessarily any other shells. :P Good to see you got it working.</description><pubDate>Fri, 17 Oct 2014 04:04:50 +0000</pubDate><guid>https://faq.i3wm.org/question/4774/dzen2-instead-of-i3bar/?comment=4785#comment-4785</guid></item></channel></rss>

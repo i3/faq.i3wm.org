@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4071/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 30 Jun 2014 12:15:22 +0000</lastBuildDate><item><title>modal pop-up in idea loses focus while entering text</title><link>https://faq.i3wm.org/question/4071/modal-pop-up-in-idea-loses-focus-while-entering-text/</link><description>Hi.
+
+I'm only experiencing this problem when using i3 - and it really is a shame, since it sort of makes the VM unusable for work :(
+
+Software:
+
+1. IntelliJ IDEA v13.1.2 Build #IU-135.690
+2. i3 version 4.7.2 (2014-01-23, branch "tags/4.7.2")
+
+What:
+
+a) Open a project in IDEA, type &lt;ctrl&gt;-N to open the "find class dialog box".
+
+b) Start typing characters to find a class.
+
+c) The dialog-box will flicker, and one of your characters will be sent to "the editor".
+
+Effectively, this means, that I've accidentially changed a file (possibly making it non-compilable).
+
+It makes using IDEA with i3 impossible.
+
+Do you know any work around for this?</description><pubDate>Mon, 30 Jun 2014 11:01:00 +0000</pubDate><guid>https://faq.i3wm.org/question/4071/modal-pop-up-in-idea-loses-focus-while-entering-text/</guid></item><item><title>Answer by rafi for &lt;p&gt;Hi.&lt;/p&gt;
+
+&lt;p&gt;I'm only experiencing this problem when using i3 - and it really is a shame, since it sort of makes the VM unusable for work :(&lt;/p&gt;
+
+&lt;p&gt;Software:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;IntelliJ IDEA v13.1.2 Build #IU-135.690&lt;/li&gt;
+&lt;li&gt;i3 version 4.7.2 (2014-01-23, branch "tags/4.7.2")&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;What:&lt;/p&gt;
+
+&lt;p&gt;a) Open a project in IDEA, type &amp;lt;ctrl&amp;gt;-N to open the "find class dialog box".&lt;/p&gt;
+
+&lt;p&gt;b) Start typing characters to find a class.&lt;/p&gt;
+
+&lt;p&gt;c) The dialog-box will flicker, and one of your characters will be sent to "the editor".&lt;/p&gt;
+
+&lt;p&gt;Effectively, this means, that I've accidentially changed a file (possibly making it non-compilable).&lt;/p&gt;
+
+&lt;p&gt;It makes using IDEA with i3 impossible.&lt;/p&gt;
+
+&lt;p&gt;Do you know any work around for this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4071/modal-pop-up-in-idea-loses-focus-while-entering-text/?answer=4072#post-id-4072</link><description>The fight for focus. You could try to disable i3's `focus_follows_mouse` option.
+
+Or, check out the `idea.properties` file in your IDE installation folder, specially this parameter:
+
+    #---------------------------------------------------------------------
+    # There are two possible values of idea.popup.weight property: "heavy" and "medium".
+    # If you have WM configured as "Focus follows mouse with Auto Raise" then you have to
+    # set this property to "medium". It prevents problems with popup menus on some
+    # configurations.
+    #---------------------------------------------------------------------
+    idea.popup.weight=medium
+
+Also, you could use a tool like `unclutter` to make the mouse-cursor less obtrusive, run it like this:
+
+    unclutter -idle 3 -jitter 5 -noevents -root &amp;
+
+I've recently started using `xbanish` as well, will hide the mouse as soon as you start typing.</description><pubDate>Mon, 30 Jun 2014 12:15:22 +0000</pubDate><guid>https://faq.i3wm.org/question/4071/modal-pop-up-in-idea-loses-focus-while-entering-text/?answer=4072#post-id-4072</guid></item></channel></rss>

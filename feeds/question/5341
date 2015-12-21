@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5341/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 19 Jan 2015 14:14:18 +0000</lastBuildDate><item><title>Activate logging in session</title><link>https://faq.i3wm.org/question/5341/activate-logging-in-session/</link><description>Hi,
+
+I'm using debian testing with XFCE and installed i3 through the repository. To start i3 I just select it on the login screen from the desktop manager. I wanted to activate logging, but changing the `Exec` line in `/usr/share/xsessions/i3.desktop` leads to the following error:
+
+```
+Xsession: unable to launch “i3 -V -d all &gt; $HOME/.i3/log-$(date +'%F-%k-%M-%S') 2&gt;&amp;1″ X session —“i3 -V -d all &gt; $HOME/.i3/log-$(date +'%F-%k-%M-%S') 2&gt;&amp;1″ not found; falling back to default session.
+```
+
+I used https://ask.fedoraproject.org/en/question/41868/enable-logging-for-i3/ to create it. Also tried the debugging description from the docs, but I get the same error. The command `i3-dump-log` from the docs is working, but I would prefer to have session-based logfiles instead of dumping it manually.
+
+Any hints on how to solve the Xsession problem or how to activate logging with specific logfiles?
+
+
+PS: Apologies for not linking to my sources, my karma is not sufficient for that yet.</description><pubDate>Thu, 15 Jan 2015 10:30:51 +0000</pubDate><guid>https://faq.i3wm.org/question/5341/activate-logging-in-session/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm using debian testing with XFCE and installed i3 through the repository. To start i3 I just select it on the login screen from the desktop manager. I wanted to activate logging, but changing the &lt;code&gt;Exec&lt;/code&gt; line in &lt;code&gt;/usr/share/xsessions/i3.desktop&lt;/code&gt; leads to the following error:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+Xsession: unable to launch “i3 -V -d all &amp;gt; $HOME/.i3/log-$(date +'%F-%k-%M-%S') 2&amp;gt;&amp;amp;1″ X session —“i3 -V -d all &amp;gt; $HOME/.i3/log-$(date +'%F-%k-%M-%S') 2&amp;gt;&amp;amp;1″ not found; falling back to default session.
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I used &lt;a href="https://ask.fedoraproject.org/en/question/41868/enable-logging-for-i3/"&gt;https://ask.fedoraproject.org/en/ques...&lt;/a&gt; to create it. Also tried the debugging description from the docs, but I get the same error. The command &lt;code&gt;i3-dump-log&lt;/code&gt; from the docs is working, but I would prefer to have session-based logfiles instead of dumping it manually.&lt;/p&gt;
+
+&lt;p&gt;Any hints on how to solve the Xsession problem or how to activate logging with specific logfiles?&lt;/p&gt;
+
+&lt;p&gt;PS: Apologies for not linking to my sources, my karma is not sufficient for that yet.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5341/activate-logging-in-session/?answer=5344#post-id-5344</link><description>I think your display manager does not support arguments in the Exec directive (you didn’t specify which display manager you’re using).
+
+A simple fix could be to switch to a different display manager.
+
+Alternatively, you could create a shell script which wraps the command you want to run, and then specify that in Exec=
+
+Or, you could just not have logs for each session and use `i3-dump-log`, even though you stated you don’t like that approach. I haven’t understood why not, and the disadvantage of logging everything to your file system is that you need to rotate these logs away. I’ve seen more than one computer where the disk got full because of i3 debug logs, as they are really verbose.</description><pubDate>Fri, 16 Jan 2015 18:03:36 +0000</pubDate><guid>https://faq.i3wm.org/question/5341/activate-logging-in-session/?answer=5344#post-id-5344</guid></item><item><title>Comment by Clerius for &lt;p&gt;I think your display manager does not support arguments in the Exec directive (you didn’t specify which display manager you’re using).&lt;/p&gt;
+
+&lt;p&gt;A simple fix could be to switch to a different display manager.&lt;/p&gt;
+
+&lt;p&gt;Alternatively, you could create a shell script which wraps the command you want to run, and then specify that in Exec=&lt;/p&gt;
+
+&lt;p&gt;Or, you could just not have logs for each session and use &lt;code&gt;i3-dump-log&lt;/code&gt;, even though you stated you don’t like that approach. I haven’t understood why not, and the disadvantage of logging everything to your file system is that you need to rotate these logs away. I’ve seen more than one computer where the disk got full because of i3 debug logs, as they are really verbose.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5341/activate-logging-in-session/?comment=5351#comment-5351</link><description>I don't want to have all sessions in one log-file. And maybe I want to check the output of one of the earlier sessions on a day. But I understand the size problem and maybe the i3-with-shmlog solution is enough.</description><pubDate>Mon, 19 Jan 2015 14:14:18 +0000</pubDate><guid>https://faq.i3wm.org/question/5341/activate-logging-in-session/?comment=5351#comment-5351</guid></item><item><title>Comment by Clerius for &lt;p&gt;I think your display manager does not support arguments in the Exec directive (you didn’t specify which display manager you’re using).&lt;/p&gt;
+
+&lt;p&gt;A simple fix could be to switch to a different display manager.&lt;/p&gt;
+
+&lt;p&gt;Alternatively, you could create a shell script which wraps the command you want to run, and then specify that in Exec=&lt;/p&gt;
+
+&lt;p&gt;Or, you could just not have logs for each session and use &lt;code&gt;i3-dump-log&lt;/code&gt;, even though you stated you don’t like that approach. I haven’t understood why not, and the disadvantage of logging everything to your file system is that you need to rotate these logs away. I’ve seen more than one computer where the disk got full because of i3 debug logs, as they are really verbose.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5341/activate-logging-in-session/?comment=5350#comment-5350</link><description>Didn't mention it because I'm not sure. But it seems only lightdm is installed, so I assume thats the one I'm using.
+
+I'm now using i3-with-shmlog in the i3.desktop file to be able to use i3-dump-log. Where does i3 store its log by default? Didn't find anything on the i3-with-shmlog man page.</description><pubDate>Mon, 19 Jan 2015 14:08:20 +0000</pubDate><guid>https://faq.i3wm.org/question/5341/activate-logging-in-session/?comment=5350#comment-5350</guid></item></channel></rss>

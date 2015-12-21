@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3448/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 27 Feb 2014 09:49:01 +0000</lastBuildDate><item><title>build error on ubuntu 12.04</title><link>https://faq.i3wm.org/question/3448/build-error-on-ubuntu-1204/</link><description>i found the i3wm in Ubuntu 12.04 repo is old, tried to build it my self but failed. 
+
+    me@myhost i3-4.7.2$ make
+    [i3] CC src/assignments.c
+    In file included from include/xcb.h:14,
+                     from include/all.h:51,
+                     from ../i3-4.7.2/src/assignments.c:12:
+    include/xcursor.h:13: fatal error: xcb/xcb_cursor.h: No such file or directory
+    compilation terminated.
+    make: *** [src/assignments.o] Error 1
+
+i have installed libx11-xcb-dev. 
+i even tried this 
+
+    sudo apt-get install -y `sudo apt-cache search  xcb |grep xcb |awk '{print $1}' `"
+
+that is installed all the packages contains xcb in its name.
+
+ - i3 version: i3-4.7.2 ubuntu: 12.04.1
+ - kernel: Linux myhost 3.5.0-23-generic #35~precise1-Ubuntu SMP Fri Jan 25 17:13:26 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+</description><pubDate>Thu, 27 Feb 2014 06:19:50 +0000</pubDate><guid>https://faq.i3wm.org/question/3448/build-error-on-ubuntu-1204/</guid></item><item><title>Answer by cee for &lt;p&gt;i found the i3wm in Ubuntu 12.04 repo is old, tried to build it my self but failed. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;me@myhost i3-4.7.2$ make
+[i3] CC src/assignments.c
+In file included from include/xcb.h:14,
+                 from include/all.h:51,
+                 from ../i3-4.7.2/src/assignments.c:12:
+include/xcursor.h:13: fatal error: xcb/xcb_cursor.h: No such file or directory
+compilation terminated.
+make: *** [src/assignments.o] Error 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;i have installed libx11-xcb-dev. 
+i even tried this &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install -y `sudo apt-cache search  xcb |grep xcb |awk '{print $1}' `"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;that is installed all the packages contains xcb in its name.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;i3 version: i3-4.7.2 ubuntu: 12.04.1&lt;/li&gt;
+&lt;li&gt;kernel: Linux myhost 3.5.0-23-generic #35~precise1-Ubuntu SMP Fri Jan 25 17:13:26 UTC 2013 x86&lt;em&gt;64 x86&lt;/em&gt;64 x86_64 GNU/Linux&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/3448/build-error-on-ubuntu-1204/?answer=3449#post-id-3449</link><description>Have you seen the [thread](https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/) about installing from sources?  
+Most probably you are missing a dependency. Perhaps `libxcursor-dev`?
+</description><pubDate>Thu, 27 Feb 2014 09:08:01 +0000</pubDate><guid>https://faq.i3wm.org/question/3448/build-error-on-ubuntu-1204/?answer=3449#post-id-3449</guid></item><item><title>Comment by haobug for &lt;p&gt;Have you seen the &lt;a href="https://faq.i3wm.org/question/68/how-to-build-and-install-i3-from-sources/"&gt;thread&lt;/a&gt; about installing from sources? &lt;br/&gt;
+Most probably you are missing a dependency. Perhaps &lt;code&gt;libxcursor-dev&lt;/code&gt;?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3448/build-error-on-ubuntu-1204/?comment=3452#comment-3452</link><description>yes, i have. 'libxcursor-dev' was installed.</description><pubDate>Thu, 27 Feb 2014 09:49:01 +0000</pubDate><guid>https://faq.i3wm.org/question/3448/build-error-on-ubuntu-1204/?comment=3452#comment-3452</guid></item></channel></rss>

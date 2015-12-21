@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4007/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 17 Jun 2014 13:53:05 +0000</lastBuildDate><item><title>How to capture i3bar click events raw data?</title><link>https://faq.i3wm.org/question/4007/how-to-capture-i3bar-click-events-raw-data/</link><description>Excerpt from [http://i3wm.org/docs/i3bar-protocol.html](http://i3wm.org/docs/i3bar-protocol.html)
+
+. . .
+
+2.3. Click events
+
+If enabled i3bar will send you notifications if the user clicks on a block.
+
+Example:
+
+    {
+     "name": "ethernet",
+     "instance": "eth0",
+     "button": 1,
+     "x": 1320,
+     "y": 1400
+    }
+
+. . . 
+
+
+What command do I need to run on the console to give me the location of the mouse while clicking on the i3bar? 
+
+OR
+
+Where the i3bar will send the notifications to?</description><pubDate>Tue, 17 Jun 2014 12:51:30 +0000</pubDate><guid>https://faq.i3wm.org/question/4007/how-to-capture-i3bar-click-events-raw-data/</guid></item><item><title>Answer by Ultrabug for &lt;p&gt;Excerpt from &lt;a href="http://i3wm.org/docs/i3bar-protocol.html"&gt;http://i3wm.org/docs/i3bar-protocol.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;. . .&lt;/p&gt;
+
+&lt;p&gt;2.3. Click events&lt;/p&gt;
+
+&lt;p&gt;If enabled i3bar will send you notifications if the user clicks on a block.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+ "name": "ethernet",
+ "instance": "eth0",
+ "button": 1,
+ "x": 1320,
+ "y": 1400
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;. . . &lt;/p&gt;
+
+&lt;p&gt;What command do I need to run on the console to give me the location of the mouse while clicking on the i3bar? &lt;/p&gt;
+
+&lt;p&gt;OR&lt;/p&gt;
+
+&lt;p&gt;Where the i3bar will send the notifications to?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4007/how-to-capture-i3bar-click-events-raw-data/?answer=4009#post-id-4009</link><description>AFAIK the i3bar will **only** output the json to the stdin of the program which is responsible of displaying information on it aka *status_command* (i3status by default or py3status if you use it).
+
+So if you want to catch this data you need to do it from within the given program (AFAIK i3status doesn't support click events).
+
+If you use py3status, you can use the i3bar_click_events.py module to catch and handle any click made on your i3bar. Then it's up to you to do whatever you want with the information ;)
+
+See the py3status github wiki page : "Handle i3status and i3bar click events" for more information.</description><pubDate>Tue, 17 Jun 2014 13:53:05 +0000</pubDate><guid>https://faq.i3wm.org/question/4007/how-to-capture-i3bar-click-events-raw-data/?answer=4009#post-id-4009</guid></item></channel></rss>

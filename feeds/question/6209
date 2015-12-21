@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6209/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 30 Aug 2015 13:56:02 +0000</lastBuildDate><item><title>Show or hide i3bar on a specific output</title><link>https://faq.i3wm.org/question/6209/show-or-hide-i3bar-on-a-specific-output/</link><description>I have a dual monitor setup where I have two i3bar instances. One is in dock mode at the left, and the other one is in hide mode on the right. The right one is shown when the mod key is pressed.
+
+Now, I want to show the bar when the cursor is over a certain screen region (without using the keyboard), so I've made a basic python script that checks for that with the help of xdotool and I just need to send the command to actually show the bar.
+
+I've tried using 
+
+    i3-msg "bar mode dock"
+
+But it didn't work because both bars were shown / hidden.
+
+So my question basically is, how can I send a message to i3 so only one of the two bars is shown?
+
+Thank you!</description><pubDate>Fri, 26 Jun 2015 16:08:21 +0000</pubDate><guid>https://faq.i3wm.org/question/6209/show-or-hide-i3bar-on-a-specific-output/</guid></item><item><title>Comment by setzer22 for &lt;p&gt;I have a dual monitor setup where I have two i3bar instances. One is in dock mode at the left, and the other one is in hide mode on the right. The right one is shown when the mod key is pressed.&lt;/p&gt;
+
+&lt;p&gt;Now, I want to show the bar when the cursor is over a certain screen region (without using the keyboard), so I've made a basic python script that checks for that with the help of xdotool and I just need to send the command to actually show the bar.&lt;/p&gt;
+
+&lt;p&gt;I've tried using &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg "bar mode dock"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it didn't work because both bars were shown / hidden.&lt;/p&gt;
+
+&lt;p&gt;So my question basically is, how can I send a message to i3 so only one of the two bars is shown?&lt;/p&gt;
+
+&lt;p&gt;Thank you!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6209/show-or-hide-i3bar-on-a-specific-output/?comment=6227#comment-6227</link><description>Given the number of views and no answers I'll just assume i3 doesn't have this kind of functionality implemented.</description><pubDate>Tue, 30 Jun 2015 12:50:05 +0000</pubDate><guid>https://faq.i3wm.org/question/6209/show-or-hide-i3bar-on-a-specific-output/?comment=6227#comment-6227</guid></item><item><title>Answer by vandannen for &lt;p&gt;I have a dual monitor setup where I have two i3bar instances. One is in dock mode at the left, and the other one is in hide mode on the right. The right one is shown when the mod key is pressed.&lt;/p&gt;
+
+&lt;p&gt;Now, I want to show the bar when the cursor is over a certain screen region (without using the keyboard), so I've made a basic python script that checks for that with the help of xdotool and I just need to send the command to actually show the bar.&lt;/p&gt;
+
+&lt;p&gt;I've tried using &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg "bar mode dock"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it didn't work because both bars were shown / hidden.&lt;/p&gt;
+
+&lt;p&gt;So my question basically is, how can I send a message to i3 so only one of the two bars is shown?&lt;/p&gt;
+
+&lt;p&gt;Thank you!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6209/show-or-hide-i3bar-on-a-specific-output/?answer=6339#post-id-6339</link><description> You actually can do this. Each bar instance can have an id assigned (by default this is bar-0, bar-1, ...). So you can use ```i3 bar mode dock bar-0``` to change the mode of the first bar instance or ```i3 bar mode dock``` to change the mode of all bar instances. The same works for all other bar commands. If you want you can also set the id of the yourself:
+```
+bar {
+    id 1
+    ...
+}
+```</description><pubDate>Thu, 23 Jul 2015 09:27:24 +0000</pubDate><guid>https://faq.i3wm.org/question/6209/show-or-hide-i3bar-on-a-specific-output/?answer=6339#post-id-6339</guid></item><item><title>Comment by setzer22 for &lt;p&gt;You actually can do this. Each bar instance can have an id assigned (by default this is bar-0, bar-1, ...). So you can use &lt;code&gt;i3 bar mode dock bar-0&lt;/code&gt; to change the mode of the first bar instance or &lt;code&gt;i3 bar mode dock&lt;/code&gt; to change the mode of all bar instances. The same works for all other bar commands. If you want you can also set the id of the yourself:
+&lt;code&gt;
+bar {
+    id 1
+    ...
+}
+&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6209/show-or-hide-i3bar-on-a-specific-output/?comment=6534#comment-6534</link><description>Thank you very much, I had already gotten this to work with another command that only worked in my case and forgot to post it but yours seems to be the right way. I had already tried the id approach, but it seems i3-msg wasn't able to work with that kind of commands.</description><pubDate>Sun, 30 Aug 2015 13:56:02 +0000</pubDate><guid>https://faq.i3wm.org/question/6209/show-or-hide-i3bar-on-a-specific-output/?comment=6534#comment-6534</guid></item></channel></rss>

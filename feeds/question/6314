@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6314/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 19 Jul 2015 16:18:54 +0000</lastBuildDate><item><title>Floating emacs frames aren't centered</title><link>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/</link><description>i3 centers new floating windows by default. Except for Emacs frames. Those are stuck to the top left. I've triple checked the emacs docs and my dotemacs, and as far as I can tell, this should not be happening.
+
+To be more specific, the `default-frame-alist` variable contains default parameters for new frames. It does not contain the keys `top` or `left` in my config. According to the emacs docs, this should cause the window manager to do whatever it does by default.
+
+To test this yourself, put this in your `.i3/config`:
+
+    for_window [class="^Emacs$" instance="^floating$"] floating enable
+
+And try:
+    
+    emacs --geometry 50x50+200+200 --name floating
+
+Or maybe:
+
+    emacs --daemon
+    emacsclient -c -F '((name . "floating") (width . 50) (height . 50))' some.file
+
+Edit: Here's a log file of me reproducing the observed behaviour. It's probably much longer than necessary, but a search for "personal-org" will get you to where the interesting bits happen.
+
+http://logs.i3wm.org/logs/5742636757417984.bz2</description><pubDate>Fri, 17 Jul 2015 15:12:36 +0000</pubDate><guid>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/</guid></item><item><title>Comment by mkaito for &lt;p&gt;i3 centers new floating windows by default. Except for Emacs frames. Those are stuck to the top left. I've triple checked the emacs docs and my dotemacs, and as far as I can tell, this should not be happening.&lt;/p&gt;
+
+&lt;p&gt;To be more specific, the &lt;code&gt;default-frame-alist&lt;/code&gt; variable contains default parameters for new frames. It does not contain the keys &lt;code&gt;top&lt;/code&gt; or &lt;code&gt;left&lt;/code&gt; in my config. According to the emacs docs, this should cause the window manager to do whatever it does by default.&lt;/p&gt;
+
+&lt;p&gt;To test this yourself, put this in your &lt;code&gt;.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Emacs$" instance="^floating$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --geometry 50x50+200+200 --name floating
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or maybe:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --daemon
+emacsclient -c -F '((name . "floating") (width . 50) (height . 50))' some.file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit: Here's a log file of me reproducing the observed behaviour. It's probably much longer than necessary, but a search for "personal-org" will get you to where the interesting bits happen.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://logs.i3wm.org/logs/5742636757417984.bz2"&gt;http://logs.i3wm.org/logs/57426367574...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6324#comment-6324</link><description>I tried `position move center` before posting here. It doesn't work. I'll see to posting on github.</description><pubDate>Sun, 19 Jul 2015 16:18:54 +0000</pubDate><guid>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6324#comment-6324</guid></item><item><title>Comment by Airblader for &lt;p&gt;i3 centers new floating windows by default. Except for Emacs frames. Those are stuck to the top left. I've triple checked the emacs docs and my dotemacs, and as far as I can tell, this should not be happening.&lt;/p&gt;
+
+&lt;p&gt;To be more specific, the &lt;code&gt;default-frame-alist&lt;/code&gt; variable contains default parameters for new frames. It does not contain the keys &lt;code&gt;top&lt;/code&gt; or &lt;code&gt;left&lt;/code&gt; in my config. According to the emacs docs, this should cause the window manager to do whatever it does by default.&lt;/p&gt;
+
+&lt;p&gt;To test this yourself, put this in your &lt;code&gt;.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Emacs$" instance="^floating$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --geometry 50x50+200+200 --name floating
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or maybe:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --daemon
+emacsclient -c -F '((name . "floating") (width . 50) (height . 50))' some.file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit: Here's a log file of me reproducing the observed behaviour. It's probably much longer than necessary, but a search for "personal-org" will get you to where the interesting bits happen.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://logs.i3wm.org/logs/5742636757417984.bz2"&gt;http://logs.i3wm.org/logs/57426367574...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6323#comment-6323</link><description>I suggest you file a bug on Github so that more people might look at it. If all you want is a quick fix for this, simply execute "position move center" after floating the window.</description><pubDate>Sun, 19 Jul 2015 09:19:30 +0000</pubDate><guid>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6323#comment-6323</guid></item><item><title>Comment by mkaito for &lt;p&gt;i3 centers new floating windows by default. Except for Emacs frames. Those are stuck to the top left. I've triple checked the emacs docs and my dotemacs, and as far as I can tell, this should not be happening.&lt;/p&gt;
+
+&lt;p&gt;To be more specific, the &lt;code&gt;default-frame-alist&lt;/code&gt; variable contains default parameters for new frames. It does not contain the keys &lt;code&gt;top&lt;/code&gt; or &lt;code&gt;left&lt;/code&gt; in my config. According to the emacs docs, this should cause the window manager to do whatever it does by default.&lt;/p&gt;
+
+&lt;p&gt;To test this yourself, put this in your &lt;code&gt;.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Emacs$" instance="^floating$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --geometry 50x50+200+200 --name floating
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or maybe:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --daemon
+emacsclient -c -F '((name . "floating") (width . 50) (height . 50))' some.file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit: Here's a log file of me reproducing the observed behaviour. It's probably much longer than necessary, but a search for "personal-org" will get you to where the interesting bits happen.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://logs.i3wm.org/logs/5742636757417984.bz2"&gt;http://logs.i3wm.org/logs/57426367574...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6322#comment-6322</link><description>That's the first time I've heard of such a thing. I'm not sure what to make of it. Is there anything special about this leader window that would prevent it from being handled adequately by i3?</description><pubDate>Sun, 19 Jul 2015 04:26:42 +0000</pubDate><guid>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6322#comment-6322</guid></item><item><title>Comment by Airblader for &lt;p&gt;i3 centers new floating windows by default. Except for Emacs frames. Those are stuck to the top left. I've triple checked the emacs docs and my dotemacs, and as far as I can tell, this should not be happening.&lt;/p&gt;
+
+&lt;p&gt;To be more specific, the &lt;code&gt;default-frame-alist&lt;/code&gt; variable contains default parameters for new frames. It does not contain the keys &lt;code&gt;top&lt;/code&gt; or &lt;code&gt;left&lt;/code&gt; in my config. According to the emacs docs, this should cause the window manager to do whatever it does by default.&lt;/p&gt;
+
+&lt;p&gt;To test this yourself, put this in your &lt;code&gt;.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Emacs$" instance="^floating$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --geometry 50x50+200+200 --name floating
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or maybe:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --daemon
+emacsclient -c -F '((name . "floating") (width . 50) (height . 50))' some.file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit: Here's a log file of me reproducing the observed behaviour. It's probably much longer than necessary, but a search for "personal-org" will get you to where the interesting bits happen.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://logs.i3wm.org/logs/5742636757417984.bz2"&gt;http://logs.i3wm.org/logs/57426367574...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6317#comment-6317</link><description>I don't have much time right now, but from what I can tell, emacs specifies a "leader" window for i3 and i3 centers the instance on top of that leader window. That may play a role here.</description><pubDate>Sat, 18 Jul 2015 06:21:48 +0000</pubDate><guid>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6317#comment-6317</guid></item><item><title>Comment by mkaito for &lt;p&gt;i3 centers new floating windows by default. Except for Emacs frames. Those are stuck to the top left. I've triple checked the emacs docs and my dotemacs, and as far as I can tell, this should not be happening.&lt;/p&gt;
+
+&lt;p&gt;To be more specific, the &lt;code&gt;default-frame-alist&lt;/code&gt; variable contains default parameters for new frames. It does not contain the keys &lt;code&gt;top&lt;/code&gt; or &lt;code&gt;left&lt;/code&gt; in my config. According to the emacs docs, this should cause the window manager to do whatever it does by default.&lt;/p&gt;
+
+&lt;p&gt;To test this yourself, put this in your &lt;code&gt;.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Emacs$" instance="^floating$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --geometry 50x50+200+200 --name floating
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or maybe:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --daemon
+emacsclient -c -F '((name . "floating") (width . 50) (height . 50))' some.file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit: Here's a log file of me reproducing the observed behaviour. It's probably much longer than necessary, but a search for "personal-org" will get you to where the interesting bits happen.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://logs.i3wm.org/logs/5742636757417984.bz2"&gt;http://logs.i3wm.org/logs/57426367574...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6316#comment-6316</link><description>Added a log file.</description><pubDate>Sat, 18 Jul 2015 03:09:03 +0000</pubDate><guid>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6316#comment-6316</guid></item><item><title>Comment by Airblader for &lt;p&gt;i3 centers new floating windows by default. Except for Emacs frames. Those are stuck to the top left. I've triple checked the emacs docs and my dotemacs, and as far as I can tell, this should not be happening.&lt;/p&gt;
+
+&lt;p&gt;To be more specific, the &lt;code&gt;default-frame-alist&lt;/code&gt; variable contains default parameters for new frames. It does not contain the keys &lt;code&gt;top&lt;/code&gt; or &lt;code&gt;left&lt;/code&gt; in my config. According to the emacs docs, this should cause the window manager to do whatever it does by default.&lt;/p&gt;
+
+&lt;p&gt;To test this yourself, put this in your &lt;code&gt;.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Emacs$" instance="^floating$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --geometry 50x50+200+200 --name floating
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or maybe:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;emacs --daemon
+emacsclient -c -F '((name . "floating") (width . 50) (height . 50))' some.file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit: Here's a log file of me reproducing the observed behaviour. It's probably much longer than necessary, but a search for "personal-org" will get you to where the interesting bits happen.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://logs.i3wm.org/logs/5742636757417984.bz2"&gt;http://logs.i3wm.org/logs/57426367574...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6315#comment-6315</link><description>It'd be better if you could provide a log file. Make sure to close all other apps and restart i3 before reproducing and taking the log file.</description><pubDate>Fri, 17 Jul 2015 15:41:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6314/floating-emacs-frames-arent-centered/?comment=6315#comment-6315</guid></item></channel></rss>

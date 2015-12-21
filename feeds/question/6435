@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6435/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 24 Sep 2015 18:02:09 +0000</lastBuildDate><item><title>How to match window without title</title><link>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/</link><description>I'm trying to work around missing window manager hints in Matlab windows using the `for_window` directive, but I'm running into some problems. Here is the xprop output for the "window" I'd like to be floating (this is actually a command-completion dialog):
+
+     WM_STATE(WM_STATE):
+    		window state: Normal
+    		icon window: 0x0
+    _NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 39845990
+    _NET_WM_USER_TIME(CARDINAL) = 644288
+    XdndAware(ATOM) = BITMAP
+    _MOTIF_DRAG_RECEIVER_INFO(_MOTIF_DRAG_RECEIVER_INFO) = 0x6c, 0x0, 0x5, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x10, 0x0, 0x0, 0x0
+    WM_CLIENT_LEADER(WINDOW): window id # 0x2600004
+    _NET_WM_PID(CARDINAL) = 3661
+    _NET_WM_WINDOW_TYPE(ATOM) = _KDE_NET_WM_WINDOW_TYPE_OVERRIDE, _NET_WM_WINDOW_TYPE_NORMAL
+    _MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x2, 0x1, 0x0, 0x0, 0x0
+    WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS, _NET_WM_PING, _NET_WM_SYNC_REQUEST
+    WM_NAME(STRING) = 
+    WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+    WM_CLASS(STRING) = "", ""
+    WM_HINTS(WM_HINTS):
+    		Client accepts input or input focus: True
+    		Initial state is Normal State.
+    		window id # of group leader: 0x2600004
+    WM_NORMAL_HINTS(WM_SIZE_HINTS):
+    		user specified location: 1203, 551
+    		program specified location: 1203, 551
+    		user specified size: 428 by 308
+    		program specified size: 428 by 308
+    		program specified minimum size: 428 by 0
+    		program specified maximum size: 428 by 16383
+    		window gravity: Static
+    WM_CLIENT_MACHINE(STRING) = "nelarikon"
+    WM_COMMAND(STRING) = {  }
+
+In other words, this window has neither class, nor instance, nor title. I thought this was going to be easy to match with:
+
+    for_window [class="^$" instance="^$" title="^$"] floating enable
+
+but it turns out this doesn't match. If I remove the `title` component, the window is matched (so I guess a window without title is different from a window with an empty title), but merely matching for empty class and instance also applies to a number of other windows (that I don't want to be floating).
+
+What is the best way to match this window?
+
+I've put the i3-dump-log output when the window appears on http://pastebin.com/CWxbnEns.</description><pubDate>Wed, 12 Aug 2015 16:59:03 +0000</pubDate><guid>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/</guid></item><item><title>Answer by Airblader for &lt;p&gt;I'm trying to work around missing window manager hints in Matlab windows using the &lt;code&gt;for_window&lt;/code&gt; directive, but I'm running into some problems. Here is the xprop output for the "window" I'd like to be floating (this is actually a command-completion dialog):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 39845990
+_NET_WM_USER_TIME(CARDINAL) = 644288
+XdndAware(ATOM) = BITMAP
+_MOTIF_DRAG_RECEIVER_INFO(_MOTIF_DRAG_RECEIVER_INFO) = 0x6c, 0x0, 0x5, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x10, 0x0, 0x0, 0x0
+WM_CLIENT_LEADER(WINDOW): window id # 0x2600004
+_NET_WM_PID(CARDINAL) = 3661
+_NET_WM_WINDOW_TYPE(ATOM) = _KDE_NET_WM_WINDOW_TYPE_OVERRIDE, _NET_WM_WINDOW_TYPE_NORMAL
+_MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x2, 0x1, 0x0, 0x0, 0x0
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS, _NET_WM_PING, _NET_WM_SYNC_REQUEST
+WM_NAME(STRING) = 
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLASS(STRING) = "", ""
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: True
+        Initial state is Normal State.
+        window id # of group leader: 0x2600004
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        user specified location: 1203, 551
+        program specified location: 1203, 551
+        user specified size: 428 by 308
+        program specified size: 428 by 308
+        program specified minimum size: 428 by 0
+        program specified maximum size: 428 by 16383
+        window gravity: Static
+WM_CLIENT_MACHINE(STRING) = "nelarikon"
+WM_COMMAND(STRING) = {  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In other words, this window has neither class, nor instance, nor title. I thought this was going to be easy to match with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^$" instance="^$" title="^$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but it turns out this doesn't match. If I remove the &lt;code&gt;title&lt;/code&gt; component, the window is matched (so I guess a window without title is different from a window with an empty title), but merely matching for empty class and instance also applies to a number of other windows (that I don't want to be floating).&lt;/p&gt;
+
+&lt;p&gt;What is the best way to match this window?&lt;/p&gt;
+
+&lt;p&gt;I've put the i3-dump-log output when the window appears on &lt;a href="http://pastebin.com/CWxbnEns"&gt;http://pastebin.com/CWxbnEns&lt;/a&gt;.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/?answer=6437#post-id-6437</link><description>Ultimately, there may not be an easy way to fix this. We are aware of this and a number of people have reported this in the case of Matlab already. 
+
+The only fix is Matlab not doing this trash. These properties are there for a reason and Matlab should give them reasonable values. 
+
+There is hopefully already a bug against Matlab given that many other people have reported this. I suggest finding and supporting it.  There isn't really anything we can do from the i3 side. </description><pubDate>Thu, 13 Aug 2015 01:18:45 +0000</pubDate><guid>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/?answer=6437#post-id-6437</guid></item><item><title>Comment by Airblader for &lt;p&gt;Ultimately, there may not be an easy way to fix this. We are aware of this and a number of people have reported this in the case of Matlab already. &lt;/p&gt;
+
+&lt;p&gt;The only fix is Matlab not doing this trash. These properties are there for a reason and Matlab should give them reasonable values. &lt;/p&gt;
+
+&lt;p&gt;There is hopefully already a bug against Matlab given that many other people have reported this. I suggest finding and supporting it.  There isn't really anything we can do from the i3 side. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/?comment=6678#comment-6678</link><description>That's cool. The link doesn't work for me, though?</description><pubDate>Thu, 24 Sep 2015 18:02:09 +0000</pubDate><guid>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/?comment=6678#comment-6678</guid></item><item><title>Comment by Nikolaus Rath for &lt;p&gt;Ultimately, there may not be an easy way to fix this. We are aware of this and a number of people have reported this in the case of Matlab already. &lt;/p&gt;
+
+&lt;p&gt;The only fix is Matlab not doing this trash. These properties are there for a reason and Matlab should give them reasonable values. &lt;/p&gt;
+
+&lt;p&gt;There is hopefully already a bug against Matlab given that many other people have reported this. I suggest finding and supporting it.  There isn't really anything we can do from the i3 side. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/?comment=6676#comment-6676</link><description>There is finally a public bug report about this. The description isn't really capturing the root of the problem, but Mathworks is aware that the described behavior is due to wrong window manager hints: https://www.mathworks.com/support/bugreports/1270423</description><pubDate>Thu, 24 Sep 2015 14:58:33 +0000</pubDate><guid>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/?comment=6676#comment-6676</guid></item><item><title>Comment by Airblader for &lt;p&gt;Ultimately, there may not be an easy way to fix this. We are aware of this and a number of people have reported this in the case of Matlab already. &lt;/p&gt;
+
+&lt;p&gt;The only fix is Matlab not doing this trash. These properties are there for a reason and Matlab should give them reasonable values. &lt;/p&gt;
+
+&lt;p&gt;There is hopefully already a bug against Matlab given that many other people have reported this. I suggest finding and supporting it.  There isn't really anything we can do from the i3 side. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/?comment=6449#comment-6449</link><description>Cool, thanks for the reference. It's a shame they want to keep this secret. It's a shame they keep any bug secret, really. Oracle's doing the same shit.</description><pubDate>Fri, 14 Aug 2015 18:45:28 +0000</pubDate><guid>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/?comment=6449#comment-6449</guid></item><item><title>Comment by Nikolaus Rath for &lt;p&gt;Ultimately, there may not be an easy way to fix this. We are aware of this and a number of people have reported this in the case of Matlab already. &lt;/p&gt;
+
+&lt;p&gt;The only fix is Matlab not doing this trash. These properties are there for a reason and Matlab should give them reasonable values. &lt;/p&gt;
+
+&lt;p&gt;There is hopefully already a bug against Matlab given that many other people have reported this. I suggest finding and supporting it.  There isn't really anything we can do from the i3 side. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/?comment=6448#comment-6448</link><description>Yes, I reported it a while ago. For some reason they are unwilling to add this to the public Matlab bug list. In case anyone else want to press this, the Matlab internal reference number for this issue is ` [ ref:_00Di0Ha1u._500i0P8AhA:ref ]`</description><pubDate>Fri, 14 Aug 2015 17:06:28 +0000</pubDate><guid>https://faq.i3wm.org/question/6435/how-to-match-window-without-title/?comment=6448#comment-6448</guid></item></channel></rss>

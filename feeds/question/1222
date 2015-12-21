@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1222/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 18 Feb 2013 00:10:21 +0000</lastBuildDate><item><title>focus cycle between specific windows</title><link>https://faq.i3wm.org/question/1222/focus-cycle-between-specific-windows/</link><description>User's guide has these lines as an example : 
+
+
+
+&gt; \# Get me to the next open VIM
+&gt; instance 
+&gt;
+&gt; bindsym $mod+a [class="urxvt"
+&gt; title="VIM"] focus
+
+In my case, this always takes me to the LAST vim instance rather than the NEXT vim instance. 
+
+I would like to cycle between vim instances using a keybinding, is it possible to implement this with only config (no scripting)? 
+
+</description><pubDate>Sun, 17 Feb 2013 23:49:39 +0000</pubDate><guid>https://faq.i3wm.org/question/1222/focus-cycle-between-specific-windows/</guid></item><item><title>Answer by Michael for &lt;p&gt;User's guide has these lines as an example : &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;# Get me to the next open VIM
+  instance &lt;/p&gt;
+  
+  &lt;p&gt;bindsym $mod+a [class="urxvt"
+  title="VIM"] focus&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In my case, this always takes me to the LAST vim instance rather than the NEXT vim instance. &lt;/p&gt;
+
+&lt;p&gt;I would like to cycle between vim instances using a keybinding, is it possible to implement this with only config (no scripting)? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1222/focus-cycle-between-specific-windows/?answer=1224#post-id-1224</link><description>No, cycling between windows is not possible without external scripting.
+
+There is a script which focuses the next chrome instance on a workspace (which I believe is better than the “focus” command, which will just match any window AFAIR):
+http://code.stapelberg.de/git/i3-egg/tree/examples/i3-next-chrome.scm
+
+Maybe that can serve as a starting point/inspiration.</description><pubDate>Mon, 18 Feb 2013 00:05:58 +0000</pubDate><guid>https://faq.i3wm.org/question/1222/focus-cycle-between-specific-windows/?answer=1224#post-id-1224</guid></item><item><title>Comment by muz for &lt;p&gt;No, cycling between windows is not possible without external scripting.&lt;/p&gt;
+
+&lt;p&gt;There is a script which focuses the next chrome instance on a workspace (which I believe is better than the “focus” command, which will just match any window AFAIR):
+&lt;a href="http://code.stapelberg.de/git/i3-egg/tree/examples/i3-next-chrome.scm"&gt;http://code.stapelberg.de/git/i3-egg/...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Maybe that can serve as a starting point/inspiration.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1222/focus-cycle-between-specific-windows/?comment=1226#comment-1226</link><description>Thank you for your response, your script i seems like a very good starting point indeed. Maybe somebody should edit the User's Guide to avoid misunderstandings, because it does sound like the cycling behavior is default.  </description><pubDate>Mon, 18 Feb 2013 00:10:21 +0000</pubDate><guid>https://faq.i3wm.org/question/1222/focus-cycle-between-specific-windows/?comment=1226#comment-1226</guid></item></channel></rss>

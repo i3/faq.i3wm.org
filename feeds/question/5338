@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5338/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 14 Jan 2015 16:44:06 +0000</lastBuildDate><item><title>i3 and GNOME3 intergration</title><link>https://faq.i3wm.org/question/5338/i3-and-gnome3-intergration/</link><description>Hi.
+
+I've searched google and asked on some irc channels, but so far I have not found any solution.
+
+I have Fedora 21 installed and on this machine I have 4 users, 3 of them want to use gnome-shell and I want to use i3. I have a habit not to log out, when someone else wants to use this computer. Instead in gnome I can just switch user and leave all my programs running while other do their stuff and when they are finished I can just type in my password and carry on.
+
+So. I would like to use i3 the same way, eg. leave all my programs running while other users do their computing, but how?
+
+    bindsym Control+Mod1+l exec gdmflexiserver
+
+I can execute gdmflexiserver. Then my session is locked (but I stay logged in) and gdm login is displayed. When now user x logs into his gnome session everything works as expected, but when he logs out, my i3 session and all my running programs are revealed without password. I don't like that.
+
+From google I found this dbus call:
+
+    dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
+
+but when I paste it into my terminal, nothing happens.
+
+When I add something like this to my i3 config:
+
+    bindsym Control+Mod1+l exec i3lock &amp;&amp; gdmflexiserver 
+
+then everything is good until another user logs out. Then i3lock expects my password. Instead of that I would like to see gdmflexiserver again eg. GDM login.
+
+I hope I expressed myself good enough :P
+And I know title sucks and this is not strictly i3 related, but I hope there are some users out there with same setup and know a solution :)
+
+EDIT:
+
+I'd rather not use gnome-screensaver or xscreensaver for screen locking, because:
+
+1. gnome-screensaver is deprecated. F21 has 3.6.1 version of it and I don't know how long this package remains in repos. Supposedly screen locking is intergrated into gnome-shell since version 3.0.
+
+2. xscreensaver breaks user experience? Meaning other users are greeted by xscreensaver which looks different. I don't want to scare them :)</description><pubDate>Wed, 14 Jan 2015 16:44:06 +0000</pubDate><guid>https://faq.i3wm.org/question/5338/i3-and-gnome3-intergration/</guid></item></channel></rss>

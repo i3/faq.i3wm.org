@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2559/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 22 Sep 2013 07:01:12 +0000</lastBuildDate><item><title>Can bindings have multiple keys?</title><link>https://faq.i3wm.org/question/2559/can-bindings-have-multiple-keys/</link><description>Is it possible to define multi-key bindings, a la screen's C-a &amp;lt;whatever&gt; or emacs C-x &amp;lt;whatever&gt;? The end result being that you type one key, release it, then type another, in order to execute an action.</description><pubDate>Sun, 22 Sep 2013 06:17:09 +0000</pubDate><guid>https://faq.i3wm.org/question/2559/can-bindings-have-multiple-keys/</guid></item><item><title>Answer by MeanEYE for &lt;p&gt;Is it possible to define multi-key bindings, a la screen's C-a &amp;lt;whatever&amp;gt; or emacs C-x &amp;lt;whatever&amp;gt;? The end result being that you type one key, release it, then type another, in order to execute an action.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2559/can-bindings-have-multiple-keys/?answer=2560#post-id-2560</link><description>You can define custom modes and handle key bindings that way.
+
+For example:
+
+    bind Ctrl+A mode "command"
+
+    mode "command" {
+        bindsym t exec xterm; mode "default"
+        bindsym Escape mode "default"
+    }
+
+When you press `Ctrl+A` i3-bar will show "commmand" and then you can just press only `t` and that will execute Xterm and exit `command` mode.</description><pubDate>Sun, 22 Sep 2013 06:59:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2559/can-bindings-have-multiple-keys/?answer=2560#post-id-2560</guid></item><item><title>Comment by alethiophile for &lt;p&gt;You can define custom modes and handle key bindings that way.&lt;/p&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bind Ctrl+A mode "command"
+
+mode "command" {
+    bindsym t exec xterm; mode "default"
+    bindsym Escape mode "default"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you press &lt;code&gt;Ctrl+A&lt;/code&gt; i3-bar will show "commmand" and then you can just press only &lt;code&gt;t&lt;/code&gt; and that will execute Xterm and exit &lt;code&gt;command&lt;/code&gt; mode.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2559/can-bindings-have-multiple-keys/?comment=2561#comment-2561</link><description>This looks like it does what I want. Thanks a lot.</description><pubDate>Sun, 22 Sep 2013 07:01:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2559/can-bindings-have-multiple-keys/?comment=2561#comment-2561</guid></item></channel></rss>

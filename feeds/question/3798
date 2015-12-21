@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3798/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 13 May 2014 10:30:44 +0000</lastBuildDate><item><title>Workspace 1 not getting name set in config at startup</title><link>https://faq.i3wm.org/question/3798/workspace-1-not-getting-name-set-in-config-at-startup/</link><description>I have set names for some workspaces (1-4) but at session startup I get the default workspace 1 (no name!). If I switch to it afterwards I get the correct name (1: some-Unicode-char).
+I tried to name all workspaces, using plain text for names instead of Unicode chars but result is always the same.
+Config parsing gives no errors and, anyway, workspace referencing works fine (I use "workspace number **x**")
+Is it actually meant to be this way or am I missing something?
+Edit: when I have only the first 4 workspaces named, first workspace created is number 5 (the first unnamed one).
+
+Here is part of my configuration:
+
+    bindsym $mod+1 workspace number 1: 
+    bindsym $mod+2 workspace number 2: 
+    bindsym $mod+3 workspace number 3: 
+    bindsym $mod+4 workspace number 4: 
+    bindsym $mod+5 workspace 5
+    [...]
+    bindsym $mod+0 workspace 10
+    bindsym $mod+Shift+1 move container to workspace number 1: 
+    [...]</description><pubDate>Mon, 12 May 2014 20:55:58 +0000</pubDate><guid>https://faq.i3wm.org/question/3798/workspace-1-not-getting-name-set-in-config-at-startup/</guid></item><item><title>Comment by Man from Mars for &lt;p&gt;I have set names for some workspaces (1-4) but at session startup I get the default workspace 1 (no name!). If I switch to it afterwards I get the correct name (1: some-Unicode-char).
+I tried to name all workspaces, using plain text for names instead of Unicode chars but result is always the same.
+Config parsing gives no errors and, anyway, workspace referencing works fine (I use "workspace number &lt;strong&gt;x&lt;/strong&gt;")
+Is it actually meant to be this way or am I missing something?
+Edit: when I have only the first 4 workspaces named, first workspace created is number 5 (the first unnamed one).&lt;/p&gt;
+
+&lt;p&gt;Here is part of my configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1 workspace number 1: 
+bindsym $mod+2 workspace number 2: 
+bindsym $mod+3 workspace number 3: 
+bindsym $mod+4 workspace number 4: 
+bindsym $mod+5 workspace 5
+[...]
+bindsym $mod+0 workspace 10
+bindsym $mod+Shift+1 move container to workspace number 1: 
+[...]
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3798/workspace-1-not-getting-name-set-in-config-at-startup/?comment=3806#comment-3806</link><description>```bindsym $mod+1 workspace number 1: 
+bindsym $mod+2 workspace number 2: 
+bindsym $mod+3 workspace number 3: 
+bindsym $mod+4 workspace number 4: 
+bindsym $mod+5 workspace 5```
+same for wksp 6-10 (unnamed) and for move bindings:
+```bindsym $mod+Shift+1 move container to workspace number 1: ```</description><pubDate>Tue, 13 May 2014 09:07:06 +0000</pubDate><guid>https://faq.i3wm.org/question/3798/workspace-1-not-getting-name-set-in-config-at-startup/?comment=3806#comment-3806</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I have set names for some workspaces (1-4) but at session startup I get the default workspace 1 (no name!). If I switch to it afterwards I get the correct name (1: some-Unicode-char).
+I tried to name all workspaces, using plain text for names instead of Unicode chars but result is always the same.
+Config parsing gives no errors and, anyway, workspace referencing works fine (I use "workspace number &lt;strong&gt;x&lt;/strong&gt;")
+Is it actually meant to be this way or am I missing something?
+Edit: when I have only the first 4 workspaces named, first workspace created is number 5 (the first unnamed one).&lt;/p&gt;
+
+&lt;p&gt;Here is part of my configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1 workspace number 1: 
+bindsym $mod+2 workspace number 2: 
+bindsym $mod+3 workspace number 3: 
+bindsym $mod+4 workspace number 4: 
+bindsym $mod+5 workspace 5
+[...]
+bindsym $mod+0 workspace 10
+bindsym $mod+Shift+1 move container to workspace number 1: 
+[...]
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3798/workspace-1-not-getting-name-set-in-config-at-startup/?comment=3804#comment-3804</link><description>Could you please add the relevant parts of your configuration?</description><pubDate>Tue, 13 May 2014 07:27:34 +0000</pubDate><guid>https://faq.i3wm.org/question/3798/workspace-1-not-getting-name-set-in-config-at-startup/?comment=3804#comment-3804</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I have set names for some workspaces (1-4) but at session startup I get the default workspace 1 (no name!). If I switch to it afterwards I get the correct name (1: some-Unicode-char).
+I tried to name all workspaces, using plain text for names instead of Unicode chars but result is always the same.
+Config parsing gives no errors and, anyway, workspace referencing works fine (I use "workspace number &lt;strong&gt;x&lt;/strong&gt;")
+Is it actually meant to be this way or am I missing something?
+Edit: when I have only the first 4 workspaces named, first workspace created is number 5 (the first unnamed one).&lt;/p&gt;
+
+&lt;p&gt;Here is part of my configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1 workspace number 1: 
+bindsym $mod+2 workspace number 2: 
+bindsym $mod+3 workspace number 3: 
+bindsym $mod+4 workspace number 4: 
+bindsym $mod+5 workspace 5
+[...]
+bindsym $mod+0 workspace 10
+bindsym $mod+Shift+1 move container to workspace number 1: 
+[...]
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/3798/workspace-1-not-getting-name-set-in-config-at-startup/?answer=3807#post-id-3807</link><description>You should use `workspace number` in conjunction only with the number, not the whole name. When using the name use just `workspace`.
+
+The (initial) names are defined by the bindings for `workspace`, you should not use `workspace number` there:
+
+    bindsym $mod+1 workspace 1: 
+    bindsym $mod+2 workspace 2: 
+    bindsym $mod+3 workspace 3: 
+    bindsym $mod+4 workspace 4: 
+    bindsym $mod+5 workspace 5
+    [...]
+    bindsym $mod+0 workspace 10
+
+You could use `workspace number` for the move commands:
+
+    bindsym $mod+Shift+1 move container to workspace number 1
+</description><pubDate>Tue, 13 May 2014 09:44:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3798/workspace-1-not-getting-name-set-in-config-at-startup/?answer=3807#post-id-3807</guid></item><item><title>Comment by Man from Mars for &lt;p&gt;You should use &lt;code&gt;workspace number&lt;/code&gt; in conjunction only with the number, not the whole name. When using the name use just &lt;code&gt;workspace&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The (initial) names are defined by the bindings for &lt;code&gt;workspace&lt;/code&gt;, you should not use &lt;code&gt;workspace number&lt;/code&gt; there:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1 workspace 1: 
+bindsym $mod+2 workspace 2: 
+bindsym $mod+3 workspace 3: 
+bindsym $mod+4 workspace 4: 
+bindsym $mod+5 workspace 5
+[...]
+bindsym $mod+0 workspace 10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could use &lt;code&gt;workspace number&lt;/code&gt; for the move commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+1 move container to workspace number 1
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3798/workspace-1-not-getting-name-set-in-config-at-startup/?comment=3808#comment-3808</link><description>Thanks! It worked like a charm! :-)</description><pubDate>Tue, 13 May 2014 10:30:44 +0000</pubDate><guid>https://faq.i3wm.org/question/3798/workspace-1-not-getting-name-set-in-config-at-startup/?comment=3808#comment-3808</guid></item></channel></rss>

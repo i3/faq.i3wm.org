@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/952/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 02 Jan 2013 19:04:51 +0000</lastBuildDate><item><title>How to align conky panel to bottom of screen instead of top?</title><link>https://faq.i3wm.org/question/952/how-to-align-conky-panel-to-bottom-of-screen-instead-of-top/</link><description>I just started using [conky](http://conky.sourceforge.net/) (with its own window so I can display graphs), and I want it to dock at the bottom of the screen instead of the top.
+
+In my conky config, I set:
+
+    alignment bottom_middle
+    own_window yes
+    own_window_class Conky
+    own_window_type panel
+    out_to_console no
+    out_to_stderr no
+
+Conky's man page says:
+
+&gt; Panel windows reserve space along a desktop edge, just like panels and taskbars, preventing maximized windows from overlapping them. The edge is chosen based on the alignment option.
+
+The [i3 User's Guide](http://i3wm.org/docs/userguide.html) says:
+
+&gt; Regardless of which application you use to display the status line, you want to make sure that it registers as a dock window using EWMH hints. i3 will position the window either at the top or at the bottom of the screen, depending on which hint the application sets. With i3bar, you can configure its position, see [i3bar_position].
+
+No matter what alignment I use, it sticks to the top of the screen. I would like to have conky at the bottom of my screen (which worked fine with gnome-panel).
+
+Here is the output of xprop for conky:
+
+    _NET_WM_STRUT_PARTIAL(CARDINAL) = 0, 0, 0, 84, 0, 0, 0, 0, 0, 0, 1920, 3840
+    _NET_WM_STRUT(CARDINAL) = 0, 0, 0, 84
+    XKLAVIER_STATE(INTEGER) = 0, 0
+    WM_STATE(WM_STATE):
+    		window state: Normal
+    		icon window: 0x0
+    _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_DOCK
+    WM_PROTOCOLS(ATOM): protocols  
+    WM_NAME(STRING) = "Conky (ecliptic)"
+    WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+    WM_CLASS(STRING) = "Conky", "Conky"
+    WM_HINTS(WM_HINTS):
+    		Client accepts input or input focus: True
+    		Initial state is Don't Care State.
+    WM_CLIENT_MACHINE(STRING) = "ecliptic"
+    WM_COMMAND(STRING) = { "conky", "-c", "/home/mike/.i3/conky1", "-a", "bottom_right" }
+
+And here's the xprop output for the i3bar (correctly at the bottom of the screen):
+
+    XKLAVIER_STATE(INTEGER) = 0, 0
+    WM_STATE(WM_STATE):
+    		window state: Normal
+    		icon window: 0x0
+    _NET_WM_STRUT_PARTIAL(CARDINAL) = 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 1920
+    _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_DOCK
+    WM_NAME(STRING) = "i3bar for output DP-2"
+    WM_CLASS(STRING) = "i3bar", "i3bar"
+
+Am I doing something wrong, is it a bug in conky, is it a bug in i3, or something else?
+
+Is there a way I can force conky to dock to the bottom of the screen?</description><pubDate>Sun, 30 Dec 2012 03:24:50 +0000</pubDate><guid>https://faq.i3wm.org/question/952/how-to-align-conky-panel-to-bottom-of-screen-instead-of-top/</guid></item><item><title>Answer by Michael for &lt;p&gt;I just started using &lt;a href="http://conky.sourceforge.net/"&gt;conky&lt;/a&gt; (with its own window so I can display graphs), and I want it to dock at the bottom of the screen instead of the top.&lt;/p&gt;
+
+&lt;p&gt;In my conky config, I set:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alignment bottom_middle
+own_window yes
+own_window_class Conky
+own_window_type panel
+out_to_console no
+out_to_stderr no
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Conky's man page says:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Panel windows reserve space along a desktop edge, just like panels and taskbars, preventing maximized windows from overlapping them. The edge is chosen based on the alignment option.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The &lt;a href="http://i3wm.org/docs/userguide.html"&gt;i3 User's Guide&lt;/a&gt; says:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Regardless of which application you use to display the status line, you want to make sure that it registers as a dock window using EWMH hints. i3 will position the window either at the top or at the bottom of the screen, depending on which hint the application sets. With i3bar, you can configure its position, see [i3bar_position].&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;No matter what alignment I use, it sticks to the top of the screen. I would like to have conky at the bottom of my screen (which worked fine with gnome-panel).&lt;/p&gt;
+
+&lt;p&gt;Here is the output of xprop for conky:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_STRUT_PARTIAL(CARDINAL) = 0, 0, 0, 84, 0, 0, 0, 0, 0, 0, 1920, 3840
+_NET_WM_STRUT(CARDINAL) = 0, 0, 0, 84
+XKLAVIER_STATE(INTEGER) = 0, 0
+WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_DOCK
+WM_PROTOCOLS(ATOM): protocols  
+WM_NAME(STRING) = "Conky (ecliptic)"
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLASS(STRING) = "Conky", "Conky"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: True
+        Initial state is Don't Care State.
+WM_CLIENT_MACHINE(STRING) = "ecliptic"
+WM_COMMAND(STRING) = { "conky", "-c", "/home/mike/.i3/conky1", "-a", "bottom_right" }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And here's the xprop output for the i3bar (correctly at the bottom of the screen):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;XKLAVIER_STATE(INTEGER) = 0, 0
+WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_WM_STRUT_PARTIAL(CARDINAL) = 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 1920
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_DOCK
+WM_NAME(STRING) = "i3bar for output DP-2"
+WM_CLASS(STRING) = "i3bar", "i3bar"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Am I doing something wrong, is it a bug in conky, is it a bug in i3, or something else?&lt;/p&gt;
+
+&lt;p&gt;Is there a way I can force conky to dock to the bottom of the screen?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/952/how-to-align-conky-panel-to-bottom-of-screen-instead-of-top/?answer=964#post-id-964</link><description>IMO, this is a bug in conky. It sets its `_NET_WM_WINDOW_TYPE` to `_NET_WM_WINDOW_TYPE_DOCK`, but only after actually mapping the window (= making it visual) it adds the `_NET_WM_STRUT_PARTIAL` property.
+
+Fixing this in conky is probably straight-forward and lots of people will be thankful, so please go ahead ;-).</description><pubDate>Wed, 02 Jan 2013 19:04:51 +0000</pubDate><guid>https://faq.i3wm.org/question/952/how-to-align-conky-panel-to-bottom-of-screen-instead-of-top/?answer=964#post-id-964</guid></item></channel></rss>

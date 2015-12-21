@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7694/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 17 Dec 2015 13:04:30 +0000</lastBuildDate><item><title>auto-starting apps on specific outputs in multi-monitor environment</title><link>https://faq.i3wm.org/question/7694/auto-starting-apps-on-specific-outputs-in-multi-monitor-environment/</link><description>Hallo,
+I'm working with a multi-headed environment (four outputs) and successfully configured my primary head for workspaces 1-4, each other head for two workspaces via the i3 config file (workspace &lt;x&gt; output &lt;y&gt;).
+As soon as I try to auto-start an application via exec (e.g., firefox or thunderbird) and try to move it to another than the primary output, the respective workspace will end up on the primary output instead of the output configured for this workspace in i3 config.
+To further illustrate my problem, I will give you a short example. DFP1 is the primary device, DFP5, 9 and 10 are secondary heads.
+Example:
+workspace 1 output DFP1
+.
+.
+.
+workspace 7 output DFP9
+
+assign [class="(?i)thunderbird"] 7
+exec thunderbird
+
+Expected behaviour would be, that thunderbird appears on workspace 7, which is placed on output DFP9. Actual behaviour is, that thunderbird appears on workspace 7, which is now placed on output DFP1. Without the exec-statement, workspace 7 is placed on output DFP9 as configured. Same goes for the iceweasel-example from the user guide:
+exec --no-startup-id i3-msg "workspace 7; exec thunderbird; workspace 1"
+yields the same results as the abovementioned configuration - workspace 7 is placed on output DFP1 instead of DFP9.
+
+Am I just misconfiguring something here or is it a bug I'm expecting?
+
+Thanks for your help!
+Julian</description><pubDate>Tue, 15 Dec 2015 17:49:56 +0000</pubDate><guid>https://faq.i3wm.org/question/7694/auto-starting-apps-on-specific-outputs-in-multi-monitor-environment/</guid></item><item><title>Answer by basletic for &lt;p&gt;Hallo,
+I'm working with a multi-headed environment (four outputs) and successfully configured my primary head for workspaces 1-4, each other head for two workspaces via the i3 config file (workspace &amp;lt;x&amp;gt; output &amp;lt;y&amp;gt;).
+As soon as I try to auto-start an application via exec (e.g., firefox or thunderbird) and try to move it to another than the primary output, the respective workspace will end up on the primary output instead of the output configured for this workspace in i3 config.
+To further illustrate my problem, I will give you a short example. DFP1 is the primary device, DFP5, 9 and 10 are secondary heads.
+Example:
+workspace 1 output DFP1
+.
+.
+.
+workspace 7 output DFP9&lt;/p&gt;
+
+&lt;p&gt;assign [class="(?i)thunderbird"] 7
+exec thunderbird&lt;/p&gt;
+
+&lt;p&gt;Expected behaviour would be, that thunderbird appears on workspace 7, which is placed on output DFP9. Actual behaviour is, that thunderbird appears on workspace 7, which is now placed on output DFP1. Without the exec-statement, workspace 7 is placed on output DFP9 as configured. Same goes for the iceweasel-example from the user guide:
+exec --no-startup-id i3-msg "workspace 7; exec thunderbird; workspace 1"
+yields the same results as the abovementioned configuration - workspace 7 is placed on output DFP1 instead of DFP9.&lt;/p&gt;
+
+&lt;p&gt;Am I just misconfiguring something here or is it a bug I'm expecting?&lt;/p&gt;
+
+&lt;p&gt;Thanks for your help!
+Julian&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7694/auto-starting-apps-on-specific-outputs-in-multi-monitor-environment/?answer=7738#post-id-7738</link><description>Could you please post output of:
+
+`$ xrandr -q | grep ^[[:alnum:]]`
+
+(I'm very surprised you have heads called DFP1, DFP5, DFP9 nad DFP10.)
+
+Also, you could first try your setup with two heads, and see if it works.
+Furthermore, you can create minimal non-working i3 configuration, and post the config it here. Perhaps you are doing something silly. It happened to me numerous times :)
+
+For example, `assign [class="(?i)thunderbird"] 7 exec thunderbird` does seem odd a bit ... I would expect it to be `assign [class="(?i)thunderbird"] 7` only.</description><pubDate>Thu, 17 Dec 2015 12:53:20 +0000</pubDate><guid>https://faq.i3wm.org/question/7694/auto-starting-apps-on-specific-outputs-in-multi-monitor-environment/?answer=7738#post-id-7738</guid></item><item><title>Comment by Airblader for &lt;p&gt;Could you please post output of:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ xrandr -q | grep ^[[:alnum:]]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;(I'm very surprised you have heads called DFP1, DFP5, DFP9 nad DFP10.)&lt;/p&gt;
+
+&lt;p&gt;Also, you could first try your setup with two heads, and see if it works.
+Furthermore, you can create minimal non-working i3 configuration, and post the config it here. Perhaps you are doing something silly. It happened to me numerous times :)&lt;/p&gt;
+
+&lt;p&gt;For example, &lt;code&gt;assign [class="(?i)thunderbird"] 7 exec thunderbird&lt;/code&gt; does seem odd a bit ... I would expect it to be &lt;code&gt;assign [class="(?i)thunderbird"] 7&lt;/code&gt; only.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7694/auto-starting-apps-on-specific-outputs-in-multi-monitor-environment/?comment=7739#comment-7739</link><description>I think the inline exec works due to the way this is implemented, but you are right that it's not how it's supposed to look. :)</description><pubDate>Thu, 17 Dec 2015 13:04:30 +0000</pubDate><guid>https://faq.i3wm.org/question/7694/auto-starting-apps-on-specific-outputs-in-multi-monitor-environment/?comment=7739#comment-7739</guid></item></channel></rss>

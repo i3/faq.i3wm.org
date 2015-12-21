@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3105/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 15 Jan 2014 16:58:14 +0000</lastBuildDate><item><title>Fortune output in i3status</title><link>https://faq.i3wm.org/question/3105/fortune-output-in-i3status/</link><description>I know it's stupid, but just to have fun... it is possible to display fortune outputs on my i3bar? :-) Inspired by man i3status i tried with this
+
+status_command i3status --config .i3/i3_barbottom | while :; do read line; fortune &amp;&amp; echo " | $line" &amp;&amp; sleep 5 || exit 1; done
+
+in the bar block of my config file, but anything except my usual i3status has been displayed...</description><pubDate>Thu, 26 Dec 2013 21:07:16 +0000</pubDate><guid>https://faq.i3wm.org/question/3105/fortune-output-in-i3status/</guid></item><item><title>Answer by Ultrabug for &lt;p&gt;I know it's stupid, but just to have fun... it is possible to display fortune outputs on my i3bar? :-) Inspired by man i3status i tried with this&lt;/p&gt;
+
+&lt;p&gt;status&lt;em&gt;command i3status --config .i3/i3&lt;/em&gt;barbottom | while :; do read line; fortune &amp;amp;&amp;amp; echo " | $line" &amp;amp;&amp;amp; sleep 5 || exit 1; done&lt;/p&gt;
+
+&lt;p&gt;in the bar block of my config file, but anything except my usual i3status has been displayed...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3105/fortune-output-in-i3status/?answer=3241#post-id-3241</link><description>Disclaimer : I'm the dev of py3stauts, my view is biased
+
+You could do this easily using py3status if you can get over writing a few lines of python ;) More info on the github.com/ultrabug/py3status wiki</description><pubDate>Wed, 15 Jan 2014 16:58:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3105/fortune-output-in-i3status/?answer=3241#post-id-3241</guid></item><item><title>Answer by joepd for &lt;p&gt;I know it's stupid, but just to have fun... it is possible to display fortune outputs on my i3bar? :-) Inspired by man i3status i tried with this&lt;/p&gt;
+
+&lt;p&gt;status&lt;em&gt;command i3status --config .i3/i3&lt;/em&gt;barbottom | while :; do read line; fortune &amp;amp;&amp;amp; echo " | $line" &amp;amp;&amp;amp; sleep 5 || exit 1; done&lt;/p&gt;
+
+&lt;p&gt;in the bar block of my config file, but anything except my usual i3status has been displayed...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3105/fortune-output-in-i3status/?answer=3120#post-id-3120</link><description>I am guessing here, but fortune terminates its string with a newline. Getting rid of that one somehow will fix this error. </description><pubDate>Fri, 27 Dec 2013 23:51:36 +0000</pubDate><guid>https://faq.i3wm.org/question/3105/fortune-output-in-i3status/?answer=3120#post-id-3120</guid></item><item><title>Comment by fabio for &lt;p&gt;I am guessing here, but fortune terminates its string with a newline. Getting rid of that one somehow will fix this error. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3105/fortune-output-in-i3status/?comment=3121#comment-3121</link><description>Thanks for the reply! I tried substituting any newline with a space through tr
+
+status_command i3status --config ~/.i3/i3_barbottom | while :; do read line; fort    une | tr '\n' ' ' &amp;&amp; echo " | $line" &amp;&amp; sleep 5 || exit 1; done
+
+but anything changed...</description><pubDate>Sat, 28 Dec 2013 01:02:28 +0000</pubDate><guid>https://faq.i3wm.org/question/3105/fortune-output-in-i3status/?comment=3121#comment-3121</guid></item></channel></rss>

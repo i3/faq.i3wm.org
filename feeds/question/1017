@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1017/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 09 Sep 2014 08:51:44 +0000</lastBuildDate><item><title>Is there a way to define Emacs-style key binding?</title><link>https://faq.i3wm.org/question/1017/is-there-a-way-to-define-emacs-style-key-binding/</link><description>Hi all,
+
+I am an Emacs user, and I prefer to key binding like `C-t C-f` rather than `Ctrl + Alt + f`, I read the doc of I3, but seems there is no sections described this kind of key bindings, so, is there a way to do this, or is some hacking needed to implement this?
+
+Thanks.</description><pubDate>Fri, 11 Jan 2013 11:57:38 +0000</pubDate><guid>https://faq.i3wm.org/question/1017/is-there-a-way-to-define-emacs-style-key-binding/</guid></item><item><title>Answer by joel for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I am an Emacs user, and I prefer to key binding like &lt;code&gt;C-t C-f&lt;/code&gt; rather than &lt;code&gt;Ctrl + Alt + f&lt;/code&gt;, I read the doc of I3, but seems there is no sections described this kind of key bindings, so, is there a way to do this, or is some hacking needed to implement this?&lt;/p&gt;
+
+&lt;p&gt;Thanks.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1017/is-there-a-way-to-define-emacs-style-key-binding/?answer=1019#post-id-1019</link><description>Not sure if this is exactly what you're looking for, but you can try something like the following.  It mimics the resize mode.  I found this tip on the arch forums thread about i3.
+
+# resize {
+    # resize window (you can also use the mouse for that)
+    mode "resize" {
+            # These bindings trigger as soon as you enter the resize mode
+
+            # Pressing left will shrink the window’s width.
+            # Pressing right will grow the window’s width.
+            # Pressing up will shrink the window’s height.
+            # Pressing down will grow the window’s height.
+            bindsym h resize shrink width 10 px or 10 ppt
+            bindsym j resize grow height 10 px or 10 ppt
+            bindsym k resize shrink height 10 px or 10 ppt
+            bindsym l resize grow width 10 px or 10 ppt
+
+            # back to normal: Enher or Escape
+            bindsym Return mode "default"
+            bindsym Escape mode "default"
+    }
+    bindsym $mod+r mode "resize"
+# }
+
+# launch mode {
+    mode "launch" {
+            # c, chrome
+            bindsym c exec chromium-browser, mode "default"
+            # d, dock
+            bindsym d exec dock, mode "default"
+            # u, undock
+            bindsym u exec undock, mode "default"
+
+
+            # go back to normal (if we don't launch something)
+            bindsym Return mode "default"
+            bindsym Escape mode "default"
+    }
+    bindsym $mod+semicolon mode "launch"
+# }
+
+so to launch chrome, i can do alt-; c
+the others (dock &amp; undock) I use when docking my laptop at work (it runs disper to adjust what displays are used)
+
+Edit: here is the aforementioned thread https://bbs.archlinux.org/viewtopic.php?id=99064&amp;p=33
+
+Also: can you nest modes? That could be useful!</description><pubDate>Fri, 11 Jan 2013 18:04:37 +0000</pubDate><guid>https://faq.i3wm.org/question/1017/is-there-a-way-to-define-emacs-style-key-binding/?answer=1019#post-id-1019</guid></item><item><title>Comment by marcos for &lt;p&gt;Not sure if this is exactly what you're looking for, but you can try something like the following.  It mimics the resize mode.  I found this tip on the arch forums thread about i3.&lt;/p&gt;
+
+&lt;h1&gt;resize {&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enher or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;}&lt;/h1&gt;
+
+&lt;h1&gt;launch mode {&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "launch" {
+        # c, chrome
+        bindsym c exec chromium-browser, mode "default"
+        # d, dock
+        bindsym d exec dock, mode "default"
+        # u, undock
+        bindsym u exec undock, mode "default"
+
+
+        # go back to normal (if we don't launch something)
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+semicolon mode "launch"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;}&lt;/h1&gt;
+
+&lt;p&gt;so to launch chrome, i can do alt-; c
+the others (dock &amp;amp; undock) I use when docking my laptop at work (it runs disper to adjust what displays are used)&lt;/p&gt;
+
+&lt;p&gt;Edit: here is the aforementioned thread &lt;a href="https://bbs.archlinux.org/viewtopic.php?id=99064&amp;amp;p=33"&gt;https://bbs.archlinux.org/viewtopic.p...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Also: can you nest modes? That could be useful!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1017/is-there-a-way-to-define-emacs-style-key-binding/?comment=4614#comment-4614</link><description>Thank you very much for explaining "modes"! I am also an Emacs user, and prefer to use CTRL as $mod. Now I have a mode "i3" bound to "CTRL+i", and I moved all typical i3 commands inside my i3 mode (except resizing, which would require nested modes). Everything works just fine! Thanks!</description><pubDate>Tue, 09 Sep 2014 08:51:44 +0000</pubDate><guid>https://faq.i3wm.org/question/1017/is-there-a-way-to-define-emacs-style-key-binding/?comment=4614#comment-4614</guid></item><item><title>Comment by Kelvin Hu for &lt;p&gt;Not sure if this is exactly what you're looking for, but you can try something like the following.  It mimics the resize mode.  I found this tip on the arch forums thread about i3.&lt;/p&gt;
+
+&lt;h1&gt;resize {&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enher or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;}&lt;/h1&gt;
+
+&lt;h1&gt;launch mode {&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "launch" {
+        # c, chrome
+        bindsym c exec chromium-browser, mode "default"
+        # d, dock
+        bindsym d exec dock, mode "default"
+        # u, undock
+        bindsym u exec undock, mode "default"
+
+
+        # go back to normal (if we don't launch something)
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+semicolon mode "launch"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;}&lt;/h1&gt;
+
+&lt;p&gt;so to launch chrome, i can do alt-; c
+the others (dock &amp;amp; undock) I use when docking my laptop at work (it runs disper to adjust what displays are used)&lt;/p&gt;
+
+&lt;p&gt;Edit: here is the aforementioned thread &lt;a href="https://bbs.archlinux.org/viewtopic.php?id=99064&amp;amp;p=33"&gt;https://bbs.archlinux.org/viewtopic.p...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Also: can you nest modes? That could be useful!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1017/is-there-a-way-to-define-emacs-style-key-binding/?comment=1026#comment-1026</link><description>Sorry, I am new to I3, so I did not notice the "mode" notion of it. I tried some code as you pasted, and it does work well. I also tried nested modes, but I3 would report en error while reloading the config file, so seems I3 does not support nested modes. And thanks for your answer.</description><pubDate>Sat, 12 Jan 2013 08:18:11 +0000</pubDate><guid>https://faq.i3wm.org/question/1017/is-there-a-way-to-define-emacs-style-key-binding/?comment=1026#comment-1026</guid></item></channel></rss>

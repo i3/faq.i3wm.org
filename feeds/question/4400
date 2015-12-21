@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4400/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 06 Aug 2014 20:37:14 +0000</lastBuildDate><item><title>i3-msg set workspace on specific output</title><link>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/</link><description>So I am trying to dynamically set my workspaces to output on specific displays. The problem is i3-msg doesn't seem to want to accept `i3-msg workspace 1 output $PRIMARY`. It works perfectly fine in my ~/.i3/config but when I run it in i3-msg it creates a brand new workspace with the name "1 output HDMI-0" instead of forcing workspace 1 to output HDMI-0. I've also tried putting quotes around the workspace name to no avail `i3-msg workspace "1" output $PRIMARY`. I would really appreciate it if someone could point me in the right direction, thanks!</description><pubDate>Wed, 06 Aug 2014 05:31:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;So I am trying to dynamically set my workspaces to output on specific displays. The problem is i3-msg doesn't seem to want to accept &lt;code&gt;i3-msg workspace 1 output $PRIMARY&lt;/code&gt;. It works perfectly fine in my ~/.i3/config but when I run it in i3-msg it creates a brand new workspace with the name "1 output HDMI-0" instead of forcing workspace 1 to output HDMI-0. I've also tried putting quotes around the workspace name to no avail &lt;code&gt;i3-msg workspace "1" output $PRIMARY&lt;/code&gt;. I would really appreciate it if someone could point me in the right direction, thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/?answer=4403#post-id-4403</link><description>There is a difference between the `workspace` *command* and the `workspace` *setting*. They have the same name but do different things:
+
+- The `workspace` *setting* (`workspace &lt;workspace&gt; output &lt;output&gt;`) in the configuration file sets specific outputs for workspaces. It can not be used as a command. (`i3-msg` only accepts commands)
+
+- Whereas the `workspace` *command* (usage `workspace &lt;workspace&gt;`) switches to the given workspace, creating it, if it does not yet exist. It cannot be used to set or even move a workspace to another output
+
+`i3-msg` only accepts commands, so when you tell it `workspace 1 output HDMI-0` it expects the `workspace` *command* and takes everything after it as the name of the new workspace.
+
+----
+
+Setting an output for a workspace *before* it is created can only be done in the configuration file. Any workspace not set there will open on the current output.
+
+You can always move workspaces *after* they have been created using the `move` command in the form `move &lt;workspace&gt; to &lt;output&gt;`. Where `&lt;output&gt;` is any direction or the name of the output (as used with the `workspace` *setting*).
+
+
+
+
+</description><pubDate>Wed, 06 Aug 2014 11:50:21 +0000</pubDate><guid>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/?answer=4403#post-id-4403</guid></item><item><title>Comment by geekingreen for &lt;p&gt;There is a difference between the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; and the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt;. They have the same name but do different things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt; (&lt;code&gt;workspace &amp;lt;workspace&amp;gt; output &amp;lt;output&amp;gt;&lt;/code&gt;) in the configuration file sets specific outputs for workspaces. It can not be used as a command. (&lt;code&gt;i3-msg&lt;/code&gt; only accepts commands)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Whereas the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; (usage &lt;code&gt;workspace &amp;lt;workspace&amp;gt;&lt;/code&gt;) switches to the given workspace, creating it, if it does not yet exist. It cannot be used to set or even move a workspace to another output&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;i3-msg&lt;/code&gt; only accepts commands, so when you tell it &lt;code&gt;workspace 1 output HDMI-0&lt;/code&gt; it expects the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; and takes everything after it as the name of the new workspace.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Setting an output for a workspace &lt;em&gt;before&lt;/em&gt; it is created can only be done in the configuration file. Any workspace not set there will open on the current output.&lt;/p&gt;
+
+&lt;p&gt;You can always move workspaces &lt;em&gt;after&lt;/em&gt; they have been created using the &lt;code&gt;move&lt;/code&gt; command in the form &lt;code&gt;move &amp;lt;workspace&amp;gt; to &amp;lt;output&amp;gt;&lt;/code&gt;. Where &lt;code&gt;&amp;lt;output&amp;gt;&lt;/code&gt; is any direction or the name of the output (as used with the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt;).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/?comment=4407#comment-4407</link><description>Here is the real problem, I have several machines that I sync my dotfiles across. Each machine has different displays with different names M1: HDMI-0, DVI-D-0 M2: DP-2, DP-3, I can use xrandr to query which is primary or secondary. I want to use what I get from that query to set my workspace outputs</description><pubDate>Wed, 06 Aug 2014 16:20:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/?comment=4407#comment-4407</guid></item><item><title>Comment by geekingreen for &lt;p&gt;There is a difference between the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; and the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt;. They have the same name but do different things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt; (&lt;code&gt;workspace &amp;lt;workspace&amp;gt; output &amp;lt;output&amp;gt;&lt;/code&gt;) in the configuration file sets specific outputs for workspaces. It can not be used as a command. (&lt;code&gt;i3-msg&lt;/code&gt; only accepts commands)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Whereas the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; (usage &lt;code&gt;workspace &amp;lt;workspace&amp;gt;&lt;/code&gt;) switches to the given workspace, creating it, if it does not yet exist. It cannot be used to set or even move a workspace to another output&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;i3-msg&lt;/code&gt; only accepts commands, so when you tell it &lt;code&gt;workspace 1 output HDMI-0&lt;/code&gt; it expects the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; and takes everything after it as the name of the new workspace.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Setting an output for a workspace &lt;em&gt;before&lt;/em&gt; it is created can only be done in the configuration file. Any workspace not set there will open on the current output.&lt;/p&gt;
+
+&lt;p&gt;You can always move workspaces &lt;em&gt;after&lt;/em&gt; they have been created using the &lt;code&gt;move&lt;/code&gt; command in the form &lt;code&gt;move &amp;lt;workspace&amp;gt; to &amp;lt;output&amp;gt;&lt;/code&gt;. Where &lt;code&gt;&amp;lt;output&amp;gt;&lt;/code&gt; is any direction or the name of the output (as used with the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt;).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/?comment=4405#comment-4405</link><description>That explains it. Is there a way to dynamically set a variable in the i3 config? Moving a workspace won't work since none of them will have any containers on them at the time I'd want to move them, causing them to spawn on whatever display is active at the time when I switch to that workspace.</description><pubDate>Wed, 06 Aug 2014 15:44:00 +0000</pubDate><guid>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/?comment=4405#comment-4405</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;There is a difference between the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; and the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt;. They have the same name but do different things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt; (&lt;code&gt;workspace &amp;lt;workspace&amp;gt; output &amp;lt;output&amp;gt;&lt;/code&gt;) in the configuration file sets specific outputs for workspaces. It can not be used as a command. (&lt;code&gt;i3-msg&lt;/code&gt; only accepts commands)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Whereas the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; (usage &lt;code&gt;workspace &amp;lt;workspace&amp;gt;&lt;/code&gt;) switches to the given workspace, creating it, if it does not yet exist. It cannot be used to set or even move a workspace to another output&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;i3-msg&lt;/code&gt; only accepts commands, so when you tell it &lt;code&gt;workspace 1 output HDMI-0&lt;/code&gt; it expects the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; and takes everything after it as the name of the new workspace.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Setting an output for a workspace &lt;em&gt;before&lt;/em&gt; it is created can only be done in the configuration file. Any workspace not set there will open on the current output.&lt;/p&gt;
+
+&lt;p&gt;You can always move workspaces &lt;em&gt;after&lt;/em&gt; they have been created using the &lt;code&gt;move&lt;/code&gt; command in the form &lt;code&gt;move &amp;lt;workspace&amp;gt; to &amp;lt;output&amp;gt;&lt;/code&gt;. Where &lt;code&gt;&amp;lt;output&amp;gt;&lt;/code&gt; is any direction or the name of the output (as used with the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt;).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/?comment=4406#comment-4406</link><description>i3 loads the entire configuration at start-up; any changes to variables in the configuration file would require you to restart the window manager afterward. You should explain exactly why you want to do this; it seems [almost random from where I'm sitting.](http://xyproblem.info)</description><pubDate>Wed, 06 Aug 2014 16:11:26 +0000</pubDate><guid>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/?comment=4406#comment-4406</guid></item><item><title>Comment by Adaephon for &lt;p&gt;There is a difference between the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; and the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt;. They have the same name but do different things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt; (&lt;code&gt;workspace &amp;lt;workspace&amp;gt; output &amp;lt;output&amp;gt;&lt;/code&gt;) in the configuration file sets specific outputs for workspaces. It can not be used as a command. (&lt;code&gt;i3-msg&lt;/code&gt; only accepts commands)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Whereas the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; (usage &lt;code&gt;workspace &amp;lt;workspace&amp;gt;&lt;/code&gt;) switches to the given workspace, creating it, if it does not yet exist. It cannot be used to set or even move a workspace to another output&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;i3-msg&lt;/code&gt; only accepts commands, so when you tell it &lt;code&gt;workspace 1 output HDMI-0&lt;/code&gt; it expects the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;command&lt;/em&gt; and takes everything after it as the name of the new workspace.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Setting an output for a workspace &lt;em&gt;before&lt;/em&gt; it is created can only be done in the configuration file. Any workspace not set there will open on the current output.&lt;/p&gt;
+
+&lt;p&gt;You can always move workspaces &lt;em&gt;after&lt;/em&gt; they have been created using the &lt;code&gt;move&lt;/code&gt; command in the form &lt;code&gt;move &amp;lt;workspace&amp;gt; to &amp;lt;output&amp;gt;&lt;/code&gt;. Where &lt;code&gt;&amp;lt;output&amp;gt;&lt;/code&gt; is any direction or the name of the output (as used with the &lt;code&gt;workspace&lt;/code&gt; &lt;em&gt;setting&lt;/em&gt;).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/?comment=4408#comment-4408</link><description>You could just write a script, which does the appropriate replacements right after the syncing. Depending on the mechanism you use for syncing it could be easily automated. </description><pubDate>Wed, 06 Aug 2014 20:37:14 +0000</pubDate><guid>https://faq.i3wm.org/question/4400/i3-msg-set-workspace-on-specific-output/?comment=4408#comment-4408</guid></item></channel></rss>

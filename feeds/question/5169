@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5169/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 15 Dec 2014 07:48:28 +0000</lastBuildDate><item><title>I3-save-layout doesn't work as expected. Json file is empty!</title><link>https://faq.i3wm.org/question/5169/i3-save-layout-doesnt-work-as-expected-json-file-is-empty/</link><description>I'm using I3 4.8, have installed the perl modules `AnyEvent::i3`, `JSON::XS` and `AnyEvent::Handle`, along with `i3-save-layout`.
+
+
+When I run the command
+
+    i3-save-tree --workspace 2: Ranger/NCMPCPP &gt; .i3/ws2.2.json
+
+the resulting file contains just one line: 
+
+    // vim:ts=4:sw=4:et
+
+When it should actually be containing the layout. Is this a bug, and why does it happen? Or is it something else, related to dependencies?
+
+Would really appreciate some input on this. Seems to be a neat and useful feature.
+
+</description><pubDate>Sat, 13 Dec 2014 08:03:05 +0000</pubDate><guid>https://faq.i3wm.org/question/5169/i3-save-layout-doesnt-work-as-expected-json-file-is-empty/</guid></item><item><title>Answer by xaos52 for &lt;p&gt;I'm using I3 4.8, have installed the perl modules &lt;code&gt;AnyEvent::i3&lt;/code&gt;, &lt;code&gt;JSON::XS&lt;/code&gt; and &lt;code&gt;AnyEvent::Handle&lt;/code&gt;, along with &lt;code&gt;i3-save-layout&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When I run the command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-save-tree --workspace 2: Ranger/NCMPCPP &amp;gt; .i3/ws2.2.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the resulting file contains just one line: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// vim:ts=4:sw=4:et
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When it should actually be containing the layout. Is this a bug, and why does it happen? Or is it something else, related to dependencies?&lt;/p&gt;
+
+&lt;p&gt;Would really appreciate some input on this. Seems to be a neat and useful feature.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5169/i3-save-layout-doesnt-work-as-expected-json-file-is-empty/?answer=5171#post-id-5171</link><description>"2: Ranger/NCMPCPP" probably needs quoting, to make it a single argument. As it is the shell splits it into 2 arguments. (untested)
+
+    i3-save-tree --workspace '2: Ranger/NCMPCPP' &gt; .i3/ws2.2.json</description><pubDate>Sat, 13 Dec 2014 09:56:29 +0000</pubDate><guid>https://faq.i3wm.org/question/5169/i3-save-layout-doesnt-work-as-expected-json-file-is-empty/?answer=5171#post-id-5171</guid></item><item><title>Comment by Unknownentity for &lt;p&gt;"2: Ranger/NCMPCPP" probably needs quoting, to make it a single argument. As it is the shell splits it into 2 arguments. (untested)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-save-tree --workspace '2: Ranger/NCMPCPP' &amp;gt; .i3/ws2.2.json
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5169/i3-save-layout-doesnt-work-as-expected-json-file-is-empty/?comment=5179#comment-5179</link><description>I feel like such an idiot. Never crossed my mind. Works perfectly. Thank you! </description><pubDate>Mon, 15 Dec 2014 07:48:28 +0000</pubDate><guid>https://faq.i3wm.org/question/5169/i3-save-layout-doesnt-work-as-expected-json-file-is-empty/?comment=5179#comment-5179</guid></item></channel></rss>

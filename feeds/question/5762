@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5762/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 10 Apr 2015 22:22:40 +0000</lastBuildDate><item><title>Window layout - vertical plus horizontal containers</title><link>https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/</link><description>(Been using i3wm for a 18 months now, love it. I've looked at FAQ *Move Window within Container*).
+
+Let's say I've got 3 windows, (A, B, and C), laid out like this:
+
+    -------------
+    |   |   |   |
+    | A | B | C |
+    |   |   |   |
+    -------------
+
+I want to change the layout to the following, how do I do it?
+
+    ------------
+    |      | B |
+    |  A   |---|
+    |      | C |
+    ------------
+
+I know from user guide that the windows are in a tree, I'm trying to work out the key combinations to do the above.
+
+
+
+
+</description><pubDate>Thu, 09 Apr 2015 23:15:48 +0000</pubDate><guid>https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;(Been using i3wm for a 18 months now, love it. I've looked at FAQ &lt;em&gt;Move Window within Container&lt;/em&gt;).&lt;/p&gt;
+
+&lt;p&gt;Let's say I've got 3 windows, (A, B, and C), laid out like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-------------
+|   |   |   |
+| A | B | C |
+|   |   |   |
+-------------
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I want to change the layout to the following, how do I do it?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;------------
+|      | B |
+|  A   |---|
+|      | C |
+------------
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I know from user guide that the windows are in a tree, I'm trying to work out the key combinations to do the above.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/?answer=5765#post-id-5765</link><description>One way to do this is:
+
+ 1. Focus window A (`focus left`, once or twice)
+ 2. Change layout to vertical split (`layout splitv`)
+ 3. Move window A to the left (`move left`)
+
+Unless you resize a window or container, all windows or subcontainers in a container have the same size. So, iff you want the sizes from your example, you need to resize the containers (`resize grow width 10 px or 16 ppt` or use the mouse; Note: the `px` value will be ignored for tiled windows)
+
+Explanation:
+------------
+
+Initially all three windows are in the same container.
+
+    |
+    +-A
+    |
+    +-B
+    |
+    +-C
+
+The desired result has A next to a (sub)container which contains B and C
+
+    |
+    +-A
+    |
+    +-+-B
+      |
+      +-C
+
+There are essentially two ways to achieve this:
+
+ 1. create the subcontainer by running `split v` (or `split h`) on either window B or C. Then move the respective other window into this container (which is what [i3convert's answer](https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/?answer=5763#post-id-5763) does)
+ 2. or create a supercontainer by moving A out of the existing container
+
+ As the initial container was the top-level container of the workspace *i3* creates a new (super)container which then contains window A and the initial container with windows B and C.
+
+
+</description><pubDate>Fri, 10 Apr 2015 10:42:58 +0000</pubDate><guid>https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/?answer=5765#post-id-5765</guid></item><item><title>Comment by savanna_cat for &lt;p&gt;One way to do this is:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Focus window A (&lt;code&gt;focus left&lt;/code&gt;, once or twice)&lt;/li&gt;
+&lt;li&gt;Change layout to vertical split (&lt;code&gt;layout splitv&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Move window A to the left (&lt;code&gt;move left&lt;/code&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Unless you resize a window or container, all windows or subcontainers in a container have the same size. So, iff you want the sizes from your example, you need to resize the containers (&lt;code&gt;resize grow width 10 px or 16 ppt&lt;/code&gt; or use the mouse; Note: the &lt;code&gt;px&lt;/code&gt; value will be ignored for tiled windows)&lt;/p&gt;
+
+&lt;h2&gt;Explanation:&lt;/h2&gt;
+
+&lt;p&gt;Initially all three windows are in the same container.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;|
++-A
+|
++-B
+|
++-C
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The desired result has A next to a (sub)container which contains B and C&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;|
++-A
+|
++-+-B
+  |
+  +-C
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are essentially two ways to achieve this:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;create the subcontainer by running &lt;code&gt;split v&lt;/code&gt; (or &lt;code&gt;split h&lt;/code&gt;) on either window B or C. Then move the respective other window into this container (which is what &lt;a href="https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/?answer=5763#post-id-5763"&gt;i3convert's answer&lt;/a&gt; does)&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;or create a supercontainer by moving A out of the existing container&lt;/p&gt;
+
+&lt;p&gt;As the initial container was the top-level container of the workspace &lt;em&gt;i3&lt;/em&gt; creates a new (super)container which then contains window A and the initial container with windows B and C.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/?comment=5770#comment-5770</link><description>Thanks @Adaephon!</description><pubDate>Fri, 10 Apr 2015 22:22:40 +0000</pubDate><guid>https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/?comment=5770#comment-5770</guid></item><item><title>Answer by i3convert for &lt;p&gt;(Been using i3wm for a 18 months now, love it. I've looked at FAQ &lt;em&gt;Move Window within Container&lt;/em&gt;).&lt;/p&gt;
+
+&lt;p&gt;Let's say I've got 3 windows, (A, B, and C), laid out like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-------------
+|   |   |   |
+| A | B | C |
+|   |   |   |
+-------------
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I want to change the layout to the following, how do I do it?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;------------
+|      | B |
+|  A   |---|
+|      | C |
+------------
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I know from user guide that the windows are in a tree, I'm trying to work out the key combinations to do the above.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/?answer=5763#post-id-5763</link><description>The exact keys you would use depend on your configuration. I'll use this config file: http://i3wm.org/docs/user-contributed/lzap-config.html for reference and list the corresponding i3 commands. The modifier key `$mod` is most likely `Alt` or the Windows key on your computer.
+
+ 1. If the window B is not focused, focus it via either `$mod+Left` or `$mod+Right` (command `focus left` or `focus right`).
+ 2. Split the window in the vertical direction: `$mod+v` (command `split v`). There may be little or no visible difference (perhaps the bottom edge becomes visibly active).
+ 3. Move focus right, to the window C, using `$mod+Right` (command `focus right`).
+ 4. Move the window C to the left, using `$mod+Shift+Left` (`move left`). It should now be in the same column as the window B.
+
+ </description><pubDate>Fri, 10 Apr 2015 02:50:00 +0000</pubDate><guid>https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/?answer=5763#post-id-5763</guid></item><item><title>Comment by savanna_cat for &lt;p&gt;The exact keys you would use depend on your configuration. I'll use this config file: &lt;a href="http://i3wm.org/docs/user-contributed/lzap-config.html"&gt;http://i3wm.org/docs/user-contributed...&lt;/a&gt; for reference and list the corresponding i3 commands. The modifier key &lt;code&gt;$mod&lt;/code&gt; is most likely &lt;code&gt;Alt&lt;/code&gt; or the Windows key on your computer.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If the window B is not focused, focus it via either &lt;code&gt;$mod+Left&lt;/code&gt; or &lt;code&gt;$mod+Right&lt;/code&gt; (command &lt;code&gt;focus left&lt;/code&gt; or &lt;code&gt;focus right&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Split the window in the vertical direction: &lt;code&gt;$mod+v&lt;/code&gt; (command &lt;code&gt;split v&lt;/code&gt;). There may be little or no visible difference (perhaps the bottom edge becomes visibly active).&lt;/li&gt;
+&lt;li&gt;Move focus right, to the window C, using &lt;code&gt;$mod+Right&lt;/code&gt; (command &lt;code&gt;focus right&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Move the window C to the left, using &lt;code&gt;$mod+Shift+Left&lt;/code&gt; (&lt;code&gt;move left&lt;/code&gt;). It should now be in the same column as the window B.&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/?comment=5764#comment-5764</link><description>thanks @i3convert, this worked nicely!</description><pubDate>Fri, 10 Apr 2015 06:13:09 +0000</pubDate><guid>https://faq.i3wm.org/question/5762/window-layout-vertical-plus-horizontal-containers/?comment=5764#comment-5764</guid></item></channel></rss>

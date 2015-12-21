@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/591/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 01 Nov 2013 17:44:13 +0000</lastBuildDate><item><title>Move workspace to other monitor?</title><link>https://faq.i3wm.org/question/591/move-workspace-to-other-monitor/</link><description>Say I have workspace 3 on my right-hand monitor, potentially with several windows in it. Is there a simple way to move it to the left-hand monitor?
+
+My current sequence of actions to accomplish is clunky:
+
+1. Activate empty ws on left-hand monitor, say it is 9.
+2. Move window(s) from 3 to 9.
+3. Switch right-hand monitor to a different ws (so that 3 is unused).
+4. Go to left-hand monitor, move windows from 9 to 3.
+5. Resize and rearrange windows the way they were.
+</description><pubDate>Fri, 05 Oct 2012 20:13:01 +0000</pubDate><guid>https://faq.i3wm.org/question/591/move-workspace-to-other-monitor/</guid></item><item><title>Answer by Thor for &lt;p&gt;Say I have workspace 3 on my right-hand monitor, potentially with several windows in it. Is there a simple way to move it to the left-hand monitor?&lt;/p&gt;
+
+&lt;p&gt;My current sequence of actions to accomplish is clunky:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Activate empty ws on left-hand monitor, say it is 9.&lt;/li&gt;
+&lt;li&gt;Move window(s) from 3 to 9.&lt;/li&gt;
+&lt;li&gt;Switch right-hand monitor to a different ws (so that 3 is unused).&lt;/li&gt;
+&lt;li&gt;Go to left-hand monitor, move windows from 9 to 3.&lt;/li&gt;
+&lt;li&gt;Resize and rearrange windows the way they were.&lt;/li&gt;
+&lt;/ol&gt;
+ </title><link>https://faq.i3wm.org/question/591/move-workspace-to-other-monitor/?answer=2803#post-id-2803</link><description>You can do this with an IPC action from the command line like this:
+
+    i3-msg move workspace to output left
+
+Or with a binding in `~/.i3/config`, e.g.:
+
+    bindsym $mod+m move workspace to output left</description><pubDate>Fri, 01 Nov 2013 13:06:47 +0000</pubDate><guid>https://faq.i3wm.org/question/591/move-workspace-to-other-monitor/?answer=2803#post-id-2803</guid></item><item><title>Answer by Michael for &lt;p&gt;Say I have workspace 3 on my right-hand monitor, potentially with several windows in it. Is there a simple way to move it to the left-hand monitor?&lt;/p&gt;
+
+&lt;p&gt;My current sequence of actions to accomplish is clunky:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Activate empty ws on left-hand monitor, say it is 9.&lt;/li&gt;
+&lt;li&gt;Move window(s) from 3 to 9.&lt;/li&gt;
+&lt;li&gt;Switch right-hand monitor to a different ws (so that 3 is unused).&lt;/li&gt;
+&lt;li&gt;Go to left-hand monitor, move windows from 9 to 3.&lt;/li&gt;
+&lt;li&gt;Resize and rearrange windows the way they were.&lt;/li&gt;
+&lt;/ol&gt;
+ </title><link>https://faq.i3wm.org/question/591/move-workspace-to-other-monitor/?answer=592#post-id-592</link><description>Yes: http://i3wm.org/docs/userguide.html#_moving_containers_workspaces_to_randr_outputs</description><pubDate>Fri, 05 Oct 2012 20:19:10 +0000</pubDate><guid>https://faq.i3wm.org/question/591/move-workspace-to-other-monitor/?answer=592#post-id-592</guid></item><item><title>Comment by eighthcitizen for &lt;p&gt;Yes: &lt;a href="http://i3wm.org/docs/userguide.html"&gt;http://i3wm.org/docs/userguide.html#&lt;/a&gt;&lt;em&gt;moving&lt;/em&gt;containers&lt;em&gt;workspaces&lt;/em&gt;to&lt;em&gt;randr&lt;/em&gt;outputs&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/591/move-workspace-to-other-monitor/?comment=1982#comment-1982</link><description>That makes my windows move to a newly created workspace called "output right"</description><pubDate>Sun, 09 Jun 2013 04:32:50 +0000</pubDate><guid>https://faq.i3wm.org/question/591/move-workspace-to-other-monitor/?comment=1982#comment-1982</guid></item><item><title>Comment by Thor for &lt;p&gt;Yes: &lt;a href="http://i3wm.org/docs/userguide.html"&gt;http://i3wm.org/docs/userguide.html#&lt;/a&gt;&lt;em&gt;moving&lt;/em&gt;containers&lt;em&gt;workspaces&lt;/em&gt;to&lt;em&gt;randr&lt;/em&gt;outputs&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/591/move-workspace-to-other-monitor/?comment=2804#comment-2804</link><description>@eightcitizen: did you remember to include `to`?</description><pubDate>Fri, 01 Nov 2013 17:44:13 +0000</pubDate><guid>https://faq.i3wm.org/question/591/move-workspace-to-other-monitor/?comment=2804#comment-2804</guid></item></channel></rss>

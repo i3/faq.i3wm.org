@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7282/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 12 Nov 2015 00:01:51 +0000</lastBuildDate><item><title>Force fullscreen video to floating window</title><link>https://faq.i3wm.org/question/7282/force-fullscreen-video-to-floating-window/</link><description>I've accidentally discovered that on some websites you can put the video to fullscreen mode using the players functionality, then use `$mod+f` (fullscreen toggle), which will show the normal browser window, but the video still maximized to the window.
+
+Next you can make the window floating and resize it.. this results in a floating video frame in front of any other non-floating window.
+
+But that doesn't seem to work for every web video, for instance YouTube refuses to cooperate. It will simply exit fullscreen mode upon pressing `$mod+f` (fullscreen toggle).
+
+How do I reproduce this behaviour for other sites, e.g. YouTube?
+
+To clarify what I mean, I've attached a screenshot:
+
+![screenshot](https://i.imgur.com/CnrFIIs.png)</description><pubDate>Wed, 11 Nov 2015 23:17:56 +0000</pubDate><guid>https://faq.i3wm.org/question/7282/force-fullscreen-video-to-floating-window/</guid></item><item><title>Answer by Airblader for &lt;p&gt;I've accidentally discovered that on some websites you can put the video to fullscreen mode using the players functionality, then use &lt;code&gt;$mod+f&lt;/code&gt; (fullscreen toggle), which will show the normal browser window, but the video still maximized to the window.&lt;/p&gt;
+
+&lt;p&gt;Next you can make the window floating and resize it.. this results in a floating video frame in front of any other non-floating window.&lt;/p&gt;
+
+&lt;p&gt;But that doesn't seem to work for every web video, for instance YouTube refuses to cooperate. It will simply exit fullscreen mode upon pressing &lt;code&gt;$mod+f&lt;/code&gt; (fullscreen toggle).&lt;/p&gt;
+
+&lt;p&gt;How do I reproduce this behaviour for other sites, e.g. YouTube?&lt;/p&gt;
+
+&lt;p&gt;To clarify what I mean, I've attached a screenshot:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="screenshot" src="https://i.imgur.com/CnrFIIs.png"/&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7282/force-fullscreen-video-to-floating-window/?answer=7284#post-id-7284</link><description>This isn't supported behavior whatsoever and there's little you can do about it. Making it work for everything involves patching i3. The patch is quite simple, but you will break fullscreen for applications that you actually want to be fullscreened. Then this could of course be made configurable per window and so on, but then you're talking about a bigger patch.
+
+None of this will be merged into i3. It's not how the specification is intended.
+
+That said, I totally abuse this "bug" as well (have been for a while) and Youtube works just fine with it when using Chrome. I even have a keybinding set up for it:
+
+    bindsym $mod+y fullscreen disable; floating enable; resize set 400 300; sticky enable; move window to position 1515 20</description><pubDate>Wed, 11 Nov 2015 23:44:43 +0000</pubDate><guid>https://faq.i3wm.org/question/7282/force-fullscreen-video-to-floating-window/?answer=7284#post-id-7284</guid></item><item><title>Comment by apoc for &lt;p&gt;This isn't supported behavior whatsoever and there's little you can do about it. Making it work for everything involves patching i3. The patch is quite simple, but you will break fullscreen for applications that you actually want to be fullscreened. Then this could of course be made configurable per window and so on, but then you're talking about a bigger patch.&lt;/p&gt;
+
+&lt;p&gt;None of this will be merged into i3. It's not how the specification is intended.&lt;/p&gt;
+
+&lt;p&gt;That said, I totally abuse this "bug" as well (have been for a while) and Youtube works just fine with it when using Chrome. I even have a keybinding set up for it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+y fullscreen disable; floating enable; resize set 400 300; sticky enable; move window to position 1515 20
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7282/force-fullscreen-video-to-floating-window/?comment=7285#comment-7285</link><description>Fantastic! For some reason I didn't try chromium, just iceweasel.. Works like a charm in chromium.. thanks a lot mate!
+
+edit: please don't fix that "bug"..</description><pubDate>Thu, 12 Nov 2015 00:01:51 +0000</pubDate><guid>https://faq.i3wm.org/question/7282/force-fullscreen-video-to-floating-window/?comment=7285#comment-7285</guid></item></channel></rss>

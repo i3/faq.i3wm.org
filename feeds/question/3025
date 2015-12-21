@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3025/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 09 Dec 2013 20:00:46 +0000</lastBuildDate><item><title>Considering _net_wm_state?</title><link>https://faq.i3wm.org/question/3025/considering-_net_wm_state/</link><description>Is there a way to get i3 to recognize things about the `_NET_WM_STATE`?
+
+I have a window I want to be floating but there is no way to distinguish it except that it doesn't have a `WM_WINDOW_ROLE` (`for_window` seems to skip `window_role` when `WM_WINDOW_ROLE` is missing) and it sets,
+
+    _NET_WM_STATE(ATOM) = _NET_WM_STATE_ABOVE, _NET_WM_STATE_STICKY, _NET_WM_STATE_SKIP_TASKBAR
+
+Basically, I'd like to recognize any window that has `_NET_WM_STATE_ABOVE` as a floating window.</description><pubDate>Mon, 09 Dec 2013 19:18:27 +0000</pubDate><guid>https://faq.i3wm.org/question/3025/considering-_net_wm_state/</guid></item><item><title>Answer by Michael for &lt;p&gt;Is there a way to get i3 to recognize things about the &lt;code&gt;_NET_WM_STATE&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;I have a window I want to be floating but there is no way to distinguish it except that it doesn't have a &lt;code&gt;WM_WINDOW_ROLE&lt;/code&gt; (&lt;code&gt;for_window&lt;/code&gt; seems to skip &lt;code&gt;window_role&lt;/code&gt; when &lt;code&gt;WM_WINDOW_ROLE&lt;/code&gt; is missing) and it sets,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_STATE(ATOM) = _NET_WM_STATE_ABOVE, _NET_WM_STATE_STICKY, _NET_WM_STATE_SKIP_TASKBAR
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically, I'd like to recognize any window that has &lt;code&gt;_NET_WM_STATE_ABOVE&lt;/code&gt; as a floating window.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3025/considering-_net_wm_state/?answer=3026#post-id-3026</link><description>Report a bug upstream for the application this is about.
+
+`_NET_WM_STATE_ABOVE` is certainly not the right criterion to make something floating. Quote from the standard:
+
+    _NET_WM_STATE_ABOVE indicates that the window should be on top of most windows (see the section called “Stacking order” for details).
+    _NET_WM_STATE_BELOW indicates that the window should be below most windows (see the section called “Stacking order” for details).
+    _NET_WM_STATE_ABOVE and _NET_WM_STATE_BELOW are mainly meant for user preferences and should not be used by applications e.g. for drawing attention to their dialogs (the Urgency hint should be used in that case, see the section called “Urgency”).'
+
+See http://code.stapelberg.de/git/i3/tree/src/manage.c?h=next#n375 for what i3 makes floating. The most likely candidate for your case seems to be setting the leader window on the dialog window.</description><pubDate>Mon, 09 Dec 2013 19:45:34 +0000</pubDate><guid>https://faq.i3wm.org/question/3025/considering-_net_wm_state/?answer=3026#post-id-3026</guid></item><item><title>Comment by milkypostman for &lt;p&gt;Report a bug upstream for the application this is about.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;_NET_WM_STATE_ABOVE&lt;/code&gt; is certainly not the right criterion to make something floating. Quote from the standard:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_STATE_ABOVE indicates that the window should be on top of most windows (see the section called “Stacking order” for details).
+_NET_WM_STATE_BELOW indicates that the window should be below most windows (see the section called “Stacking order” for details).
+_NET_WM_STATE_ABOVE and _NET_WM_STATE_BELOW are mainly meant for user preferences and should not be used by applications e.g. for drawing attention to their dialogs (the Urgency hint should be used in that case, see the section called “Urgency”).'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See &lt;a href="http://code.stapelberg.de/git/i3/tree/src/manage.c?h=next#n375"&gt;http://code.stapelberg.de/git/i3/tree...&lt;/a&gt; for what i3 makes floating. The most likely candidate for your case seems to be setting the leader window on the dialog window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3025/considering-_net_wm_state/?comment=3028#comment-3028</link><description>What about `_NET_WM_STATE_STICKY` which states that the window should keep the window's position fixed? Also `_NET_WM_STATE_SKIP_TASKBAR`. With both of those enabled, it seems like the application doesn't want to be controlled and in most other WMs, like gnome, this causes the window to be unmanaged</description><pubDate>Mon, 09 Dec 2013 20:00:46 +0000</pubDate><guid>https://faq.i3wm.org/question/3025/considering-_net_wm_state/?comment=3028#comment-3028</guid></item></channel></rss>

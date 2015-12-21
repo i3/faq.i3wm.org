@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1388/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 18 Mar 2013 17:19:44 +0000</lastBuildDate><item><title>low_threshold for battery crashes i3</title><link>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/</link><description>when adding a low_threshold to the battery for i3status, my i3 crashes. according to the user guide this should work. any idea?
+
+note1: had to change the battery module to battery 1 (not zero) in my config so that it would show up. These are the relevant pieces of the config:
+
+    order += "battery 1"
+    ....
+    battery 1 {
+            format = "%status %percentage %remaining"
+            low_threshold = "10"
+    }
+
+(I also tried low_threshold = 10 (without the "").
+
+note2: the same applies to the `threshold_type` parameter
+</description><pubDate>Wed, 13 Mar 2013 14:36:09 +0000</pubDate><guid>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/</guid></item><item><title>Comment by fab for &lt;p&gt;when adding a low_threshold to the battery for i3status, my i3 crashes. according to the user guide this should work. any idea?&lt;/p&gt;
+
+&lt;p&gt;note1: had to change the battery module to battery 1 (not zero) in my config so that it would show up. These are the relevant pieces of the config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;order += "battery 1"
+....
+battery 1 {
+        format = "%status %percentage %remaining"
+        low_threshold = "10"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(I also tried low_threshold = 10 (without the "").&lt;/p&gt;
+
+&lt;p&gt;note2: the same applies to the &lt;code&gt;threshold_type&lt;/code&gt; parameter&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?comment=1390#comment-1390</link><description>I am sorry, my question is inaccurate. The problem is not that i3 crashes, but the i3status bar disappears. Not sure how I can debug this?</description><pubDate>Wed, 13 Mar 2013 16:37:27 +0000</pubDate><guid>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?comment=1390#comment-1390</guid></item><item><title>Answer by sur5r for &lt;p&gt;when adding a low_threshold to the battery for i3status, my i3 crashes. according to the user guide this should work. any idea?&lt;/p&gt;
+
+&lt;p&gt;note1: had to change the battery module to battery 1 (not zero) in my config so that it would show up. These are the relevant pieces of the config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;order += "battery 1"
+....
+battery 1 {
+        format = "%status %percentage %remaining"
+        low_threshold = "10"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(I also tried low_threshold = 10 (without the "").&lt;/p&gt;
+
+&lt;p&gt;note2: the same applies to the &lt;code&gt;threshold_type&lt;/code&gt; parameter&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?answer=1389#post-id-1389</link><description>I can't reproduce this with i3status 2.7. Which version are you using?
+
+Also, can you provide a backtrace?</description><pubDate>Wed, 13 Mar 2013 14:56:47 +0000</pubDate><guid>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?answer=1389#post-id-1389</guid></item><item><title>Comment by fab for &lt;p&gt;I can't reproduce this with i3status 2.7. Which version are you using?&lt;/p&gt;
+
+&lt;p&gt;Also, can you provide a backtrace?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?comment=1391#comment-1391</link><description>Sorry, please read my comment on my question. It's not i3 crashing but i3status disappears. my i3status version is 2.5.1 (From a fresh install of ubuntu 12.10 via their repositories).</description><pubDate>Wed, 13 Mar 2013 16:38:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?comment=1391#comment-1391</guid></item><item><title>Answer by Michael for &lt;p&gt;when adding a low_threshold to the battery for i3status, my i3 crashes. according to the user guide this should work. any idea?&lt;/p&gt;
+
+&lt;p&gt;note1: had to change the battery module to battery 1 (not zero) in my config so that it would show up. These are the relevant pieces of the config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;order += "battery 1"
+....
+battery 1 {
+        format = "%status %percentage %remaining"
+        low_threshold = "10"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(I also tried low_threshold = 10 (without the "").&lt;/p&gt;
+
+&lt;p&gt;note2: the same applies to the &lt;code&gt;threshold_type&lt;/code&gt; parameter&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?answer=1394#post-id-1394</link><description>Your i3status version is too old. Upgrade first.
+
+To debug, run i3status in a terminal and you’ll see the error message.</description><pubDate>Wed, 13 Mar 2013 20:54:22 +0000</pubDate><guid>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?answer=1394#post-id-1394</guid></item><item><title>Comment by sur5r for &lt;p&gt;Your i3status version is too old. Upgrade first.&lt;/p&gt;
+
+&lt;p&gt;To debug, run i3status in a terminal and you’ll see the error message.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?comment=1398#comment-1398</link><description>To update, see the instructions at http://www.i3wm.org/docs/repositories.html Section 2.1.</description><pubDate>Thu, 14 Mar 2013 10:41:25 +0000</pubDate><guid>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?comment=1398#comment-1398</guid></item><item><title>Comment by fab for &lt;p&gt;Your i3status version is too old. Upgrade first.&lt;/p&gt;
+
+&lt;p&gt;To debug, run i3status in a terminal and you’ll see the error message.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?comment=1440#comment-1440</link><description>Upgrading did in fact resolve the issue. Thanks!</description><pubDate>Mon, 18 Mar 2013 17:19:44 +0000</pubDate><guid>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?comment=1440#comment-1440</guid></item><item><title>Comment by fab for &lt;p&gt;Your i3status version is too old. Upgrade first.&lt;/p&gt;
+
+&lt;p&gt;To debug, run i3status in a terminal and you’ll see the error message.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?comment=1397#comment-1397</link><description>Not sure how to do that. Even on the i3 download page the version of i3status for the ubuntu package is 2.5.1. BTW, i3status on the commandline tells me ".i3status.conf:29: no such option 'low_threshold'"</description><pubDate>Thu, 14 Mar 2013 03:34:36 +0000</pubDate><guid>https://faq.i3wm.org/question/1388/low_threshold-for-battery-crashes-i3/?comment=1397#comment-1397</guid></item></channel></rss>

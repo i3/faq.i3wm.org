@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1484/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 28 Mar 2013 13:03:11 +0000</lastBuildDate><item><title>How to reset i3 config files to its default ?</title><link>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/</link><description>After installing i3, I accidentally press on the second option which is "Do not generate config files". 
+
+Now, I want to use the default config files which is option 1.
+
+I tried this command :
+
+$i3 -c /etc/i3/config 
+
+and I ended up with this error,
+    
+    suhaib@suhaib:~$ i3 -c /etc/i3/config
+    deciding for version 4 due to this line: # i3 config file (v4)
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    	Found keysym binding mod8 with key Return and command exec i3-sensible-terminal
+    	Found keysym binding mod9 with key q and command kill
+    	Found keysym binding mod8 with key d and command exec dmenu_run
+    	Found keysym binding mod8 with key j and command focus left
+    	Found keysym binding mod8 with key k and command focus down
+    	Found keysym binding mod8 with key l and command focus up
+    	Found keysym binding mod8 with key semicolon and command focus right
+    	Found keysym binding mod8 with key Left and command focus left
+    	Found keysym binding mod8 with key Down and command focus down
+    	Found keysym binding mod8 with key Up and command focus up
+    	Found keysym binding mod8 with key Right and command focus right
+    	Found keysym binding mod9 with key j and command move left
+    	Found keysym binding mod9 with key k and command move down
+    	Found keysym binding mod9 with key l and command move up
+    	Found keysym binding mod9 with key semicolon and command move right
+    	Found keysym binding mod9 with key Left and command move left
+    	Found keysym binding mod9 with key Down and command move down
+    	Found keysym binding mod9 with key Up and command move up
+    	Found keysym binding mod9 with key Right and command move right
+    	Found keysym binding mod8 with key h and command split h
+    	Found keysym binding mod8 with key v and command split v
+    	Found keysym binding mod8 with key f and command fullscreen
+    	Found keysym binding mod8 with key s and command layout stacking
+    	Found keysym binding mod8 with key w and command layout tabbed
+    	Found keysym binding mod8 with key e and command layout default
+    	Found keysym binding mod9 with key space and command floating toggle
+    	Found keysym binding mod8 with key space and command focus mode_toggle
+    	Found keysym binding mod8 with key a and command focus parent
+    	Found keysym binding mod8 with key 1 and command workspace 1
+    	Found keysym binding mod8 with key 2 and command workspace 2
+    	Found keysym binding mod8 with key 3 and command workspace 3
+    	Found keysym binding mod8 with key 4 and command workspace 4
+    	Found keysym binding mod8 with key 5 and command workspace 5
+    	Found keysym binding mod8 with key 6 and command workspace 6
+    	Found keysym binding mod8 with key 7 and command workspace 7
+    	Found keysym binding mod8 with key 8 and command workspace 8
+    	Found keysym binding mod8 with key 9 and command workspace 9
+    	Found keysym binding mod8 with key 0 and command workspace 10
+    	Found keysym binding mod9 with key 1 and command move container to workspace 1
+    	Found keysym binding mod9 with key 2 and command move container to workspace 2
+    	Found keysym binding mod9 with key 3 and command move container to workspace 3
+    	Found keysym binding mod9 with key 4 and command move container to workspace 4
+    	Found keysym binding mod9 with key 5 and command move container to workspace 5
+    	Found keysym binding mod9 with key 6 and command move container to workspace 6
+    	Found keysym binding mod9 with key 7 and command move container to workspace 7
+    	Found keysym binding mod9 with key 8 and command move container to workspace 8
+    	Found keysym binding mod9 with key 9 and command move container to workspace 9
+    	Found keysym binding mod9 with key 0 and command move container to workspace 10
+    	Found keysym binding mod9 with key c and command reload
+    	Found keysym binding mod9 with key r and command restart
+    	Found keysym binding mod9 with key e and command exit
+    	Found keysym binding mod0 with key j and command resize shrink width 10 px or 10 ppt
+    	Found keysym binding mod0 with key k and command resize grow height 10 px or 10 ppt
+    	Found keysym binding mod0 with key l and command resize shrink height 10 px or 10 ppt
+    	Found keysym binding mod0 with key semicolon and command resize grow width 10 px or 10 ppt
+    	Found keysym binding mod0 with key Left and command resize shrink width 10 px or 10 ppt
+    	Found keysym binding mod0 with key Down and command resize grow height 10 px or 10 ppt
+    	Found keysym binding mod0 with key Up and command resize shrink height 10 px or 10 ppt
+    	Found keysym binding mod0 with key Right and command resize grow width 10 px or 10 ppt
+    	Found keysym binding mod0 with key Return and command mode "default"
+    	Found keysym binding mod0 with key Escape and command mode "default"
+    	 now in mode resize
+    	 current bindings = 0x99ef2e0
+    got binding on mods 0, keycode 0, symbol j, command resize shrink width 10 px or 10 ppt
+    got binding on mods 0, keycode 0, symbol k, command resize grow height 10 px or 10 ppt
+    got binding on mods 0, keycode 0, symbol l, command resize shrink height 10 px or 10 ppt
+    got binding on mods 0, keycode 0, symbol semicolon, command resize grow width 10 px or 10 ppt
+    got binding on mods 0, keycode 0, symbol Left, command resize shrink width 10 px or 10 ppt
+    got binding on mods 0, keycode 0, symbol Down, command resize grow height 10 px or 10 ppt
+    got binding on mods 0, keycode 0, symbol Up, command resize shrink height 10 px or 10 ppt
+    got binding on mods 0, keycode 0, symbol Right, command resize grow width 10 px or 10 ppt
+    got binding on mods 0, keycode 0, symbol Return, command mode "default"
+    got binding on mods 0, keycode 0, symbol Escape, command mode "default"
+    	Found keysym binding mod8 with key r and command mode "resize"
+    	 new bar configuration finished, saving.
+    anything else: *i*
+    ERROR: Another window manager seems to be running (X error 10)
+
+
+**Notice the error at the end of the output ?**
+
+Is there another solution to my problem ?</description><pubDate>Tue, 26 Mar 2013 20:59:27 +0000</pubDate><guid>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/</guid></item><item><title>Answer by Michael for &lt;div class="snippet"&gt;&lt;p&gt;After installing i3, I accidentally press on the second option which is "Do not generate config files". &lt;/p&gt;
+
+&lt;p&gt;Now, I want to use the default config files which is option 1.&lt;/p&gt;
+
+&lt;p&gt;I tried this command :&lt;/p&gt;
+
+&lt;p&gt;$i3 -c /etc/i3/config &lt;/p&gt;
+
+&lt;p&gt;and I ended up with this error,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;suhaib@suhaib:~$ i3 -c /etc/i3/config
+deciding for version 4 due to this line: # i3 config file (v4)
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    Found keysym binding mod8 with key Return and command exec i3-sensible-terminal
+    Found keysym binding mod9 with key q and command kill
+    Found keysym binding mod8 with key d and command exec dmenu_run
+    Found keysym binding mod8 with key j and command focus left
+    Found keysym binding mod8 with key k and command focus down
+    Found keysym binding mod8 with key l and command focus up
+    Found keysym binding mod8 with key semicolon and command focus right
+    Found keysym binding mod8 with key Left and command focus left
+    Found keysym binding mod8 with key Down and command focus down
+    Found keysym binding mod8 with key Up and command focus up
+    Found keysym binding mod8 with key Right and command focus right
+    Found keysym binding mod9 with key j and command move left
+    Found keysym binding mod9 with key k and command move down
+    Found keysym binding mod9 with key l and command move up
+    Found keysym binding mod9 with key semicolon and command move right
+    Found keysym binding mod9 with key Left and command move left
+    Found keysym binding mod9 with key Down and command move down
+    Found keysym binding mod9 with key Up and command move up
+    Found keysym binding mod9 with key Right and command move right
+    Found keysym binding mod8 with key h and command split h
+    Found keysym binding mod8 with key v and command split v
+    Found keysym binding mod8 with key f and command fullscreen
+    Found keysym binding mod8 with key s and command layout stacking
+    Found keysym binding mod8 with key w and command layout tabbed
+    Found keysym binding mod8 with key e and command layout default
+    Found keysym binding mod9 with key space and command floating toggle
+    Found keysym binding mod8 with key space and command focus mode_toggle
+    Found keysym binding mod8 with key a and command focus parent
+    Found keysym binding mod8 with key 1 and command workspace 1
+    Found keysym binding mod8 with key 2 and command workspace 2
+    Found keysym binding mod8 with key 3 and command workspace 3
+    Found keysym binding mod8 with key 4 and command workspace 4
+    Found keysym binding mod8 with key 5 and command workspace 5
+    Found keysym binding mod8 with key 6 and command workspace 6
+    Found keysym binding mod8 with key 7 and command workspace 7
+    Found keysym binding mod8 with key 8 and command workspace 8
+    Found keysym binding mod8 with key 9 and command workspace 9
+    Found keysym binding mod8 with key 0 and command workspace 10
+    Found keysym binding mod9 with key 1 and command move container to workspace 1
+    Found keysym binding ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; </title><link>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/?answer=1489#post-id-1489</link><description>You seem to be running i3 from a terminal while you have another window manager running (another instance of i3?).
+
+To get the wizard prompt again, simply delete ~/.i3/config, it will ask you on the next login. Alternatively, run i3-config-wizard from a terminal.</description><pubDate>Thu, 28 Mar 2013 13:03:11 +0000</pubDate><guid>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/?answer=1489#post-id-1489</guid></item><item><title>Answer by joepd for &lt;div class="snippet"&gt;&lt;p&gt;After installing i3, I accidentally press on the second option which is "Do not generate config files". &lt;/p&gt;
+
+&lt;p&gt;Now, I want to use the default config files which is option 1.&lt;/p&gt;
+
+&lt;p&gt;I tried this command :&lt;/p&gt;
+
+&lt;p&gt;$i3 -c /etc/i3/config &lt;/p&gt;
+
+&lt;p&gt;and I ended up with this error,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;suhaib@suhaib:~$ i3 -c /etc/i3/config
+deciding for version 4 due to this line: # i3 config file (v4)
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    Found keysym binding mod8 with key Return and command exec i3-sensible-terminal
+    Found keysym binding mod9 with key q and command kill
+    Found keysym binding mod8 with key d and command exec dmenu_run
+    Found keysym binding mod8 with key j and command focus left
+    Found keysym binding mod8 with key k and command focus down
+    Found keysym binding mod8 with key l and command focus up
+    Found keysym binding mod8 with key semicolon and command focus right
+    Found keysym binding mod8 with key Left and command focus left
+    Found keysym binding mod8 with key Down and command focus down
+    Found keysym binding mod8 with key Up and command focus up
+    Found keysym binding mod8 with key Right and command focus right
+    Found keysym binding mod9 with key j and command move left
+    Found keysym binding mod9 with key k and command move down
+    Found keysym binding mod9 with key l and command move up
+    Found keysym binding mod9 with key semicolon and command move right
+    Found keysym binding mod9 with key Left and command move left
+    Found keysym binding mod9 with key Down and command move down
+    Found keysym binding mod9 with key Up and command move up
+    Found keysym binding mod9 with key Right and command move right
+    Found keysym binding mod8 with key h and command split h
+    Found keysym binding mod8 with key v and command split v
+    Found keysym binding mod8 with key f and command fullscreen
+    Found keysym binding mod8 with key s and command layout stacking
+    Found keysym binding mod8 with key w and command layout tabbed
+    Found keysym binding mod8 with key e and command layout default
+    Found keysym binding mod9 with key space and command floating toggle
+    Found keysym binding mod8 with key space and command focus mode_toggle
+    Found keysym binding mod8 with key a and command focus parent
+    Found keysym binding mod8 with key 1 and command workspace 1
+    Found keysym binding mod8 with key 2 and command workspace 2
+    Found keysym binding mod8 with key 3 and command workspace 3
+    Found keysym binding mod8 with key 4 and command workspace 4
+    Found keysym binding mod8 with key 5 and command workspace 5
+    Found keysym binding mod8 with key 6 and command workspace 6
+    Found keysym binding mod8 with key 7 and command workspace 7
+    Found keysym binding mod8 with key 8 and command workspace 8
+    Found keysym binding mod8 with key 9 and command workspace 9
+    Found keysym binding mod8 with key 0 and command workspace 10
+    Found keysym binding mod9 with key 1 and command move container to workspace 1
+    Found keysym binding ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; </title><link>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/?answer=1485#post-id-1485</link><description>Just rename your config file in $HOME. Accoring to man i3-config-wizard: 
+
+    i3-config-wizard is started by i3 in its default config, unless /.i3/config exists. i3-config-wizard 
+    creates a keysym based i3 config file (based on /etc/i3/config.keycodes) in /.i3/config.
+
+I guess not mentioning `.config/i3/config` is a bug. </description><pubDate>Tue, 26 Mar 2013 22:32:39 +0000</pubDate><guid>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/?answer=1485#post-id-1485</guid></item><item><title>Comment by joepd for &lt;p&gt;Just rename your config file in $HOME. Accoring to man i3-config-wizard: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-config-wizard is started by i3 in its default config, unless /.i3/config exists. i3-config-wizard 
+creates a keysym based i3 config file (based on /etc/i3/config.keycodes) in /.i3/config.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I guess not mentioning &lt;code&gt;.config/i3/config&lt;/code&gt; is a bug. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/?comment=1488#comment-1488</link><description>Wow... Sorry... did not read the actual error, but only your interpretation of the error. Rebooting should fix the error. </description><pubDate>Tue, 26 Mar 2013 23:46:39 +0000</pubDate><guid>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/?comment=1488#comment-1488</guid></item><item><title>Comment by joepd for &lt;p&gt;Just rename your config file in $HOME. Accoring to man i3-config-wizard: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-config-wizard is started by i3 in its default config, unless /.i3/config exists. i3-config-wizard 
+creates a keysym based i3 config file (based on /etc/i3/config.keycodes) in /.i3/config.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I guess not mentioning &lt;code&gt;.config/i3/config&lt;/code&gt; is a bug. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/?comment=1487#comment-1487</link><description>No. Don't touch the system files under `/etc`. Rename the i3 config file in your home directory. If you don't have a personal configuration, i3 will assist you to get things set up again :)</description><pubDate>Tue, 26 Mar 2013 23:43:49 +0000</pubDate><guid>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/?comment=1487#comment-1487</guid></item><item><title>Comment by sohaeb for &lt;p&gt;Just rename your config file in $HOME. Accoring to man i3-config-wizard: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-config-wizard is started by i3 in its default config, unless /.i3/config exists. i3-config-wizard 
+creates a keysym based i3 config file (based on /etc/i3/config.keycodes) in /.i3/config.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I guess not mentioning &lt;code&gt;.config/i3/config&lt;/code&gt; is a bug. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/?comment=1486#comment-1486</link><description>You mean rename /etc/i3/config ? to another name ?</description><pubDate>Tue, 26 Mar 2013 22:51:06 +0000</pubDate><guid>https://faq.i3wm.org/question/1484/how-to-reset-i3-config-files-to-its-default/?comment=1486#comment-1486</guid></item></channel></rss>

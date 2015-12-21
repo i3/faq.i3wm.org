@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1281/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 08 Jun 2015 21:50:51 +0000</lastBuildDate><item><title>application switcher?</title><link>https://faq.i3wm.org/question/1281/application-switcher/</link><description>I find my self lost among all workspaces and application windows. Is there an application switcher that can be used with i3? Or is there a way to get something similar. All I want is a list of the active application widows which I can tab through to switch to the window i want to go to next. 
+
+TIA
+
+Albert
+</description><pubDate>Sat, 02 Mar 2013 16:35:59 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;I find my self lost among all workspaces and application windows. Is there an application switcher that can be used with i3? Or is there a way to get something similar. All I want is a list of the active application widows which I can tab through to switch to the window i want to go to next. &lt;/p&gt;
+
+&lt;p&gt;TIA&lt;/p&gt;
+
+&lt;p&gt;Albert&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1281/application-switcher/?comment=1299#comment-1299</link><description>awesome question!</description><pubDate>Mon, 04 Mar 2013 14:02:11 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?comment=1299#comment-1299</guid></item><item><title>Answer by Mario Sandler for &lt;p&gt;I find my self lost among all workspaces and application windows. Is there an application switcher that can be used with i3? Or is there a way to get something similar. All I want is a list of the active application widows which I can tab through to switch to the window i want to go to next. &lt;/p&gt;
+
+&lt;p&gt;TIA&lt;/p&gt;
+
+&lt;p&gt;Albert&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1281/application-switcher/?answer=1296#post-id-1296</link><description>    echo -ne "i3-ipc\x0\x0\x0\x0\x4\x0\x0\x0" | 
+        socat STDIO UNIX-CLIENT:`i3 --get-socketpath` | 
+        tail -c +15 |
+        sed -e 's/"id":/\n"id":/g' | 
+        sed -ne 's/.*"name":"\([^"]\+\)".*"window":\([0-9]\+\).*/\1 \2/p' |
+        dmenu -i -l 7 -b |
+        sed -ne 's/.* \([0-9]*\)/[id=\1] focus/p' |
+        (read cmd; i3-msg "$cmd")
+</description><pubDate>Mon, 04 Mar 2013 02:25:12 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?answer=1296#post-id-1296</guid></item><item><title>Comment by bruno.braga for &lt;pre&gt;&lt;code&gt;echo -ne "i3-ipc\x0\x0\x0\x0\x4\x0\x0\x0" | 
+    socat STDIO UNIX-CLIENT:`i3 --get-socketpath` | 
+    tail -c +15 |
+    sed -e 's/"id":/\n"id":/g' | 
+    sed -ne 's/.*"name":"\([^"]\+\)".*"window":\([0-9]\+\).*/\1 \2/p' |
+    dmenu -i -l 7 -b |
+    sed -ne 's/.* \([0-9]*\)/[id=\1] focus/p' |
+    (read cmd; i3-msg "$cmd")
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1281/application-switcher/?comment=1300#comment-1300</link><description>neat... but neither this nor the simpleswitcher can grab a window from scratchpad... (not sure how should be the behaviour though)... they are in the list, but nothing happens.</description><pubDate>Mon, 04 Mar 2013 14:03:19 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?comment=1300#comment-1300</guid></item><item><title>Comment by Mario Sandler for &lt;pre&gt;&lt;code&gt;echo -ne "i3-ipc\x0\x0\x0\x0\x4\x0\x0\x0" | 
+    socat STDIO UNIX-CLIENT:`i3 --get-socketpath` | 
+    tail -c +15 |
+    sed -e 's/"id":/\n"id":/g' | 
+    sed -ne 's/.*"name":"\([^"]\+\)".*"window":\([0-9]\+\).*/\1 \2/p' |
+    dmenu -i -l 7 -b |
+    sed -ne 's/.* \([0-9]*\)/[id=\1] focus/p' |
+    (read cmd; i3-msg "$cmd")
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1281/application-switcher/?comment=1387#comment-1387</link><description>yes that one was a joke. i'm currently using this https://gist.github.com/anonymous/5152046</description><pubDate>Wed, 13 Mar 2013 13:31:14 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?comment=1387#comment-1387</guid></item><item><title>Comment by Michael for &lt;pre&gt;&lt;code&gt;echo -ne "i3-ipc\x0\x0\x0\x0\x4\x0\x0\x0" | 
+    socat STDIO UNIX-CLIENT:`i3 --get-socketpath` | 
+    tail -c +15 |
+    sed -e 's/"id":/\n"id":/g' | 
+    sed -ne 's/.*"name":"\([^"]\+\)".*"window":\([0-9]\+\).*/\1 \2/p' |
+    dmenu -i -l 7 -b |
+    sed -ne 's/.* \([0-9]*\)/[id=\1] focus/p' |
+    (read cmd; i3-msg "$cmd")
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1281/application-switcher/?comment=1306#comment-1306</link><description>Parsing JSON in shell is really fugly and fragile. I recommend not using this solution (or any other shell solution).</description><pubDate>Tue, 05 Mar 2013 10:37:28 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?comment=1306#comment-1306</guid></item><item><title>Answer by chilicuil for &lt;p&gt;I find my self lost among all workspaces and application windows. Is there an application switcher that can be used with i3? Or is there a way to get something similar. All I want is a list of the active application widows which I can tab through to switch to the window i want to go to next. &lt;/p&gt;
+
+&lt;p&gt;TIA&lt;/p&gt;
+
+&lt;p&gt;Albert&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1281/application-switcher/?answer=6091#post-id-6091</link><description>I reworked Rasi solution to avoid python and bash, it behaves exactly the same but with less dependencies (dmenu and sh)
+
+https://github.com/minos-org/minos-tools/blob/master/tools/dmenu-i3-window-jumper </description><pubDate>Mon, 08 Jun 2015 21:50:51 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?answer=6091#post-id-6091</guid></item><item><title>Answer by sml for &lt;p&gt;I find my self lost among all workspaces and application windows. Is there an application switcher that can be used with i3? Or is there a way to get something similar. All I want is a list of the active application widows which I can tab through to switch to the window i want to go to next. &lt;/p&gt;
+
+&lt;p&gt;TIA&lt;/p&gt;
+
+&lt;p&gt;Albert&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1281/application-switcher/?answer=3786#post-id-3786</link><description>I'm using a ruby script, with this map:
+
+    bindsym $mod+g exec ~/.i3/window-jump
+
+The advantages of this script are that it only requires dmenu, finds windows in the scratch space, and focuses by unique ID rather than title.
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/ruby
+require 'json'
+
+# recursively walk tree to find all containers
+# return an array of names followed by [id]
+def get_containers tree
+    containers = []
+    # try to return only useful containers
+    if (tree['nodes']+tree['floating_nodes']).empty? &amp;&amp; tree['type'] == 2 &amp;&amp;
+        !(tree['name'] =~ /^i3bar for output/)
+        containers &lt;&lt; tree['name'] + " [#{tree['id']}]"
+    end
+    (tree['nodes'] + tree['floating_nodes']).each do |node|
+        containers += get_containers(node)
+    end
+    containers
+end
+
+IO.popen(['dmenu', '-i', '-p', 'window jump'], 'r+') do |dmenu|
+    dmenu.puts(get_containers(JSON.load(`i3-msg -t get_tree`)))
+    dmenu.close_write
+    id = dmenu.read.split(/\[|\]/).last
+    exec "i3-msg [con_id=#{id}] focus"
+end
+&lt;/code&gt;&lt;/pre&gt;</description><pubDate>Sat, 10 May 2014 17:54:45 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?answer=3786#post-id-3786</guid></item><item><title>Answer by Rasi for &lt;p&gt;I find my self lost among all workspaces and application windows. Is there an application switcher that can be used with i3? Or is there a way to get something similar. All I want is a list of the active application widows which I can tab through to switch to the window i want to go to next. &lt;/p&gt;
+
+&lt;p&gt;TIA&lt;/p&gt;
+
+&lt;p&gt;Albert&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1281/application-switcher/?answer=1284#post-id-1284</link><description>    #!/bin/bash
+    #source ~/.config/teiler/config
+    DMENU_OPTS="-fn "Source\Code\Pro-12" -nb #000000 -nf #a0a0a0 -sb #0c73c2 -sf #ffffff -l 18 -p $(basename $0)"
+    
+    # Present a menu with all windows
+    TITLE="$(i3-msg -t get_tree | python -mjson.tool | sed -n -e 's/^ \{35\}[ ]\+\"name\": \"\(.*\)\", $/\1/p' | sed '/^#[a-F0-9]\{6\}$/d' | dmenu $DMENU_OPTS)"
+    
+    if [ -z "$TITLE" ] ; then
+       exit 1
+    fi
+    
+    # Escape some characters to prevent i3 to interpret them as a pattern
+    # "(" and ")" replaced with "\(" and "\)"
+    TITLE="$(echo "$TITLE" | sed 's/\([()]\)/\\\1/g')"
+    
+    # Focus window
+    i3-msg "[title=\"$TITLE\"] focus"
+</description><pubDate>Sat, 02 Mar 2013 16:39:38 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?answer=1284#post-id-1284</guid></item><item><title>Comment by thuswa for &lt;pre&gt;&lt;code&gt;#!/bin/bash
+#source ~/.config/teiler/config
+DMENU_OPTS="-fn "Source\Code\Pro-12" -nb #000000 -nf #a0a0a0 -sb #0c73c2 -sf #ffffff -l 18 -p $(basename $0)"
+
+# Present a menu with all windows
+TITLE="$(i3-msg -t get_tree | python -mjson.tool | sed -n -e 's/^ \{35\}[ ]\+\"name\": \"\(.*\)\", $/\1/p' | sed '/^#[a-F0-9]\{6\}$/d' | dmenu $DMENU_OPTS)"
+
+if [ -z "$TITLE" ] ; then
+   exit 1
+fi
+
+# Escape some characters to prevent i3 to interpret them as a pattern
+# "(" and ")" replaced with "\(" and "\)"
+TITLE="$(echo "$TITLE" | sed 's/\([()]\)/\\\1/g')"
+
+# Focus window
+i3-msg "[title=\"$TITLE\"] focus"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1281/application-switcher/?comment=1287#comment-1287</link><description>thanks for your reply. I'll maybe try that approach as well in the near future.</description><pubDate>Sat, 02 Mar 2013 22:18:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?comment=1287#comment-1287</guid></item><item><title>Answer by lkraav for &lt;p&gt;I find my self lost among all workspaces and application windows. Is there an application switcher that can be used with i3? Or is there a way to get something similar. All I want is a list of the active application widows which I can tab through to switch to the window i want to go to next. &lt;/p&gt;
+
+&lt;p&gt;TIA&lt;/p&gt;
+
+&lt;p&gt;Albert&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1281/application-switcher/?answer=1285#post-id-1285</link><description>Not sure if this isn't a duplicate of my question: https://faq.i3wm.org/question/228/how-do-i-find-an-app-buried-in-some-workspace-by-its-title/
+
+Anyway, the i3-py solution there works great for me.</description><pubDate>Sat, 02 Mar 2013 17:40:52 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?answer=1285#post-id-1285</guid></item><item><title>Answer by badboy_ for &lt;p&gt;I find my self lost among all workspaces and application windows. Is there an application switcher that can be used with i3? Or is there a way to get something similar. All I want is a list of the active application widows which I can tab through to switch to the window i want to go to next. &lt;/p&gt;
+
+&lt;p&gt;TIA&lt;/p&gt;
+
+&lt;p&gt;Albert&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1281/application-switcher/?answer=1283#post-id-1283</link><description>I use [quickswitch](https://github.com/badboy/quickswitch-for-i3) (or the original one in python: [quickswitch.py](https://github.com/proxypoke/quickswitch-for-i3)).
+
+There is also a more fancy version: [simpleswitcher](https://github.com/DaveDavenport/simpleswitcher)</description><pubDate>Sat, 02 Mar 2013 16:39:05 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?answer=1283#post-id-1283</guid></item><item><title>Comment by badboy_ for &lt;p&gt;I use &lt;a href="https://github.com/badboy/quickswitch-for-i3"&gt;quickswitch&lt;/a&gt; (or the original one in python: &lt;a href="https://github.com/proxypoke/quickswitch-for-i3"&gt;quickswitch.py&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;There is also a more fancy version: &lt;a href="https://github.com/DaveDavenport/simpleswitcher"&gt;simpleswitcher&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1281/application-switcher/?comment=3067#comment-3067</link><description>@oldos2er: It simply uses dmenu, with the python version you can specify the command using the `-d` (or `--dmenu`) switch to quickswitch.py, my ruby version has the command hardcoded in the source.</description><pubDate>Mon, 16 Dec 2013 10:29:04 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?comment=3067#comment-3067</guid></item><item><title>Comment by oldos2er for &lt;p&gt;I use &lt;a href="https://github.com/badboy/quickswitch-for-i3"&gt;quickswitch&lt;/a&gt; (or the original one in python: &lt;a href="https://github.com/proxypoke/quickswitch-for-i3"&gt;quickswitch.py&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;There is also a more fancy version: &lt;a href="https://github.com/DaveDavenport/simpleswitcher"&gt;simpleswitcher&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1281/application-switcher/?comment=3030#comment-3030</link><description>quickswitch works well, but does anyone know how to enlarge its font?</description><pubDate>Tue, 10 Dec 2013 20:02:51 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?comment=3030#comment-3030</guid></item><item><title>Comment by thuswa for &lt;p&gt;I use &lt;a href="https://github.com/badboy/quickswitch-for-i3"&gt;quickswitch&lt;/a&gt; (or the original one in python: &lt;a href="https://github.com/proxypoke/quickswitch-for-i3"&gt;quickswitch.py&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;There is also a more fancy version: &lt;a href="https://github.com/DaveDavenport/simpleswitcher"&gt;simpleswitcher&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1281/application-switcher/?comment=1286#comment-1286</link><description>thanks for that one, I settled with quickswitch.py it works as expected.</description><pubDate>Sat, 02 Mar 2013 22:17:34 +0000</pubDate><guid>https://faq.i3wm.org/question/1281/application-switcher/?comment=1286#comment-1286</guid></item></channel></rss>

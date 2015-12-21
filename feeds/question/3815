@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3815/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 15 May 2014 10:27:13 +0000</lastBuildDate><item><title>Execute command when Mod is pressed?</title><link>https://faq.i3wm.org/question/3815/execute-command-when-mod-is-pressed/</link><description>Every time I press the mod button I'd like to execute a command to update my i3bar. Is this possible?
+
+
+Solution:
+
+I found the solution. In my i3 config I put:
+
+    bindcode 133 exec my_command
+
+Where '133' is the keycode of my Mod key, then I can run my_command each time it's pressed. So I can update my i3blocks bar by putting:
+
+    bindcode 133 exec pkill -SIGRTMIN+1 i3blocks  
+
+in the config, then all the blocks with a signal of 1 will be updated.
+</description><pubDate>Thu, 15 May 2014 02:22:48 +0000</pubDate><guid>https://faq.i3wm.org/question/3815/execute-command-when-mod-is-pressed/</guid></item><item><title>Answer by SuperZanti for &lt;p&gt;Every time I press the mod button I'd like to execute a command to update my i3bar. Is this possible?&lt;/p&gt;
+
+&lt;p&gt;Solution:&lt;/p&gt;
+
+&lt;p&gt;I found the solution. In my i3 config I put:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode 133 exec my_command
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where '133' is the keycode of my Mod key, then I can run my_command each time it's pressed. So I can update my i3blocks bar by putting:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode 133 exec pkill -SIGRTMIN+1 i3blocks
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in the config, then all the blocks with a signal of 1 will be updated.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3815/execute-command-when-mod-is-pressed/?answer=3818#post-id-3818</link><description>Thanks for your lengthy response! It's much appreciated.
+
+However, I really am only looking to update my i3bar when I click the modkey. It's a hidden bar, so I know something has to execute to show the bar again.</description><pubDate>Thu, 15 May 2014 09:49:22 +0000</pubDate><guid>https://faq.i3wm.org/question/3815/execute-command-when-mod-is-pressed/?answer=3818#post-id-3818</guid></item><item><title>Answer by SuperZanti for &lt;p&gt;Every time I press the mod button I'd like to execute a command to update my i3bar. Is this possible?&lt;/p&gt;
+
+&lt;p&gt;Solution:&lt;/p&gt;
+
+&lt;p&gt;I found the solution. In my i3 config I put:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode 133 exec my_command
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where '133' is the keycode of my Mod key, then I can run my_command each time it's pressed. So I can update my i3blocks bar by putting:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode 133 exec pkill -SIGRTMIN+1 i3blocks
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in the config, then all the blocks with a signal of 1 will be updated.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3815/execute-command-when-mod-is-pressed/?answer=3820#post-id-3820</link><description>I found the solution. If I run
+
+    bindcode 133 exec my_command
+
+Where '133' is the keycode of my Mod key, then I can run my_command each time it's pressed.</description><pubDate>Thu, 15 May 2014 10:27:13 +0000</pubDate><guid>https://faq.i3wm.org/question/3815/execute-command-when-mod-is-pressed/?answer=3820#post-id-3820</guid></item><item><title>Answer by phairland for &lt;p&gt;Every time I press the mod button I'd like to execute a command to update my i3bar. Is this possible?&lt;/p&gt;
+
+&lt;p&gt;Solution:&lt;/p&gt;
+
+&lt;p&gt;I found the solution. In my i3 config I put:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode 133 exec my_command
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where '133' is the keycode of my Mod key, then I can run my_command each time it's pressed. So I can update my i3blocks bar by putting:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindcode 133 exec pkill -SIGRTMIN+1 i3blocks
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in the config, then all the blocks with a signal of 1 will be updated.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3815/execute-command-when-mod-is-pressed/?answer=3817#post-id-3817</link><description>Mod keys like alt or super are meant to be use in combination with others keys. When you are trying to assign a shortcut either on the i3 config or others programs like xbindkeys and xdotool, it is always expecting one of the modifiers keys plus the combination key. I do not think you will be able to map a command as soon as you press a modifier key, but maybe there is a way to do it.
+
+The other issue that you seem to present is that you want to update the i3bar, and the right way to do it is through the `i3status.conf`. You can actually use any programming language or a program that outputs data. My i3 bar consists of weather, bitcoin exchange rate, cpu load, temp, battery, dropbox status, wifi status, volume, date and time. All these I get by using `tcl` to call commands and format the output with `sed`, `awk`, `grep` and `cut`.
+
+The file output a JSON format that i3bar can understand, so basically you can use any programming language or program that outputs data and format it according to the i3 JSON guidelines.
+
+Besides my program outputting all that data onto the i3bar, it will change color according to the status. For example, temp is green when is less than 65, yellow when is between 65 and 74 and red when is more than 74. Wifi and Dropbox are red when offline, and cpu load follows the same pattern. Another is the charge when laptop on batteries, it will turn red when less tha 20%. 
+
+Then you can add almost anything including things you can find on the web, like weather and exchange rates. Most programming languages have http apis that provides you with tools to extract information from webpages, and that's why the i3 bar is so powerful. 
+
+Tcl code is quite straight forward and you can look at the code and modify it in your programming language of choice and since most of the formatting is done using external programs like `sed` and `awk`. The only thing you need to be wary of is how tcl handles awk code, for example when in tcl code `awk {{print $3}}` in other programming languages and awk itself is `awk '{print $3}'` as there is special case how tcl handles single quotes, so it have to use curly braces instead.
+
+On the i3.conf I got the following line to call my tcl file:
+
+    bar {
+    position top
+    status_command i3status --config ~/.config/i3/i3status.conf | ~/.config/i3/status.tcl
+    colors {
+    urgent_workspace   #000000 #000000 #c0c0c0
+    }
+    }
+
+Then my `status.tcl` file:
+
+    #!/bin/tclsh
+    package require http
+    ::http::config -useragent "Mozilla/5.0 (X11; Linux i686; rv:24.0) Gecko/20100101 Firefox/24.0"
+    set    red "#FF0000"
+    set  green "#00FF00"
+    set yellow "#FFF000"
+    set   blue "#00EAFF" 
+    set  white "#FFFFFF" 
+    puts {{"version":1}
+    [
+    []}
+    proc dropbox {} {
+        catch { exec dropbox status} msg 
+        set dropbox $msg
+        if {$dropbox=="Dropbox isn't running!" || [string match Connecting* $dropbox]} {
+            set stdout {{"name":"dropbox","full_text":"IDLE","color": "$::red"}}
+        } else {
+            set dropbox [string toupper $dropbox 0 end]
+            regsub -all {\.\.\.} $dropbox " " dropbox 
+            set dropbox [split $dropbox " "]
+            set dropbox [lindex $dropbox 0] 
+            set dropbox [string range $dropbox 0 3]
+            if {$dropbox=="UP"} {set dropbox "IDLE"}
+            set stdout {{"name":"dropbox","full_text":"$dropbox","color": "$::green"}}
+        }
+        set stdout [subst -nocommands $stdout]
+        puts -nonewline $stdout
+    }
+    proc wifi {} {
+        set hostname [exec hostname]
+        if {$hostname=="R730"} {set con "wlp2s0"} else {set con "wlp3s0"}
+        set wifi [exec iwconfig $con | sed -ne /Point/p | awk {{print $6}}]
+        if {[string match *Not-Associated* $wifi] } {
+            set stdout {{"name":"wifi","full_text":"WIFI","color": "$::red"}} 
+        } else { 
+            set stdout {{"name":"wifi","full_text":"WIFI","color": "$::green"}}
+        }
+        set stdout [subst -nocommands $stdout]
+        puts -nonewline $stdout
+    }
+    proc hour {} {
+        set hour [clock format [clock sec] -format %H:%M] 
+        set stdout {{"name":"hour","full_text":"$hour"}} 
+        set stdout [subst -nocommands $stdout]
+        puts -nonewline $stdout
+    }
+    proc date {} {
+        set date [clock format [clock sec] -format {%a}]
+        set date [string toupper $date]
+        set date_number [clock format [clock sec] -format {%e}]
+        set suffix [en_ordinal $date_number]
+        if {[string range $date_number 0 0]!=" "} {set date "$date "}
+        set stdout {{"name":"date","full_text":"$date$suffix","color": "$::white"}} 
+        set stdout [subst -nocommands $stdout]
+        puts -nonewline $stdout
+    }
+    proc en_ordinal n {
+        set suffix th
+        if {($n%100)&lt;10 || ($n%100)&gt;20} {
+            switch -- [expr abs($n)%10] {
+                1 {set suffix st}
+                2 {set suffix nd}
+                3 {set suffix rd}
+            }
+        }
+        append n $suffix
+    } 
+    proc battery {} {
+        set battery [exec acpi]
+        set percentage [exec acpi | awk {{print $4}} | sed {s/%,//}]
+        if {[string match *Discharging* $battery]} {
+        if {$percentage &gt;= 20} {set color "$::yellow"}
+        if {$percentage &lt;  20} {set color "$::red"}
+        regsub -all "," $battery "" battery 
+        set charge [lindex $battery 3]
+        set remain [lindex $battery 4]
+        set stdout {{"name":"battery","full_text":"$charge $remain","color": "$color"}} 
+       } else { set stdout {{"name":"battery","full_text":"D=","color": "$::green"}} 
+    }
+        set stdout [subst -nocommands $stdout]
+        puts -nonewline $stdout
+    }
+    proc volume {} {
+        set vol [exec amixer sget Master | awk {-F[][]} {/dB/ { print $2 }} | head -1]
+        regsub -all "%" $vol "♬" vol 
+        set stdout {{"name":"volume","full_text":"$vol","color":"$::blue"}} 
+        set stdout [subst -nocommands $stdout]
+        puts -nonewline $stdout
+    }
+    proc cpu_load {} {
+        set cpu_load [exec sar 1 1 | sed -n {4p} | awk {{print $8}}]
+        set cpu_load [expr 100-$cpu_load]
+        set cpu_load [format "%.2f" $cpu_load]
+        if {$cpu_load &lt;= 59.99} {set color "$::green"}
+        if {$cpu_load &gt;= 60 &amp;&amp; $cpu_load &lt;= 79.99} {set color "$::yellow"}
+        if {$cpu_load &gt;= 80} {set color "$::red"}
+     set stdout {{"name":"cpu_load","full_text":"$cpu_load","color":"$color"}} 
+        set stdout [subst -nocommands $stdout]
+        puts -nonewline $stdout
+    }
+    proc cpu_temp {} {
+        set cpu_temp [exec sensors | grep Core | sed -n  {2p} | awk {{print $3}} | cut -c2-3]
+        if {$cpu_temp &lt;= 64} {set color "$::green"}
+        if {$cpu_temp &gt;= 65 &amp;&amp; $cpu_temp &lt;= 74} {set color "$::yellow"}
+        if {$cpu_temp &gt;= 75} {set color "$::red"}
+        set stdout {{"name":"cpu_temp","full_text":"$cpu_temp°C","color":"$color"}} 
+        set stdout [subst -nocommands $stdout]
+        puts -nonewline $stdout
+    }
+    set ::backup ""
+    proc weather {} {
+        set weather [exec tclsh /home/alber/.config/i3/weather.tcl]
+        if {$weather==""} {set weather $::backup}
+        set ::backup $weather
+        set stdout {{"name":"weather","full_text":"$weather","color":"$::white"}} 
+        set stdout [subst -nocommands $stdout]
+        puts -nonewline $stdout
+    }
+    
+    proc bitcoin {} {
+        set url http://bcchanger.com/bitcoin_price_feed.php?feed_type=text&amp;currency=GBP
+        if [catch { set http [::http::geturl $url] } msg] { set bitcoin ""} else {
+        set bitcoin [::http::data $http] }
+        regsub -all {\n} $bitcoin "" bitcoin 
+        set stdout {{"name":"bitcoin","full_text":"$bitcoin","color":"$::white"}} 
+        set stdout [subst -nocommands $stdout]
+        puts -nonewline $stdout
+    }
+    while 1 {
+        set begin ",\["
+        set end "]"
+                  puts -nonewline $begin
+        weather;  puts -nonewline ","
+        bitcoin;  puts -nonewline ","
+        cpu_load; puts -nonewline ","
+        cpu_temp; puts -nonewline ","
+        battery;  puts -nonewline ","
+        dropbox;  puts -nonewline ","
+        wifi;     puts -nonewline ","
+        volume;   puts -nonewline ","
+        date;     puts -nonewline ","
+        hour;     puts $end
+    after 1000
+    }
+
+</description><pubDate>Thu, 15 May 2014 09:35:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3815/execute-command-when-mod-is-pressed/?answer=3817#post-id-3817</guid></item><item><title>Comment by SuperZanti for &lt;div class="snippet"&gt;&lt;p&gt;Mod keys like alt or super are meant to be use in combination with others keys. When you are trying to assign a shortcut either on the i3 config or others programs like xbindkeys and xdotool, it is always expecting one of the modifiers keys plus the combination key. I do not think you will be able to map a command as soon as you press a modifier key, but maybe there is a way to do it.&lt;/p&gt;
+
+&lt;p&gt;The other issue that you seem to present is that you want to update the i3bar, and the right way to do it is through the &lt;code&gt;i3status.conf&lt;/code&gt;. You can actually use any programming language or a program that outputs data. My i3 bar consists of weather, bitcoin exchange rate, cpu load, temp, battery, dropbox status, wifi status, volume, date and time. All these I get by using &lt;code&gt;tcl&lt;/code&gt; to call commands and format the output with &lt;code&gt;sed&lt;/code&gt;, &lt;code&gt;awk&lt;/code&gt;, &lt;code&gt;grep&lt;/code&gt; and &lt;code&gt;cut&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The file output a JSON format that i3bar can understand, so basically you can use any programming language or program that outputs data and format it according to the i3 JSON guidelines.&lt;/p&gt;
+
+&lt;p&gt;Besides my program outputting all that data onto the i3bar, it will change color according to the status. For example, temp is green when is less than 65, yellow when is between 65 and 74 and red when is more than 74. Wifi and Dropbox are red when offline, and cpu load follows the same pattern. Another is the charge when laptop on batteries, it will turn red when less tha 20%. &lt;/p&gt;
+
+&lt;p&gt;Then you can add almost anything including things you can find on the web, like weather and exchange rates. Most programming languages have http apis that provides you with tools to extract information from webpages, and that's why the i3 bar is so powerful. &lt;/p&gt;
+
+&lt;p&gt;Tcl code is quite straight forward and you can look at the code and modify it in your programming language of choice and since most of the formatting is done using external programs like &lt;code&gt;sed&lt;/code&gt; and &lt;code&gt;awk&lt;/code&gt;. The only thing you need to be wary of is how tcl handles awk code, for example when in tcl code &lt;code&gt;awk {{print $3}}&lt;/code&gt; in other programming languages and awk itself is &lt;code&gt;awk '{print $3}'&lt;/code&gt; as there is special case how tcl handles single quotes, so it have to use curly braces instead.&lt;/p&gt;
+
+&lt;p&gt;On the i3.conf I got the following line to call my tcl file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+position top
+status_command i3status --config ~/.config/i3/i3status.conf | ~/.config/i3/status.tcl
+colors {
+urgent_workspace   #000000 #000000 #c0c0c0
+}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then my &lt;code&gt;status.tcl&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/tclsh
+package require http
+::http::config -useragent "Mozilla/5.0 (X11; Linux i686; rv:24.0) Gecko/20100101 Firefox/24.0"
+set    red "#FF0000"
+set  green "#00FF00"
+set yellow "#FFF000"
+set   blue "#00EAFF" 
+set  white "#FFFFFF" 
+puts {{"version":1}
+[
+[]}
+proc dropbox {} {
+    catch { exec dropbox status} msg 
+    set dropbox $msg
+    if {$dropbox=="Dropbox isn't running!" || [string match Connecting* $dropbox]} {
+        set stdout {{"name ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/3815/execute-command-when-mod-is-pressed/?comment=3819#comment-3819</link><description>Thanks for the lengthy comment! It's much appreciated!
+
+However, I am looking for something so I can only update the i3bar when the mod button is pressed. I know something has to be triggered because I have my bar hidden, and something has to run to show it again.</description><pubDate>Thu, 15 May 2014 09:50:24 +0000</pubDate><guid>https://faq.i3wm.org/question/3815/execute-command-when-mod-is-pressed/?comment=3819#comment-3819</guid></item></channel></rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4075/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 09 Jul 2014 21:11:20 +0000</lastBuildDate><item><title>How to debug i3-dmenu-desktop</title><link>https://faq.i3wm.org/question/4075/how-to-debug-i3-dmenu-desktop/</link><description>Hi,
+
+I have a .desktop file that starts an application just fine when using Gnome. However, when using i3-dmenu-desktop to start it, nothing happens. How can I debug what's going on? I tried running i3-dmenu-desktop in a terminal window, but there were no error messages at all.
+
+This is the .desktop file:
+
+    [Desktop Entry]
+    Name=SI Windowed
+    Exec=env WINEPREFIX="/home/nikratio/.wine" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/nikratio/.wine/dosdevices/c:/users/Public/Start\\ Menu/Programs/Cryptic\\ Comet/SI\\ Windowed.lnk
+    Type=Application
+    StartupNotify=true
+    Path=/home/nikratio/.wine/dosdevices/c:/Program Files/Cryptic Comet/Solium Infernum
+    Icon=0FCC_Solium Infernum Windowed.0
+
+</description><pubDate>Tue, 01 Jul 2014 04:36:03 +0000</pubDate><guid>https://faq.i3wm.org/question/4075/how-to-debug-i3-dmenu-desktop/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I have a .desktop file that starts an application just fine when using Gnome. However, when using i3-dmenu-desktop to start it, nothing happens. How can I debug what's going on? I tried running i3-dmenu-desktop in a terminal window, but there were no error messages at all.&lt;/p&gt;
+
+&lt;p&gt;This is the .desktop file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Desktop Entry]
+Name=SI Windowed
+Exec=env WINEPREFIX="/home/nikratio/.wine" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/nikratio/.wine/dosdevices/c:/users/Public/Start\\ Menu/Programs/Cryptic\\ Comet/SI\\ Windowed.lnk
+Type=Application
+StartupNotify=true
+Path=/home/nikratio/.wine/dosdevices/c:/Program Files/Cryptic Comet/Solium Infernum
+Icon=0FCC_Solium Infernum Windowed.0
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/4075/how-to-debug-i3-dmenu-desktop/?answer=4190#post-id-4190</link><description>You can use `strace -s 2048 i3-dmenu-desktop` if you want to see everything i3-dmenu-desktop is doing.
+
+More to the point, however, is checking the i3 logfile for the command that i3 receives. See http://i3wm.org/docs/debugging.html for details.
+
+Once you checked the logfile and verified that the .desktop file is actually correct with regards to escaping, feel free to open a bug at http://bugs.i3wm.org/</description><pubDate>Wed, 09 Jul 2014 21:11:20 +0000</pubDate><guid>https://faq.i3wm.org/question/4075/how-to-debug-i3-dmenu-desktop/?answer=4190#post-id-4190</guid></item></channel></rss>

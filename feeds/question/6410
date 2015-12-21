@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6410/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 09 Aug 2015 15:23:30 +0000</lastBuildDate><item><title>What shell does ‘exec’ actually use and how can I change it?</title><link>https://faq.i3wm.org/question/6410/what-shell-does-exec-actually-use-and-how-can-i-change-it/</link><description>This might be a non-i3-question after all.
+
+In the [i3 docs](http://i3wm.org/docs/userguide.html#exec), it says that
+
+&gt; “What good is a window manager if you can’t actually start any applications? The exec command starts an application by passing the command you specify to a shell,”
+
+but what shell are the commands actually passed to? My user’s shell is set to `/bin/zsh`, but apparently `exec` invokes command via `/bin/sh`. How can I change that?
+
+I use debian testing/unstable, should that matter.
+
+*Background*: I use an i3 key binding to invoke `urxvtcd -e emacs -nw`, but evaluating `(getenv "PATH")` from within emacs gives me then the wrong environment (whereas `(getenv "SHELL")` gives me `/bin/zsh`).</description><pubDate>Sat, 08 Aug 2015 19:51:31 +0000</pubDate><guid>https://faq.i3wm.org/question/6410/what-shell-does-exec-actually-use-and-how-can-i-change-it/</guid></item><item><title>Answer by Airblader for &lt;p&gt;This might be a non-i3-question after all.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;a href="http://i3wm.org/docs/userguide.html#exec"&gt;i3 docs&lt;/a&gt;, it says that&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“What good is a window manager if you can’t actually start any applications? The exec command starts an application by passing the command you specify to a shell,”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;but what shell are the commands actually passed to? My user’s shell is set to &lt;code&gt;/bin/zsh&lt;/code&gt;, but apparently &lt;code&gt;exec&lt;/code&gt; invokes command via &lt;code&gt;/bin/sh&lt;/code&gt;. How can I change that?&lt;/p&gt;
+
+&lt;p&gt;I use debian testing/unstable, should that matter.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Background&lt;/em&gt;: I use an i3 key binding to invoke &lt;code&gt;urxvtcd -e emacs -nw&lt;/code&gt;, but evaluating &lt;code&gt;(getenv "PATH")&lt;/code&gt; from within emacs gives me then the wrong environment (whereas &lt;code&gt;(getenv "SHELL")&lt;/code&gt; gives me &lt;code&gt;/bin/zsh&lt;/code&gt;).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6410/what-shell-does-exec-actually-use-and-how-can-i-change-it/?answer=6411#post-id-6411</link><description>i3 uses `/bin/sh` because this is available everywhere. You cannot modify this. Leaving aside the question of why your `/bin/sh` doesn't just point to zsh, you can do this:
+
+    exec /bin/zsh whatever.sh </description><pubDate>Sat, 08 Aug 2015 23:20:10 +0000</pubDate><guid>https://faq.i3wm.org/question/6410/what-shell-does-exec-actually-use-and-how-can-i-change-it/?answer=6411#post-id-6411</guid></item><item><title>Comment by k.stm for &lt;p&gt;i3 uses &lt;code&gt;/bin/sh&lt;/code&gt; because this is available everywhere. You cannot modify this. Leaving aside the question of why your &lt;code&gt;/bin/sh&lt;/code&gt; doesn't just point to zsh, you can do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec /bin/zsh whatever.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6410/what-shell-does-exec-actually-use-and-how-can-i-change-it/?comment=6413#comment-6413</link><description>Or `exec zsh -c whatever`. Ok.</description><pubDate>Sun, 09 Aug 2015 15:23:30 +0000</pubDate><guid>https://faq.i3wm.org/question/6410/what-shell-does-exec-actually-use-and-how-can-i-change-it/?comment=6413#comment-6413</guid></item></channel></rss>

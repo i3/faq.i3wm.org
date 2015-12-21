@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/570/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 04 Oct 2012 11:17:27 +0000</lastBuildDate><item><title>Similarly named variables override each other</title><link>https://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/</link><description>If have the following in my configuration:
+
+    set $base02    #073642
+    set $base01    #586e75
+    set $base00    #ff0000
+    set $base0     #0000ff
+    
+    #			border	background	text	indicator
+    client.unfocused	$base01	$base02		$base0	$base01
+
+The result is that border, background and text are `#0000ff`.
+The value of `$base00`, `$base01` and `$base02` is overwritten by the 
+definition of `$base0`. If I move the definition of `$base0` in front of the
+other definitions it works as expected.
+
+Whats the rationale behind this behaviour?
+
+
+I'm using i3 version 4.2 (2012-04-25, branch "release-4.2").
+
+**EDIT**
+
+Removed unused reference to $yellow, because it was not relevant to the question.
+Sorry for the confusion.</description><pubDate>Mon, 01 Oct 2012 19:03:23 +0000</pubDate><guid>https://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/</guid></item><item><title>Answer by Michael for &lt;p&gt;If have the following in my configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $base02    #073642
+set $base01    #586e75
+set $base00    #ff0000
+set $base0     #0000ff
+
+#           border  background  text    indicator
+client.unfocused    $base01 $base02     $base0  $base01
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The result is that border, background and text are &lt;code&gt;#0000ff&lt;/code&gt;.
+The value of &lt;code&gt;$base00&lt;/code&gt;, &lt;code&gt;$base01&lt;/code&gt; and &lt;code&gt;$base02&lt;/code&gt; is overwritten by the 
+definition of &lt;code&gt;$base0&lt;/code&gt;. If I move the definition of &lt;code&gt;$base0&lt;/code&gt; in front of the
+other definitions it works as expected.&lt;/p&gt;
+
+&lt;p&gt;Whats the rationale behind this behaviour?&lt;/p&gt;
+
+&lt;p&gt;I'm using i3 version 4.2 (2012-04-25, branch "release-4.2").&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Removed unused reference to $yellow, because it was not relevant to the question.
+Sorry for the confusion.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/?answer=573#post-id-573</link><description>You are slightly wrong: The result is the following:
+
+    ERROR: CONFIG: syntax error, unexpected $undefined
+    ERROR: CONFIG: in file "/tmp/570.cfg", line 153:
+    ERROR: CONFIG:   client.unfocused    #0000ff1 #0000ff2     #0000ff  $yellow
+    ERROR: CONFIG:                                                      ^
+
+As you can see, since you have a variable called `$base0`, that is being replaced in **$base0**1 and we get **#0000ff**1.
+
+If you reverse the order of your variable keywords, it works as expected:
+
+    set $base0     #0000ff
+    set $base02    #073642
+    set $base01    #586e75
+    set $base00    #ff0000
+
+    #           border  background  text    indicator
+    client.unfocused    $base01 $base02     $base0  $yellow
+
+leads to:
+
+    ERROR: CONFIG:   client.unfocused    #586e75 #073642     #0000ff  $yellow
+(`$yellow` unfixed so I can demonstrate the other replacements working properly)
+
+This is kinda intentional — the variable mechanism is kept simple, with all the side-effects that has.</description><pubDate>Mon, 01 Oct 2012 19:14:44 +0000</pubDate><guid>https://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/?answer=573#post-id-573</guid></item><item><title>Comment by weinzierl for &lt;p&gt;You are slightly wrong: The result is the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: CONFIG: syntax error, unexpected $undefined
+ERROR: CONFIG: in file "/tmp/570.cfg", line 153:
+ERROR: CONFIG:   client.unfocused    #0000ff1 #0000ff2     #0000ff  $yellow
+ERROR: CONFIG:                                                      ^
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, since you have a variable called &lt;code&gt;$base0&lt;/code&gt;, that is being replaced in &lt;strong&gt;$base0&lt;/strong&gt;1 and we get &lt;strong&gt;#0000ff&lt;/strong&gt;1.&lt;/p&gt;
+
+&lt;p&gt;If you reverse the order of your variable keywords, it works as expected:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $base0     #0000ff
+set $base02    #073642
+set $base01    #586e75
+set $base00    #ff0000
+
+#           border  background  text    indicator
+client.unfocused    $base01 $base02     $base0  $yellow
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;leads to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: CONFIG:   client.unfocused    #586e75 #073642     #0000ff  $yellow
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(&lt;code&gt;$yellow&lt;/code&gt; unfixed so I can demonstrate the other replacements working properly)&lt;/p&gt;
+
+&lt;p&gt;This is kinda intentional — the variable mechanism is kept simple, with all the side-effects that has.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/?comment=574#comment-574</link><description>Sorry, I still don't get it. I forgot to remove the $yellow from the example, my bad, I changed the question accordingly. Why does $base0 overwrite $base01, from my understanding this are two different names.  If $a is defined after, say $ab, then that changes $ab to the same value as $a. </description><pubDate>Mon, 01 Oct 2012 19:24:31 +0000</pubDate><guid>https://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/?comment=574#comment-574</guid></item><item><title>Comment by Michael for &lt;p&gt;You are slightly wrong: The result is the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: CONFIG: syntax error, unexpected $undefined
+ERROR: CONFIG: in file "/tmp/570.cfg", line 153:
+ERROR: CONFIG:   client.unfocused    #0000ff1 #0000ff2     #0000ff  $yellow
+ERROR: CONFIG:                                                      ^
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, since you have a variable called &lt;code&gt;$base0&lt;/code&gt;, that is being replaced in &lt;strong&gt;$base0&lt;/strong&gt;1 and we get &lt;strong&gt;#0000ff&lt;/strong&gt;1.&lt;/p&gt;
+
+&lt;p&gt;If you reverse the order of your variable keywords, it works as expected:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $base0     #0000ff
+set $base02    #073642
+set $base01    #586e75
+set $base00    #ff0000
+
+#           border  background  text    indicator
+client.unfocused    $base01 $base02     $base0  $yellow
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;leads to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: CONFIG:   client.unfocused    #586e75 #073642     #0000ff  $yellow
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(&lt;code&gt;$yellow&lt;/code&gt; unfixed so I can demonstrate the other replacements working properly)&lt;/p&gt;
+
+&lt;p&gt;This is kinda intentional — the variable mechanism is kept simple, with all the side-effects that has.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/?comment=589#comment-589</link><description>$base0 does not overwrite anything else. It’s just the order in which the variables are replaced.</description><pubDate>Thu, 04 Oct 2012 11:15:58 +0000</pubDate><guid>https://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/?comment=589#comment-589</guid></item><item><title>Comment by Michael for &lt;p&gt;You are slightly wrong: The result is the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: CONFIG: syntax error, unexpected $undefined
+ERROR: CONFIG: in file "/tmp/570.cfg", line 153:
+ERROR: CONFIG:   client.unfocused    #0000ff1 #0000ff2     #0000ff  $yellow
+ERROR: CONFIG:                                                      ^
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, since you have a variable called &lt;code&gt;$base0&lt;/code&gt;, that is being replaced in &lt;strong&gt;$base0&lt;/strong&gt;1 and we get &lt;strong&gt;#0000ff&lt;/strong&gt;1.&lt;/p&gt;
+
+&lt;p&gt;If you reverse the order of your variable keywords, it works as expected:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $base0     #0000ff
+set $base02    #073642
+set $base01    #586e75
+set $base00    #ff0000
+
+#           border  background  text    indicator
+client.unfocused    $base01 $base02     $base0  $yellow
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;leads to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: CONFIG:   client.unfocused    #586e75 #073642     #0000ff  $yellow
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(&lt;code&gt;$yellow&lt;/code&gt; unfixed so I can demonstrate the other replacements working properly)&lt;/p&gt;
+
+&lt;p&gt;This is kinda intentional — the variable mechanism is kept simple, with all the side-effects that has.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/?comment=590#comment-590</link><description>I’ve updated the formatting of the answer to make the problem more clear. Maybe that helps.</description><pubDate>Thu, 04 Oct 2012 11:17:27 +0000</pubDate><guid>https://faq.i3wm.org/question/570/similarly-named-variables-override-each-other/?comment=590#comment-590</guid></item></channel></rss>

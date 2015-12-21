@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5092/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 05 Dec 2014 12:32:38 +0000</lastBuildDate><item><title>Is there a way to change the degraded threshold for wireless in the i3status bar?</title><link>https://faq.i3wm.org/question/5092/is-there-a-way-to-change-the-degraded-threshold-for-wireless-in-the-i3status-bar/</link><description>Wireless status changes to degraded color when the quality is below 50%. Is there a way to change this threshold to something other than 50%?</description><pubDate>Thu, 04 Dec 2014 19:48:38 +0000</pubDate><guid>https://faq.i3wm.org/question/5092/is-there-a-way-to-change-the-degraded-threshold-for-wireless-in-the-i3status-bar/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Wireless status changes to degraded color when the quality is below 50%. Is there a way to change this threshold to something other than 50%?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5092/is-there-a-way-to-change-the-degraded-threshold-for-wireless-in-the-i3status-bar/?answer=5097#post-id-5097</link><description>There is no easy way:
+
+1. There is no configuration option for that in `i3status`. 
+2. The value is not even hard coded into the `i3status` code, but it is retrieved with the *iwlib* library, which in turn seems to get it from the driver.
+
+The `wireless.h` (from *iwlib*) has the following to say about `avg_qual` (which `i3status` uses - correctly so - as threshold value):
+
+    /* This should contain the average/typical values of the quality
+     * indicator. This should be the threshold between a "good" and
+     * a "bad" link (example : monitor going from green to orange).
+     * Currently, user space apps like quality monitors don't have any
+     * way to calibrate the measurement. With this, they can split
+     * the range between 0 and max_qual in different quality level
+     * (using a geometric subdivision centered on the average).
+     * I expect that people doing the user space apps will feedback
+     * us on which value we need to put in each driver... */
+    struct iw_quality avg_qual;
+
+So unless there is a way to actually calibrate this setting now, it seems that the threshold `i3status` uses cannot be changed.
+
+---
+
+Of course you could always modify the code and compile `i3status` yourself.</description><pubDate>Fri, 05 Dec 2014 08:35:44 +0000</pubDate><guid>https://faq.i3wm.org/question/5092/is-there-a-way-to-change-the-degraded-threshold-for-wireless-in-the-i3status-bar/?answer=5097#post-id-5097</guid></item><item><title>Comment by jefeyay for &lt;p&gt;There is no easy way:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;There is no configuration option for that in &lt;code&gt;i3status&lt;/code&gt;. &lt;/li&gt;
+&lt;li&gt;The value is not even hard coded into the &lt;code&gt;i3status&lt;/code&gt; code, but it is retrieved with the &lt;em&gt;iwlib&lt;/em&gt; library, which in turn seems to get it from the driver.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The &lt;code&gt;wireless.h&lt;/code&gt; (from &lt;em&gt;iwlib&lt;/em&gt;) has the following to say about &lt;code&gt;avg_qual&lt;/code&gt; (which &lt;code&gt;i3status&lt;/code&gt; uses - correctly so - as threshold value):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* This should contain the average/typical values of the quality
+ * indicator. This should be the threshold between a "good" and
+ * a "bad" link (example : monitor going from green to orange).
+ * Currently, user space apps like quality monitors don't have any
+ * way to calibrate the measurement. With this, they can split
+ * the range between 0 and max_qual in different quality level
+ * (using a geometric subdivision centered on the average).
+ * I expect that people doing the user space apps will feedback
+ * us on which value we need to put in each driver... */
+struct iw_quality avg_qual;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So unless there is a way to actually calibrate this setting now, it seems that the threshold &lt;code&gt;i3status&lt;/code&gt; uses cannot be changed.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Of course you could always modify the code and compile &lt;code&gt;i3status&lt;/code&gt; yourself.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5092/is-there-a-way-to-change-the-degraded-threshold-for-wireless-in-the-i3status-bar/?comment=5101#comment-5101</link><description>Thank you for the detailed explanation.</description><pubDate>Fri, 05 Dec 2014 12:32:38 +0000</pubDate><guid>https://faq.i3wm.org/question/5092/is-there-a-way-to-change-the-degraded-threshold-for-wireless-in-the-i3status-bar/?comment=5101#comment-5101</guid></item></channel></rss>

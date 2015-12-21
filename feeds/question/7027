@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7027/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 23 Oct 2015 21:45:10 +0000</lastBuildDate><item><title>Right click on Macbook Pro</title><link>https://faq.i3wm.org/question/7027/right-click-on-macbook-pro/</link><description> I got a an old MacBook Pro (late 2011) at work and put Fedora with i3. Everything's working great except, today I realized I can't right click (in Gnome3 I was right clicking by clicking on the trackpad with two fingers. I tried some examples I found on this and another forum about adding bindsym entries to my i3/config file, but nothing has worked yet.
+
+As far as I can tell, tapping the trackpad does not result in a "button1" input, like in the examples, since I cannot even get simple bindsym entries to work.
+
+Does anybody have experience with MacBook Pro trackpad input that could give me some advice?  </description><pubDate>Fri, 23 Oct 2015 18:54:58 +0000</pubDate><guid>https://faq.i3wm.org/question/7027/right-click-on-macbook-pro/</guid></item><item><title>Comment by Airblader for &lt;p&gt;I got a an old MacBook Pro (late 2011) at work and put Fedora with i3. Everything's working great except, today I realized I can't right click (in Gnome3 I was right clicking by clicking on the trackpad with two fingers. I tried some examples I found on this and another forum about adding bindsym entries to my i3/config file, but nothing has worked yet.&lt;/p&gt;
+
+&lt;p&gt;As far as I can tell, tapping the trackpad does not result in a "button1" input, like in the examples, since I cannot even get simple bindsym entries to work.&lt;/p&gt;
+
+&lt;p&gt;Does anybody have experience with MacBook Pro trackpad input that could give me some advice?  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7027/right-click-on-macbook-pro/?comment=7028#comment-7028</link><description>I really suggest you ask this in a place that's not only more suitable (since it's not an i3 question), but also a bit "busier", i.e., has more active people.</description><pubDate>Fri, 23 Oct 2015 19:23:53 +0000</pubDate><guid>https://faq.i3wm.org/question/7027/right-click-on-macbook-pro/?comment=7028#comment-7028</guid></item><item><title>Answer by DirtDoge for &lt;p&gt;I got a an old MacBook Pro (late 2011) at work and put Fedora with i3. Everything's working great except, today I realized I can't right click (in Gnome3 I was right clicking by clicking on the trackpad with two fingers. I tried some examples I found on this and another forum about adding bindsym entries to my i3/config file, but nothing has worked yet.&lt;/p&gt;
+
+&lt;p&gt;As far as I can tell, tapping the trackpad does not result in a "button1" input, like in the examples, since I cannot even get simple bindsym entries to work.&lt;/p&gt;
+
+&lt;p&gt;Does anybody have experience with MacBook Pro trackpad input that could give me some advice?  &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7027/right-click-on-macbook-pro/?answer=7031#post-id-7031</link><description>If any body is curious I was able to enable two touch right click and simulate right mouse button in the lower right section of the click pad. This is what my /etc/X11/xorg.conf.d/50-synaptics.conf looks like:
+
+Section "InputClass"                                                                                                                                                                    
+  Identifier "touchpad"                                                                                                                                                                 
+  Driver "synaptics"                                                                                                                                                                    
+  MatchIsTouchpad "on"                                                                                                                                                                  
+  Option "ClickPad" "true"                                                                                                                                                              
+  Option "EmulateMidButtonTime" "0"                                                                                                                                                     
+  Option "SoftButtonAreas"  "50% 0 82% 0 0 0 0 0"                                                                                                                                       
+Option "TapButton2" "3"                                                                                                                                                               
+EndSection 
+</description><pubDate>Fri, 23 Oct 2015 21:45:10 +0000</pubDate><guid>https://faq.i3wm.org/question/7027/right-click-on-macbook-pro/?answer=7031#post-id-7031</guid></item></channel></rss>

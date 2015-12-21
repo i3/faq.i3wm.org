@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5519/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 23 Feb 2015 15:54:30 +0000</lastBuildDate><item><title>How to change default font colour of i3status entries</title><link>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/</link><description>I know that I can change color of i3status entries for a specific state (`color_good`, `color_bad` and so forth) , see the section in my .i3status.conf
+
+    general {
+            colors = true
+            interval = 5
+            color_good = "#383830"
+            color_bad = "#383830"
+            color_degraded = "#383830"
+    	output_format = "i3bar"
+    }
+
+Basically, I would have expected that all entries have the same colour (#383830). However there are entries that don't seem related to these variables like time or battery and temperature below the trashhold. Surprinsingly they don't use the `color_good`colour as the default colour but they are just white. (I would like to have uploaded a screenshot here but I am not allowed to since my Karma is below 10)
+
+Where is white set for some entries in certain states? </description><pubDate>Sun, 22 Feb 2015 21:22:07 +0000</pubDate><guid>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/</guid></item><item><title>Answer by cee for &lt;p&gt;I know that I can change color of i3status entries for a specific state (&lt;code&gt;color_good&lt;/code&gt;, &lt;code&gt;color_bad&lt;/code&gt; and so forth) , see the section in my .i3status.conf&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;general {
+        colors = true
+        interval = 5
+        color_good = "#383830"
+        color_bad = "#383830"
+        color_degraded = "#383830"
+    output_format = "i3bar"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically, I would have expected that all entries have the same colour (#383830). However there are entries that don't seem related to these variables like time or battery and temperature below the trashhold. Surprinsingly they don't use the &lt;code&gt;color_good&lt;/code&gt;colour as the default colour but they are just white. (I would like to have uploaded a screenshot here but I am not allowed to since my Karma is below 10)&lt;/p&gt;
+
+&lt;p&gt;Where is white set for some entries in certain states? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/?answer=5522#post-id-5522</link><description>In your `i3status.conf` You can define the colors in the `general` section.
+
+    general {  
+        colors = true  
+        color_good =     '#88b090'  
+        color_degraded = '#ccdc90'  
+        color_bad =      '#e89393'   
+    }
+
+You can also take a look at my [config](https://github.com/andreatta/config/blob/master/i3/i3status.conf) for some context.
+
+EDIT:  
+There is also a section in your i3 config file which defines the default color for the statusbar.
+
+    bar {  
+        colors {
+            ...  
+            statusline #ceecee  
+            separator #fefefe
+            ...  
+    }
+
+</description><pubDate>Mon, 23 Feb 2015 11:28:56 +0000</pubDate><guid>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/?answer=5522#post-id-5522</guid></item><item><title>Comment by cee for &lt;p&gt;In your &lt;code&gt;i3status.conf&lt;/code&gt; You can define the colors in the &lt;code&gt;general&lt;/code&gt; section.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;general {  
+    colors = true  
+    color_good =     '#88b090'  
+    color_degraded = '#ccdc90'  
+    color_bad =      '#e89393'   
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can also take a look at my &lt;a href="https://github.com/andreatta/config/blob/master/i3/i3status.conf"&gt;config&lt;/a&gt; for some context.&lt;/p&gt;
+
+&lt;p&gt;EDIT: &lt;br/&gt;
+There is also a section in your i3 config file which defines the default color for the statusbar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {  
+    colors {
+        ...  
+        statusline #ceecee  
+        separator #fefefe
+        ...  
+}
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/?comment=5526#comment-5526</link><description>No offense taken. I just felt dumb for not reading correctly ;-)</description><pubDate>Mon, 23 Feb 2015 15:54:30 +0000</pubDate><guid>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/?comment=5526#comment-5526</guid></item><item><title>Comment by cutuchiqueno for &lt;p&gt;In your &lt;code&gt;i3status.conf&lt;/code&gt; You can define the colors in the &lt;code&gt;general&lt;/code&gt; section.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;general {  
+    colors = true  
+    color_good =     '#88b090'  
+    color_degraded = '#ccdc90'  
+    color_bad =      '#e89393'   
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can also take a look at my &lt;a href="https://github.com/andreatta/config/blob/master/i3/i3status.conf"&gt;config&lt;/a&gt; for some context.&lt;/p&gt;
+
+&lt;p&gt;EDIT: &lt;br/&gt;
+There is also a section in your i3 config file which defines the default color for the statusbar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {  
+    colors {
+        ...  
+        statusline #ceecee  
+        separator #fefefe
+        ...  
+}
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/?comment=5523#comment-5523</link><description>yes, I know that as I have described at the beginning of my question, but my point is that there are entries which do not use any of the colors defined here so that it seems there is another parameter missing. I will post a screen shot to make the situation more transparent.</description><pubDate>Mon, 23 Feb 2015 14:25:18 +0000</pubDate><guid>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/?comment=5523#comment-5523</guid></item><item><title>Comment by cutuchiqueno for &lt;p&gt;In your &lt;code&gt;i3status.conf&lt;/code&gt; You can define the colors in the &lt;code&gt;general&lt;/code&gt; section.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;general {  
+    colors = true  
+    color_good =     '#88b090'  
+    color_degraded = '#ccdc90'  
+    color_bad =      '#e89393'   
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can also take a look at my &lt;a href="https://github.com/andreatta/config/blob/master/i3/i3status.conf"&gt;config&lt;/a&gt; for some context.&lt;/p&gt;
+
+&lt;p&gt;EDIT: &lt;br/&gt;
+There is also a section in your i3 config file which defines the default color for the statusbar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {  
+    colors {
+        ...  
+        statusline #ceecee  
+        separator #fefefe
+        ...  
+}
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/?comment=5525#comment-5525</link><description>sorry, I didn't want to offend if it may have sounded this way. The opposite, I am really grateful that you tried to help!</description><pubDate>Mon, 23 Feb 2015 15:48:05 +0000</pubDate><guid>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/?comment=5525#comment-5525</guid></item><item><title>Comment by cee for &lt;p&gt;In your &lt;code&gt;i3status.conf&lt;/code&gt; You can define the colors in the &lt;code&gt;general&lt;/code&gt; section.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;general {  
+    colors = true  
+    color_good =     '#88b090'  
+    color_degraded = '#ccdc90'  
+    color_bad =      '#e89393'   
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can also take a look at my &lt;a href="https://github.com/andreatta/config/blob/master/i3/i3status.conf"&gt;config&lt;/a&gt; for some context.&lt;/p&gt;
+
+&lt;p&gt;EDIT: &lt;br/&gt;
+There is also a section in your i3 config file which defines the default color for the statusbar.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {  
+    colors {
+        ...  
+        statusline #ceecee  
+        separator #fefefe
+        ...  
+}
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/?comment=5524#comment-5524</link><description>Please excuse my ignorance. I did not read carefully enough.</description><pubDate>Mon, 23 Feb 2015 15:26:28 +0000</pubDate><guid>https://faq.i3wm.org/question/5519/how-to-change-default-font-colour-of-i3status-entries/?comment=5524#comment-5524</guid></item></channel></rss>

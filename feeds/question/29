@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/29/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 24 Feb 2015 23:09:42 +0000</lastBuildDate><item><title>How do you make i3 pick up resizing the vmware window?</title><link>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/</link><description>When using i3 inside a virtual machine (vmware), you can resize the vmware window, but i3 doesn’t react to that change. Furthermore, after restarting i3 inplace, workspace 1 vanishes.</description><pubDate>Mon, 04 Jun 2012 20:27:00 +0000</pubDate><guid>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/</guid></item><item><title>Answer by Michael for &lt;p&gt;When using i3 inside a virtual machine (vmware), you can resize the vmware window, but i3 doesn’t react to that change. Furthermore, after restarting i3 inplace, workspace 1 vanishes.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/?answer=30#post-id-30</link><description>This is due to a bug in the vmware X11 driver. When i3 starts up, XRandR is not available, and thus i3 falls back on not using XRandR. However, after the first change to the configuration (for example by resizing), XRandR becomes available. Thus, the inplace restart has a different setup before and afterwards, and that leads to workspace 1 getting lost.
+
+To workaround this issue, you can issue an xrandr call in your `~/.xsession` file:
+
+    #!/bin/sh
+    xrandr
+    exec i3</description><pubDate>Mon, 04 Jun 2012 20:28:32 +0000</pubDate><guid>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/?answer=30#post-id-30</guid></item><item><title>Comment by freb for &lt;p&gt;This is due to a bug in the vmware X11 driver. When i3 starts up, XRandR is not available, and thus i3 falls back on not using XRandR. However, after the first change to the configuration (for example by resizing), XRandR becomes available. Thus, the inplace restart has a different setup before and afterwards, and that leads to workspace 1 getting lost.&lt;/p&gt;
+
+&lt;p&gt;To workaround this issue, you can issue an xrandr call in your &lt;code&gt;~/.xsession&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+xrandr
+exec i3
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/?comment=5532#comment-5532</link><description>This worked for me but the resizing functionality would enable more quickly if I also used the `exec vmware-user --no-startup-id` setting in `~/.i3/config` as mentioned in another answer.</description><pubDate>Tue, 24 Feb 2015 23:09:42 +0000</pubDate><guid>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/?comment=5532#comment-5532</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;When using i3 inside a virtual machine (vmware), you can resize the vmware window, but i3 doesn’t react to that change. Furthermore, after restarting i3 inplace, workspace 1 vanishes.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/?answer=43#post-id-43</link><description>With VirtualBox, I need to press "Host" key once, then I have all control of the window with i3 key bindings.</description><pubDate>Wed, 06 Jun 2012 00:49:39 +0000</pubDate><guid>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/?answer=43#post-id-43</guid></item><item><title>Answer by fatalexe for &lt;p&gt;When using i3 inside a virtual machine (vmware), you can resize the vmware window, but i3 doesn’t react to that change. Furthermore, after restarting i3 inplace, workspace 1 vanishes.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/?answer=3548#post-id-3548</link><description>In ~/.i3/config
+
+Add the line
+
+exec --no-startup-id vmware-user</description><pubDate>Thu, 20 Mar 2014 22:34:50 +0000</pubDate><guid>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/?answer=3548#post-id-3548</guid></item><item><title>Comment by benhgift for &lt;p&gt;In ~/.i3/config&lt;/p&gt;
+
+&lt;p&gt;Add the line&lt;/p&gt;
+
+&lt;p&gt;exec --no-startup-id vmware-user&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/?comment=4588#comment-4588</link><description>I think you meant `exec vmware-user --no-startup-id`, but yep that worked great for me, thanks!</description><pubDate>Fri, 29 Aug 2014 07:24:31 +0000</pubDate><guid>https://faq.i3wm.org/question/29/how-do-you-make-i3-pick-up-resizing-the-vmware-window/?comment=4588#comment-4588</guid></item></channel></rss>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6090/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 11 Jun 2015 06:01:45 +0000</lastBuildDate><item><title>TMUX in Scratchpad [SOLVED]</title><link>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/</link><description>Hi, 
+
+I'm new to using scratchpad and maybe one of you can help.
+I want to have a TMUX session in my Scratchpad, automatically executed on startup. 
+
+So far, I' using a setup without TMUX like this:
+
+    exec --no-startup-id urxvt -name Scratch -e ranger
+    for_window[class="URxvt" instance="Scratch"] move window to scratchpad, border 1pixel
+This is working just fine.
+What I want to have is something like that:
+
+    exec 'urxvt -name Scratch -e tmux new-session -s Scratch -n FM ranger'
+    exec --no-startup-id 'tmux new-window -n Cal wyrd'
+    exec --no-startup-id 'tmux new-window -n Music ncmpcpp'
+
+This, however doesn't work. Either a scratchpad is initiated nor a TMUX session.
+
+If I am sending the above commands via 'i3-msg', it does work, which I find rather disturbing.
+
+Any ideas anyone?
+
+Meanwhile I can start up a tmux session using this function in my config.fish:
+
+    function scratch
+    tmux attach -t Scratch 
+    or begin
+       tmux new-session -s Scratch -d -n Music ncmpcpp
+       and tmux new-window -n Files ranger
+       and tmux new-window -n Cal wyrd
+       and tmux new-window -n Todo vit
+       and tmux selectw -t 1
+       and tmux attach-session -d
+    end
+end
+
+which is invoked by my i3.conf via
+
+    exec --no-startup-id urxvt -name Scratch -e fish -c scratch
+But it is not handled by the hook
+
+    for_window[class="URxvt" instance="^Scratch"] move window to scratchpad, border 1pixel</description><pubDate>Mon, 08 Jun 2015 14:41:11 +0000</pubDate><guid>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hi, &lt;/p&gt;
+
+&lt;p&gt;I'm new to using scratchpad and maybe one of you can help.
+I want to have a TMUX session in my Scratchpad, automatically executed on startup. &lt;/p&gt;
+
+&lt;p&gt;So far, I' using a setup without TMUX like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id urxvt -name Scratch -e ranger
+for_window[class="URxvt" instance="Scratch"] move window to scratchpad, border 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is working just fine.
+What I want to have is something like that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec 'urxvt -name Scratch -e tmux new-session -s Scratch -n FM ranger'
+exec --no-startup-id 'tmux new-window -n Cal wyrd'
+exec --no-startup-id 'tmux new-window -n Music ncmpcpp'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This, however doesn't work. Either a scratchpad is initiated nor a TMUX session.&lt;/p&gt;
+
+&lt;p&gt;If I am sending the above commands via 'i3-msg', it does work, which I find rather disturbing.&lt;/p&gt;
+
+&lt;p&gt;Any ideas anyone?&lt;/p&gt;
+
+&lt;p&gt;Meanwhile I can start up a tmux session using this function in my config.fish:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function scratch
+tmux attach -t Scratch 
+or begin
+   tmux new-session -s Scratch -d -n Music ncmpcpp
+   and tmux new-window -n Files ranger
+   and tmux new-window -n Cal wyrd
+   and tmux new-window -n Todo vit
+   and tmux selectw -t 1
+   and tmux attach-session -d
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;end&lt;/p&gt;
+
+&lt;p&gt;which is invoked by my i3.conf via&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id urxvt -name Scratch -e fish -c scratch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it is not handled by the hook&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window[class="URxvt" instance="^Scratch"] move window to scratchpad, border 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/?comment=6093#comment-6093</link><description>Can you confirm that class and instance are set correctly on the urxvt window in your workaround?</description><pubDate>Tue, 09 Jun 2015 05:53:28 +0000</pubDate><guid>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/?comment=6093#comment-6093</guid></item><item><title>Answer by Iarumas for &lt;p&gt;Hi, &lt;/p&gt;
+
+&lt;p&gt;I'm new to using scratchpad and maybe one of you can help.
+I want to have a TMUX session in my Scratchpad, automatically executed on startup. &lt;/p&gt;
+
+&lt;p&gt;So far, I' using a setup without TMUX like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id urxvt -name Scratch -e ranger
+for_window[class="URxvt" instance="Scratch"] move window to scratchpad, border 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is working just fine.
+What I want to have is something like that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec 'urxvt -name Scratch -e tmux new-session -s Scratch -n FM ranger'
+exec --no-startup-id 'tmux new-window -n Cal wyrd'
+exec --no-startup-id 'tmux new-window -n Music ncmpcpp'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This, however doesn't work. Either a scratchpad is initiated nor a TMUX session.&lt;/p&gt;
+
+&lt;p&gt;If I am sending the above commands via 'i3-msg', it does work, which I find rather disturbing.&lt;/p&gt;
+
+&lt;p&gt;Any ideas anyone?&lt;/p&gt;
+
+&lt;p&gt;Meanwhile I can start up a tmux session using this function in my config.fish:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function scratch
+tmux attach -t Scratch 
+or begin
+   tmux new-session -s Scratch -d -n Music ncmpcpp
+   and tmux new-window -n Files ranger
+   and tmux new-window -n Cal wyrd
+   and tmux new-window -n Todo vit
+   and tmux selectw -t 1
+   and tmux attach-session -d
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;end&lt;/p&gt;
+
+&lt;p&gt;which is invoked by my i3.conf via&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id urxvt -name Scratch -e fish -c scratch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it is not handled by the hook&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window[class="URxvt" instance="^Scratch"] move window to scratchpad, border 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/?answer=6098#post-id-6098</link><description>Hi, thank you for your replies.
+
+The output of xprop for my scratchpad is:
+
+    WM_CLASS(String) = "urxvt", "URxvt"
+    WM_NAME(STRING) = "Scratch:1:Files - &lt;hostname&gt;"
+
+The compound WM_Name was the reason why I used "^Scratch" in the for_window class.
+
+ </description><pubDate>Tue, 09 Jun 2015 10:27:33 +0000</pubDate><guid>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/?answer=6098#post-id-6098</guid></item><item><title>Comment by Iarumas for &lt;p&gt;Hi, thank you for your replies.&lt;/p&gt;
+
+&lt;p&gt;The output of xprop for my scratchpad is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_CLASS(String) = "urxvt", "URxvt"
+WM_NAME(STRING) = "Scratch:1:Files - &amp;lt;hostname&amp;gt;"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The compound WM&lt;em&gt;Name was the reason why I used "^Scratch" in the for&lt;/em&gt;window class.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/?comment=6113#comment-6113</link><description>That's it!!
+
+Thank you, now another part of my wm is perfect!
+
+And sorry for the wrong posting.</description><pubDate>Thu, 11 Jun 2015 06:01:45 +0000</pubDate><guid>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/?comment=6113#comment-6113</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hi, thank you for your replies.&lt;/p&gt;
+
+&lt;p&gt;The output of xprop for my scratchpad is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_CLASS(String) = "urxvt", "URxvt"
+WM_NAME(STRING) = "Scratch:1:Files - &amp;lt;hostname&amp;gt;"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The compound WM&lt;em&gt;Name was the reason why I used "^Scratch" in the for&lt;/em&gt;window class.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/?comment=6102#comment-6102</link><description>Hi, please use the comment function to reply to answers and other comments. Answers should always answer the original question.
+That said, it seems that the instance is 'urxvt' instead of 'Scratch'. If you want to match the title, you need `[title="...."]`.</description><pubDate>Wed, 10 Jun 2015 08:11:48 +0000</pubDate><guid>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/?comment=6102#comment-6102</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi, &lt;/p&gt;
+
+&lt;p&gt;I'm new to using scratchpad and maybe one of you can help.
+I want to have a TMUX session in my Scratchpad, automatically executed on startup. &lt;/p&gt;
+
+&lt;p&gt;So far, I' using a setup without TMUX like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id urxvt -name Scratch -e ranger
+for_window[class="URxvt" instance="Scratch"] move window to scratchpad, border 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is working just fine.
+What I want to have is something like that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec 'urxvt -name Scratch -e tmux new-session -s Scratch -n FM ranger'
+exec --no-startup-id 'tmux new-window -n Cal wyrd'
+exec --no-startup-id 'tmux new-window -n Music ncmpcpp'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This, however doesn't work. Either a scratchpad is initiated nor a TMUX session.&lt;/p&gt;
+
+&lt;p&gt;If I am sending the above commands via 'i3-msg', it does work, which I find rather disturbing.&lt;/p&gt;
+
+&lt;p&gt;Any ideas anyone?&lt;/p&gt;
+
+&lt;p&gt;Meanwhile I can start up a tmux session using this function in my config.fish:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function scratch
+tmux attach -t Scratch 
+or begin
+   tmux new-session -s Scratch -d -n Music ncmpcpp
+   and tmux new-window -n Files ranger
+   and tmux new-window -n Cal wyrd
+   and tmux new-window -n Todo vit
+   and tmux selectw -t 1
+   and tmux attach-session -d
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;end&lt;/p&gt;
+
+&lt;p&gt;which is invoked by my i3.conf via&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id urxvt -name Scratch -e fish -c scratch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it is not handled by the hook&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window[class="URxvt" instance="^Scratch"] move window to scratchpad, border 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/?answer=6097#post-id-6097</link><description> The reason your first extended setup for `tmux` does not work is twofold:
+
+1. *i3* uses only double quotes for quoting. That means any single quotes are not interpreted by *i3* (config or `i3-msg`) in any way. So if you write 
+        
+        exec 'urxvt -name Scratch -e tmux new-session -s Scratch -n FM ranger' 
+
+ in your configuration, i3 will not remove the single quotes and tries to run the command with the name`'urxvt -name Scratch -e tmux new-session -s Scratch -n FM ranger'` instead of `urxvt` with the rest as arguments.
+
+ Either do not quote (as in your first example) or use double quotes.
+
+2. Even with correct quoting it is not guaranteed that the *URxvt* window and the contained *tmux* instance are up and running when the `tmux new-window` commands are run as *i3* just executes the commands as soon as it encounters them in the configuration without waiting in between.
+
+----
+
+Your current solution with offloading all *tmux* related stuff into a script or function and then only running *URxvt* (with the script or function as argument) directly from the *i3* configuration is exactly how I would solve this issue. And from what you posted there should be no reason why it should not work with the `for_window` configuration. 
+
+Here are a few things you can try to debug this:
+
+- use `"Scratch"` instead of `"^Scratch"` as it seemed to work in your initial example, although both should be fine. 
+- check the class and instance of the *URxvt* window with `xprop` (or similar), if they indeed match "URxvt" and "Scratch".
+- try if the hook works if you replace `fish -c scratch` with another command, for example `sh` or `ranger` as before.
+- maybe try to replace the *fish* function with a simple *sh* script.
+
+</description><pubDate>Tue, 09 Jun 2015 07:28:14 +0000</pubDate><guid>https://faq.i3wm.org/question/6090/tmux-in-scratchpad-solved/?answer=6097#post-id-6097</guid></item></channel></rss>

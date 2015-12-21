@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4607/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 11 Sep 2014 05:21:06 +0000</lastBuildDate><item><title>Simple calendar applet</title><link>https://faq.i3wm.org/question/4607/simple-calendar-applet/</link><description>Hello,
+
+I recently installed i3wm on my Ubuntu laptop. While I do love it I also miss some of the applets available in the status bar of ubuntu-desktop. Most of all, I miss the calendar applet. I liked being able to click it and have it show me the calendar for the month in a small menu-like pop-up without having to open a separate window, and then being able to close it with only one click. 
+
+I've been trying to look for something similar to install in the i3wm status bar but no amounts of googling have been enough. I've found different calendar software, that are very fancy and well but they open a new window which is really annoying in i3. I would like something similar to whenever I click the nm-applet and it displays a menu without having to open a window. So by clicking the calendar button it will display a small calendar at the bottom without opening a window.
+
+I have for the most part been able to google my way through most the things I've wanted to configure but I have not been able to find a proper answer to this. Do you guys know if there is any calendar applet that I can install that lets me do what I want?</description><pubDate>Sun, 07 Sep 2014 07:50:45 +0000</pubDate><guid>https://faq.i3wm.org/question/4607/simple-calendar-applet/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I recently installed i3wm on my Ubuntu laptop. While I do love it I also miss some of the applets available in the status bar of ubuntu-desktop. Most of all, I miss the calendar applet. I liked being able to click it and have it show me the calendar for the month in a small menu-like pop-up without having to open a separate window, and then being able to close it with only one click. &lt;/p&gt;
+
+&lt;p&gt;I've been trying to look for something similar to install in the i3wm status bar but no amounts of googling have been enough. I've found different calendar software, that are very fancy and well but they open a new window which is really annoying in i3. I would like something similar to whenever I click the nm-applet and it displays a menu without having to open a window. So by clicking the calendar button it will display a small calendar at the bottom without opening a window.&lt;/p&gt;
+
+&lt;p&gt;I have for the most part been able to google my way through most the things I've wanted to configure but I have not been able to find a proper answer to this. Do you guys know if there is any calendar applet that I can install that lets me do what I want?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4607/simple-calendar-applet/?answer=4608#post-id-4608</link><description>Not really an applet, but you could use `zenity` to display a calendar. (It is automatically installed on Xubuntu. Not sure about vanilla Ubuntu, but the package is there)
+
+Unfortunatelly the *i3bar* does not (yet) handle mouse clicks, but for now you could just create a key binding
+
+    bindsym $mod+c exec zenity --calendar
+
+This will call up a small dialog window with a calendar. Pressing *Escape*, *Enter* or *Space* will close the window again.
+
+----
+
+Also, there is the program `cal` (in package *bsdmainutils*) for the command line.
+</description><pubDate>Mon, 08 Sep 2014 09:46:48 +0000</pubDate><guid>https://faq.i3wm.org/question/4607/simple-calendar-applet/?answer=4608#post-id-4608</guid></item><item><title>Comment by AndresMe for &lt;p&gt;Not really an applet, but you could use &lt;code&gt;zenity&lt;/code&gt; to display a calendar. (It is automatically installed on Xubuntu. Not sure about vanilla Ubuntu, but the package is there)&lt;/p&gt;
+
+&lt;p&gt;Unfortunatelly the &lt;em&gt;i3bar&lt;/em&gt; does not (yet) handle mouse clicks, but for now you could just create a key binding&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+c exec zenity --calendar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will call up a small dialog window with a calendar. Pressing &lt;em&gt;Escape&lt;/em&gt;, &lt;em&gt;Enter&lt;/em&gt; or &lt;em&gt;Space&lt;/em&gt; will close the window again.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Also, there is the program &lt;code&gt;cal&lt;/code&gt; (in package &lt;em&gt;bsdmainutils&lt;/em&gt;) for the command line.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4607/simple-calendar-applet/?comment=4622#comment-4622</link><description>Although this is good I like that gsimplecal has a smaller float window, and the config was so simple. </description><pubDate>Thu, 11 Sep 2014 05:21:06 +0000</pubDate><guid>https://faq.i3wm.org/question/4607/simple-calendar-applet/?comment=4622#comment-4622</guid></item><item><title>Answer by f8l for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I recently installed i3wm on my Ubuntu laptop. While I do love it I also miss some of the applets available in the status bar of ubuntu-desktop. Most of all, I miss the calendar applet. I liked being able to click it and have it show me the calendar for the month in a small menu-like pop-up without having to open a separate window, and then being able to close it with only one click. &lt;/p&gt;
+
+&lt;p&gt;I've been trying to look for something similar to install in the i3wm status bar but no amounts of googling have been enough. I've found different calendar software, that are very fancy and well but they open a new window which is really annoying in i3. I would like something similar to whenever I click the nm-applet and it displays a menu without having to open a window. So by clicking the calendar button it will display a small calendar at the bottom without opening a window.&lt;/p&gt;
+
+&lt;p&gt;I have for the most part been able to google my way through most the things I've wanted to configure but I have not been able to find a proper answer to this. Do you guys know if there is any calendar applet that I can install that lets me do what I want?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4607/simple-calendar-applet/?answer=4619#post-id-4619</link><description>Not exactly what you're looking for, but I can recommend `gsimplecal`.
+It also opens a floating window, which can be configured
+to close when you click outside it
+(`echo 'close_on_unfocus = 1' &gt;&gt; ~/.config/gsimplecal/config`).</description><pubDate>Wed, 10 Sep 2014 21:21:36 +0000</pubDate><guid>https://faq.i3wm.org/question/4607/simple-calendar-applet/?answer=4619#post-id-4619</guid></item><item><title>Comment by AndresMe for &lt;p&gt;Not exactly what you're looking for, but I can recommend &lt;code&gt;gsimplecal&lt;/code&gt;.
+It also opens a floating window, which can be configured
+to close when you click outside it
+(&lt;code&gt;echo 'close_on_unfocus = 1' &amp;gt;&amp;gt; ~/.config/gsimplecal/config&lt;/code&gt;).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4607/simple-calendar-applet/?comment=4621#comment-4621</link><description>This works perfectly! Thanks. </description><pubDate>Thu, 11 Sep 2014 05:17:10 +0000</pubDate><guid>https://faq.i3wm.org/question/4607/simple-calendar-applet/?comment=4621#comment-4621</guid></item></channel></rss>

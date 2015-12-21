@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2420/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 26 Feb 2014 19:22:15 +0000</lastBuildDate><item><title>Dropdown Terminal in i3</title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/</link><description>I have been banging my head against the wall with this, so I thought I'd share what worked for me.
+
+In the latest version of i3, moving a program to the scratchpad resizes the floating window to 75% of screen height and 50% of screen width.
+
+I like the Yakuake drop down terminal emulator from KDE. It plays tricks to act as a drop down; one specifies the desired window size and it persists. If I use Yakuake with i3 and the scratchpad, resizing therefore doesn't work as expected, the effect is to **crop** the window.
+
+Here's how I avoided the resize/crop issue: 'autostart-yakuake' is a script that uses DBUS to set up the Yakuake tabs with e.g. an emacs server and a couple of emacs clients.
+
+    exec --no-startup-id autostart-yakuake
+    for_window [instance="yakuake"] move scratchpad 
+    bindsym Print [instance="yakuake"] scratchpad show, fullscreen
+
+So, a question - could we have an option to not resize scratchpad windows please?</description><pubDate>Sun, 25 Aug 2013 18:49:45 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/</guid></item><item><title>Answer by lompy for &lt;p&gt;I have been banging my head against the wall with this, so I thought I'd share what worked for me.&lt;/p&gt;
+
+&lt;p&gt;In the latest version of i3, moving a program to the scratchpad resizes the floating window to 75% of screen height and 50% of screen width.&lt;/p&gt;
+
+&lt;p&gt;I like the Yakuake drop down terminal emulator from KDE. It plays tricks to act as a drop down; one specifies the desired window size and it persists. If I use Yakuake with i3 and the scratchpad, resizing therefore doesn't work as expected, the effect is to &lt;strong&gt;crop&lt;/strong&gt; the window.&lt;/p&gt;
+
+&lt;p&gt;Here's how I avoided the resize/crop issue: 'autostart-yakuake' is a script that uses DBUS to set up the Yakuake tabs with e.g. an emacs server and a couple of emacs clients.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id autostart-yakuake
+for_window [instance="yakuake"] move scratchpad 
+bindsym Print [instance="yakuake"] scratchpad show, fullscreen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, a question - could we have an option to not resize scratchpad windows please?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?answer=2626#post-id-2626</link><description>If it's still actual there were resemble question faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/.
+In the answer `move` command is issued, but you can also use `resize`. For example my dropdown Urxvt config:
+
+    ## quick terminal
+    exec --no-startup-id urxvt -name metask
+    for_window [instance="metask"] floating enable;
+    for_window [instance="metask"] move scratchpad; [instance="metask"] scratchpad show; move position 0px 22px; resize shrink height 300px; resize grow width 683px; move scratchpad
+    bindsym $mod+t [instance="metask"] scratchpad show
+
+With that I always have terminal launched in scratchpad binded to Alt+T, positiond just beneath my system tray and resized to fit full screen width on my 1366 x 768 laptop monitor.</description><pubDate>Sun, 29 Sep 2013 16:59:07 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?answer=2626#post-id-2626</guid></item><item><title>Comment by yoav for &lt;p&gt;If it's still actual there were resemble question faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/.
+In the answer &lt;code&gt;move&lt;/code&gt; command is issued, but you can also use &lt;code&gt;resize&lt;/code&gt;. For example my dropdown Urxvt config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;## quick terminal
+exec --no-startup-id urxvt -name metask
+for_window [instance="metask"] floating enable;
+for_window [instance="metask"] move scratchpad; [instance="metask"] scratchpad show; move position 0px 22px; resize shrink height 300px; resize grow width 683px; move scratchpad
+bindsym $mod+t [instance="metask"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With that I always have terminal launched in scratchpad binded to Alt+T, positiond just beneath my system tray and resized to fit full screen width on my 1366 x 768 laptop monitor.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=2632#comment-2632</link><description>@lompy why do you need "move scratchpad" twice? can't you just resize and then move to scratchpad?</description><pubDate>Mon, 30 Sep 2013 15:28:06 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=2632#comment-2632</guid></item><item><title>Comment by KJ44 for &lt;p&gt;If it's still actual there were resemble question faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/.
+In the answer &lt;code&gt;move&lt;/code&gt; command is issued, but you can also use &lt;code&gt;resize&lt;/code&gt;. For example my dropdown Urxvt config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;## quick terminal
+exec --no-startup-id urxvt -name metask
+for_window [instance="metask"] floating enable;
+for_window [instance="metask"] move scratchpad; [instance="metask"] scratchpad show; move position 0px 22px; resize shrink height 300px; resize grow width 683px; move scratchpad
+bindsym $mod+t [instance="metask"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With that I always have terminal launched in scratchpad binded to Alt+T, positiond just beneath my system tray and resized to fit full screen width on my 1366 x 768 laptop monitor.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=3432#comment-3432</link><description>I've got this working with Terminator, thanks lompy.</description><pubDate>Wed, 26 Feb 2014 19:18:43 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=3432#comment-3432</guid></item><item><title>Comment by joepd for &lt;p&gt;If it's still actual there were resemble question faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/.
+In the answer &lt;code&gt;move&lt;/code&gt; command is issued, but you can also use &lt;code&gt;resize&lt;/code&gt;. For example my dropdown Urxvt config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;## quick terminal
+exec --no-startup-id urxvt -name metask
+for_window [instance="metask"] floating enable;
+for_window [instance="metask"] move scratchpad; [instance="metask"] scratchpad show; move position 0px 22px; resize shrink height 300px; resize grow width 683px; move scratchpad
+bindsym $mod+t [instance="metask"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With that I always have terminal launched in scratchpad binded to Alt+T, positiond just beneath my system tray and resized to fit full screen width on my 1366 x 768 laptop monitor.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=2629#comment-2629</link><description>Excellent, thanks for sharing your solution! </description><pubDate>Sun, 29 Sep 2013 19:31:32 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=2629#comment-2629</guid></item><item><title>Comment by lompy for &lt;p&gt;If it's still actual there were resemble question faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/.
+In the answer &lt;code&gt;move&lt;/code&gt; command is issued, but you can also use &lt;code&gt;resize&lt;/code&gt;. For example my dropdown Urxvt config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;## quick terminal
+exec --no-startup-id urxvt -name metask
+for_window [instance="metask"] floating enable;
+for_window [instance="metask"] move scratchpad; [instance="metask"] scratchpad show; move position 0px 22px; resize shrink height 300px; resize grow width 683px; move scratchpad
+bindsym $mod+t [instance="metask"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With that I always have terminal launched in scratchpad binded to Alt+T, positiond just beneath my system tray and resized to fit full screen width on my 1366 x 768 laptop monitor.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=2633#comment-2633</link><description>@yoav, you can read answer and comments in faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/ . Without that we can't move and resize autoloaded scratchpad floating windows. You would have to move to scratchpad manually. Also can applay mensioned patch which I don't know how to do.</description><pubDate>Mon, 30 Sep 2013 16:15:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=2633#comment-2633</guid></item><item><title>Answer by KJ44 for &lt;p&gt;I have been banging my head against the wall with this, so I thought I'd share what worked for me.&lt;/p&gt;
+
+&lt;p&gt;In the latest version of i3, moving a program to the scratchpad resizes the floating window to 75% of screen height and 50% of screen width.&lt;/p&gt;
+
+&lt;p&gt;I like the Yakuake drop down terminal emulator from KDE. It plays tricks to act as a drop down; one specifies the desired window size and it persists. If I use Yakuake with i3 and the scratchpad, resizing therefore doesn't work as expected, the effect is to &lt;strong&gt;crop&lt;/strong&gt; the window.&lt;/p&gt;
+
+&lt;p&gt;Here's how I avoided the resize/crop issue: 'autostart-yakuake' is a script that uses DBUS to set up the Yakuake tabs with e.g. an emacs server and a couple of emacs clients.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id autostart-yakuake
+for_window [instance="yakuake"] move scratchpad 
+bindsym Print [instance="yakuake"] scratchpad show, fullscreen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, a question - could we have an option to not resize scratchpad windows please?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?answer=3433#post-id-3433</link><description>    exec --no-startup-id terminator -l KJ
+    for_window [instance="terminator"] floating enable, move scratchpad, scratchpad show;
+    for_window [instance="terminator"] resize grow left 300, resize grow right 300, resize grow down 200, resize grow up 200, move scratchpad;
+    bindsym Control+Menu  [instance="terminator"] scratchpad show
+    bindsym Control+Print [instance="terminator"] scratchpad show
+
+The above is a tested solution for Terminator.
+
+Note the '-l KJ' used to load a profile. Terminator lets you define the number of tabs, their names, and the command to run in each tab. In that regard it is easier than using DBUS to achieve similar results with Yakuake
+
+</description><pubDate>Wed, 26 Feb 2014 19:22:15 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?answer=3433#post-id-3433</guid></item><item><title>Answer by gehidore for &lt;p&gt;I have been banging my head against the wall with this, so I thought I'd share what worked for me.&lt;/p&gt;
+
+&lt;p&gt;In the latest version of i3, moving a program to the scratchpad resizes the floating window to 75% of screen height and 50% of screen width.&lt;/p&gt;
+
+&lt;p&gt;I like the Yakuake drop down terminal emulator from KDE. It plays tricks to act as a drop down; one specifies the desired window size and it persists. If I use Yakuake with i3 and the scratchpad, resizing therefore doesn't work as expected, the effect is to &lt;strong&gt;crop&lt;/strong&gt; the window.&lt;/p&gt;
+
+&lt;p&gt;Here's how I avoided the resize/crop issue: 'autostart-yakuake' is a script that uses DBUS to set up the Yakuake tabs with e.g. an emacs server and a couple of emacs clients.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id autostart-yakuake
+for_window [instance="yakuake"] move scratchpad 
+bindsym Print [instance="yakuake"] scratchpad show, fullscreen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, a question - could we have an option to not resize scratchpad windows please?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?answer=2627#post-id-2627</link><description>For anyone who passes size values with their urxvtc window creation as I do I found that by passing the resize values of 10px it maintains those values pre-selected when you created your urxvtc instance.</description><pubDate>Sun, 29 Sep 2013 17:39:17 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?answer=2627#post-id-2627</guid></item><item><title>Answer by Michael for &lt;p&gt;I have been banging my head against the wall with this, so I thought I'd share what worked for me.&lt;/p&gt;
+
+&lt;p&gt;In the latest version of i3, moving a program to the scratchpad resizes the floating window to 75% of screen height and 50% of screen width.&lt;/p&gt;
+
+&lt;p&gt;I like the Yakuake drop down terminal emulator from KDE. It plays tricks to act as a drop down; one specifies the desired window size and it persists. If I use Yakuake with i3 and the scratchpad, resizing therefore doesn't work as expected, the effect is to &lt;strong&gt;crop&lt;/strong&gt; the window.&lt;/p&gt;
+
+&lt;p&gt;Here's how I avoided the resize/crop issue: 'autostart-yakuake' is a script that uses DBUS to set up the Yakuake tabs with e.g. an emacs server and a couple of emacs clients.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id autostart-yakuake
+for_window [instance="yakuake"] move scratchpad 
+bindsym Print [instance="yakuake"] scratchpad show, fullscreen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, a question - could we have an option to not resize scratchpad windows please?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?answer=2433#post-id-2433</link><description>Not resizing scratchpad windows should be the default if you send a floating window to scratchpad. I don’t remember if the patch actually made it into i3 (check the source) or if somebody still needs to send one :).</description><pubDate>Tue, 27 Aug 2013 06:52:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?answer=2433#post-id-2433</guid></item><item><title>Comment by KJ44 for &lt;p&gt;Not resizing scratchpad windows should be the default if you send a floating window to scratchpad. I don’t remember if the patch actually made it into i3 (check the source) or if somebody still needs to send one :).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=2440#comment-2440</link><description>I should add, that the resize happens when I do 'move scratchpad'; if I do 'scratchpad show' and then resize manually, the window size persists as I set it no matter how many times I subsequently hide/show it with `scratchpad show'.</description><pubDate>Tue, 27 Aug 2013 17:30:51 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=2440#comment-2440</guid></item><item><title>Comment by KJ44 for &lt;p&gt;Not resizing scratchpad windows should be the default if you send a floating window to scratchpad. I don’t remember if the patch actually made it into i3 (check the source) or if somebody still needs to send one :).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=2439#comment-2439</link><description>I'm new to all this, but for me the bug crept in between 4.5.1 (no problem) and 4.6; I looked at the git changes and it looks like the following bugfix expects the window to be resized 50%W and 75%H. http://code.stapelberg.de/git/i3/commit/?id=1f8a860744e6abf4d660634d14775f17c73b6e99</description><pubDate>Tue, 27 Aug 2013 17:26:14 +0000</pubDate><guid>https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/?comment=2439#comment-2439</guid></item></channel></rss>

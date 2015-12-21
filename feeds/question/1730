@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1730/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 31 Oct 2015 08:48:09 +0000</lastBuildDate><item><title>warning popup when battery very low</title><link>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/</link><description>So far so good with i3 :)
+
+There is one thing though: When running on battery, while I have now the color of the battery text in the status bar changing to red when the battery reaches the threshold configured, it sometimes escapes my attention...
+
+So I am thinking of having a popup or message appear when the battery reaches a certain threshold.
+
+What would be a way to do that (without having to load any gnome stuff)? 
+Other suggestions instead of popup also welcome.</description><pubDate>Tue, 30 Apr 2013 23:04:36 +0000</pubDate><guid>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;So far so good with i3 :)&lt;/p&gt;
+
+&lt;p&gt;There is one thing though: When running on battery, while I have now the color of the battery text in the status bar changing to red when the battery reaches the threshold configured, it sometimes escapes my attention...&lt;/p&gt;
+
+&lt;p&gt;So I am thinking of having a popup or message appear when the battery reaches a certain threshold.&lt;/p&gt;
+
+&lt;p&gt;What would be a way to do that (without having to load any gnome stuff)? 
+Other suggestions instead of popup also welcome.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?comment=1736#comment-1736</link><description>notify-osd works great for me (but I am on Ubuntu, loads of gnome in there). I tried dunst before but always failed to catch my attention, defeating the purpose of having this in the first place, so now I am back to notify-osd! </description><pubDate>Wed, 01 May 2013 13:09:22 +0000</pubDate><guid>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?comment=1736#comment-1736</guid></item><item><title>Answer by platz for &lt;p&gt;So far so good with i3 :)&lt;/p&gt;
+
+&lt;p&gt;There is one thing though: When running on battery, while I have now the color of the battery text in the status bar changing to red when the battery reaches the threshold configured, it sometimes escapes my attention...&lt;/p&gt;
+
+&lt;p&gt;So I am thinking of having a popup or message appear when the battery reaches a certain threshold.&lt;/p&gt;
+
+&lt;p&gt;What would be a way to do that (without having to load any gnome stuff)? 
+Other suggestions instead of popup also welcome.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?answer=1737#post-id-1737</link><description>It's not a homegrown solution, but I just have `exec xfce4-power-manager` in my i3 config to start the power manager on startup.  This will show a popup when battery is low.  (I don't believe the xfce4 plugins have any gnome dependencies.)</description><pubDate>Wed, 01 May 2013 16:35:44 +0000</pubDate><guid>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?answer=1737#post-id-1737</guid></item><item><title>Answer by fab for &lt;p&gt;So far so good with i3 :)&lt;/p&gt;
+
+&lt;p&gt;There is one thing though: When running on battery, while I have now the color of the battery text in the status bar changing to red when the battery reaches the threshold configured, it sometimes escapes my attention...&lt;/p&gt;
+
+&lt;p&gt;So I am thinking of having a popup or message appear when the battery reaches a certain threshold.&lt;/p&gt;
+
+&lt;p&gt;What would be a way to do that (without having to load any gnome stuff)? 
+Other suggestions instead of popup also welcome.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?answer=1742#post-id-1742</link><description>This is what I finally did
+(it's from the archlinux form, topic id=133047, but I can't post links yet :( )
+using the i3-nagbar!
+I actually need to tweek it because when the popups start to appear they are indeed nagging :)
+
+ 
+
+        #! /bin/bash
+    
+    SLEEP_TIME=5   # Default time between checks.
+    SAFE_PERCENT=30  # Still safe at this level.
+    DANGER_PERCENT=15  # Warn when battery at this level.
+    CRITICAL_PERCENT=5  # Hibernate when battery at this level.
+    
+    NAGBAR_PID=0
+    export DISPLAY=:0.0
+    
+    function launchNagBar
+    {
+        i3-nagbar -m 'Battery low!' -b 'Hibernate!' 'pm-hibernate' &gt;/dev/null 2&gt;&amp;1 &amp;
+        NAGBAR_PID=$!
+    }
+    
+    function killNagBar
+    {
+        if [[ $NAGBAR_PID -ne 0 ]]; then
+            ps -p $NAGBAR_PID | grep "i3-nagbar"
+            if [[ $? -eq 0 ]]; then
+                kill $NAGBAR_PID
+            fi
+            NAGBAR_PID=0
+        fi
+    }
+    
+    
+    while [ true ]; do
+    
+        killNagBar
+    
+        if [[ -n $(acpi -b | grep -i discharging) ]]; then
+            rem_bat=$(acpi -b | grep -Eo "[0-9]+%" | grep -Eo "[0-9]+")
+    
+            if [[ $rem_bat -gt $SAFE_PERCENT ]]; then
+                SLEEP_TIME=10
+            else
+                SLEEP_TIME=5
+                if [[ $rem_bat -le $DANGER_PERCENT ]]; then
+                    SLEEP_TIME=2
+                    launchNagBar
+                fi
+                if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
+                    SLEEP_TIME=1
+                    pm-hibernate
+                fi
+            fi
+        else
+            SLEEP_TIME=10
+        fi
+    
+        sleep ${SLEEP_TIME}m
+    
+    done</description><pubDate>Thu, 02 May 2013 13:00:59 +0000</pubDate><guid>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?answer=1742#post-id-1742</guid></item><item><title>Comment by ilpianista for &lt;p&gt;This is what I finally did
+(it's from the archlinux form, topic id=133047, but I can't post links yet :( )
+using the i3-nagbar!
+I actually need to tweek it because when the popups start to appear they are indeed nagging :)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    #! /bin/bash
+
+SLEEP_TIME=5   # Default time between checks.
+SAFE_PERCENT=30  # Still safe at this level.
+DANGER_PERCENT=15  # Warn when battery at this level.
+CRITICAL_PERCENT=5  # Hibernate when battery at this level.
+
+NAGBAR_PID=0
+export DISPLAY=:0.0
+
+function launchNagBar
+{
+    i3-nagbar -m 'Battery low!' -b 'Hibernate!' 'pm-hibernate' &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
+    NAGBAR_PID=$!
+}
+
+function killNagBar
+{
+    if [[ $NAGBAR_PID -ne 0 ]]; then
+        ps -p $NAGBAR_PID | grep "i3-nagbar"
+        if [[ $? -eq 0 ]]; then
+            kill $NAGBAR_PID
+        fi
+        NAGBAR_PID=0
+    fi
+}
+
+
+while [ true ]; do
+
+    killNagBar
+
+    if [[ -n $(acpi -b | grep -i discharging) ]]; then
+        rem_bat=$(acpi -b | grep -Eo "[0-9]+%" | grep -Eo "[0-9]+")
+
+        if [[ $rem_bat -gt $SAFE_PERCENT ]]; then
+            SLEEP_TIME=10
+        else
+            SLEEP_TIME=5
+            if [[ $rem_bat -le $DANGER_PERCENT ]]; then
+                SLEEP_TIME=2
+                launchNagBar
+            fi
+            if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
+                SLEEP_TIME=1
+                pm-hibernate
+            fi
+        fi
+    else
+        SLEEP_TIME=10
+    fi
+
+    sleep ${SLEEP_TIME}m
+
+done
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?comment=7118#comment-7118</link><description>Here's my version using notify-send: https://gist.github.com/ilpianista/889312d44f5059ab4045</description><pubDate>Sat, 31 Oct 2015 08:48:09 +0000</pubDate><guid>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?comment=7118#comment-7118</guid></item><item><title>Comment by Michael for &lt;p&gt;This is what I finally did
+(it's from the archlinux form, topic id=133047, but I can't post links yet :( )
+using the i3-nagbar!
+I actually need to tweek it because when the popups start to appear they are indeed nagging :)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    #! /bin/bash
+
+SLEEP_TIME=5   # Default time between checks.
+SAFE_PERCENT=30  # Still safe at this level.
+DANGER_PERCENT=15  # Warn when battery at this level.
+CRITICAL_PERCENT=5  # Hibernate when battery at this level.
+
+NAGBAR_PID=0
+export DISPLAY=:0.0
+
+function launchNagBar
+{
+    i3-nagbar -m 'Battery low!' -b 'Hibernate!' 'pm-hibernate' &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
+    NAGBAR_PID=$!
+}
+
+function killNagBar
+{
+    if [[ $NAGBAR_PID -ne 0 ]]; then
+        ps -p $NAGBAR_PID | grep "i3-nagbar"
+        if [[ $? -eq 0 ]]; then
+            kill $NAGBAR_PID
+        fi
+        NAGBAR_PID=0
+    fi
+}
+
+
+while [ true ]; do
+
+    killNagBar
+
+    if [[ -n $(acpi -b | grep -i discharging) ]]; then
+        rem_bat=$(acpi -b | grep -Eo "[0-9]+%" | grep -Eo "[0-9]+")
+
+        if [[ $rem_bat -gt $SAFE_PERCENT ]]; then
+            SLEEP_TIME=10
+        else
+            SLEEP_TIME=5
+            if [[ $rem_bat -le $DANGER_PERCENT ]]; then
+                SLEEP_TIME=2
+                launchNagBar
+            fi
+            if [[ $rem_bat -le $CRITICAL_PERCENT ]]; then
+                SLEEP_TIME=1
+                pm-hibernate
+            fi
+        fi
+    else
+        SLEEP_TIME=10
+    fi
+
+    sleep ${SLEEP_TIME}m
+
+done
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?comment=3665#comment-3665</link><description>Note that i3-nagbar _should not be used_ like this. Our expectation is that it’s only ever used by i3. It will never be extended to suit the needs of third-party use-cases like this. Please use something else.</description><pubDate>Thu, 17 Apr 2014 12:34:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?comment=3665#comment-3665</guid></item><item><title>Answer by vandannen for &lt;p&gt;So far so good with i3 :)&lt;/p&gt;
+
+&lt;p&gt;There is one thing though: When running on battery, while I have now the color of the battery text in the status bar changing to red when the battery reaches the threshold configured, it sometimes escapes my attention...&lt;/p&gt;
+
+&lt;p&gt;So I am thinking of having a popup or message appear when the battery reaches a certain threshold.&lt;/p&gt;
+
+&lt;p&gt;What would be a way to do that (without having to load any gnome stuff)? 
+Other suggestions instead of popup also welcome.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?answer=1734#post-id-1734</link><description>If you have a notification daemon running, like notify-osd or dunst, you could popup a notification when the battery is running low. Sending an own notification message can be done with, e.g., notify-send (package libnotify-bin for debian) or dunstify (from dunst).</description><pubDate>Wed, 01 May 2013 12:11:04 +0000</pubDate><guid>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?answer=1734#post-id-1734</guid></item><item><title>Answer by Julien Jehannet for &lt;p&gt;So far so good with i3 :)&lt;/p&gt;
+
+&lt;p&gt;There is one thing though: When running on battery, while I have now the color of the battery text in the status bar changing to red when the battery reaches the threshold configured, it sometimes escapes my attention...&lt;/p&gt;
+
+&lt;p&gt;So I am thinking of having a popup or message appear when the battery reaches a certain threshold.&lt;/p&gt;
+
+&lt;p&gt;What would be a way to do that (without having to load any gnome stuff)? 
+Other suggestions instead of popup also welcome.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?answer=3634#post-id-3634</link><description>Since it was a long-standing issue for me as well, I post my solution here:
+
+ 1. Use conky as system monitor. Minimal conky file is:
+
+        out_to_x no
+        own_window no
+        out_to_console yes
+        background no
+        max_text_width 0
+        total_run_times 0
+
+        TEXT
+        ${if_match ${laptop_mode}&gt;=0}
+         ${if_match ${battery_percent}&lt;15}
+          ${if_match ${battery_percent}&lt;10}
+           ${execi 20 xcalib -red 1.1 30.0 100.0 -alter}
+           ${exec notify-send -u critical "$(acpi -b)"}
+          ${else}
+           ${execi 60  xcalib -red 1.1 20.0 100.0 -alter}
+           ${execi 120 notify-send -u critical "$(acpi -b)" -t 5000}
+          ${endif}
+         ${endif}
+        ${endif}
+
+ 2. update your i3 bar (or create a new invisible one) with:
+
+         # Inhibit SIGSTOP signal for conky
+         status_command echo '{"version":1,"stop_signal":17}['; conky -c path/to/conkyrc
+
+Since i3bar sends the SIGSTOP signal to the statusline process to save battery power, you have to inhibit this behaviour. Be sure to use the right signal by invoking `kill -L` (I replaced SIGSTOP by SIGCHILD here) 
+
+Apparently It's mandatory for invisible mode as well (not sure It's a feature or not).</description><pubDate>Wed, 09 Apr 2014 11:52:09 +0000</pubDate><guid>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?answer=3634#post-id-3634</guid></item><item><title>Answer by chalist for &lt;p&gt;So far so good with i3 :)&lt;/p&gt;
+
+&lt;p&gt;There is one thing though: When running on battery, while I have now the color of the battery text in the status bar changing to red when the battery reaches the threshold configured, it sometimes escapes my attention...&lt;/p&gt;
+
+&lt;p&gt;So I am thinking of having a popup or message appear when the battery reaches a certain threshold.&lt;/p&gt;
+
+&lt;p&gt;What would be a way to do that (without having to load any gnome stuff)? 
+Other suggestions instead of popup also welcome.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?answer=3615#post-id-3615</link><description>I found this in arch forum:
+
+I just use a cron job to do a check every five minutes and notify if there is less than 15 minutes of charge left
+
+    #!/bin/bash
+    
+    BATTINFO=`acpi -b`
+    if [[ `echo $BATTINFO | grep Discharging` &amp;&amp; `echo $BATTINFO | cut -f 5 -d " "` &lt; 00:15:00 ]] ; then
+        DISPLAY=:0.0 /usr/bin/notify-send "low battery" "$BATTINFO"
+    fi
+
+link: [https://bbs.archlinux.org/viewtopic.php?id=138755](https://bbs.archlinux.org/viewtopic.php?id=138755)</description><pubDate>Wed, 02 Apr 2014 20:40:46 +0000</pubDate><guid>https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/?answer=3615#post-id-3615</guid></item></channel></rss>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1018/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 30 Jan 2013 21:54:46 +0000</lastBuildDate><item><title>named workspaces</title><link>https://faq.i3wm.org/question/1018/named-workspaces/</link><description>    $ i3 --version
+    i3 version 4.4 (2012-12-12, branch "tags/4.4") © 2009-2012 Michael Stapelberg and contributors
+
+I don't have any named workspaces in my config file - it just looks like:
+
+    bindsym $mod+1 workspace 1
+    bindsym $mod+Shift+1 move container to workspace 1
+(have 1-10)
+
+So, I rename a workspace with i3-input and put in
+ 
+    rename workspace 3 to "3: www"
+for example and the workspace in the bottom left goes from "3" to "3: www"
+
+BUT - here's my question - how do I switch to it?
+If I press $mod-3, I get a *new* workspace called "3".
+
+The only way I can get to "3: www" is with $mod-n because I have:
+
+    bindsym $mod+n workspace next
+    bindsym $mod+Shift+n workspace previous
+
+Not sure if I'm doing something wrong (or misunderstanding the Users's Guide).
+
+thanks in advance for any guidance </description><pubDate>Fri, 11 Jan 2013 18:01:46 +0000</pubDate><guid>https://faq.i3wm.org/question/1018/named-workspaces/</guid></item><item><title>Answer by badboy_ for &lt;pre&gt;&lt;code&gt;$ i3 --version
+i3 version 4.4 (2012-12-12, branch "tags/4.4") © 2009-2012 Michael Stapelberg and contributors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don't have any named workspaces in my config file - it just looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1 workspace 1
+bindsym $mod+Shift+1 move container to workspace 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(have 1-10)&lt;/p&gt;
+
+&lt;p&gt;So, I rename a workspace with i3-input and put in&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rename workspace 3 to "3: www"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;for example and the workspace in the bottom left goes from "3" to "3: www"&lt;/p&gt;
+
+&lt;p&gt;BUT - here's my question - how do I switch to it?
+If I press $mod-3, I get a &lt;em&gt;new&lt;/em&gt; workspace called "3".&lt;/p&gt;
+
+&lt;p&gt;The only way I can get to "3: www" is with $mod-n because I have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+n workspace next
+bindsym $mod+Shift+n workspace previous
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not sure if I'm doing something wrong (or misunderstanding the Users's Guide).&lt;/p&gt;
+
+&lt;p&gt;thanks in advance for any guidance &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1018/named-workspaces/?answer=1022#post-id-1022</link><description>Use `workspace number 1` in your config and it should work.
+
+See [6.5. Changing (named) workspaces/moving to workspaces
+](http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces) for that</description><pubDate>Fri, 11 Jan 2013 18:15:04 +0000</pubDate><guid>https://faq.i3wm.org/question/1018/named-workspaces/?answer=1022#post-id-1022</guid></item><item><title>Answer by joel for &lt;pre&gt;&lt;code&gt;$ i3 --version
+i3 version 4.4 (2012-12-12, branch "tags/4.4") © 2009-2012 Michael Stapelberg and contributors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don't have any named workspaces in my config file - it just looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1 workspace 1
+bindsym $mod+Shift+1 move container to workspace 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(have 1-10)&lt;/p&gt;
+
+&lt;p&gt;So, I rename a workspace with i3-input and put in&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rename workspace 3 to "3: www"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;for example and the workspace in the bottom left goes from "3" to "3: www"&lt;/p&gt;
+
+&lt;p&gt;BUT - here's my question - how do I switch to it?
+If I press $mod-3, I get a &lt;em&gt;new&lt;/em&gt; workspace called "3".&lt;/p&gt;
+
+&lt;p&gt;The only way I can get to "3: www" is with $mod-n because I have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+n workspace next
+bindsym $mod+Shift+n workspace previous
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not sure if I'm doing something wrong (or misunderstanding the Users's Guide).&lt;/p&gt;
+
+&lt;p&gt;thanks in advance for any guidance &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1018/named-workspaces/?answer=1021#post-id-1021</link><description>Ok, I figured it out.
+
+I need
+
+    bindsym $mod+3 workspace number 3
+
+instead of
+
+    bindsym $mod+3 workspace 3
+</description><pubDate>Fri, 11 Jan 2013 18:12:06 +0000</pubDate><guid>https://faq.i3wm.org/question/1018/named-workspaces/?answer=1021#post-id-1021</guid></item><item><title>Comment by joepd for &lt;p&gt;Ok, I figured it out.&lt;/p&gt;
+
+&lt;p&gt;I need&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+3 workspace number 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;instead of&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+3 workspace 3
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1018/named-workspaces/?comment=1031#comment-1031</link><description>Please accept your own answer :) </description><pubDate>Sat, 12 Jan 2013 21:16:57 +0000</pubDate><guid>https://faq.i3wm.org/question/1018/named-workspaces/?comment=1031#comment-1031</guid></item><item><title>Comment by joel for &lt;p&gt;Ok, I figured it out.&lt;/p&gt;
+
+&lt;p&gt;I need&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+3 workspace number 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;instead of&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+3 workspace 3
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1018/named-workspaces/?comment=1169#comment-1169</link><description>I tried - do not have enough points (?) </description><pubDate>Wed, 30 Jan 2013 21:54:46 +0000</pubDate><guid>https://faq.i3wm.org/question/1018/named-workspaces/?comment=1169#comment-1169</guid></item></channel></rss>

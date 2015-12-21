@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6653/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 21 Sep 2015 21:48:49 +0000</lastBuildDate><item><title>display volume of alsa card</title><link>https://faq.i3wm.org/question/6653/display-volume-of-alsa-card/</link><description>I am using an alsa driver, but would like to view the volume from the Master channel on card #2. I'm not sure how to get that in i3status. I can only display the default card with:
+
+     volume master {
+        format = " %volume"
+        format_muted = " %volume"
+        device = "default"
+        mixer = "PCM"
+        mixer_idx = 0
+    }
+
+But this is not the correct card that is hooked to my speakers. I need card #2. 
+When I try to put in `mixer = "Master"` and `mixer_idx=2`, I get errors like:
+
+    i3status: ALSA: Cannot find mixer Master (index 2)
+
+**How can I get the volume on card #2 channel Master in .i3status?**
+
+----
+My `.asoundrc` is:
+
+    pcm.!default {
+       type plug
+       slave.pcm "dmixer"
+    }
+
+    pcm.dmixer {
+      type dmix
+      ipc_key 1024
+      slave {
+        pcm "hw:2,0"
+        period_time 0
+        period_size 1024
+        buffer_size 4096
+        rate 44100
+      }
+      bindings {
+        0 0
+        1 1
+      }
+    }
+
+    ctl.dmixer {
+      type hw
+      card 2
+      device 0
+    }
+
+And here's the output of `aplay -l`:
+
+    **** List of PLAYBACK Hardware Devices ****
+    card 0: G9350 [GN 9350], device 0: USB Audio [USB Audio]
+      Subdevices: 1/1
+      Subdevice #0: subdevice #0
+    card 2: PCH [HDA Intel PCH], device 0: ALC892 Analog [ALC892 Analog]
+      Subdevices: 0/1
+      Subdevice #0: subdevice #0
+    card 2: PCH [HDA Intel PCH], device 1: ALC892 Digital [ALC892 Digital]
+      Subdevices: 1/1
+      Subdevice #0: subdevice #0
+    card 3: NVidia [HDA NVidia], device 3: HDMI 0 [HDMI 0]
+      Subdevices: 1/1
+      Subdevice #0: subdevice #0
+    card 3: NVidia [HDA NVidia], device 7: HDMI 1 [HDMI 1]
+      Subdevices: 1/1
+      Subdevice #0: subdevice #0
+    card 3: NVidia [HDA NVidia], device 8: HDMI 2 [HDMI 2]
+      Subdevices: 1/1
+      Subdevice #0: subdevice #0
+    card 3: NVidia [HDA NVidia], device 9: HDMI 3 [HDMI 3]
+      Subdevices: 1/1
+      Subdevice #0: subdevice #0
+
+Thanks</description><pubDate>Mon, 21 Sep 2015 21:48:49 +0000</pubDate><guid>https://faq.i3wm.org/question/6653/display-volume-of-alsa-card/</guid></item></channel></rss>

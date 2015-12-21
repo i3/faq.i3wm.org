@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/954/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 11 Apr 2015 02:21:58 +0000</lastBuildDate><item><title>Open window as a scratchpad</title><link>https://faq.i3wm.org/question/954/open-window-as-a-scratchpad/</link><description>Hi,
+
+I'm trying to create a web app to handle my i3 configurations to autostart all the windows i need in the workspace I want.
+This app let me create several configs (home, work) in which i put all my workspaces (from my i3/config file, there will be a feature to autoread it) and then i set all the clients per workspace.
+I'm at the very early stage of this app, the code is dirty but it kinda works. 
+
+I did the web app (configs are save in a yaml file), and i did a cli php app (sorry, I'm a php dev ^^) to load the wanted configuration and launch your app in the right workspace. This works for now, so i just need to run a script and all my clients open where they belongs. 
+
+I now that i can do some similar stuff with the i3/config file but i didn't manage to do what i wanted. Plus i want to be able to manage several configs and manage splits and layout to really be able to run a script at startup and be ready to work.
+
+At this point, the feature I'd like to add is the ability to open client as a scratchpad. Unfortunatly, I didn't find a way to open a client and setting it as a scratchpad with i3-msg.
+
+Is there any way to do something like that with i3-msg (or smth else but not the config file) ?
+
+Thanks for your help</description><pubDate>Mon, 31 Dec 2012 17:11:26 +0000</pubDate><guid>https://faq.i3wm.org/question/954/open-window-as-a-scratchpad/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm trying to create a web app to handle my i3 configurations to autostart all the windows i need in the workspace I want.
+This app let me create several configs (home, work) in which i put all my workspaces (from my i3/config file, there will be a feature to autoread it) and then i set all the clients per workspace.
+I'm at the very early stage of this app, the code is dirty but it kinda works. &lt;/p&gt;
+
+&lt;p&gt;I did the web app (configs are save in a yaml file), and i did a cli php app (sorry, I'm a php dev ^^) to load the wanted configuration and launch your app in the right workspace. This works for now, so i just need to run a script and all my clients open where they belongs. &lt;/p&gt;
+
+&lt;p&gt;I now that i can do some similar stuff with the i3/config file but i didn't manage to do what i wanted. Plus i want to be able to manage several configs and manage splits and layout to really be able to run a script at startup and be ready to work.&lt;/p&gt;
+
+&lt;p&gt;At this point, the feature I'd like to add is the ability to open client as a scratchpad. Unfortunatly, I didn't find a way to open a client and setting it as a scratchpad with i3-msg.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to do something like that with i3-msg (or smth else but not the config file) ?&lt;/p&gt;
+
+&lt;p&gt;Thanks for your help&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/954/open-window-as-a-scratchpad/?answer=962#post-id-962</link><description>There are multiple ways to move a window to the scratchpad:
+
+1. Use `for_window` in the i3 config file with the "move scratchpad" command, e.g. `for_window [class="URxvt" instance="cmus"] move scratchpad` (untested). Obviously this requires you to find out unique criteria to match the specific window and it needs to be configured before you launch the application.
+2. Figure out the window’s ID and send a command with i3-msg, e.g. `i3-msg '[con_id="0x12345678"] move scratchpad'` after parsing the layout tree, see http://i3wm.org/docs/ipc.html</description><pubDate>Wed, 02 Jan 2013 18:45:37 +0000</pubDate><guid>https://faq.i3wm.org/question/954/open-window-as-a-scratchpad/?answer=962#post-id-962</guid></item><item><title>Comment by msx for &lt;p&gt;There are multiple ways to move a window to the scratchpad:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Use &lt;code&gt;for_window&lt;/code&gt; in the i3 config file with the "move scratchpad" command, e.g. &lt;code&gt;for_window [class="URxvt" instance="cmus"] move scratchpad&lt;/code&gt; (untested). Obviously this requires you to find out unique criteria to match the specific window and it needs to be configured before you launch the application.&lt;/li&gt;
+&lt;li&gt;Figure out the window’s ID and send a command with i3-msg, e.g. &lt;code&gt;i3-msg '[con_id="0x12345678"] move scratchpad'&lt;/code&gt;after parsing the layout tree, see &lt;a href="http://i3wm.org/docs/ipc.html"&gt;http://i3wm.org/docs/ipc.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/954/open-window-as-a-scratchpad/?comment=5771#comment-5771</link><description>The command is 'move window to scratchpad' (without ticks), like: for_window [class="Emacs"] move window to scratchpad. Thanks for your answer @Michael, helped me search in the right direction.</description><pubDate>Sat, 11 Apr 2015 02:21:58 +0000</pubDate><guid>https://faq.i3wm.org/question/954/open-window-as-a-scratchpad/?comment=5771#comment-5771</guid></item></channel></rss>

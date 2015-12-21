@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3824/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 17 May 2014 19:33:08 +0000</lastBuildDate><item><title>[solved]for_window qemu windows</title><link>https://faq.i3wm.org/question/3824/solvedfor_window-qemu-windows/</link><description>Hi,
+
+I'm looking for a good way to use qemu with Windows 7.
+
+My problem:
+qemu + Windows 7 does not seem aware of the window size so the screen doesn't look nice at all.
+My display is 1440 x 900 and I'd like qemu to be in an floating 1280 x 800 window (that means 1280 x 800 available to Windows and not 1280 x 800 minus i3 boarder + stuff available to Windows).
+I tried
+
+    for_window [class="QEMU*"] floating enable, size 1280 x 800
+
+in my `~/.i3/config` with no effect. The window is not floating automatically and if I put it in floating mode I still have to adjust the size manually.
+My qemu window is named QEMU Windows (qemu parameter `-name Windows`)
+
+Thank you for your suggestions.
+Maximilian</description><pubDate>Fri, 16 May 2014 00:56:41 +0000</pubDate><guid>https://faq.i3wm.org/question/3824/solvedfor_window-qemu-windows/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm looking for a good way to use qemu with Windows 7.&lt;/p&gt;
+
+&lt;p&gt;My problem:
+qemu + Windows 7 does not seem aware of the window size so the screen doesn't look nice at all.
+My display is 1440 x 900 and I'd like qemu to be in an floating 1280 x 800 window (that means 1280 x 800 available to Windows and not 1280 x 800 minus i3 boarder + stuff available to Windows).
+I tried&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="QEMU*"] floating enable, size 1280 x 800
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in my &lt;code&gt;~/.i3/config&lt;/code&gt; with no effect. The window is not floating automatically and if I put it in floating mode I still have to adjust the size manually.
+My qemu window is named QEMU Windows (qemu parameter &lt;code&gt;-name Windows&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Thank you for your suggestions.
+Maximilian&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3824/solvedfor_window-qemu-windows/?answer=3830#post-id-3830</link><description>This should work:
+
+    for_window [title="^QEMU \(Windows\)$"] floating enable
+
+Explanation:
+
+1. If you want to match the title of a window you should use `title` not `class`. (BTW: the class of a qemu window is `qemu-system-[arch]` where `[arch]` is the emulated architecture)
+
+2. Criteria are specified as PCRE (Perl compatible regular expression). So if you want to match both "QEMU this" and "QEMU that" you need `"QEMU.*"` (Note the dot) or just `"QEMU"` as by default PCRE do not have to match the whole tested string. `"^QEMU \(Windows\)$"` matches exactly "QEMU (Windows)" (`^` is the start of a string, `$` its end, `(` and `)` are special in PCRE and have to be escaped with `\`)
+
+3. There is no `size` command, only `resize` and that does only allow changes relative to the current size. So it does not work that way.
+
+ *But*: Unless you set `floating_minimum_size` or `floating_maximum_size`, i3 does not restrict programs from resizing windows in floating mode. Windows in floating mode will take their default size, usually even when they initially started in tiled mode (some programs try to keep their geometry when pushed to floating, but not that many). That means, your qemu window should be able to resize on its own. (If it works for other window managers, it should work for i3)
+
+</description><pubDate>Fri, 16 May 2014 14:36:03 +0000</pubDate><guid>https://faq.i3wm.org/question/3824/solvedfor_window-qemu-windows/?answer=3830#post-id-3830</guid></item><item><title>Comment by maximilian for &lt;p&gt;This should work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [title="^QEMU \(Windows\)$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Explanation:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;If you want to match the title of a window you should use &lt;code&gt;title&lt;/code&gt; not &lt;code&gt;class&lt;/code&gt;. (BTW: the class of a qemu window is &lt;code&gt;qemu-system-[arch]&lt;/code&gt; where &lt;code&gt;[arch]&lt;/code&gt; is the emulated architecture)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Criteria are specified as PCRE (Perl compatible regular expression). So if you want to match both "QEMU this" and "QEMU that" you need &lt;code&gt;"QEMU.*"&lt;/code&gt; (Note the dot) or just &lt;code&gt;"QEMU"&lt;/code&gt; as by default PCRE do not have to match the whole tested string. &lt;code&gt;"^QEMU \(Windows\)$"&lt;/code&gt; matches exactly "QEMU (Windows)" (&lt;code&gt;^&lt;/code&gt; is the start of a string, &lt;code&gt;$&lt;/code&gt; its end, &lt;code&gt;(&lt;/code&gt; and &lt;code&gt;)&lt;/code&gt; are special in PCRE and have to be escaped with &lt;code&gt;\&lt;/code&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There is no &lt;code&gt;size&lt;/code&gt; command, only &lt;code&gt;resize&lt;/code&gt; and that does only allow changes relative to the current size. So it does not work that way.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;But&lt;/em&gt;: Unless you set &lt;code&gt;floating_minimum_size&lt;/code&gt; or &lt;code&gt;floating_maximum_size&lt;/code&gt;, i3 does not restrict programs from resizing windows in floating mode. Windows in floating mode will take their default size, usually even when they initially started in tiled mode (some programs try to keep their geometry when pushed to floating, but not that many). That means, your qemu window should be able to resize on its own. (If it works for other window managers, it should work for i3)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/3824/solvedfor_window-qemu-windows/?comment=3838#comment-3838</link><description>Thanks. It works. :)</description><pubDate>Sat, 17 May 2014 19:33:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3824/solvedfor_window-qemu-windows/?comment=3838#comment-3838</guid></item></channel></rss>

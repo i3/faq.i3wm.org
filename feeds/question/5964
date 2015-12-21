@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5964/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 07 May 2015 16:58:37 +0000</lastBuildDate><item><title>Python sleep in custom status_command</title><link>https://faq.i3wm.org/question/5964/python-sleep-in-custom-status_command/</link><description>I am trying to write a status command in python, but i'm not sure how to get it to pause for intervals. The sleep function kinda works. The more work that the script does the longer it takes to display. I see in the code for i3 python wrappers a lot of stuff refrencing the i3status process, but i really don't understand what they are doing. However they seem to acomplish what i am trying. I tried with a sleep function in a bash script and it seemed to work much better.
+
+     #!/usr/bin/env python
+
+     import json
+     import sys
+     import time
+
+     if __name__ == '__main__':
+          print('{ "version" : 1 }')
+          print('[')
+          print('[],')
+
+          while True:
+               print('[{ "full_text" : "hello world" }],')
+               #time.sleep(1)
+
+The smaller the time in sleep, the more often the status bare gets updated, however it is not consistent.
+
+here is an example of a custom status_command in python:
+https://gist.github.com/projectgus/5f8e1fab789edd138a5b
+
+It works, but i really don't understand what they are trying to do and i haven't been able to add or modify it without breaking something.</description><pubDate>Thu, 07 May 2015 10:04:46 +0000</pubDate><guid>https://faq.i3wm.org/question/5964/python-sleep-in-custom-status_command/</guid></item><item><title>Comment by TheRoach for &lt;p&gt;I am trying to write a status command in python, but i'm not sure how to get it to pause for intervals. The sleep function kinda works. The more work that the script does the longer it takes to display. I see in the code for i3 python wrappers a lot of stuff refrencing the i3status process, but i really don't understand what they are doing. However they seem to acomplish what i am trying. I tried with a sleep function in a bash script and it seemed to work much better.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; #!/usr/bin/env python
+
+ import json
+ import sys
+ import time
+
+ if __name__ == '__main__':
+      print('{ "version" : 1 }')
+      print('[')
+      print('[],')
+
+      while True:
+           print('[{ "full_text" : "hello world" }],')
+           #time.sleep(1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The smaller the time in sleep, the more often the status bare gets updated, however it is not consistent.&lt;/p&gt;
+
+&lt;p&gt;here is an example of a custom status_command in python:
+&lt;a href="https://gist.github.com/projectgus/5f8e1fab789edd138a5b"&gt;https://gist.github.com/projectgus/5f...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It works, but i really don't understand what they are trying to do and i haven't been able to add or modify it without breaking something.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5964/python-sleep-in-custom-status_command/?comment=5967#comment-5967</link><description>I don't understand why uses the i3status command, and why his infinite loop works where mine doesn't. Does the i3status command control his timing? How would it do that? What you said makes sense though.</description><pubDate>Thu, 07 May 2015 16:58:37 +0000</pubDate><guid>https://faq.i3wm.org/question/5964/python-sleep-in-custom-status_command/?comment=5967#comment-5967</guid></item><item><title>Comment by i3convert for &lt;p&gt;I am trying to write a status command in python, but i'm not sure how to get it to pause for intervals. The sleep function kinda works. The more work that the script does the longer it takes to display. I see in the code for i3 python wrappers a lot of stuff refrencing the i3status process, but i really don't understand what they are doing. However they seem to acomplish what i am trying. I tried with a sleep function in a bash script and it seemed to work much better.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; #!/usr/bin/env python
+
+ import json
+ import sys
+ import time
+
+ if __name__ == '__main__':
+      print('{ "version" : 1 }')
+      print('[')
+      print('[],')
+
+      while True:
+           print('[{ "full_text" : "hello world" }],')
+           #time.sleep(1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The smaller the time in sleep, the more often the status bare gets updated, however it is not consistent.&lt;/p&gt;
+
+&lt;p&gt;here is an example of a custom status_command in python:
+&lt;a href="https://gist.github.com/projectgus/5f8e1fab789edd138a5b"&gt;https://gist.github.com/projectgus/5f...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It works, but i really don't understand what they are trying to do and i haven't been able to add or modify it without breaking something.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5964/python-sleep-in-custom-status_command/?comment=5965#comment-5965</link><description>As far as I understand they get the output provided by i3status (in the json format, this has to be configured somewhere) and add extra information.  See the json format specification at http://i3wm.org/docs/i3bar-protocol.html for more information.</description><pubDate>Thu, 07 May 2015 14:04:46 +0000</pubDate><guid>https://faq.i3wm.org/question/5964/python-sleep-in-custom-status_command/?comment=5965#comment-5965</guid></item></channel></rss>

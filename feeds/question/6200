@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6200/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 26 Nov 2015 18:51:45 +0000</lastBuildDate><item><title>Obtain info on current workspace etc.</title><link>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/</link><description>How do I just get info about current settings like current workspace?
+
+For example, from a script I want to decide based on name of the current desktop,
+
+The background is that I have $mod+b for web browser, but I have 2 profiles: home and work.  I also have a dedicated set of home and work worplaces. So I want to use a browser launcher that will choose the browser profile based on which workspace I am on. (I'm OK with the fact that the window may get moved later).
+
+So is there a generic way (ie a i3-msg command) for getting info?</description><pubDate>Thu, 25 Jun 2015 12:37:43 +0000</pubDate><guid>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/</guid></item><item><title>Answer by Alois Mahdal for &lt;p&gt;How do I just get info about current settings like current workspace?&lt;/p&gt;
+
+&lt;p&gt;For example, from a script I want to decide based on name of the current desktop,&lt;/p&gt;
+
+&lt;p&gt;The background is that I have $mod+b for web browser, but I have 2 profiles: home and work.  I also have a dedicated set of home and work worplaces. So I want to use a browser launcher that will choose the browser profile based on which workspace I am on. (I'm OK with the fact that the window may get moved later).&lt;/p&gt;
+
+&lt;p&gt;So is there a generic way (ie a i3-msg command) for getting info?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/?answer=6205#post-id-6205</link><description>As addition to @Airblader's answer, here's the code to get *focused workspace name* using `i3-msg` and `jq` ([an awesome command-line JSON processor][1]):
+
+    #!/bin/sh
+    i3-msg -t get_workspaces \
+      | jq '.[] | select(.focused==true).name' \
+      | cut -d"\"" -f2
+
+*Update:* Reduced (and hardened) the command pipe even more with @Airblader's help
+
+  [1]: http://stedolan.github.io/jq</description><pubDate>Thu, 25 Jun 2015 13:47:03 +0000</pubDate><guid>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/?answer=6205#post-id-6205</guid></item><item><title>Comment by Vidar for &lt;p&gt;As addition to &lt;a href="/users/24966/airblader/"&gt;@Airblader&lt;/a&gt;'s answer, here's the code to get &lt;em&gt;focused workspace name&lt;/em&gt; using &lt;code&gt;i3-msg&lt;/code&gt; and &lt;code&gt;jq&lt;/code&gt; (&lt;a href="http://stedolan.github.io/jq"&gt;an awesome command-line JSON processor&lt;/a&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+i3-msg -t get_workspaces \
+  | jq '.[] | select(.focused==true).name' \
+  | cut -d"\"" -f2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Update:&lt;/em&gt; Reduced (and hardened) the command pipe even more with &lt;a href="/users/24966/airblader/"&gt;@Airblader&lt;/a&gt;'s help&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/?comment=7473#comment-7473</link><description>jq has a "-r" option that'll achieve the same as the "cut", so unless I'm missing something you can do just
+i3-msg -t get_workspaces   | jq -r '.[] | select(.focused==true).name'</description><pubDate>Thu, 26 Nov 2015 18:51:45 +0000</pubDate><guid>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/?comment=7473#comment-7473</guid></item><item><title>Comment by Airblader for &lt;p&gt;As addition to &lt;a href="/users/24966/airblader/"&gt;@Airblader&lt;/a&gt;'s answer, here's the code to get &lt;em&gt;focused workspace name&lt;/em&gt; using &lt;code&gt;i3-msg&lt;/code&gt; and &lt;code&gt;jq&lt;/code&gt; (&lt;a href="http://stedolan.github.io/jq"&gt;an awesome command-line JSON processor&lt;/a&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+i3-msg -t get_workspaces \
+  | jq '.[] | select(.focused==true).name' \
+  | cut -d"\"" -f2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Update:&lt;/em&gt; Reduced (and hardened) the command pipe even more with &lt;a href="/users/24966/airblader/"&gt;@Airblader&lt;/a&gt;'s help&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/?comment=6206#comment-6206</link><description>You can shrink that down a lot with
+
+    i3-msg -t get_workspaces | jq '.[] | select(.focused==true).name' | cut -d"\"" -f2</description><pubDate>Thu, 25 Jun 2015 20:01:53 +0000</pubDate><guid>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/?comment=6206#comment-6206</guid></item><item><title>Answer by Airblader for &lt;p&gt;How do I just get info about current settings like current workspace?&lt;/p&gt;
+
+&lt;p&gt;For example, from a script I want to decide based on name of the current desktop,&lt;/p&gt;
+
+&lt;p&gt;The background is that I have $mod+b for web browser, but I have 2 profiles: home and work.  I also have a dedicated set of home and work worplaces. So I want to use a browser launcher that will choose the browser profile based on which workspace I am on. (I'm OK with the fact that the window may get moved later).&lt;/p&gt;
+
+&lt;p&gt;So is there a generic way (ie a i3-msg command) for getting info?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/?answer=6203#post-id-6203</link><description>See [the i3ipc documentation](http://i3wm.org/docs/ipc.html). To find out how to call `i3-msg`, use `man i3-msg`.</description><pubDate>Thu, 25 Jun 2015 12:52:47 +0000</pubDate><guid>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/?answer=6203#post-id-6203</guid></item><item><title>Comment by Alois Mahdal for &lt;p&gt;See &lt;a href="http://i3wm.org/docs/ipc.html"&gt;the i3ipc documentation&lt;/a&gt;. To find out how to call &lt;code&gt;i3-msg&lt;/code&gt;, use &lt;code&gt;man i3-msg&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/?comment=6204#comment-6204</link><description>thanks, that is exactly what I needed.  (can't upvote, though--karma&lt;10)</description><pubDate>Thu, 25 Jun 2015 13:19:57 +0000</pubDate><guid>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/?comment=6204#comment-6204</guid></item></channel></rss>

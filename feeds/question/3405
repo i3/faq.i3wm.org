@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3405/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 26 Aug 2015 11:12:19 +0000</lastBuildDate><item><title>hide status bar for particular workspace</title><link>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/</link><description>Is there any way/workaround to hide status bar for the particular workspace and keep it for the the rest? 
+I was looking at the different bar configurations, but for the moment without much success. Maybe you could suggest the best approach for it? 
+Thank you in advance!</description><pubDate>Wed, 19 Feb 2014 12:20:20 +0000</pubDate><guid>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Is there any way/workaround to hide status bar for the particular workspace and keep it for the the rest? 
+I was looking at the different bar configurations, but for the moment without much success. Maybe you could suggest the best approach for it? 
+Thank you in advance!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/?answer=3406#post-id-3406</link><description>There are no configuration option to define per-workspace behaviour on the bar. 
+
+But there is the `bar mode` command which allows changing the display mode of the bar(s) during runtime. Also, the i3 IPC has events for workspace changes, so you could change visbility of the bar every time you enter or leave the workspace in question.
+
+Here is a simple prototype using [i3-py](https://github.com/ziberna/i3-py):
+
+    #!/usr/bin/env python
+    
+    import i3
+    def wsch(e, d, s):
+        if e['change'] == 'focus' and e['current']['name'] == 'special ws':
+            i3.bar('mode', 'invisible')
+        else:
+            i3.bar('mode', 'dock')
+
+    s = i3.Subscription(wsch, 'workspace')
+
+This will make the bar invisible every time you go to *special ws* and make it docked if you go anywhere else.</description><pubDate>Wed, 19 Feb 2014 13:46:21 +0000</pubDate><guid>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/?answer=3406#post-id-3406</guid></item><item><title>Comment by Adaephon for &lt;p&gt;There are no configuration option to define per-workspace behaviour on the bar. &lt;/p&gt;
+
+&lt;p&gt;But there is the &lt;code&gt;bar mode&lt;/code&gt; command which allows changing the display mode of the bar(s) during runtime. Also, the i3 IPC has events for workspace changes, so you could change visbility of the bar every time you enter or leave the workspace in question.&lt;/p&gt;
+
+&lt;p&gt;Here is a simple prototype using &lt;a href="https://github.com/ziberna/i3-py"&gt;i3-py&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+import i3
+def wsch(e, d, s):
+    if e['change'] == 'focus' and e['current']['name'] == 'special ws':
+        i3.bar('mode', 'invisible')
+    else:
+        i3.bar('mode', 'dock')
+
+s = i3.Subscription(wsch, 'workspace')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will make the bar invisible every time you go to &lt;em&gt;special ws&lt;/em&gt; and make it docked if you go anywhere else.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/?comment=6515#comment-6515</link><description>Changing the name should be no Problem. I can confirm the error, but it seems to originate form the i3-py library. Unfortunately it has not been updated for some years, so it may not be fully compatible with newer i3 versions. Perhaps another library works better: http://i3wm.org/docs/ipc.html</description><pubDate>Wed, 26 Aug 2015 11:12:19 +0000</pubDate><guid>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/?comment=6515#comment-6515</guid></item><item><title>Comment by saQi for &lt;p&gt;There are no configuration option to define per-workspace behaviour on the bar. &lt;/p&gt;
+
+&lt;p&gt;But there is the &lt;code&gt;bar mode&lt;/code&gt; command which allows changing the display mode of the bar(s) during runtime. Also, the i3 IPC has events for workspace changes, so you could change visbility of the bar every time you enter or leave the workspace in question.&lt;/p&gt;
+
+&lt;p&gt;Here is a simple prototype using &lt;a href="https://github.com/ziberna/i3-py"&gt;i3-py&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+import i3
+def wsch(e, d, s):
+    if e['change'] == 'focus' and e['current']['name'] == 'special ws':
+        i3.bar('mode', 'invisible')
+    else:
+        i3.bar('mode', 'dock')
+
+s = i3.Subscription(wsch, 'workspace')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will make the bar invisible every time you go to &lt;em&gt;special ws&lt;/em&gt; and make it docked if you go anywhere else.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/?comment=6508#comment-6508</link><description>An UnicodeDecodeError shows up only when I move to a NEW workspace. Meaning if I press $mod+5 when workspace 5 is not already present and is created by my pressing $mod+5. 
+
+Also, I have replaced "special ws" by "1" in your script since I want it hidden only on workspace 1. It should work ,right?</description><pubDate>Tue, 25 Aug 2015 19:50:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/?comment=6508#comment-6508</guid></item><item><title>Comment by onorua for &lt;p&gt;There are no configuration option to define per-workspace behaviour on the bar. &lt;/p&gt;
+
+&lt;p&gt;But there is the &lt;code&gt;bar mode&lt;/code&gt; command which allows changing the display mode of the bar(s) during runtime. Also, the i3 IPC has events for workspace changes, so you could change visbility of the bar every time you enter or leave the workspace in question.&lt;/p&gt;
+
+&lt;p&gt;Here is a simple prototype using &lt;a href="https://github.com/ziberna/i3-py"&gt;i3-py&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+import i3
+def wsch(e, d, s):
+    if e['change'] == 'focus' and e['current']['name'] == 'special ws':
+        i3.bar('mode', 'invisible')
+    else:
+        i3.bar('mode', 'dock')
+
+s = i3.Subscription(wsch, 'workspace')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will make the bar invisible every time you go to &lt;em&gt;special ws&lt;/em&gt; and make it docked if you go anywhere else.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/?comment=3408#comment-3408</link><description>Thank you very much! I'll give it a try</description><pubDate>Thu, 20 Feb 2014 10:31:13 +0000</pubDate><guid>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/?comment=3408#comment-3408</guid></item><item><title>Answer by saQi for &lt;p&gt;Is there any way/workaround to hide status bar for the particular workspace and keep it for the the rest? 
+I was looking at the different bar configurations, but for the moment without much success. Maybe you could suggest the best approach for it? 
+Thank you in advance!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/?answer=6507#post-id-6507</link><description>Thanks for this. When I use this it works fine for some time but then when I switch workspaces it stops working with the following errors..
+
+    Exception in thread Thread-1:
+    Traceback (most recent call last):
+      File "/usr/lib/python2.7/threading.py", line 810, in __bootstrap_inner
+        self.run()
+      File "/usr/local/lib/python2.7/dist-packages/i3.py", line 324, in run
+        self.listen()
+      File "/usr/local/lib/python2.7/dist-packages/i3.py", line 338, in listen
+        event = self.event_socket.receive()
+      File "/usr/local/lib/python2.7/dist-packages/i3.py", line 218, in receive
+        return self.unpack(data)
+      File "/usr/local/lib/python2.7/dist-packages/i3.py", line 248, in unpack
+        payload = data[self.struct_header_size:msg_size].decode('utf-8')
+      File "/usr/lib/python2.7/encodings/utf_8.py", line 16, in decode
+        return codecs.utf_8_decode(input, errors, True)
+    UnicodeDecodeError: 'utf8' codec can't decode byte 0xab in position 985: invalid start byte
+
+
+What should I do? Any help will be appreciated. 
+
+Edit: I found out this error shows up only when I move to a NEW workspace. Meaning if I press $mod+5 when workspace 5 is not already present and is created by my presson $mod+5. Also, I have replaced "special ws" by "1" in your script since I want it hidden only on workspace 1. That should work, right?</description><pubDate>Tue, 25 Aug 2015 19:41:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3405/hide-status-bar-for-particular-workspace/?answer=6507#post-id-6507</guid></item></channel></rss>

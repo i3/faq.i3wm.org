@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5721/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 26 Apr 2015 16:54:25 +0000</lastBuildDate><item><title>How do i subscribe to i3-events using bash easily?</title><link>https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/</link><description>How do i subscribe to i3-events using bash easily?</description><pubDate>Thu, 02 Apr 2015 01:13:07 +0000</pubDate><guid>https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/</guid></item><item><title>Answer by gurkensalat for &lt;p&gt;How do i subscribe to i3-events using bash easily?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?answer=5722#post-id-5722</link><description>You can use the following perl script "i3subscribe" to subscribe to i3-events:
+
+    #!/usr/bin/env perl
+    
+    BEGIN { $| = 1 } # flush \n
+    
+    use strict;
+    use warnings;
+    use Data::Dumper;
+    use AnyEvent::I3;
+    use v5.10;
+    
+    my $i3 = i3();
+    $i3-&gt;connect-&gt;recv or die "Error connecting to i3";
+    
+    sub subscribe {
+        my $ev = $_[0];
+        my $dump = $_[1];
+        if($i3-&gt;subscribe({
+    	    $ev =&gt; sub {
+    		    my ($msg) = @_;
+    		    say "$ev:$msg-&gt;{'change'}";
+    		    if($dump) {
+    		        print Dumper($msg);
+    		    }
+    	    }
+        })-&gt;recv-&gt;{success}) {
+    	    say "Successfully subscribed to $ev-event";
+        }
+    }
+    
+    my $nextArg = shift;
+    if(!$nextArg) {
+    	say "Subscribe to i3-events";
+        say "Usage:   $0 workspace|output|mode|window|barconfig_update|binding [dump]";
+        say "Example: $0 workspace dump window binding dump";
+        exit 1;
+    }
+    while($nextArg) {
+        my $arg = $nextArg;
+        $nextArg = shift;
+        my $dump = 0;
+        if($nextArg and $nextArg eq "dump") {
+            $dump = 1;
+            $nextArg = shift;
+        }
+        subscribe("$arg", $dump);
+    }
+    AE::cv-&gt;recv;
+
+Example:
+
+    i3subscribe window workspace | while read -r event; do
+    ...
+    done
+
+Example use case: [Different keyboard layout for every window](https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/)</description><pubDate>Thu, 02 Apr 2015 01:15:16 +0000</pubDate><guid>https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?answer=5722#post-id-5722</guid></item><item><title>Comment by Adaephon for &lt;p&gt;You can use the following perl script "i3subscribe" to subscribe to i3-events:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env perl
+
+BEGIN { $| = 1 } # flush \n
+
+use strict;
+use warnings;
+use Data::Dumper;
+use AnyEvent::I3;
+use v5.10;
+
+my $i3 = i3();
+$i3-&amp;gt;connect-&amp;gt;recv or die "Error connecting to i3";
+
+sub subscribe {
+    my $ev = $_[0];
+    my $dump = $_[1];
+    if($i3-&amp;gt;subscribe({
+        $ev =&amp;gt; sub {
+            my ($msg) = @_;
+            say "$ev:$msg-&amp;gt;{'change'}";
+            if($dump) {
+                print Dumper($msg);
+            }
+        }
+    })-&amp;gt;recv-&amp;gt;{success}) {
+        say "Successfully subscribed to $ev-event";
+    }
+}
+
+my $nextArg = shift;
+if(!$nextArg) {
+    say "Subscribe to i3-events";
+    say "Usage:   $0 workspace|output|mode|window|barconfig_update|binding [dump]";
+    say "Example: $0 workspace dump window binding dump";
+    exit 1;
+}
+while($nextArg) {
+    my $arg = $nextArg;
+    $nextArg = shift;
+    my $dump = 0;
+    if($nextArg and $nextArg eq "dump") {
+        $dump = 1;
+        $nextArg = shift;
+    }
+    subscribe("$arg", $dump);
+}
+AE::cv-&amp;gt;recv;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3subscribe window workspace | while read -r event; do
+...
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example use case: &lt;a href="https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/"&gt;Different keyboard layout for every window&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?comment=5890#comment-5890</link><description>The link seems to be dead. Do you have some source repository for it (github, bitbucket, etc.)? If it is not to long you could also post it here entirely.</description><pubDate>Fri, 24 Apr 2015 06:04:09 +0000</pubDate><guid>https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?comment=5890#comment-5890</guid></item><item><title>Comment by gurkensalat for &lt;p&gt;You can use the following perl script "i3subscribe" to subscribe to i3-events:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env perl
+
+BEGIN { $| = 1 } # flush \n
+
+use strict;
+use warnings;
+use Data::Dumper;
+use AnyEvent::I3;
+use v5.10;
+
+my $i3 = i3();
+$i3-&amp;gt;connect-&amp;gt;recv or die "Error connecting to i3";
+
+sub subscribe {
+    my $ev = $_[0];
+    my $dump = $_[1];
+    if($i3-&amp;gt;subscribe({
+        $ev =&amp;gt; sub {
+            my ($msg) = @_;
+            say "$ev:$msg-&amp;gt;{'change'}";
+            if($dump) {
+                print Dumper($msg);
+            }
+        }
+    })-&amp;gt;recv-&amp;gt;{success}) {
+        say "Successfully subscribed to $ev-event";
+    }
+}
+
+my $nextArg = shift;
+if(!$nextArg) {
+    say "Subscribe to i3-events";
+    say "Usage:   $0 workspace|output|mode|window|barconfig_update|binding [dump]";
+    say "Example: $0 workspace dump window binding dump";
+    exit 1;
+}
+while($nextArg) {
+    my $arg = $nextArg;
+    $nextArg = shift;
+    my $dump = 0;
+    if($nextArg and $nextArg eq "dump") {
+        $dump = 1;
+        $nextArg = shift;
+    }
+    subscribe("$arg", $dump);
+}
+AE::cv-&amp;gt;recv;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3subscribe window workspace | while read -r event; do
+...
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example use case: &lt;a href="https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/"&gt;Different keyboard layout for every window&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?comment=5901#comment-5901</link><description>updated my post, thank you</description><pubDate>Sun, 26 Apr 2015 16:54:25 +0000</pubDate><guid>https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?comment=5901#comment-5901</guid></item></channel></rss>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/582/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 04 Oct 2012 11:13:43 +0000</lastBuildDate><item><title>Do i3wm autofloat?</title><link>https://faq.i3wm.org/question/582/do-i3wm-autofloat/</link><description>gmrun (and I guess other small-window apps) use all available space on i3 that looks ugly.
+
+But in awesome gmrun window float in tile layout with default config.
+
+I know the trick with adding windows classes for floating to .i3/config
+
+But autofloat looks much hightech
+
+Any ideas?</description><pubDate>Wed, 03 Oct 2012 08:28:54 +0000</pubDate><guid>https://faq.i3wm.org/question/582/do-i3wm-autofloat/</guid></item><item><title>Comment by Shahin for &lt;p&gt;gmrun (and I guess other small-window apps) use all available space on i3 that looks ugly.&lt;/p&gt;
+
+&lt;p&gt;But in awesome gmrun window float in tile layout with default config.&lt;/p&gt;
+
+&lt;p&gt;I know the trick with adding windows classes for floating to .i3/config&lt;/p&gt;
+
+&lt;p&gt;But autofloat looks much hightech&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/582/do-i3wm-autofloat/?comment=584#comment-584</link><description>In I3 all dialog windows will show in float mode. </description><pubDate>Wed, 03 Oct 2012 08:50:22 +0000</pubDate><guid>https://faq.i3wm.org/question/582/do-i3wm-autofloat/?comment=584#comment-584</guid></item><item><title>Answer by Michael for &lt;p&gt;gmrun (and I guess other small-window apps) use all available space on i3 that looks ugly.&lt;/p&gt;
+
+&lt;p&gt;But in awesome gmrun window float in tile layout with default config.&lt;/p&gt;
+
+&lt;p&gt;I know the trick with adding windows classes for floating to .i3/config&lt;/p&gt;
+
+&lt;p&gt;But autofloat looks much hightech&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/582/do-i3wm-autofloat/?answer=585#post-id-585</link><description>gmrun does not request to be floating. Running xprop(1) on its window returns:
+
+    _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+
+Therefore, i3 will comply and not set it floating. You should file a bug at gmrun about this.</description><pubDate>Wed, 03 Oct 2012 09:04:12 +0000</pubDate><guid>https://faq.i3wm.org/question/582/do-i3wm-autofloat/?answer=585#post-id-585</guid></item><item><title>Comment by fly-away for &lt;p&gt;gmrun does not request to be floating. Running xprop(1) on its window returns:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Therefore, i3 will comply and not set it floating. You should file a bug at gmrun about this.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/582/do-i3wm-autofloat/?comment=587#comment-587</link><description>awesome check minimum and maximum window size, and if its equal, as for gmrun, make window float.
+
+    WM_NORMAL_HINTS(WM_SIZE_HINTS):
+    		program specified location: 0, 0
+    		program specified minimum size: 408 by 48
+    		program specified maximum size: 408 by 48
+    		window gravity: NorthWest
+
+Looks reasonable.</description><pubDate>Wed, 03 Oct 2012 11:39:56 +0000</pubDate><guid>https://faq.i3wm.org/question/582/do-i3wm-autofloat/?comment=587#comment-587</guid></item><item><title>Comment by Michael for &lt;p&gt;gmrun does not request to be floating. Running xprop(1) on its window returns:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Therefore, i3 will comply and not set it floating. You should file a bug at gmrun about this.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/582/do-i3wm-autofloat/?comment=588#comment-588</link><description>Aha. Feel free to file a feature request at http://bugs.i3wm.org/ and/or even provide a patch :)</description><pubDate>Thu, 04 Oct 2012 11:13:43 +0000</pubDate><guid>https://faq.i3wm.org/question/582/do-i3wm-autofloat/?comment=588#comment-588</guid></item></channel></rss>

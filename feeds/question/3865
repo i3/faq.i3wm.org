@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3865/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 24 May 2014 19:27:30 +0000</lastBuildDate><item><title>i3status: non-standard battery path</title><link>https://faq.i3wm.org/question/3865/i3status-non-standard-battery-path/</link><description>The battery info path on my Samsung Chromebook is /sys/class/power_supply/sbs-4-000b/uevent . i3status seems to require "BAT?" as the 4th member of that path as I cannot get the system to read that file, no matter what I have in the config file. I have tried all sorts of combinations. Any ideas appreciated.
+</description><pubDate>Sat, 24 May 2014 03:15:03 +0000</pubDate><guid>https://faq.i3wm.org/question/3865/i3status-non-standard-battery-path/</guid></item><item><title>Answer by Michael for &lt;p&gt;The battery info path on my Samsung Chromebook is /sys/class/power_supply/sbs-4-000b/uevent . i3status seems to require "BAT?" as the 4th member of that path as I cannot get the system to read that file, no matter what I have in the config file. I have tried all sorts of combinations. Any ideas appreciated.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3865/i3status-non-standard-battery-path/?answer=3870#post-id-3870</link><description>This works:
+
+    battery 0 {
+      path = "/sys/class/power_supply/sbs-4-000b/uevent"
+      format = "%status %percentage %remaining"
+    }
+
+…and path is also in the example in the i3status manpage :).</description><pubDate>Sat, 24 May 2014 19:27:30 +0000</pubDate><guid>https://faq.i3wm.org/question/3865/i3status-non-standard-battery-path/?answer=3870#post-id-3870</guid></item></channel></rss>

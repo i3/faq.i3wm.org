@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3833/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 25 May 2014 18:06:32 +0000</lastBuildDate><item><title>Automatically stack mplayer/mpv</title><link>https://faq.i3wm.org/question/3833/automatically-stack-mplayermpv/</link><description>When I open a terminal and run mpv, I usually don't need to see the terminal anymore. It would be neat if i3 would automatically put those two windows into stacked or tabbed mode.
+
+I tried `for_window [class="^mpv$"] layout tabbed` for a while, but it's too annoying:
+
+- If there are any other windows around, they get pulled into stacked mode, too, and I have to untangle everything.
+
+- I only want the "parent window" of mpv to be stacked. For example, I have a shortcut that runs youtube-dl on the URL in the clipboard. If I'm browsing the web and hit that shortcut, nothing should be stacked because mpv doesn't have a parent window.</description><pubDate>Fri, 16 May 2014 16:45:40 +0000</pubDate><guid>https://faq.i3wm.org/question/3833/automatically-stack-mplayermpv/</guid></item><item><title>Answer by Michael for &lt;p&gt;When I open a terminal and run mpv, I usually don't need to see the terminal anymore. It would be neat if i3 would automatically put those two windows into stacked or tabbed mode.&lt;/p&gt;
+
+&lt;p&gt;I tried &lt;code&gt;for_window [class="^mpv$"] layout tabbed&lt;/code&gt; for a while, but it's too annoying:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;If there are any other windows around, they get pulled into stacked mode, too, and I have to untangle everything.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I only want the "parent window" of mpv to be stacked. For example, I have a shortcut that runs youtube-dl on the URL in the clipboard. If I'm browsing the web and hit that shortcut, nothing should be stacked because mpv doesn't have a parent window.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/3833/automatically-stack-mplayermpv/?answer=3876#post-id-3876</link><description>There’s multiple approaches:
+
+You could use a function in your ~/.zshrc that closes the shell but still runs the command:
+
+    function e() {
+        eval "$* &amp;|"
+        exit
+    }
+
+Then, just run `e mpv foo.mp4`
+
+You could also build a script using the IPC interface: http://build.i3wm.org/docs/ipc.html
+
+In that script, you’d send the commands to create a new stacked/tabbed container before running mpv. It’s probably a bit tricky to do this in a generic fashion (i.e. working for every layout), but maybe you can get it to work for the layout(s) you typically use.</description><pubDate>Sun, 25 May 2014 18:06:32 +0000</pubDate><guid>https://faq.i3wm.org/question/3833/automatically-stack-mplayermpv/?answer=3876#post-id-3876</guid></item><item><title>Answer by sycamorex for &lt;p&gt;When I open a terminal and run mpv, I usually don't need to see the terminal anymore. It would be neat if i3 would automatically put those two windows into stacked or tabbed mode.&lt;/p&gt;
+
+&lt;p&gt;I tried &lt;code&gt;for_window [class="^mpv$"] layout tabbed&lt;/code&gt; for a while, but it's too annoying:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;If there are any other windows around, they get pulled into stacked mode, too, and I have to untangle everything.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I only want the "parent window" of mpv to be stacked. For example, I have a shortcut that runs youtube-dl on the URL in the clipboard. If I'm browsing the web and hit that shortcut, nothing should be stacked because mpv doesn't have a parent window.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/3833/automatically-stack-mplayermpv/?answer=3849#post-id-3849</link><description>I think that should do. I tested it on my mplayer.
+
+    for_window [class="M(?i)Player"] focus right; splitv; focus left, move right; layout tabbed
+
+</description><pubDate>Mon, 19 May 2014 18:17:25 +0000</pubDate><guid>https://faq.i3wm.org/question/3833/automatically-stack-mplayermpv/?answer=3849#post-id-3849</guid></item></channel></rss>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6602/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 22 Sep 2015 18:33:43 +0000</lastBuildDate><item><title>Run a command with i3-nagbar , that has apostrophes in it..</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/</link><description>If I were to run a command with i3-nagbar, that contains apostrophes itself, how would I validate those apostrophes?
+
+e.g. `i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 's    crot -s \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\'' ` 
+
+edit: For instance I were to use bindsym to run i3-nagbar, which will then run a command that requires quoting again (example below). Can I validate the apostrophes with a backslash?
+
+`bindsym Shift+Print exec "i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 'scrot -s \'/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''"`
+
+
+edit 2: 
+I've tried to use `"` for the directory used for scrot and `\'` both doesn't seem to work for me.</description><pubDate>Thu, 17 Sep 2015 17:04:20 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/</guid></item><item><title>Comment by Airblader for &lt;p&gt;If I were to run a command with i3-nagbar, that contains apostrophes itself, how would I validate those apostrophes?&lt;/p&gt;
+
+&lt;p&gt;e.g. &lt;code&gt;i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 's    crot -s \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;edit: For instance I were to use bindsym to run i3-nagbar, which will then run a command that requires quoting again (example below). Can I validate the apostrophes with a backslash?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym Shift+Print exec "i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 'scrot -s \'/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;edit 2: 
+I've tried to use &lt;code&gt;"&lt;/code&gt; for the directory used for scrot and &lt;code&gt;\'&lt;/code&gt; both doesn't seem to work for me.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6615#comment-6615</link><description>See the answer I posted. Put that in your i3 config and press $mod+Shift+s (of course you may want to use different bindings).</description><pubDate>Fri, 18 Sep 2015 09:46:52 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6615#comment-6615</guid></item><item><title>Comment by a_flamethrowing_duck for &lt;p&gt;If I were to run a command with i3-nagbar, that contains apostrophes itself, how would I validate those apostrophes?&lt;/p&gt;
+
+&lt;p&gt;e.g. &lt;code&gt;i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 's    crot -s \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;edit: For instance I were to use bindsym to run i3-nagbar, which will then run a command that requires quoting again (example below). Can I validate the apostrophes with a backslash?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym Shift+Print exec "i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 'scrot -s \'/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;edit 2: 
+I've tried to use &lt;code&gt;"&lt;/code&gt; for the directory used for scrot and &lt;code&gt;\'&lt;/code&gt; both doesn't seem to work for me.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6613#comment-6613</link><description>How could I use i3bar in this case?</description><pubDate>Fri, 18 Sep 2015 09:17:24 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6613#comment-6613</guid></item><item><title>Comment by Airblader for &lt;p&gt;If I were to run a command with i3-nagbar, that contains apostrophes itself, how would I validate those apostrophes?&lt;/p&gt;
+
+&lt;p&gt;e.g. &lt;code&gt;i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 's    crot -s \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;edit: For instance I were to use bindsym to run i3-nagbar, which will then run a command that requires quoting again (example below). Can I validate the apostrophes with a backslash?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym Shift+Print exec "i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 'scrot -s \'/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;edit 2: 
+I've tried to use &lt;code&gt;"&lt;/code&gt; for the directory used for scrot and &lt;code&gt;\'&lt;/code&gt; both doesn't seem to work for me.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6606#comment-6606</link><description>I meant use a binding mode (not a binding) to choose whether the active window or selection should be used. Then it would integrate into i3bar and not launch i3-nagbar, which is a fairly ugly tool we only use for errors.</description><pubDate>Thu, 17 Sep 2015 21:16:20 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6606#comment-6606</guid></item><item><title>Comment by a_flamethrowing_duck for &lt;p&gt;If I were to run a command with i3-nagbar, that contains apostrophes itself, how would I validate those apostrophes?&lt;/p&gt;
+
+&lt;p&gt;e.g. &lt;code&gt;i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 's    crot -s \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;edit: For instance I were to use bindsym to run i3-nagbar, which will then run a command that requires quoting again (example below). Can I validate the apostrophes with a backslash?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym Shift+Print exec "i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 'scrot -s \'/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;edit 2: 
+I've tried to use &lt;code&gt;"&lt;/code&gt; for the directory used for scrot and &lt;code&gt;\'&lt;/code&gt; both doesn't seem to work for me.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6605#comment-6605</link><description>I am planning to bind Shift + Printscreen for this.. I'll try to use the double quotes, thank you!</description><pubDate>Thu, 17 Sep 2015 17:20:57 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6605#comment-6605</guid></item><item><title>Comment by Airblader for &lt;p&gt;If I were to run a command with i3-nagbar, that contains apostrophes itself, how would I validate those apostrophes?&lt;/p&gt;
+
+&lt;p&gt;e.g. &lt;code&gt;i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 's    crot -s \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;edit: For instance I were to use bindsym to run i3-nagbar, which will then run a command that requires quoting again (example below). Can I validate the apostrophes with a backslash?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym Shift+Print exec "i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 'scrot -s \'/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;edit 2: 
+I've tried to use &lt;code&gt;"&lt;/code&gt; for the directory used for scrot and &lt;code&gt;\'&lt;/code&gt; both doesn't seem to work for me.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6604#comment-6604</link><description>Also, feel free to use i3-nagbar for this, but using a binding mode might be a bit more "friendly".</description><pubDate>Thu, 17 Sep 2015 17:15:44 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6604#comment-6604</guid></item><item><title>Comment by Airblader for &lt;p&gt;If I were to run a command with i3-nagbar, that contains apostrophes itself, how would I validate those apostrophes?&lt;/p&gt;
+
+&lt;p&gt;e.g. &lt;code&gt;i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 's    crot -s \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;edit: For instance I were to use bindsym to run i3-nagbar, which will then run a command that requires quoting again (example below). Can I validate the apostrophes with a backslash?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym Shift+Print exec "i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 'scrot -s \'/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;edit 2: 
+I've tried to use &lt;code&gt;"&lt;/code&gt; for the directory used for scrot and &lt;code&gt;\'&lt;/code&gt; both doesn't seem to work for me.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6603#comment-6603</link><description>Why not just use double quotes to quote the command and single quotes to quote the command inside?</description><pubDate>Thu, 17 Sep 2015 17:14:51 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6603#comment-6603</guid></item><item><title>Answer by a_flamethrowing_duck for &lt;p&gt;If I were to run a command with i3-nagbar, that contains apostrophes itself, how would I validate those apostrophes?&lt;/p&gt;
+
+&lt;p&gt;e.g. &lt;code&gt;i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 's    crot -s \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;edit: For instance I were to use bindsym to run i3-nagbar, which will then run a command that requires quoting again (example below). Can I validate the apostrophes with a backslash?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym Shift+Print exec "i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 'scrot -s \'/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;edit 2: 
+I've tried to use &lt;code&gt;"&lt;/code&gt; for the directory used for scrot and &lt;code&gt;\'&lt;/code&gt; both doesn't seem to work for me.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?answer=6658#post-id-6658</link><description>I've been trying to get the suggestion by Airblader to work for me, as well as I tried with my initial intention..
+
+I've come to the conclusion that I don't even need the apostrophes in `scrot`.. but it still won't work.
+The active window screenshot works fine, just the selection won't.
+
+    set $mode_scrot [s]election | [a]ctive window
+    mode "$mode_scrot" {
+        bindsym s mode "default", exec --no-startup-id scrot -s /home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png
+    bindsym a mode "default", exec --no-startup-id scrot -u -d 4 /home/user/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png 
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        }   
+    
+    bindsym $mod+Shift+s mode "$mode_scrot"
+
+</description><pubDate>Tue, 22 Sep 2015 13:37:14 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?answer=6658#post-id-6658</guid></item><item><title>Comment by Airblader for &lt;p&gt;I've been trying to get the suggestion by Airblader to work for me, as well as I tried with my initial intention..&lt;/p&gt;
+
+&lt;p&gt;I've come to the conclusion that I don't even need the apostrophes in &lt;code&gt;scrot&lt;/code&gt;.. but it still won't work.
+The active window screenshot works fine, just the selection won't.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_scrot [s]election | [a]ctive window
+mode "$mode_scrot" {
+    bindsym s mode "default", exec --no-startup-id scrot -s /home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png
+bindsym a mode "default", exec --no-startup-id scrot -u -d 4 /home/user/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png 
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    }   
+
+bindsym $mod+Shift+s mode "$mode_scrot"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6663#comment-6663</link><description>I have fixed my answer.</description><pubDate>Tue, 22 Sep 2015 18:33:32 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6663#comment-6663</guid></item><item><title>Answer by Airblader for &lt;p&gt;If I were to run a command with i3-nagbar, that contains apostrophes itself, how would I validate those apostrophes?&lt;/p&gt;
+
+&lt;p&gt;e.g. &lt;code&gt;i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 's    crot -s \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;edit: For instance I were to use bindsym to run i3-nagbar, which will then run a command that requires quoting again (example below). Can I validate the apostrophes with a backslash?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym Shift+Print exec "i3-nagbar -t warning -m 'Selection or active window (4 sec. delay)' -b 'selection' 'scrot -s \'/home/user/Pictures/screenshots/%s_%H%M_%d%m%Y_$wx$h.png\'' -b 'active window' 'scrot -u -d 4 \'/home/user/Pictures/screenshots/%H%M_%d%m%Y_$wx$h.png\''"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;edit 2: 
+I've tried to use &lt;code&gt;"&lt;/code&gt; for the directory used for scrot and &lt;code&gt;\'&lt;/code&gt; both doesn't seem to work for me.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?answer=6614#post-id-6614</link><description>Since this doesn't fit into a comment:
+
+
+    set $mode_scrot [s]election | [a]ctive window
+    mode "$mode_scrot" {
+        bindsym --release s mode "default", exec --no-startup-id scrot -s /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+        bindsym --release a mode "default", exec --no-startup-id scrot -u -d 4 /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+    
+    bindsym $mod+Shift+s mode "$mode_scrot"</description><pubDate>Fri, 18 Sep 2015 09:46:27 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?answer=6614#post-id-6614</guid></item><item><title>Comment by a_flamethrowing_duck for &lt;p&gt;Since this doesn't fit into a comment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_scrot [s]election | [a]ctive window
+mode "$mode_scrot" {
+    bindsym --release s mode "default", exec --no-startup-id scrot -s /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym --release a mode "default", exec --no-startup-id scrot -u -d 4 /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+s mode "$mode_scrot"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6620#comment-6620</link><description>looks really good, but doesn't seem to work for me.
+The question pops up but on selection of either `s` or `a` nothing happens..</description><pubDate>Fri, 18 Sep 2015 19:05:27 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6620#comment-6620</guid></item><item><title>Comment by Airblader for &lt;p&gt;Since this doesn't fit into a comment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_scrot [s]election | [a]ctive window
+mode "$mode_scrot" {
+    bindsym --release s mode "default", exec --no-startup-id scrot -s /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym --release a mode "default", exec --no-startup-id scrot -u -d 4 /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+s mode "$mode_scrot"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6624#comment-6624</link><description>@a_flamethrowing_duck Does the target folder exist?</description><pubDate>Fri, 18 Sep 2015 20:45:41 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6624#comment-6624</guid></item><item><title>Comment by a_flamethrowing_duck for &lt;p&gt;Since this doesn't fit into a comment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_scrot [s]election | [a]ctive window
+mode "$mode_scrot" {
+    bindsym --release s mode "default", exec --no-startup-id scrot -s /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym --release a mode "default", exec --no-startup-id scrot -u -d 4 /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+s mode "$mode_scrot"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6629#comment-6629</link><description>I've tried the scrot commands by themselves to test if they work and they do..</description><pubDate>Sat, 19 Sep 2015 10:24:46 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6629#comment-6629</guid></item><item><title>Comment by Airblader for &lt;p&gt;Since this doesn't fit into a comment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_scrot [s]election | [a]ctive window
+mode "$mode_scrot" {
+    bindsym --release s mode "default", exec --no-startup-id scrot -s /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym --release a mode "default", exec --no-startup-id scrot -u -d 4 /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+s mode "$mode_scrot"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6631#comment-6631</link><description>If the folder exists, this works fine for me. Can you provide a log file please?</description><pubDate>Sat, 19 Sep 2015 14:32:10 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6631#comment-6631</guid></item><item><title>Comment by a_flamethrowing_duck for &lt;p&gt;Since this doesn't fit into a comment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_scrot [s]election | [a]ctive window
+mode "$mode_scrot" {
+    bindsym --release s mode "default", exec --no-startup-id scrot -s /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym --release a mode "default", exec --no-startup-id scrot -u -d 4 /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+s mode "$mode_scrot"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6635#comment-6635</link><description>the only problem i seem to have is with the `date` command.. The active window seems to work, but the selection doesn't. I'll try to work that out.. will report if I have a solution</description><pubDate>Sat, 19 Sep 2015 18:15:00 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6635#comment-6635</guid></item><item><title>Comment by a_flamethrowing_duck for &lt;p&gt;Since this doesn't fit into a comment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_scrot [s]election | [a]ctive window
+mode "$mode_scrot" {
+    bindsym --release s mode "default", exec --no-startup-id scrot -s /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym --release a mode "default", exec --no-startup-id scrot -u -d 4 /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+s mode "$mode_scrot"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6636#comment-6636</link><description>`scrot -s '/home/user/Pictures/screenshots/s%s_%H%M_%d%m%Y_$wx$h.png'` works perfectly fine when  I run it in the terminal, but does nothing when it's called by the key combo.. `scrot -u -d 4 '/home/user/Pictures/screenshots/%s_%H%M_%d.%m.%Y_$wx$h.png.png'` works perfectly fine.. I don't understand</description><pubDate>Sat, 19 Sep 2015 18:22:36 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6636#comment-6636</guid></item><item><title>Comment by Airblader for &lt;p&gt;Since this doesn't fit into a comment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_scrot [s]election | [a]ctive window
+mode "$mode_scrot" {
+    bindsym --release s mode "default", exec --no-startup-id scrot -s /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym --release a mode "default", exec --no-startup-id scrot -u -d 4 /home/user/Pictures/screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+s mode "$mode_scrot"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6664#comment-6664</link><description>I figured out what was wrong. I've updated my answer.</description><pubDate>Tue, 22 Sep 2015 18:33:43 +0000</pubDate><guid>https://faq.i3wm.org/question/6602/run-a-command-with-i3-nagbar-that-has-apostrophes-in-it/?comment=6664#comment-6664</guid></item></channel></rss>

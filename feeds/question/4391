@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4391/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 08 Aug 2014 04:17:45 +0000</lastBuildDate><item><title>i3 doesn't execute command on first login</title><link>https://faq.i3wm.org/question/4391/i3-doesnt-execute-command-on-first-login/</link><description>In my .i3/config, I have
+
+    exec --no-startup-id i3-msg 'workspace 2; exec urxvtc -e mutt -n; workspace 1'
+
+to open mutt on workspace 2 and switch back to workspace 1. When I startx after logging in, mutt doesn't run. However, if I quit i3 and startx again, mutt opens in workspace 2. If I split the commands into different lines:
+
+    exec i3-msg 'workspace 2'
+    exec --no-startup-id i3-msg 'exec urxvtc -e mutt -n'
+    exec i3-msg 'workspace 1'
+
+it will switch to workspace 2, but won't run the following commands. Again, it works just fine if I exit i3 and startx again. This is on Slackware 14.1 x86, with the SBo version of i3.</description><pubDate>Tue, 05 Aug 2014 01:44:13 +0000</pubDate><guid>https://faq.i3wm.org/question/4391/i3-doesnt-execute-command-on-first-login/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;In my .i3/config, I have&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id i3-msg 'workspace 2; exec urxvtc -e mutt -n; workspace 1'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to open mutt on workspace 2 and switch back to workspace 1. When I startx after logging in, mutt doesn't run. However, if I quit i3 and startx again, mutt opens in workspace 2. If I split the commands into different lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3-msg 'workspace 2'
+exec --no-startup-id i3-msg 'exec urxvtc -e mutt -n'
+exec i3-msg 'workspace 1'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;it will switch to workspace 2, but won't run the following commands. Again, it works just fine if I exit i3 and startx again. This is on Slackware 14.1 x86, with the SBo version of i3.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4391/i3-doesnt-execute-command-on-first-login/?answer=4404#post-id-4404</link><description>I'm unsure, why the one-liner does not work consistently. In the split up version there is really no guarantee that it will run 
+
+Use [`assign`(see User's Guide)](http://i3wm.org/docs/userguide.html#assign_workspace) to set a specfic workspace for an application. 
+
+In this case, you can set a custom title for the `urxvtc` terminal window with the option `-title` and use this as criteria for the `assign` setting. Adding the following lines to your `~/.i3/config` should do the trick
+
+    assign [title="^mutt mail$"] 2
+    exec --no-startup-id urxvtc -title 'mutt mail' -e mutt -n
+
+Note: you really only need `i3-msg` to run i3 commands. If you want to start `program`, `exec program` is the way to go. There is no need for `exec i3-msg 'exec program'`.</description><pubDate>Wed, 06 Aug 2014 12:23:34 +0000</pubDate><guid>https://faq.i3wm.org/question/4391/i3-doesnt-execute-command-on-first-login/?answer=4404#post-id-4404</guid></item><item><title>Answer by wombatr0n for &lt;p&gt;In my .i3/config, I have&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id i3-msg 'workspace 2; exec urxvtc -e mutt -n; workspace 1'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to open mutt on workspace 2 and switch back to workspace 1. When I startx after logging in, mutt doesn't run. However, if I quit i3 and startx again, mutt opens in workspace 2. If I split the commands into different lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3-msg 'workspace 2'
+exec --no-startup-id i3-msg 'exec urxvtc -e mutt -n'
+exec i3-msg 'workspace 1'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;it will switch to workspace 2, but won't run the following commands. Again, it works just fine if I exit i3 and startx again. This is on Slackware 14.1 x86, with the SBo version of i3.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4391/i3-doesnt-execute-command-on-first-login/?answer=4419#post-id-4419</link><description>Turns out it was an issue with the urxvt daemon, nothing to do with i3.</description><pubDate>Fri, 08 Aug 2014 04:17:45 +0000</pubDate><guid>https://faq.i3wm.org/question/4391/i3-doesnt-execute-command-on-first-login/?answer=4419#post-id-4419</guid></item></channel></rss>

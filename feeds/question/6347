@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6347/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 26 Jul 2015 20:25:56 +0000</lastBuildDate><item><title>Why is numlock not working while executing my KP_* bindings?</title><link>https://faq.i3wm.org/question/6347/why-is-numlock-not-working-while-executing-my-kp_-bindings/</link><description>I have a binding as follows in my i3 config:
+
+    bindsym $mod+KP_1 workspace $workspace1
+    bindsym $mod+KP_2 workspace $workspace2
+    and so on...
+
+Now if I try to use those with a arrow key on them (i.e. KP_2, 4, 6 and 8), they do not work. Instead, one of the following bindings (i.e. the one matching the number) triggers:
+
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+The problem is, numlock is definitely turned on. The others (e.g. KP_1) work, although they have other keys on them in there non-numlocked mode too. If I map the workspace commands to the same keys but with an additional +Shift+, it works flawlessly too. If I check on them with xev while in an empty mode (so i3 cannot intercept anything), they return their correct code to (KP_*), even in combination with Mod4.
+
+I really don't know where stuff goes wrong and think this might be a bug. I run 4.10.2 straight from Archs packages.
+
+Thanks in advance!</description><pubDate>Sun, 26 Jul 2015 20:25:56 +0000</pubDate><guid>https://faq.i3wm.org/question/6347/why-is-numlock-not-working-while-executing-my-kp_-bindings/</guid></item></channel></rss>

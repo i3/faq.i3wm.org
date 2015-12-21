@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4550/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 22 Apr 2015 10:13:21 +0000</lastBuildDate><item><title>launch in floating mode</title><link>https://faq.i3wm.org/question/4550/launch-in-floating-mode/</link><description>I would like to do something like
+
+    bindsym $mod+k exec keepassX inFloatingMode
+
+This would be handy since I only need this programs (like passwordmanager, calculator ect) for a few seconds and it shouldn't destroy my current windows arrangement.
+(I don't know whether the scratchpad is a solution, I wasn't able to make this happen.)
+
+Could anyone give me a hint?</description><pubDate>Thu, 21 Aug 2014 09:49:07 +0000</pubDate><guid>https://faq.i3wm.org/question/4550/launch-in-floating-mode/</guid></item><item><title>Answer by cee for &lt;p&gt;I would like to do something like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+k exec keepassX inFloatingMode
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This would be handy since I only need this programs (like passwordmanager, calculator ect) for a few seconds and it shouldn't destroy my current windows arrangement.
+(I don't know whether the scratchpad is a solution, I wasn't able to make this happen.)&lt;/p&gt;
+
+&lt;p&gt;Could anyone give me a hint?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4550/launch-in-floating-mode/?answer=4551#post-id-4551</link><description>You could define a rule for your applications (e.g keepassx) like this:
+
+    for_window [class="Keepassx"] floating enable
+
+Note the capitol 'K' which is necessary as the rules are case sensitive.  
+with `xprop` you can find out the class and instance of any program you would like to define a rule for. </description><pubDate>Thu, 21 Aug 2014 10:51:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4550/launch-in-floating-mode/?answer=4551#post-id-4551</guid></item><item><title>Comment by cee for &lt;p&gt;You could define a rule for your applications (e.g keepassx) like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Keepassx"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the capitol 'K' which is necessary as the rules are case sensitive. &lt;br/&gt;
+with &lt;code&gt;xprop&lt;/code&gt; you can find out the class and instance of any program you would like to define a rule for. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4550/launch-in-floating-mode/?comment=5868#comment-5868</link><description>I took the freedom to create a question from your comment (https://faq.i3wm.org/question/5866/two-keybindings-for-starting-terminal-normally-and-floating/?answer=5867#post-id-5867) to preserve the question-answer format of this site.</description><pubDate>Wed, 22 Apr 2015 10:13:21 +0000</pubDate><guid>https://faq.i3wm.org/question/4550/launch-in-floating-mode/?comment=5868#comment-5868</guid></item><item><title>Comment by cee for &lt;p&gt;You could define a rule for your applications (e.g keepassx) like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Keepassx"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the capitol 'K' which is necessary as the rules are case sensitive. &lt;br/&gt;
+with &lt;code&gt;xprop&lt;/code&gt; you can find out the class and instance of any program you would like to define a rule for. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4550/launch-in-floating-mode/?comment=5865#comment-5865</link><description>You could start your terminal with a given name. e.g. `urxvt -name floating` and then add a rule to your i3config. `for_window [class="URxvt" instance"floating"] floating enable`</description><pubDate>Wed, 22 Apr 2015 09:49:21 +0000</pubDate><guid>https://faq.i3wm.org/question/4550/launch-in-floating-mode/?comment=5865#comment-5865</guid></item><item><title>Comment by Kaligule for &lt;p&gt;You could define a rule for your applications (e.g keepassx) like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Keepassx"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the capitol 'K' which is necessary as the rules are case sensitive. &lt;br/&gt;
+with &lt;code&gt;xprop&lt;/code&gt; you can find out the class and instance of any program you would like to define a rule for. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4550/launch-in-floating-mode/?comment=4563#comment-4563</link><description>It works, thank you. It is not exactly what I wanted (since I hoped there was a way to have it only floated when called by my shortcut), but its good enough for me. Might not work for other purposes, though.</description><pubDate>Fri, 22 Aug 2014 11:43:10 +0000</pubDate><guid>https://faq.i3wm.org/question/4550/launch-in-floating-mode/?comment=4563#comment-4563</guid></item><item><title>Comment by x3nu for &lt;p&gt;You could define a rule for your applications (e.g keepassx) like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Keepassx"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the capitol 'K' which is necessary as the rules are case sensitive. &lt;br/&gt;
+with &lt;code&gt;xprop&lt;/code&gt; you can find out the class and instance of any program you would like to define a rule for. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4550/launch-in-floating-mode/?comment=5849#comment-5849</link><description>I'd like to do exactly this
+have a schortcut to launch a terminal normaly as a tiled window
+And have another shortcut to open it as a floating window:
+Since i'm completly new to i3 a simply solution as: bindsym $mod+shift+enter exec xterm inFloatingMode would be nice</description><pubDate>Tue, 21 Apr 2015 16:12:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4550/launch-in-floating-mode/?comment=5849#comment-5849</guid></item></channel></rss>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3090/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 05 Jan 2014 15:45:52 +0000</lastBuildDate><item><title>Error: Received EOF from statusline process</title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/</link><description>i3 was either reinstalled or upgrade to version 4.7 on my system today and, for the first time, I see an error in the lower right corner, stating what's in the title of this thread. I notice there is something in the bugtracker about giving better error messages for the status line when it fails and I'm wondering if this is the result of that. 
+
+If so, it's distracting, but I don't know how to solve the problem. I'm running plain vanilla, nothing changed in the default config file, on FreeBSD 9.2.</description><pubDate>Tue, 24 Dec 2013 19:57:54 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/</guid></item><item><title>Comment by TonyC for &lt;p&gt;i3 was either reinstalled or upgrade to version 4.7 on my system today and, for the first time, I see an error in the lower right corner, stating what's in the title of this thread. I notice there is something in the bugtracker about giving better error messages for the status line when it fails and I'm wondering if this is the result of that. &lt;/p&gt;
+
+&lt;p&gt;If so, it's distracting, but I don't know how to solve the problem. I'm running plain vanilla, nothing changed in the default config file, on FreeBSD 9.2.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3092#comment-3092</link><description>were you expecting to see a statusline or a blank bar?</description><pubDate>Wed, 25 Dec 2013 01:54:31 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3092#comment-3092</guid></item><item><title>Comment by Rob for &lt;p&gt;i3 was either reinstalled or upgrade to version 4.7 on my system today and, for the first time, I see an error in the lower right corner, stating what's in the title of this thread. I notice there is something in the bugtracker about giving better error messages for the status line when it fails and I'm wondering if this is the result of that. &lt;/p&gt;
+
+&lt;p&gt;If so, it's distracting, but I don't know how to solve the problem. I'm running plain vanilla, nothing changed in the default config file, on FreeBSD 9.2.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3093#comment-3093</link><description>@TonyC The bottom of the screen, where the desktop numbers are shown but on the right side, is where the error message is in red. I've never seen anything there in the past.</description><pubDate>Wed, 25 Dec 2013 03:09:54 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3093#comment-3093</guid></item><item><title>Answer by TonyC for &lt;p&gt;i3 was either reinstalled or upgrade to version 4.7 on my system today and, for the first time, I see an error in the lower right corner, stating what's in the title of this thread. I notice there is something in the bugtracker about giving better error messages for the status line when it fails and I'm wondering if this is the result of that. &lt;/p&gt;
+
+&lt;p&gt;If so, it's distracting, but I don't know how to solve the problem. I'm running plain vanilla, nothing changed in the default config file, on FreeBSD 9.2.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?answer=3094#post-id-3094</link><description>We had a lot of people coming into the chat having problems with special statusline configuration or getting i3status to work with some locales. The lack of an error message made debugging these problems very difficult, so we decided to display a message on the bar whenever the bar config specifies a `status_command` and no statusline can be made from running this command.
+
+If you received this error and you would like to know how you can resolve this issue, you can get a detailed error message from running your `status_command` in a terminal. In the default case, use `$ i3status`
+
+If you prefer not to have a status command, find the bar directive in your config and comment out the `status_command` line. The default location for the config is `~/.i3/config`. It should look like this:
+
+    bar {
+      #status_command i3status
+    }
+
+For more information on configuring i3bar, see [the page in the manual.](http://i3wm.org/docs/userguide.html#_configuring_i3bar)</description><pubDate>Wed, 25 Dec 2013 03:30:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?answer=3094#post-id-3094</guid></item><item><title>Comment by TonyC for &lt;p&gt;We had a lot of people coming into the chat having problems with special statusline configuration or getting i3status to work with some locales. The lack of an error message made debugging these problems very difficult, so we decided to display a message on the bar whenever the bar config specifies a &lt;code&gt;status_command&lt;/code&gt; and no statusline can be made from running this command.&lt;/p&gt;
+
+&lt;p&gt;If you received this error and you would like to know how you can resolve this issue, you can get a detailed error message from running your &lt;code&gt;status_command&lt;/code&gt; in a terminal. In the default case, use &lt;code&gt;$ i3status&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you prefer not to have a status command, find the bar directive in your config and comment out the &lt;code&gt;status_command&lt;/code&gt; line. The default location for the config is &lt;code&gt;~/.i3/config&lt;/code&gt;. It should look like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+  #status_command i3status
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more information on configuring i3bar, see &lt;a href="http://i3wm.org/docs/userguide.html#_configuring_i3bar"&gt;the page in the manual.&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3106#comment-3106</link><description>Yeah this doesn't work correctly on some systems unfortunately. Here is the issue on the bug tracker: https://github.com/i3/i3/issues/1140 . If anyone with this issue can test patches, that would be appreciated.</description><pubDate>Thu, 26 Dec 2013 21:43:05 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3106#comment-3106</guid></item><item><title>Comment by Glisha for &lt;p&gt;We had a lot of people coming into the chat having problems with special statusline configuration or getting i3status to work with some locales. The lack of an error message made debugging these problems very difficult, so we decided to display a message on the bar whenever the bar config specifies a &lt;code&gt;status_command&lt;/code&gt; and no statusline can be made from running this command.&lt;/p&gt;
+
+&lt;p&gt;If you received this error and you would like to know how you can resolve this issue, you can get a detailed error message from running your &lt;code&gt;status_command&lt;/code&gt; in a terminal. In the default case, use &lt;code&gt;$ i3status&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you prefer not to have a status command, find the bar directive in your config and comment out the &lt;code&gt;status_command&lt;/code&gt; line. The default location for the config is &lt;code&gt;~/.i3/config&lt;/code&gt;. It should look like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+  #status_command i3status
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more information on configuring i3bar, see &lt;a href="http://i3wm.org/docs/userguide.html#_configuring_i3bar"&gt;the page in the manual.&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3100#comment-3100</link><description>I have multimonitor setup and still get Error: Received EOF from statusline process on the second monitor where I don't want a status_command.  
+bar {
+        output HDMI1
+        output LVDS1
+        status_command i3status
+}
+
+bar {
+        output VGA1
+        tray_output none
+}
+</description><pubDate>Thu, 26 Dec 2013 10:05:59 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3100#comment-3100</guid></item><item><title>Comment by Rob for &lt;p&gt;We had a lot of people coming into the chat having problems with special statusline configuration or getting i3status to work with some locales. The lack of an error message made debugging these problems very difficult, so we decided to display a message on the bar whenever the bar config specifies a &lt;code&gt;status_command&lt;/code&gt; and no statusline can be made from running this command.&lt;/p&gt;
+
+&lt;p&gt;If you received this error and you would like to know how you can resolve this issue, you can get a detailed error message from running your &lt;code&gt;status_command&lt;/code&gt; in a terminal. In the default case, use &lt;code&gt;$ i3status&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you prefer not to have a status command, find the bar directive in your config and comment out the &lt;code&gt;status_command&lt;/code&gt; line. The default location for the config is &lt;code&gt;~/.i3/config&lt;/code&gt;. It should look like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+  #status_command i3status
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more information on configuring i3bar, see &lt;a href="http://i3wm.org/docs/userguide.html#_configuring_i3bar"&gt;the page in the manual.&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3095#comment-3095</link><description>Thanks. I'll try that in the morning. </description><pubDate>Wed, 25 Dec 2013 03:38:19 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3095#comment-3095</guid></item><item><title>Answer by Licaon_Kter for &lt;p&gt;i3 was either reinstalled or upgrade to version 4.7 on my system today and, for the first time, I see an error in the lower right corner, stating what's in the title of this thread. I notice there is something in the bugtracker about giving better error messages for the status line when it fails and I'm wondering if this is the result of that. &lt;/p&gt;
+
+&lt;p&gt;If so, it's distracting, but I don't know how to solve the problem. I'm running plain vanilla, nothing changed in the default config file, on FreeBSD 9.2.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?answer=3171#post-id-3171</link><description>Seems related to my problem: i3bar crash since build i3-wm_4.7.1-1+g4.7-**101-gb109b1b1**
+
+Debian Sid 64bit up to date, i3-wm Debian repo unstable builds, still crashing in build **106-g90e7c5c1**, going back to **98-gf78c1ba1** fixes it again.
+
+Error message in *~/.xsession-errors*:
+ 
+    04.01.2014 23:29:58 - [libi3] ERROR: IPC: received EOF instead of reply
+    Segmentation fault
+
+Error message in **dmesg**: 
+
+    i3bar[19766]: segfault at 7f52eb858a40 ip 00007f52eb858a40 sp 00007fff1dba5b08 error 15 in libev.so.4.0.0[7f52eb858000+1000]
+
+Now, editing my *bar {}* settings isolated the problem to this line: *status_command i3status -c ~/.i3status*.
+
+My **i3status -c ~/.i3status** output:
+
+    {"version":1}
+    [
+    [{"name":"disk_info","instance":"/","full_text":"X,X GB"},{"name":"run_watch","instance":"/var/run/dhclient*.pid","color":"#00FF00","full_text":"DHCP: yes"},{"name":"ethernet","instance":"eth0","color":"#00FF00","full_text":"xxx.xxx.xxx.xxx (100 Mbit/s)"},{"name":"load","full_text":"0,01"},{"name":"time","full_text":"2014-01-05 02:05:11"}]
+
+Editing *~/.i3status* config yields that removing the *output_format = "i3bar"* line would make i3 not segfault, new **i3status -c ~/.i3status** output:
+
+    i3status: trying to auto-detect output_format setting
+    i3status: falling back to "none"
+    X,X GB | DHCP: yes | xxx.xxx.xxx.xx (100 Mbit/s) | 0,01 | 2014-01-05 02:05:11
+
+although I don't get any colors, at least it works.
+
+Looking in **git** I believe it's this commit: code.stapelberg.de/git/i3/commit/?h=next&amp;id=705b43294add2fffede086c0c072dc5a849ffc49 the **/i3bar/src/parse_json_header.c** edits maybe.  </description><pubDate>Sun, 05 Jan 2014 00:22:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?answer=3171#post-id-3171</guid></item><item><title>Comment by TonyC for &lt;p&gt;Seems related to my problem: i3bar crash since build i3-wm_4.7.1-1+g4.7-&lt;strong&gt;101-gb109b1b1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Debian Sid 64bit up to date, i3-wm Debian repo unstable builds, still crashing in build &lt;strong&gt;106-g90e7c5c1&lt;/strong&gt;, going back to &lt;strong&gt;98-gf78c1ba1&lt;/strong&gt; fixes it again.&lt;/p&gt;
+
+&lt;p&gt;Error message in &lt;em&gt;~/.xsession-errors&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;04.01.2014 23:29:58 - [libi3] ERROR: IPC: received EOF instead of reply
+Segmentation fault
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Error message in &lt;strong&gt;dmesg&lt;/strong&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3bar[19766]: segfault at 7f52eb858a40 ip 00007f52eb858a40 sp 00007fff1dba5b08 error 15 in libev.so.4.0.0[7f52eb858000+1000]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, editing my &lt;em&gt;bar {}&lt;/em&gt; settings isolated the problem to this line: &lt;em&gt;status_command i3status -c ~/.i3status&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;My &lt;strong&gt;i3status -c ~/.i3status&lt;/strong&gt; output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{"version":1}
+[
+[{"name":"disk_info","instance":"/","full_text":"X,X GB"},{"name":"run_watch","instance":"/var/run/dhclient*.pid","color":"#00FF00","full_text":"DHCP: yes"},{"name":"ethernet","instance":"eth0","color":"#00FF00","full_text":"xxx.xxx.xxx.xxx (100 Mbit/s)"},{"name":"load","full_text":"0,01"},{"name":"time","full_text":"2014-01-05 02:05:11"}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Editing &lt;em&gt;~/.i3status&lt;/em&gt; config yields that removing the &lt;em&gt;output_format = "i3bar"&lt;/em&gt; line would make i3 not segfault, new &lt;strong&gt;i3status -c ~/.i3status&lt;/strong&gt; output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status: trying to auto-detect output_format setting
+i3status: falling back to "none"
+X,X GB | DHCP: yes | xxx.xxx.xxx.xx (100 Mbit/s) | 0,01 | 2014-01-05 02:05:11
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;although I don't get any colors, at least it works.&lt;/p&gt;
+
+&lt;p&gt;Looking in &lt;strong&gt;git&lt;/strong&gt; I believe it's this commit: code.stapelberg.de/git/i3/commit/?h=next&amp;amp;id=705b43294add2fffede086c0c072dc5a849ffc49 the &lt;strong&gt;/i3bar/src/parse&lt;em&gt;json&lt;/em&gt;header.c&lt;/strong&gt; edits maybe.  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3175#comment-3175</link><description>We just reverted that commit and it works fine now.</description><pubDate>Sun, 05 Jan 2014 12:47:34 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3175#comment-3175</guid></item><item><title>Comment by TonyC for &lt;p&gt;Seems related to my problem: i3bar crash since build i3-wm_4.7.1-1+g4.7-&lt;strong&gt;101-gb109b1b1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Debian Sid 64bit up to date, i3-wm Debian repo unstable builds, still crashing in build &lt;strong&gt;106-g90e7c5c1&lt;/strong&gt;, going back to &lt;strong&gt;98-gf78c1ba1&lt;/strong&gt; fixes it again.&lt;/p&gt;
+
+&lt;p&gt;Error message in &lt;em&gt;~/.xsession-errors&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;04.01.2014 23:29:58 - [libi3] ERROR: IPC: received EOF instead of reply
+Segmentation fault
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Error message in &lt;strong&gt;dmesg&lt;/strong&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3bar[19766]: segfault at 7f52eb858a40 ip 00007f52eb858a40 sp 00007fff1dba5b08 error 15 in libev.so.4.0.0[7f52eb858000+1000]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, editing my &lt;em&gt;bar {}&lt;/em&gt; settings isolated the problem to this line: &lt;em&gt;status_command i3status -c ~/.i3status&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;My &lt;strong&gt;i3status -c ~/.i3status&lt;/strong&gt; output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{"version":1}
+[
+[{"name":"disk_info","instance":"/","full_text":"X,X GB"},{"name":"run_watch","instance":"/var/run/dhclient*.pid","color":"#00FF00","full_text":"DHCP: yes"},{"name":"ethernet","instance":"eth0","color":"#00FF00","full_text":"xxx.xxx.xxx.xxx (100 Mbit/s)"},{"name":"load","full_text":"0,01"},{"name":"time","full_text":"2014-01-05 02:05:11"}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Editing &lt;em&gt;~/.i3status&lt;/em&gt; config yields that removing the &lt;em&gt;output_format = "i3bar"&lt;/em&gt; line would make i3 not segfault, new &lt;strong&gt;i3status -c ~/.i3status&lt;/strong&gt; output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status: trying to auto-detect output_format setting
+i3status: falling back to "none"
+X,X GB | DHCP: yes | xxx.xxx.xxx.xx (100 Mbit/s) | 0,01 | 2014-01-05 02:05:11
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;although I don't get any colors, at least it works.&lt;/p&gt;
+
+&lt;p&gt;Looking in &lt;strong&gt;git&lt;/strong&gt; I believe it's this commit: code.stapelberg.de/git/i3/commit/?h=next&amp;amp;id=705b43294add2fffede086c0c072dc5a849ffc49 the &lt;strong&gt;/i3bar/src/parse&lt;em&gt;json&lt;/em&gt;header.c&lt;/strong&gt; edits maybe.  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3173#comment-3173</link><description>Please post bugs to the bug tracker in the future at http://bugs.i3wm.org (the faq is not designed to handle this). I do not believe these issues are related. The errors appear to be similar, but are coming from different places (in your case, the IPC, and in this case the status process).</description><pubDate>Sun, 05 Jan 2014 10:15:53 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3173#comment-3173</guid></item><item><title>Comment by Licaon_Kter for &lt;p&gt;Seems related to my problem: i3bar crash since build i3-wm_4.7.1-1+g4.7-&lt;strong&gt;101-gb109b1b1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Debian Sid 64bit up to date, i3-wm Debian repo unstable builds, still crashing in build &lt;strong&gt;106-g90e7c5c1&lt;/strong&gt;, going back to &lt;strong&gt;98-gf78c1ba1&lt;/strong&gt; fixes it again.&lt;/p&gt;
+
+&lt;p&gt;Error message in &lt;em&gt;~/.xsession-errors&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;04.01.2014 23:29:58 - [libi3] ERROR: IPC: received EOF instead of reply
+Segmentation fault
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Error message in &lt;strong&gt;dmesg&lt;/strong&gt;: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3bar[19766]: segfault at 7f52eb858a40 ip 00007f52eb858a40 sp 00007fff1dba5b08 error 15 in libev.so.4.0.0[7f52eb858000+1000]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, editing my &lt;em&gt;bar {}&lt;/em&gt; settings isolated the problem to this line: &lt;em&gt;status_command i3status -c ~/.i3status&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;My &lt;strong&gt;i3status -c ~/.i3status&lt;/strong&gt; output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{"version":1}
+[
+[{"name":"disk_info","instance":"/","full_text":"X,X GB"},{"name":"run_watch","instance":"/var/run/dhclient*.pid","color":"#00FF00","full_text":"DHCP: yes"},{"name":"ethernet","instance":"eth0","color":"#00FF00","full_text":"xxx.xxx.xxx.xxx (100 Mbit/s)"},{"name":"load","full_text":"0,01"},{"name":"time","full_text":"2014-01-05 02:05:11"}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Editing &lt;em&gt;~/.i3status&lt;/em&gt; config yields that removing the &lt;em&gt;output_format = "i3bar"&lt;/em&gt; line would make i3 not segfault, new &lt;strong&gt;i3status -c ~/.i3status&lt;/strong&gt; output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3status: trying to auto-detect output_format setting
+i3status: falling back to "none"
+X,X GB | DHCP: yes | xxx.xxx.xxx.xx (100 Mbit/s) | 0,01 | 2014-01-05 02:05:11
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;although I don't get any colors, at least it works.&lt;/p&gt;
+
+&lt;p&gt;Looking in &lt;strong&gt;git&lt;/strong&gt; I believe it's this commit: code.stapelberg.de/git/i3/commit/?h=next&amp;amp;id=705b43294add2fffede086c0c072dc5a849ffc49 the &lt;strong&gt;/i3bar/src/parse&lt;em&gt;json&lt;/em&gt;header.c&lt;/strong&gt; edits maybe.  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3176#comment-3176</link><description>Yep, works ok now, and we got a **i3status** vers 2.8 build in Debian Sid too, nice.</description><pubDate>Sun, 05 Jan 2014 15:45:52 +0000</pubDate><guid>https://faq.i3wm.org/question/3090/error-received-eof-from-statusline-process/?comment=3176#comment-3176</guid></item></channel></rss>

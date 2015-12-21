@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3419/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 26 Feb 2014 14:21:35 +0000</lastBuildDate><item><title>Where to put Nvidia X Server Settings?</title><link>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/</link><description>The video settings in my /etc/X11/xorg.conf file are not used when starting i3. So each time I restart I need to open up the NVIDIA X Server Settings and configure them from scratch.
+
+Is there a better way to do this? For instance, is there some way to load the settings that already exist in /etc/X11/xorg.conf, or is there some better place to put them?</description><pubDate>Mon, 24 Feb 2014 18:02:29 +0000</pubDate><guid>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/</guid></item><item><title>Comment by Mori for &lt;p&gt;The video settings in my /etc/X11/xorg.conf file are not used when starting i3. So each time I restart I need to open up the NVIDIA X Server Settings and configure them from scratch.&lt;/p&gt;
+
+&lt;p&gt;Is there a better way to do this? For instance, is there some way to load the settings that already exist in /etc/X11/xorg.conf, or is there some better place to put them?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/?comment=3426#comment-3426</link><description>Thanks @Adaephon, but there are no errors reported in /var/log/Xorg.0.log.</description><pubDate>Tue, 25 Feb 2014 15:57:23 +0000</pubDate><guid>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/?comment=3426#comment-3426</guid></item><item><title>Comment by Michael for &lt;p&gt;The video settings in my /etc/X11/xorg.conf file are not used when starting i3. So each time I restart I need to open up the NVIDIA X Server Settings and configure them from scratch.&lt;/p&gt;
+
+&lt;p&gt;Is there a better way to do this? For instance, is there some way to load the settings that already exist in /etc/X11/xorg.conf, or is there some better place to put them?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/?comment=3420#comment-3420</link><description>Why would they not be loaded? They should. This is not an i3 problem.</description><pubDate>Mon, 24 Feb 2014 18:28:16 +0000</pubDate><guid>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/?comment=3420#comment-3420</guid></item><item><title>Comment by Mori for &lt;p&gt;The video settings in my /etc/X11/xorg.conf file are not used when starting i3. So each time I restart I need to open up the NVIDIA X Server Settings and configure them from scratch.&lt;/p&gt;
+
+&lt;p&gt;Is there a better way to do this? For instance, is there some way to load the settings that already exist in /etc/X11/xorg.conf, or is there some better place to put them?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/?comment=3421#comment-3421</link><description>@Michael, it does work when I don't use i3 (ubuntu 13).</description><pubDate>Mon, 24 Feb 2014 19:31:39 +0000</pubDate><guid>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/?comment=3421#comment-3421</guid></item><item><title>Comment by Adaephon for &lt;p&gt;The video settings in my /etc/X11/xorg.conf file are not used when starting i3. So each time I restart I need to open up the NVIDIA X Server Settings and configure them from scratch.&lt;/p&gt;
+
+&lt;p&gt;Is there a better way to do this? For instance, is there some way to load the settings that already exist in /etc/X11/xorg.conf, or is there some better place to put them?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/?comment=3422#comment-3422</link><description>@Mori, the settings in the xorg.conf are loaded completely before a window manager is started. The difference in behaviour between i3 and Unity is, that Unity tries to do its own auto-configuration while i3 does not. Have a look at /var/log/Xorg.0.log if any errors are reported. </description><pubDate>Tue, 25 Feb 2014 08:39:00 +0000</pubDate><guid>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/?comment=3422#comment-3422</guid></item><item><title>Answer by TonyC for &lt;p&gt;The video settings in my /etc/X11/xorg.conf file are not used when starting i3. So each time I restart I need to open up the NVIDIA X Server Settings and configure them from scratch.&lt;/p&gt;
+
+&lt;p&gt;Is there a better way to do this? For instance, is there some way to load the settings that already exist in /etc/X11/xorg.conf, or is there some better place to put them?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/?answer=3428#post-id-3428</link><description>This is ordinarily the job of the display manager (your login thing) so you will want to check the configuration options for whichever one you use.
+
+You can see what files are being loaded from the X log file usually located at `/var/log/Xorg.0.log`. Check for the lines that look like this:
+
+    [ 39103.247] (++) Using config file: "/etc/X11/xorg.conf"
+    [ 39103.248] (==) Using config directory: "/etc/X11/xorg.conf.d"
+
+Be sure to put your config files in the config directory with something like `/etc/X11/xorg.conf.d/20-nvidia-settings.conf`.
+
+I don't think Ubuntu uses the standard path. It is more likely located at `/usr/share/X11/xorg.conf.d`.
+
+You can change the files that are loaded with arguments to Xorg. From `man xorg`:
+
+    -config file
+         Read  the  server  configuration  from file.  This option will
+         work for any file when the server is run as  root  (i.e,  with
+         real-uid  0), or for files relative to a directory in the con‐
+         fig search path for all other users.
+
+     -configdir directory
+         Read the server  configuration  files  from  directory.   This
+         option  will  work for any directory when the server is run as
+         root (i.e, with real-uid 0), or for directories relative to  a
+         directory  in  the  config directory search path for all other
+         users.
+</description><pubDate>Wed, 26 Feb 2014 14:21:35 +0000</pubDate><guid>https://faq.i3wm.org/question/3419/where-to-put-nvidia-x-server-settings/?answer=3428#post-id-3428</guid></item></channel></rss>

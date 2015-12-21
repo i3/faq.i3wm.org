@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5836/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 20 Apr 2015 19:35:34 +0000</lastBuildDate><item><title>Focus on target application</title><link>https://faq.i3wm.org/question/5836/focus-on-target-application/</link><description>Frequently I'll open a file from the terminal that will be used in another application (pdf viewer, file manager, sublime text, etc.). i3 does not focus on the target application but maintains focus on the terminal. I can see how this would be desirable in many situations and doesn't bother me when the target application is in the same workspace.
+
+The problem is when I have an instance of one of the target applications running in a different workspace, running the command appears to do nothing, when in fact the action has taken place in another window in another workspace.
+
+Is it possible to focus on the target application?</description><pubDate>Mon, 20 Apr 2015 18:21:33 +0000</pubDate><guid>https://faq.i3wm.org/question/5836/focus-on-target-application/</guid></item><item><title>Answer by airblader for &lt;p&gt;Frequently I'll open a file from the terminal that will be used in another application (pdf viewer, file manager, sublime text, etc.). i3 does not focus on the target application but maintains focus on the terminal. I can see how this would be desirable in many situations and doesn't bother me when the target application is in the same workspace.&lt;/p&gt;
+
+&lt;p&gt;The problem is when I have an instance of one of the target applications running in a different workspace, running the command appears to do nothing, when in fact the action has taken place in another window in another workspace.&lt;/p&gt;
+
+&lt;p&gt;Is it possible to focus on the target application?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5836/focus-on-target-application/?answer=5837#post-id-5837</link><description>There is, but only on the current `next` branch. In fact, there are two different things:
+
+* [focus\_on\_window\_activation](https://github.com/i3/i3/pull/1613/files) – defines how to handle the focus change request of the client if it's already running (e.g., opening a new tab in Chrome via commandline)
+* [no_focus](https://github.com/i3/i3/pull/1621/files) – defines whether windows should receive focus when they are first opened (used with command criteria)
+
+But, as stated, you need to wait for the next release or install `next` from source.</description><pubDate>Mon, 20 Apr 2015 19:33:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5836/focus-on-target-application/?answer=5837#post-id-5837</guid></item><item><title>Comment by freb for &lt;p&gt;There is, but only on the current &lt;code&gt;next&lt;/code&gt; branch. In fact, there are two different things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/i3/i3/pull/1613/files"&gt;focus_on_window_activation&lt;/a&gt; – defines how to handle the focus change request of the client if it's already running (e.g., opening a new tab in Chrome via commandline)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/i3/i3/pull/1621/files"&gt;no_focus&lt;/a&gt; – defines whether windows should receive focus when they are first opened (used with command criteria)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But, as stated, you need to wait for the next release or install &lt;code&gt;next&lt;/code&gt; from source.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5836/focus-on-target-application/?comment=5838#comment-5838</link><description>Exactly what I was looking for. Thanks!</description><pubDate>Mon, 20 Apr 2015 19:35:34 +0000</pubDate><guid>https://faq.i3wm.org/question/5836/focus-on-target-application/?comment=5838#comment-5838</guid></item></channel></rss>

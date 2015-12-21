@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/676/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 11 Oct 2013 22:14:04 +0000</lastBuildDate><item><title>Using CapsLock as a $mod modifier issue</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/</link><description>I have an issue regarding the use of CapsLock as a $mod modifier.  
+
+**~/.i3/config**: http://pastebin.com/q0nB4Vn0
+
+**~/.Xmodmap**:
+
+    clear Lock
+    keycode 66 = Hyper_L
+    add mod4 = Hyper_L
+
+**xmodmap -pm**:
+
+    xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+    
+    shift       Shift_L (0x32),  Shift_R (0x3e)
+    lock      
+    control     Control_L (0x25),  Control_R (0x69)
+    mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+    mod2        Num_Lock (0x4d)
+    mod3      
+    mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+    mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+
+And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):
+
+    caps+2 - switch to workspace 2
+    caps+1 - switch to workspace 1
+    caps+shift+2 - nothing happens
+    win+shift+2 - window is moved to workspace 2
+    caps+2 - switch to workspace 2
+    caps+shift+1 - window is moved to workspace 1
+    caps+1 - switch to workspace 1
+    caps+shift+2 - nothing happens
+    win+shift+2 - window is moved to workspace 2
+    ...
+
+Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.
+
+Any idea?</description><pubDate>Sun, 21 Oct 2012 22:28:15 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/</guid></item><item><title>Comment by Krayon for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=1705#comment-1705</link><description>I just tried the keycode 66 assignment as listed above and i3 worked as expected.  I tested this on a LinuxMint 14 box.  I also use dvorak layout.  My xmodmap -pke: http://dpaste.com/1073932/
+
+Perhaps the issue is Ubuntu specific?</description><pubDate>Fri, 26 Apr 2013 03:25:30 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=1705#comment-1705</guid></item><item><title>Comment by Michael for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=678#comment-678</link><description>Please also provide the output of `xmodmap -pke`</description><pubDate>Mon, 22 Oct 2012 07:17:23 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=678#comment-678</guid></item><item><title>Comment by Licaon_Kter for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=700#comment-700</link><description>I forgot to mention, I use the autobuilder provided version of i3 under Debian Sid 64bit.</description><pubDate>Mon, 29 Oct 2012 21:50:32 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=700#comment-700</guid></item><item><title>Comment by Licaon_Kter for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=1068#comment-1068</link><description>**setxkbmap -option "caps:super"** seems to help. 10x</description><pubDate>Wed, 16 Jan 2013 20:59:34 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=1068#comment-1068</guid></item><item><title>Comment by BatmanAoD for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=2692#comment-2692</link><description>I'm having what seems to be a similar issue; after using xmodmap to set `keycode 0x09 = Return`, `$mod+Esc` opens a new terminal window but `$mod+Enter` just sends a "return" code to the program in the active window. EDIT: resolved by updating to 4.0.2 (I know, still ancient, but better than 4.0.1)</description><pubDate>Fri, 11 Oct 2013 22:14:04 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=2692#comment-2692</guid></item><item><title>Comment by Mario Sandler for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=1050#comment-1050</link><description>I use CapsLock as Modifier (.i3/config: `set $mod Mod4`) with `setxkbmap -option "caps:super"`. Moving/dragging windows/workspaces just work.</description><pubDate>Mon, 14 Jan 2013 11:19:42 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=1050#comment-1050</guid></item><item><title>Comment by Licaon_Kter for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=692#comment-692</link><description>Should I file this as a i3 bug? or xmodmap? or what? can anyone else even reproduce this?</description><pubDate>Thu, 25 Oct 2012 11:33:34 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=692#comment-692</guid></item><item><title>Comment by eug for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=1034#comment-1034</link><description>Same issue here. My guess is that it's not an i3 issue as I observed the same behavior under wmii.
+
+Out of curiosity, are any of you seeing the issue using a ThinkPad?</description><pubDate>Sun, 13 Jan 2013 05:32:05 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=1034#comment-1034</guid></item><item><title>Comment by i3-tiler for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=699#comment-699</link><description>I also use caps lock as meta key and I'm faced with the same issue. My setup is ubuntu 11.04 and the http://debian.sur5r.net/i3/ repository.</description><pubDate>Mon, 29 Oct 2012 14:32:52 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=699#comment-699</guid></item><item><title>Comment by Licaon_Kter for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=679#comment-679</link><description>**xmodmap -pke**: http://pastebin.com/7L2MZwvT (it's a Dvorak layout if it matters)</description><pubDate>Mon, 22 Oct 2012 16:44:04 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?comment=679#comment-679</guid></item><item><title>Answer by notalex for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?answer=2412#post-id-2412</link><description>I had similar problems with Xmodmap and I ended up using setxkbmap. Try the following in your shell:
+
+$ setxkbmap -option caps:hyper
+
+The &lt;code&gt;caps:hyper&lt;/code&gt; syntax comes from /usr/share/X11/xkb/rules/base.lst on my machine.
+
+Note(For less advanced users): For a more permanent setting, place the command in your ~/.bashrc</description><pubDate>Thu, 22 Aug 2013 11:56:01 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?answer=2412#post-id-2412</guid></item><item><title>Answer by eug for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?answer=1033#post-id-1033</link><description>[Deleted.  Posted in the wrong area.]</description><pubDate>Sun, 13 Jan 2013 05:31:36 +0000</pubDate><guid>https://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/?answer=1033#post-id-1033</guid></item></channel></rss>

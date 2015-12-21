@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5105/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 07 Dec 2014 00:16:32 +0000</lastBuildDate><item><title>How to create shortcut for nautilus?</title><link>https://faq.i3wm.org/question/5105/how-to-create-shortcut-for-nautilus/</link><description>I've set a shortcut in my .i3/config file as such:
+bindsym $mod+n exec nautilus --no-desktop
+
+This works to launch one instance, however, subsequent attempts fail. The only feedback is that the indicator for that workspace shows the urgent color. Launching another instance via the i3-dmenu-desktop works fine but then it launches with desktop control.
+
+Launching the 'nautilus --no-desktop' command at a terminal produces:
+** (nautilus:6210): WARNING **: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-p9bGA1q0zk: Connection refused
+
+(nautilus:6210): Gtk-WARNING **: Failed to register client: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.gnome.SessionManager was not provided by any .service files
+Initializing nautilus-dropbox 1.6.2
+&lt;gi.module.DynamicModule 'Nautilus' from '/usr/lib/girepository-1.0/Nautilus-3.0.typelib'&gt;
+Insync Nautilus Plugin
+&lt;class 'insync_plugin.InsyncExtension'&gt;
+('[__init__ insync plugin]', &lt;InsyncExtension object at 0x7fe9ec02ffa0 (uninitialized at 0x0)&gt;)
+
+Nautilus still launches but the second attempt from terminal fails and produces:
+** (nautilus:6316): WARNING **: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-p9bGA1q0zk: Connection refused
+
+
+Other file managers work properly with the shortcuts but I'd like to either
+a: figure out where my mistake is
+or
+b: get pointed in the right direction on finding the problem
+
+I'm using Ubuntu 14.10 as my base.</description><pubDate>Sat, 06 Dec 2014 00:35:00 +0000</pubDate><guid>https://faq.i3wm.org/question/5105/how-to-create-shortcut-for-nautilus/</guid></item><item><title>Answer by Michael for &lt;p&gt;I've set a shortcut in my .i3/config file as such:
+bindsym $mod+n exec nautilus --no-desktop&lt;/p&gt;
+
+&lt;p&gt;This works to launch one instance, however, subsequent attempts fail. The only feedback is that the indicator for that workspace shows the urgent color. Launching another instance via the i3-dmenu-desktop works fine but then it launches with desktop control.&lt;/p&gt;
+
+&lt;p&gt;Launching the 'nautilus --no-desktop' command at a terminal produces:
+&lt;em&gt;* (nautilus:6210): WARNING *&lt;/em&gt;: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-p9bGA1q0zk: Connection refused&lt;/p&gt;
+
+&lt;p&gt;(nautilus:6210): Gtk-WARNING **: Failed to register client: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.gnome.SessionManager was not provided by any .service files
+Initializing nautilus-dropbox 1.6.2
+&amp;lt;gi.module.dynamicmodule 'nautilus'="" from="" '="" usr="" lib="" girepository-1.0="" nautilus-3.0.typelib'=""&amp;gt;
+Insync Nautilus Plugin
+&amp;lt;class 'insync_plugin.insyncextension'=""&amp;gt;
+('[&lt;strong&gt;init&lt;/strong&gt; insync plugin]', &amp;lt;insyncextension object="" at="" 0x7fe9ec02ffa0="" (uninitialized="" at="" 0x0)&amp;amp;gt;)&amp;lt;="" p=""&amp;gt;
+
+&lt;/p&gt;&lt;p&gt;Nautilus still launches but the second attempt from terminal fails and produces:
+&lt;em&gt;* (nautilus:6316): WARNING *&lt;/em&gt;: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-p9bGA1q0zk: Connection refused&lt;/p&gt;
+
+&lt;p&gt;Other file managers work properly with the shortcuts but I'd like to either
+a: figure out where my mistake is
+or
+b: get pointed in the right direction on finding the problem&lt;/p&gt;
+
+&lt;p&gt;I'm using Ubuntu 14.10 as my base.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5105/how-to-create-shortcut-for-nautilus/?answer=5118#post-id-5118</link><description>By default, nautilus will only run one process and starting the nautilus binary again will only result in the new process telling the old one about it. This results in the existing nautilus window being raised, which you can observe when you have both of them on the same workspace, e.g. in a stacked container.
+
+I think the solution you’re looking for is using `nautilus --no-desktop --new-window`, which will result in a new window being opened instead of the existing window being raised.</description><pubDate>Sat, 06 Dec 2014 22:25:26 +0000</pubDate><guid>https://faq.i3wm.org/question/5105/how-to-create-shortcut-for-nautilus/?answer=5118#post-id-5118</guid></item><item><title>Comment by jefeyay for &lt;p&gt;By default, nautilus will only run one process and starting the nautilus binary again will only result in the new process telling the old one about it. This results in the existing nautilus window being raised, which you can observe when you have both of them on the same workspace, e.g. in a stacked container.&lt;/p&gt;
+
+&lt;p&gt;I think the solution you’re looking for is using &lt;code&gt;nautilus --no-desktop --new-window&lt;/code&gt;, which will result in a new window being opened instead of the existing window being raised.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5105/how-to-create-shortcut-for-nautilus/?comment=5127#comment-5127</link><description>That's it, thank you very much. </description><pubDate>Sun, 07 Dec 2014 00:16:32 +0000</pubDate><guid>https://faq.i3wm.org/question/5105/how-to-create-shortcut-for-nautilus/?comment=5127#comment-5127</guid></item></channel></rss>

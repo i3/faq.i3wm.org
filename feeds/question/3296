@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3296/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 23 Jan 2014 23:34:14 +0000</lastBuildDate><item><title>Open floating contextuel windows on the same WS in any case</title><link>https://faq.i3wm.org/question/3296/open-floating-contextuel-windows-on-the-same-ws-in-any-case/</link><description>Hummm it's a little bit hard to explain my problem with my poor english...
+I'll try with an example
+
+I have assign th the workspace n°2 the application Thunderbird. When it's launching, TB open itself on WS2. Normal.
+Sometimes, I'm moving TB on another WS, for example n°3
+On the WS 3, when I try to make an attachment in a new message, the "modal" window to select a file to attach is opening in WS 2. Boring.
+
+My question is the following : can we imagine a setting to open the "modal" windows on the same WS as the parent application, doesn't matter of the WS assignation ?
+
+I'm not sure about the "modal" term and if I'm clear. Don't hesite to ask if need.</description><pubDate>Wed, 22 Jan 2014 08:20:10 +0000</pubDate><guid>https://faq.i3wm.org/question/3296/open-floating-contextuel-windows-on-the-same-ws-in-any-case/</guid></item><item><title>Comment by TonyC for &lt;p&gt;Hummm it's a little bit hard to explain my problem with my poor english...
+I'll try with an example&lt;/p&gt;
+
+&lt;p&gt;I have assign th the workspace n°2 the application Thunderbird. When it's launching, TB open itself on WS2. Normal.
+Sometimes, I'm moving TB on another WS, for example n°3
+On the WS 3, when I try to make an attachment in a new message, the "modal" window to select a file to attach is opening in WS 2. Boring.&lt;/p&gt;
+
+&lt;p&gt;My question is the following : can we imagine a setting to open the "modal" windows on the same WS as the parent application, doesn't matter of the WS assignation ?&lt;/p&gt;
+
+&lt;p&gt;I'm not sure about the "modal" term and if I'm clear. Don't hesite to ask if need.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3296/open-floating-contextuel-windows-on-the-same-ws-in-any-case/?comment=3301#comment-3301</link><description>I think this is something that could be considered as becoming the default behavior of workspace assignments. You should make a feature request on http://bugs.i3wm.org. You can refer to those windows generally as "dialog windows" as opposed to "top-level windows" and people will know what you mean.</description><pubDate>Wed, 22 Jan 2014 10:34:21 +0000</pubDate><guid>https://faq.i3wm.org/question/3296/open-floating-contextuel-windows-on-the-same-ws-in-any-case/?comment=3301#comment-3301</guid></item><item><title>Answer by Spheerys for &lt;p&gt;Hummm it's a little bit hard to explain my problem with my poor english...
+I'll try with an example&lt;/p&gt;
+
+&lt;p&gt;I have assign th the workspace n°2 the application Thunderbird. When it's launching, TB open itself on WS2. Normal.
+Sometimes, I'm moving TB on another WS, for example n°3
+On the WS 3, when I try to make an attachment in a new message, the "modal" window to select a file to attach is opening in WS 2. Boring.&lt;/p&gt;
+
+&lt;p&gt;My question is the following : can we imagine a setting to open the "modal" windows on the same WS as the parent application, doesn't matter of the WS assignation ?&lt;/p&gt;
+
+&lt;p&gt;I'm not sure about the "modal" term and if I'm clear. Don't hesite to ask if need.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3296/open-floating-contextuel-windows-on-the-same-ws-in-any-case/?answer=3302#post-id-3302</link><description>I have precised the rule for the exact match of the main window of my application and you were right : the child windows are now opening themselve on the current WS.
+Thanks ;)
+
+But maybe the best will be to test this property for the child windows :
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_DIALOG
+
+The main program is _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL</description><pubDate>Wed, 22 Jan 2014 14:37:05 +0000</pubDate><guid>https://faq.i3wm.org/question/3296/open-floating-contextuel-windows-on-the-same-ws-in-any-case/?answer=3302#post-id-3302</guid></item><item><title>Comment by joepd for &lt;p&gt;I have precised the rule for the exact match of the main window of my application and you were right : the child windows are now opening themselve on the current WS.
+Thanks ;)&lt;/p&gt;
+
+&lt;p&gt;But maybe the best will be to test this property for the child windows :
+&lt;em&gt;NET&lt;/em&gt;WM&lt;em&gt;WINDOW&lt;/em&gt;TYPE(ATOM) = &lt;em&gt;NET&lt;/em&gt;WM&lt;em&gt;WINDOW&lt;/em&gt;TYPE_DIALOG&lt;/p&gt;
+
+&lt;p&gt;The main program is &lt;em&gt;NET&lt;/em&gt;WM&lt;em&gt;WINDOW&lt;/em&gt;TYPE(ATOM) = &lt;em&gt;NET&lt;/em&gt;WM&lt;em&gt;WINDOW&lt;/em&gt;TYPE_NORMAL&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3296/open-floating-contextuel-windows-on-the-same-ws-in-any-case/?comment=3313#comment-3313</link><description>Glad it worked, but please post a feature request as TonyC suggested, as this would make sense for default behavior. </description><pubDate>Thu, 23 Jan 2014 23:34:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3296/open-floating-contextuel-windows-on-the-same-ws-in-any-case/?comment=3313#comment-3313</guid></item><item><title>Answer by joepd for &lt;p&gt;Hummm it's a little bit hard to explain my problem with my poor english...
+I'll try with an example&lt;/p&gt;
+
+&lt;p&gt;I have assign th the workspace n°2 the application Thunderbird. When it's launching, TB open itself on WS2. Normal.
+Sometimes, I'm moving TB on another WS, for example n°3
+On the WS 3, when I try to make an attachment in a new message, the "modal" window to select a file to attach is opening in WS 2. Boring.&lt;/p&gt;
+
+&lt;p&gt;My question is the following : can we imagine a setting to open the "modal" windows on the same WS as the parent application, doesn't matter of the WS assignation ?&lt;/p&gt;
+
+&lt;p&gt;I'm not sure about the "modal" term and if I'm clear. Don't hesite to ask if need.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3296/open-floating-contextuel-windows-on-the-same-ws-in-any-case/?answer=3299#post-id-3299</link><description>What you want, is a more exact match for the Thunderbird windows: It should only match the main application, but not the windows that are opened after that. I do not have thunderbird installed on my system, but the best would be to look with `xprop` at the different window properties of the windows of thunderbird. Maybe there is a way to construct an assignment match that only works on the main window. 
+
+Alternatively, you could make a different launcher for Thunderbird, something along the lines of:
+
+    workspace number 2, exec thunderbird, workspace back_and_forth
+
+This line you could put either with a key binding in your i3 config file, or you could wrap it in `i3-msg '...'`. </description><pubDate>Wed, 22 Jan 2014 09:53:07 +0000</pubDate><guid>https://faq.i3wm.org/question/3296/open-floating-contextuel-windows-on-the-same-ws-in-any-case/?answer=3299#post-id-3299</guid></item></channel></rss>

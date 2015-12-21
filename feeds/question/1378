@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1378/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 13 Mar 2013 10:12:35 +0000</lastBuildDate><item><title>Cannot open a terminal with i3 on Fedora</title><link>https://faq.i3wm.org/question/1378/cannot-open-a-terminal-with-i3-on-fedora/</link><description>So i just installed Fedora around a week ago and i am very new to using Linux.
+And today i installed i3 Wm using "yum install i3".
+After i installed it i tryed to open a terminal using $mod+Enter/Alt+Enter like the Documentation said but it does not open anything.What could the problem be here?</description><pubDate>Tue, 12 Mar 2013 14:11:03 +0000</pubDate><guid>https://faq.i3wm.org/question/1378/cannot-open-a-terminal-with-i3-on-fedora/</guid></item><item><title>Answer by Michael for &lt;p&gt;So i just installed Fedora around a week ago and i am very new to using Linux.
+And today i installed i3 Wm using "yum install i3".
+After i installed it i tryed to open a terminal using $mod+Enter/Alt+Enter like the Documentation said but it does not open anything.What could the problem be here?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1378/cannot-open-a-terminal-with-i3-on-fedora/?answer=1379#post-id-1379</link><description>Check the config file (~/.i3/config or /etc/i3/config if you aborted the wizard) for the line binding $mod+Return:
+
+    grep '+Return' ~/.i3/config
+    bindsym Mod1+Return exec i3-sensible-terminal
+
+Then, verify that the terminal emulator which you use in your config is actually installed. In this case, i3-sensible-terminal is a wrapper which tries to start the first one of urxvt, rxvt, terminator, Eterm, aterm, xterm, gnome-terminal, roxterm, xfce4-terminal.
+
+So, install e.g. urxvt and retry.</description><pubDate>Tue, 12 Mar 2013 14:25:53 +0000</pubDate><guid>https://faq.i3wm.org/question/1378/cannot-open-a-terminal-with-i3-on-fedora/?answer=1379#post-id-1379</guid></item><item><title>Comment by Jungolona for &lt;p&gt;Check the config file (~/.i3/config or /etc/i3/config if you aborted the wizard) for the line binding $mod+Return:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep '+Return' ~/.i3/config
+bindsym Mod1+Return exec i3-sensible-terminal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, verify that the terminal emulator which you use in your config is actually installed. In this case, i3-sensible-terminal is a wrapper which tries to start the first one of urxvt, rxvt, terminator, Eterm, aterm, xterm, gnome-terminal, roxterm, xfce4-terminal.&lt;/p&gt;
+
+&lt;p&gt;So, install e.g. urxvt and retry.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1378/cannot-open-a-terminal-with-i3-on-fedora/?comment=1380#comment-1380</link><description>I have this.http://i.imgur.com/RcGvf8Q.png Also i installed rxvt,terminator and gnome-terminal.urxvt was not found.Other Mod keys work Mod+shift+left for example.Just not the key to open the terminal.</description><pubDate>Tue, 12 Mar 2013 14:51:38 +0000</pubDate><guid>https://faq.i3wm.org/question/1378/cannot-open-a-terminal-with-i3-on-fedora/?comment=1380#comment-1380</guid></item><item><title>Comment by Michael for &lt;p&gt;Check the config file (~/.i3/config or /etc/i3/config if you aborted the wizard) for the line binding $mod+Return:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep '+Return' ~/.i3/config
+bindsym Mod1+Return exec i3-sensible-terminal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, verify that the terminal emulator which you use in your config is actually installed. In this case, i3-sensible-terminal is a wrapper which tries to start the first one of urxvt, rxvt, terminator, Eterm, aterm, xterm, gnome-terminal, roxterm, xfce4-terminal.&lt;/p&gt;
+
+&lt;p&gt;So, install e.g. urxvt and retry.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1378/cannot-open-a-terminal-with-i3-on-fedora/?comment=1385#comment-1385</link><description>You could try “bindsym Mod1+Return exec gnome-terminal”. If that doesn’t help, see http://i3wm.org/docs/debugging.html</description><pubDate>Wed, 13 Mar 2013 10:12:35 +0000</pubDate><guid>https://faq.i3wm.org/question/1378/cannot-open-a-terminal-with-i3-on-fedora/?comment=1385#comment-1385</guid></item></channel></rss>

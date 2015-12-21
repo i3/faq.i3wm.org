@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4595/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 02 Sep 2014 17:08:15 +0000</lastBuildDate><item><title>Problems when switching keyboard layout in gnome + i3</title><link>https://faq.i3wm.org/question/4595/problems-when-switching-keyboard-layout-in-gnome-i3/</link><description>Hi all,
+
+My setup is a clean Ubuntu GNOME 14.04 which I just installed. I found through tutorials online how to setup GNOME using i3 as its window manager. I've added the following two files:
+
+**/usr/share/xsessions/gnome-i3.desktop**
+
+    [Desktop Entry]
+    Name=GNOME with i3
+    Comment=A GNOME fallback mode session using i3 as the window manager.
+    TryExec=gnome-session
+    Exec=gnome-session --session=i3
+
+**/usr/share/gnome-session/sessions/i3.session**
+
+    [GNOME Session]
+    Name=i3
+    RequiredComponents=gnome-settings-daemon;i3;
+
+Most things seem to work. Screen locking, fn+up/down arrows for volume all look OK. However, I can't get keyboard layout switching to work through GNOME.. Although I have configured English and Greek as my two languages in *Region &amp; Language -&gt; Input sources* and I have set up *alt + shift* as the shortcut to switch between the two, it doesn't work in i3. It works fine when using GNOME with its own window manager.
+
+I have tried configuring X11 myself:
+   
+    setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,el
+
+Now the behavior is even more interesting: As soon as I press *alt + shift*, the scroll led lights up for a split second and then turns off again. The keyboard layout remains the same as before.
+
+My solution to this is to tell gnome not to manage the keyboard settings at all, through dconf-editor and by changing *org.gnome.settings-daemon.plugins.keyboard.active* to false. Now, finally, pressing *alt + shift* changes the keyboard layout and the scroll led remains on while the layout is set to Greek.
+
+This seems to work well enough, but is it possible to avoid it? Is there any way to manage my keyboard layout settings through GNOME?</description><pubDate>Tue, 02 Sep 2014 17:08:15 +0000</pubDate><guid>https://faq.i3wm.org/question/4595/problems-when-switching-keyboard-layout-in-gnome-i3/</guid></item></channel></rss>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5830/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 19 Apr 2015 21:19:11 +0000</lastBuildDate><item><title>Using IPC how can I move an app into a container?</title><link>https://faq.i3wm.org/question/5830/using-ipc-how-can-i-move-an-app-into-a-container/</link><description>I'm using Atom and I'd like to combine all Atom windows into a single tabbed container. I've been working a bit with i3-py. I have been able to find all Atom windows and have a target container, but `move  ... to container ...` isn't a valid command.
+
+Once I get my script working I can auto-merge windows with something like this.
+
+    for_window [class="Atom"] exec /home/asa/.i3/combine.py
+
+Note: The Karma rules here really discourage new users. I can't post links and I can't vote. If I thought I could get help anywhere else I'd just leave.</description><pubDate>Sun, 19 Apr 2015 19:13:02 +0000</pubDate><guid>https://faq.i3wm.org/question/5830/using-ipc-how-can-i-move-an-app-into-a-container/</guid></item><item><title>Answer by airblader for &lt;p&gt;I'm using Atom and I'd like to combine all Atom windows into a single tabbed container. I've been working a bit with i3-py. I have been able to find all Atom windows and have a target container, but &lt;code&gt;move  ... to container ...&lt;/code&gt; isn't a valid command.&lt;/p&gt;
+
+&lt;p&gt;Once I get my script working I can auto-merge windows with something like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Atom"] exec /home/asa/.i3/combine.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note: The Karma rules here really discourage new users. I can't post links and I can't vote. If I thought I could get help anywhere else I'd just leave.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5830/using-ipc-how-can-i-move-an-app-into-a-container/?answer=5831#post-id-5831</link><description>Great timing – just earlier today, a patch was merged that should help you. You can install i3 from source from the current `next` branch and then do this:
+
+```
+for_window [class="Atom"] move window to mark atom, layout tabbed
+```
+
+You just have to execute `mark atom` on any of Atom's windows (or whatever container you want them to be collected into).</description><pubDate>Sun, 19 Apr 2015 19:52:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5830/using-ipc-how-can-i-move-an-app-into-a-container/?answer=5831#post-id-5831</guid></item><item><title>Comment by airblader for &lt;p&gt;Great timing – just earlier today, a patch was merged that should help you. You can install i3 from source from the current &lt;code&gt;next&lt;/code&gt; branch and then do this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+for_window [class="Atom"] move window to mark atom, layout tabbed
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You just have to execute &lt;code&gt;mark atom&lt;/code&gt; on any of Atom's windows (or whatever container you want them to be collected into).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5830/using-ipc-how-can-i-move-an-app-into-a-container/?comment=5833#comment-5833</link><description>I'm sure it's *possible* with an IPC script, it's just more complicated. Maybe someone will help you write such a script, let's wait for more answers.</description><pubDate>Sun, 19 Apr 2015 20:29:49 +0000</pubDate><guid>https://faq.i3wm.org/question/5830/using-ipc-how-can-i-move-an-app-into-a-container/?comment=5833#comment-5833</guid></item><item><title>Comment by AsaAyers for &lt;p&gt;Great timing – just earlier today, a patch was merged that should help you. You can install i3 from source from the current &lt;code&gt;next&lt;/code&gt; branch and then do this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+for_window [class="Atom"] move window to mark atom, layout tabbed
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You just have to execute &lt;code&gt;mark atom&lt;/code&gt; on any of Atom's windows (or whatever container you want them to be collected into).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5830/using-ipc-how-can-i-move-an-app-into-a-container/?comment=5832#comment-5832</link><description>I gave up on compiling from source years ago and much prefer to use a package manager. Are there any other options using `4.7.2-1` which is what is packaged in Ubuntu?</description><pubDate>Sun, 19 Apr 2015 20:22:57 +0000</pubDate><guid>https://faq.i3wm.org/question/5830/using-ipc-how-can-i-move-an-app-into-a-container/?comment=5832#comment-5832</guid></item><item><title>Answer by AsaAyers for &lt;p&gt;I'm using Atom and I'd like to combine all Atom windows into a single tabbed container. I've been working a bit with i3-py. I have been able to find all Atom windows and have a target container, but &lt;code&gt;move  ... to container ...&lt;/code&gt; isn't a valid command.&lt;/p&gt;
+
+&lt;p&gt;Once I get my script working I can auto-merge windows with something like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Atom"] exec /home/asa/.i3/combine.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note: The Karma rules here really discourage new users. I can't post links and I can't vote. If I thought I could get help anywhere else I'd just leave.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5830/using-ipc-how-can-i-move-an-app-into-a-container/?answer=5834#post-id-5834</link><description>Here is my work in progress. I'm sure it's still buggy, but I think the concept is sound. If I open a 2nd window I don't know if it will combine it with the 1st or move my 1st window to where the new window is. Time will tell.
+
+    #!/usr/bin/env python3
+    import i3
+
+    atom = [w for w in i3.filter(nodes=[]) if w['name'][-4:] == 'Atom' ]
+
+    parents = [ i3.parent(a['id']) for a in atom ]
+
+    ids = [ p['id'] for p in parents ]
+    targetId = ids[0]
+    for id in ids:
+        if ids.count(id) &gt; ids.count(targetId):
+            targetId = id
+
+    destContainer = [ p for p in parents if p['id'] == targetId ][0]
+
+    toMove = [ a for a in atom if i3.parent(a['id']) != destContainer]
+    pin = [ a for a in atom if i3.parent(a['id']) == destContainer][0]
+
+    if destContainer['layout'] != 'tabbed':
+        print('focus', pin['window'])
+        i3.focus(id=pin['window'])
+
+        # If this contains any non atom windows, we need to split to create a
+        # new container.
+        foreignNodes = [ n for n in destContainer['nodes'] if atom.count(n) == 0 ]
+        if len(foreignNodes) &gt; 0:
+            i3.split('v')
+            destContainer = i3.parent(pin['id'])
+
+        i3.layout('tabbed')
+
+    for m in toMove:
+        print('focus', m['name'])
+        i3.focus(id=m['window'])
+        i3.move('scratchpad')
+
+        print('focus', pin['window'])
+        i3.focus(id=pin['window'])
+        i3.scratchpad('show')
+
+        print('focus', m['window'])
+        i3.focus(id=m['window'])
+        i3.floating('toggle')
+</description><pubDate>Sun, 19 Apr 2015 21:19:11 +0000</pubDate><guid>https://faq.i3wm.org/question/5830/using-ipc-how-can-i-move-an-app-into-a-container/?answer=5834#post-id-5834</guid></item></channel></rss>

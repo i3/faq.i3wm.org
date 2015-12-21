@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4973/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 16 Nov 2015 23:54:12 +0000</lastBuildDate><item><title>config dmenu not picking up user $PATH</title><link>https://faq.i3wm.org/question/4973/config-dmenu-not-picking-up-user-path/</link><description>When running `dmenu`, my local `$HOME/bin` scripts aren't being picked up.  So I checked the value of `$PATH` by writing a cheat script that dmenu *would* run.
+
+Sure enough, `$HOME/bin` was not included in the output:
+
+  
+
+    /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+So perhaps the culprit is how `.bashrc` is configured?
+
+    # If not running interactively, don't do anything
+    [ -z "$PS1" ] &amp;&amp; return
+    
+    # set PATH so it includes user's private bin if it exists
+    if [ -d "$HOME/bin" ] ; then
+        PATH="$HOME/bin:$PATH"
+    fi
+
+**Aha!**  
+
+So I move the `$PATH` assignment in `.bashrc` before it can exit for not running *interactively*:
+
+    # set PATH so it includes user's private bin if it exists
+    if [ -d "$HOME/bin" ] ; then
+        PATH="$HOME/bin:$PATH"
+    fi
+    
+    # If not running interactively, don't do anything
+    [ -z "$PS1" ] &amp;&amp; return
+
+But still no luck.  My current workaround is to change the `config` file to call a script with a wrapped dmenu command, `dmenu.sh`:
+
+    bindsym $mod+d exec ~/bin/dmenu.sh
+
+The contents of my `~/bin/dmenu.sh`:
+
+    #!/bin/bash
+    PATH=~/bin:$PATH dmenu_run
+
+Does anyone have a better solution?
+
+
+My environment: Xubuntu 14.04
+</description><pubDate>Thu, 20 Nov 2014 03:34:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4973/config-dmenu-not-picking-up-user-path/</guid></item><item><title>Answer by Jeff Bauer for &lt;p&gt;When running &lt;code&gt;dmenu&lt;/code&gt;, my local &lt;code&gt;$HOME/bin&lt;/code&gt; scripts aren't being picked up.  So I checked the value of &lt;code&gt;$PATH&lt;/code&gt; by writing a cheat script that dmenu &lt;em&gt;would&lt;/em&gt; run.&lt;/p&gt;
+
+&lt;p&gt;Sure enough, &lt;code&gt;$HOME/bin&lt;/code&gt; was not included in the output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So perhaps the culprit is how &lt;code&gt;.bashrc&lt;/code&gt; is configured?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# If not running interactively, don't do anything
+[ -z "$PS1" ] &amp;amp;&amp;amp; return
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Aha!&lt;/strong&gt;  &lt;/p&gt;
+
+&lt;p&gt;So I move the &lt;code&gt;$PATH&lt;/code&gt; assignment in &lt;code&gt;.bashrc&lt;/code&gt; before it can exit for not running &lt;em&gt;interactively&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] &amp;amp;&amp;amp; return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But still no luck.  My current workaround is to change the &lt;code&gt;config&lt;/code&gt; file to call a script with a wrapped dmenu command, &lt;code&gt;dmenu.sh&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+d exec ~/bin/dmenu.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The contents of my &lt;code&gt;~/bin/dmenu.sh&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+PATH=~/bin:$PATH dmenu_run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Does anyone have a better solution?&lt;/p&gt;
+
+&lt;p&gt;My environment: Xubuntu 14.04&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4973/config-dmenu-not-picking-up-user-path/?answer=4974#post-id-4974</link><description>Although my workaround in the original question fixes the issue with `dmenu`, there will still be other scripts that won't run properly if my session won't acknowledge my local `$PATH` settings.
+
+It turns out that it's not i3wm's responsibility to source `.bashrc`, but creating an `~/.xsessionrc` file with the following `$PATH` assignment works:
+
+    if [ -d "$HOME/bin" ] ; then
+        PATH="$HOME/bin:$PATH"
+    fi
+
+</description><pubDate>Thu, 20 Nov 2014 03:49:08 +0000</pubDate><guid>https://faq.i3wm.org/question/4973/config-dmenu-not-picking-up-user-path/?answer=4974#post-id-4974</guid></item><item><title>Answer by lasers for &lt;p&gt;When running &lt;code&gt;dmenu&lt;/code&gt;, my local &lt;code&gt;$HOME/bin&lt;/code&gt; scripts aren't being picked up.  So I checked the value of &lt;code&gt;$PATH&lt;/code&gt; by writing a cheat script that dmenu &lt;em&gt;would&lt;/em&gt; run.&lt;/p&gt;
+
+&lt;p&gt;Sure enough, &lt;code&gt;$HOME/bin&lt;/code&gt; was not included in the output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So perhaps the culprit is how &lt;code&gt;.bashrc&lt;/code&gt; is configured?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# If not running interactively, don't do anything
+[ -z "$PS1" ] &amp;amp;&amp;amp; return
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Aha!&lt;/strong&gt;  &lt;/p&gt;
+
+&lt;p&gt;So I move the &lt;code&gt;$PATH&lt;/code&gt; assignment in &lt;code&gt;.bashrc&lt;/code&gt; before it can exit for not running &lt;em&gt;interactively&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] &amp;amp;&amp;amp; return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But still no luck.  My current workaround is to change the &lt;code&gt;config&lt;/code&gt; file to call a script with a wrapped dmenu command, &lt;code&gt;dmenu.sh&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+d exec ~/bin/dmenu.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The contents of my &lt;code&gt;~/bin/dmenu.sh&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+PATH=~/bin:$PATH dmenu_run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Does anyone have a better solution?&lt;/p&gt;
+
+&lt;p&gt;My environment: Xubuntu 14.04&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4973/config-dmenu-not-picking-up-user-path/?answer=4975#post-id-4975</link><description>I have `
+export PATH="$PATH:$HOME/.local/bin"` in ~/.profile </description><pubDate>Thu, 20 Nov 2014 04:02:17 +0000</pubDate><guid>https://faq.i3wm.org/question/4973/config-dmenu-not-picking-up-user-path/?answer=4975#post-id-4975</guid></item><item><title>Comment by 0x000000 for &lt;p&gt;I have &lt;code&gt;
+export PATH="$PATH:$HOME/.local/bin"&lt;/code&gt; in ~/.profile &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4973/config-dmenu-not-picking-up-user-path/?comment=7346#comment-7346</link><description>This, and (I think) deleting `~/.cache/dmenu_run` is what worked for me.</description><pubDate>Mon, 16 Nov 2015 23:54:12 +0000</pubDate><guid>https://faq.i3wm.org/question/4973/config-dmenu-not-picking-up-user-path/?comment=7346#comment-7346</guid></item></channel></rss>

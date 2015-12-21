@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5811/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 16 Apr 2015 23:43:09 +0000</lastBuildDate><item><title>Using append_layout to add to existing tabbed container</title><link>https://faq.i3wm.org/question/5811/using-append_layout-to-add-to-existing-tabbed-container/</link><description>Here's what I might have in a workspace:
+&lt;pre&gt;
+tabbed container
+   splitv
+      window1
+      window2
+   splitv
+      window3
+      window4
+&lt;/pre&gt;
+And I'd like to run append_layout which will add window5 and window6 into the layout, ending up with this:
+&lt;pre&gt;
+tabbed container
+   splitv
+      window1
+      window2
+   splitv
+      window3
+      window4
+   splitv
+      window5
+      window6
+&lt;/pre&gt;
+
+Is this possible? In all my attempts to achieve it, it seems that append_layout creates a new splith on top of the tabbed container, and I end up with this:
+
+&lt;pre&gt;
+splith
+    tabbed container
+       splitv
+          window1
+          window2
+       splitv
+          window3
+          window4
+    splitv
+       window5
+       window6
+&lt;/pre&gt;
+
+Using a single initial json file to build the entire workspace layout from the start is not an option in my use case.. Thanks!</description><pubDate>Thu, 16 Apr 2015 20:47:50 +0000</pubDate><guid>https://faq.i3wm.org/question/5811/using-append_layout-to-add-to-existing-tabbed-container/</guid></item><item><title>Answer by i3convert for &lt;p&gt;Here's what I might have in a workspace:&lt;/p&gt;
+
+&lt;pre&gt;tabbed container
+   splitv
+      window1
+      window2
+   splitv
+      window3
+      window4
+&lt;/pre&gt;
+
+&lt;p&gt;And I'd like to run append_layout which will add window5 and window6 into the layout, ending up with this:&lt;/p&gt;
+
+&lt;pre&gt;tabbed container
+   splitv
+      window1
+      window2
+   splitv
+      window3
+      window4
+   splitv
+      window5
+      window6
+&lt;/pre&gt;
+
+&lt;p&gt;Is this possible? In all my attempts to achieve it, it seems that append_layout creates a new splith on top of the tabbed container, and I end up with this:&lt;/p&gt;
+
+&lt;pre&gt;splith
+    tabbed container
+       splitv
+          window1
+          window2
+       splitv
+          window3
+          window4
+    splitv
+       window5
+       window6
+&lt;/pre&gt;
+
+&lt;p&gt;Using a single initial json file to build the entire workspace layout from the start is not an option in my use case.. Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5811/using-append_layout-to-add-to-existing-tabbed-container/?answer=5813#post-id-5813</link><description>In your case you can run the following commands, assuming that after loading the layout, either window5 or window6 is focused:
+
+ 1. Command `focus parent` (`$mod+a` in the standard configuration) to focus the entire container with window5 and window6.
+ 2. Command `move left` (`$mod+Shift+Left`) to move the container into the splitv container containing window3 and window4.
+ 3. Command `move right` (`$mod+Shift+Left`) to move the container out of the subcontainer with window3 and window4 into the tabbed container.
+
+This is purely based on experimenting. Let me know if it works for you.</description><pubDate>Thu, 16 Apr 2015 22:24:27 +0000</pubDate><guid>https://faq.i3wm.org/question/5811/using-append_layout-to-add-to-existing-tabbed-container/?answer=5813#post-id-5813</guid></item><item><title>Comment by gbitzes for &lt;p&gt;In your case you can run the following commands, assuming that after loading the layout, either window5 or window6 is focused:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Command &lt;code&gt;focus parent&lt;/code&gt; (&lt;code&gt;$mod+a&lt;/code&gt; in the standard configuration) to focus the entire container with window5 and window6.&lt;/li&gt;
+&lt;li&gt;Command &lt;code&gt;move left&lt;/code&gt; (&lt;code&gt;$mod+Shift+Left&lt;/code&gt;) to move the container into the splitv container containing window3 and window4.&lt;/li&gt;
+&lt;li&gt;Command &lt;code&gt;move right&lt;/code&gt; (&lt;code&gt;$mod+Shift+Left&lt;/code&gt;) to move the container out of the subcontainer with window3 and window4 into the tabbed container.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This is purely based on experimenting. Let me know if it works for you.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5811/using-append_layout-to-add-to-existing-tabbed-container/?comment=5814#comment-5814</link><description>Your solution worked, thanks!</description><pubDate>Thu, 16 Apr 2015 23:43:09 +0000</pubDate><guid>https://faq.i3wm.org/question/5811/using-append_layout-to-add-to-existing-tabbed-container/?comment=5814#comment-5814</guid></item></channel></rss>

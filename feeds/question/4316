@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4316/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 24 Jul 2014 23:17:10 +0000</lastBuildDate><item><title>i3bar - wrong height</title><link>https://faq.i3wm.org/question/4316/i3bar-wrong-height/</link><description>Hello, I share the same setup for my laptop and desktop, **on my desktop** the i3bar is cut on the bottom, for example, if I set the workspace buttons with the same color of the status bar, but a different color for the borders, I cant see the bottom border of the square.
+
+This is crazzy I can't find the problem...
+
+OS: ArchLinux
+
+edit: more info, happens with every font, and font size, I know i3bar height is set by the font size. I'm using nvidia drivers but afaik it happens with nouveau, and my monitor is a crossover 27q, I had this setup months ago and this bug didn't happen.
+
+I appreciate any help!</description><pubDate>Wed, 23 Jul 2014 20:43:10 +0000</pubDate><guid>https://faq.i3wm.org/question/4316/i3bar-wrong-height/</guid></item><item><title>Answer by tigrezno for &lt;p&gt;Hello, I share the same setup for my laptop and desktop, &lt;strong&gt;on my desktop&lt;/strong&gt; the i3bar is cut on the bottom, for example, if I set the workspace buttons with the same color of the status bar, but a different color for the borders, I cant see the bottom border of the square.&lt;/p&gt;
+
+&lt;p&gt;This is crazzy I can't find the problem...&lt;/p&gt;
+
+&lt;p&gt;OS: ArchLinux&lt;/p&gt;
+
+&lt;p&gt;edit: more info, happens with every font, and font size, I know i3bar height is set by the font size. I'm using nvidia drivers but afaik it happens with nouveau, and my monitor is a crossover 27q, I had this setup months ago and this bug didn't happen.&lt;/p&gt;
+
+&lt;p&gt;I appreciate any help!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4316/i3bar-wrong-height/?answer=4319#post-id-4319</link><description>This happened to me and it was a bad dpi setting.
+
+In my .xprofile I added: &lt;code&gt;xrandr --dpi 96&lt;/code&gt;
+
+Check your correct dpi for your monitor first.</description><pubDate>Thu, 24 Jul 2014 22:10:38 +0000</pubDate><guid>https://faq.i3wm.org/question/4316/i3bar-wrong-height/?answer=4319#post-id-4319</guid></item><item><title>Answer by aorith for &lt;p&gt;Hello, I share the same setup for my laptop and desktop, &lt;strong&gt;on my desktop&lt;/strong&gt; the i3bar is cut on the bottom, for example, if I set the workspace buttons with the same color of the status bar, but a different color for the borders, I cant see the bottom border of the square.&lt;/p&gt;
+
+&lt;p&gt;This is crazzy I can't find the problem...&lt;/p&gt;
+
+&lt;p&gt;OS: ArchLinux&lt;/p&gt;
+
+&lt;p&gt;edit: more info, happens with every font, and font size, I know i3bar height is set by the font size. I'm using nvidia drivers but afaik it happens with nouveau, and my monitor is a crossover 27q, I had this setup months ago and this bug didn't happen.&lt;/p&gt;
+
+&lt;p&gt;I appreciate any help!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4316/i3bar-wrong-height/?answer=4320#post-id-4320</link><description>That's it! the DPI... it was setting it to 107x107 for some reason, thanks!
+
+I just added:
+
+Option "DPI" "96 x 96"
+
+in monitor section of xorg.conf</description><pubDate>Thu, 24 Jul 2014 23:17:10 +0000</pubDate><guid>https://faq.i3wm.org/question/4316/i3bar-wrong-height/?answer=4320#post-id-4320</guid></item></channel></rss>

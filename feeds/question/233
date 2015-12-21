@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/233/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 12 Jul 2012 01:15:06 +0000</lastBuildDate><item><title>Disable titlebar for Chrome and Chromium browsers</title><link>https://faq.i3wm.org/question/233/disable-titlebar-for-chrome-and-chromium-browsers/</link><description>Given that Google Chrome and Chromium come with their own equivalents of titlebars, how do I disable i3's titlebars. I want to minimize vertical space usage.</description><pubDate>Mon, 09 Jul 2012 08:41:35 +0000</pubDate><guid>https://faq.i3wm.org/question/233/disable-titlebar-for-chrome-and-chromium-browsers/</guid></item><item><title>Answer by Michael for &lt;p&gt;Given that Google Chrome and Chromium come with their own equivalents of titlebars, how do I disable i3's titlebars. I want to minimize vertical space usage.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/233/disable-titlebar-for-chrome-and-chromium-browsers/?answer=235#post-id-235</link><description>You can tell chromium to not provide its own title bar:
+
+Settings → Appearance → Use system title bar and borders
+
+To actually answer your question, use a `for_window` statement. See http://i3wm.org/docs/userguide.html#_arbitrary_commands_for_specific_windows_for_window
+
+I use:
+
+    for_window [class="^Chrome$" title=" - Chromium$"] border none</description><pubDate>Mon, 09 Jul 2012 13:03:41 +0000</pubDate><guid>https://faq.i3wm.org/question/233/disable-titlebar-for-chrome-and-chromium-browsers/?answer=235#post-id-235</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;You can tell chromium to not provide its own title bar:&lt;/p&gt;
+
+&lt;p&gt;Settings → Appearance → Use system title bar and borders&lt;/p&gt;
+
+&lt;p&gt;To actually answer your question, use a &lt;code&gt;for_window&lt;/code&gt;statement. See &lt;a href="http://i3wm.org/docs/userguide.html"&gt;http://i3wm.org/docs/userguide.html#&lt;/a&gt;&lt;em&gt;arbitrary&lt;/em&gt;commands&lt;em&gt;for&lt;/em&gt;specific&lt;em&gt;windows&lt;/em&gt;for_window&lt;/p&gt;
+
+&lt;p&gt;I use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^Chrome$" title=" - Chromium$"] border none
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/233/disable-titlebar-for-chrome-and-chromium-browsers/?comment=252#comment-252</link><description>The update in Settings worked just fine for me!</description><pubDate>Thu, 12 Jul 2012 01:15:06 +0000</pubDate><guid>https://faq.i3wm.org/question/233/disable-titlebar-for-chrome-and-chromium-browsers/?comment=252#comment-252</guid></item></channel></rss>

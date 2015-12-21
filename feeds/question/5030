@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5030/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 07 Dec 2014 01:23:09 +0000</lastBuildDate><item><title>keybinding to open more than one program</title><link>https://faq.i3wm.org/question/5030/keybinding-to-open-more-than-one-program/</link><description>Hi. I'd like to set a single key to make i3 perform several actions one by one. So, let's say I want Mod4+j to do this:
+
+"Open gimp /this/file.xcf, pcmanfm and inkscape /this/file.svg in workspace 2."
+
+This is what I was doing with Fluxbox until now I switched to i3. It then looked like this:
+Mod4 Shift Alt j :MacroCmd {Workspace 3}{Exec soundgrain /bla/bla/circles.sg}{Exec din}{Exec slgui -L /bla/bla/mar.slsess}
+
+However, what I was trying for ages was little more complicated. If I can get i3 to do it in one hit, I kiss your feet :)
+
+"Open qjackctl and Catia in workspace 2; 
+switch to workspace 3 and open wine /home/usr/.wine/reaper.exe; 
+wait 20 seconds (to avoid Reaper opening in next workspace, since it takes a lot); 
+switch to workspace 4 and open two files with their default programmes."
+
+Thanks very much in advance.
+Regards.
+</description><pubDate>Thu, 27 Nov 2014 03:09:06 +0000</pubDate><guid>https://faq.i3wm.org/question/5030/keybinding-to-open-more-than-one-program/</guid></item><item><title>Comment by airblader for &lt;p&gt;Hi. I'd like to set a single key to make i3 perform several actions one by one. So, let's say I want Mod4+j to do this:&lt;/p&gt;
+
+&lt;p&gt;"Open gimp /this/file.xcf, pcmanfm and inkscape /this/file.svg in workspace 2."&lt;/p&gt;
+
+&lt;p&gt;This is what I was doing with Fluxbox until now I switched to i3. It then looked like this:
+Mod4 Shift Alt j :MacroCmd {Workspace 3}{Exec soundgrain /bla/bla/circles.sg}{Exec din}{Exec slgui -L /bla/bla/mar.slsess}&lt;/p&gt;
+
+&lt;p&gt;However, what I was trying for ages was little more complicated. If I can get i3 to do it in one hit, I kiss your feet :)&lt;/p&gt;
+
+&lt;p&gt;"Open qjackctl and Catia in workspace 2; 
+switch to workspace 3 and open wine /home/usr/.wine/reaper.exe; 
+wait 20 seconds (to avoid Reaper opening in next workspace, since it takes a lot); 
+switch to workspace 4 and open two files with their default programmes."&lt;/p&gt;
+
+&lt;p&gt;Thanks very much in advance.
+Regards.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5030/keybinding-to-open-more-than-one-program/?comment=5035#comment-5035</link><description>Do you always open these programs on those workspaces? If so, just use `for_window` rules and you won't even have to worry about waiting 20 seconds.</description><pubDate>Thu, 27 Nov 2014 16:10:50 +0000</pubDate><guid>https://faq.i3wm.org/question/5030/keybinding-to-open-more-than-one-program/?comment=5035#comment-5035</guid></item><item><title>Answer by smlb for &lt;p&gt;Hi. I'd like to set a single key to make i3 perform several actions one by one. So, let's say I want Mod4+j to do this:&lt;/p&gt;
+
+&lt;p&gt;"Open gimp /this/file.xcf, pcmanfm and inkscape /this/file.svg in workspace 2."&lt;/p&gt;
+
+&lt;p&gt;This is what I was doing with Fluxbox until now I switched to i3. It then looked like this:
+Mod4 Shift Alt j :MacroCmd {Workspace 3}{Exec soundgrain /bla/bla/circles.sg}{Exec din}{Exec slgui -L /bla/bla/mar.slsess}&lt;/p&gt;
+
+&lt;p&gt;However, what I was trying for ages was little more complicated. If I can get i3 to do it in one hit, I kiss your feet :)&lt;/p&gt;
+
+&lt;p&gt;"Open qjackctl and Catia in workspace 2; 
+switch to workspace 3 and open wine /home/usr/.wine/reaper.exe; 
+wait 20 seconds (to avoid Reaper opening in next workspace, since it takes a lot); 
+switch to workspace 4 and open two files with their default programmes."&lt;/p&gt;
+
+&lt;p&gt;Thanks very much in advance.
+Regards.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5030/keybinding-to-open-more-than-one-program/?answer=5129#post-id-5129</link><description>You can simply bind it to a shortcut, example:
+
+    bindsym $mod+b exec i3-msg 'workspace 2; exec gimp file.xcf; workspace 9; exec urxvt -e something; workspace 5; exec firefox; workspace 1'
+
+Sidenote: the last `workspace 1` take you automatically to workspace 1. That's all. As Micheal said, there is the *Save Layouts* feature.</description><pubDate>Sun, 07 Dec 2014 01:23:09 +0000</pubDate><guid>https://faq.i3wm.org/question/5030/keybinding-to-open-more-than-one-program/?answer=5129#post-id-5129</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi. I'd like to set a single key to make i3 perform several actions one by one. So, let's say I want Mod4+j to do this:&lt;/p&gt;
+
+&lt;p&gt;"Open gimp /this/file.xcf, pcmanfm and inkscape /this/file.svg in workspace 2."&lt;/p&gt;
+
+&lt;p&gt;This is what I was doing with Fluxbox until now I switched to i3. It then looked like this:
+Mod4 Shift Alt j :MacroCmd {Workspace 3}{Exec soundgrain /bla/bla/circles.sg}{Exec din}{Exec slgui -L /bla/bla/mar.slsess}&lt;/p&gt;
+
+&lt;p&gt;However, what I was trying for ages was little more complicated. If I can get i3 to do it in one hit, I kiss your feet :)&lt;/p&gt;
+
+&lt;p&gt;"Open qjackctl and Catia in workspace 2; 
+switch to workspace 3 and open wine /home/usr/.wine/reaper.exe; 
+wait 20 seconds (to avoid Reaper opening in next workspace, since it takes a lot); 
+switch to workspace 4 and open two files with their default programmes."&lt;/p&gt;
+
+&lt;p&gt;Thanks very much in advance.
+Regards.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5030/keybinding-to-open-more-than-one-program/?answer=5120#post-id-5120</link><description>I think you’re looking for http://i3wm.org/docs/layout-saving.html</description><pubDate>Sat, 06 Dec 2014 22:29:49 +0000</pubDate><guid>https://faq.i3wm.org/question/5030/keybinding-to-open-more-than-one-program/?answer=5120#post-id-5120</guid></item></channel></rss>

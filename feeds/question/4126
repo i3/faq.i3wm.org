@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4126/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 28 Jul 2014 13:00:56 +0000</lastBuildDate><item><title>Session's environment variables</title><link>https://faq.i3wm.org/question/4126/sessions-environment-variables/</link><description>## Related materials
+
+As I can confirm after multiple failures, according to “[How do I set an environmental variable for a GNOME session? (superuser.com)](http://superuser.com/questions/19044/how-do-i-set-an-environmental-variable-for-a-gnome-session)”, setting environment variables in a session is tricky, as there are multiple candidate places for this.
+
+I had a look at “[How do xsession, xinitrc and .i3/config play together?](https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/)”, which is very valuable, but did not help.
+
+## Practical case
+
+For the practical case, I need to properly set an `SSH_AUTH_SOCK` environment variable (which is set, except not with the expected value, by another process).
+
+From a command line, I can do this, which gives me what I expect.
+
+    export $(gnome-keyring-daemon --start --components=ssh)
+
+I tried this in `~/.config/i3/config`:
+
+    exec --no-startup-id eval $(gnome-keyring-daemon --start --components=ssh)
+    exec --no-startup-id export $(gnome-keyring-daemon -s)
+
+I tried this in `~/.profile`:
+
+    if [ "$0" = "/etc/gdm/Xsession" ]; then
+        eval $(gnome-keyring-daemon --start --components=ssh)
+        export $(gnome-keyring-daemon -s)
+    fi
+
+I tried this in a `~/.xsession`:
+
+     eval $(gnome-keyring-daemon --start --components=ssh)
+     export $(gnome-keyring-daemon -s)
+
+None works.
+
+## Question
+
+Seems one can't set and export an environment variable from i3's `config`. If I'm wrong, what was wrong in my `config`? If I'm not wrong, what's the best practice to define environment variables for an i3 session?
+
+## Notes (update 1)
+
+At least `~/.xsession` does not seems to be sourced for me, running Ubnuntu 12.04, which uses LightDM for the login screen. Prior Ubuntu version used GDM and there are complaints on the web about GDM ignoring `~/.xsession` too.</description><pubDate>Sat, 05 Jul 2014 01:36:19 +0000</pubDate><guid>https://faq.i3wm.org/question/4126/sessions-environment-variables/</guid></item><item><title>Comment by joepd for &lt;h2&gt;Related materials&lt;/h2&gt;
+
+&lt;p&gt;As I can confirm after multiple failures, according to “&lt;a href="http://superuser.com/questions/19044/how-do-i-set-an-environmental-variable-for-a-gnome-session"&gt;How do I set an environmental variable for a GNOME session? (superuser.com)&lt;/a&gt;”, setting environment variables in a session is tricky, as there are multiple candidate places for this.&lt;/p&gt;
+
+&lt;p&gt;I had a look at “&lt;a href="https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/"&gt;How do xsession, xinitrc and .i3/config play together?&lt;/a&gt;”, which is very valuable, but did not help.&lt;/p&gt;
+
+&lt;h2&gt;Practical case&lt;/h2&gt;
+
+&lt;p&gt;For the practical case, I need to properly set an &lt;code&gt;SSH_AUTH_SOCK&lt;/code&gt; environment variable (which is set, except not with the expected value, by another process).&lt;/p&gt;
+
+&lt;p&gt;From a command line, I can do this, which gives me what I expect.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export $(gnome-keyring-daemon --start --components=ssh)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried this in &lt;code&gt;~/.config/i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id eval $(gnome-keyring-daemon --start --components=ssh)
+exec --no-startup-id export $(gnome-keyring-daemon -s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried this in &lt;code&gt;~/.profile&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if [ "$0" = "/etc/gdm/Xsession" ]; then
+    eval $(gnome-keyring-daemon --start --components=ssh)
+    export $(gnome-keyring-daemon -s)
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried this in a &lt;code&gt;~/.xsession&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; eval $(gnome-keyring-daemon --start --components=ssh)
+ export $(gnome-keyring-daemon -s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;None works.&lt;/p&gt;
+
+&lt;h2&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;Seems one can't set and export an environment variable from i3's &lt;code&gt;config&lt;/code&gt;. If I'm wrong, what was wrong in my &lt;code&gt;config&lt;/code&gt;? If I'm not wrong, what's the best practice to define environment variables for an i3 session?&lt;/p&gt;
+
+&lt;h2&gt;Notes (update 1)&lt;/h2&gt;
+
+&lt;p&gt;At least &lt;code&gt;~/.xsession&lt;/code&gt; does not seems to be sourced for me, running Ubnuntu 12.04, which uses LightDM for the login screen. Prior Ubuntu version used GDM and there are complaints on the web about GDM ignoring &lt;code&gt;~/.xsession&lt;/code&gt; too.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4126/sessions-environment-variables/?comment=4140#comment-4140</link><description>-edit- Wanted to link to https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/ but that link is already in the question. </description><pubDate>Sat, 05 Jul 2014 23:30:18 +0000</pubDate><guid>https://faq.i3wm.org/question/4126/sessions-environment-variables/?comment=4140#comment-4140</guid></item><item><title>Answer by lkraav for &lt;h2&gt;Related materials&lt;/h2&gt;
+
+&lt;p&gt;As I can confirm after multiple failures, according to “&lt;a href="http://superuser.com/questions/19044/how-do-i-set-an-environmental-variable-for-a-gnome-session"&gt;How do I set an environmental variable for a GNOME session? (superuser.com)&lt;/a&gt;”, setting environment variables in a session is tricky, as there are multiple candidate places for this.&lt;/p&gt;
+
+&lt;p&gt;I had a look at “&lt;a href="https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/"&gt;How do xsession, xinitrc and .i3/config play together?&lt;/a&gt;”, which is very valuable, but did not help.&lt;/p&gt;
+
+&lt;h2&gt;Practical case&lt;/h2&gt;
+
+&lt;p&gt;For the practical case, I need to properly set an &lt;code&gt;SSH_AUTH_SOCK&lt;/code&gt; environment variable (which is set, except not with the expected value, by another process).&lt;/p&gt;
+
+&lt;p&gt;From a command line, I can do this, which gives me what I expect.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export $(gnome-keyring-daemon --start --components=ssh)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried this in &lt;code&gt;~/.config/i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id eval $(gnome-keyring-daemon --start --components=ssh)
+exec --no-startup-id export $(gnome-keyring-daemon -s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried this in &lt;code&gt;~/.profile&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if [ "$0" = "/etc/gdm/Xsession" ]; then
+    eval $(gnome-keyring-daemon --start --components=ssh)
+    export $(gnome-keyring-daemon -s)
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried this in a &lt;code&gt;~/.xsession&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; eval $(gnome-keyring-daemon --start --components=ssh)
+ export $(gnome-keyring-daemon -s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;None works.&lt;/p&gt;
+
+&lt;h2&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;Seems one can't set and export an environment variable from i3's &lt;code&gt;config&lt;/code&gt;. If I'm wrong, what was wrong in my &lt;code&gt;config&lt;/code&gt;? If I'm not wrong, what's the best practice to define environment variables for an i3 session?&lt;/p&gt;
+
+&lt;h2&gt;Notes (update 1)&lt;/h2&gt;
+
+&lt;p&gt;At least &lt;code&gt;~/.xsession&lt;/code&gt; does not seems to be sourced for me, running Ubnuntu 12.04, which uses LightDM for the login screen. Prior Ubuntu version used GDM and there are complaints on the web about GDM ignoring &lt;code&gt;~/.xsession&lt;/code&gt; too.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4126/sessions-environment-variables/?answer=4331#post-id-4331</link><description>This discussion is actually quite `gnome-keyring-daemon` specific, and probably could use a title change. For just setting variables, above methods listed like `.profile`, `.xsession` are quite enough. You just have to inspect your display manager's startup scripts, this will tell you exactly what is run and when.
+
+I've been fighting with `gnome-keyring-daemon` for several months now. Last night I figured an important piece out.
+
+You need to run your `gnome-keyring-daemon` initialization **after** setting up the session. Key indicator to look for is whether "Passwords and Keys" (aka `seahorse`) app is properly able to show your login keyring.
+
+**WRONG WAY**
+
+`.profile` (loaded very early)
+
+    # this will mess GKR up, as it can't attach to a proper session which comes later
+    dex /etc/xdg/autostart/gnome-keyring-secrets.desktop
+    # also possible to autostart everything here, also not a good idea
+    # dex -a -e GNOME
+
+`.i3/config` (loaded last)
+
+    exec --no-startup-id echo "$0: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager"
+    exec --no-startup-id dbus-send --session --print-reply=literal --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:i3" "string:$DESKTOP_AUTOSTART_ID"
+
+**BETTER WAY**
+
+`/etc/pam.d/some-or-other` (login keyring, should be taken care of by your distro)
+
+    ...
+    session  optional pam_gnome_keyring.so auto_start
+    ...
+
+https://wiki.gnome.org/Projects/GnomeKeyring/Pam for PAM details.
+
+`.i3/config` (loaded last)
+
+    exec --no-startup-id echo "$0: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager"
+    exec --no-startup-id dbus-send --session --print-reply=literal --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:i3" "string:$DESKTOP_AUTOSTART_ID"
+    exec --no-startup-id dex -a -e GNOME  
+
+`.bashrc` (gets me the SSH agent)
+
+    ...
+    export $( dex /etc/xdg/autostart/gnome-keyring-ssh.desktop )
+    ...
+
+I don't know yet why `dex -a` doesn't take care of setting `SSH_AUTH_SOCK` in the session environment, so all terminal invocations would inherit it automatically. It works properly when running pure GNOME session, so I assume there's some extra magic in the initialization somewhere. Or maybe you guys can help me figure that part out.
+
+Either way, right now my automatically unlocked login keyring works + SSH agent works, all using GKR. When I was Doing It Wrong earlier, I had to be quite careful to launch things in the correct order after logging in. This is because GKR needs to be initialized in a certain sequence of events. </description><pubDate>Mon, 28 Jul 2014 07:58:29 +0000</pubDate><guid>https://faq.i3wm.org/question/4126/sessions-environment-variables/?answer=4331#post-id-4331</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;This discussion is actually quite &lt;code&gt;gnome-keyring-daemon&lt;/code&gt; specific, and probably could use a title change. For just setting variables, above methods listed like &lt;code&gt;.profile&lt;/code&gt;, &lt;code&gt;.xsession&lt;/code&gt; are quite enough. You just have to inspect your display manager's startup scripts, this will tell you exactly what is run and when.&lt;/p&gt;
+
+&lt;p&gt;I've been fighting with &lt;code&gt;gnome-keyring-daemon&lt;/code&gt; for several months now. Last night I figured an important piece out.&lt;/p&gt;
+
+&lt;p&gt;You need to run your &lt;code&gt;gnome-keyring-daemon&lt;/code&gt; initialization &lt;strong&gt;after&lt;/strong&gt; setting up the session. Key indicator to look for is whether "Passwords and Keys" (aka &lt;code&gt;seahorse&lt;/code&gt;) app is properly able to show your login keyring.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;WRONG WAY&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;.profile&lt;/code&gt; (loaded very early)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# this will mess GKR up, as it can't attach to a proper session which comes later
+dex /etc/xdg/autostart/gnome-keyring-secrets.desktop
+# also possible to autostart everything here, also not a good idea
+# dex -a -e GNOME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;.i3/config&lt;/code&gt; (loaded last)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id echo "$0: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager"
+exec --no-startup-id dbus-send --session --print-reply=literal --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:i3" "string:$DESKTOP_AUTOSTART_ID"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;BETTER WAY&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/pam.d/some-or-other&lt;/code&gt; (login keyring, should be taken care of by your distro)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+session  optional pam_gnome_keyring.so auto_start
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://wiki.gnome.org/Projects/GnomeKeyring/Pam"&gt;https://wiki.gnome.org/Projects/Gnome...&lt;/a&gt; for PAM details.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;.i3/config&lt;/code&gt; (loaded last)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id echo "$0: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager"
+exec --no-startup-id dbus-send --session --print-reply=literal --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:i3" "string:$DESKTOP_AUTOSTART_ID"
+exec --no-startup-id dex -a -e GNOME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;.bashrc&lt;/code&gt; (gets me the SSH agent)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+export $( dex /etc/xdg/autostart/gnome-keyring-ssh.desktop )
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don't know yet why &lt;code&gt;dex -a&lt;/code&gt; doesn't take care of setting &lt;code&gt;SSH_AUTH_SOCK&lt;/code&gt; in the session environment, so all terminal invocations would inherit it automatically. It works properly when running pure GNOME session, so I assume there's some extra magic in the initialization somewhere. Or maybe you guys can help me figure that part out.&lt;/p&gt;
+
+&lt;p&gt;Either way, right now my automatically unlocked login keyring works + SSH agent works, all using GKR. When I was Doing It Wrong earlier, I had to be quite careful to launch things in the correct order after logging in. This is because GKR needs to be initialized in a certain sequence of events. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4126/sessions-environment-variables/?comment=4333#comment-4333</link><description>Please, what is `dex`? Seems to not exists on Ubuntu. That said, what is launched from `.profile` needs indeed to be checked with care. As an example, starting `gnome-settings-daemon` from `.profile` was enough to get jammed for me.</description><pubDate>Mon, 28 Jul 2014 12:55:57 +0000</pubDate><guid>https://faq.i3wm.org/question/4126/sessions-environment-variables/?comment=4333#comment-4333</guid></item><item><title>Comment by lkraav for &lt;p&gt;This discussion is actually quite &lt;code&gt;gnome-keyring-daemon&lt;/code&gt; specific, and probably could use a title change. For just setting variables, above methods listed like &lt;code&gt;.profile&lt;/code&gt;, &lt;code&gt;.xsession&lt;/code&gt; are quite enough. You just have to inspect your display manager's startup scripts, this will tell you exactly what is run and when.&lt;/p&gt;
+
+&lt;p&gt;I've been fighting with &lt;code&gt;gnome-keyring-daemon&lt;/code&gt; for several months now. Last night I figured an important piece out.&lt;/p&gt;
+
+&lt;p&gt;You need to run your &lt;code&gt;gnome-keyring-daemon&lt;/code&gt; initialization &lt;strong&gt;after&lt;/strong&gt; setting up the session. Key indicator to look for is whether "Passwords and Keys" (aka &lt;code&gt;seahorse&lt;/code&gt;) app is properly able to show your login keyring.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;WRONG WAY&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;.profile&lt;/code&gt; (loaded very early)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# this will mess GKR up, as it can't attach to a proper session which comes later
+dex /etc/xdg/autostart/gnome-keyring-secrets.desktop
+# also possible to autostart everything here, also not a good idea
+# dex -a -e GNOME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;.i3/config&lt;/code&gt; (loaded last)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id echo "$0: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager"
+exec --no-startup-id dbus-send --session --print-reply=literal --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:i3" "string:$DESKTOP_AUTOSTART_ID"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;BETTER WAY&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/pam.d/some-or-other&lt;/code&gt; (login keyring, should be taken care of by your distro)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+session  optional pam_gnome_keyring.so auto_start
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://wiki.gnome.org/Projects/GnomeKeyring/Pam"&gt;https://wiki.gnome.org/Projects/Gnome...&lt;/a&gt; for PAM details.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;.i3/config&lt;/code&gt; (loaded last)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id echo "$0: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager"
+exec --no-startup-id dbus-send --session --print-reply=literal --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:i3" "string:$DESKTOP_AUTOSTART_ID"
+exec --no-startup-id dex -a -e GNOME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;.bashrc&lt;/code&gt; (gets me the SSH agent)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+export $( dex /etc/xdg/autostart/gnome-keyring-ssh.desktop )
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don't know yet why &lt;code&gt;dex -a&lt;/code&gt; doesn't take care of setting &lt;code&gt;SSH_AUTH_SOCK&lt;/code&gt; in the session environment, so all terminal invocations would inherit it automatically. It works properly when running pure GNOME session, so I assume there's some extra magic in the initialization somewhere. Or maybe you guys can help me figure that part out.&lt;/p&gt;
+
+&lt;p&gt;Either way, right now my automatically unlocked login keyring works + SSH agent works, all using GKR. When I was Doing It Wrong earlier, I had to be quite careful to launch things in the correct order after logging in. This is because GKR needs to be initialized in a certain sequence of events. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4126/sessions-environment-variables/?comment=4334#comment-4334</link><description>https://github.com/jceb/dex to start desktop files. It's surely discussed in other posts here as well. You can of course start gnome-settings-daemon from .profile, but not all of it properly works then. You can't register session that early, $DESKTOP_AUTOSTART_ID doesn't exist during .profile run.</description><pubDate>Mon, 28 Jul 2014 13:00:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4126/sessions-environment-variables/?comment=4334#comment-4334</guid></item><item><title>Answer by Hibou57 for &lt;h2&gt;Related materials&lt;/h2&gt;
+
+&lt;p&gt;As I can confirm after multiple failures, according to “&lt;a href="http://superuser.com/questions/19044/how-do-i-set-an-environmental-variable-for-a-gnome-session"&gt;How do I set an environmental variable for a GNOME session? (superuser.com)&lt;/a&gt;”, setting environment variables in a session is tricky, as there are multiple candidate places for this.&lt;/p&gt;
+
+&lt;p&gt;I had a look at “&lt;a href="https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/"&gt;How do xsession, xinitrc and .i3/config play together?&lt;/a&gt;”, which is very valuable, but did not help.&lt;/p&gt;
+
+&lt;h2&gt;Practical case&lt;/h2&gt;
+
+&lt;p&gt;For the practical case, I need to properly set an &lt;code&gt;SSH_AUTH_SOCK&lt;/code&gt; environment variable (which is set, except not with the expected value, by another process).&lt;/p&gt;
+
+&lt;p&gt;From a command line, I can do this, which gives me what I expect.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export $(gnome-keyring-daemon --start --components=ssh)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried this in &lt;code&gt;~/.config/i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id eval $(gnome-keyring-daemon --start --components=ssh)
+exec --no-startup-id export $(gnome-keyring-daemon -s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried this in &lt;code&gt;~/.profile&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if [ "$0" = "/etc/gdm/Xsession" ]; then
+    eval $(gnome-keyring-daemon --start --components=ssh)
+    export $(gnome-keyring-daemon -s)
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried this in a &lt;code&gt;~/.xsession&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; eval $(gnome-keyring-daemon --start --components=ssh)
+ export $(gnome-keyring-daemon -s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;None works.&lt;/p&gt;
+
+&lt;h2&gt;Question&lt;/h2&gt;
+
+&lt;p&gt;Seems one can't set and export an environment variable from i3's &lt;code&gt;config&lt;/code&gt;. If I'm wrong, what was wrong in my &lt;code&gt;config&lt;/code&gt;? If I'm not wrong, what's the best practice to define environment variables for an i3 session?&lt;/p&gt;
+
+&lt;h2&gt;Notes (update 1)&lt;/h2&gt;
+
+&lt;p&gt;At least &lt;code&gt;~/.xsession&lt;/code&gt; does not seems to be sourced for me, running Ubnuntu 12.04, which uses LightDM for the login screen. Prior Ubuntu version used GDM and there are complaints on the web about GDM ignoring &lt;code&gt;~/.xsession&lt;/code&gt; too.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4126/sessions-environment-variables/?answer=4130#post-id-4130</link><description>The safest way seems to be using `~/.profile`, however, this requires some prior investigation, explained here.
+
+This, posted in the question, was wrong:
+
+    if [ "$0" = "/etc/gdm/Xsession" ]; then
+        eval $(gnome-keyring-daemon --start --components=ssh)
+        export $(gnome-keyring-daemon -s)
+    fi
+
+This appeared to be wrong due to the test. To figure what to do with `~/.profile` within one's environment, a gentle trick is to first add this in `~/.profile`:
+
+    LOG="$HOME/profile-invocations"
+    echo "-----" &gt;&gt;$LOG
+    echo "Caller: $0" &gt;&gt;$LOG
+    echo "DESKTOP_SESSION: $DESKTOP_SESSION" &gt;&gt;$LOG
+    echo "GDMSESSION: $GDMSESSION" &gt;&gt;$LOG
+
+After a login, looking at `~/profile-invocations` will tell what's the test to be used. For Ubuntu 12.04, the test have to be `"$0" = "/usr/sbin/lightdm-session"`. Additionally, one may want to avoid redefining some things already defined by the current session prior to the invocation of `~/.profile`. As an example, an Ubuntu session will have an already properly defined `SSH_AUTH_SOCK` which one may not want to override. An additional test on the `$DESKTOP_SESSION` seems recommended (I guess it's better to test `$DESKTOP_SESSION` than `$GDMSESSION`… if I'm wrong with this, tell me in comments).
+
+Here is how I could solve the practical example case. I used this in `~/.profile`:
+
+    if [ "$0" = "/usr/sbin/lightdm-session" -a "$DESKTOP_SESSION" = "i3" ]; then
+        export $(gnome-keyring-daemon --start --components=ssh)
+    fi
+
+Warning: for “*i3 with debug log*” sessions, this will be `i3-with-shmlog` instead of `i3`. So a bash regex for something like `^i3.*$`, may be better. I still keep it as is here, for readability.
+
+I just would like to know something cleaner than testing for a so much specific value of `$0` to tell if `~/.profile` is invoked for a graphical session login; would prefer a less environment specific test than `"$0" = "/usr/sbin/lightdm-session"` is. Anyway and so far, to get the test OK, one should do as suggested above, that is, first figuring how `~/.profile` is invoked, logging its invocations in a file.
+
+### Notes (update 1)
+
+Specifically for the example case, which is about properly setting up GNOME Keyring environment variables for use of GNOME Keyring in an i3 session, if one can determine `gnome-keyring-daemon`  is already running when `~/.profile` is invoked, one may change `export $(gnome-keyring-daemon --start --components=ssh)` into just `export $(gnome-keyring-daemon -s)`… no need to run a daemon initialisation twice.
+</description><pubDate>Sat, 05 Jul 2014 03:18:01 +0000</pubDate><guid>https://faq.i3wm.org/question/4126/sessions-environment-variables/?answer=4130#post-id-4130</guid></item></channel></rss>

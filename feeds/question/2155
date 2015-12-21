@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2155/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 14 Jun 2014 22:15:16 +0000</lastBuildDate><item><title>How can I use autostart .desktop files in i3?</title><link>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/</link><description>Many applications include .desktop files in the `/etc/xdg/autostart` directory to enable the automatic start of the application when the desktop environment or window manager starts up.
+While searching for these autostart commands using:
+
+    $ grep "Exec=" /etc/xdg/autostart/* ${HOME}/.config/autostart/*
+
+then manually adding them as `exec &lt;command&gt;` lines to `${HOME}/.i3/config` works, it quickly becomes tedious to keep track of newly installed or uninstalled applications. Are there any ways to automate this?</description><pubDate>Mon, 08 Jul 2013 18:58:45 +0000</pubDate><guid>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/</guid></item><item><title>Answer by ShadowPrince for &lt;p&gt;Many applications include .desktop files in the &lt;code&gt;/etc/xdg/autostart&lt;/code&gt; directory to enable the automatic start of the application when the desktop environment or window manager starts up.
+While searching for these autostart commands using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep "Exec=" /etc/xdg/autostart/* ${HOME}/.config/autostart/*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;then manually adding them as &lt;code&gt;exec &amp;lt;command&amp;gt;&lt;/code&gt; lines to &lt;code&gt;${HOME}/.i3/config&lt;/code&gt; works, it quickly becomes tedious to keep track of newly installed or uninstalled applications. Are there any ways to automate this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?answer=2199#post-id-2199</link><description>Or you can use simple script like this:
+
+    #!/usr/bin/env python2
+    # python v. 2, NOT v. 3
+
+    import ConfigParser
+    import os
+    import subprocess
+    
+    EXECUTION_STRING = "{}"
+    # I dont know why, but
+    # EXECUTION_STRING = "sudo {}" # run it with sudo
+    
+    def get_files(dirs=["/etc/xdg/autostart", "~/.config/autostart"]):
+        for dir in dirs:
+            for path, dirs, files in os.walk(dir):
+                for file in files:
+                    yield os.path.join(path, file)
+    
+    def get_execs(files):
+        parser = ConfigParser.ConfigParser()
+        for file in files:
+            parser.read(file)
+            yield parser.get("Desktop Entry", "Exec", None)
+    
+    if __name__ == "__main__":
+        for exe in get_execs(get_files()):
+            subprocess.call(EXECUTION_STRING.format(exe))
+
+Put it somewhere and in i3's config 
+
+    exec &lt;path-to-file&gt;
+Dont forget to make it executable!</description><pubDate>Fri, 12 Jul 2013 20:53:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?answer=2199#post-id-2199</guid></item><item><title>Answer by ack006 for &lt;p&gt;Many applications include .desktop files in the &lt;code&gt;/etc/xdg/autostart&lt;/code&gt; directory to enable the automatic start of the application when the desktop environment or window manager starts up.
+While searching for these autostart commands using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep "Exec=" /etc/xdg/autostart/* ${HOME}/.config/autostart/*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;then manually adding them as &lt;code&gt;exec &amp;lt;command&amp;gt;&lt;/code&gt; lines to &lt;code&gt;${HOME}/.i3/config&lt;/code&gt; works, it quickly becomes tedious to keep track of newly installed or uninstalled applications. Are there any ways to automate this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?answer=2156#post-id-2156</link><description>One possibility is to use [dex](https://github.com/jceb/dex).
+
+(Note: dex isn't part of i3, it needs to be installed using a package manager or built from source.)
+
+dex is a very handy utility for working with .desktop files. 
+Used with the path to a .desktop file, it will start the application. Used with the `-a` option, it will start applications with .desktop files in the 'autostart' directories, and it is smart enough to decide which of them to start depending on the desktop environment or window manager used.
+
+Since few applications know about i3 (yet ;-) ), some tweaking of .desktop files may be needed.
+
+First, test what applications would be started without any tweaks by running:
+
+    $ dex -vad
+
+This will show what dex would do with each .desktop file in the autostart directories `/etc/xdg/autostart` and `${HOME}/.config/autostart`, showing for each of them if it would be ignored, and if not, what command would be executed for starting the application.
+Some applications may not be appropriate or useful in i3, others would be useful in i3, but would not be started because they specify a specific desktop environment to start in. All this can be fixed by doing some tweaking, see below.
+
+For each application whose startup you wish to modify, edit the application's .desktop file in `/etc/xdg/autostart/&lt;application&gt;.desktop` (or copy it to `${HOME}/.config/autostart/&lt;application&gt;.desktop` first).
+
+(1) To *not* start an application if i3 is running, add the following line:
+
+    NotShowIn=i3;
+
+(2) To start an application only if i3 *is* running, remove any `NotShowIn=` line, then add:
+
+    OnlyShowIn=i3;
+
+(3) To tweak an application's startup command only if i3 *is* running, first do step (1), then make a fresh copy of the original .desktop file, naming it something like `&lt;application&gt;-i3.desktop`, do step (2) on this file, then finally change the line:
+
+    Exec=&lt;command&gt;
+
+to your liking. To test the change, use:
+
+    $ dex &lt;/path/to/application.desktop&gt;
+
+Now, to verify that all your changes are correct, tell dex to simulate autostart using the i3 window manager:
+
+    $ dex -vade -i3
+
+and fix any problems.
+Finally, edit `${HOME}/.i3/config`, remove any now redundant `exec &lt;command&gt;` lines, and add the line:
+
+    exec dex -ae i3
+
+at the very end, then log out and back in.
+
+Done :-)</description><pubDate>Mon, 08 Jul 2013 19:40:23 +0000</pubDate><guid>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?answer=2156#post-id-2156</guid></item><item><title>Comment by majkinetor for &lt;p&gt;One possibility is to use &lt;a href="https://github.com/jceb/dex"&gt;dex&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;(Note: dex isn't part of i3, it needs to be installed using a package manager or built from source.)&lt;/p&gt;
+
+&lt;p&gt;dex is a very handy utility for working with .desktop files. 
+Used with the path to a .desktop file, it will start the application. Used with the &lt;code&gt;-a&lt;/code&gt; option, it will start applications with .desktop files in the 'autostart' directories, and it is smart enough to decide which of them to start depending on the desktop environment or window manager used.&lt;/p&gt;
+
+&lt;p&gt;Since few applications know about i3 (yet ;-) ), some tweaking of .desktop files may be needed.&lt;/p&gt;
+
+&lt;p&gt;First, test what applications would be started without any tweaks by running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex -vad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will show what dex would do with each .desktop file in the autostart directories &lt;code&gt;/etc/xdg/autostart&lt;/code&gt; and &lt;code&gt;${HOME}/.config/autostart&lt;/code&gt;, showing for each of them if it would be ignored, and if not, what command would be executed for starting the application.
+Some applications may not be appropriate or useful in i3, others would be useful in i3, but would not be started because they specify a specific desktop environment to start in. All this can be fixed by doing some tweaking, see below.&lt;/p&gt;
+
+&lt;p&gt;For each application whose startup you wish to modify, edit the application's .desktop file in &lt;code&gt;/etc/xdg/autostart/&amp;lt;application&amp;gt;.desktop&lt;/code&gt; (or copy it to &lt;code&gt;${HOME}/.config/autostart/&amp;lt;application&amp;gt;.desktop&lt;/code&gt; first).&lt;/p&gt;
+
+&lt;p&gt;(1) To &lt;em&gt;not&lt;/em&gt; start an application if i3 is running, add the following line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NotShowIn=i3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(2) To start an application only if i3 &lt;em&gt;is&lt;/em&gt; running, remove any &lt;code&gt;NotShowIn=&lt;/code&gt; line, then add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;OnlyShowIn=i3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(3) To tweak an application's startup command only if i3 &lt;em&gt;is&lt;/em&gt; running, first do step (1), then make a fresh copy of the original .desktop file, naming it something like &lt;code&gt;&amp;lt;application&amp;gt;-i3.desktop&lt;/code&gt;, do step (2) on this file, then finally change the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Exec=&amp;lt;command&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to your liking. To test the change, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex &amp;lt;/path/to/application.desktop&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, to verify that all your changes are correct, tell dex to simulate autostart using the i3 window manager:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex -vade -i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and fix any problems.
+Finally, edit &lt;code&gt;${HOME}/.i3/config&lt;/code&gt;, remove any now redundant &lt;code&gt;exec &amp;lt;command&amp;gt;&lt;/code&gt; lines, and add the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec dex -ae i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;at the very end, then log out and back in.&lt;/p&gt;
+
+&lt;p&gt;Done :-)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?comment=3988#comment-3988</link><description>Fantastic, this allows me to use standard xdg autostart with basically any wm. I was troubled by exec commands in i3 since those are not portable between different wm-s.</description><pubDate>Sat, 14 Jun 2014 22:15:16 +0000</pubDate><guid>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?comment=3988#comment-3988</guid></item><item><title>Comment by vvo for &lt;p&gt;One possibility is to use &lt;a href="https://github.com/jceb/dex"&gt;dex&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;(Note: dex isn't part of i3, it needs to be installed using a package manager or built from source.)&lt;/p&gt;
+
+&lt;p&gt;dex is a very handy utility for working with .desktop files. 
+Used with the path to a .desktop file, it will start the application. Used with the &lt;code&gt;-a&lt;/code&gt; option, it will start applications with .desktop files in the 'autostart' directories, and it is smart enough to decide which of them to start depending on the desktop environment or window manager used.&lt;/p&gt;
+
+&lt;p&gt;Since few applications know about i3 (yet ;-) ), some tweaking of .desktop files may be needed.&lt;/p&gt;
+
+&lt;p&gt;First, test what applications would be started without any tweaks by running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex -vad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will show what dex would do with each .desktop file in the autostart directories &lt;code&gt;/etc/xdg/autostart&lt;/code&gt; and &lt;code&gt;${HOME}/.config/autostart&lt;/code&gt;, showing for each of them if it would be ignored, and if not, what command would be executed for starting the application.
+Some applications may not be appropriate or useful in i3, others would be useful in i3, but would not be started because they specify a specific desktop environment to start in. All this can be fixed by doing some tweaking, see below.&lt;/p&gt;
+
+&lt;p&gt;For each application whose startup you wish to modify, edit the application's .desktop file in &lt;code&gt;/etc/xdg/autostart/&amp;lt;application&amp;gt;.desktop&lt;/code&gt; (or copy it to &lt;code&gt;${HOME}/.config/autostart/&amp;lt;application&amp;gt;.desktop&lt;/code&gt; first).&lt;/p&gt;
+
+&lt;p&gt;(1) To &lt;em&gt;not&lt;/em&gt; start an application if i3 is running, add the following line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NotShowIn=i3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(2) To start an application only if i3 &lt;em&gt;is&lt;/em&gt; running, remove any &lt;code&gt;NotShowIn=&lt;/code&gt; line, then add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;OnlyShowIn=i3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(3) To tweak an application's startup command only if i3 &lt;em&gt;is&lt;/em&gt; running, first do step (1), then make a fresh copy of the original .desktop file, naming it something like &lt;code&gt;&amp;lt;application&amp;gt;-i3.desktop&lt;/code&gt;, do step (2) on this file, then finally change the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Exec=&amp;lt;command&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to your liking. To test the change, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex &amp;lt;/path/to/application.desktop&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, to verify that all your changes are correct, tell dex to simulate autostart using the i3 window manager:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex -vade -i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and fix any problems.
+Finally, edit &lt;code&gt;${HOME}/.i3/config&lt;/code&gt;, remove any now redundant &lt;code&gt;exec &amp;lt;command&amp;gt;&lt;/code&gt; lines, and add the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec dex -ae i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;at the very end, then log out and back in.&lt;/p&gt;
+
+&lt;p&gt;Done :-)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?comment=2471#comment-2471</link><description>Very nice answer.</description><pubDate>Sun, 01 Sep 2013 22:14:13 +0000</pubDate><guid>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?comment=2471#comment-2471</guid></item><item><title>Comment by ack006 for &lt;p&gt;One possibility is to use &lt;a href="https://github.com/jceb/dex"&gt;dex&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;(Note: dex isn't part of i3, it needs to be installed using a package manager or built from source.)&lt;/p&gt;
+
+&lt;p&gt;dex is a very handy utility for working with .desktop files. 
+Used with the path to a .desktop file, it will start the application. Used with the &lt;code&gt;-a&lt;/code&gt; option, it will start applications with .desktop files in the 'autostart' directories, and it is smart enough to decide which of them to start depending on the desktop environment or window manager used.&lt;/p&gt;
+
+&lt;p&gt;Since few applications know about i3 (yet ;-) ), some tweaking of .desktop files may be needed.&lt;/p&gt;
+
+&lt;p&gt;First, test what applications would be started without any tweaks by running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex -vad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will show what dex would do with each .desktop file in the autostart directories &lt;code&gt;/etc/xdg/autostart&lt;/code&gt; and &lt;code&gt;${HOME}/.config/autostart&lt;/code&gt;, showing for each of them if it would be ignored, and if not, what command would be executed for starting the application.
+Some applications may not be appropriate or useful in i3, others would be useful in i3, but would not be started because they specify a specific desktop environment to start in. All this can be fixed by doing some tweaking, see below.&lt;/p&gt;
+
+&lt;p&gt;For each application whose startup you wish to modify, edit the application's .desktop file in &lt;code&gt;/etc/xdg/autostart/&amp;lt;application&amp;gt;.desktop&lt;/code&gt; (or copy it to &lt;code&gt;${HOME}/.config/autostart/&amp;lt;application&amp;gt;.desktop&lt;/code&gt; first).&lt;/p&gt;
+
+&lt;p&gt;(1) To &lt;em&gt;not&lt;/em&gt; start an application if i3 is running, add the following line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NotShowIn=i3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(2) To start an application only if i3 &lt;em&gt;is&lt;/em&gt; running, remove any &lt;code&gt;NotShowIn=&lt;/code&gt; line, then add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;OnlyShowIn=i3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(3) To tweak an application's startup command only if i3 &lt;em&gt;is&lt;/em&gt; running, first do step (1), then make a fresh copy of the original .desktop file, naming it something like &lt;code&gt;&amp;lt;application&amp;gt;-i3.desktop&lt;/code&gt;, do step (2) on this file, then finally change the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Exec=&amp;lt;command&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to your liking. To test the change, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex &amp;lt;/path/to/application.desktop&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, to verify that all your changes are correct, tell dex to simulate autostart using the i3 window manager:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex -vade -i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and fix any problems.
+Finally, edit &lt;code&gt;${HOME}/.i3/config&lt;/code&gt;, remove any now redundant &lt;code&gt;exec &amp;lt;command&amp;gt;&lt;/code&gt; lines, and add the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec dex -ae i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;at the very end, then log out and back in.&lt;/p&gt;
+
+&lt;p&gt;Done :-)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?comment=2159#comment-2159</link><description>dex isn't part of i3, you have to install it using your distribution's package manager or build it from source ;-) </description><pubDate>Tue, 09 Jul 2013 01:00:50 +0000</pubDate><guid>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?comment=2159#comment-2159</guid></item><item><title>Comment by joepd for &lt;p&gt;One possibility is to use &lt;a href="https://github.com/jceb/dex"&gt;dex&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;(Note: dex isn't part of i3, it needs to be installed using a package manager or built from source.)&lt;/p&gt;
+
+&lt;p&gt;dex is a very handy utility for working with .desktop files. 
+Used with the path to a .desktop file, it will start the application. Used with the &lt;code&gt;-a&lt;/code&gt; option, it will start applications with .desktop files in the 'autostart' directories, and it is smart enough to decide which of them to start depending on the desktop environment or window manager used.&lt;/p&gt;
+
+&lt;p&gt;Since few applications know about i3 (yet ;-) ), some tweaking of .desktop files may be needed.&lt;/p&gt;
+
+&lt;p&gt;First, test what applications would be started without any tweaks by running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex -vad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will show what dex would do with each .desktop file in the autostart directories &lt;code&gt;/etc/xdg/autostart&lt;/code&gt; and &lt;code&gt;${HOME}/.config/autostart&lt;/code&gt;, showing for each of them if it would be ignored, and if not, what command would be executed for starting the application.
+Some applications may not be appropriate or useful in i3, others would be useful in i3, but would not be started because they specify a specific desktop environment to start in. All this can be fixed by doing some tweaking, see below.&lt;/p&gt;
+
+&lt;p&gt;For each application whose startup you wish to modify, edit the application's .desktop file in &lt;code&gt;/etc/xdg/autostart/&amp;lt;application&amp;gt;.desktop&lt;/code&gt; (or copy it to &lt;code&gt;${HOME}/.config/autostart/&amp;lt;application&amp;gt;.desktop&lt;/code&gt; first).&lt;/p&gt;
+
+&lt;p&gt;(1) To &lt;em&gt;not&lt;/em&gt; start an application if i3 is running, add the following line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NotShowIn=i3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(2) To start an application only if i3 &lt;em&gt;is&lt;/em&gt; running, remove any &lt;code&gt;NotShowIn=&lt;/code&gt; line, then add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;OnlyShowIn=i3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(3) To tweak an application's startup command only if i3 &lt;em&gt;is&lt;/em&gt; running, first do step (1), then make a fresh copy of the original .desktop file, naming it something like &lt;code&gt;&amp;lt;application&amp;gt;-i3.desktop&lt;/code&gt;, do step (2) on this file, then finally change the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Exec=&amp;lt;command&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to your liking. To test the change, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex &amp;lt;/path/to/application.desktop&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, to verify that all your changes are correct, tell dex to simulate autostart using the i3 window manager:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex -vade -i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and fix any problems.
+Finally, edit &lt;code&gt;${HOME}/.i3/config&lt;/code&gt;, remove any now redundant &lt;code&gt;exec &amp;lt;command&amp;gt;&lt;/code&gt; lines, and add the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec dex -ae i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;at the very end, then log out and back in.&lt;/p&gt;
+
+&lt;p&gt;Done :-)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?comment=2157#comment-2157</link><description>Sounds cool. Tell us more about `dex`. I get `command not found`.</description><pubDate>Mon, 08 Jul 2013 21:42:16 +0000</pubDate><guid>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?comment=2157#comment-2157</guid></item><item><title>Comment by joepd for &lt;p&gt;One possibility is to use &lt;a href="https://github.com/jceb/dex"&gt;dex&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;(Note: dex isn't part of i3, it needs to be installed using a package manager or built from source.)&lt;/p&gt;
+
+&lt;p&gt;dex is a very handy utility for working with .desktop files. 
+Used with the path to a .desktop file, it will start the application. Used with the &lt;code&gt;-a&lt;/code&gt; option, it will start applications with .desktop files in the 'autostart' directories, and it is smart enough to decide which of them to start depending on the desktop environment or window manager used.&lt;/p&gt;
+
+&lt;p&gt;Since few applications know about i3 (yet ;-) ), some tweaking of .desktop files may be needed.&lt;/p&gt;
+
+&lt;p&gt;First, test what applications would be started without any tweaks by running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex -vad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will show what dex would do with each .desktop file in the autostart directories &lt;code&gt;/etc/xdg/autostart&lt;/code&gt; and &lt;code&gt;${HOME}/.config/autostart&lt;/code&gt;, showing for each of them if it would be ignored, and if not, what command would be executed for starting the application.
+Some applications may not be appropriate or useful in i3, others would be useful in i3, but would not be started because they specify a specific desktop environment to start in. All this can be fixed by doing some tweaking, see below.&lt;/p&gt;
+
+&lt;p&gt;For each application whose startup you wish to modify, edit the application's .desktop file in &lt;code&gt;/etc/xdg/autostart/&amp;lt;application&amp;gt;.desktop&lt;/code&gt; (or copy it to &lt;code&gt;${HOME}/.config/autostart/&amp;lt;application&amp;gt;.desktop&lt;/code&gt; first).&lt;/p&gt;
+
+&lt;p&gt;(1) To &lt;em&gt;not&lt;/em&gt; start an application if i3 is running, add the following line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NotShowIn=i3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(2) To start an application only if i3 &lt;em&gt;is&lt;/em&gt; running, remove any &lt;code&gt;NotShowIn=&lt;/code&gt; line, then add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;OnlyShowIn=i3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(3) To tweak an application's startup command only if i3 &lt;em&gt;is&lt;/em&gt; running, first do step (1), then make a fresh copy of the original .desktop file, naming it something like &lt;code&gt;&amp;lt;application&amp;gt;-i3.desktop&lt;/code&gt;, do step (2) on this file, then finally change the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Exec=&amp;lt;command&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to your liking. To test the change, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex &amp;lt;/path/to/application.desktop&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, to verify that all your changes are correct, tell dex to simulate autostart using the i3 window manager:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dex -vade -i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and fix any problems.
+Finally, edit &lt;code&gt;${HOME}/.i3/config&lt;/code&gt;, remove any now redundant &lt;code&gt;exec &amp;lt;command&amp;gt;&lt;/code&gt; lines, and add the line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec dex -ae i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;at the very end, then log out and back in.&lt;/p&gt;
+
+&lt;p&gt;Done :-)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?comment=2161#comment-2161</link><description>Nice, thanks for editing your question! </description><pubDate>Tue, 09 Jul 2013 08:26:17 +0000</pubDate><guid>https://faq.i3wm.org/question/2155/how-can-i-use-autostart-desktop-files-in-i3/?comment=2161#comment-2161</guid></item></channel></rss>

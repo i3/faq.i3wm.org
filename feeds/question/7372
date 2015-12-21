@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7372/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 23 Nov 2015 11:37:55 +0000</lastBuildDate><item><title>Sessions in i3 + Lightdm</title><link>https://faq.i3wm.org/question/7372/sessions-in-i3-lightdm/</link><description> Hi,
+when I log out from i3 (```i3-msg exit```) and log in using Lightdm new user session is created, but the old one is still running.
+
+1. Is it possible to not create new session but rather "reuse" the old session? 
+2. Would it be better to terminate the session when exiting i3? (something like ```i3-msg exit &amp;&amp; loginctl terminate-session```)
+
+I am running Fedora 22.
+
+---
+Why am I asking: I cant use `systemctl reboot` without root (sudo) privileges in the newly created session. 
+
+
+UPDATE:
+
+I think i found the reason - The two daemons from the output below keep the session from closing. The session exits correctly if the remaining processes are killed also `systemctl reboot` does not require root privileges (Don't know why though).
+
+    $ loginctl session-status 1                                                                                                                                                                    
+    1 - bean (1000)
+           Since: Mon 2015-11-23 12:43:06 CET; 3min 21s ago
+          Leader: 2519
+            Seat: seat0; vc1
+         Display: :0
+         Service: lightdm; type x11; class user
+           State: closing
+            Unit: session-1.scope
+                  ├─2899 /usr/bin/pulseaudio --start --log-target=syslog
+                  └─3058 redshift</description><pubDate>Thu, 19 Nov 2015 18:41:28 +0000</pubDate><guid>https://faq.i3wm.org/question/7372/sessions-in-i3-lightdm/</guid></item><item><title>Comment by LordFazole for &lt;p&gt;Hi,
+when I log out from i3 (&lt;code&gt;i3-msg exit&lt;/code&gt;) and log in using Lightdm new user session is created, but the old one is still running.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Is it possible to not create new session but rather "reuse" the old session? &lt;/li&gt;
+&lt;li&gt;Would it be better to terminate the session when exiting i3? (something like &lt;code&gt;i3-msg exit &amp;amp;&amp;amp; loginctl terminate-session&lt;/code&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I am running Fedora 22.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Why am I asking: I cant use &lt;code&gt;systemctl reboot&lt;/code&gt; without root (sudo) privileges in the newly created session. &lt;/p&gt;
+
+&lt;p&gt;UPDATE:&lt;/p&gt;
+
+&lt;p&gt;I think i found the reason - The two daemons from the output below keep the session from closing. The session exits correctly if the remaining processes are killed also &lt;code&gt;systemctl reboot&lt;/code&gt; does not require root privileges (Don't know why though).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ loginctl session-status 1                                                                                                                                                                    
+1 - bean (1000)
+       Since: Mon 2015-11-23 12:43:06 CET; 3min 21s ago
+      Leader: 2519
+        Seat: seat0; vc1
+     Display: :0
+     Service: lightdm; type x11; class user
+       State: closing
+        Unit: session-1.scope
+              ├─2899 /usr/bin/pulseaudio --start --log-target=syslog
+              └─3058 redshift
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7372/sessions-in-i3-lightdm/?comment=7412#comment-7412</link><description>@Michael Rose loginctl lists both sessions - the one I just exited, and the new one</description><pubDate>Mon, 23 Nov 2015 11:37:55 +0000</pubDate><guid>https://faq.i3wm.org/question/7372/sessions-in-i3-lightdm/?comment=7412#comment-7412</guid></item><item><title>Comment by Michael Rose for &lt;p&gt;Hi,
+when I log out from i3 (&lt;code&gt;i3-msg exit&lt;/code&gt;) and log in using Lightdm new user session is created, but the old one is still running.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Is it possible to not create new session but rather "reuse" the old session? &lt;/li&gt;
+&lt;li&gt;Would it be better to terminate the session when exiting i3? (something like &lt;code&gt;i3-msg exit &amp;amp;&amp;amp; loginctl terminate-session&lt;/code&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I am running Fedora 22.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Why am I asking: I cant use &lt;code&gt;systemctl reboot&lt;/code&gt; without root (sudo) privileges in the newly created session. &lt;/p&gt;
+
+&lt;p&gt;UPDATE:&lt;/p&gt;
+
+&lt;p&gt;I think i found the reason - The two daemons from the output below keep the session from closing. The session exits correctly if the remaining processes are killed also &lt;code&gt;systemctl reboot&lt;/code&gt; does not require root privileges (Don't know why though).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ loginctl session-status 1                                                                                                                                                                    
+1 - bean (1000)
+       Since: Mon 2015-11-23 12:43:06 CET; 3min 21s ago
+      Leader: 2519
+        Seat: seat0; vc1
+     Display: :0
+     Service: lightdm; type x11; class user
+       State: closing
+        Unit: session-1.scope
+              ├─2899 /usr/bin/pulseaudio --start --log-target=syslog
+              └─3058 redshift
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7372/sessions-in-i3-lightdm/?comment=7402#comment-7402</link><description>There is no reason why you should be able to exit i3 AND then re enter the same session i3 should have terminated upon exit.  Please define "still running".</description><pubDate>Mon, 23 Nov 2015 08:48:51 +0000</pubDate><guid>https://faq.i3wm.org/question/7372/sessions-in-i3-lightdm/?comment=7402#comment-7402</guid></item></channel></rss>

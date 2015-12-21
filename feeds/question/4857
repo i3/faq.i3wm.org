@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4857/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 27 Oct 2014 11:38:31 +0000</lastBuildDate><item><title>How to use chromium with password-store=gnome (gnome-keyring-daemon)</title><link>https://faq.i3wm.org/question/4857/how-to-use-chromium-with-password-storegnome-gnome-keyring-daemon/</link><description>How can I use chromium with --password-store=gnome, in order to make use of the gnome-keyring-daemon to store the passwords.
+
+</description><pubDate>Mon, 27 Oct 2014 09:57:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4857/how-to-use-chromium-with-password-storegnome-gnome-keyring-daemon/</guid></item><item><title>Comment by peterN for &lt;p&gt;How can I use chromium with --password-store=gnome, in order to make use of the gnome-keyring-daemon to store the passwords.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4857/how-to-use-chromium-with-password-storegnome-gnome-keyring-daemon/?comment=4860#comment-4860</link><description>done, split question and answer</description><pubDate>Mon, 27 Oct 2014 11:38:31 +0000</pubDate><guid>https://faq.i3wm.org/question/4857/how-to-use-chromium-with-password-storegnome-gnome-keyring-daemon/?comment=4860#comment-4860</guid></item><item><title>Answer by peterN for &lt;p&gt;How can I use chromium with --password-store=gnome, in order to make use of the gnome-keyring-daemon to store the passwords.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4857/how-to-use-chromium-with-password-storegnome-gnome-keyring-daemon/?answer=4859#post-id-4859</link><description>This answer is valid for debian testing/unstable with ligthdm as login-manager using i3 and chromium as provided by packages from the official debian apt-repositories. i3 is selected as session in lightdm
+
+chromium has some sort of auto-detection to find the proper solution for password-storage (basic, kwallet or gnome). The auto-detection seems to fail when using i3wm.
+
+On debian testing/unstable I force the password-store to be used by chromium by adding a file like this:
+
+    ⚡ root@tuxi# cat /etc/chromium.d/pn-passwordstore 
+    CHROMIUM_FLAGS="$CHROMIUM_FLAGS --password-store=gnome"
+
+The gnome-keyring-daemon itself is started via integration with PAM.</description><pubDate>Mon, 27 Oct 2014 11:16:49 +0000</pubDate><guid>https://faq.i3wm.org/question/4857/how-to-use-chromium-with-password-storegnome-gnome-keyring-daemon/?answer=4859#post-id-4859</guid></item></channel></rss>

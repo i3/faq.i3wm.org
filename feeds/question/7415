@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7415/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 04 Dec 2015 13:01:16 +0000</lastBuildDate><item><title>switch keyboard layout with Caps Lock</title><link>https://faq.i3wm.org/question/7415/switch-keyboard-layout-with-caps-lock/</link><description> I would love to be able to switch keyboard layout with Caps Lock, how can I do it?
+
+I tried to put **Caps_Lock** in the *Ibus Preferences =&gt; Keyboard Shortcuts =&gt; Next Input Method*
+
+and when I use capslock language indicator in the tray changes, but when I am trying to type, it is still capital versus non capital letters.</description><pubDate>Mon, 23 Nov 2015 15:43:24 +0000</pubDate><guid>https://faq.i3wm.org/question/7415/switch-keyboard-layout-with-caps-lock/</guid></item><item><title>Answer by zyguan for &lt;p&gt;I would love to be able to switch keyboard layout with Caps Lock, how can I do it?&lt;/p&gt;
+
+&lt;p&gt;I tried to put &lt;strong&gt;Caps_Lock&lt;/strong&gt; in the &lt;em&gt;Ibus Preferences =&amp;gt; Keyboard Shortcuts =&amp;gt; Next Input Method&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;and when I use capslock language indicator in the tray changes, but when I am trying to type, it is still capital versus non capital letters.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7415/switch-keyboard-layout-with-caps-lock/?answer=7561#post-id-7561</link><description> You can also try the preset configuration of xkb. For example, add following line to your xsession (it maps caps to ctrl):
+
+    setxkbmap -option ctrl:nocaps
+
+BTW, some application will overwrite the xkb configuration (eg, fcitx). So, you may need to check the wiki pages of your apps if it doesn't work.</description><pubDate>Fri, 04 Dec 2015 13:01:16 +0000</pubDate><guid>https://faq.i3wm.org/question/7415/switch-keyboard-layout-with-caps-lock/?answer=7561#post-id-7561</guid></item><item><title>Answer by cee for &lt;p&gt;I would love to be able to switch keyboard layout with Caps Lock, how can I do it?&lt;/p&gt;
+
+&lt;p&gt;I tried to put &lt;strong&gt;Caps_Lock&lt;/strong&gt; in the &lt;em&gt;Ibus Preferences =&amp;gt; Keyboard Shortcuts =&amp;gt; Next Input Method&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;and when I use capslock language indicator in the tray changes, but when I am trying to type, it is still capital versus non capital letters.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7415/switch-keyboard-layout-with-caps-lock/?answer=7420#post-id-7420</link><description>As I understand you would like to disable Caps_Lock entirely.  
+To do so, I have the following lines added to my `.Xmodmap` file.  
+ 
+    clear Lock
+    keycode 66 = Escape
+
+`clear Lock`disables the Caps_Lock key  
+`keycode 66 = Escape` maps Caps_Lock to Escape. For me it did not work with mapping by name, so had to map it's keycode directly.</description><pubDate>Tue, 24 Nov 2015 08:47:28 +0000</pubDate><guid>https://faq.i3wm.org/question/7415/switch-keyboard-layout-with-caps-lock/?answer=7420#post-id-7420</guid></item></channel></rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2742/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 19 Oct 2013 03:40:06 +0000</lastBuildDate><item><title>Send key sequence to running application</title><link>https://faq.i3wm.org/question/2742/send-key-sequence-to-running-application/</link><description>I'm looking for a way to send a specific sequence of keys to a running application, if it exists. For instance, I'd like to bind Mod + &lt; space &gt; to, say, pause my music player by finding the window named "rdio" and sending a keystoke to it. 
+
+Pointers? Thanks!</description><pubDate>Fri, 18 Oct 2013 17:22:00 +0000</pubDate><guid>https://faq.i3wm.org/question/2742/send-key-sequence-to-running-application/</guid></item><item><title>Answer by djcp for &lt;p&gt;I'm looking for a way to send a specific sequence of keys to a running application, if it exists. For instance, I'd like to bind Mod + &amp;lt; space &amp;gt; to, say, pause my music player by finding the window named "rdio" and sending a keystoke to it. &lt;/p&gt;
+
+&lt;p&gt;Pointers? Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2742/send-key-sequence-to-running-application/?answer=2744#post-id-2744</link><description>Thanks! "xdotool" was exactly what I needed. This is what I went with, it works great.
+
+    # Rdio Pause
+    bindsym $mod+control+space exec xdotool search --name Rdio &amp;&amp; xdotool key --window $(xdotool search --name Rdio) space
+    
+    # Rdio Next
+    bindsym $mod+control+n exec xdotool search --name Rdio &amp;&amp; xdotool key --window $(xdotool search --name Rdio) Right
+    
+    # Rdio Previous
+    bindsym $mod+control+p exec xdotool search --name Rdio &amp;&amp; xdotool key --window $(xdotool search --name Rdio) Left
+
+</description><pubDate>Sat, 19 Oct 2013 03:40:06 +0000</pubDate><guid>https://faq.i3wm.org/question/2742/send-key-sequence-to-running-application/?answer=2744#post-id-2744</guid></item><item><title>Answer by Flugsio for &lt;p&gt;I'm looking for a way to send a specific sequence of keys to a running application, if it exists. For instance, I'd like to bind Mod + &amp;lt; space &amp;gt; to, say, pause my music player by finding the window named "rdio" and sending a keystoke to it. &lt;/p&gt;
+
+&lt;p&gt;Pointers? Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2742/send-key-sequence-to-running-application/?answer=2743#post-id-2743</link><description>Something like this in your config, haven't tested it.
+
+bindsym $mod+space exec "xdotool key --window $(xdotool search --name Rdio | head -1) space"</description><pubDate>Fri, 18 Oct 2013 22:54:32 +0000</pubDate><guid>https://faq.i3wm.org/question/2742/send-key-sequence-to-running-application/?answer=2743#post-id-2743</guid></item></channel></rss>

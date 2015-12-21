@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/360/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 22 Aug 2012 21:22:01 +0000</lastBuildDate><item><title>Emacs-like keybinding</title><link>https://faq.i3wm.org/question/360/emacs-like-keybinding/</link><description>
+I would like to make a couple of Emacs-like keybindings.  For instance I would like to do $mod-t t ("$mod" and "t" down, release, and then "t") to bring up scrathpad-urxvt and $mod-t e to focus on Emacs.
+
+I can somewhat do this using:
+
+    bindsym $mod+t t mode "scratchpad"
+    mode "scratchpad" {
+    bindsym t [class="(?i)urxvt"] scratchpad show
+    bindsym e [class="(?i)emacs"] focus
+    bindsym f [class="(?i)aurora"] focus
+    bindsym Return mode "default"
+    bindsym Escape mode "default"}
+
+But I have to exit the scrathpad-mode using Enter which is annoying.  Can I somehow make a "$mod-t t" key binding or make i3 exit a mode after a single one key?
+</description><pubDate>Wed, 22 Aug 2012 21:17:43 +0000</pubDate><guid>https://faq.i3wm.org/question/360/emacs-like-keybinding/</guid></item><item><title>Answer by Michael for &lt;p&gt;I would like to make a couple of Emacs-like keybindings.  For instance I would like to do $mod-t t ("$mod" and "t" down, release, and then "t") to bring up scrathpad-urxvt and $mod-t e to focus on Emacs.&lt;/p&gt;
+
+&lt;p&gt;I can somewhat do this using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+t t mode "scratchpad"
+mode "scratchpad" {
+bindsym t [class="(?i)urxvt"] scratchpad show
+bindsym e [class="(?i)emacs"] focus
+bindsym f [class="(?i)aurora"] focus
+bindsym Return mode "default"
+bindsym Escape mode "default"}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But I have to exit the scrathpad-mode using Enter which is annoying.  Can I somehow make a "$mod-t t" key binding or make i3 exit a mode after a single one key?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/360/emacs-like-keybinding/?answer=361#post-id-361</link><description>You can exit the mode like this:
+
+    bindsym $mod+t t mode "scratchpad"
+    mode "scratchpad" {
+      bindsym t [class="(?i)urxvt"] scratchpad show; mode "default"
+      bindsym e [class="(?i)emacs"] focus; mode "default"
+      bindsym f [class="(?i)aurora"] focus; mode "default"
+      bindsym Return mode "default"
+      bindsym Escape mode "default"
+    }
+</description><pubDate>Wed, 22 Aug 2012 21:22:01 +0000</pubDate><guid>https://faq.i3wm.org/question/360/emacs-like-keybinding/?answer=361#post-id-361</guid></item></channel></rss>

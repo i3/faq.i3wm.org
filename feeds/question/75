@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/75/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 05 Jul 2014 17:12:04 +0000</lastBuildDate><item><title>How do I change the orientation of an existing container?</title><link>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/</link><description>Using mod+h and mod+v splits the current container. What if I want to change the orientation from horizontal to vertical or vice-versa?</description><pubDate>Thu, 07 Jun 2012 01:02:53 +0000</pubDate><guid>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;Using mod+h and mod+v splits the current container. What if I want to change the orientation from horizontal to vertical or vice-versa?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/?answer=77#post-id-77</link><description>If you have a container with 2 windows A and B split vertically (B under A), and you want to change it to horizontally, just:
+
+ - focus on A 
+ - mod+h
+ - move focus to B
+ - mod+Shift+Arrow (move B "into" A)
+
+this should do the trick.
+
+Sometimes, when I want to move a window into different containers, I usually move them to floating mode, go to the new container (and set the mode h/v) and focus back on the floating window and move it to tiled again. Very cool the things you can do with these simple commands!</description><pubDate>Thu, 07 Jun 2012 05:53:15 +0000</pubDate><guid>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/?answer=77#post-id-77</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;Using mod+h and mod+v splits the current container. What if I want to change the orientation from horizontal to vertical or vice-versa?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/?answer=76#post-id-76</link><description>If you have a container with 2 windows A and B split vertically (B under A), and you want to change it to horizontally, just:
+
+ - focus on A 
+ - mod+h
+ - move focus to B
+ - mod+Shift+Arrow (move B "into" A)
+
+this should do the trick.
+
+Sometimes, when I want to move a window into different containers, I usually move them to floating mode, go to the new container (and set the mode h/v) and focus back on the floating window and move it to tiled again. Very cool the things you can do with these simple commands!</description><pubDate>Thu, 07 Jun 2012 05:52:41 +0000</pubDate><guid>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/?answer=76#post-id-76</guid></item><item><title>Answer by vandannen for &lt;p&gt;Using mod+h and mod+v splits the current container. What if I want to change the orientation from horizontal to vertical or vice-versa?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/?answer=2310#post-id-2310</link><description>In order to toggle between vertical and horizontal split layout in the currently focused container, you could just use the i3 command `layout toggle split`.</description><pubDate>Tue, 30 Jul 2013 10:23:46 +0000</pubDate><guid>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/?answer=2310#post-id-2310</guid></item><item><title>Answer by denten for &lt;p&gt;Using mod+h and mod+v splits the current container. What if I want to change the orientation from horizontal to vertical or vice-versa?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/?answer=2309#post-id-2309</link><description>Use mod + shift + j|k|l|; to switch the orientation dynamically once you have a split.</description><pubDate>Tue, 30 Jul 2013 07:02:13 +0000</pubDate><guid>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/?answer=2309#post-id-2309</guid></item><item><title>Answer by Hibou57 for &lt;p&gt;Using mod+h and mod+v splits the current container. What if I want to change the orientation from horizontal to vertical or vice-versa?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/?answer=4137#post-id-4137</link><description>You can use the `layout` command with a `splitv` or `splith` argument (here, without a space before H or V!). You can bind a keystroke to these commands if you wish, in your i3's configuration file.
+
+As an example, here is what stands in my configuration (I got ride of `$mod+e`):
+
+    bindsym $mod+v layout splitv
+    bindsym $mod+h layout splith
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+
+    bindsym $mod+Shift+h split h
+    bindsym $mod+Shift+v split v
+
+With this, `$mod+h` and `$mod+v` acts for the tilling orientation like `$mod+w` and `$mod+s` act for the overlapping orientation (not toggling, directly specifying an orientation instead), and creation of a split container is as before, except it needs a shift modifier.
+</description><pubDate>Sat, 05 Jul 2014 17:12:04 +0000</pubDate><guid>https://faq.i3wm.org/question/75/how-do-i-change-the-orientation-of-an-existing-container/?answer=4137#post-id-4137</guid></item></channel></rss>

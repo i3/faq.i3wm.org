@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3473/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 05 Mar 2014 15:14:31 +0000</lastBuildDate><item><title>How to disable urgent hints on startup</title><link>https://faq.i3wm.org/question/3473/how-to-disable-urgent-hints-on-startup/</link><description>During startup I launch a couple of applications (cli and gui) and I get an urgent hint from the last gui app launched (pcmanfm on the 6th workplace). I'm running i3:
+
+ - 4.5.1 doesn't show urgent hint on startup
+ - 4.7.2 show urgent hints on startup
+
+Is there anyway to disable urgent hints on startup for newer i3 versions?
+
+My startup apps are started with:
+
+    exec --no-startup-id ~/.i3/startup
+
+And then ~/.i3/startup is just a sh script which launch apps with &amp;</description><pubDate>Tue, 04 Mar 2014 12:43:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3473/how-to-disable-urgent-hints-on-startup/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;During startup I launch a couple of applications (cli and gui) and I get an urgent hint from the last gui app launched (pcmanfm on the 6th workplace). I'm running i3:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;4.5.1 doesn't show urgent hint on startup&lt;/li&gt;
+&lt;li&gt;4.7.2 show urgent hints on startup&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Is there anyway to disable urgent hints on startup for newer i3 versions?&lt;/p&gt;
+
+&lt;p&gt;My startup apps are started with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id ~/.i3/startup
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then ~/.i3/startup is just a sh script which launch apps with &amp;amp;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3473/how-to-disable-urgent-hints-on-startup/?answer=3476#post-id-3476</link><description>This is a feature that was added in 4.7: Windows that are assigned to a specific workspace are opened urgent if the workspace is not visible. 
+
+There is at the moment no configuration option to turn this feature of. But you can work around it with `for_window` instead of `assign`.
+
+    for_window [class="Pcmanfm"] move workspace number 6</description><pubDate>Wed, 05 Mar 2014 10:36:53 +0000</pubDate><guid>https://faq.i3wm.org/question/3473/how-to-disable-urgent-hints-on-startup/?answer=3476#post-id-3476</guid></item><item><title>Comment by chilicuil for &lt;p&gt;This is a feature that was added in 4.7: Windows that are assigned to a specific workspace are opened urgent if the workspace is not visible. &lt;/p&gt;
+
+&lt;p&gt;There is at the moment no configuration option to turn this feature of. But you can work around it with &lt;code&gt;for_window&lt;/code&gt; instead of &lt;code&gt;assign&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Pcmanfm"] move workspace number 6
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3473/how-to-disable-urgent-hints-on-startup/?comment=3480#comment-3480</link><description>I found bug #1088 which was the origin of the patch, on it the author suggest to move to the focused app and going back, however using "workspace 6; workspace back_and_forth" doesn't work, but "exec i3-msg workspace 6 &amp;&amp; i3-msg workspace back_and_forth" does (with a graphic glitch)</description><pubDate>Wed, 05 Mar 2014 14:33:20 +0000</pubDate><guid>https://faq.i3wm.org/question/3473/how-to-disable-urgent-hints-on-startup/?comment=3480#comment-3480</guid></item><item><title>Comment by chilicuil for &lt;p&gt;This is a feature that was added in 4.7: Windows that are assigned to a specific workspace are opened urgent if the workspace is not visible. &lt;/p&gt;
+
+&lt;p&gt;There is at the moment no configuration option to turn this feature of. But you can work around it with &lt;code&gt;for_window&lt;/code&gt; instead of &lt;code&gt;assign&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Pcmanfm"] move workspace number 6
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3473/how-to-disable-urgent-hints-on-startup/?comment=3479#comment-3479</link><description>It works great, however new popup (create new file, save as, etc) windows are open in other workspaces when workspace_auto_back_and_forth is enabled, for the moment I'll take the urgent hint (which is less annoying that turning off workspace_auto_back_and_forth).</description><pubDate>Wed, 05 Mar 2014 12:59:28 +0000</pubDate><guid>https://faq.i3wm.org/question/3473/how-to-disable-urgent-hints-on-startup/?comment=3479#comment-3479</guid></item><item><title>Comment by chilicuil for &lt;p&gt;This is a feature that was added in 4.7: Windows that are assigned to a specific workspace are opened urgent if the workspace is not visible. &lt;/p&gt;
+
+&lt;p&gt;There is at the moment no configuration option to turn this feature of. But you can work around it with &lt;code&gt;for_window&lt;/code&gt; instead of &lt;code&gt;assign&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Pcmanfm"] move workspace number 6
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3473/how-to-disable-urgent-hints-on-startup/?comment=3481#comment-3481</link><description>In the end I modified s/urgency_hint = true/urgency_hint = false;" src/manage.c and made a custom deb package available at https://launchpad.net/~chilicuil/+archive/sucklesstools/+packages , it targets ubuntu 14.04</description><pubDate>Wed, 05 Mar 2014 15:14:31 +0000</pubDate><guid>https://faq.i3wm.org/question/3473/how-to-disable-urgent-hints-on-startup/?comment=3481#comment-3481</guid></item></channel></rss>

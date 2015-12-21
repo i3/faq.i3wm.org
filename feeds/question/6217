@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6217/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 26 Aug 2015 08:42:46 +0000</lastBuildDate><item><title>i3wm + Vmware Workstation multiple monitors</title><link>https://faq.i3wm.org/question/6217/i3wm-vmware-workstation-multiple-monitors/</link><description>Hi. 
+I'm trying to get my Vmware Workstation to use multiple monitors while running under i3.
+When I try to activate more than one monitor in Workstation, it just informs me that the host windowsmanager (i3) does not support this.
+
+After some googling, I found this: https://communities.vmware.com/thread/198341 which seems to indicate that the windowmanager has to support the hint
+NETWM_FULLSCREEN_MONITORS
+which, apparently i3wm does not.
+
+Has anyone been able to find a workaround for this?
+</description><pubDate>Mon, 29 Jun 2015 08:49:06 +0000</pubDate><guid>https://faq.i3wm.org/question/6217/i3wm-vmware-workstation-multiple-monitors/</guid></item><item><title>Answer by ZaTTaZ for &lt;p&gt;Hi. 
+I'm trying to get my Vmware Workstation to use multiple monitors while running under i3.
+When I try to activate more than one monitor in Workstation, it just informs me that the host windowsmanager (i3) does not support this.&lt;/p&gt;
+
+&lt;p&gt;After some googling, I found this: &lt;a href="https://communities.vmware.com/thread/198341"&gt;https://communities.vmware.com/thread...&lt;/a&gt; which seems to indicate that the windowmanager has to support the hint
+NETWM&lt;em&gt;FULLSCREEN&lt;/em&gt;MONITORS
+which, apparently i3wm does not.&lt;/p&gt;
+
+&lt;p&gt;Has anyone been able to find a workaround for this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6217/i3wm-vmware-workstation-multiple-monitors/?answer=6514#post-id-6514</link><description>Servus.
+
+Same issue here. As workaround us a different desktop environment for "monitor sizing".
+Using i3 &amp; Gnome on Debian Jessie Guest on VMWare Workstation Win7 Host with two monitors, the following workflow works for me:
+
+ - start the VM
+ - log into Gnome / Unity whatever
+ - Cycle multi monitor in Workstation (At this point both monitors are correctly used by the guest)
+ - Log out of Gnome (At this point the login screen should correctly cover both screens)
+ - Change session to i3 and login
+
+This works quite well, also when switching from the VM to another host application. Unfortunatly the monitor resizing is reset when the host (Win 7) is locked / unlocked.</description><pubDate>Wed, 26 Aug 2015 08:42:46 +0000</pubDate><guid>https://faq.i3wm.org/question/6217/i3wm-vmware-workstation-multiple-monitors/?answer=6514#post-id-6514</guid></item></channel></rss>

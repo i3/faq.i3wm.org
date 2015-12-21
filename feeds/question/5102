@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5102/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 31 Dec 2014 02:11:04 +0000</lastBuildDate><item><title>i3lock: How to enable auto-lock AFTER wake up from suspend? [SOLVED]</title><link>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/</link><description>Hello i3-community,
+
+trying i3 since several days: fantastic window manager!
+
+Using i3 My config is complete so far related to lock-functions.
+
+Autostart for i3lock is the following:
+
+    exec --no-startup-id xautolock -time 5 -locker i3lock &amp;
+
+Lock by pressing a key is the following:
+
+    bindsym $mod+Pause exec --no-startup-id i3lock -c 000000
+
+Now I have two questions:
+
+1. How can I set the color of the autostart-locker to 000000 as well?
+2. After waking up from suspend the system is NOT locked. How can I set this up?
+
+Using i3wm under debian wheezy (but installed via backports) in the following versions:
+
+i3 version 4.8 (2014-06-15, branch "4.8")
+
+i3lock version 2.4.1 (2012-06-02)
+
+Thank you in advance!
+sj7</description><pubDate>Fri, 05 Dec 2014 14:05:24 +0000</pubDate><guid>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/</guid></item><item><title>Answer by saljut7 for &lt;p&gt;Hello i3-community,&lt;/p&gt;
+
+&lt;p&gt;trying i3 since several days: fantastic window manager!&lt;/p&gt;
+
+&lt;p&gt;Using i3 My config is complete so far related to lock-functions.&lt;/p&gt;
+
+&lt;p&gt;Autostart for i3lock is the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id xautolock -time 5 -locker i3lock &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lock by pressing a key is the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Pause exec --no-startup-id i3lock -c 000000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now I have two questions:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;How can I set the color of the autostart-locker to 000000 as well?&lt;/li&gt;
+&lt;li&gt;After waking up from suspend the system is NOT locked. How can I set this up?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Using i3wm under debian wheezy (but installed via backports) in the following versions:&lt;/p&gt;
+
+&lt;p&gt;i3 version 4.8 (2014-06-15, branch "4.8")&lt;/p&gt;
+
+&lt;p&gt;i3lock version 2.4.1 (2012-06-02)&lt;/p&gt;
+
+&lt;p&gt;Thank you in advance!
+sj7&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?answer=5130#post-id-5130</link><description>Hello cee and thanks for your helping answer!
+
+1) Unfortunately 
+
+    exec --no-startup-id xautolock -time 5 -locker 'i3lock -c 000000' &amp;
+
+still causes a white lock-screen.
+
+2) I deployed the i3exit.sh in ~/.i3 and modified my i3-config. Pressing the specified button calls the menu correctly. Lock works, but it seems that everything that calls systemctl doesn't work.
+
+    #!/bin/bash
+    ############################################################
+    #
+    ############################################################
+    function lock {
+    	i3lock -c 000000
+    }
+    case "$1" in
+    	lock)
+    		lock
+    		;;
+    	logout)
+    		i3-msg exit
+    		;;
+    	suspend)
+    		lock &amp;&amp; systemctl suspend
+    		;;
+    	reboot)
+    		systemctl reboot
+    		;;
+    	poweroff)
+    		systemctl poweroff
+    		;;
+    	*)
+    		echo "Usage: $0 {lock|logout|suspend|reboot|poweroff}"
+    		exit 2
+    esac
+    
+    exit 0
+
+Well, my distri uses a python-script for the logout/susp/exit-functions:
+    
+    #!/usr/bin/env python
+    
+    import pygtk
+    pygtk.require('2.0')
+    import gtk
+    import os
+    import getpass
+    
+    class cb_exit:
+    	def disable_buttons(self):
+    		self.cancel.set_sensitive(False)
+    		self.logout.set_sensitive(False)
+    		self.suspend.set_sensitive(False)
+    		self.reboot.set_sensitive(False)
+    		self.shutdown.set_sensitive(False)
+    
+    	def cancel_action(self,btn):
+    		self.disable_buttons()
+    		gtk.main_quit()
+    
+    	def logout_action(self,btn):
+    		self.disable_buttons()
+    		self.status.set_label("Exiting Openbox, please standby...")
+    		os.system("openbox --exit")
+    
+    	def suspend_action(self,btn):
+    		self.disable_buttons()
+    		self.status.set_label("Suspending, please standby...")
+    		os.system("cb-lock")
+    		os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Suspend")
+    		gtk.main_quit()
+    
+    	def reboot_action(self,btn):
+    		self.disable_buttons()
+    		self.status.set_label("Rebooting, please standby...")
+    		os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart")
+    
+    	def shutdown_action(self,btn):
+    		self.disable_buttons()
+    		self.status.set_label("Shutting down, please standby...")
+    		os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop")
+    
+    	def create_window(self):
+    		self.window = gtk.Window()
+    		title = "Log out " + getpass.getuser() + "? Choose an option:"
+    		self.window.set_title(title)
+    		self.window.set_border_width(5)
+    		self.window.set_size_request(500, 80)
+    		self.window.set_resizable(False)
+    		self.window.set_keep_above(True)
+    		self.window.stick
+    		self.window.set_position(1)
+    		self.window.connect("delete_event", gtk.main_quit)
+    		windowicon = self.window.render_icon(gtk.STOCK_QUIT, gtk.ICON_SIZE_MENU)
+    		self.window.set_icon(windowicon)
+    
+    		
+    		#Create HBox for buttons
+    		self.button_box = gtk.HBox()
+    		self.button_box.show()
+    		
+    		#Cancel button
+    		self.cancel = gtk.Button(stock = gtk.STOCK_CANCEL)
+    		self.cancel.set_border_width(4)
+    		self.cancel.connect("clicked", self.cancel_action)
+    		self.button_box.pack_start(self.cancel)
+    		self.cancel.show()
+    		
+    		#Logout button
+    		self.logout = gtk.Button("_Log out")
+    		self.logout.set_border_width(4)
+    		self.logout.connect("clicked", self.logout_action)
+    		self.button_box.pack_start(self.logout)
+    		self.logout.show()
+    		
+    		#Suspend button
+    		self.suspend = gtk.Button("_Suspend")
+    		self.suspend.set_border_width(4)
+    		self.suspend.connect("clicked", self.suspend_action)
+    		self.button_box.pack_start(self.suspend)
+    		self.suspend.show()
+    		
+    		#Reboot button
+    		self.reboot = gtk.Button("_Reboot")
+    		self.reboot.set_border_width(4)
+    		self.reboot.connect("clicked", self.reboot_action)
+    		self.button_box.pack_start(self.reboot)
+    		self.reboot.show()
+    		
+    		#Shutdown button
+    		self.shutdown = gtk.Button("_Power off")
+    		self.shutdown.set_border_width(4)
+    		self.shutdown.connect("clicked", self.shutdown_action)
+    		self.button_box.pack_start(self.shutdown)
+    		self.shutdown.show()
+    		
+    		#Create HBox for status label
+    		self.label_box = gtk.HBox()
+    		self.label_box.show()
+    		self.status = gtk.Label()
+    		self.status.show()
+    		self.label_box.pack_start(self.status)
+    		
+    		#Create VBox and pack the above HBox's
+    		self.vbox = gtk.VBox()
+    		self.vbox.pack_start(self.button_box)
+    		self.vbox.pack_start(self.label_box)
+    		self.vbox.show()
+    		
+    		self.window.add(self.vbox)
+    		self.window.show()
+    		
+    	def __init__(self):
+    		self.create_window()
+    
+    
+    def main():
+        gtk.main()
+    
+    if __name__ == "__main__":
+        go = cb_exit()
+        main()
+    =
+
+I tried to replace 
+
+    systemctl1 suspend
+
+with
+
+    "dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Suspend"
+
+or
+
+    sudo pm-suspend
+
+but it doesn't work.
+
+Did I miss something?</description><pubDate>Sun, 07 Dec 2014 16:15:04 +0000</pubDate><guid>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?answer=5130#post-id-5130</guid></item><item><title>Comment by saljut7 for &lt;div class="snippet"&gt;&lt;p&gt;Hello cee and thanks for your helping answer!&lt;/p&gt;
+
+&lt;p&gt;1) Unfortunately &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id xautolock -time 5 -locker 'i3lock -c 000000' &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;still causes a white lock-screen.&lt;/p&gt;
+
+&lt;p&gt;2) I deployed the i3exit.sh in ~/.i3 and modified my i3-config. Pressing the specified button calls the menu correctly. Lock works, but it seems that everything that calls systemctl doesn't work.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+############################################################
+#
+############################################################
+function lock {
+    i3lock -c 000000
+}
+case "$1" in
+    lock)
+        lock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        lock &amp;amp;&amp;amp; systemctl suspend
+        ;;
+    reboot)
+        systemctl reboot
+        ;;
+    poweroff)
+        systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|reboot|poweroff}"
+        exit 2
+esac
+
+exit 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Well, my distri uses a python-script for the logout/susp/exit-functions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+import pygtk
+pygtk.require('2.0')
+import gtk
+import os
+import getpass
+
+class cb_exit:
+    def disable_buttons(self):
+        self.cancel.set_sensitive(False)
+        self.logout.set_sensitive(False)
+        self.suspend.set_sensitive(False)
+        self.reboot.set_sensitive(False)
+        self.shutdown.set_sensitive(False)
+
+    def cancel_action(self,btn):
+        self.disable_buttons()
+        gtk.main_quit()
+
+    def logout_action(self,btn):
+        self.disable_buttons()
+        self.status.set_label("Exiting Openbox, please standby...")
+        os.system("openbox --exit")
+
+    def suspend_action(self,btn):
+        self.disable_buttons()
+        self.status.set_label("Suspending, please standby...")
+        os.system("cb-lock")
+        os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Suspend")
+        gtk.main_quit()
+
+    def reboot_action(self,btn):
+        self.disable_buttons()
+        self.status.set_label("Rebooting, please standby...")
+        os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart")
+
+    def shutdown_action(self,btn):
+        self.disable_buttons()
+        self.status.set_label("Shutting down, please standby...")
+        os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop")
+
+    def create_window(self):
+        self.window = gtk.Window()
+        title = "Log out " + getpass.getuser() + "? Choose an option:"
+        self.window.set_title(title)
+        self.window.set_border_width(5)
+        self.window.set_size_request(500, 80)
+        self.window.set_resizable(False)
+        self.window.set_keep_above(True)
+        self.window.stick
+        self.window.set_position(1)
+        self.window.connect("delete_event", gtk.main_quit)
+        windowicon = self.window.render_icon(gtk.STOCK_QUIT, gtk.ICON_SIZE_MENU)
+        self.window.set_icon(windowicon)
+
+
+        #Create HBox for buttons
+        self.button_box = gtk.HBox()
+        self.button_box.show()
+
+        #Cancel button
+        self.cancel = gtk.Button(stock = gtk.STOCK_CANCEL)
+        self.cancel.set_border_width(4)
+        self.cancel.connect("clicked", self.cancel_action)
+        self.button_box.pack_start(self.cancel)
+        self.cancel.show()
+
+        #Logout button
+        self.logout = gtk.Button("_Log out")
+        self.logout.set_border_width(4)
+        self.logout.connect("clicked", self.logout_action)
+        self.button_box.pack_start(self.logout)
+        self.logout.show()
+
+        #Suspend button
+        self.suspend = gtk.Button("_Suspend")
+        self.suspend.set_border_width(4)
+        self.suspend.connect("clicked", self.suspend_action)
+        self.button_box.pack_start(self.suspend)
+        self.suspend.show()
+
+        #Reboot button
+        self.reboot = gtk.Button("_Reboot")
+        self.reboot.set_border_width(4)
+        self.reboot.connect("clicked", self.reboot_action)
+        self.button_box.pack_start(self.reboot)
+        self.reboot.show()
+
+        #Shutdown button
+        self.shutdown = gtk.Button("_Power off")
+        self.shutdown.set_border_width(4)
+        self.shutdown.connect("clicked", self.shutdown_action)
+        self.button_box.pack_start(self.shutdown)
+        self.shutdown.show()
+
+        #Create HBox for status label
+        self.label_box = gtk.HBox()
+        self.label_box.show()
+        self.status = gtk.Label()
+        self.status.show()
+        self.label_box.pack_start(self.status)
+
+        #Create VBox and pack the above HBox's
+        self ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?comment=5282#comment-5282</link><description>Hostname was missing but works now, thank you very much! For everyone who has the same problems:
+In terminal
+sudo visudo
+and add
+&lt;your user&gt; &lt;your hostname&gt; = (root) NOPASSWD: /usr/sbin/pm-suspend
+
+Add to your i3-config:
+bindsym &lt;your key-combi&gt; exec --no-startup-id sudo pm-suspend &amp;&amp; i3lock
+
+Rdy!</description><pubDate>Wed, 31 Dec 2014 02:11:04 +0000</pubDate><guid>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?comment=5282#comment-5282</guid></item><item><title>Comment by tasinet for &lt;div class="snippet"&gt;&lt;p&gt;Hello cee and thanks for your helping answer!&lt;/p&gt;
+
+&lt;p&gt;1) Unfortunately &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id xautolock -time 5 -locker 'i3lock -c 000000' &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;still causes a white lock-screen.&lt;/p&gt;
+
+&lt;p&gt;2) I deployed the i3exit.sh in ~/.i3 and modified my i3-config. Pressing the specified button calls the menu correctly. Lock works, but it seems that everything that calls systemctl doesn't work.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+############################################################
+#
+############################################################
+function lock {
+    i3lock -c 000000
+}
+case "$1" in
+    lock)
+        lock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        lock &amp;amp;&amp;amp; systemctl suspend
+        ;;
+    reboot)
+        systemctl reboot
+        ;;
+    poweroff)
+        systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|reboot|poweroff}"
+        exit 2
+esac
+
+exit 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Well, my distri uses a python-script for the logout/susp/exit-functions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+import pygtk
+pygtk.require('2.0')
+import gtk
+import os
+import getpass
+
+class cb_exit:
+    def disable_buttons(self):
+        self.cancel.set_sensitive(False)
+        self.logout.set_sensitive(False)
+        self.suspend.set_sensitive(False)
+        self.reboot.set_sensitive(False)
+        self.shutdown.set_sensitive(False)
+
+    def cancel_action(self,btn):
+        self.disable_buttons()
+        gtk.main_quit()
+
+    def logout_action(self,btn):
+        self.disable_buttons()
+        self.status.set_label("Exiting Openbox, please standby...")
+        os.system("openbox --exit")
+
+    def suspend_action(self,btn):
+        self.disable_buttons()
+        self.status.set_label("Suspending, please standby...")
+        os.system("cb-lock")
+        os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Suspend")
+        gtk.main_quit()
+
+    def reboot_action(self,btn):
+        self.disable_buttons()
+        self.status.set_label("Rebooting, please standby...")
+        os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart")
+
+    def shutdown_action(self,btn):
+        self.disable_buttons()
+        self.status.set_label("Shutting down, please standby...")
+        os.system("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop")
+
+    def create_window(self):
+        self.window = gtk.Window()
+        title = "Log out " + getpass.getuser() + "? Choose an option:"
+        self.window.set_title(title)
+        self.window.set_border_width(5)
+        self.window.set_size_request(500, 80)
+        self.window.set_resizable(False)
+        self.window.set_keep_above(True)
+        self.window.stick
+        self.window.set_position(1)
+        self.window.connect("delete_event", gtk.main_quit)
+        windowicon = self.window.render_icon(gtk.STOCK_QUIT, gtk.ICON_SIZE_MENU)
+        self.window.set_icon(windowicon)
+
+
+        #Create HBox for buttons
+        self.button_box = gtk.HBox()
+        self.button_box.show()
+
+        #Cancel button
+        self.cancel = gtk.Button(stock = gtk.STOCK_CANCEL)
+        self.cancel.set_border_width(4)
+        self.cancel.connect("clicked", self.cancel_action)
+        self.button_box.pack_start(self.cancel)
+        self.cancel.show()
+
+        #Logout button
+        self.logout = gtk.Button("_Log out")
+        self.logout.set_border_width(4)
+        self.logout.connect("clicked", self.logout_action)
+        self.button_box.pack_start(self.logout)
+        self.logout.show()
+
+        #Suspend button
+        self.suspend = gtk.Button("_Suspend")
+        self.suspend.set_border_width(4)
+        self.suspend.connect("clicked", self.suspend_action)
+        self.button_box.pack_start(self.suspend)
+        self.suspend.show()
+
+        #Reboot button
+        self.reboot = gtk.Button("_Reboot")
+        self.reboot.set_border_width(4)
+        self.reboot.connect("clicked", self.reboot_action)
+        self.button_box.pack_start(self.reboot)
+        self.reboot.show()
+
+        #Shutdown button
+        self.shutdown = gtk.Button("_Power off")
+        self.shutdown.set_border_width(4)
+        self.shutdown.connect("clicked", self.shutdown_action)
+        self.button_box.pack_start(self.shutdown)
+        self.shutdown.show()
+
+        #Create HBox for status label
+        self.label_box = gtk.HBox()
+        self.label_box.show()
+        self.status = gtk.Label()
+        self.status.show()
+        self.label_box.pack_start(self.status)
+
+        #Create VBox and pack the above HBox's
+        self ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?comment=5132#comment-5132</link><description>You have sudo problems. Whenever a command requires sudo, make sure you include the `sudo` part of the command in your binding and give youself NOPASSWD in /etc/sudoers for the current command. Example: `tasinet ALL=NOPASSWD: /usr/sbin/pm-suspend` and `$mod+blah exec sudo pm-suspend`</description><pubDate>Sun, 07 Dec 2014 17:55:24 +0000</pubDate><guid>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?comment=5132#comment-5132</guid></item><item><title>Answer by saljut7 for &lt;p&gt;Hello i3-community,&lt;/p&gt;
+
+&lt;p&gt;trying i3 since several days: fantastic window manager!&lt;/p&gt;
+
+&lt;p&gt;Using i3 My config is complete so far related to lock-functions.&lt;/p&gt;
+
+&lt;p&gt;Autostart for i3lock is the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id xautolock -time 5 -locker i3lock &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lock by pressing a key is the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Pause exec --no-startup-id i3lock -c 000000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now I have two questions:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;How can I set the color of the autostart-locker to 000000 as well?&lt;/li&gt;
+&lt;li&gt;After waking up from suspend the system is NOT locked. How can I set this up?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Using i3wm under debian wheezy (but installed via backports) in the following versions:&lt;/p&gt;
+
+&lt;p&gt;i3 version 4.8 (2014-06-15, branch "4.8")&lt;/p&gt;
+
+&lt;p&gt;i3lock version 2.4.1 (2012-06-02)&lt;/p&gt;
+
+&lt;p&gt;Thank you in advance!
+sj7&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?answer=5162#post-id-5162</link><description>Hello tasinet, 
+
+I tried to follow your advice. 
+
+When adding `&lt;username&gt; ALL=NOPASSWD: &lt;path to suspend-function&gt;` to `sudo visudo` I tried to find the location of the responsible suspend-function of Debian. I couldn't find it. Seems it is a subfunction of `/usr/lib/pm-utils/&lt;functions&gt;or&lt;pm-functions&gt;` - do you have an idea which function is starting when I run `shutdown` or `pm-suspend` under Debian via CLI?
+
+Just adding `lock &amp;&amp; sudo pm-suspend` for suspend or `sudo shutdown -r` to i3exit.sh doesn't work. </description><pubDate>Thu, 11 Dec 2014 18:26:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?answer=5162#post-id-5162</guid></item><item><title>Comment by saljut7 for &lt;p&gt;Hello tasinet, &lt;/p&gt;
+
+&lt;p&gt;I tried to follow your advice. &lt;/p&gt;
+
+&lt;p&gt;When adding &lt;code&gt;&amp;lt;username&amp;gt; ALL=NOPASSWD: &amp;lt;path to suspend-function&amp;gt;&lt;/code&gt; to &lt;code&gt;sudo visudo&lt;/code&gt; I tried to find the location of the responsible suspend-function of Debian. I couldn't find it. Seems it is a subfunction of &lt;code&gt;/usr/lib/pm-utils/&amp;lt;functions&amp;gt;or&amp;lt;pm-functions&amp;gt;&lt;/code&gt; - do you have an idea which function is starting when I run &lt;code&gt;shutdown&lt;/code&gt; or &lt;code&gt;pm-suspend&lt;/code&gt; under Debian via CLI?&lt;/p&gt;
+
+&lt;p&gt;Just adding &lt;code&gt;lock &amp;amp;&amp;amp; sudo pm-suspend&lt;/code&gt; for suspend or &lt;code&gt;sudo shutdown -r&lt;/code&gt; to i3exit.sh doesn't work. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?comment=5281#comment-5281</link><description>Works now. Editing sudoers for the 1st time takes a while. For everyone who has the same problems:
+In terminal
+sudo visudo
+and add
+&lt;your user&gt; &lt;your hostname&gt; = (root) NOPASSWD: /usr/sbin/pm-suspend
+
+Add to your i3-config:
+bindsym &lt;your key-combi&gt; exec --no-startup-id sudo pm-suspend &amp;&amp; i3lock
+
+Rdy!</description><pubDate>Wed, 31 Dec 2014 02:04:11 +0000</pubDate><guid>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?comment=5281#comment-5281</guid></item><item><title>Answer by cee for &lt;p&gt;Hello i3-community,&lt;/p&gt;
+
+&lt;p&gt;trying i3 since several days: fantastic window manager!&lt;/p&gt;
+
+&lt;p&gt;Using i3 My config is complete so far related to lock-functions.&lt;/p&gt;
+
+&lt;p&gt;Autostart for i3lock is the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id xautolock -time 5 -locker i3lock &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lock by pressing a key is the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Pause exec --no-startup-id i3lock -c 000000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now I have two questions:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;How can I set the color of the autostart-locker to 000000 as well?&lt;/li&gt;
+&lt;li&gt;After waking up from suspend the system is NOT locked. How can I set this up?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Using i3wm under debian wheezy (but installed via backports) in the following versions:&lt;/p&gt;
+
+&lt;p&gt;i3 version 4.8 (2014-06-15, branch "4.8")&lt;/p&gt;
+
+&lt;p&gt;i3lock version 2.4.1 (2012-06-02)&lt;/p&gt;
+
+&lt;p&gt;Thank you in advance!
+sj7&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?answer=5110#post-id-5110</link><description>Educated guess on question 1)  
+This should be possible with the proper use of apostrophes. Untested, but something like:
+
+&gt; exec --no-startup-id xautolock -time 5 -locker 'i3lock -c 000000' &amp;
+
+For question 2)  
+I am using i3exit.sh found on this site and adjusted to my likings.
+My suspend command: 
+
+&gt; i3lock -c 000000 &amp;&amp; systemctl suspend
+
+You could also easily bind a key to a chained command like this:
+
+&gt; i3-msg exec 'i3lock -c 000000' &amp;&amp; systemctl suspend
+
+You can take a look at my config on [github](https://github.com/andreatta/config).
+</description><pubDate>Sat, 06 Dec 2014 18:40:50 +0000</pubDate><guid>https://faq.i3wm.org/question/5102/i3lock-how-to-enable-auto-lock-after-wake-up-from-suspend-solved/?answer=5110#post-id-5110</guid></item></channel></rss>

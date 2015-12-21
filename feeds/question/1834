@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1834/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 18 May 2013 04:19:32 +0000</lastBuildDate><item><title>i3status battery problem</title><link>https://faq.i3wm.org/question/1834/i3status-battery-problem/</link><description>Hey dear users of i3 :)
+
+I'm quite new using i3. I started about 2 months ago after 2 years of openbox. 
+
+It's awesome... But i still have something annoying.
+
+Here is my problem :
+
+I'm using a x121e AMD-450 laptop. Which of course have a battery... But can't configure properly my i3status bar to display information about battery.
+
+I tried to swithc my i3status.conf with : 
+
+battery 1 {
+                   format = "%status %percentage %remaining %emptytime"
+                   path = "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0A:00/power_supply/BAT1/uevent"
+}
+
+Which doesnt work neither, while the path seems to be good...
+
+
+/sys/class/power_supply % ll
+
+lrwxrwxrwx 1 root root 0 mai   17 14:50 ACAD&gt; ../../devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0003:00/power_supply/ACAD/
+lrwxrwxrwx 1 root root 0 mai   17 14:50 BAT1 -&gt; ../../devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0A:00/power_supply/BAT1/
+
+Any idea?
+
+</description><pubDate>Fri, 17 May 2013 13:09:57 +0000</pubDate><guid>https://faq.i3wm.org/question/1834/i3status-battery-problem/</guid></item><item><title>Answer by panth0r for &lt;p&gt;Hey dear users of i3 :)&lt;/p&gt;
+
+&lt;p&gt;I'm quite new using i3. I started about 2 months ago after 2 years of openbox. &lt;/p&gt;
+
+&lt;p&gt;It's awesome... But i still have something annoying.&lt;/p&gt;
+
+&lt;p&gt;Here is my problem :&lt;/p&gt;
+
+&lt;p&gt;I'm using a x121e AMD-450 laptop. Which of course have a battery... But can't configure properly my i3status bar to display information about battery.&lt;/p&gt;
+
+&lt;p&gt;I tried to swithc my i3status.conf with : &lt;/p&gt;
+
+&lt;p&gt;battery 1 {
+                   format = "%status %percentage %remaining %emptytime"
+                   path = "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0A:00/power_supply/BAT1/uevent"
+}&lt;/p&gt;
+
+&lt;p&gt;Which doesnt work neither, while the path seems to be good...&lt;/p&gt;
+
+&lt;p&gt;/sys/class/power_supply % ll&lt;/p&gt;
+
+&lt;p&gt;lrwxrwxrwx 1 root root 0 mai   17 14:50 ACAD&amp;gt; ../../devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0003:00/power&lt;em&gt;supply/ACAD/
+lrwxrwxrwx 1 root root 0 mai   17 14:50 BAT1 -&amp;gt; ../../devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0A:00/power&lt;/em&gt;supply/BAT1/&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1834/i3status-battery-problem/?answer=1840#post-id-1840</link><description>Assuming you're configuring the path to the correct value, do the colon characters (':') require escaping (accomplished by preceding them with a '\') such that
+
+    battery 1 { format = "%status %percentage %remaining %emptytime" path = "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0A:00/power_supply/BAT1/uevent" }
+
+becomes
+
+    battery 1 { format = "%status %percentage %remaining %emptytime" path = "/sys/devices/LNXSYSTM\:00/LNXSYBUS\:00/PNP0C0A\:00/power_supply/BAT1/uevent" }
+
+?
+
+The following is the output generated when I run "cat /sys/class/power_supply/BAT0/uevent":
+
+    POWER_SUPPLY_NAME=BAT0
+    POWER_SUPPLY_STATUS=Charging
+    POWER_SUPPLY_PRESENT=1
+    POWER_SUPPLY_TECHNOLOGY=Li-ion
+    POWER_SUPPLY_CYCLE_COUNT=0
+    POWER_SUPPLY_VOLTAGE_MIN_DESIGN=14400000
+    POWER_SUPPLY_VOLTAGE_NOW=16521000
+    POWER_SUPPLY_POWER_NOW=27738000
+    POWER_SUPPLY_ENERGY_FULL_DESIGN=74880000
+    POWER_SUPPLY_ENERGY_FULL=48400000
+    POWER_SUPPLY_ENERGY_NOW=14110000
+    POWER_SUPPLY_CAPACITY=29
+    POWER_SUPPLY_MODEL_NAME=42T4571
+    POWER_SUPPLY_MANUFACTURER=SONY
+    POWER_SUPPLY_SERIAL_NUMBER= 6295
+
+You may wish to run "cat /sys/devices/LNXSYSTM\:00/LNXSYBUS\:00/PNP0C0A\:00/power_supply/BAT1/uevent" (at least Bash requires ':'s be escaped) and compare the result to the one above to verify you're proving the correct path (and one i3status can correctly parse).
+
+I'm on an X61, which fortunately uses the "standard path," but wish I could test this suggestion more thoroughly.
+
+Don't know how much it'll help, but it's always nice to be able to drop down to the code... to which I can't post a link.</description><pubDate>Sat, 18 May 2013 04:19:32 +0000</pubDate><guid>https://faq.i3wm.org/question/1834/i3status-battery-problem/?answer=1840#post-id-1840</guid></item></channel></rss>

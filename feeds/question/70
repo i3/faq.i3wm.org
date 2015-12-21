@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/70/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 08 Jun 2012 09:12:40 +0000</lastBuildDate><item><title>Determining workspace # in an external app (hamster)</title><link>https://faq.i3wm.org/question/70/determining-workspace-in-an-external-app-hamster/</link><description>Hi!
+
+I've been using i3 for a few days now, and I'm loving it. However, it doesn't seem to work with the productivity tracker app I've been using, Hamster (http://projecthamster.wordpress.com/about/)
+
+It can set you current task based on which workspace you're on, but it doesn't seem to work in i3, though it worked before on my Ubuntu setup.
+
+See: http://www.flickr.com/photos/toms/5160499623/lightbox/
+
+Is this a bug or is Hamster doing something weird that I can't work around?
+
+(A workaround for me would be to allow a single command (like switch to workspace 1) to do two things. That is, have $mod+1 go to workspace 1 and exec a command that I can use with the hamster CLI. Is there a way to do that?)
+
+Thanks!</description><pubDate>Wed, 06 Jun 2012 21:03:42 +0000</pubDate><guid>https://faq.i3wm.org/question/70/determining-workspace-in-an-external-app-hamster/</guid></item><item><title>Answer by Tucos for &lt;p&gt;Hi!&lt;/p&gt;
+
+&lt;p&gt;I've been using i3 for a few days now, and I'm loving it. However, it doesn't seem to work with the productivity tracker app I've been using, Hamster (&lt;a href="http://projecthamster.wordpress.com/about/"&gt;http://projecthamster.wordpress.com/a...&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;It can set you current task based on which workspace you're on, but it doesn't seem to work in i3, though it worked before on my Ubuntu setup.&lt;/p&gt;
+
+&lt;p&gt;See: &lt;a href="http://www.flickr.com/photos/toms/5160499623/lightbox/"&gt;http://www.flickr.com/photos/toms/516...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Is this a bug or is Hamster doing something weird that I can't work around?&lt;/p&gt;
+
+&lt;p&gt;(A workaround for me would be to allow a single command (like switch to workspace 1) to do two things. That is, have $mod+1 go to workspace 1 and exec a command that I can use with the hamster CLI. Is there a way to do that?)&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/70/determining-workspace-in-an-external-app-hamster/?answer=71#post-id-71</link><description>You can chain commands for keybinds with a semicolon (when using criteria, use a comma), e.g.:
+
+    bindsym $mod+F9 floating enable ; move scratchpad
+or with criteria:
+
+    bindsym $mod+p [title="^Panda$"] floating enable, move absolute position center
+
+The workspace stuff hamster uses are **probably** some Extended Window Manager Hints ([`_NET_NUMBER_OF_DESKTOPS`](http://standards.freedesktop.org/wm-spec/wm-spec-1.3.html#id2687708) comes to mind), which i3 doesn't support (yet).
+
+**EDIT:** Just checked the source for hamster and indeed, it depends on libwnck, which in turn relies on EWMH and ICCCM. This means that currently, it's not possible to make i3 and hamster play nice together automatically.</description><pubDate>Wed, 06 Jun 2012 21:47:50 +0000</pubDate><guid>https://faq.i3wm.org/question/70/determining-workspace-in-an-external-app-hamster/?answer=71#post-id-71</guid></item><item><title>Comment by Amouravski for &lt;p&gt;You can chain commands for keybinds with a semicolon (when using criteria, use a comma), e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+F9 floating enable ; move scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or with criteria:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+p [title="^Panda$"] floating enable, move absolute position center
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The workspace stuff hamster uses are &lt;strong&gt;probably&lt;/strong&gt; some Extended Window Manager Hints (&lt;a href="http://standards.freedesktop.org/wm-spec/wm-spec-1.3.html#id2687708"&gt;&lt;code&gt;_NET_NUMBER_OF_DESKTOPS&lt;/code&gt;&lt;/a&gt; comes to mind), which i3 doesn't support (yet).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT:&lt;/strong&gt; Just checked the source for hamster and indeed, it depends on libwnck, which in turn relies on EWMH and ICCCM. This means that currently, it's not possible to make i3 and hamster play nice together automatically.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/70/determining-workspace-in-an-external-app-hamster/?comment=73#comment-73</link><description>Thanks! That helps a lot!</description><pubDate>Wed, 06 Jun 2012 22:37:01 +0000</pubDate><guid>https://faq.i3wm.org/question/70/determining-workspace-in-an-external-app-hamster/?comment=73#comment-73</guid></item><item><title>Comment by miguel for &lt;p&gt;You can chain commands for keybinds with a semicolon (when using criteria, use a comma), e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+F9 floating enable ; move scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or with criteria:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+p [title="^Panda$"] floating enable, move absolute position center
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The workspace stuff hamster uses are &lt;strong&gt;probably&lt;/strong&gt; some Extended Window Manager Hints (&lt;a href="http://standards.freedesktop.org/wm-spec/wm-spec-1.3.html#id2687708"&gt;&lt;code&gt;_NET_NUMBER_OF_DESKTOPS&lt;/code&gt;&lt;/a&gt; comes to mind), which i3 doesn't support (yet).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT:&lt;/strong&gt; Just checked the source for hamster and indeed, it depends on libwnck, which in turn relies on EWMH and ICCCM. This means that currently, it's not possible to make i3 and hamster play nice together automatically.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/70/determining-workspace-in-an-external-app-hamster/?comment=87#comment-87</link><description>Good to know! There's a typo in the second example (s/,/;/)</description><pubDate>Thu, 07 Jun 2012 15:32:21 +0000</pubDate><guid>https://faq.i3wm.org/question/70/determining-workspace-in-an-external-app-hamster/?comment=87#comment-87</guid></item><item><title>Comment by Tucos for &lt;p&gt;You can chain commands for keybinds with a semicolon (when using criteria, use a comma), e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+F9 floating enable ; move scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or with criteria:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+p [title="^Panda$"] floating enable, move absolute position center
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The workspace stuff hamster uses are &lt;strong&gt;probably&lt;/strong&gt; some Extended Window Manager Hints (&lt;a href="http://standards.freedesktop.org/wm-spec/wm-spec-1.3.html#id2687708"&gt;&lt;code&gt;_NET_NUMBER_OF_DESKTOPS&lt;/code&gt;&lt;/a&gt; comes to mind), which i3 doesn't support (yet).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT:&lt;/strong&gt; Just checked the source for hamster and indeed, it depends on libwnck, which in turn relies on EWMH and ICCCM. This means that currently, it's not possible to make i3 and hamster play nice together automatically.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/70/determining-workspace-in-an-external-app-hamster/?comment=95#comment-95</link><description>Nope. There is a difference between `[condition] command1 ; command2` and `[condition] command1 , command2`, in the first case, the condition will not apply to the second command (so, in my example, often it would just position the focused window at the center) whereas in the second case it does.</description><pubDate>Fri, 08 Jun 2012 09:12:40 +0000</pubDate><guid>https://faq.i3wm.org/question/70/determining-workspace-in-an-external-app-hamster/?comment=95#comment-95</guid></item></channel></rss>

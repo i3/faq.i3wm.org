@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1280/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 13 Mar 2013 10:13:40 +0000</lastBuildDate><item><title>Focus qwertz with jklö (similar to jkl; on querty)</title><link>https://faq.i3wm.org/question/1280/focus-qwertz-with-jklo-similar-to-jkl-on-querty/</link><description>I just installed i3 and i´m quite excited. I´m trying to use jklö for navigating between the different tiles with my quertz-keyboard. (similar to jkl; on querty) So far, jkl are working well but I don´t get it working to be able to focus right with Mod1+ö.
+
+I tried different things in /etc/i3/config:
+Changing `bindsym Mod1+semicolon` to `bindsym Mod1+ö` did not work as well as changing it to `bind Mod1+47` (found out keycode 47 via xev as described in the userguide.
+
+Can anybody tell me how it´s possible to use the umlaut ö for focusing tiles.
+
+Thank you in advance for your efforts.</description><pubDate>Sat, 02 Mar 2013 13:13:05 +0000</pubDate><guid>https://faq.i3wm.org/question/1280/focus-qwertz-with-jklo-similar-to-jkl-on-querty/</guid></item><item><title>Comment by mschaefer for &lt;p&gt;I just installed i3 and i´m quite excited. I´m trying to use jklö for navigating between the different tiles with my quertz-keyboard. (similar to jkl; on querty) So far, jkl are working well but I don´t get it working to be able to focus right with Mod1+ö.&lt;/p&gt;
+
+&lt;p&gt;I tried different things in /etc/i3/config:
+Changing &lt;code&gt;bindsym Mod1+semicolon&lt;/code&gt; to &lt;code&gt;bindsym Mod1+ö&lt;/code&gt; did not work as well as changing it to &lt;code&gt;bind Mod1+47&lt;/code&gt; (found out keycode 47 via xev as described in the userguide.&lt;/p&gt;
+
+&lt;p&gt;Can anybody tell me how it´s possible to use the umlaut ö for focusing tiles.&lt;/p&gt;
+
+&lt;p&gt;Thank you in advance for your efforts.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1280/focus-qwertz-with-jklo-similar-to-jkl-on-querty/?comment=1376#comment-1376</link><description>In your question you write 'bind' for keycodes, but it must be 'bindcode'. If this typo is also in your config, this should solve the issue. I'm using exactly that, namely 'bindcode $mod+47' to move focus right and here it is working!</description><pubDate>Tue, 12 Mar 2013 11:24:06 +0000</pubDate><guid>https://faq.i3wm.org/question/1280/focus-qwertz-with-jklo-similar-to-jkl-on-querty/?comment=1376#comment-1376</guid></item><item><title>Answer by Michael for &lt;p&gt;I just installed i3 and i´m quite excited. I´m trying to use jklö for navigating between the different tiles with my quertz-keyboard. (similar to jkl; on querty) So far, jkl are working well but I don´t get it working to be able to focus right with Mod1+ö.&lt;/p&gt;
+
+&lt;p&gt;I tried different things in /etc/i3/config:
+Changing &lt;code&gt;bindsym Mod1+semicolon&lt;/code&gt; to &lt;code&gt;bindsym Mod1+ö&lt;/code&gt; did not work as well as changing it to &lt;code&gt;bind Mod1+47&lt;/code&gt; (found out keycode 47 via xev as described in the userguide.&lt;/p&gt;
+
+&lt;p&gt;Can anybody tell me how it´s possible to use the umlaut ö for focusing tiles.&lt;/p&gt;
+
+&lt;p&gt;Thank you in advance for your efforts.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1280/focus-qwertz-with-jklo-similar-to-jkl-on-querty/?answer=1386#post-id-1386</link><description>The following should work:
+
+    bindsym Mod1+odiaeresis
+
+You can use `xev(1)` to find out the X11 names for keys.</description><pubDate>Wed, 13 Mar 2013 10:13:40 +0000</pubDate><guid>https://faq.i3wm.org/question/1280/focus-qwertz-with-jklo-similar-to-jkl-on-querty/?answer=1386#post-id-1386</guid></item><item><title>Answer by IcantReed for &lt;p&gt;I just installed i3 and i´m quite excited. I´m trying to use jklö for navigating between the different tiles with my quertz-keyboard. (similar to jkl; on querty) So far, jkl are working well but I don´t get it working to be able to focus right with Mod1+ö.&lt;/p&gt;
+
+&lt;p&gt;I tried different things in /etc/i3/config:
+Changing &lt;code&gt;bindsym Mod1+semicolon&lt;/code&gt; to &lt;code&gt;bindsym Mod1+ö&lt;/code&gt; did not work as well as changing it to &lt;code&gt;bind Mod1+47&lt;/code&gt; (found out keycode 47 via xev as described in the userguide.&lt;/p&gt;
+
+&lt;p&gt;Can anybody tell me how it´s possible to use the umlaut ö for focusing tiles.&lt;/p&gt;
+
+&lt;p&gt;Thank you in advance for your efforts.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1280/focus-qwertz-with-jklo-similar-to-jkl-on-querty/?answer=1381#post-id-1381</link><description>Now, i was able to fix it by myself. 
+Two things, that i did wrong:
+
+ 1. I always was editing /etc/i3/config instead of /home/myuser/.i3/config :-/
+ 2. You have to change `bindsym Mod1+semicolon` to `bindcode $mod+47 focus right`
+
+So now I´m able to focus the windows with Modifier + jklö.
+</description><pubDate>Tue, 12 Mar 2013 14:57:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1280/focus-qwertz-with-jklo-similar-to-jkl-on-querty/?answer=1381#post-id-1381</guid></item></channel></rss>

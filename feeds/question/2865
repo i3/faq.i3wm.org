@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2865/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 11 Nov 2013 20:32:14 +0000</lastBuildDate><item><title>Is there a way to kill/reset a whole workspace?</title><link>https://faq.i3wm.org/question/2865/is-there-a-way-to-killreset-a-whole-workspace/</link><description>Is there a way to kill the current workspace(like in tmux)? Essentially killing all the containers inside a certain workspace.
+
+Is that function native to i3 or would I have to use a script?</description><pubDate>Mon, 11 Nov 2013 09:49:43 +0000</pubDate><guid>https://faq.i3wm.org/question/2865/is-there-a-way-to-killreset-a-whole-workspace/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Is there a way to kill the current workspace(like in tmux)? Essentially killing all the containers inside a certain workspace.&lt;/p&gt;
+
+&lt;p&gt;Is that function native to i3 or would I have to use a script?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2865/is-there-a-way-to-killreset-a-whole-workspace/?answer=2875#post-id-2875</link><description>You can use `focus parent` until all containers are selected (just press and hold the bound key(s) for a second or two) and then `kill`. 
+
+As you can bind multiple commands to a key, you could also do this:
+
+    bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
+
+Add more `focus parent, `, if you are stacking more than ten levels deep.
+
+Note: this may need version 4.7 to work, as previous versions threw error messages when trying to `kill` workspace containers.</description><pubDate>Mon, 11 Nov 2013 19:24:00 +0000</pubDate><guid>https://faq.i3wm.org/question/2865/is-there-a-way-to-killreset-a-whole-workspace/?answer=2875#post-id-2875</guid></item><item><title>Comment by flylo for &lt;p&gt;You can use &lt;code&gt;focus parent&lt;/code&gt; until all containers are selected (just press and hold the bound key(s) for a second or two) and then &lt;code&gt;kill&lt;/code&gt;. &lt;/p&gt;
+
+&lt;p&gt;As you can bind multiple commands to a key, you could also do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add more &lt;code&gt;focus parent,&lt;/code&gt;, if you are stacking more than ten levels deep.&lt;/p&gt;
+
+&lt;p&gt;Note: this may need version 4.7 to work, as previous versions threw error messages when trying to &lt;code&gt;kill&lt;/code&gt; workspace containers.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2865/is-there-a-way-to-killreset-a-whole-workspace/?comment=2878#comment-2878</link><description>Cool, thanks. I'm on 4.6 but look forward to the next release. Glad to hear it's been implemented</description><pubDate>Mon, 11 Nov 2013 20:32:14 +0000</pubDate><guid>https://faq.i3wm.org/question/2865/is-there-a-way-to-killreset-a-whole-workspace/?comment=2878#comment-2878</guid></item></channel></rss>

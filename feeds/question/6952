@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6952/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 16 Oct 2015 14:08:29 +0000</lastBuildDate><item><title>i3bar prints unformatted json irrespective of status_command</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/</link><description>I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:
+
+conkyrc:
+
+    out_to_x no
+    own_window no
+    out_to_console yes
+    background no
+    max_text_width 0
+    update_interval 1.0
+    total_run_times 0
+    short_units yes
+    use_spacer left
+    
+    override_utf8_locale no
+    cpu_avg_samples 2
+
+    TEXT
+    
+    # JSON for i3bar
+    [
+    {"full_text": "${time %I:%M %P}"}
+    ],
+
+conky start script (as advised on wiki)
+
+    # Send the header so that i3bar knows we want to use JSON:
+    echo '{"version":1}'
+    
+    # Begin the endless array.
+    echo '['
+    
+    # We send an empty first array of blocks to make the loop simpler:
+    echo '[],'
+    
+    # Now send blocks with information forever:
+    exec conky -c $HOME/.i3/conkyrc
+
+and finally my i3bar config at the end of .i3/config
+
+    bar {
+        position top
+        status_command $HOME/.i3/conky-i3bar
+    }
+
+All that is outputted here is a single "]," in my i3bar. Any takers?
+
+</description><pubDate>Thu, 15 Oct 2015 14:38:51 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/</guid></item><item><title>Comment by Airblader for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6954#comment-6954</link><description>What does it output if you just run the script in a terminal? I'd guess this is a buffering issue.</description><pubDate>Thu, 15 Oct 2015 16:23:17 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6954#comment-6954</guid></item><item><title>Comment by Airblader for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6955#comment-6955</link><description>Try prepending this to your status command: "stdbuf -o 0 -e 0"</description><pubDate>Thu, 15 Oct 2015 16:47:39 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6955#comment-6955</guid></item><item><title>Comment by charmedxi for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6957#comment-6957</link><description>Code formatting is horrible in comments, see the answer below</description><pubDate>Thu, 15 Oct 2015 16:49:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6957#comment-6957</guid></item><item><title>Comment by charmedxi for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6958#comment-6958</link><description>Adding the stdbuf line to my conky run script causes no output, likewise for adding it to my status_command as "stdbuf -o 0 -e 0 &amp;&amp; conky -c $HOME/.i3/conkyrc"</description><pubDate>Thu, 15 Oct 2015 16:53:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6958#comment-6958</guid></item><item><title>Comment by Airblader for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6959#comment-6959</link><description>Sorry, I should've been more clear. It's not a separate command to run, it's part of the command: "stdbuf -e 0 -o 0 $HOME/.i3/conkyrc"</description><pubDate>Thu, 15 Oct 2015 18:36:07 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6959#comment-6959</guid></item><item><title>Comment by charmedxi for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6960#comment-6960</link><description>I thought as much and tried that too, still just outputting "]," unfortunately!</description><pubDate>Thu, 15 Oct 2015 18:50:48 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6960#comment-6960</guid></item><item><title>Comment by Airblader for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6962#comment-6962</link><description>What happens if you put the "text" part of your conky config on a single line rather than three? Also, please don't forget about the i3 version. It'd be very advisable to add the PPA and run the latest version if you aren't yet.</description><pubDate>Thu, 15 Oct 2015 19:45:07 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6962#comment-6962</guid></item><item><title>Comment by charmedxi for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6964#comment-6964</link><description>Changing the conkyrc to "[{"full_text": "${time %I:%M %P}"}]," causes i3bar to print that literal string in full. Unfortunately I am stuck on i3 version 4.1.2 as I have no root access on this machine (don't even ask...). I know more recent versions are more forgiving in the parsing of {"version":1}</description><pubDate>Fri, 16 Oct 2015 11:44:48 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6964#comment-6964</guid></item><item><title>Comment by Airblader for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6965#comment-6965</link><description>4.1.2? Wow. :) I'd suggest to maybe just stick with i3status or use conky to output plain text format instead of JSON.</description><pubDate>Fri, 16 Oct 2015 12:31:57 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6965#comment-6965</guid></item><item><title>Comment by charmedxi for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6966#comment-6966</link><description>I know, right? Ubuntu 12.04... sadly i3status wasn't installed... I'd rather use i3 with no status than unity, so I'll just give up for now. Thanks for your help, and for developing i3, will have to get the root password for i3-gaps-next goodness :)</description><pubDate>Fri, 16 Oct 2015 14:08:29 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?comment=6966#comment-6966</guid></item><item><title>Answer by charmedxi for &lt;p&gt;I'm having a problem with i3bar wherein none of the outputs from i3pystatus, i3phtatus nor conky are formatted correctly in i3bar. The same config (for i3pystatus at least) works perfectly on my desktop on Arch, but not on a new work laptop fixed on Ubuntu 12.04. Here are my configs and some outputs that might be useful to know before answering - I'll use conky as an example, since that can be found on the i3 wiki:&lt;/p&gt;
+
+&lt;p&gt;conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 1.0
+total_run_times 0
+short_units yes
+use_spacer left
+
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+
+# JSON for i3bar
+[
+{"full_text": "${time %I:%M %P}"}
+],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;conky start script (as advised on wiki)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Send the header so that i3bar knows we want to use JSON:
+echo '{"version":1}'
+
+# Begin the endless array.
+echo '['
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[],'
+
+# Now send blocks with information forever:
+exec conky -c $HOME/.i3/conkyrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and finally my i3bar config at the end of .i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    position top
+    status_command $HOME/.i3/conky-i3bar
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All that is outputted here is a single "]," in my i3bar. Any takers?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?answer=6956#post-id-6956</link><description>For conky:
+
+     WARNING: gnome-keyring:: couldn't connect to: /tmp/keyring-V9wLAb/pkcs11: No such file or directory
+    [
+        {"full_text": "05:47 pm"}
+    ],
+
+For i3pystatus with a similar config:
+
+    {"click_events": false, "version": 1}
+    [
+    [{"urgent": false, "name": "i3pystatus.clock.Clock", "full_text": "Thu 15 Oct 17:48:07 KW42", "instance": "19972048", "markup": "none"}]
+    ,[{"urgent": false, "name": "i3pystatus.clock.Clock", "full_text": "Thu 15 Oct 17:48:08 KW42", "instance": "19972048", "markup": "none"}]
+
+</description><pubDate>Thu, 15 Oct 2015 16:48:38 +0000</pubDate><guid>https://faq.i3wm.org/question/6952/i3bar-prints-unformatted-json-irrespective-of-status_command/?answer=6956#post-id-6956</guid></item></channel></rss>

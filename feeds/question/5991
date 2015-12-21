@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5991/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 13 May 2015 18:42:49 +0000</lastBuildDate><item><title>How to match a very short-lived window</title><link>https://faq.i3wm.org/question/5991/how-to-match-a-very-short-lived-window/</link><description>Matlab 2015 has the unfortunate regression that it does not set the correct window manager hints on its dialogues.
+
+I fixed most of the issues by matching on the window title and manually setting them to floating. However, some dialogues (progress messages) are not long-lived enough for me to run `xprop` on them, so I can't find out how to match them with `for_window`.
+
+Is there a tool/command/method that allows me to get the properties of the next window that opens? (Instead of me having to click on the desired window). </description><pubDate>Wed, 13 May 2015 16:05:50 +0000</pubDate><guid>https://faq.i3wm.org/question/5991/how-to-match-a-very-short-lived-window/</guid></item><item><title>Comment by Airblader for &lt;p&gt;Matlab 2015 has the unfortunate regression that it does not set the correct window manager hints on its dialogues.&lt;/p&gt;
+
+&lt;p&gt;I fixed most of the issues by matching on the window title and manually setting them to floating. However, some dialogues (progress messages) are not long-lived enough for me to run &lt;code&gt;xprop&lt;/code&gt; on them, so I can't find out how to match them with &lt;code&gt;for_window&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Is there a tool/command/method that allows me to get the properties of the next window that opens? (Instead of me having to click on the desired window). &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5991/how-to-match-a-very-short-lived-window/?comment=5994#comment-5994</link><description>I'd also file a bug against Matlab for this.</description><pubDate>Wed, 13 May 2015 18:42:49 +0000</pubDate><guid>https://faq.i3wm.org/question/5991/how-to-match-a-very-short-lived-window/?comment=5994#comment-5994</guid></item><item><title>Comment by gurkensalat for &lt;p&gt;Matlab 2015 has the unfortunate regression that it does not set the correct window manager hints on its dialogues.&lt;/p&gt;
+
+&lt;p&gt;I fixed most of the issues by matching on the window title and manually setting them to floating. However, some dialogues (progress messages) are not long-lived enough for me to run &lt;code&gt;xprop&lt;/code&gt; on them, so I can't find out how to match them with &lt;code&gt;for_window&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Is there a tool/command/method that allows me to get the properties of the next window that opens? (Instead of me having to click on the desired window). &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5991/how-to-match-a-very-short-lived-window/?comment=5993#comment-5993</link><description>As a quick solution you can use this script https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily and run the following command:
+i3subscribe window dump | grep -e "^window:new" -e "'title'" -e "'class'" -e "'instance'"
+The section after window:new would be of interest.</description><pubDate>Wed, 13 May 2015 16:52:51 +0000</pubDate><guid>https://faq.i3wm.org/question/5991/how-to-match-a-very-short-lived-window/?comment=5993#comment-5993</guid></item></channel></rss>

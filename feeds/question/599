@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/599/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 06 Oct 2012 23:31:30 +0000</lastBuildDate><item><title>i3 under ubuntu precise with gnome3 settings</title><link>https://faq.i3wm.org/question/599/i3-under-ubuntu-precise-with-gnome3-settings/</link><description>Hello,
+
+After trying out several methods to use i3 with Ubuntu (precise) and Gnome 3, I am using this method: [http://askubuntu.com/questions/77191/how-can-i-use-lightdm-for-user-defined-sessions](http://askubuntu.com/questions/77191/how-can-i-use-lightdm-for-user-defined-sessions)
+
+Created a `/usr/share/xsessions/custom.desktop` file:
+
+    [Desktop Entry]
+    Name=Xsession
+    Exec=/etc/X11/Xsession
+
+And created an .xinitrc file with:
+
+    #!/bin/bash
+    gnome-settings-daemon &amp;
+    exec i3
+
+The problem is that somehow none of my gnome settings (fonts, theme, keyboard) is being loaded.
+
+For example, I configured my keyboard layout in gnome3, and it is not loaded when I start an i3 session. None of the gtk theme settings are loaded either, if I start nautilus, it starts with an old default nautilus theme and not with the usual "Ambience" Ubuntu theme.
+
+What's even more strange is that sometimes this actually works, when I load i3 I get all my gnome settings (keyboard, theme, fonts, etc etc). I think it's because I log in to my gnome3 session before choosing my custom xsession, but I can't reproduce this.
+
+Is anyone using i3 under ubuntu with gnome3 settings? How?
+
+Thank you for your help</description><pubDate>Sat, 06 Oct 2012 13:29:40 +0000</pubDate><guid>https://faq.i3wm.org/question/599/i3-under-ubuntu-precise-with-gnome3-settings/</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;After trying out several methods to use i3 with Ubuntu (precise) and Gnome 3, I am using this method: &lt;a href="http://askubuntu.com/questions/77191/how-can-i-use-lightdm-for-user-defined-sessions"&gt;http://askubuntu.com/questions/77191/how-can-i-use-lightdm-for-user-defined-sessions&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Created a &lt;code&gt;/usr/share/xsessions/custom.desktop&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Desktop Entry]
+Name=Xsession
+Exec=/etc/X11/Xsession
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And created an .xinitrc file with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+gnome-settings-daemon &amp;amp;
+exec i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem is that somehow none of my gnome settings (fonts, theme, keyboard) is being loaded.&lt;/p&gt;
+
+&lt;p&gt;For example, I configured my keyboard layout in gnome3, and it is not loaded when I start an i3 session. None of the gtk theme settings are loaded either, if I start nautilus, it starts with an old default nautilus theme and not with the usual "Ambience" Ubuntu theme.&lt;/p&gt;
+
+&lt;p&gt;What's even more strange is that sometimes this actually works, when I load i3 I get all my gnome settings (keyboard, theme, fonts, etc etc). I think it's because I log in to my gnome3 session before choosing my custom xsession, but I can't reproduce this.&lt;/p&gt;
+
+&lt;p&gt;Is anyone using i3 under ubuntu with gnome3 settings? How?&lt;/p&gt;
+
+&lt;p&gt;Thank you for your help&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/599/i3-under-ubuntu-precise-with-gnome3-settings/?answer=602#post-id-602</link><description>It works for me here, but the only difference is that I start gnome-settings-daemon inside the i3 config.</description><pubDate>Sat, 06 Oct 2012 23:31:30 +0000</pubDate><guid>https://faq.i3wm.org/question/599/i3-under-ubuntu-precise-with-gnome3-settings/?answer=602#post-id-602</guid></item><item><title>Answer by Michael for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;After trying out several methods to use i3 with Ubuntu (precise) and Gnome 3, I am using this method: &lt;a href="http://askubuntu.com/questions/77191/how-can-i-use-lightdm-for-user-defined-sessions"&gt;http://askubuntu.com/questions/77191/how-can-i-use-lightdm-for-user-defined-sessions&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Created a &lt;code&gt;/usr/share/xsessions/custom.desktop&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Desktop Entry]
+Name=Xsession
+Exec=/etc/X11/Xsession
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And created an .xinitrc file with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+gnome-settings-daemon &amp;amp;
+exec i3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem is that somehow none of my gnome settings (fonts, theme, keyboard) is being loaded.&lt;/p&gt;
+
+&lt;p&gt;For example, I configured my keyboard layout in gnome3, and it is not loaded when I start an i3 session. None of the gtk theme settings are loaded either, if I start nautilus, it starts with an old default nautilus theme and not with the usual "Ambience" Ubuntu theme.&lt;/p&gt;
+
+&lt;p&gt;What's even more strange is that sometimes this actually works, when I load i3 I get all my gnome settings (keyboard, theme, fonts, etc etc). I think it's because I log in to my gnome3 session before choosing my custom xsession, but I can't reproduce this.&lt;/p&gt;
+
+&lt;p&gt;Is anyone using i3 under ubuntu with gnome3 settings? How?&lt;/p&gt;
+
+&lt;p&gt;Thank you for your help&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/599/i3-under-ubuntu-precise-with-gnome3-settings/?answer=600#post-id-600</link><description>I think you need to start gnome-settings-daemon.</description><pubDate>Sat, 06 Oct 2012 13:32:35 +0000</pubDate><guid>https://faq.i3wm.org/question/599/i3-under-ubuntu-precise-with-gnome3-settings/?answer=600#post-id-600</guid></item><item><title>Comment by simao for &lt;p&gt;I think you need to start gnome-settings-daemon.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/599/i3-under-ubuntu-precise-with-gnome3-settings/?comment=601#comment-601</link><description>I started it in my .xinitrc...</description><pubDate>Sat, 06 Oct 2012 13:34:26 +0000</pubDate><guid>https://faq.i3wm.org/question/599/i3-under-ubuntu-precise-with-gnome3-settings/?comment=601#comment-601</guid></item></channel></rss>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6722/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 01 Oct 2015 08:24:21 +0000</lastBuildDate><item><title>popup_during_fullscreen doesn't seem to work</title><link>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/</link><description> Hi
+
+I am trying to resolve my freeze issue in fullscree in chrome.
+I have added this in my i3 config:
+popup_during_fullscreen leave_fullscreen.
+and tried to open a new popup. The opened window is correctly handled as a popup (as I have added a rule to make it float) but chrome still freeze and does no quit fullscreen mode.
+
+I am using i3 4.8.
+
+Any ideas ?
+
+Regards.</description><pubDate>Mon, 28 Sep 2015 13:32:20 +0000</pubDate><guid>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/</guid></item><item><title>Comment by Airblader for &lt;p&gt;Hi&lt;/p&gt;
+
+&lt;p&gt;I am trying to resolve my freeze issue in fullscree in chrome.
+I have added this in my i3 config:
+popup&lt;em&gt;during&lt;/em&gt;fullscreen leave_fullscreen.
+and tried to open a new popup. The opened window is correctly handled as a popup (as I have added a rule to make it float) but chrome still freeze and does no quit fullscreen mode.&lt;/p&gt;
+
+&lt;p&gt;I am using i3 4.8.&lt;/p&gt;
+
+&lt;p&gt;Any ideas ?&lt;/p&gt;
+
+&lt;p&gt;Regards.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?comment=6723#comment-6723</link><description>First of all you should update to the latest version of i3. You're quite behind with 4.8. It's hard to make statements about old versions and we generally don't support them.</description><pubDate>Mon, 28 Sep 2015 15:30:50 +0000</pubDate><guid>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?comment=6723#comment-6723</guid></item><item><title>Answer by aacebedo for &lt;p&gt;Hi&lt;/p&gt;
+
+&lt;p&gt;I am trying to resolve my freeze issue in fullscree in chrome.
+I have added this in my i3 config:
+popup&lt;em&gt;during&lt;/em&gt;fullscreen leave_fullscreen.
+and tried to open a new popup. The opened window is correctly handled as a popup (as I have added a rule to make it float) but chrome still freeze and does no quit fullscreen mode.&lt;/p&gt;
+
+&lt;p&gt;I am using i3 4.8.&lt;/p&gt;
+
+&lt;p&gt;Any ideas ?&lt;/p&gt;
+
+&lt;p&gt;Regards.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?answer=6732#post-id-6732</link><description>Hi,
+
+I've updated using the official repo. I'm now running 4.10.4 and still the same issue.
+
+It can be easily reproduced by installing chrome 46 and feedly addon. 
+Then switch to fullscreen mode and click on the readitlater icon on any article
+Chrome will freeze until fullscreen mode is left.
+
+Another way to do it is to go to fullscreen mode with chrome, open two tabs, take one and slide it outside the main window. It shall freeze the same way.</description><pubDate>Tue, 29 Sep 2015 08:27:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?answer=6732#post-id-6732</guid></item><item><title>Comment by Airblader for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I've updated using the official repo. I'm now running 4.10.4 and still the same issue.&lt;/p&gt;
+
+&lt;p&gt;It can be easily reproduced by installing chrome 46 and feedly addon. 
+Then switch to fullscreen mode and click on the readitlater icon on any article
+Chrome will freeze until fullscreen mode is left.&lt;/p&gt;
+
+&lt;p&gt;Another way to do it is to go to fullscreen mode with chrome, open two tabs, take one and slide it outside the main window. It shall freeze the same way.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?comment=6763#comment-6763</link><description>I assume that Chrome would reject this as well, though, since dragging out a tab isn't actually creating a popup but just creating a new window. I still think the freeze is a Chrome problem that should be reported, though.</description><pubDate>Thu, 01 Oct 2015 08:24:21 +0000</pubDate><guid>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?comment=6763#comment-6763</guid></item><item><title>Comment by Airblader for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I've updated using the official repo. I'm now running 4.10.4 and still the same issue.&lt;/p&gt;
+
+&lt;p&gt;It can be easily reproduced by installing chrome 46 and feedly addon. 
+Then switch to fullscreen mode and click on the readitlater icon on any article
+Chrome will freeze until fullscreen mode is left.&lt;/p&gt;
+
+&lt;p&gt;Another way to do it is to go to fullscreen mode with chrome, open two tabs, take one and slide it outside the main window. It shall freeze the same way.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?comment=6762#comment-6762</link><description>Yes and no. Yes, you can change the property of the window programmatically and I think i3 will notice this as well, but the popup_during_fullscreen logic is applied when the window is managed, so updating it afterwards will be too late. [cont]</description><pubDate>Thu, 01 Oct 2015 08:23:10 +0000</pubDate><guid>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?comment=6762#comment-6762</guid></item><item><title>Comment by aacebedo for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I've updated using the official repo. I'm now running 4.10.4 and still the same issue.&lt;/p&gt;
+
+&lt;p&gt;It can be easily reproduced by installing chrome 46 and feedly addon. 
+Then switch to fullscreen mode and click on the readitlater icon on any article
+Chrome will freeze until fullscreen mode is left.&lt;/p&gt;
+
+&lt;p&gt;Another way to do it is to go to fullscreen mode with chrome, open two tabs, take one and slide it outside the main window. It shall freeze the same way.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?comment=6759#comment-6759</link><description>Thanks. So it would more a chrome issue that  i3? Is there any way to add the transient attribute to a window without modifying the binary creating it?</description><pubDate>Thu, 01 Oct 2015 07:29:38 +0000</pubDate><guid>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?comment=6759#comment-6759</guid></item><item><title>Comment by Airblader for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I've updated using the official repo. I'm now running 4.10.4 and still the same issue.&lt;/p&gt;
+
+&lt;p&gt;It can be easily reproduced by installing chrome 46 and feedly addon. 
+Then switch to fullscreen mode and click on the readitlater icon on any article
+Chrome will freeze until fullscreen mode is left.&lt;/p&gt;
+
+&lt;p&gt;Another way to do it is to go to fullscreen mode with chrome, open two tabs, take one and slide it outside the main window. It shall freeze the same way.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?comment=6743#comment-6743</link><description>The config directive only works if the window sets the transient property correctly, which Chrome doesn't seem to be doing. I assume the plugin scenario is the same. Note that transient windows will be floated without a rule, so having to add a rule to float them proves this.</description><pubDate>Tue, 29 Sep 2015 14:06:49 +0000</pubDate><guid>https://faq.i3wm.org/question/6722/popup_during_fullscreen-doesnt-seem-to-work/?comment=6743#comment-6743</guid></item></channel></rss>

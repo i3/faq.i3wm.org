@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/960/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 12 Mar 2013 16:54:05 +0000</lastBuildDate><item><title>Dual-screen: Skype notifications appear off-screen</title><link>https://faq.i3wm.org/question/960/dual-screen-skype-notifications-appear-off-screen/</link><description>On my laptop, I'm using a dual-screen setup, with the internal LVDS being the primary screen and the external screen to the right of it and placed slightly above.
+
+When Skype displays a notification window, it appears at the lower right corner of the (virtual) screen. The problem is: It does not check whether there is actually a monitor displaying that part. In my case, it appears in the 300-pixel gap below the external screen. Please see the **[image visualizing the problem](http://picpaste.de/i3-skype-notifications.png)**.
+
+Blue is the whole virtual screen area, yellow my internal display, green the external one. The invisible Skype notification ("Skype A") is shown in dark grey. It's especially annoying if the notification being displayed is an incoming call, because there doesn't seem to be any other way to accept it than clicking on that notification.
+
+I am able to see some notifications if I receive enough in a short amount of time to make them stack over each other (shown as "Skype B" and "Skype C").
+
+Now I know that this is probably not an i3 problem, but maybe you guys have an idea on how to fix it. I've tried `for_window [class="^Skype$" instance="^skype$" title="^skype$"] floating enable`, but this doesn't seem to have any effect on these windows.
+
+Any ideas?
+
+There is a [workaround in the official Skype forums](http://community.skype.com/t5/Linux/I-m-not-able-to-see-the-incoming-call-pop-up-window/m-p/639417#M1300) and an unanswered [question on Super User](http://superuser.com/questions/338031/skype-answer-button-appearing-off-screen-on-multi-monitor-linux-setup) about that topic.
+
+In case you're interested, some additional information:
+
+xrandr:
+
+    Screen 0: minimum 320 x 200, current 3520 x 1200, maximum 8192 x 8192
+    LVDS1 connected 1600x900+0+300 (normal left inverted right x axis y axis) 345mm x 194mm
+    [...]
+    HDMI3 connected 1920x1080+1600+0 (normal left inverted right x axis y axis) 531mm x 299mm
+    [...]
+
+set up by this command:
+
+    xrandr --output LVDS1 --auto --primary --pos 0x300 --output HDMI3 --auto --pos 1600x0</description><pubDate>Wed, 02 Jan 2013 17:45:35 +0000</pubDate><guid>https://faq.i3wm.org/question/960/dual-screen-skype-notifications-appear-off-screen/</guid></item><item><title>Answer by Marcos Moyano for &lt;p&gt;On my laptop, I'm using a dual-screen setup, with the internal LVDS being the primary screen and the external screen to the right of it and placed slightly above.&lt;/p&gt;
+
+&lt;p&gt;When Skype displays a notification window, it appears at the lower right corner of the (virtual) screen. The problem is: It does not check whether there is actually a monitor displaying that part. In my case, it appears in the 300-pixel gap below the external screen. Please see the &lt;strong&gt;&lt;a href="http://picpaste.de/i3-skype-notifications.png"&gt;image visualizing the problem&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Blue is the whole virtual screen area, yellow my internal display, green the external one. The invisible Skype notification ("Skype A") is shown in dark grey. It's especially annoying if the notification being displayed is an incoming call, because there doesn't seem to be any other way to accept it than clicking on that notification.&lt;/p&gt;
+
+&lt;p&gt;I am able to see some notifications if I receive enough in a short amount of time to make them stack over each other (shown as "Skype B" and "Skype C").&lt;/p&gt;
+
+&lt;p&gt;Now I know that this is probably not an i3 problem, but maybe you guys have an idea on how to fix it. I've tried &lt;code&gt;for_window [class="^Skype$" instance="^skype$" title="^skype$"] floating enable&lt;/code&gt;, but this doesn't seem to have any effect on these windows.&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+
+&lt;p&gt;There is a &lt;a href="http://community.skype.com/t5/Linux/I-m-not-able-to-see-the-incoming-call-pop-up-window/m-p/639417#M1300"&gt;workaround in the official Skype forums&lt;/a&gt; and an unanswered &lt;a href="http://superuser.com/questions/338031/skype-answer-button-appearing-off-screen-on-multi-monitor-linux-setup"&gt;question on Super User&lt;/a&gt; about that topic.&lt;/p&gt;
+
+&lt;p&gt;In case you're interested, some additional information:&lt;/p&gt;
+
+&lt;p&gt;xrandr:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Screen 0: minimum 320 x 200, current 3520 x 1200, maximum 8192 x 8192
+LVDS1 connected 1600x900+0+300 (normal left inverted right x axis y axis) 345mm x 194mm
+[...]
+HDMI3 connected 1920x1080+1600+0 (normal left inverted right x axis y axis) 531mm x 299mm
+[...]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;set up by this command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --auto --primary --pos 0x300 --output HDMI3 --auto --pos 1600x0
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/960/dual-screen-skype-notifications-appear-off-screen/?answer=1384#post-id-1384</link><description>I had the same problem and the only solution that worked for me was the one Michael described (bottom edge alignment for the two outputs). I use two external monitors and here is my xrandr setting:
+
+    xrandr --output HDMI-0 --mode 1920x1080 --pos 0x0 --output VGA-0 --mode 1680x1050 --pos 1920x30 --output LVDS-0 --off</description><pubDate>Tue, 12 Mar 2013 16:54:05 +0000</pubDate><guid>https://faq.i3wm.org/question/960/dual-screen-skype-notifications-appear-off-screen/?answer=1384#post-id-1384</guid></item><item><title>Answer by virtualeyes for &lt;p&gt;On my laptop, I'm using a dual-screen setup, with the internal LVDS being the primary screen and the external screen to the right of it and placed slightly above.&lt;/p&gt;
+
+&lt;p&gt;When Skype displays a notification window, it appears at the lower right corner of the (virtual) screen. The problem is: It does not check whether there is actually a monitor displaying that part. In my case, it appears in the 300-pixel gap below the external screen. Please see the &lt;strong&gt;&lt;a href="http://picpaste.de/i3-skype-notifications.png"&gt;image visualizing the problem&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Blue is the whole virtual screen area, yellow my internal display, green the external one. The invisible Skype notification ("Skype A") is shown in dark grey. It's especially annoying if the notification being displayed is an incoming call, because there doesn't seem to be any other way to accept it than clicking on that notification.&lt;/p&gt;
+
+&lt;p&gt;I am able to see some notifications if I receive enough in a short amount of time to make them stack over each other (shown as "Skype B" and "Skype C").&lt;/p&gt;
+
+&lt;p&gt;Now I know that this is probably not an i3 problem, but maybe you guys have an idea on how to fix it. I've tried &lt;code&gt;for_window [class="^Skype$" instance="^skype$" title="^skype$"] floating enable&lt;/code&gt;, but this doesn't seem to have any effect on these windows.&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+
+&lt;p&gt;There is a &lt;a href="http://community.skype.com/t5/Linux/I-m-not-able-to-see-the-incoming-call-pop-up-window/m-p/639417#M1300"&gt;workaround in the official Skype forums&lt;/a&gt; and an unanswered &lt;a href="http://superuser.com/questions/338031/skype-answer-button-appearing-off-screen-on-multi-monitor-linux-setup"&gt;question on Super User&lt;/a&gt; about that topic.&lt;/p&gt;
+
+&lt;p&gt;In case you're interested, some additional information:&lt;/p&gt;
+
+&lt;p&gt;xrandr:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Screen 0: minimum 320 x 200, current 3520 x 1200, maximum 8192 x 8192
+LVDS1 connected 1600x900+0+300 (normal left inverted right x axis y axis) 345mm x 194mm
+[...]
+HDMI3 connected 1920x1080+1600+0 (normal left inverted right x axis y axis) 531mm x 299mm
+[...]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;set up by this command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --auto --primary --pos 0x300 --output HDMI3 --auto --pos 1600x0
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/960/dual-screen-skype-notifications-appear-off-screen/?answer=1362#post-id-1362</link><description>Use notify-send in place of Skype's built-in message system.
+
+&gt; Skype &gt; Options &gt; Notifications &gt;
+&gt; click Advanced View button
+
+Then for, say, a chat message received, uncheck display popup, and check the execute following script checkbox:
+
+    notify-send "%sname says %smessage" -i skype -u normal -t 5000
+
+Click Test Event button and you should see the notification placed on whichever monitor has mouse focus.
+
+Repeat for incoming call, etc. events.</description><pubDate>Sat, 09 Mar 2013 23:15:32 +0000</pubDate><guid>https://faq.i3wm.org/question/960/dual-screen-skype-notifications-appear-off-screen/?answer=1362#post-id-1362</guid></item><item><title>Answer by Michael for &lt;p&gt;On my laptop, I'm using a dual-screen setup, with the internal LVDS being the primary screen and the external screen to the right of it and placed slightly above.&lt;/p&gt;
+
+&lt;p&gt;When Skype displays a notification window, it appears at the lower right corner of the (virtual) screen. The problem is: It does not check whether there is actually a monitor displaying that part. In my case, it appears in the 300-pixel gap below the external screen. Please see the &lt;strong&gt;&lt;a href="http://picpaste.de/i3-skype-notifications.png"&gt;image visualizing the problem&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Blue is the whole virtual screen area, yellow my internal display, green the external one. The invisible Skype notification ("Skype A") is shown in dark grey. It's especially annoying if the notification being displayed is an incoming call, because there doesn't seem to be any other way to accept it than clicking on that notification.&lt;/p&gt;
+
+&lt;p&gt;I am able to see some notifications if I receive enough in a short amount of time to make them stack over each other (shown as "Skype B" and "Skype C").&lt;/p&gt;
+
+&lt;p&gt;Now I know that this is probably not an i3 problem, but maybe you guys have an idea on how to fix it. I've tried &lt;code&gt;for_window [class="^Skype$" instance="^skype$" title="^skype$"] floating enable&lt;/code&gt;, but this doesn't seem to have any effect on these windows.&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+
+&lt;p&gt;There is a &lt;a href="http://community.skype.com/t5/Linux/I-m-not-able-to-see-the-incoming-call-pop-up-window/m-p/639417#M1300"&gt;workaround in the official Skype forums&lt;/a&gt; and an unanswered &lt;a href="http://superuser.com/questions/338031/skype-answer-button-appearing-off-screen-on-multi-monitor-linux-setup"&gt;question on Super User&lt;/a&gt; about that topic.&lt;/p&gt;
+
+&lt;p&gt;In case you're interested, some additional information:&lt;/p&gt;
+
+&lt;p&gt;xrandr:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Screen 0: minimum 320 x 200, current 3520 x 1200, maximum 8192 x 8192
+LVDS1 connected 1600x900+0+300 (normal left inverted right x axis y axis) 345mm x 194mm
+[...]
+HDMI3 connected 1920x1080+1600+0 (normal left inverted right x axis y axis) 531mm x 299mm
+[...]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;set up by this command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output LVDS1 --auto --primary --pos 0x300 --output HDMI3 --auto --pos 1600x0
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/960/dual-screen-skype-notifications-appear-off-screen/?answer=961#post-id-961</link><description>Well, one way to get around this is to configure your outputs in such a way that the bottom edge is aligned (e.g. with --pos 0x180).
+
+The other way is to enable the workaround from the Skype forums and _then_ use `for_window`. The reason it doesn’t work right now is probably because Skype tells the window manager to not manpage the popup. That is normal behavior for Chrome’s desktop notifications, too, or dunst’s notification popups.
+
+The "move absolute position" command (http://i3wm.org/docs/userguide.html#_focusing_moving_containers, only for floating windows) might come in handy, too, but also only after telling Skype to open a normal window.</description><pubDate>Wed, 02 Jan 2013 18:41:54 +0000</pubDate><guid>https://faq.i3wm.org/question/960/dual-screen-skype-notifications-appear-off-screen/?answer=961#post-id-961</guid></item></channel></rss>

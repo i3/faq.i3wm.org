@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/83/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 11 Nov 2015 12:19:39 +0000</lastBuildDate><item><title>How to run i3lock after computer inactivity?</title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/</link><description>I have a script that takes a screenshot of my screen and runs i3lock with that image. Now I would like to know how to start such script after x minutes of inactivity. Ideas?
+
+EDIT: This is the script I'm using when I launch i3lock. It takes a picture then blurs it.
+
+    #!/bin/bash
+    scrot /tmp/screen_locked.png
+    convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked2.png
+    i3lock -i /tmp/screen_locked2.png
+
+</description><pubDate>Thu, 07 Jun 2012 10:23:32 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/</guid></item><item><title>Answer by robru for &lt;p&gt;I have a script that takes a screenshot of my screen and runs i3lock with that image. Now I would like to know how to start such script after x minutes of inactivity. Ideas?&lt;/p&gt;
+
+&lt;p&gt;EDIT: This is the script I'm using when I launch i3lock. It takes a picture then blurs it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+scrot /tmp/screen_locked.png
+convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked2.png
+i3lock -i /tmp/screen_locked2.png
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?answer=3996#post-id-3996</link><description>First of all, I just want to say, this is the coolest screen lock I have ever seen in my life. Thanks so much for sharing this idea ;-)
+
+That said, I'm not super comfortable with leaving screenshots lying around in /tmp. Who knows what kind of sensitive info might be on my screen at any given time that the screen lock decides to activate. For security reasons, you should probably use this instead:
+
+    #!/bin/sh -e
+    
+    # Take a screenshot
+    scrot /tmp/screen_locked.png
+    
+    # Pixellate it 10x
+    mogrify -scale 10% -scale 1000% /tmp/screen_locked.png
+    
+    # Lock screen displaying this image.
+    i3lock -i /tmp/screen_locked.png
+    
+    # Turn the screen off after a delay.
+    sleep 60; pgrep i3lock &amp;&amp; xset dpms force off
+
+mogrify modifies the files in place, and is part of ImageMagick, so if you have convert installed, then you already have mogrify.
+
+Also note my use of pgrep and xset for turning the display off after a minute. xset turns the display off, but the pgrep bit makes sure that i3lock is still running before turning the screen off -- this way if you unlock the screen within the first minute, your screen doesn't blink off while you're trying to do something.
+
+Save that to a script, and then a couple lines in `.i3/config` and you're golden:
+
+    bindsym $mod+l exec "~/.local/bin/fuzzy_lock.sh"
+    exec xautolock -time 15 -locker '~/.local/bin/fuzzy_lock.sh' &amp;
+
+(I like Win+L for locking and I've disabled the jkl; motion keys personally)
+
+Hope this helps!</description><pubDate>Mon, 16 Jun 2014 04:45:55 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?answer=3996#post-id-3996</guid></item><item><title>Comment by airwindh for &lt;p&gt;First of all, I just want to say, this is the coolest screen lock I have ever seen in my life. Thanks so much for sharing this idea ;-)&lt;/p&gt;
+
+&lt;p&gt;That said, I'm not super comfortable with leaving screenshots lying around in /tmp. Who knows what kind of sensitive info might be on my screen at any given time that the screen lock decides to activate. For security reasons, you should probably use this instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh -e
+
+# Take a screenshot
+scrot /tmp/screen_locked.png
+
+# Pixellate it 10x
+mogrify -scale 10% -scale 1000% /tmp/screen_locked.png
+
+# Lock screen displaying this image.
+i3lock -i /tmp/screen_locked.png
+
+# Turn the screen off after a delay.
+sleep 60; pgrep i3lock &amp;amp;&amp;amp; xset dpms force off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;mogrify modifies the files in place, and is part of ImageMagick, so if you have convert installed, then you already have mogrify.&lt;/p&gt;
+
+&lt;p&gt;Also note my use of pgrep and xset for turning the display off after a minute. xset turns the display off, but the pgrep bit makes sure that i3lock is still running before turning the screen off -- this way if you unlock the screen within the first minute, your screen doesn't blink off while you're trying to do something.&lt;/p&gt;
+
+&lt;p&gt;Save that to a script, and then a couple lines in &lt;code&gt;.i3/config&lt;/code&gt; and you're golden:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+l exec "~/.local/bin/fuzzy_lock.sh"
+exec xautolock -time 15 -locker '~/.local/bin/fuzzy_lock.sh' &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(I like Win+L for locking and I've disabled the jkl; motion keys personally)&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=7273#comment-7273</link><description>after an incorrect attempt, the screen doesnt turn off after the countdown</description><pubDate>Wed, 11 Nov 2015 12:19:39 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=7273#comment-7273</guid></item><item><title>Comment by stefanv for &lt;p&gt;First of all, I just want to say, this is the coolest screen lock I have ever seen in my life. Thanks so much for sharing this idea ;-)&lt;/p&gt;
+
+&lt;p&gt;That said, I'm not super comfortable with leaving screenshots lying around in /tmp. Who knows what kind of sensitive info might be on my screen at any given time that the screen lock decides to activate. For security reasons, you should probably use this instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh -e
+
+# Take a screenshot
+scrot /tmp/screen_locked.png
+
+# Pixellate it 10x
+mogrify -scale 10% -scale 1000% /tmp/screen_locked.png
+
+# Lock screen displaying this image.
+i3lock -i /tmp/screen_locked.png
+
+# Turn the screen off after a delay.
+sleep 60; pgrep i3lock &amp;amp;&amp;amp; xset dpms force off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;mogrify modifies the files in place, and is part of ImageMagick, so if you have convert installed, then you already have mogrify.&lt;/p&gt;
+
+&lt;p&gt;Also note my use of pgrep and xset for turning the display off after a minute. xset turns the display off, but the pgrep bit makes sure that i3lock is still running before turning the screen off -- this way if you unlock the screen within the first minute, your screen doesn't blink off while you're trying to do something.&lt;/p&gt;
+
+&lt;p&gt;Save that to a script, and then a couple lines in &lt;code&gt;.i3/config&lt;/code&gt; and you're golden:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+l exec "~/.local/bin/fuzzy_lock.sh"
+exec xautolock -time 15 -locker '~/.local/bin/fuzzy_lock.sh' &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(I like Win+L for locking and I've disabled the jkl; motion keys personally)&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=5729#comment-5729</link><description>To get a more "blocky" feel, I use: ``convert /tmp/screen_locked.png -scale 5% -scale 2000% /tmp/screen_locked.png``
+</description><pubDate>Fri, 03 Apr 2015 18:41:46 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=5729#comment-5729</guid></item><item><title>Comment by bwv549 for &lt;p&gt;First of all, I just want to say, this is the coolest screen lock I have ever seen in my life. Thanks so much for sharing this idea ;-)&lt;/p&gt;
+
+&lt;p&gt;That said, I'm not super comfortable with leaving screenshots lying around in /tmp. Who knows what kind of sensitive info might be on my screen at any given time that the screen lock decides to activate. For security reasons, you should probably use this instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh -e
+
+# Take a screenshot
+scrot /tmp/screen_locked.png
+
+# Pixellate it 10x
+mogrify -scale 10% -scale 1000% /tmp/screen_locked.png
+
+# Lock screen displaying this image.
+i3lock -i /tmp/screen_locked.png
+
+# Turn the screen off after a delay.
+sleep 60; pgrep i3lock &amp;amp;&amp;amp; xset dpms force off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;mogrify modifies the files in place, and is part of ImageMagick, so if you have convert installed, then you already have mogrify.&lt;/p&gt;
+
+&lt;p&gt;Also note my use of pgrep and xset for turning the display off after a minute. xset turns the display off, but the pgrep bit makes sure that i3lock is still running before turning the screen off -- this way if you unlock the screen within the first minute, your screen doesn't blink off while you're trying to do something.&lt;/p&gt;
+
+&lt;p&gt;Save that to a script, and then a couple lines in &lt;code&gt;.i3/config&lt;/code&gt; and you're golden:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+l exec "~/.local/bin/fuzzy_lock.sh"
+exec xautolock -time 15 -locker '~/.local/bin/fuzzy_lock.sh' &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(I like Win+L for locking and I've disabled the jkl; motion keys personally)&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=4980#comment-4980</link><description>Note that "mogrify" takes approximately 2X as long as "convert".  I use convert, then remove the original image.</description><pubDate>Thu, 20 Nov 2014 15:35:47 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=4980#comment-4980</guid></item><item><title>Comment by hbaughman for &lt;p&gt;First of all, I just want to say, this is the coolest screen lock I have ever seen in my life. Thanks so much for sharing this idea ;-)&lt;/p&gt;
+
+&lt;p&gt;That said, I'm not super comfortable with leaving screenshots lying around in /tmp. Who knows what kind of sensitive info might be on my screen at any given time that the screen lock decides to activate. For security reasons, you should probably use this instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh -e
+
+# Take a screenshot
+scrot /tmp/screen_locked.png
+
+# Pixellate it 10x
+mogrify -scale 10% -scale 1000% /tmp/screen_locked.png
+
+# Lock screen displaying this image.
+i3lock -i /tmp/screen_locked.png
+
+# Turn the screen off after a delay.
+sleep 60; pgrep i3lock &amp;amp;&amp;amp; xset dpms force off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;mogrify modifies the files in place, and is part of ImageMagick, so if you have convert installed, then you already have mogrify.&lt;/p&gt;
+
+&lt;p&gt;Also note my use of pgrep and xset for turning the display off after a minute. xset turns the display off, but the pgrep bit makes sure that i3lock is still running before turning the screen off -- this way if you unlock the screen within the first minute, your screen doesn't blink off while you're trying to do something.&lt;/p&gt;
+
+&lt;p&gt;Save that to a script, and then a couple lines in &lt;code&gt;.i3/config&lt;/code&gt; and you're golden:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+l exec "~/.local/bin/fuzzy_lock.sh"
+exec xautolock -time 15 -locker '~/.local/bin/fuzzy_lock.sh' &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(I like Win+L for locking and I've disabled the jkl; motion keys personally)&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=4377#comment-4377</link><description>Scaling to 10% and then 1000% results in a fairly blocky image. Consider using `convert /tmp/screen_locked.png -blur 0x6 /tmp/screen_locked.png` instead. It does however take a few seconds for the image to be generated.</description><pubDate>Sun, 03 Aug 2014 16:43:22 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=4377#comment-4377</guid></item><item><title>Comment by robru for &lt;p&gt;First of all, I just want to say, this is the coolest screen lock I have ever seen in my life. Thanks so much for sharing this idea ;-)&lt;/p&gt;
+
+&lt;p&gt;That said, I'm not super comfortable with leaving screenshots lying around in /tmp. Who knows what kind of sensitive info might be on my screen at any given time that the screen lock decides to activate. For security reasons, you should probably use this instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh -e
+
+# Take a screenshot
+scrot /tmp/screen_locked.png
+
+# Pixellate it 10x
+mogrify -scale 10% -scale 1000% /tmp/screen_locked.png
+
+# Lock screen displaying this image.
+i3lock -i /tmp/screen_locked.png
+
+# Turn the screen off after a delay.
+sleep 60; pgrep i3lock &amp;amp;&amp;amp; xset dpms force off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;mogrify modifies the files in place, and is part of ImageMagick, so if you have convert installed, then you already have mogrify.&lt;/p&gt;
+
+&lt;p&gt;Also note my use of pgrep and xset for turning the display off after a minute. xset turns the display off, but the pgrep bit makes sure that i3lock is still running before turning the screen off -- this way if you unlock the screen within the first minute, your screen doesn't blink off while you're trying to do something.&lt;/p&gt;
+
+&lt;p&gt;Save that to a script, and then a couple lines in &lt;code&gt;.i3/config&lt;/code&gt; and you're golden:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+l exec "~/.local/bin/fuzzy_lock.sh"
+exec xautolock -time 15 -locker '~/.local/bin/fuzzy_lock.sh' &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(I like Win+L for locking and I've disabled the jkl; motion keys personally)&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=3997#comment-3997</link><description>Now all I need is a way to visually indicate the screen is about to lock, and a way to abort the locking if a key is pressed....</description><pubDate>Mon, 16 Jun 2014 05:04:27 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=3997#comment-3997</guid></item><item><title>Answer by Michael for &lt;p&gt;I have a script that takes a screenshot of my screen and runs i3lock with that image. Now I would like to know how to start such script after x minutes of inactivity. Ideas?&lt;/p&gt;
+
+&lt;p&gt;EDIT: This is the script I'm using when I launch i3lock. It takes a picture then blurs it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+scrot /tmp/screen_locked.png
+convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked2.png
+i3lock -i /tmp/screen_locked2.png
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?answer=84#post-id-84</link><description>There is a tool called xautolock which is what you’re looking for :).</description><pubDate>Thu, 07 Jun 2012 11:05:36 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?answer=84#post-id-84</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;I have a script that takes a screenshot of my screen and runs i3lock with that image. Now I would like to know how to start such script after x minutes of inactivity. Ideas?&lt;/p&gt;
+
+&lt;p&gt;EDIT: This is the script I'm using when I launch i3lock. It takes a picture then blurs it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+scrot /tmp/screen_locked.png
+convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked2.png
+i3lock -i /tmp/screen_locked2.png
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?answer=129#post-id-129</link><description>Not directly involved with this question, but I thought it might be worth saying, I like the gnome style Ctrl+Alt+L for locking the screen.
+
+You can achieve that in i3 by adding to config file:
+
+    bindsym Control+mod1+l exec i3lock
+
+(or, in case your Alt is not mod1, just run xmodmap to get which one to use).</description><pubDate>Fri, 15 Jun 2012 03:06:29 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?answer=129#post-id-129</guid></item><item><title>Answer by dkeg for &lt;p&gt;I have a script that takes a screenshot of my screen and runs i3lock with that image. Now I would like to know how to start such script after x minutes of inactivity. Ideas?&lt;/p&gt;
+
+&lt;p&gt;EDIT: This is the script I'm using when I launch i3lock. It takes a picture then blurs it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+scrot /tmp/screen_locked.png
+convert /tmp/screen_locked.png -scale 10% -scale 1000% /tmp/screen_locked2.png
+i3lock -i /tmp/screen_locked2.png
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?answer=1111#post-id-1111</link><description>using the aforementioned xautolock, you could call you script.  Place this in you autostart section
+&lt;pre&gt;
+exec xautolock -time 10 -locker 'i3lock /path/to/script' &amp;
+&lt;/pre&gt;
+
+adjust you time accordingly
+</description><pubDate>Wed, 23 Jan 2013 14:06:55 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?answer=1111#post-id-1111</guid></item><item><title>Comment by yhager for &lt;p&gt;using the aforementioned xautolock, you could call you script.  Place this in you autostart section&lt;/p&gt;
+
+&lt;pre&gt;exec xautolock -time 10 -locker 'i3lock /path/to/script' &amp;amp;
+&lt;/pre&gt;
+
+&lt;p&gt;adjust you time accordingly&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=3611#comment-3611</link><description>I believe you want exec "xautolock -time 10 -locker 'path/to/script'"</description><pubDate>Tue, 01 Apr 2014 19:48:13 +0000</pubDate><guid>https://faq.i3wm.org/question/83/how-to-run-i3lock-after-computer-inactivity/?comment=3611#comment-3611</guid></item></channel></rss>

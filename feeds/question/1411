@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1411/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 16 Mar 2013 17:45:34 +0000</lastBuildDate><item><title>How to assign whole commands to variables?</title><link>https://faq.i3wm.org/question/1411/how-to-assign-whole-commands-to-variables/</link><description>
+The screenshot part of my config:
+
+    set $ftsc jpg
+    set $selsc import $SCREENSHOT.$ftsc
+    set $selfsc import -window root $SCREENSHOT.$ftsc
+    set $editsc pinta $SCREENSHOT.$ftsc
+    set $uplsc imup $SCREENSHOT.$ftsc | loliclip -c
+    set $kselfsc Control
+    set $keditsc Shift
+    set $kuplsc Mod1
+    
+    bindsym Print $selsc
+    bindsym $keditsc+Print $selsc &amp;&amp; $editsc
+    bindsym $kselfsc+Print $selfsc
+    bindsym $kselfsc+$keditsc+Print $selfsc &amp;&amp; $editsc
+    bindsym $kuplsc+Print $selsc &amp;&amp; $uplsc
+    bindsym $kuplsc+$kselfsc+Print $selfsc &amp;&amp; $uplsc
+
+Only problem: It doesn’t work:
+
+    ERROR: Expected one of these tokens: &lt;end&gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'
+    ERROR: Your command: import $SCREENSHOT.$ftsc
+    ERROR:               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+This looks suspiciously like variables can’t take any spaces, which is rather unfortunate.
+
+Is there any way to do this? I want to keep this DRY.</description><pubDate>Fri, 15 Mar 2013 14:20:58 +0000</pubDate><guid>https://faq.i3wm.org/question/1411/how-to-assign-whole-commands-to-variables/</guid></item><item><title>Answer by Michael for &lt;p&gt;The screenshot part of my config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $ftsc jpg
+set $selsc import $SCREENSHOT.$ftsc
+set $selfsc import -window root $SCREENSHOT.$ftsc
+set $editsc pinta $SCREENSHOT.$ftsc
+set $uplsc imup $SCREENSHOT.$ftsc | loliclip -c
+set $kselfsc Control
+set $keditsc Shift
+set $kuplsc Mod1
+
+bindsym Print $selsc
+bindsym $keditsc+Print $selsc &amp;amp;&amp;amp; $editsc
+bindsym $kselfsc+Print $selfsc
+bindsym $kselfsc+$keditsc+Print $selfsc &amp;amp;&amp;amp; $editsc
+bindsym $kuplsc+Print $selsc &amp;amp;&amp;amp; $uplsc
+bindsym $kuplsc+$kselfsc+Print $selfsc &amp;amp;&amp;amp; $uplsc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Only problem: It doesn’t work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'
+ERROR: Your command: import $SCREENSHOT.$ftsc
+ERROR:               ^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This looks suspiciously like variables can’t take any spaces, which is rather unfortunate.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to do this? I want to keep this DRY.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1411/how-to-assign-whole-commands-to-variables/?answer=1412#post-id-1412</link><description>You are missing “exec” in your bindsym.
+
+You have:
+
+    bindsym $kselfsc+Print $selfsc
+
+You meant:
+
+    bindsym $kselfsc+Print exec $selfsc</description><pubDate>Fri, 15 Mar 2013 14:27:37 +0000</pubDate><guid>https://faq.i3wm.org/question/1411/how-to-assign-whole-commands-to-variables/?answer=1412#post-id-1412</guid></item><item><title>Comment by Profpatsch for &lt;p&gt;You are missing “exec” in your bindsym.&lt;/p&gt;
+
+&lt;p&gt;You have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $kselfsc+Print $selfsc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You meant:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $kselfsc+Print exec $selfsc
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1411/how-to-assign-whole-commands-to-variables/?comment=1424#comment-1424</link><description>Indeed. So the variables are assigned correctly?</description><pubDate>Sat, 16 Mar 2013 17:45:34 +0000</pubDate><guid>https://faq.i3wm.org/question/1411/how-to-assign-whole-commands-to-variables/?comment=1424#comment-1424</guid></item></channel></rss>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6307/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 17 Jul 2015 07:29:20 +0000</lastBuildDate><item><title>Clash between Emacs and i3's shortcuts</title><link>https://faq.i3wm.org/question/6307/clash-between-emacs-and-i3s-shortcuts/</link><description>Hi all,
+
+I have been looking around for a while but I really dont find any solution to this problem:
+
+I just installed i3 on a Debian-based distribution. It works well as I was exepecting it (I already use i3 on another computer on Ubuntu).
+
+But now, even if i declared fullscreen shortcut to be $mod+f (mod is Win key for me), when I type Ctrl-f my window toggles with fullscreen/tiled mode ! I am sure there is absolutely no shortcut using "Ctrl" in my configuration (~/.i3/config). The problem is: Ctrl-f is a common keyword in Emacs (go forward).
+
+I tried to add "bindsym Ctrl+f nop" so I do not have the fullscreen toggling anymore but I still do not have Emacs "forward" shortcut.
+
+Is there anyway to force to disable this shortcut only in i3 ? Where could I find the definition of this shortcut to delete the line ?
+
+Thank you for helping me !</description><pubDate>Thu, 16 Jul 2015 08:20:03 +0000</pubDate><guid>https://faq.i3wm.org/question/6307/clash-between-emacs-and-i3s-shortcuts/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I have been looking around for a while but I really dont find any solution to this problem:&lt;/p&gt;
+
+&lt;p&gt;I just installed i3 on a Debian-based distribution. It works well as I was exepecting it (I already use i3 on another computer on Ubuntu).&lt;/p&gt;
+
+&lt;p&gt;But now, even if i declared fullscreen shortcut to be $mod+f (mod is Win key for me), when I type Ctrl-f my window toggles with fullscreen/tiled mode ! I am sure there is absolutely no shortcut using "Ctrl" in my configuration (~/.i3/config). The problem is: Ctrl-f is a common keyword in Emacs (go forward).&lt;/p&gt;
+
+&lt;p&gt;I tried to add "bindsym Ctrl+f nop" so I do not have the fullscreen toggling anymore but I still do not have Emacs "forward" shortcut.&lt;/p&gt;
+
+&lt;p&gt;Is there anyway to force to disable this shortcut only in i3 ? Where could I find the definition of this shortcut to delete the line ?&lt;/p&gt;
+
+&lt;p&gt;Thank you for helping me !&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6307/clash-between-emacs-and-i3s-shortcuts/?answer=6309#post-id-6309</link><description> **Ctrl** is not a valid modifier name. The correct name would be **Control**. So if it is already in your configuration, you would have to look for `Control+f`. Note that *i3* looks in several places for configuration files and takes the first (and only the first) it finds:
+
+ 1. `~/.config/i3/config` (or `$XDG_CONFIG_HOME/i3/config` if set)
+ 2. `/etc/xdg/i3/config` (or `$XDG_CONFIG_DIRS/i3/config` if set)
+ 3. `~/.i3/config`
+ 4. `/etc/i3/config`
+
+*i3* grabs only shortcuts that are defined in its configuration. The only way to get *i3* to ignore a shortcut is to not put it into the configuration. If it is not in your configuration, then *i3* is not responsible for putting the window on fullscreen.
+
+I can think of two likely causes for the issue:
+
+* The application itself has a *Control+f* as shortcut for fullscreen. (You did not say if it affects all windows or if you run emacs inside a terminal)
+* Some other program grabs global shortcuts, maybe a shortcut utility (*hotkeys*, *keylaunche*, etc.) or a settings manager from a desktop environment (e.g. *gnome-settings-daemon* or something similar)
+
+----
+
+The workaround you tried will not work (or only partially):
+
+     bindsym Control+f nop
+
+While this would (hopefully) lead to *i3* grabbing the shortcut **Control+f** and *i3* would do nothing, *i3* also would not pass it along to any other application. So **Control+f** would still not work in Emacs.
+
+</description><pubDate>Thu, 16 Jul 2015 09:38:12 +0000</pubDate><guid>https://faq.i3wm.org/question/6307/clash-between-emacs-and-i3s-shortcuts/?answer=6309#post-id-6309</guid></item><item><title>Answer by Kesaco for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I have been looking around for a while but I really dont find any solution to this problem:&lt;/p&gt;
+
+&lt;p&gt;I just installed i3 on a Debian-based distribution. It works well as I was exepecting it (I already use i3 on another computer on Ubuntu).&lt;/p&gt;
+
+&lt;p&gt;But now, even if i declared fullscreen shortcut to be $mod+f (mod is Win key for me), when I type Ctrl-f my window toggles with fullscreen/tiled mode ! I am sure there is absolutely no shortcut using "Ctrl" in my configuration (~/.i3/config). The problem is: Ctrl-f is a common keyword in Emacs (go forward).&lt;/p&gt;
+
+&lt;p&gt;I tried to add "bindsym Ctrl+f nop" so I do not have the fullscreen toggling anymore but I still do not have Emacs "forward" shortcut.&lt;/p&gt;
+
+&lt;p&gt;Is there anyway to force to disable this shortcut only in i3 ? Where could I find the definition of this shortcut to delete the line ?&lt;/p&gt;
+
+&lt;p&gt;Thank you for helping me !&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6307/clash-between-emacs-and-i3s-shortcuts/?answer=6310#post-id-6310</link><description>&gt; **Ctrl** is not a valid modifier name. The correct name would be **Control**.
+
+Sorry for the mistake but no lines with **Control** Neither.
+
+&gt; The application itself has a Control+f as shortcut for fullscreen. (You did not say if it affects all windows or if you run emacs inside a terminal)
+
+I've already looked to that part of the documentation and I know the file I am looking for (number 3) is the one which is parsed by i3 (1 and 2 do not exist, 4 uses Mod1-Alt exclusively and I use Mod4-Win).
+
+&gt; The application itself has a Control+f as shortcut for fullscreen. (You did not say if it affects all windows or if you run emacs inside a terminal)
+
+I run Emacs inside a terminal so Control+f should not be a shortcut for fullscreen. The other binaries are also sensible to the Control+f shortcut (and toggle fullscreen). Exception with Konqueror in which Control+f launches the search engine. May be this is a clue ? :)
+
+&gt; Some other program grabs global shortcuts, maybe a shortcut utility (hotkeys, keylaunche, etc.) or a settings manager from a desktop environment (e.g. gnome-settings-daemon or something similar)
+
+I am going to try figure it out...
+
+
+*Edit: Sorry for the mistake, after a while I figured out Konsole had some local shortcuts (I obviously edited thoses but I do not remember...) so under KDE I opened a Konsole, then Configuration &gt; Shortcuts configuration. Thanks anyway for the tips !*</description><pubDate>Thu, 16 Jul 2015 12:13:57 +0000</pubDate><guid>https://faq.i3wm.org/question/6307/clash-between-emacs-and-i3s-shortcuts/?answer=6310#post-id-6310</guid></item><item><title>Comment by Adaephon for &lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Ctrl&lt;/strong&gt; is not a valid modifier name. The correct name would be &lt;strong&gt;Control&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Sorry for the mistake but no lines with &lt;strong&gt;Control&lt;/strong&gt; Neither.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The application itself has a Control+f as shortcut for fullscreen. (You did not say if it affects all windows or if you run emacs inside a terminal)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I've already looked to that part of the documentation and I know the file I am looking for (number 3) is the one which is parsed by i3 (1 and 2 do not exist, 4 uses Mod1-Alt exclusively and I use Mod4-Win).&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The application itself has a Control+f as shortcut for fullscreen. (You did not say if it affects all windows or if you run emacs inside a terminal)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I run Emacs inside a terminal so Control+f should not be a shortcut for fullscreen. The other binaries are also sensible to the Control+f shortcut (and toggle fullscreen). Exception with Konqueror in which Control+f launches the search engine. May be this is a clue ? :)&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Some other program grabs global shortcuts, maybe a shortcut utility (hotkeys, keylaunche, etc.) or a settings manager from a desktop environment (e.g. gnome-settings-daemon or something similar)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I am going to try figure it out...&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Edit: Sorry for the mistake, after a while I figured out Konsole had some local shortcuts (I obviously edited thoses but I do not remember...) so under KDE I opened a Konsole, then Configuration &amp;gt; Shortcuts configuration. Thanks anyway for the tips !&lt;/em&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6307/clash-between-emacs-and-i3s-shortcuts/?comment=6313#comment-6313</link><description>Please use comments to respond to answers. This is a Q&amp;A board, so answers should always respond to the original question. As it seems to be very unique problem it may be better to take this to the mailing list or the bug tracker. This site in not the right place for longer discussions.</description><pubDate>Fri, 17 Jul 2015 07:29:20 +0000</pubDate><guid>https://faq.i3wm.org/question/6307/clash-between-emacs-and-i3s-shortcuts/?comment=6313#comment-6313</guid></item></channel></rss>

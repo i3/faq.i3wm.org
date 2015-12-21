@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1052/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 21 Apr 2014 13:25:09 +0000</lastBuildDate><item><title>trackpad horizontal scrolling</title><link>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/</link><description>How do I enable this in i3(ubuntu 12.10, i3 4.2) ?
+Thanks</description><pubDate>Mon, 14 Jan 2013 19:42:57 +0000</pubDate><guid>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/</guid></item><item><title>Answer by pmig for &lt;p&gt;How do I enable this in i3(ubuntu 12.10, i3 4.2) ?
+Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/?answer=3698#post-id-3698</link><description>If you still come over this issue:
+
+ 1. Find your Synaptics TouchPad ID
+
+    xinput --list
+ 2. Get your current settings:
+
+    xinput --watch-props &lt;ID&gt;
+
+ 3. Propably your "Synaptics Two-Finger Scrolling" will have the value 1, 0
+
+ 4. Change it to 1, 1 with
+
+    xinput --set-prop &lt;ID&gt; "Synaptics Two-Finger Scrolling" 1 1
+</description><pubDate>Mon, 21 Apr 2014 13:25:09 +0000</pubDate><guid>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/?answer=3698#post-id-3698</guid></item><item><title>Answer by joepd for &lt;p&gt;How do I enable this in i3(ubuntu 12.10, i3 4.2) ?
+Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/?answer=1056#post-id-1056</link><description>I would upgrade to the current version of i3 (4.4). This will probably not solve your issue, but fixes some others, and will give you some new features. 
+
+This sounds like a question specific to hardware/Xorg. I would search over there instead of the window manager. If it works in another window manager/DE, investigate how this is done. I suppose you'll be better off asking at your distro's help channels. </description><pubDate>Tue, 15 Jan 2013 19:18:59 +0000</pubDate><guid>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/?answer=1056#post-id-1056</guid></item><item><title>Answer by Goran for &lt;p&gt;How do I enable this in i3(ubuntu 12.10, i3 4.2) ?
+Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/?answer=1059#post-id-1059</link><description>Joepad tnx for the info, I will definitely try 4.4 at some point. I would like to dive in to the code and add a phew things.
+
+I managed to solve it. Driver controlling the track pad is called synaptics and settings is somewhere inside "xorg.conf". In my case  it's the
+/usr/share/X11/xorg.conf.d/50-synaptics.conf
+In the file it says that the file is automatically generated and it might be rewritten after distribution update so it's better to move the content to : /etc/X11/xorg.conf (xorg.conf does not exist  any more on Ubuntu by default  "automatisaion")
+
+Anyway I just edited the file didn't make xorg.conf 
+Inside (Section "InputClass") I added
+        option "HorizTwoFingerScroll" "on"
+
+To see the supported options and if it's working in console type "synclient"
+If all is well you should see
+    VertTwoFingerScroll     = 1
+    HorizTwoFingerScroll    = 1
+ 
+
+
+
+
+</description><pubDate>Tue, 15 Jan 2013 21:50:25 +0000</pubDate><guid>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/?answer=1059#post-id-1059</guid></item><item><title>Comment by joepd for &lt;p&gt;Joepad tnx for the info, I will definitely try 4.4 at some point. I would like to dive in to the code and add a phew things.&lt;/p&gt;
+
+&lt;p&gt;I managed to solve it. Driver controlling the track pad is called synaptics and settings is somewhere inside "xorg.conf". In my case  it's the
+/usr/share/X11/xorg.conf.d/50-synaptics.conf
+In the file it says that the file is automatically generated and it might be rewritten after distribution update so it's better to move the content to : /etc/X11/xorg.conf (xorg.conf does not exist  any more on Ubuntu by default  "automatisaion")&lt;/p&gt;
+
+&lt;p&gt;Anyway I just edited the file didn't make xorg.conf 
+Inside (Section "InputClass") I added
+        option "HorizTwoFingerScroll" "on"&lt;/p&gt;
+
+&lt;p&gt;To see the supported options and if it's working in console type "synclient"
+If all is well you should see
+    VertTwoFingerScroll     = 1
+    HorizTwoFingerScroll    = 1&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/?comment=1066#comment-1066</link><description>Glad you figured it out, thanks for updating your question, I'm sure this will be useful for somebody! </description><pubDate>Wed, 16 Jan 2013 06:26:54 +0000</pubDate><guid>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/?comment=1066#comment-1066</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Joepad tnx for the info, I will definitely try 4.4 at some point. I would like to dive in to the code and add a phew things.&lt;/p&gt;
+
+&lt;p&gt;I managed to solve it. Driver controlling the track pad is called synaptics and settings is somewhere inside "xorg.conf". In my case  it's the
+/usr/share/X11/xorg.conf.d/50-synaptics.conf
+In the file it says that the file is automatically generated and it might be rewritten after distribution update so it's better to move the content to : /etc/X11/xorg.conf (xorg.conf does not exist  any more on Ubuntu by default  "automatisaion")&lt;/p&gt;
+
+&lt;p&gt;Anyway I just edited the file didn't make xorg.conf 
+Inside (Section "InputClass") I added
+        option "HorizTwoFingerScroll" "on"&lt;/p&gt;
+
+&lt;p&gt;To see the supported options and if it's working in console type "synclient"
+If all is well you should see
+    VertTwoFingerScroll     = 1
+    HorizTwoFingerScroll    = 1&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/?comment=1082#comment-1082</link><description>For me it always worked out of the box... but for more finger events, you can use touchegg.</description><pubDate>Fri, 18 Jan 2013 05:00:58 +0000</pubDate><guid>https://faq.i3wm.org/question/1052/trackpad-horizontal-scrolling/?comment=1082#comment-1082</guid></item></channel></rss>

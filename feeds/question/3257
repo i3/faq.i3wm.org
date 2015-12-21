@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3257/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 17 Jan 2014 15:19:45 +0000</lastBuildDate><item><title>Is there a way to get the name of the last-used workspace?</title><link>https://faq.i3wm.org/question/3257/is-there-a-way-to-get-the-name-of-the-last-used-workspace/</link><description>I would like a way to get the name of the last-used workspace. I don't mind if I have to use a script.</description><pubDate>Fri, 17 Jan 2014 09:31:47 +0000</pubDate><guid>https://faq.i3wm.org/question/3257/is-there-a-way-to-get-the-name-of-the-last-used-workspace/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I would like a way to get the name of the last-used workspace. I don't mind if I have to use a script.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3257/is-there-a-way-to-get-the-name-of-the-last-used-workspace/?answer=3263#post-id-3263</link><description>Unfortunatelly the name of the previously used workspace is not exposed in any way.
+
+You can go to the last used workspace with
+
+    $ i3-msg workspace back_and_forth
+
+which toggles between the current and last workspace.
+
+So you could use a script to switch to the last workspace, get the current name from `i3-msg -t get_workspaces` and switch back.
+
+In Python using [this python library](https://github.com/ziberna/i3-py) it looks like that:
+
+    import i3
+    from time import sleep
+
+    i3.workspace('back_and_forth')
+    lastWSName = i3.filter(i3.get_workspaces(), focused=True)[0]['name']
+    sleep(0.01)
+    i3.workspace('back_and_forth')
+
+The `sleep(0.01)` is needed because it seems that the second workspace switch will not work most of the time if called without delay. (`0.01` is just an experimental value, that works for my current machine. `0.001` was to short most of the time.)</description><pubDate>Fri, 17 Jan 2014 12:27:18 +0000</pubDate><guid>https://faq.i3wm.org/question/3257/is-there-a-way-to-get-the-name-of-the-last-used-workspace/?answer=3263#post-id-3263</guid></item><item><title>Answer by TonyC for &lt;p&gt;I would like a way to get the name of the last-used workspace. I don't mind if I have to use a script.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3257/is-there-a-way-to-get-the-name-of-the-last-used-workspace/?answer=3266#post-id-3266</link><description>I thought this was interesting so I thought I would give it a try.
+
+    #!/usr/bin/env python2
+    
+    import i3
+    
+    LAST_WS_PATH = '/tmp/i3.last_workspace'
+    
+    def on_ws_focus(event, data, subscription):
+        if 'old' in event:
+            with open(LAST_WS_PATH, 'w') as f:
+                f.write(event['old']['name'])
+    
+    i3.Subscription(on_ws_focus, 'workspace')
+
+Now after you run the script, to get the name of the last used workspace, use `cat /tmp/i3.last_workspace`. For instance, you could get the exact same thing as back and forth with `i3-msg workspace $(cat /tmp/i3.last_workspace)`.
+
+If you have a tmpfs, the write will happen in memory, so it won't be that expensive.
+</description><pubDate>Fri, 17 Jan 2014 14:47:55 +0000</pubDate><guid>https://faq.i3wm.org/question/3257/is-there-a-way-to-get-the-name-of-the-last-used-workspace/?answer=3266#post-id-3266</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;I thought this was interesting so I thought I would give it a try.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python2
+
+import i3
+
+LAST_WS_PATH = '/tmp/i3.last_workspace'
+
+def on_ws_focus(event, data, subscription):
+    if 'old' in event:
+        with open(LAST_WS_PATH, 'w') as f:
+            f.write(event['old']['name'])
+
+i3.Subscription(on_ws_focus, 'workspace')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now after you run the script, to get the name of the last used workspace, use &lt;code&gt;cat /tmp/i3.last_workspace&lt;/code&gt;. For instance, you could get the exact same thing as back and forth with &lt;code&gt;i3-msg workspace $(cat /tmp/i3.last_workspace)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you have a tmpfs, the write will happen in memory, so it won't be that expensive.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3257/is-there-a-way-to-get-the-name-of-the-last-used-workspace/?comment=3268#comment-3268</link><description>Thanks TonyC!</description><pubDate>Fri, 17 Jan 2014 15:19:45 +0000</pubDate><guid>https://faq.i3wm.org/question/3257/is-there-a-way-to-get-the-name-of-the-last-used-workspace/?comment=3268#comment-3268</guid></item></channel></rss>

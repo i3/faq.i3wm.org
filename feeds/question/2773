@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2773/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 24 Oct 2013 12:13:34 +0000</lastBuildDate><item><title>Unable to bind anything to pipe symbol using keyname</title><link>https://faq.i3wm.org/question/2773/unable-to-bind-anything-to-pipe-symbol-using-keyname/</link><description>I would like to have &amp;lt;Mod&amp;gt;+| bound to "split h". I believe that the following line in `.i3/config` should be what's required:
+
+    bindsym $mod+Shift+bar split h
+
+('bar' being the name shown in xev when I hit the pipe key on my UK layout keyboard. However, when I have the above line in my `.i3/config`, I receive the following error:
+
+    ERROR: CONFIG: syntax error, unexpected bar, expecting &lt;number&gt; or &lt;word&gt; or '+'
+
+When I use the keycode instead:
+
+    bindsym $mod+Shift+94
+
+Then everything works as expected. Is 'bar' being treated as a reserved word by the i3 config parser? Is there a way to achieve this behaviour without resorting to keycodes?</description><pubDate>Wed, 23 Oct 2013 22:41:51 +0000</pubDate><guid>https://faq.i3wm.org/question/2773/unable-to-bind-anything-to-pipe-symbol-using-keyname/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I would like to have &amp;lt;Mod&amp;gt;+| bound to "split h". I believe that the following line in &lt;code&gt;.i3/config&lt;/code&gt; should be what's required:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+bar split h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;('bar' being the name shown in xev when I hit the pipe key on my UK layout keyboard. However, when I have the above line in my &lt;code&gt;.i3/config&lt;/code&gt;, I receive the following error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: CONFIG: syntax error, unexpected bar, expecting &amp;lt;number&amp;gt; or &amp;lt;word&amp;gt; or '+'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I use the keycode instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+94
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then everything works as expected. Is 'bar' being treated as a reserved word by the i3 config parser? Is there a way to achieve this behaviour without resorting to keycodes?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2773/unable-to-bind-anything-to-pipe-symbol-using-keyname/?answer=2775#post-id-2775</link><description>First of: When I tested `bindsym $mod+Shift+bar split h` just now, it worked for me (with version 4.6.1-1+g4.6-88-ge99158e from build.i3wm.org), so there may be another problem in your configuration that is not actually located at 'bar'.
+
+That aside, as far as I can tell, '|' is on the '\'-key just right of Left-Shift on UK-QWERTY. So you actually type &lt;Shift&gt;+\ to get a '|'. Therefore
+
+    bindsym $mod+Shift+backslash split h
+
+should work in the expected way. (For me either - 'bar' or 'backslash' - works exactly the same way)
+
+This works for me, too:
+
+    bindsym $mod+bar split h
+
+So the 'Shift' seems to be redundant.</description><pubDate>Thu, 24 Oct 2013 12:13:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2773/unable-to-bind-anything-to-pipe-symbol-using-keyname/?answer=2775#post-id-2775</guid></item></channel></rss>

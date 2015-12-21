@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4861/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 03 Oct 2015 14:54:28 +0000</lastBuildDate><item><title>Closing a window doesn't work with alt F4 kill shortcut</title><link>https://faq.i3wm.org/question/4861/closing-a-window-doesnt-work-with-alt-f4-kill-shortcut/</link><description>Hi there 
+I'm new to i3 trying to change my config file to the default shortcuts is used with KDE
+
+here is what i doo
+
+    set $mod Mod4
+    set $alt Mod1
+    
+    bindsym $mod+Shift+q kill
+    bindsym $alt+F4      kill
+
+ 
+
+
+And now the interesting part `$mod+Shift+q kill` works but `bindsym $alt+F4 kill` doesn't.
+
+Errorlog:
+
+    ERROR: Expected one of these tokens: 'window', 'client', &lt;end&gt;
+    ERROR: Your command: kill                      # kill focused window
+    ERROR:                                         ^^^^^^^^^^^^^^^^^^^^^
+    /run/user/1000/i3/errorlog.10202 (END)
+
+no clue what to do
+
+note: `bindsym $alt+F2 exec dmenu_run` works perfect
+
+note: full config file is here : github.com/wuschLOR/.i3
+</description><pubDate>Mon, 27 Oct 2014 12:26:43 +0000</pubDate><guid>https://faq.i3wm.org/question/4861/closing-a-window-doesnt-work-with-alt-f4-kill-shortcut/</guid></item><item><title>Answer by cee for &lt;p&gt;Hi there 
+I'm new to i3 trying to change my config file to the default shortcuts is used with KDE&lt;/p&gt;
+
+&lt;p&gt;here is what i doo&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mod Mod4
+set $alt Mod1
+
+bindsym $mod+Shift+q kill
+bindsym $alt+F4      kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And now the interesting part &lt;code&gt;$mod+Shift+q kill&lt;/code&gt; works but &lt;code&gt;bindsym $alt+F4 kill&lt;/code&gt; doesn't.&lt;/p&gt;
+
+&lt;p&gt;Errorlog:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: Expected one of these tokens: 'window', 'client', &amp;lt;end&amp;gt;
+ERROR: Your command: kill                      # kill focused window
+ERROR:                                         ^^^^^^^^^^^^^^^^^^^^^
+/run/user/1000/i3/errorlog.10202 (END)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;no clue what to do&lt;/p&gt;
+
+&lt;p&gt;note: &lt;code&gt;bindsym $alt+F2 exec dmenu_run&lt;/code&gt; works perfect&lt;/p&gt;
+
+&lt;p&gt;note: full config file is here : github.com/wuschLOR/.i3&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4861/closing-a-window-doesnt-work-with-alt-f4-kill-shortcut/?answer=4866#post-id-4866</link><description>You are not allowed to have a comment on the same line as your command.  
+Hence The Error:
+
+     # kill focused window</description><pubDate>Mon, 27 Oct 2014 21:48:53 +0000</pubDate><guid>https://faq.i3wm.org/question/4861/closing-a-window-doesnt-work-with-alt-f4-kill-shortcut/?answer=4866#post-id-4866</guid></item><item><title>Comment by moodboom for &lt;p&gt;You are not allowed to have a comment on the same line as your command. &lt;br/&gt;
+Hence The Error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; # kill focused window
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4861/closing-a-window-doesnt-work-with-alt-f4-kill-shortcut/?comment=6794#comment-6794</link><description>Same here, thanks for the fix!!  WEIRD bc end-of-line comments are fine on other keybindings.</description><pubDate>Sat, 03 Oct 2015 14:54:28 +0000</pubDate><guid>https://faq.i3wm.org/question/4861/closing-a-window-doesnt-work-with-alt-f4-kill-shortcut/?comment=6794#comment-6794</guid></item><item><title>Comment by wu for &lt;p&gt;You are not allowed to have a comment on the same line as your command. &lt;br/&gt;
+Hence The Error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; # kill focused window
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4861/closing-a-window-doesnt-work-with-alt-f4-kill-shortcut/?comment=4868#comment-4868</link><description>oh i feel stupid right now .... it works without comments ty! Looking at my conifg I did that a lot but didn't got any error messages - strange</description><pubDate>Mon, 27 Oct 2014 23:28:37 +0000</pubDate><guid>https://faq.i3wm.org/question/4861/closing-a-window-doesnt-work-with-alt-f4-kill-shortcut/?comment=4868#comment-4868</guid></item></channel></rss>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3598/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 18 May 2014 22:50:29 +0000</lastBuildDate><item><title>Resize with px and not ppt</title><link>https://faq.i3wm.org/question/3598/resize-with-px-and-not-ppt/</link><description>Sorry my bad English, isn't my native language.
+My problem is the use of de command resize:
+resize grow|shrink &lt;direction&gt; [&lt;px&gt; px] [or &lt;ppt&gt; ppt]
+
+In my case, I am trying to use a command to resize one pixel by time, like this "resize grow height 1 px". But they ignore the px value and use just the ppt value (10 ppt, the default value in this case).
+
+Doing a fast search in the source code, in the function cmd_resize (commands.c:767), I see, he just use the value of px when its applied to a floating window or floating container, else they use the ppt value. This is a bug or misinterpretation of the documentation?</description><pubDate>Sun, 30 Mar 2014 20:01:05 +0000</pubDate><guid>https://faq.i3wm.org/question/3598/resize-with-px-and-not-ppt/</guid></item><item><title>Answer by Michael for &lt;p&gt;Sorry my bad English, isn't my native language.
+My problem is the use of de command resize:
+resize grow|shrink &amp;lt;direction&amp;gt; [&amp;lt;px&amp;gt; px] [or &amp;lt;ppt&amp;gt; ppt]&lt;/p&gt;
+
+&lt;p&gt;In my case, I am trying to use a command to resize one pixel by time, like this "resize grow height 1 px". But they ignore the px value and use just the ppt value (10 ppt, the default value in this case).&lt;/p&gt;
+
+&lt;p&gt;Doing a fast search in the source code, in the function cmd_resize (commands.c:767), I see, he just use the value of px when its applied to a floating window or floating container, else they use the ppt value. This is a bug or misinterpretation of the documentation?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3598/resize-with-px-and-not-ppt/?answer=3670#post-id-3670</link><description>The feature is working as designed.
+
+Pixels are meaningful when you are dealing with floating windows, because they are not part of the tiling layout.
+
+Percentage points (ppt) are meaningful when you are dealing with tiling windows, since for them, i3 actually stores/works with ppts, not pixels.
+
+If you really really want to use pixels, you need a custom script using the ipc interface (see http://i3wm.org/docs/ipc.html) that converts percentage points into pixels, does the calculation, converts back to percentage points, and issues a resize.</description><pubDate>Thu, 17 Apr 2014 12:44:44 +0000</pubDate><guid>https://faq.i3wm.org/question/3598/resize-with-px-and-not-ppt/?answer=3670#post-id-3670</guid></item><item><title>Comment by joek1010 for &lt;p&gt;The feature is working as designed.&lt;/p&gt;
+
+&lt;p&gt;Pixels are meaningful when you are dealing with floating windows, because they are not part of the tiling layout.&lt;/p&gt;
+
+&lt;p&gt;Percentage points (ppt) are meaningful when you are dealing with tiling windows, since for them, i3 actually stores/works with ppts, not pixels.&lt;/p&gt;
+
+&lt;p&gt;If you really really want to use pixels, you need a custom script using the ipc interface (see &lt;a href="http://i3wm.org/docs/ipc.html"&gt;http://i3wm.org/docs/ipc.html&lt;/a&gt;) that converts percentage points into pixels, does the calculation, converts back to percentage points, and issues a resize.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3598/resize-with-px-and-not-ppt/?comment=3844#comment-3844</link><description>Is there a reason i3 doesn't support fractional resize PPT values? You can use the method you describe above but since values get rounded to the nearest int you can only resize to approximately the value you wanted. Example: say I have 3 containers split evenly. it's impossible to resize one to 50%.</description><pubDate>Sun, 18 May 2014 22:50:29 +0000</pubDate><guid>https://faq.i3wm.org/question/3598/resize-with-px-and-not-ppt/?comment=3844#comment-3844</guid></item></channel></rss>

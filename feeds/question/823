@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/823/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 14 Jul 2015 09:56:00 +0000</lastBuildDate><item><title>Can I watch a process with i3status and run_watch without a pidfile?</title><link>https://faq.i3wm.org/question/823/can-i-watch-a-process-with-i3status-and-run_watch-without-a-pidfile/</link><description>I'd like to check if any process named 'foo' is running. If more than one is running, that's okay. This process doesn't create a PID file.</description><pubDate>Tue, 27 Nov 2012 00:07:23 +0000</pubDate><guid>https://faq.i3wm.org/question/823/can-i-watch-a-process-with-i3status-and-run_watch-without-a-pidfile/</guid></item><item><title>Comment by biocyberman for &lt;p&gt;I'd like to check if any process named 'foo' is running. If more than one is running, that's okay. This process doesn't create a PID file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/823/can-i-watch-a-process-with-i3status-and-run_watch-without-a-pidfile/?comment=6287#comment-6287</link><description>I want to do this too. It would be perfect to have run_watch accept output of `pidof` command.</description><pubDate>Tue, 14 Jul 2015 09:56:00 +0000</pubDate><guid>https://faq.i3wm.org/question/823/can-i-watch-a-process-with-i3status-and-run_watch-without-a-pidfile/?comment=6287#comment-6287</guid></item><item><title>Answer by loblik for &lt;p&gt;I'd like to check if any process named 'foo' is running. If more than one is running, that's okay. This process doesn't create a PID file.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/823/can-i-watch-a-process-with-i3status-and-run_watch-without-a-pidfile/?answer=824#post-id-824</link><description>I think you have two options here. 
+
+ - Make a wrapper for i3status which checks if process runs. 
+ - Or make a wrapper for your command which writes the PID to the file for you. 
+
+Simple shell script like this could solve it.
+
+    #!/bin/bash
+    PID_FILE=your_file.pid
+
+    trap "rm -f $PID_FILE" EXIT
+
+    your_command &amp;
+    echo $! &gt; $PID_FILE
+    wait $!
+    ret=$?
+
+    exit $ret
+    
+EDITED: the script above works only if you have only one instance
+
+If you need to run more instaces of that process you can extend the script to something like this.
+
+    #!/bin/bash
+
+    PID_FILE=t.pid
+    COMMAND=sleep
+    ARGS=15
+
+    exit_h() {
+        kill -TERM $! 2&gt; /dev/null
+        RUN=`pidof -o $! $COMMAND | cut -d' ' -f1`
+
+        if [ ! -z $RUN ];then
+            echo $RUN &gt; $PID_FILE
+        else
+            rm -f $PID_FILE
+        fi
+    }
+
+    trap "exit_h" EXIT
+
+    $COMMAND $ARGS &amp;
+    echo $! &gt; $PID_FILE
+    wait $!
+
+    exit $?
+
+The pid can be reused and script should still work (because the file gets deleted).
+
+However there is possible race condition if all processes exit at the same time. There is a small chance that pidfile remains undeleted. But that still does not matter unless the pid in that file gets reused. So overall chance of this failure is close to zero i think. I would say it never happens in my life but it's possible so do not use this to control nuclear power plant.
+
+
+   </description><pubDate>Tue, 27 Nov 2012 01:04:00 +0000</pubDate><guid>https://faq.i3wm.org/question/823/can-i-watch-a-process-with-i3status-and-run_watch-without-a-pidfile/?answer=824#post-id-824</guid></item></channel></rss>

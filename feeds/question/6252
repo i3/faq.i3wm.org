@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6252/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 06 Jul 2015 11:07:22 +0000</lastBuildDate><item><title>How to configure modifier keys to act as other keys when pressed and released on their own.</title><link>https://faq.i3wm.org/question/6252/how-to-configure-modifier-keys-to-act-as-other-keys-when-pressed-and-released-on-their-own/</link><description>For example, I have `Super + d` mapped to `Escape`
+
+    bindsym --release $super+d exec --no-startup-id xdotool key --clearmodifiers Escape
+
+But I also want to remap what `Super` does when it's pressed by itself. I actually want it to just type `s` and then I'll remap `Super` to the `s` key.
+
+This works, but is not what I want: 
+    bindsym --release $super+s exec --no-startup-id xdotool type "s"
+
+This is what I want but does not work:
+    bindsym --release $super exec --no-startup-id xdotool type "s"</description><pubDate>Sun, 05 Jul 2015 11:31:49 +0000</pubDate><guid>https://faq.i3wm.org/question/6252/how-to-configure-modifier-keys-to-act-as-other-keys-when-pressed-and-released-on-their-own/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;For example, I have &lt;code&gt;Super + d&lt;/code&gt; mapped to &lt;code&gt;Escape&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym --release $super+d exec --no-startup-id xdotool key --clearmodifiers Escape
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But I also want to remap what &lt;code&gt;Super&lt;/code&gt; does when it's pressed by itself. I actually want it to just type &lt;code&gt;s&lt;/code&gt; and then I'll remap &lt;code&gt;Super&lt;/code&gt; to the &lt;code&gt;s&lt;/code&gt; key.&lt;/p&gt;
+
+&lt;p&gt;This works, but is not what I want: 
+    bindsym --release $super+s exec --no-startup-id xdotool type "s"&lt;/p&gt;
+
+&lt;p&gt;This is what I want but does not work:
+    bindsym --release $super exec --no-startup-id xdotool type "s"&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6252/how-to-configure-modifier-keys-to-act-as-other-keys-when-pressed-and-released-on-their-own/?comment=6256#comment-6256</link><description>IMHO, using i3 bindsym and xdotool is the wrong way to go about modifiying your keyboard layout.  I would suggest using either [`xmodmap`](https://wiki.archlinux.org/index.php/Xmodmap) or [X Keyboard Extension](https://wiki.archlinux.org/index.php/X_KeyBoard_extension) for that.</description><pubDate>Mon, 06 Jul 2015 11:07:22 +0000</pubDate><guid>https://faq.i3wm.org/question/6252/how-to-configure-modifier-keys-to-act-as-other-keys-when-pressed-and-released-on-their-own/?comment=6256#comment-6256</guid></item><item><title>Comment by oberon for &lt;p&gt;For example, I have &lt;code&gt;Super + d&lt;/code&gt; mapped to &lt;code&gt;Escape&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym --release $super+d exec --no-startup-id xdotool key --clearmodifiers Escape
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But I also want to remap what &lt;code&gt;Super&lt;/code&gt; does when it's pressed by itself. I actually want it to just type &lt;code&gt;s&lt;/code&gt; and then I'll remap &lt;code&gt;Super&lt;/code&gt; to the &lt;code&gt;s&lt;/code&gt; key.&lt;/p&gt;
+
+&lt;p&gt;This works, but is not what I want: 
+    bindsym --release $super+s exec --no-startup-id xdotool type "s"&lt;/p&gt;
+
+&lt;p&gt;This is what I want but does not work:
+    bindsym --release $super exec --no-startup-id xdotool type "s"&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6252/how-to-configure-modifier-keys-to-act-as-other-keys-when-pressed-and-released-on-their-own/?comment=6254#comment-6254</link><description>May I ask what the benefit of this would be? Why would one not simply use the &lt;Esc&gt; or 's' key? ;)</description><pubDate>Sun, 05 Jul 2015 20:45:20 +0000</pubDate><guid>https://faq.i3wm.org/question/6252/how-to-configure-modifier-keys-to-act-as-other-keys-when-pressed-and-released-on-their-own/?comment=6254#comment-6254</guid></item></channel></rss>

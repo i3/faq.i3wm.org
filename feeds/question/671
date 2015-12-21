@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/671/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 01 May 2013 04:32:37 +0000</lastBuildDate><item><title>Kuake-like Behavior with urxvt</title><link>https://faq.i3wm.org/question/671/kuake-like-behavior-with-urxvt/</link><description>I searched a lot to find something like this in i3. I have a small screen and it can save me a lot. [There is](https://wiki.archlinux.org/index.php/Rxvt-unicode#Improved_Kuake-like_Behavior_in_Openbox) an improved one in open box that uses xdotools. I tried to use it in i3 but I faild. After starting the script, urxvt window will disappear. I'll be thankful if any body help me ;-)</description><pubDate>Sun, 21 Oct 2012 15:34:58 +0000</pubDate><guid>https://faq.i3wm.org/question/671/kuake-like-behavior-with-urxvt/</guid></item><item><title>Answer by Shahin for &lt;p&gt;I searched a lot to find something like this in i3. I have a small screen and it can save me a lot. &lt;a href="https://wiki.archlinux.org/index.php/Rxvt-unicode#Improved_Kuake-like_Behavior_in_Openbox"&gt;There is&lt;/a&gt; an improved one in open box that uses xdotools. I tried to use it in i3 but I faild. After starting the script, urxvt window will disappear. I'll be thankful if any body help me ;-)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/671/kuake-like-behavior-with-urxvt/?answer=1707#post-id-1707</link><description>It's long time I know, but just today I found what I wanted and I want to share it:
+
+    exec --no-startup-id urxvt -name 'scratchpad_urxvt' -g 130x24
+    for_window [instance="scratchpad_urxvt"] move to scratchpad, border 1pixel
+    bindsym F12 [instance="scratchpad_urxvt"] scratchpad show, move position 110px 0px
+
+Now I have a completely Quake like terminal in my lovely i3 ;-)</description><pubDate>Fri, 26 Apr 2013 06:52:43 +0000</pubDate><guid>https://faq.i3wm.org/question/671/kuake-like-behavior-with-urxvt/?answer=1707#post-id-1707</guid></item><item><title>Answer by badboy_ for &lt;p&gt;I searched a lot to find something like this in i3. I have a small screen and it can save me a lot. &lt;a href="https://wiki.archlinux.org/index.php/Rxvt-unicode#Improved_Kuake-like_Behavior_in_Openbox"&gt;There is&lt;/a&gt; an improved one in open box that uses xdotools. I tried to use it in i3 but I faild. After starting the script, urxvt window will disappear. I'll be thankful if any body help me ;-)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/671/kuake-like-behavior-with-urxvt/?answer=674#post-id-674</link><description>Try the scratchpad function. This might be exactly what you need.
+See http://i3wm.org/docs/userguide.html#_scratchpad</description><pubDate>Sun, 21 Oct 2012 16:36:59 +0000</pubDate><guid>https://faq.i3wm.org/question/671/kuake-like-behavior-with-urxvt/?answer=674#post-id-674</guid></item><item><title>Comment by Shahin for &lt;p&gt;Try the scratchpad function. This might be exactly what you need.
+See &lt;a href="http://i3wm.org/docs/userguide.html#_scratchpad"&gt;http://i3wm.org/docs/userguide.html#_...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/671/kuake-like-behavior-with-urxvt/?comment=675#comment-675</link><description>Thank you ;-)</description><pubDate>Sun, 21 Oct 2012 19:18:42 +0000</pubDate><guid>https://faq.i3wm.org/question/671/kuake-like-behavior-with-urxvt/?comment=675#comment-675</guid></item><item><title>Answer by gehidore for &lt;p&gt;I searched a lot to find something like this in i3. I have a small screen and it can save me a lot. &lt;a href="https://wiki.archlinux.org/index.php/Rxvt-unicode#Improved_Kuake-like_Behavior_in_Openbox"&gt;There is&lt;/a&gt; an improved one in open box that uses xdotools. I tried to use it in i3 but I faild. After starting the script, urxvt window will disappear. I'll be thankful if any body help me ;-)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/671/kuake-like-behavior-with-urxvt/?answer=1732#post-id-1732</link><description>I use this daily and aside from the issue posted here:
+
+I have a bad habbit of typing exit every time I'm done in a terminal here is my solution stole from the kuake style setup for urxvt and openbox.
+Requires xdotool.
+in ~/.local/bin/urxvtq ( or somewhere in your $PATH )
+
+    #!/bin/bash
+    
+    wid=$(xdotool search --classname scratchpad_urxvt_top)
+    if [ -z "$wid" ]; then
+        #your prefered urxvt output here.
+        urxvt -pe default,matcher -name scratchpad_urxvt_top -geometry 180x28
+    fi
+
+then in your .i3/config modify your bindsym for show/hide of the scratchpad window:
+
+    bindsym $mod+&lt;key&gt; exec .local/bin/urxvtq, [instance="scratchpad_urxvt_top"] scratchpad show, move position 45px 0px
+
+Now if you close your scratchpad by mistake hit your chosen hotkey and a new window will be spawned!
+
+Sadly it doesn't focus the window so you have to hit it twice, a small price to pay versus manually firing up a new window.
+</description><pubDate>Wed, 01 May 2013 04:32:37 +0000</pubDate><guid>https://faq.i3wm.org/question/671/kuake-like-behavior-with-urxvt/?answer=1732#post-id-1732</guid></item></channel></rss>

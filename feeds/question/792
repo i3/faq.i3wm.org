@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/792/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 22 Nov 2012 23:13:06 +0000</lastBuildDate><item><title>Why does dmenu not pick up an application</title><link>https://faq.i3wm.org/question/792/why-does-dmenu-not-pick-up-an-application/</link><description>I have added a directory called '/home/caj/scripts' to my $PATH, via .bashrc, which contains a symlink defined as follows:
+
+lrwxrwxrwx 1 caj  caj       55 May 19  2012 subl -&gt; /home/caj/progs/SublimeText/Sublime Text 2/sublime_text
+
+This link means from any terminal I can type 'subl', and as you might expect, sublime_text opens.
+
+However, the dmenu does not seem to be picking this up, and I cannot figure out why. Any suggestions?</description><pubDate>Thu, 22 Nov 2012 17:31:29 +0000</pubDate><guid>https://faq.i3wm.org/question/792/why-does-dmenu-not-pick-up-an-application/</guid></item><item><title>Answer by joepd for &lt;p&gt;I have added a directory called '/home/caj/scripts' to my $PATH, via .bashrc, which contains a symlink defined as follows:&lt;/p&gt;
+
+&lt;p&gt;lrwxrwxrwx 1 caj  caj       55 May 19  2012 subl -&amp;gt; /home/caj/progs/SublimeText/Sublime Text 2/sublime_text&lt;/p&gt;
+
+&lt;p&gt;This link means from any terminal I can type 'subl', and as you might expect, sublime_text opens.&lt;/p&gt;
+
+&lt;p&gt;However, the dmenu does not seem to be picking this up, and I cannot figure out why. Any suggestions?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/792/why-does-dmenu-not-pick-up-an-application/?answer=795#post-id-795</link><description>Dunno, possibly the cache is somehow not updated. I would delete the cache-file and hope for the best. To find the cache-file, run `less $(which dmenu_run)`. Good luck. </description><pubDate>Thu, 22 Nov 2012 20:17:50 +0000</pubDate><guid>https://faq.i3wm.org/question/792/why-does-dmenu-not-pick-up-an-application/?answer=795#post-id-795</guid></item><item><title>Comment by Chris Jefferson for &lt;p&gt;Dunno, possibly the cache is somehow not updated. I would delete the cache-file and hope for the best. To find the cache-file, run &lt;code&gt;less $(which dmenu_run)&lt;/code&gt;. Good luck. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/792/why-does-dmenu-not-pick-up-an-application/?comment=796#comment-796</link><description>Thanks.
+
+dmenu_run pointed me to dmenu_path. I found the cache file by stracing dmenu_path. It is ~/.dmenu_cache on my computer. By deleting this it now seems to be recreated correctly.
+
+I guess this was originally run without my .bashrc being parsed, to get my path?</description><pubDate>Thu, 22 Nov 2012 22:32:11 +0000</pubDate><guid>https://faq.i3wm.org/question/792/why-does-dmenu-not-pick-up-an-application/?comment=796#comment-796</guid></item><item><title>Comment by joepd for &lt;p&gt;Dunno, possibly the cache is somehow not updated. I would delete the cache-file and hope for the best. To find the cache-file, run &lt;code&gt;less $(which dmenu_run)&lt;/code&gt;. Good luck. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/792/why-does-dmenu-not-pick-up-an-application/?comment=799#comment-799</link><description>My installation of `dmenu_run` compares the timestamp of its cachefile with the timestamps of executables in $PATH. If the cache is older than the newest file, the cache will be rewritten. </description><pubDate>Thu, 22 Nov 2012 23:13:06 +0000</pubDate><guid>https://faq.i3wm.org/question/792/why-does-dmenu-not-pick-up-an-application/?comment=799#comment-799</guid></item></channel></rss>

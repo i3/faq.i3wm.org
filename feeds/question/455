@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/455/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 07 Apr 2013 18:28:20 +0000</lastBuildDate><item><title>Creating two containers with separate layout modes side by side</title><link>https://faq.i3wm.org/question/455/creating-two-containers-with-separate-layout-modes-side-by-side/</link><description>Hi,
+
+is there a convenient way for having two containers with separate layout modes side by side?
+For example, how do I create two horizontal split containers both in a tabbed layout easily (see below)?
+
+    _____________________________________
+    |_progr1_|_progr2_|_progr3_|_progr4_|
+    |                 |                 |
+    | progr 1/2 cont. | progr 3/4 cont. |
+    |_________________|_________________|
+
+Right now, I create something like this in the following way:
+
+    1. Start program 1
+    2. Switch to tabbed mode (mod+w)
+    3. Start program 2
+    4. Select the parent container (mod+a)
+    5. Start program 3
+    6. Switch to tabbed mode (mod+w) -&gt; now, the parent container of 
+         program 1/2 is on tab next to  program 3
+    7. Select the parent container of program 1 and 2 (mod+a) and move 
+         it away from program 3 (mod+shift+arrowKey)
+    8. Select program 3 and start program 4
+
+Although this approach is working fine for me, it looks a bit tedious to perform all 8 steps described above for such a useful layout-arrangement. 
+
+Is there a more convenient way than the one I described above? Is it maybe possible to change the layout of a container separately?
+
+Thank you very much!</description><pubDate>Sun, 09 Sep 2012 16:15:47 +0000</pubDate><guid>https://faq.i3wm.org/question/455/creating-two-containers-with-separate-layout-modes-side-by-side/</guid></item><item><title>Answer by joepd for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;is there a convenient way for having two containers with separate layout modes side by side?
+For example, how do I create two horizontal split containers both in a tabbed layout easily (see below)?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_____________________________________
+|_progr1_|_progr2_|_progr3_|_progr4_|
+|                 |                 |
+| progr 1/2 cont. | progr 3/4 cont. |
+|_________________|_________________|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Right now, I create something like this in the following way:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. Start program 1
+2. Switch to tabbed mode (mod+w)
+3. Start program 2
+4. Select the parent container (mod+a)
+5. Start program 3
+6. Switch to tabbed mode (mod+w) -&amp;gt; now, the parent container of 
+     program 1/2 is on tab next to  program 3
+7. Select the parent container of program 1 and 2 (mod+a) and move 
+     it away from program 3 (mod+shift+arrowKey)
+8. Select program 3 and start program 4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Although this approach is working fine for me, it looks a bit tedious to perform all 8 steps described above for such a useful layout-arrangement. &lt;/p&gt;
+
+&lt;p&gt;Is there a more convenient way than the one I described above? Is it maybe possible to change the layout of a container separately?&lt;/p&gt;
+
+&lt;p&gt;Thank you very much!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/455/creating-two-containers-with-separate-layout-modes-side-by-side/?answer=456#post-id-456</link><description>This is what I would do without thinking: 
+
+    1. Open program 1
+    2. Open program 3
+    3. Make vertical split
+    4. Open program 4
+    5. Make tabbed layout
+    6. Focus program 1
+    7. split vertical
+    8. Open program 2
+    9. Press $mod+w
+
+Just as long as your method (as you are cheeting a bit in step 7 :P )
+An alternative route for your suggestion, that actually is one step shorter: 
+
+    6. Vertical split
+    7. Open program 4
+    8. Make container tabbed
+
+But then again, counting key presses is not my strongest point :) </description><pubDate>Sun, 09 Sep 2012 16:42:43 +0000</pubDate><guid>https://faq.i3wm.org/question/455/creating-two-containers-with-separate-layout-modes-side-by-side/?answer=456#post-id-456</guid></item><item><title>Comment by Richard for &lt;p&gt;This is what I would do without thinking: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. Open program 1
+2. Open program 3
+3. Make vertical split
+4. Open program 4
+5. Make tabbed layout
+6. Focus program 1
+7. split vertical
+8. Open program 2
+9. Press $mod+w
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Just as long as your method (as you are cheeting a bit in step 7 :P )
+An alternative route for your suggestion, that actually is one step shorter: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;6. Vertical split
+7. Open program 4
+8. Make container tabbed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But then again, counting key presses is not my strongest point :) &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/455/creating-two-containers-with-separate-layout-modes-side-by-side/?comment=1583#comment-1583</link><description>I just read this question by accident again. I am now using a solution I like better than the two described above: Defining a shortcut for "i3-msg split v &amp;&amp; i3-msg layout tabbed" in the i3 config allows turning a selected container directly into the tabbed layout. It merges splitting and tabbing.</description><pubDate>Sun, 07 Apr 2013 18:28:20 +0000</pubDate><guid>https://faq.i3wm.org/question/455/creating-two-containers-with-separate-layout-modes-side-by-side/?comment=1583#comment-1583</guid></item><item><title>Comment by Richard for &lt;p&gt;This is what I would do without thinking: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. Open program 1
+2. Open program 3
+3. Make vertical split
+4. Open program 4
+5. Make tabbed layout
+6. Focus program 1
+7. split vertical
+8. Open program 2
+9. Press $mod+w
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Just as long as your method (as you are cheeting a bit in step 7 :P )
+An alternative route for your suggestion, that actually is one step shorter: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;6. Vertical split
+7. Open program 4
+8. Make container tabbed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But then again, counting key presses is not my strongest point :) &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/455/creating-two-containers-with-separate-layout-modes-side-by-side/?comment=457#comment-457</link><description>Thanks! I like your first option more than my own one. It just looks more straight forward :-)</description><pubDate>Sun, 09 Sep 2012 17:02:48 +0000</pubDate><guid>https://faq.i3wm.org/question/455/creating-two-containers-with-separate-layout-modes-side-by-side/?comment=457#comment-457</guid></item></channel></rss>

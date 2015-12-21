@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4875/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 06 Dec 2014 22:49:24 +0000</lastBuildDate><item><title>Prohibit moving of workspaces to remaining displays in case of poweroff</title><link>https://faq.i3wm.org/question/4875/prohibit-moving-of-workspaces-to-remaining-displays-in-case-of-poweroff/</link><description>Hi folks,
+
+first of all, thank you dear devs for providing such a platform. But I've a little problem using i3 on my multihead workstation.
+
+I'm running 3 displays via DP (DFP5, DFP9, DFP13) on an AMD graphics card. Xorg is setted up to run with xrandr and provide all displays via a virtual screen. Everything runs fine so far, i.e. feh puts the wallpaper in a consistent way and so on.
+
+Now, then turning off a display manually with the power switch, i3 moves the containing workspaces of this display to a remaining one. Of course, I understand this behavior as some users need to access this workspaces in particular cases. However, in my case this seems to conflict with the normal display suspend mode of Xorg.
+
+When forcing a display via dpms into blank/suspend/standby/off mode everything remains consistent, but when using the automated Xorg suspend options in its configuration files overnight, the workspaces moves again on other displays and sometimes displays even don't get recognized/filled by i3 again.
+
+Is there any trick or something else what I can do, to put my displays off without losing my workspace positions? I need to run the workstation overnight, so hibernate and so on is no option.
+
+I would be really happy if somebody help me!
+
+
+Edit: I even tried to assign workspaces to specified outputs by using "workspace {num} output {xrandr-var}", but even these workspaces aren't fixed. =(
+
+Edit 2: Well, when I use --force-xinerama in .xinitrc it seems to fix the problem. But I don't know what it change exactly in i3. Does it really force xinerama? It seems randr is still running...</description><pubDate>Tue, 28 Oct 2014 14:15:46 +0000</pubDate><guid>https://faq.i3wm.org/question/4875/prohibit-moving-of-workspaces-to-remaining-displays-in-case-of-poweroff/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi folks,&lt;/p&gt;
+
+&lt;p&gt;first of all, thank you dear devs for providing such a platform. But I've a little problem using i3 on my multihead workstation.&lt;/p&gt;
+
+&lt;p&gt;I'm running 3 displays via DP (DFP5, DFP9, DFP13) on an AMD graphics card. Xorg is setted up to run with xrandr and provide all displays via a virtual screen. Everything runs fine so far, i.e. feh puts the wallpaper in a consistent way and so on.&lt;/p&gt;
+
+&lt;p&gt;Now, then turning off a display manually with the power switch, i3 moves the containing workspaces of this display to a remaining one. Of course, I understand this behavior as some users need to access this workspaces in particular cases. However, in my case this seems to conflict with the normal display suspend mode of Xorg.&lt;/p&gt;
+
+&lt;p&gt;When forcing a display via dpms into blank/suspend/standby/off mode everything remains consistent, but when using the automated Xorg suspend options in its configuration files overnight, the workspaces moves again on other displays and sometimes displays even don't get recognized/filled by i3 again.&lt;/p&gt;
+
+&lt;p&gt;Is there any trick or something else what I can do, to put my displays off without losing my workspace positions? I need to run the workstation overnight, so hibernate and so on is no option.&lt;/p&gt;
+
+&lt;p&gt;I would be really happy if somebody help me!&lt;/p&gt;
+
+&lt;p&gt;Edit: I even tried to assign workspaces to specified outputs by using "workspace {num} output {xrandr-var}", but even these workspaces aren't fixed. =(&lt;/p&gt;
+
+&lt;p&gt;Edit 2: Well, when I use --force-xinerama in .xinitrc it seems to fix the problem. But I don't know what it change exactly in i3. Does it really force xinerama? It seems randr is still running...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4875/prohibit-moving-of-workspaces-to-remaining-displays-in-case-of-poweroff/?answer=5125#post-id-5125</link><description>So, I think the root of your problem is the fact that your outputs are seen as “disconnected” when you turn off your monitor. You can confirm that by looking at `xrandr -q` in that situation.
+
+What should instead happen is that the output stays connected until you use e.g. `xrandr --output DFP13 --off` to explicitly disconnect it, or disconnect the cable.
+
+I’m not sure whose fault that is. Perhaps the monitor really does simulate a disconnect (I’d be surprised, though), or perhaps your graphics card/the AMD driver are doing this.
+
+&gt; Edit: I even tried to assign workspaces to specified outputs by using "workspace {num} output {xrandr-var}", but even these workspaces aren't fixed. =(
+
+By that, I take it you’re saying the output names are not stable, which is really surprising to me, and is, I think, a problem of your graphics driver. I’ve never seen (or heard of) such behavior with the intel, nvidia, nouveau or radeon drivers.
+
+I think you’ll have problems like what you’re seeing with i3 in other window managers/desktop environments too.
+
+&gt; Edit 2: Well, when I use --force-xinerama in .xinitrc it seems to fix the problem. But I don't know what it change exactly in i3. Does it really force xinerama? It seems randr is still running...
+
+`--force-xinerama` forces i3 to use the Xinerama API instead of the RandR API. The implication is that i3 will only find outputs that are connected when i3 is started, and it will never be able to discover output changes (as the Xinerama API does not reliably provide support for that).
+
+&gt; Well, the xinerama option solved the problem stated above in some kind, but sometimes the two of three displays stays blank anyway after waking them up again... I've no clue to handle that in a proper way anymore.
+
+i3 is not involved in setting up your displays/outputs, it merely reads the positions and sizes from Xorg (by using RandR, or, in your case, Xinerama). This issue thus is most likely entirely unrelated to i3.</description><pubDate>Sat, 06 Dec 2014 22:49:24 +0000</pubDate><guid>https://faq.i3wm.org/question/4875/prohibit-moving-of-workspaces-to-remaining-displays-in-case-of-poweroff/?answer=5125#post-id-5125</guid></item><item><title>Answer by exumcalin for &lt;p&gt;Hi folks,&lt;/p&gt;
+
+&lt;p&gt;first of all, thank you dear devs for providing such a platform. But I've a little problem using i3 on my multihead workstation.&lt;/p&gt;
+
+&lt;p&gt;I'm running 3 displays via DP (DFP5, DFP9, DFP13) on an AMD graphics card. Xorg is setted up to run with xrandr and provide all displays via a virtual screen. Everything runs fine so far, i.e. feh puts the wallpaper in a consistent way and so on.&lt;/p&gt;
+
+&lt;p&gt;Now, then turning off a display manually with the power switch, i3 moves the containing workspaces of this display to a remaining one. Of course, I understand this behavior as some users need to access this workspaces in particular cases. However, in my case this seems to conflict with the normal display suspend mode of Xorg.&lt;/p&gt;
+
+&lt;p&gt;When forcing a display via dpms into blank/suspend/standby/off mode everything remains consistent, but when using the automated Xorg suspend options in its configuration files overnight, the workspaces moves again on other displays and sometimes displays even don't get recognized/filled by i3 again.&lt;/p&gt;
+
+&lt;p&gt;Is there any trick or something else what I can do, to put my displays off without losing my workspace positions? I need to run the workstation overnight, so hibernate and so on is no option.&lt;/p&gt;
+
+&lt;p&gt;I would be really happy if somebody help me!&lt;/p&gt;
+
+&lt;p&gt;Edit: I even tried to assign workspaces to specified outputs by using "workspace {num} output {xrandr-var}", but even these workspaces aren't fixed. =(&lt;/p&gt;
+
+&lt;p&gt;Edit 2: Well, when I use --force-xinerama in .xinitrc it seems to fix the problem. But I don't know what it change exactly in i3. Does it really force xinerama? It seems randr is still running...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4875/prohibit-moving-of-workspaces-to-remaining-displays-in-case-of-poweroff/?answer=4997#post-id-4997</link><description>Well, the xinerama option solved the problem stated above in some kind, but sometimes the two of three displays stays blank anyway after waking them up again... I've no clue to handle that in a proper way anymore.
+
+The way i3 handles multi-monitor setups is so annoying... so unreliable. I'm not able to move a workspace between the displays, resuming (from display suspend) doesn't work always, and so on.
+
+I think I'll switch to a different window manager.</description><pubDate>Sat, 22 Nov 2014 17:38:50 +0000</pubDate><guid>https://faq.i3wm.org/question/4875/prohibit-moving-of-workspaces-to-remaining-displays-in-case-of-poweroff/?answer=4997#post-id-4997</guid></item></channel></rss>

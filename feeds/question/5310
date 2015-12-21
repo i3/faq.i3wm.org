@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5310/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 13 Jan 2015 19:39:21 +0000</lastBuildDate><item><title>How to open a program's child processes in tabbed view?</title><link>https://faq.i3wm.org/question/5310/how-to-open-a-programs-child-processes-in-tabbed-view/</link><description>A lot of the time I work from a terminal and when I need to use a graphical application to edit a file in the current directory it's so
+much faster to type `prog-name [filename]` instead of launching it
+from `dmenu` then attempting to navigate to the file.
+
+My problem is when launching graphical applications, logically, half my screen
+gets wasted, covered with stdout (of which I rarely need) causing me
+to waste time rearranging windows. It would be great if once launched,
+a graphical application used the full space of the terminal and
+sticks the terminal in a new tab. It can be done manualy,
+`$mod + v` before launching and
+`$mod + w` after, creates a tabbed container displaying the launched
+program and hiding the terminal in the other tab, it's just
+irritating and time-wasting to repeat this every single time.
+
+So, Is there anyway this could be automated?
+
+Can I set `i3` to automatically display windows of `xfce4-terminal`'s
+child processes this way? If not, could I even just use a script
+(e.g.`script-name prog-name [filename]`) to achieve this?</description><pubDate>Thu, 08 Jan 2015 22:56:30 +0000</pubDate><guid>https://faq.i3wm.org/question/5310/how-to-open-a-programs-child-processes-in-tabbed-view/</guid></item><item><title>Answer by Ternary for &lt;p&gt;A lot of the time I work from a terminal and when I need to use a graphical application to edit a file in the current directory it's so
+much faster to type &lt;code&gt;prog-name [filename]&lt;/code&gt; instead of launching it
+from &lt;code&gt;dmenu&lt;/code&gt; then attempting to navigate to the file.&lt;/p&gt;
+
+&lt;p&gt;My problem is when launching graphical applications, logically, half my screen
+gets wasted, covered with stdout (of which I rarely need) causing me
+to waste time rearranging windows. It would be great if once launched,
+a graphical application used the full space of the terminal and
+sticks the terminal in a new tab. It can be done manualy,
+&lt;code&gt;$mod + v&lt;/code&gt; before launching and
+&lt;code&gt;$mod + w&lt;/code&gt; after, creates a tabbed container displaying the launched
+program and hiding the terminal in the other tab, it's just
+irritating and time-wasting to repeat this every single time.&lt;/p&gt;
+
+&lt;p&gt;So, Is there anyway this could be automated?&lt;/p&gt;
+
+&lt;p&gt;Can I set &lt;code&gt;i3&lt;/code&gt; to automatically display windows of &lt;code&gt;xfce4-terminal&lt;/code&gt;'s
+child processes this way? If not, could I even just use a script
+(e.g.&lt;code&gt;script-name prog-name [filename]&lt;/code&gt;) to achieve this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5310/how-to-open-a-programs-child-processes-in-tabbed-view/?answer=5332#post-id-5332</link><description>This isn't exactly what you're asking for, but it sounds like you might want these 'gui' programs to always open in floating mode by default.  
+
+Here are two example lines from my i3/config that do this for gimp (and all of its associated windows) and audacious respectively:
+
+    for_window [class="gimp"] floating enable
+    for_window [title="Audacious"] floating enable</description><pubDate>Tue, 13 Jan 2015 19:39:21 +0000</pubDate><guid>https://faq.i3wm.org/question/5310/how-to-open-a-programs-child-processes-in-tabbed-view/?answer=5332#post-id-5332</guid></item><item><title>Answer by luke for &lt;p&gt;A lot of the time I work from a terminal and when I need to use a graphical application to edit a file in the current directory it's so
+much faster to type &lt;code&gt;prog-name [filename]&lt;/code&gt; instead of launching it
+from &lt;code&gt;dmenu&lt;/code&gt; then attempting to navigate to the file.&lt;/p&gt;
+
+&lt;p&gt;My problem is when launching graphical applications, logically, half my screen
+gets wasted, covered with stdout (of which I rarely need) causing me
+to waste time rearranging windows. It would be great if once launched,
+a graphical application used the full space of the terminal and
+sticks the terminal in a new tab. It can be done manualy,
+&lt;code&gt;$mod + v&lt;/code&gt; before launching and
+&lt;code&gt;$mod + w&lt;/code&gt; after, creates a tabbed container displaying the launched
+program and hiding the terminal in the other tab, it's just
+irritating and time-wasting to repeat this every single time.&lt;/p&gt;
+
+&lt;p&gt;So, Is there anyway this could be automated?&lt;/p&gt;
+
+&lt;p&gt;Can I set &lt;code&gt;i3&lt;/code&gt; to automatically display windows of &lt;code&gt;xfce4-terminal&lt;/code&gt;'s
+child processes this way? If not, could I even just use a script
+(e.g.&lt;code&gt;script-name prog-name [filename]&lt;/code&gt;) to achieve this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5310/how-to-open-a-programs-child-processes-in-tabbed-view/?answer=5320#post-id-5320</link><description>I have been able to achieve this using cee's suggestion of aliases and `i3-msg`. However, cee's suggestion alone did not work when additional windows existed in the terminals container. To fix this I needed to run additional commands to ensure a new container was created and then later removed.
+    
+My final solution was to add this to my shell's rc file:
+    
+
+    i3-gui(){
+        # Create tabbed container.
+        i3-msg split v &gt; /dev/null
+        i3-msg layout tabbed &gt; /dev/null
+    
+        # Run program.
+        $@
+    
+        # Remove container.
+        i3-msg move up &gt; /dev/null
+        i3-msg move down &gt; /dev/null
+    }
+    # Aliases for programs with a gui.
+    alias feh="i3-gui feh"
+    alias gimp="i3-gui gimp"
+    alias mpv="i3-gui mpv"
+    alias libreoffice="i3-gui libreoffice"
+
+This is still not the best answer to the question as it does not automatically do this for child processes of the terminal like asked. However seems to solve my problem the best as for some programs this behavour may not be desired.
+</description><pubDate>Sat, 10 Jan 2015 23:30:53 +0000</pubDate><guid>https://faq.i3wm.org/question/5310/how-to-open-a-programs-child-processes-in-tabbed-view/?answer=5320#post-id-5320</guid></item><item><title>Answer by cee for &lt;p&gt;A lot of the time I work from a terminal and when I need to use a graphical application to edit a file in the current directory it's so
+much faster to type &lt;code&gt;prog-name [filename]&lt;/code&gt; instead of launching it
+from &lt;code&gt;dmenu&lt;/code&gt; then attempting to navigate to the file.&lt;/p&gt;
+
+&lt;p&gt;My problem is when launching graphical applications, logically, half my screen
+gets wasted, covered with stdout (of which I rarely need) causing me
+to waste time rearranging windows. It would be great if once launched,
+a graphical application used the full space of the terminal and
+sticks the terminal in a new tab. It can be done manualy,
+&lt;code&gt;$mod + v&lt;/code&gt; before launching and
+&lt;code&gt;$mod + w&lt;/code&gt; after, creates a tabbed container displaying the launched
+program and hiding the terminal in the other tab, it's just
+irritating and time-wasting to repeat this every single time.&lt;/p&gt;
+
+&lt;p&gt;So, Is there anyway this could be automated?&lt;/p&gt;
+
+&lt;p&gt;Can I set &lt;code&gt;i3&lt;/code&gt; to automatically display windows of &lt;code&gt;xfce4-terminal&lt;/code&gt;'s
+child processes this way? If not, could I even just use a script
+(e.g.&lt;code&gt;script-name prog-name [filename]&lt;/code&gt;) to achieve this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5310/how-to-open-a-programs-child-processes-in-tabbed-view/?answer=5314#post-id-5314</link><description>You could define an `alias tab='i3-msg layout tabbed &amp;&amp; '` that can be prepended to your command to start any GUI program.  
+Of course you could also wrap it in a shell script for some more advanced features.</description><pubDate>Fri, 09 Jan 2015 10:46:24 +0000</pubDate><guid>https://faq.i3wm.org/question/5310/how-to-open-a-programs-child-processes-in-tabbed-view/?answer=5314#post-id-5314</guid></item></channel></rss>

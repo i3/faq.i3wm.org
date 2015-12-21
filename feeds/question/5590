@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5590/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 12 Mar 2015 17:39:42 +0000</lastBuildDate><item><title>time keeping problem: i3status or py3status?</title><link>https://faq.i3wm.org/question/5590/time-keeping-problem-i3status-or-py3status/</link><description>Since the change from standard time to daylight savings time (I have `/etc/localtime -&gt; /usr/share/zoneinfo/EST5EDT`) this past weekend, my `i3status` (actually `py3status`) is still reporting standard time rather than DST.
+
+In a terminal, the `date` command reads EDT as it should so timekeeping itself handled the change correctly, but my status bar incorrectly shows standard time.
+
+My `~/.config/i3/config` reads in part:
+
+    bar {
+            status_command py3status -c ~/.config/i3status/config
+    }
+
+And my `~/.config/i3status/config` reads in part:
+
+    order += "ipv6"
+    order += "disk /"
+    order += "run_watch DHCP"
+    order += "run_watch VPN"
+    order += "wireless wlan0"
+    order += "ethernet eth0"
+    order += "battery 0"
+    order += "load"
+    order += "tztime local"
+
+I'm thinking that this reveals a subtle bug and I'd like to report it to the person whose code the bug resides in, but I'm honestly not sure which code is responsible.
+
+Is it `p3status` or part of `i3status` (I see `"tztime local"` in `man i3status`, but not sure if `py3status` is calling that code or if `py3status` reimplemented that code)? Can anyone shed some insight on this so I can file a bug with the project whose code has this problem?</description><pubDate>Tue, 10 Mar 2015 00:58:00 +0000</pubDate><guid>https://faq.i3wm.org/question/5590/time-keeping-problem-i3status-or-py3status/</guid></item><item><title>Answer by Ultrabug for &lt;p&gt;Since the change from standard time to daylight savings time (I have &lt;code&gt;/etc/localtime -&amp;gt; /usr/share/zoneinfo/EST5EDT&lt;/code&gt;) this past weekend, my &lt;code&gt;i3status&lt;/code&gt; (actually &lt;code&gt;py3status&lt;/code&gt;) is still reporting standard time rather than DST.&lt;/p&gt;
+
+&lt;p&gt;In a terminal, the &lt;code&gt;date&lt;/code&gt; command reads EDT as it should so timekeeping itself handled the change correctly, but my status bar incorrectly shows standard time.&lt;/p&gt;
+
+&lt;p&gt;My &lt;code&gt;~/.config/i3/config&lt;/code&gt; reads in part:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+        status_command py3status -c ~/.config/i3status/config
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And my &lt;code&gt;~/.config/i3status/config&lt;/code&gt; reads in part:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;order += "ipv6"
+order += "disk /"
+order += "run_watch DHCP"
+order += "run_watch VPN"
+order += "wireless wlan0"
+order += "ethernet eth0"
+order += "battery 0"
+order += "load"
+order += "tztime local"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm thinking that this reveals a subtle bug and I'd like to report it to the person whose code the bug resides in, but I'm honestly not sure which code is responsible.&lt;/p&gt;
+
+&lt;p&gt;Is it &lt;code&gt;p3status&lt;/code&gt; or part of &lt;code&gt;i3status&lt;/code&gt; (I see &lt;code&gt;"tztime local"&lt;/code&gt; in &lt;code&gt;man i3status&lt;/code&gt;, but not sure if &lt;code&gt;py3status&lt;/code&gt; is calling that code or if &lt;code&gt;py3status&lt;/code&gt; reimplemented that code)? Can anyone shed some insight on this so I can file a bug with the project whose code has this problem?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5590/time-keeping-problem-i3status-or-py3status/?answer=5591#post-id-5591</link><description>Hi @Gamonics.
+
+The bug certainly comes from py3status because it bases itself from the first i3status' time output but then handles it on its side. This is done because py3status needs to preserve a constant time tick when you have a different i3status and py3status interval (which is one of the point of py3status).
+
+So this involves some tricky datetime parsing which indeed must be lacking daylight savings time support. Usually an in-place restart of i3 should fix this problem right ? (mod+shift+R)
+
+I may have an idea as to how to get this fixed tho. If you have a github account, please open an issue on the py3status repository. Else tell me, I'll do it np.
+
+Hope this helps.
+
+PS: I'm the one behind py3status and yes it is a different project from i3status</description><pubDate>Tue, 10 Mar 2015 08:33:27 +0000</pubDate><guid>https://faq.i3wm.org/question/5590/time-keeping-problem-i3status-or-py3status/?answer=5591#post-id-5591</guid></item><item><title>Comment by Ultrabug for &lt;p&gt;Hi &lt;a href="/users/24800/gamonics/"&gt;@Gamonics&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The bug certainly comes from py3status because it bases itself from the first i3status' time output but then handles it on its side. This is done because py3status needs to preserve a constant time tick when you have a different i3status and py3status interval (which is one of the point of py3status).&lt;/p&gt;
+
+&lt;p&gt;So this involves some tricky datetime parsing which indeed must be lacking daylight savings time support. Usually an in-place restart of i3 should fix this problem right ? (mod+shift+R)&lt;/p&gt;
+
+&lt;p&gt;I may have an idea as to how to get this fixed tho. If you have a github account, please open an issue on the py3status repository. Else tell me, I'll do it np.&lt;/p&gt;
+
+&lt;p&gt;Hope this helps.&lt;/p&gt;
+
+&lt;p&gt;PS: I'm the one behind py3status and yes it is a different project from i3status&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5590/time-keeping-problem-i3status-or-py3status/?comment=5602#comment-5602</link><description>It's fixed and will be shipped in the next 2.4 release ! https://github.com/ultrabug/py3status/issues/75</description><pubDate>Thu, 12 Mar 2015 17:39:42 +0000</pubDate><guid>https://faq.i3wm.org/question/5590/time-keeping-problem-i3status-or-py3status/?comment=5602#comment-5602</guid></item><item><title>Comment by Ultrabug for &lt;p&gt;Hi &lt;a href="/users/24800/gamonics/"&gt;@Gamonics&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The bug certainly comes from py3status because it bases itself from the first i3status' time output but then handles it on its side. This is done because py3status needs to preserve a constant time tick when you have a different i3status and py3status interval (which is one of the point of py3status).&lt;/p&gt;
+
+&lt;p&gt;So this involves some tricky datetime parsing which indeed must be lacking daylight savings time support. Usually an in-place restart of i3 should fix this problem right ? (mod+shift+R)&lt;/p&gt;
+
+&lt;p&gt;I may have an idea as to how to get this fixed tho. If you have a github account, please open an issue on the py3status repository. Else tell me, I'll do it np.&lt;/p&gt;
+
+&lt;p&gt;Hope this helps.&lt;/p&gt;
+
+&lt;p&gt;PS: I'm the one behind py3status and yes it is a different project from i3status&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5590/time-keeping-problem-i3status-or-py3status/?comment=5595#comment-5595</link><description>True @Gamonics, I voted it up, thank you. Issue #75 on py3status github created.</description><pubDate>Wed, 11 Mar 2015 16:21:36 +0000</pubDate><guid>https://faq.i3wm.org/question/5590/time-keeping-problem-i3status-or-py3status/?comment=5595#comment-5595</guid></item><item><title>Comment by Gamonics for &lt;p&gt;Hi &lt;a href="/users/24800/gamonics/"&gt;@Gamonics&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The bug certainly comes from py3status because it bases itself from the first i3status' time output but then handles it on its side. This is done because py3status needs to preserve a constant time tick when you have a different i3status and py3status interval (which is one of the point of py3status).&lt;/p&gt;
+
+&lt;p&gt;So this involves some tricky datetime parsing which indeed must be lacking daylight savings time support. Usually an in-place restart of i3 should fix this problem right ? (mod+shift+R)&lt;/p&gt;
+
+&lt;p&gt;I may have an idea as to how to get this fixed tho. If you have a github account, please open an issue on the py3status repository. Else tell me, I'll do it np.&lt;/p&gt;
+
+&lt;p&gt;Hope this helps.&lt;/p&gt;
+
+&lt;p&gt;PS: I'm the one behind py3status and yes it is a different project from i3status&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5590/time-keeping-problem-i3status-or-py3status/?comment=5593#comment-5593</link><description>Probably easier for you to file the issue. Thanks for making py3status and for your quick answer. I didn't want to restart i3 until I could sort out where the bug was. So if it was a good question (revealed a bug), then perhaps consider up-voting my question. Q/A sites don't work unless people vote.</description><pubDate>Wed, 11 Mar 2015 05:05:45 +0000</pubDate><guid>https://faq.i3wm.org/question/5590/time-keeping-problem-i3status-or-py3status/?comment=5593#comment-5593</guid></item></channel></rss>

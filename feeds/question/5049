@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5049/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 30 Nov 2014 21:16:59 +0000</lastBuildDate><item><title>move + goto workspace when moving a container empties the focused workspace</title><link>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/</link><description>My current keybindings look something like this:
+
+    # switch to workspace
+    bindsym $mod+1 workspace $ws1
+    
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    
+    # move focused container to workspace, then goto that workspace
+    bindsym $mod+Control+1 move container to workspace $ws1; workspace $ws1
+
+I want to modify my environment in the following manner:
+
+ 1. Move a focused container to a new workspace.
+ 2. If the *current* workspace is empty (as a result of the moved container) ...
+ 3. ... automatically goto to *new* workspace.
+
+</description><pubDate>Sat, 29 Nov 2014 12:08:59 +0000</pubDate><guid>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/</guid></item><item><title>Comment by airblader for &lt;p&gt;My current keybindings look something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+1 workspace $ws1
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+
+# move focused container to workspace, then goto that workspace
+bindsym $mod+Control+1 move container to workspace $ws1; workspace $ws1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I want to modify my environment in the following manner:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Move a focused container to a new workspace.&lt;/li&gt;
+&lt;li&gt;If the &lt;em&gt;current&lt;/em&gt; workspace is empty (as a result of the moved container) ...&lt;/li&gt;
+&lt;li&gt;... automatically goto to &lt;em&gt;new&lt;/em&gt; workspace.&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?comment=5053#comment-5053</link><description>You can write a script e.g. in Python and use `i3-msg -t get_tree` to receive some data (see http://i3wm.org/docs/ipc.html#_tree_reply). You'll have to parse the nodes of the current workspace to figure out whether it is empty yourself, though.</description><pubDate>Sat, 29 Nov 2014 14:35:11 +0000</pubDate><guid>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?comment=5053#comment-5053</guid></item><item><title>Answer by airblader for &lt;p&gt;My current keybindings look something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+1 workspace $ws1
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+
+# move focused container to workspace, then goto that workspace
+bindsym $mod+Control+1 move container to workspace $ws1; workspace $ws1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I want to modify my environment in the following manner:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Move a focused container to a new workspace.&lt;/li&gt;
+&lt;li&gt;If the &lt;em&gt;current&lt;/em&gt; workspace is empty (as a result of the moved container) ...&lt;/li&gt;
+&lt;li&gt;... automatically goto to &lt;em&gt;new&lt;/em&gt; workspace.&lt;/li&gt;
+&lt;/ol&gt;
+ </title><link>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?answer=5054#post-id-5054</link><description>Going off my suggestion in the comment, here's a quick proof of concept.
+
+It makes two system calls:
+
+* `i3-msg -t get_workspaces` to find the currently focused workspace
+* `i3-msg -t get_tree` to get information about i3's tree, select the node of the active workspace and check if that has in turn any active nodes
+
+It then executes the move command and, if necessary, switches the workspace. Bind it like this:
+
+    bindsym $mod+Control+1 exec --no-startup-id /path/to/script.py $ws1
+
+I'm not a Python developer, I just know enough to get by. So this might be horrible in the eyes of someone knowing a bit more about Python. Since your profile links to the python website, I'm sure you can make this better (and if you do, make sure to share it with us). Here we go:
+
+    #!/usr/bin/env python
+    import sys
+    import subprocess
+    import json
+    
+    def run(command):
+      return subprocess.Popen(command, shell = True, stdout = subprocess.PIPE).stdout.readlines()
+    
+    if __name__ == '__main__':
+      workspaces = json.loads(''.join(run('i3-msg -t get_workspaces')))
+      tree = json.loads(''.join(run('i3-msg -t get_tree')))
+    
+      target = sys.argv[1]
+    
+      focused_workspace_num = None
+      for workspace in workspaces:
+        if workspace['focused']:
+          focused_workspace_num = workspace['num']
+          break
+    
+      focused_workspace = None
+      for node in tree['nodes'][1]['nodes'][1]['nodes']:
+        if node['num'] == focused_workspace_num:
+          focused_workspace = node
+          break
+
+      # now move the container to the target workspace    
+      run('i3-msg move container to workspace ' + target)
+
+      # if it was the only node, switch to that workspace as well
+      if len(focused_workspace['nodes']) == 1:
+        run('i3-msg workspace ' + target)</description><pubDate>Sat, 29 Nov 2014 15:05:57 +0000</pubDate><guid>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?answer=5054#post-id-5054</guid></item><item><title>Answer by tasinet for &lt;p&gt;My current keybindings look something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+1 workspace $ws1
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+
+# move focused container to workspace, then goto that workspace
+bindsym $mod+Control+1 move container to workspace $ws1; workspace $ws1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I want to modify my environment in the following manner:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Move a focused container to a new workspace.&lt;/li&gt;
+&lt;li&gt;If the &lt;em&gt;current&lt;/em&gt; workspace is empty (as a result of the moved container) ...&lt;/li&gt;
+&lt;li&gt;... automatically goto to &lt;em&gt;new&lt;/em&gt; workspace.&lt;/li&gt;
+&lt;/ol&gt;
+ </title><link>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?answer=5055#post-id-5055</link><description>Same concept as airblader's answer, but in bash. 
+
+Requires jq - `apt-get install -y jq` or equivalent. This is a lightweight JSON parser.
+
+Put the script in your path, then bind as: 
+
+    bindsym $mod+Shift+exclam      move workspace 1; exec i3-switch-if-workspace-empty.sh 1
+    # ..10
+
+To run it manually, just pass it the number to switch to, if the current workspace is empty.
+
+    #!/bin/bash
+
+    set -e
+
+    new_workspace=$1
+
+    if [ "" == "$new_workspace" ]; then
+        echo expecting workspace name/number
+        exit 1
+    fi
+
+    active_workspace=$( i3-msg -t get_workspaces | jq '.[] | select(.focused).num' )
+
+    toplevel_containers=$( i3-msg -t get_tree | jq '(.nodes[].nodes[].nodes[] | select(.type=="workspace") | select(.num=='"$active_workspace"') | .nodes | length) // 0' )
+
+    if [ "$toplevel_containers" -eq "0" ]; then
+        i3-msg workspace $new_workspace
+    fi
+
+Tested with multiple monitors as well. Hope this helps. 
+
+Again, credit to airblader for the original solution and pointing me to i3 tree!
+
+(it is also on github, but not enough karma to post links)
+
+**edit: fixed a bug - was looking at the second-top level rather than the top-level. should work now.**</description><pubDate>Sat, 29 Nov 2014 19:47:09 +0000</pubDate><guid>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?answer=5055#post-id-5055</guid></item><item><title>Comment by Jeff Bauer for &lt;p&gt;Same concept as airblader's answer, but in bash. &lt;/p&gt;
+
+&lt;p&gt;Requires jq - &lt;code&gt;apt-get install -y jq&lt;/code&gt; or equivalent. This is a lightweight JSON parser.&lt;/p&gt;
+
+&lt;p&gt;Put the script in your path, then bind as: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+exclam      move workspace 1; exec i3-switch-if-workspace-empty.sh 1
+# ..10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To run it manually, just pass it the number to switch to, if the current workspace is empty.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+set -e
+
+new_workspace=$1
+
+if [ "" == "$new_workspace" ]; then
+    echo expecting workspace name/number
+    exit 1
+fi
+
+active_workspace=$( i3-msg -t get_workspaces | jq '.[] | select(.focused).num' )
+
+toplevel_containers=$( i3-msg -t get_tree | jq '(.nodes[].nodes[].nodes[] | select(.type=="workspace") | select(.num=='"$active_workspace"') | .nodes | length) // 0' )
+
+if [ "$toplevel_containers" -eq "0" ]; then
+    i3-msg workspace $new_workspace
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tested with multiple monitors as well. Hope this helps. &lt;/p&gt;
+
+&lt;p&gt;Again, credit to airblader for the original solution and pointing me to i3 tree!&lt;/p&gt;
+
+&lt;p&gt;(it is also on github, but not enough karma to post links)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;edit: fixed a bug - was looking at the second-top level rather than the top-level. should work now.&lt;/strong&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?comment=5063#comment-5063</link><description>I was impressed with your bash hack, even though I gave @airblader the accepted answer.  Nice work!</description><pubDate>Sun, 30 Nov 2014 21:16:59 +0000</pubDate><guid>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?comment=5063#comment-5063</guid></item><item><title>Comment by tasinet for &lt;p&gt;Same concept as airblader's answer, but in bash. &lt;/p&gt;
+
+&lt;p&gt;Requires jq - &lt;code&gt;apt-get install -y jq&lt;/code&gt; or equivalent. This is a lightweight JSON parser.&lt;/p&gt;
+
+&lt;p&gt;Put the script in your path, then bind as: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+exclam      move workspace 1; exec i3-switch-if-workspace-empty.sh 1
+# ..10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To run it manually, just pass it the number to switch to, if the current workspace is empty.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+set -e
+
+new_workspace=$1
+
+if [ "" == "$new_workspace" ]; then
+    echo expecting workspace name/number
+    exit 1
+fi
+
+active_workspace=$( i3-msg -t get_workspaces | jq '.[] | select(.focused).num' )
+
+toplevel_containers=$( i3-msg -t get_tree | jq '(.nodes[].nodes[].nodes[] | select(.type=="workspace") | select(.num=='"$active_workspace"') | .nodes | length) // 0' )
+
+if [ "$toplevel_containers" -eq "0" ]; then
+    i3-msg workspace $new_workspace
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tested with multiple monitors as well. Hope this helps. &lt;/p&gt;
+
+&lt;p&gt;Again, credit to airblader for the original solution and pointing me to i3 tree!&lt;/p&gt;
+
+&lt;p&gt;(it is also on github, but not enough karma to post links)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;edit: fixed a bug - was looking at the second-top level rather than the top-level. should work now.&lt;/strong&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?comment=5059#comment-5059</link><description>Yeah, there isn't much you can do with json with the standard awk/sed/grep/etc toolkit. The best you can do (or rather, I can do) without an explicit tool is pretty-print the json (json_pp) and pipe to grep to look for a key or value. jq is pretty nice! Worth learning the syntax.</description><pubDate>Sat, 29 Nov 2014 23:45:13 +0000</pubDate><guid>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?comment=5059#comment-5059</guid></item><item><title>Comment by airblader for &lt;p&gt;Same concept as airblader's answer, but in bash. &lt;/p&gt;
+
+&lt;p&gt;Requires jq - &lt;code&gt;apt-get install -y jq&lt;/code&gt; or equivalent. This is a lightweight JSON parser.&lt;/p&gt;
+
+&lt;p&gt;Put the script in your path, then bind as: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+exclam      move workspace 1; exec i3-switch-if-workspace-empty.sh 1
+# ..10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To run it manually, just pass it the number to switch to, if the current workspace is empty.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+set -e
+
+new_workspace=$1
+
+if [ "" == "$new_workspace" ]; then
+    echo expecting workspace name/number
+    exit 1
+fi
+
+active_workspace=$( i3-msg -t get_workspaces | jq '.[] | select(.focused).num' )
+
+toplevel_containers=$( i3-msg -t get_tree | jq '(.nodes[].nodes[].nodes[] | select(.type=="workspace") | select(.num=='"$active_workspace"') | .nodes | length) // 0' )
+
+if [ "$toplevel_containers" -eq "0" ]; then
+    i3-msg workspace $new_workspace
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tested with multiple monitors as well. Hope this helps. &lt;/p&gt;
+
+&lt;p&gt;Again, credit to airblader for the original solution and pointing me to i3 tree!&lt;/p&gt;
+
+&lt;p&gt;(it is also on github, but not enough karma to post links)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;edit: fixed a bug - was looking at the second-top level rather than the top-level. should work now.&lt;/strong&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?comment=5057#comment-5057</link><description>Cool, I was mostly using python because of JSON. Glad to see there's a good bash-friendly solution. That will definitely help me with a problem I've been having, so thanks.</description><pubDate>Sat, 29 Nov 2014 21:12:54 +0000</pubDate><guid>https://faq.i3wm.org/question/5049/move-goto-workspace-when-moving-a-container-empties-the-focused-workspace/?comment=5057#comment-5057</guid></item></channel></rss>

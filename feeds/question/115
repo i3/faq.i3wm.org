@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/115/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 25 Feb 2015 13:08:09 +0000</lastBuildDate><item><title>How to configure GTK theme support?</title><link>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/</link><description>What is the simplest way to configure minimal support for GTK themes, so GTK 2/3 applications are rendered nicely under i3wm?
+
+I have found that the [i3 article](https://wiki.archlinux.org/index.php/I3) on the Arch Wiki suggests:
+
+&gt; For gnome users, see [i3-gnome](https://aur.archlinux.org/packages.php?K=i3-gnome&amp;SeB=x) in AUR
+&gt; to add a i3 gnome session (gtk theme,
+&gt; gnome-keyring, notifications, gnome
+&gt; online accounts).
+
+But, I don't need or want to install the GNOME packages, so I'd like to setup GTK themes with minimal set of packages.</description><pubDate>Mon, 11 Jun 2012 01:00:07 +0000</pubDate><guid>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/</guid></item><item><title>Comment by acgtyrant for &lt;p&gt;What is the simplest way to configure minimal support for GTK themes, so GTK 2/3 applications are rendered nicely under i3wm?&lt;/p&gt;
+
+&lt;p&gt;I have found that the &lt;a href="https://wiki.archlinux.org/index.php/I3"&gt;i3 article&lt;/a&gt; on the Arch Wiki suggests:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For gnome users, see &lt;a href="https://aur.archlinux.org/packages.php?K=i3-gnome&amp;amp;SeB=x"&gt;i3-gnome&lt;/a&gt; in AUR
+  to add a i3 gnome session (gtk theme,
+  gnome-keyring, notifications, gnome
+  online accounts).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But, I don't need or want to install the GNOME packages, so I'd like to setup GTK themes with minimal set of packages.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?comment=2635#comment-2635</link><description>You can read an article about gtk in the Arch Wiki too. Here it is. https://wiki.archlinux.org/index.php/GTK#Configuration_programs.</description><pubDate>Tue, 01 Oct 2013 14:58:36 +0000</pubDate><guid>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?comment=2635#comment-2635</guid></item><item><title>Answer by jP_wanN for &lt;p&gt;What is the simplest way to configure minimal support for GTK themes, so GTK 2/3 applications are rendered nicely under i3wm?&lt;/p&gt;
+
+&lt;p&gt;I have found that the &lt;a href="https://wiki.archlinux.org/index.php/I3"&gt;i3 article&lt;/a&gt; on the Arch Wiki suggests:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For gnome users, see &lt;a href="https://aur.archlinux.org/packages.php?K=i3-gnome&amp;amp;SeB=x"&gt;i3-gnome&lt;/a&gt; in AUR
+  to add a i3 gnome session (gtk theme,
+  gnome-keyring, notifications, gnome
+  online accounts).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But, I don't need or want to install the GNOME packages, so I'd like to setup GTK themes with minimal set of packages.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?answer=930#post-id-930</link><description>If you've got other gnome-based sessions (Gnome, Unity) where you have no problems, just add
+
+    exec gnome-settings-daemon
+
+to your i3 config ;)
+
+This also adds support for some media keyboard keys and other gnome settings.</description><pubDate>Sun, 23 Dec 2012 12:57:40 +0000</pubDate><guid>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?answer=930#post-id-930</guid></item><item><title>Comment by Klaas for &lt;p&gt;If you've got other gnome-based sessions (Gnome, Unity) where you have no problems, just add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec gnome-settings-daemon
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to your i3 config ;)&lt;/p&gt;
+
+&lt;p&gt;This also adds support for some media keyboard keys and other gnome settings.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?comment=1699#comment-1699</link><description>As of Gnome 3.8 gnome-settings-daemon does not handle media keys and wallpaper anymore, possibly some other stuff was removed also.</description><pubDate>Wed, 24 Apr 2013 23:03:54 +0000</pubDate><guid>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?comment=1699#comment-1699</guid></item><item><title>Answer by fernandotcl for &lt;p&gt;What is the simplest way to configure minimal support for GTK themes, so GTK 2/3 applications are rendered nicely under i3wm?&lt;/p&gt;
+
+&lt;p&gt;I have found that the &lt;a href="https://wiki.archlinux.org/index.php/I3"&gt;i3 article&lt;/a&gt; on the Arch Wiki suggests:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For gnome users, see &lt;a href="https://aur.archlinux.org/packages.php?K=i3-gnome&amp;amp;SeB=x"&gt;i3-gnome&lt;/a&gt; in AUR
+  to add a i3 gnome session (gtk theme,
+  gnome-keyring, notifications, gnome
+  online accounts).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But, I don't need or want to install the GNOME packages, so I'd like to setup GTK themes with minimal set of packages.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?answer=116#post-id-116</link><description>For GTK+ 2.x, ~/.gtkrc-2.0. For instance:
+
+    gtk-theme-name = "Clearlooks"
+    gtk-font-name = "Sans 8"
+
+For GTK+ 3.x, ~/.config/gtk-3.0/settings.ini:
+
+    [Settings]
+    gtk-theme-name = Adwaita
+    gtk-font-name = Sans 8</description><pubDate>Mon, 11 Jun 2012 01:10:10 +0000</pubDate><guid>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?answer=116#post-id-116</guid></item><item><title>Comment by Almehdin for &lt;p&gt;For GTK+ 2.x, ~/.gtkrc-2.0. For instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gtk-theme-name = "Clearlooks"
+gtk-font-name = "Sans 8"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For GTK+ 3.x, ~/.config/gtk-3.0/settings.ini:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Settings]
+gtk-theme-name = Adwaita
+gtk-font-name = Sans 8
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?comment=2096#comment-2096</link><description>Adding "gtk-icon-theme-name =" is also possible. If you want a nicer icon theme than the default. </description><pubDate>Thu, 27 Jun 2013 02:04:29 +0000</pubDate><guid>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?comment=2096#comment-2096</guid></item><item><title>Answer by Ruben G for &lt;p&gt;What is the simplest way to configure minimal support for GTK themes, so GTK 2/3 applications are rendered nicely under i3wm?&lt;/p&gt;
+
+&lt;p&gt;I have found that the &lt;a href="https://wiki.archlinux.org/index.php/I3"&gt;i3 article&lt;/a&gt; on the Arch Wiki suggests:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For gnome users, see &lt;a href="https://aur.archlinux.org/packages.php?K=i3-gnome&amp;amp;SeB=x"&gt;i3-gnome&lt;/a&gt; in AUR
+  to add a i3 gnome session (gtk theme,
+  gnome-keyring, notifications, gnome
+  online accounts).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But, I don't need or want to install the GNOME packages, so I'd like to setup GTK themes with minimal set of packages.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?answer=5536#post-id-5536</link><description>I've found a nice i3 setup-history article [1] with a very good suggestion. Install lxappearance, as the author says it has no dependencies and is a very nice GUI to do this setup.
+
+[1] blog.tunnelshade.in/2014/05/making-i3-beautiful.html</description><pubDate>Wed, 25 Feb 2015 13:08:09 +0000</pubDate><guid>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?answer=5536#post-id-5536</guid></item><item><title>Answer by Nikratio for &lt;p&gt;What is the simplest way to configure minimal support for GTK themes, so GTK 2/3 applications are rendered nicely under i3wm?&lt;/p&gt;
+
+&lt;p&gt;I have found that the &lt;a href="https://wiki.archlinux.org/index.php/I3"&gt;i3 article&lt;/a&gt; on the Arch Wiki suggests:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For gnome users, see &lt;a href="https://aur.archlinux.org/packages.php?K=i3-gnome&amp;amp;SeB=x"&gt;i3-gnome&lt;/a&gt; in AUR
+  to add a i3 gnome session (gtk theme,
+  gnome-keyring, notifications, gnome
+  online accounts).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But, I don't need or want to install the GNOME packages, so I'd like to setup GTK themes with minimal set of packages.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?answer=5518#post-id-5518</link><description>I'd suggest to run an XSettings daemon like xsettingsd. Then in your `~/.xsettingsrc` put something like:
+    
+    Gtk/ButtonImages 1
+    Gtk/CanChangeAccels 1
+    Gtk/CursorThemeName "default"
+    Gtk/CursorThemeSize 0
+    Gtk/EnableEventSounds 0
+    Gtk/EnableInputFeedbackSounds 0
+    Gtk/FontName "Sans 10"
+    Gtk/IconThemeName "oxygen"
+    Gtk/MenuBarAccel "F10"
+    Gtk/MenuImages 1
+    Gtk/ToolbarIconSize 3
+    Gtk/ToolbarStyle "icons"
+    Xft/Antialias 1
+    Xft/DPI 102400
+    Xft/Hinting 1
+    Xft/HintStyle "hintslight"
+    Xft/RGBA "rgb"
+
+</description><pubDate>Sun, 22 Feb 2015 20:27:55 +0000</pubDate><guid>https://faq.i3wm.org/question/115/how-to-configure-gtk-theme-support/?answer=5518#post-id-5518</guid></item></channel></rss>

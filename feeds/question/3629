@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3629/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 06 Apr 2014 19:25:27 +0000</lastBuildDate><item><title>Applications on startup to right workspace</title><link>https://faq.i3wm.org/question/3629/applications-on-startup-to-right-workspace/</link><description>I am trying to get my start up applications to move to the right workspace, currently only PSI moves to 'chat' on start up, all the others just start on workspace 1.
+
+my config file has:
+
+    assign [class="psi"] chat
+    assign [class="skype"] chat
+    assign [class="xchat"] chat
+    assign [class="thunderbird"] email
+    assign [class="chromium-browser"] web
+    exec chromium-browser
+    exec thunderbird
+    exec psi
+    exec skype
+    exec xchat
+
+</description><pubDate>Sun, 06 Apr 2014 19:11:49 +0000</pubDate><guid>https://faq.i3wm.org/question/3629/applications-on-startup-to-right-workspace/</guid></item><item><title>Answer by Score_Under for &lt;p&gt;I am trying to get my start up applications to move to the right workspace, currently only PSI moves to 'chat' on start up, all the others just start on workspace 1.&lt;/p&gt;
+
+&lt;p&gt;my config file has:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="psi"] chat
+assign [class="skype"] chat
+assign [class="xchat"] chat
+assign [class="thunderbird"] email
+assign [class="chromium-browser"] web
+exec chromium-browser
+exec thunderbird
+exec psi
+exec skype
+exec xchat
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/3629/applications-on-startup-to-right-workspace/?answer=3630#post-id-3630</link><description>Run "xprop | grep WM_CLASS" and click on the application in question. The second value listed on that line is the window class you need. For Skype, it's "Skype", and for Thunderbird it's "Thunderbird". Note that both of these are case sensetive.
+
+The first value listed under "WM_CLASS" is the window's "instance", which can also be matched against in i3.</description><pubDate>Sun, 06 Apr 2014 19:25:27 +0000</pubDate><guid>https://faq.i3wm.org/question/3629/applications-on-startup-to-right-workspace/?answer=3630#post-id-3630</guid></item></channel></rss>

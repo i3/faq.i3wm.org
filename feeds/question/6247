@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6247/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 27 Jul 2015 14:12:13 +0000</lastBuildDate><item><title>Assigning individual wallpaper to monitors</title><link>https://faq.i3wm.org/question/6247/assigning-individual-wallpaper-to-monitors/</link><description>I usually use `feh --bg-scale wallpaper.png` to choose my wallpaper, but I do now have a multimonitor setup with different resolutions.
+
+How do I assign individual wallpapers to the specified monitors? </description><pubDate>Fri, 03 Jul 2015 13:40:30 +0000</pubDate><guid>https://faq.i3wm.org/question/6247/assigning-individual-wallpaper-to-monitors/</guid></item><item><title>Answer by Serp_C for &lt;p&gt;I usually use &lt;code&gt;feh --bg-scale wallpaper.png&lt;/code&gt; to choose my wallpaper, but I do now have a multimonitor setup with different resolutions.&lt;/p&gt;
+
+&lt;p&gt;How do I assign individual wallpapers to the specified monitors? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6247/assigning-individual-wallpaper-to-monitors/?answer=6255#post-id-6255</link><description>Here are a couple of ways to accomplish this:
+
+1. You could use [Nitrogen](http://projects.l3ib.org/nitrogen/). A dropdown menu in its Preferences window lets you select which screen's wallpaper to change. See [the information here](http://askubuntu.com/a/401040/391049). Note that you'll need to add `exec --no-startup-id nitrogen --restore` to your .i3/config to have your wallpaper settings restored every time you login.
+
+2. Alternatively, you could use the X display's DISPLAY environment variable. As [described here](https://wiki.archlinux.org/index.php/Multihead#Separate_screens), if you change the DISPLAY variable when you launch feh, you can set the wallpaper for that display. If you have multiple screens set up in xorg.conf, you can change the wallpaper on the first screen with:
+
+        DISPLAY=:0.0 feh --bg-scale /path/to/wallpaper.png
+
+ and change the second screen's wallpaper with:
+
+        DISPLAY=:0.1 feh --bg-scale /path/to/wallpaper.png
+
+Note that neither of these are specific to i3.</description><pubDate>Mon, 06 Jul 2015 03:47:31 +0000</pubDate><guid>https://faq.i3wm.org/question/6247/assigning-individual-wallpaper-to-monitors/?answer=6255#post-id-6255</guid></item><item><title>Comment by a_flamethrowing_duck for &lt;p&gt;Here are a couple of ways to accomplish this:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;You could use &lt;a href="http://projects.l3ib.org/nitrogen/"&gt;Nitrogen&lt;/a&gt;. A dropdown menu in its Preferences window lets you select which screen's wallpaper to change. See &lt;a href="http://askubuntu.com/a/401040/391049"&gt;the information here&lt;/a&gt;. Note that you'll need to add &lt;code&gt;exec --no-startup-id nitrogen --restore&lt;/code&gt; to your .i3/config to have your wallpaper settings restored every time you login.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Alternatively, you could use the X display's DISPLAY environment variable. As &lt;a href="https://wiki.archlinux.org/index.php/Multihead#Separate_screens"&gt;described here&lt;/a&gt;, if you change the DISPLAY variable when you launch feh, you can set the wallpaper for that display. If you have multiple screens set up in xorg.conf, you can change the wallpaper on the first screen with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DISPLAY=:0.0 feh --bg-scale /path/to/wallpaper.png
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and change the second screen's wallpaper with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DISPLAY=:0.1 feh --bg-scale /path/to/wallpaper.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Note that neither of these are specific to i3.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6247/assigning-individual-wallpaper-to-monitors/?comment=6354#comment-6354</link><description>I know it's ridiculous that I answer now, but the DISPLAY method doesn't work, as it states DISPLAY=0.1 can't be opened and when I set the wallpaper for DISPLAY=0.0 both screen's wallpapers change.
+Nitrogen works fine though!</description><pubDate>Mon, 27 Jul 2015 14:12:13 +0000</pubDate><guid>https://faq.i3wm.org/question/6247/assigning-individual-wallpaper-to-monitors/?comment=6354#comment-6354</guid></item></channel></rss>

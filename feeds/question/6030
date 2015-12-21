@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6030/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 04 Jun 2015 18:44:49 +0000</lastBuildDate><item><title>Is there any way to use "hot corners" to execute a command?</title><link>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/</link><description>I'd like to be able to trigger an action (exec) by moving the mouse to a corner. I think this would be handy, for example, to trigger skippy-xd for functionality similar to gnome-shell.
+
+Is this possible in i3?</description><pubDate>Fri, 29 May 2015 14:41:42 +0000</pubDate><guid>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/</guid></item><item><title>Answer by Airblader for &lt;p&gt;I'd like to be able to trigger an action (exec) by moving the mouse to a corner. I think this would be handy, for example, to trigger skippy-xd for functionality similar to gnome-shell.&lt;/p&gt;
+
+&lt;p&gt;Is this possible in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/?answer=6033#post-id-6033</link><description> No, i3 does not offer anything like that. However, you can use `xdotool` to do that. Check out `man xdotool` for `behave_screen_edge`. Excerpt:
+
+    Examples:
+            # Activate google-chrome when you move the mouse to the bottom-left corner:
+            xdotool behave_screen_edge bottom-left \
+              search --class google-chrome windowactivate
+
+            # Go to the next workspace (right). Known to work in GNOME (metacity and compiz)
+            xdotool behave_screen_edge --delay 500 bottom-right key XF86Forward
+
+            # Activate firefox and do a web search in a new tab for text in your clipboard
+            xdotool behave_screen_edge --delay 1000 top-left \
+                search --classname Navigator \
+                windowactivate --sync key --delay 250 ctrl+t ctrl+k ctrl+v Return
+
+Note that this only works on the corners of the root window, so if you use multiple outputs, it may not be quite as useful depending on your setup.</description><pubDate>Fri, 29 May 2015 17:00:52 +0000</pubDate><guid>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/?answer=6033#post-id-6033</guid></item><item><title>Comment by Airblader for &lt;p&gt;No, i3 does not offer anything like that. However, you can use &lt;code&gt;xdotool&lt;/code&gt; to do that. Check out &lt;code&gt;man xdotool&lt;/code&gt; for &lt;code&gt;behave_screen_edge&lt;/code&gt;. Excerpt:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Examples:
+        # Activate google-chrome when you move the mouse to the bottom-left corner:
+        xdotool behave_screen_edge bottom-left \
+          search --class google-chrome windowactivate
+
+        # Go to the next workspace (right). Known to work in GNOME (metacity and compiz)
+        xdotool behave_screen_edge --delay 500 bottom-right key XF86Forward
+
+        # Activate firefox and do a web search in a new tab for text in your clipboard
+        xdotool behave_screen_edge --delay 1000 top-left \
+            search --classname Navigator \
+            windowactivate --sync key --delay 250 ctrl+t ctrl+k ctrl+v Return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that this only works on the corners of the root window, so if you use multiple outputs, it may not be quite as useful depending on your setup.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/?comment=6064#comment-6064</link><description>Yep :) https://github.com/Airblader/xedgewarp I already opened this as an issue as well.</description><pubDate>Thu, 04 Jun 2015 18:44:49 +0000</pubDate><guid>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/?comment=6064#comment-6064</guid></item><item><title>Comment by curious_one for &lt;p&gt;No, i3 does not offer anything like that. However, you can use &lt;code&gt;xdotool&lt;/code&gt; to do that. Check out &lt;code&gt;man xdotool&lt;/code&gt; for &lt;code&gt;behave_screen_edge&lt;/code&gt;. Excerpt:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Examples:
+        # Activate google-chrome when you move the mouse to the bottom-left corner:
+        xdotool behave_screen_edge bottom-left \
+          search --class google-chrome windowactivate
+
+        # Go to the next workspace (right). Known to work in GNOME (metacity and compiz)
+        xdotool behave_screen_edge --delay 500 bottom-right key XF86Forward
+
+        # Activate firefox and do a web search in a new tab for text in your clipboard
+        xdotool behave_screen_edge --delay 1000 top-left \
+            search --classname Navigator \
+            windowactivate --sync key --delay 250 ctrl+t ctrl+k ctrl+v Return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that this only works on the corners of the root window, so if you use multiple outputs, it may not be quite as useful depending on your setup.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/?comment=6063#comment-6063</link><description>@Airblader Sounds interesting. Do you have it on github or anything?</description><pubDate>Thu, 04 Jun 2015 18:34:28 +0000</pubDate><guid>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/?comment=6063#comment-6063</guid></item><item><title>Comment by Airblader for &lt;p&gt;No, i3 does not offer anything like that. However, you can use &lt;code&gt;xdotool&lt;/code&gt; to do that. Check out &lt;code&gt;man xdotool&lt;/code&gt; for &lt;code&gt;behave_screen_edge&lt;/code&gt;. Excerpt:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Examples:
+        # Activate google-chrome when you move the mouse to the bottom-left corner:
+        xdotool behave_screen_edge bottom-left \
+          search --class google-chrome windowactivate
+
+        # Go to the next workspace (right). Known to work in GNOME (metacity and compiz)
+        xdotool behave_screen_edge --delay 500 bottom-right key XF86Forward
+
+        # Activate firefox and do a web search in a new tab for text in your clipboard
+        xdotool behave_screen_edge --delay 1000 top-left \
+            search --classname Navigator \
+            windowactivate --sync key --delay 250 ctrl+t ctrl+k ctrl+v Return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that this only works on the corners of the root window, so if you use multiple outputs, it may not be quite as useful depending on your setup.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/?comment=6036#comment-6036</link><description>I wrote a tool called xedgewarp which could do this even with external monitors. It would have to be implemented, though.</description><pubDate>Sat, 30 May 2015 10:25:00 +0000</pubDate><guid>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/?comment=6036#comment-6036</guid></item><item><title>Comment by curious_one for &lt;p&gt;No, i3 does not offer anything like that. However, you can use &lt;code&gt;xdotool&lt;/code&gt; to do that. Check out &lt;code&gt;man xdotool&lt;/code&gt; for &lt;code&gt;behave_screen_edge&lt;/code&gt;. Excerpt:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Examples:
+        # Activate google-chrome when you move the mouse to the bottom-left corner:
+        xdotool behave_screen_edge bottom-left \
+          search --class google-chrome windowactivate
+
+        # Go to the next workspace (right). Known to work in GNOME (metacity and compiz)
+        xdotool behave_screen_edge --delay 500 bottom-right key XF86Forward
+
+        # Activate firefox and do a web search in a new tab for text in your clipboard
+        xdotool behave_screen_edge --delay 1000 top-left \
+            search --classname Navigator \
+            windowactivate --sync key --delay 250 ctrl+t ctrl+k ctrl+v Return
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that this only works on the corners of the root window, so if you use multiple outputs, it may not be quite as useful depending on your setup.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/?comment=6035#comment-6035</link><description>That works well on my laptop's display. Unfortunately, I'm using external monitors about 90% of the time, and I cannot get xdotool to do anything with 'behave_screen_edge' on those monitors.
+Thanks for the tip though; xdotool looks like a very useful tool for i3 users.</description><pubDate>Sat, 30 May 2015 02:33:25 +0000</pubDate><guid>https://faq.i3wm.org/question/6030/is-there-any-way-to-use-hot-corners-to-execute-a-command/?comment=6035#comment-6035</guid></item></channel></rss>

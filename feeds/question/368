@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/368/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 26 Aug 2012 14:59:11 +0000</lastBuildDate><item><title>Ethernet does not show my IP (i3status)</title><link>https://faq.i3wm.org/question/368/ethernet-does-not-show-my-ip-i3status/</link><description>Hello, in Fedora 17 ethernet does not show up for some reason:
+
+    ethernet eth0 {
+      format_up = "E: %ip"
+      format_down = "E: down"
+    }
+    
+    $ i3status
+    ...E: down...
+    
+    $ LC_ALL=C ifconfig
+    em1: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+            inet 192.168.1.9  netmask 255.255.255.0  broadcast 192.168.1.255
+            inet6 fe80::f2de:f1ff:fe03:2187  prefixlen 64  scopeid 0x20&lt;link&gt;
+            ether f0:de:f1:aa:bb:cc  txqueuelen 1000  (Ethernet)
+            RX packets 14888  bytes 8894162 (8.4 MiB)
+            RX errors 0  dropped 0  overruns 0  frame 0
+            TX packets 14013  bytes 4302263 (4.1 MiB)
+            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+            device interrupt 20  memory 0xf2500000-f2520000  
+    
+    lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 16436
+            inet 127.0.0.1  netmask 255.0.0.0
+            inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+            loop  txqueuelen 0  (Local Loopback)
+            RX packets 278  bytes 36589 (35.7 KiB)
+            RX errors 0  dropped 0  overruns 0  frame 0
+            TX packets 278  bytes 36589 (35.7 KiB)
+            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+    
+    virbr0: flags=4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500
+            inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+            ether 52:54:00:cc:bb:aa  txqueuelen 0  (Ethernet)
+            RX packets 0  bytes 0 (0.0 B)
+            RX errors 0  dropped 0  overruns 0  frame 0
+            TX packets 0  bytes 0 (0.0 B)
+            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+What is the trick in my case? I have bridge configured in my Fedora. Tried also this:
+
+    sudo setcap cap_net_admin=ep $(which i3status)
+
+with no help. Thanks!</description><pubDate>Sun, 26 Aug 2012 14:48:29 +0000</pubDate><guid>https://faq.i3wm.org/question/368/ethernet-does-not-show-my-ip-i3status/</guid></item><item><title>Answer by badboy_ for &lt;p&gt;Hello, in Fedora 17 ethernet does not show up for some reason:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ethernet eth0 {
+  format_up = "E: %ip"
+  format_down = "E: down"
+}
+
+$ i3status
+...E: down...
+
+$ LC_ALL=C ifconfig
+em1: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1500
+        inet 192.168.1.9  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::f2de:f1ff:fe03:2187  prefixlen 64  scopeid 0x20&amp;lt;link&amp;gt;
+        ether f0:de:f1:aa:bb:cc  txqueuelen 1000  (Ethernet)
+        RX packets 14888  bytes 8894162 (8.4 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 14013  bytes 4302263 (4.1 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 20  memory 0xf2500000-f2520000  
+
+lo: flags=73&amp;lt;UP,LOOPBACK,RUNNING&amp;gt;  mtu 16436
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&amp;lt;host&amp;gt;
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 278  bytes 36589 (35.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 278  bytes 36589 (35.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099&amp;lt;UP,BROADCAST,MULTICAST&amp;gt;  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:cc:bb:aa  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What is the trick in my case? I have bridge configured in my Fedora. Tried also this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo setcap cap_net_admin=ep $(which i3status)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with no help. Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/368/ethernet-does-not-show-my-ip-i3status/?answer=371#post-id-371</link><description>Your network interface is named em1, but your config for i3status is for eth0. Change it in the config and you should be fine.</description><pubDate>Sun, 26 Aug 2012 14:57:19 +0000</pubDate><guid>https://faq.i3wm.org/question/368/ethernet-does-not-show-my-ip-i3status/?answer=371#post-id-371</guid></item><item><title>Answer by Tucos for &lt;p&gt;Hello, in Fedora 17 ethernet does not show up for some reason:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ethernet eth0 {
+  format_up = "E: %ip"
+  format_down = "E: down"
+}
+
+$ i3status
+...E: down...
+
+$ LC_ALL=C ifconfig
+em1: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1500
+        inet 192.168.1.9  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::f2de:f1ff:fe03:2187  prefixlen 64  scopeid 0x20&amp;lt;link&amp;gt;
+        ether f0:de:f1:aa:bb:cc  txqueuelen 1000  (Ethernet)
+        RX packets 14888  bytes 8894162 (8.4 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 14013  bytes 4302263 (4.1 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 20  memory 0xf2500000-f2520000  
+
+lo: flags=73&amp;lt;UP,LOOPBACK,RUNNING&amp;gt;  mtu 16436
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&amp;lt;host&amp;gt;
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 278  bytes 36589 (35.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 278  bytes 36589 (35.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099&amp;lt;UP,BROADCAST,MULTICAST&amp;gt;  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:cc:bb:aa  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What is the trick in my case? I have bridge configured in my Fedora. Tried also this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo setcap cap_net_admin=ep $(which i3status)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with no help. Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/368/ethernet-does-not-show-my-ip-i3status/?answer=372#post-id-372</link><description>You configured i3status for eth0, whilst eth0 actually is down (or nonexistent). Change `ethernet eth0 {` to `ethernet em1 {` (or `virbr0`, depending on which one you want).</description><pubDate>Sun, 26 Aug 2012 14:59:11 +0000</pubDate><guid>https://faq.i3wm.org/question/368/ethernet-does-not-show-my-ip-i3status/?answer=372#post-id-372</guid></item></channel></rss>

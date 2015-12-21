@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/523/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 19 Sep 2012 08:19:57 +0000</lastBuildDate><item><title>Command move workspace renames current one</title><link>https://faq.i3wm.org/question/523/command-move-workspace-renames-current-one/</link><description>Hey,
+
+I noticed when I try this:
+
+    i3-msg workspace 4
+    i3-msg move workspace 1 output LVDS1
+    i3-msg move workspace 1 output VGA1
+
+then i3bar renames workspace 4 to "4 output VGA1". Everything seems to be working, workspace 1 is moved back and forth, but the workspace 4 (the current one) is just renamed. Is this a bug? Thanks</description><pubDate>Wed, 19 Sep 2012 08:12:34 +0000</pubDate><guid>https://faq.i3wm.org/question/523/command-move-workspace-renames-current-one/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hey,&lt;/p&gt;
+
+&lt;p&gt;I noticed when I try this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg workspace 4
+i3-msg move workspace 1 output LVDS1
+i3-msg move workspace 1 output VGA1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;then i3bar renames workspace 4 to "4 output VGA1". Everything seems to be working, workspace 1 is moved back and forth, but the workspace 4 (the current one) is just renamed. Is this a bug? Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/523/command-move-workspace-renames-current-one/?answer=524#post-id-524</link><description>The correct command is called `move workspace to output`, not `move workspace 1 output LVDS1`. You can chain this by using `workspace 1; move output to workspace LVDS1`.</description><pubDate>Wed, 19 Sep 2012 08:19:57 +0000</pubDate><guid>https://faq.i3wm.org/question/523/command-move-workspace-renames-current-one/?answer=524#post-id-524</guid></item></channel></rss>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2091/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 26 Jun 2013 20:12:10 +0000</lastBuildDate><item><title>start script with sudo rights</title><link>https://faq.i3wm.org/question/2091/start-script-with-sudo-rights/</link><description>I have a script to load needed kernel modules and then start virtualbox with 'default' image. It works fine if started from command line, but fails when started through a keyboard shortcut.&lt;br/&gt;
+Edit:&lt;br/&gt;
+The problem seems to be that the kernel modules are not loaded in the same shell virtualbox is started. How can I start a (temporary) shell with sudo rights through bindsym shortcut?
+
+**line to start script in ~/.3/config**
+&lt;pre&gt;&lt;code&gt;
+set psst --no-startup-id
+bindsym $sup+b exec $psst sudo -u $USER sh -c /develop/scripts/start-vbox.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+**bash script: start-vbox.sh**
+&lt;pre&gt;&lt;code&gt;
+#!/bin/bash
+
+########################################
+# script to start virtual box 
+# automatically load kernel modules
+# and start virtual win7 image
+########################################
+
+cd /home/can/develop/scripts
+
+# load kernel module
+sudo modprobe vboxdrv
+sudo modprobe -a vboxnetadp vboxnetflt
+
+# start vbox with defined image
+vboxmanage startvm Win7x64
+&lt;/code&gt;&lt;/pre&gt;
+
+Please excuse me, if a similar question already has been posted, but I couldn't figure it out yet.</description><pubDate>Wed, 26 Jun 2013 13:32:36 +0000</pubDate><guid>https://faq.i3wm.org/question/2091/start-script-with-sudo-rights/</guid></item><item><title>Answer by oblique for &lt;p&gt;I have a script to load needed kernel modules and then start virtualbox with 'default' image. It works fine if started from command line, but fails when started through a keyboard shortcut.&lt;br/&gt;
+Edit:&lt;br/&gt;
+The problem seems to be that the kernel modules are not loaded in the same shell virtualbox is started. How can I start a (temporary) shell with sudo rights through bindsym shortcut?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;line to start script in ~/.3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+set psst --no-startup-id
+bindsym $sup+b exec $psst sudo -u $USER sh -c /develop/scripts/start-vbox.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;bash script: start-vbox.sh&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+#!/bin/bash
+
+########################################
+# script to start virtual box 
+# automatically load kernel modules
+# and start virtual win7 image
+########################################
+
+cd /home/can/develop/scripts
+
+# load kernel module
+sudo modprobe vboxdrv
+sudo modprobe -a vboxnetadp vboxnetflt
+
+# start vbox with defined image
+vboxmanage startvm Win7x64
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please excuse me, if a similar question already has been posted, but I couldn't figure it out yet.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2091/start-script-with-sudo-rights/?answer=2092#post-id-2092</link><description>Install gksu package and replace sudo with gksudo. It will open a GUI to type your password.</description><pubDate>Wed, 26 Jun 2013 13:43:29 +0000</pubDate><guid>https://faq.i3wm.org/question/2091/start-script-with-sudo-rights/?answer=2092#post-id-2092</guid></item><item><title>Comment by cee for &lt;p&gt;Install gksu package and replace sudo with gksudo. It will open a GUI to type your password.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2091/start-script-with-sudo-rights/?comment=2094#comment-2094</link><description>Hi oblique, thanks for your suggestion. I don't mind entering my password into a terminal window. Most of the times I use the fingerprint reader anyway. I will edit my question accordingly.</description><pubDate>Wed, 26 Jun 2013 20:12:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2091/start-script-with-sudo-rights/?comment=2094#comment-2094</guid></item></channel></rss>

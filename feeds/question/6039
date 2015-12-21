@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6039/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 01 Jun 2015 05:48:03 +0000</lastBuildDate><item><title>Is there a way to keybind display changes?</title><link>https://faq.i3wm.org/question/6039/is-there-a-way-to-keybind-display-changes/</link><description>I would like to run a command when I plug or unplug a monitor. Gnome puts new outputs in their largest resolution, switches to single-monitor when I close my laptop lid, and remembers which side I put the external on relative to the laptop screen and what workspaces were there when I reopen the lid.  I am trying to replicate this all in an i3ish way.
+
+As glue, I generate screenlayouts with [arandr]() and save them to `~/.screenlayout`, and use this:
+
+    #!/bin/sh
+    # screenlayout.sh
+    
+    export LAYOUTS=~/.screenlayout/
+    
+    xrandr --auto
+    $SHELL ${LAYOUTS}$((cd ${LAYOUTS}; ls *) | zenity --list --column=Screenlayout)
+
+I have been invoking this in my `~/.xinitrc` so that when I boot I get a choice. This works well enough for a system I don't use too often, but I want to do better now. I want to configure i3 to react to randr changes, is this possible?
+
+
+Sniffing the X events, there is an event which. But
+
+    [kousu@spun ~]$ xev -event randr
+    Outer window is 0x2200001, inner window is 0x2200002
+    
+    RRNotify event, serial 25, synthetic NO, window 0x2200001,
+        subtype XRROutputPropertyChangeNotifyEvent
+        output VGA1, property EDID, timestamp 35432061, state Delete
+    
+    RRScreenChangeNotify event, serial 25, synthetic NO, window 0x2200001,
+        root 0x7e, timestamp 5696498, config_timestamp 35433437
+        size_index 65535, subpixel_order SubPixelUnknown
+        rotation RR_Rotate_0
+        width 1280, height 1024, mwidth 337, mheight 269
+    
+    RRNotify event, serial 25, synthetic NO, window 0x2200001,
+        subtype XRROutputChangeNotifyEvent
+        output VGA1, crtc 63, mode 800x600 (800x600)
+        rotation RR_Rotate_0
+        connection RR_Disconnected, subpixel_order SubPixelUnknown
+
+But
+
+    bindsym RRScreenChangeNotify exec screenlayout
+
+does not do anything (neither error nor result) which doesn't surprise me as that's an XEvent not an XKeySym. Is there any way to bind to generic X events (without writing my own C program?). There isn't a secret i3 bindevent, is there?
+
+
+
+
+I have a better `screenlayout.sh':
+
+
+    #!/bin/sh
+    xrandr --auto
+    xrandr --output VGA1 --right-of LVDS1 2&gt;/dev/null
+
+The first form of xrandr isn't documented, but (as of xrandr 1.4.3), it resets the outputs to their boot state, which for me is: either only the internal monitor turned on, or both monitors on at the same resolution if the external is plugged in (the i3 user guide doesn't mention this trick; instead it [explicitly configures both](http://i3wm.org/docs/4.2/userguide.html#presentations): `xrandr --output VGA1 --mode 1024x768 --same-as LVDS1`). The second one then sets the external monitor where I want it, but if the external isn't plugged in it will fail silently, which is fine.
+
+I would like to run this script whenever the screen configuration changes. How do I listen for randr events?
+
+I would also like to run it too when I close my laptop lid, but xev doesn't show any event on lid close; my understanding is that you need to [hook ACPI](https://wiki.archlinux.org/index.php/Acpid#Laptop_monitor_power_off) (!) just for this, and also that turning off the power to the monitor (dpms) doesn't remove it from xrandr's list of active monitors, so the script above is not enough. Is there a simple XCloseLid that I missed and could bind?
+
+As a nice-to-have, I would like to have i3 remember which workspaces were on which outputs and put them back; does anyone have an idea how I could do that?
+
+
+
+</description><pubDate>Sun, 31 May 2015 20:00:24 +0000</pubDate><guid>https://faq.i3wm.org/question/6039/is-there-a-way-to-keybind-display-changes/</guid></item><item><title>Comment by Airblader for &lt;div class="snippet"&gt;&lt;p&gt;I would like to run a command when I plug or unplug a monitor. Gnome puts new outputs in their largest resolution, switches to single-monitor when I close my laptop lid, and remembers which side I put the external on relative to the laptop screen and what workspaces were there when I reopen the lid.  I am trying to replicate this all in an i3ish way.&lt;/p&gt;
+
+&lt;p&gt;As glue, I generate screenlayouts with &lt;a href=""&gt;arandr&lt;/a&gt; and save them to &lt;code&gt;~/.screenlayout&lt;/code&gt;, and use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+# screenlayout.sh
+
+export LAYOUTS=~/.screenlayout/
+
+xrandr --auto
+$SHELL ${LAYOUTS}$((cd ${LAYOUTS}; ls *) | zenity --list --column=Screenlayout)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have been invoking this in my &lt;code&gt;~/.xinitrc&lt;/code&gt; so that when I boot I get a choice. This works well enough for a system I don't use too often, but I want to do better now. I want to configure i3 to react to randr changes, is this possible?&lt;/p&gt;
+
+&lt;p&gt;Sniffing the X events, there is an event which. But&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[kousu@spun ~]$ xev -event randr
+Outer window is 0x2200001, inner window is 0x2200002
+
+RRNotify event, serial 25, synthetic NO, window 0x2200001,
+    subtype XRROutputPropertyChangeNotifyEvent
+    output VGA1, property EDID, timestamp 35432061, state Delete
+
+RRScreenChangeNotify event, serial 25, synthetic NO, window 0x2200001,
+    root 0x7e, timestamp 5696498, config_timestamp 35433437
+    size_index 65535, subpixel_order SubPixelUnknown
+    rotation RR_Rotate_0
+    width 1280, height 1024, mwidth 337, mheight 269
+
+RRNotify event, serial 25, synthetic NO, window 0x2200001,
+    subtype XRROutputChangeNotifyEvent
+    output VGA1, crtc 63, mode 800x600 (800x600)
+    rotation RR_Rotate_0
+    connection RR_Disconnected, subpixel_order SubPixelUnknown
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym RRScreenChangeNotify exec screenlayout
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;does not do anything (neither error nor result) which doesn't surprise me as that's an XEvent not an XKeySym. Is there any way to bind to generic X events (without writing my own C program?). There isn't a secret i3 bindevent, is there?&lt;/p&gt;
+
+&lt;p&gt;I have a better `screenlayout.sh':&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+xrandr --auto
+xrandr --output VGA1 --right-of LVDS1 2&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first form of xrandr isn't documented, but (as of xrandr 1.4.3), it resets the outputs to their boot state, which for me is: either only the internal monitor turned on, or both monitors on at the same resolution if the external is plugged in (the i3 user guide doesn't mention this trick; instead it &lt;a href="http://i3wm.org/docs/4.2/userguide.html#presentations"&gt;explicitly configures both&lt;/a&gt;: &lt;code&gt;xrandr --output VGA1 --mode 1024x768 --same-as LVDS1&lt;/code&gt;). The second one then sets the external monitor where I want it, but if the external isn't plugged in it will fail silently, which is fine.&lt;/p&gt;
+
+&lt;p&gt;I would like to run this script whenever the screen configuration changes. How do I listen for randr events?&lt;/p&gt;
+
+&lt;p&gt;I would also like to run it too when I close my laptop lid, but xev doesn't show any event on lid close; my understanding is that you need to &lt;a href="https://wiki.archlinux.org/index.php/Acpid#Laptop_monitor_power_off"&gt;hook ACPI&lt;/a&gt; (!) just for this, and also that turning off the power to the monitor (dpms) doesn't remove it from xrandr's list of active monitors, so the script above is not enough. Is there a simple XCloseLid that I missed and could ...&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/6039/is-there-a-way-to-keybind-display-changes/?comment=6042#comment-6042</link><description>Haven't read through all of this, but: i3 emits an `output` event on the IPC and you can always subscribe to that and use `i3-msg` to execute any command you want.</description><pubDate>Sun, 31 May 2015 20:48:38 +0000</pubDate><guid>https://faq.i3wm.org/question/6039/is-there-a-way-to-keybind-display-changes/?comment=6042#comment-6042</guid></item><item><title>Answer by Airblader for &lt;div class="snippet"&gt;&lt;p&gt;I would like to run a command when I plug or unplug a monitor. Gnome puts new outputs in their largest resolution, switches to single-monitor when I close my laptop lid, and remembers which side I put the external on relative to the laptop screen and what workspaces were there when I reopen the lid.  I am trying to replicate this all in an i3ish way.&lt;/p&gt;
+
+&lt;p&gt;As glue, I generate screenlayouts with &lt;a href=""&gt;arandr&lt;/a&gt; and save them to &lt;code&gt;~/.screenlayout&lt;/code&gt;, and use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+# screenlayout.sh
+
+export LAYOUTS=~/.screenlayout/
+
+xrandr --auto
+$SHELL ${LAYOUTS}$((cd ${LAYOUTS}; ls *) | zenity --list --column=Screenlayout)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have been invoking this in my &lt;code&gt;~/.xinitrc&lt;/code&gt; so that when I boot I get a choice. This works well enough for a system I don't use too often, but I want to do better now. I want to configure i3 to react to randr changes, is this possible?&lt;/p&gt;
+
+&lt;p&gt;Sniffing the X events, there is an event which. But&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[kousu@spun ~]$ xev -event randr
+Outer window is 0x2200001, inner window is 0x2200002
+
+RRNotify event, serial 25, synthetic NO, window 0x2200001,
+    subtype XRROutputPropertyChangeNotifyEvent
+    output VGA1, property EDID, timestamp 35432061, state Delete
+
+RRScreenChangeNotify event, serial 25, synthetic NO, window 0x2200001,
+    root 0x7e, timestamp 5696498, config_timestamp 35433437
+    size_index 65535, subpixel_order SubPixelUnknown
+    rotation RR_Rotate_0
+    width 1280, height 1024, mwidth 337, mheight 269
+
+RRNotify event, serial 25, synthetic NO, window 0x2200001,
+    subtype XRROutputChangeNotifyEvent
+    output VGA1, crtc 63, mode 800x600 (800x600)
+    rotation RR_Rotate_0
+    connection RR_Disconnected, subpixel_order SubPixelUnknown
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym RRScreenChangeNotify exec screenlayout
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;does not do anything (neither error nor result) which doesn't surprise me as that's an XEvent not an XKeySym. Is there any way to bind to generic X events (without writing my own C program?). There isn't a secret i3 bindevent, is there?&lt;/p&gt;
+
+&lt;p&gt;I have a better `screenlayout.sh':&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+xrandr --auto
+xrandr --output VGA1 --right-of LVDS1 2&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first form of xrandr isn't documented, but (as of xrandr 1.4.3), it resets the outputs to their boot state, which for me is: either only the internal monitor turned on, or both monitors on at the same resolution if the external is plugged in (the i3 user guide doesn't mention this trick; instead it &lt;a href="http://i3wm.org/docs/4.2/userguide.html#presentations"&gt;explicitly configures both&lt;/a&gt;: &lt;code&gt;xrandr --output VGA1 --mode 1024x768 --same-as LVDS1&lt;/code&gt;). The second one then sets the external monitor where I want it, but if the external isn't plugged in it will fail silently, which is fine.&lt;/p&gt;
+
+&lt;p&gt;I would like to run this script whenever the screen configuration changes. How do I listen for randr events?&lt;/p&gt;
+
+&lt;p&gt;I would also like to run it too when I close my laptop lid, but xev doesn't show any event on lid close; my understanding is that you need to &lt;a href="https://wiki.archlinux.org/index.php/Acpid#Laptop_monitor_power_off"&gt;hook ACPI&lt;/a&gt; (!) just for this, and also that turning off the power to the monitor (dpms) doesn't remove it from xrandr's list of active monitors, so the script above is not enough. Is there a simple XCloseLid that I missed and could ...&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt; </title><link>https://faq.i3wm.org/question/6039/is-there-a-way-to-keybind-display-changes/?answer=6045#post-id-6045</link><description>So now I read your question and I'm fairly certain this is what you are looking for. You can use [i3subscribe](https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/) and execute this on startup:
+
+    while read event; do ~/scripts/screenlayout.sh; done &lt; &lt;(i3subscribe output)
+
+Moving on:
+
+&gt; I would like to have i3 remember which workspaces were on which outputs and put them back; does anyone have an idea how I could do that?
+
+i3 will move all workspaces to another existing output if an output disappears, it doesn't remember on which output they were before. You could submit this as a feature request on Github, though. To get it working right now, the easiest way would indeed be to just put specific workspaces on specific outputs.
+
+&gt; I would also like to run it too when I close my laptop lid, but xev doesn't show any event on lid close
+
+No, I don't think there's an event for that. AFAIK, i3 subscribes to [all RandR](https://github.com/i3/i3/blob/next/src/randr.c#L870) events and if this caused the output to disappear, i3 would crash in all released versions (there was a [bug/feature regarding this](https://github.com/i3/i3/pull/1638)) since no output is available anymore. But I'm sure we would've received plenty bug reports if this would've been the case. Hence, I doubt such an event is fired from X.</description><pubDate>Mon, 01 Jun 2015 05:04:47 +0000</pubDate><guid>https://faq.i3wm.org/question/6039/is-there-a-way-to-keybind-display-changes/?answer=6045#post-id-6045</guid></item><item><title>Comment by kousu for &lt;p&gt;So now I read your question and I'm fairly certain this is what you are looking for. You can use &lt;a href="https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/"&gt;i3subscribe&lt;/a&gt; and execute this on startup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;while read event; do ~/scripts/screenlayout.sh; done &amp;lt; &amp;lt;(i3subscribe output)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Moving on:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I would like to have i3 remember which workspaces were on which outputs and put them back; does anyone have an idea how I could do that?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;i3 will move all workspaces to another existing output if an output disappears, it doesn't remember on which output they were before. You could submit this as a feature request on Github, though. To get it working right now, the easiest way would indeed be to just put specific workspaces on specific outputs.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I would also like to run it too when I close my laptop lid, but xev doesn't show any event on lid close&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;No, I don't think there's an event for that. AFAIK, i3 subscribes to &lt;a href="https://github.com/i3/i3/blob/next/src/randr.c#L870"&gt;all RandR&lt;/a&gt; events and if this caused the output to disappear, i3 would crash in all released versions (there was a &lt;a href="https://github.com/i3/i3/pull/1638"&gt;bug/feature regarding this&lt;/a&gt;) since no output is available anymore. But I'm sure we would've received plenty bug reports if this would've been the case. Hence, I doubt such an event is fired from X.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6039/is-there-a-way-to-keybind-display-changes/?comment=6049#comment-6049</link><description>Ah. i3subscribe is what I want, thank you.</description><pubDate>Mon, 01 Jun 2015 05:48:03 +0000</pubDate><guid>https://faq.i3wm.org/question/6039/is-there-a-way-to-keybind-display-changes/?comment=6049#comment-6049</guid></item></channel></rss>

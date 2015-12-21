@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1372/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 04 Apr 2014 20:36:19 +0000</lastBuildDate><item><title>Hide status bar border</title><link>https://faq.i3wm.org/question/1372/hide-status-bar-border/</link><description>`hide_edge_borders both` does not appear to apply to i3 status bar.
+
+Piping colored conky text into i3bar, works wonderfully, but this pointless border around the status bar is driving me nuts, help! ;-)
+
+Just to clarify, as soon as you set the colors block an unwanted border appears:
+
+    bar{
+      output xinerama-1
+      position bottom
+      mode dock
+      workspace_buttons no
+      tray_output none
+      status_command ~/.i3/conky.sh
+    
+      # comment out below and no border
+      colors {
+        background #ffffff
+        statusline #000000
+      }
+    }
+
+So how to make i3 not add a border when supplying custom colors block??</description><pubDate>Tue, 12 Mar 2013 00:02:08 +0000</pubDate><guid>https://faq.i3wm.org/question/1372/hide-status-bar-border/</guid></item><item><title>Answer by morgan_greywolf for &lt;p&gt;&lt;code&gt;hide_edge_borders both&lt;/code&gt; does not appear to apply to i3 status bar.&lt;/p&gt;
+
+&lt;p&gt;Piping colored conky text into i3bar, works wonderfully, but this pointless border around the status bar is driving me nuts, help! ;-)&lt;/p&gt;
+
+&lt;p&gt;Just to clarify, as soon as you set the colors block an unwanted border appears:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar{
+  output xinerama-1
+  position bottom
+  mode dock
+  workspace_buttons no
+  tray_output none
+  status_command ~/.i3/conky.sh
+
+  # comment out below and no border
+  colors {
+    background #ffffff
+    statusline #000000
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So how to make i3 not add a border when supplying custom colors block??&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1372/hide-status-bar-border/?answer=3621#post-id-3621</link><description>There is a 1 pixel border around the i3bar that is the same color as the i3bar, regardless of whether you set the colors block or not.</description><pubDate>Fri, 04 Apr 2014 20:36:19 +0000</pubDate><guid>https://faq.i3wm.org/question/1372/hide-status-bar-border/?answer=3621#post-id-3621</guid></item></channel></rss>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/61/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 12 Mar 2013 14:04:10 +0000</lastBuildDate><item><title>Forcing windows as always floating</title><link>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/</link><description>Is there a way to force specific windows to be always floating? I reckon some already do that by default (some configuration windows) and others don't. 
+
+One classic example here is maybe nautilus "File Operations" window, which shows up when you are copying or moving files in your file system. 
+
+The xprop command returns:
+
+    WM_CLASS(STRING) = "file_progress", "Nautilus"
+
+To make it be floating by default, I append to the .i3/config file:
+
+    for_window [class="Nautilus" instance="file_progress"] floating enable
+
+But, is there any other way? I was wondering what would be the criteria to decide whether to display it floating or not. Meaning, I would not want to keep doing this to every window that wrongfully (well, maybe this is just my perspective) goes tiled instead of floated.
+
+Any ideas?</description><pubDate>Wed, 06 Jun 2012 09:28:05 +0000</pubDate><guid>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/</guid></item><item><title>Answer by Michael for &lt;p&gt;Is there a way to force specific windows to be always floating? I reckon some already do that by default (some configuration windows) and others don't. &lt;/p&gt;
+
+&lt;p&gt;One classic example here is maybe nautilus "File Operations" window, which shows up when you are copying or moving files in your file system. &lt;/p&gt;
+
+&lt;p&gt;The xprop command returns:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_CLASS(STRING) = "file_progress", "Nautilus"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To make it be floating by default, I append to the .i3/config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Nautilus" instance="file_progress"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But, is there any other way? I was wondering what would be the criteria to decide whether to display it floating or not. Meaning, I would not want to keep doing this to every window that wrongfully (well, maybe this is just my perspective) goes tiled instead of floated.&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/?answer=62#post-id-62</link><description>Your way is the correct and only way.
+
+In case you feel that this window should not ever be tiling (in your case it seems to be a popup window indicating some progress), you could file a bugreport for the program you are using and tell them to set the correct window type on that window.
+
+i3 sets dialog, utility, toolbar and splash windows to floating.</description><pubDate>Wed, 06 Jun 2012 09:39:47 +0000</pubDate><guid>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/?answer=62#post-id-62</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Your way is the correct and only way.&lt;/p&gt;
+
+&lt;p&gt;In case you feel that this window should not ever be tiling (in your case it seems to be a popup window indicating some progress), you could file a bugreport for the program you are using and tell them to set the correct window type on that window.&lt;/p&gt;
+
+&lt;p&gt;i3 sets dialog, utility, toolbar and splash windows to floating.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/?comment=63#comment-63</link><description>Yeah, I had the feeling the trouble would be in the application's side. It makes total sense to base the floating under these types of windows. Nice!
+I will try to push this to applications and see what happens! :-)
+Cheers,</description><pubDate>Wed, 06 Jun 2012 09:54:09 +0000</pubDate><guid>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/?comment=63#comment-63</guid></item><item><title>Answer by visit for &lt;p&gt;Is there a way to force specific windows to be always floating? I reckon some already do that by default (some configuration windows) and others don't. &lt;/p&gt;
+
+&lt;p&gt;One classic example here is maybe nautilus "File Operations" window, which shows up when you are copying or moving files in your file system. &lt;/p&gt;
+
+&lt;p&gt;The xprop command returns:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_CLASS(STRING) = "file_progress", "Nautilus"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To make it be floating by default, I append to the .i3/config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Nautilus" instance="file_progress"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But, is there any other way? I was wondering what would be the criteria to decide whether to display it floating or not. Meaning, I would not want to keep doing this to every window that wrongfully (well, maybe this is just my perspective) goes tiled instead of floated.&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/?answer=1377#post-id-1377</link><description>If you want to float everything by default, you can set it like this:
+
+    # force floating for all new windows
+    for_window [class="[.]*"] floating enable
+
+I know, this is against the principles of a tiling WM. But some guys may like to manually add their windows to the tree.</description><pubDate>Tue, 12 Mar 2013 14:04:10 +0000</pubDate><guid>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/?answer=1377#post-id-1377</guid></item><item><title>Answer by Dave Cohen for &lt;p&gt;Is there a way to force specific windows to be always floating? I reckon some already do that by default (some configuration windows) and others don't. &lt;/p&gt;
+
+&lt;p&gt;One classic example here is maybe nautilus "File Operations" window, which shows up when you are copying or moving files in your file system. &lt;/p&gt;
+
+&lt;p&gt;The xprop command returns:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_CLASS(STRING) = "file_progress", "Nautilus"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To make it be floating by default, I append to the .i3/config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Nautilus" instance="file_progress"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But, is there any other way? I was wondering what would be the criteria to decide whether to display it floating or not. Meaning, I would not want to keep doing this to every window that wrongfully (well, maybe this is just my perspective) goes tiled instead of floated.&lt;/p&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/?answer=841#post-id-841</link><description>I'm not sure about the specific Nautilus window you're talking about, (I usually use Chromium) but I find this rule helpful:
+
+    # browser pop-ups
+    for_window [window_role="pop-up"] floating enable
+
+</description><pubDate>Thu, 29 Nov 2012 19:49:54 +0000</pubDate><guid>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/?answer=841#post-id-841</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;I'm not sure about the specific Nautilus window you're talking about, (I usually use Chromium) but I find this rule helpful:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# browser pop-ups
+for_window [window_role="pop-up"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/?comment=910#comment-910</link><description>Great tip!</description><pubDate>Fri, 14 Dec 2012 22:31:11 +0000</pubDate><guid>https://faq.i3wm.org/question/61/forcing-windows-as-always-floating/?comment=910#comment-910</guid></item></channel></rss>

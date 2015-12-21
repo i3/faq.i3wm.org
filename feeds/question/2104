@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2104/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 28 Jun 2013 04:06:35 +0000</lastBuildDate><item><title>Static workspaces</title><link>https://faq.i3wm.org/question/2104/static-workspaces/</link><description>Is there a way to use static workspaces? Like if I wanted to have X number of workspaces that are always visable regardless if a client is on it or not?</description><pubDate>Thu, 27 Jun 2013 19:36:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2104/static-workspaces/</guid></item><item><title>Answer by ThomasAdam for &lt;p&gt;Is there a way to use static workspaces? Like if I wanted to have X number of workspaces that are always visable regardless if a client is on it or not?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2104/static-workspaces/?answer=2105#post-id-2105</link><description>Apparently, this functionality is something which has been discussed quite often and has been rejected.  I presume the following might work though:
+
+    diff --git a/src/workspace.c b/src/workspace.c
+    index 17f5ac3..64ec8c3 100644
+    --- a/src/workspace.c
+    +++ b/src/workspace.c
+    @@ -443,7 +443,7 @@ static void _workspace_show(Con *workspace) {
+             con_focus(next);
+     
+         ipc_send_workspace_focus_event(workspace, current);
+    -
+    +#if 0
+         DLOG("old = %p / %s\n", old, (old ? old-&gt;name : "(null)"));
+         /* Close old workspace if necessary. This must be done *after* doing
+          * urgency handling, because tree_close() will do a con_focus() on the next
+    @@ -458,7 +458,7 @@ static void _workspace_show(Con *workspace) {
+                 ipc_send_event("workspace", I3_IPC_EVENT_WORKSPACE, "{\"change\":\"empty\"}");
+             }
+         }
+    -
+    +#endif
+         workspace-&gt;fullscreen_mode = CF_OUTPUT;
+         LOG("focused now = %p / %s\n", focused, focused-&gt;name);</description><pubDate>Thu, 27 Jun 2013 21:06:43 +0000</pubDate><guid>https://faq.i3wm.org/question/2104/static-workspaces/?answer=2105#post-id-2105</guid></item><item><title>Comment by LowEndGeek for &lt;p&gt;Apparently, this functionality is something which has been discussed quite often and has been rejected.  I presume the following might work though:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;diff --git a/src/workspace.c b/src/workspace.c
+index 17f5ac3..64ec8c3 100644
+--- a/src/workspace.c
++++ b/src/workspace.c
+@@ -443,7 +443,7 @@ static void _workspace_show(Con *workspace) {
+         con_focus(next);
+
+     ipc_send_workspace_focus_event(workspace, current);
+-
++#if 0
+     DLOG("old = %p / %s\n", old, (old ? old-&amp;gt;name : "(null)"));
+     /* Close old workspace if necessary. This must be done *after* doing
+      * urgency handling, because tree_close() will do a con_focus() on the next
+@@ -458,7 +458,7 @@ static void _workspace_show(Con *workspace) {
+             ipc_send_event("workspace", I3_IPC_EVENT_WORKSPACE, "{\"change\":\"empty\"}");
+         }
+     }
+-
++#endif
+     workspace-&amp;gt;fullscreen_mode = CF_OUTPUT;
+     LOG("focused now = %p / %s\n", focused, focused-&amp;gt;name);
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2104/static-workspaces/?comment=2107#comment-2107</link><description>I'll give it a shot, if it doesn't work its no big deal.</description><pubDate>Fri, 28 Jun 2013 04:06:35 +0000</pubDate><guid>https://faq.i3wm.org/question/2104/static-workspaces/?comment=2107#comment-2107</guid></item></channel></rss>

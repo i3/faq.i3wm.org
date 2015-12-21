@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1345/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 09 Mar 2013 14:39:20 +0000</lastBuildDate><item><title>Is it possible to subscribe to 'window' event ?</title><link>https://faq.i3wm.org/question/1345/is-it-possible-to-subscribe-to-window-event/</link><description>I would want to prepend an incremental number (up to 9) in windows title inside a same workspace in order to be able to quickly switch to a them with that number.
+
+One possibility to achieve this would be to use a combination of IPC for setting the windows title and i3 configuration for the shortcuts.
+But I can't find how to subscribe to window events and get something like 'new window' and 'closed window'.
+
+As I'm starting to understand Michael philosophy I'm sure it is intended and there must be another 'more standard' way to do it.
+
+Anyone could point me in the right direction ?
+
+Thank you. </description><pubDate>Fri, 08 Mar 2013 04:35:48 +0000</pubDate><guid>https://faq.i3wm.org/question/1345/is-it-possible-to-subscribe-to-window-event/</guid></item><item><title>Answer by syl20bnr for &lt;p&gt;I would want to prepend an incremental number (up to 9) in windows title inside a same workspace in order to be able to quickly switch to a them with that number.&lt;/p&gt;
+
+&lt;p&gt;One possibility to achieve this would be to use a combination of IPC for setting the windows title and i3 configuration for the shortcuts.
+But I can't find how to subscribe to window events and get something like 'new window' and 'closed window'.&lt;/p&gt;
+
+&lt;p&gt;As I'm starting to understand Michael philosophy I'm sure it is intended and there must be another 'more standard' way to do it.&lt;/p&gt;
+
+&lt;p&gt;Anyone could point me in the right direction ?&lt;/p&gt;
+
+&lt;p&gt;Thank you. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1345/is-it-possible-to-subscribe-to-window-event/?answer=1354#post-id-1354</link><description>I played a bit with it, the event on window works great for the property change = new.
+
+In order to be able to prepend numbers to windows with IPC I need some other properties:
+
+- window -&gt; change = title
+- window -&gt; change = delete
+
+I also need a new command for window like the rename workspace command.
+
+Is there any thing like this implemented ?
+
+If not I will try to hack something.
+
+PS: I mark the question as answered since the subject was to subscribe to window event.</description><pubDate>Sat, 09 Mar 2013 06:02:59 +0000</pubDate><guid>https://faq.i3wm.org/question/1345/is-it-possible-to-subscribe-to-window-event/?answer=1354#post-id-1354</guid></item><item><title>Comment by Michael for &lt;p&gt;I played a bit with it, the event on window works great for the property change = new.&lt;/p&gt;
+
+&lt;p&gt;In order to be able to prepend numbers to windows with IPC I need some other properties:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;window -&amp;gt; change = title&lt;/li&gt;
+&lt;li&gt;window -&amp;gt; change = delete&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I also need a new command for window like the rename workspace command.&lt;/p&gt;
+
+&lt;p&gt;Is there any thing like this implemented ?&lt;/p&gt;
+
+&lt;p&gt;If not I will try to hack something.&lt;/p&gt;
+
+&lt;p&gt;PS: I mark the question as answered since the subject was to subscribe to window event.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1345/is-it-possible-to-subscribe-to-window-event/?comment=1358#comment-1358</link><description>Please don’t post things like this as answers. It’s not an answer.</description><pubDate>Sat, 09 Mar 2013 13:23:00 +0000</pubDate><guid>https://faq.i3wm.org/question/1345/is-it-possible-to-subscribe-to-window-event/?comment=1358#comment-1358</guid></item><item><title>Answer by Michael for &lt;p&gt;I would want to prepend an incremental number (up to 9) in windows title inside a same workspace in order to be able to quickly switch to a them with that number.&lt;/p&gt;
+
+&lt;p&gt;One possibility to achieve this would be to use a combination of IPC for setting the windows title and i3 configuration for the shortcuts.
+But I can't find how to subscribe to window events and get something like 'new window' and 'closed window'.&lt;/p&gt;
+
+&lt;p&gt;As I'm starting to understand Michael philosophy I'm sure it is intended and there must be another 'more standard' way to do it.&lt;/p&gt;
+
+&lt;p&gt;Anyone could point me in the right direction ?&lt;/p&gt;
+
+&lt;p&gt;Thank you. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1345/is-it-possible-to-subscribe-to-window-event/?answer=1349#post-id-1349</link><description>There is a window event (in the git version):
+http://build.i3wm.org/docs/ipc.html#_window_event
+
+You won’t get the window event when closing a window, but patches for that will be accepted.
+
+Please keep us updated about your script, I think it’s an interesting one.</description><pubDate>Fri, 08 Mar 2013 18:11:06 +0000</pubDate><guid>https://faq.i3wm.org/question/1345/is-it-possible-to-subscribe-to-window-event/?answer=1349#post-id-1349</guid></item><item><title>Comment by syl20bnr for &lt;p&gt;There is a window event (in the git version):
+&lt;a href="http://build.i3wm.org/docs/ipc.html"&gt;http://build.i3wm.org/docs/ipc.html#&lt;/a&gt;&lt;em&gt;window&lt;/em&gt;event&lt;/p&gt;
+
+&lt;p&gt;You won’t get the window event when closing a window, but patches for that will be accepted.&lt;/p&gt;
+
+&lt;p&gt;Please keep us updated about your script, I think it’s an interesting one.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1345/is-it-possible-to-subscribe-to-window-event/?comment=1359#comment-1359</link><description>I played a bit with it, the event on window works great for the property change = new.In order to be able to prepend numbers to windows with IPC I need some other properties:
+window -&gt; change = title
+window -&gt; change = delete
+I also need a  new command for window like the rename workspace command.</description><pubDate>Sat, 09 Mar 2013 14:39:20 +0000</pubDate><guid>https://faq.i3wm.org/question/1345/is-it-possible-to-subscribe-to-window-event/?comment=1359#comment-1359</guid></item></channel></rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/561/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 30 Sep 2012 19:06:23 +0000</lastBuildDate><item><title>What is that thing called --no-startup-id?</title><link>https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id/</link><description>What is that thing called `--no-startup-id`? Why and when should I use it? </description><pubDate>Sun, 30 Sep 2012 19:02:20 +0000</pubDate><guid>https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id/</guid></item><item><title>Answer by joepd for &lt;p&gt;What is that thing called &lt;code&gt;--no-startup-id&lt;/code&gt;? Why and when should I use it? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id/?answer=562#post-id-562</link><description>Figured that Michael's answer in a comment to [this question](http://faq.i3wm.org/question/6/how-can-i-set-a-desktop-background-image-in-i3/) deserved its own page: 
+
+`--no-startup-id` disables startup notifications for this window. They are used to properly launch windows on the right workspace when starting and to display an hourglass mouse pointer while startup is in progress. In this case you’d end up with an hourglass mouse pointer for 60 seconds.</description><pubDate>Sun, 30 Sep 2012 19:04:00 +0000</pubDate><guid>https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id/?answer=562#post-id-562</guid></item><item><title>Answer by Michael for &lt;p&gt;What is that thing called &lt;code&gt;--no-startup-id&lt;/code&gt;? Why and when should I use it? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id/?answer=563#post-id-563</link><description>The release notes say:
+
+    i3 now supports startup notifications, meaning that during an application
+    starts up, the mouse cursor will change to 'watch' on the root window. Also,
+    the application window will appear on the workspace on which it was launched
+    (not on the currently focused workspace). Some applications don’t support
+    startup notifications. If the cursor change bothers you, turn it off by using
+    the --no-startup-id flag (see the userguide).
+
+Also, the userguide says:
+
+    The --no-startup-id parameter disables startup-notification support for this 
+    particular exec command. With startup-notification, i3 can make sure that a window
+    appears on the workspace on which you used the exec command. Also, it will change
+    the X11 cursor to watch (a clock) while the application is launching. So, if an
+    application is not startup-notification aware (most GTK and Qt using applications
+    seem to be, though), you will end up with a watch cursor for 60 seconds.
+
+So, in short: use it if your app does not support startup notifications or if you are not starting a graphical application at all (e.g. all shell script) if the watch cursor bothers you.</description><pubDate>Sun, 30 Sep 2012 19:06:23 +0000</pubDate><guid>https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id/?answer=563#post-id-563</guid></item></channel></rss>

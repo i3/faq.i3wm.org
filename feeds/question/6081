@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6081/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 08 Jun 2015 12:56:16 +0000</lastBuildDate><item><title>How to restore a scratchpad?</title><link>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/</link><description>I am using the append_layout commands to restore my layouts upon login.
+Everything goes where it's supposed to, except for my chat window that I have to send manually to a scratchapd.
+
+It's a minor annoyance but still would be great to have it fixed.
+
+I also tried to add this to my .i3/config:
+
+    exec --no-startup-id 'i3-msg [title="default-chat"] move scratchpad'
+
+'default-chat' is a chat joined by Pidgin by default upon startup. But this doesn't work. My guess is that this window isn't created yet by the time this line gets executed</description><pubDate>Mon, 08 Jun 2015 08:45:21 +0000</pubDate><guid>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/</guid></item><item><title>Comment by Toufik for &lt;p&gt;I am using the append_layout commands to restore my layouts upon login.
+Everything goes where it's supposed to, except for my chat window that I have to send manually to a scratchapd.&lt;/p&gt;
+
+&lt;p&gt;It's a minor annoyance but still would be great to have it fixed.&lt;/p&gt;
+
+&lt;p&gt;I also tried to add this to my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id 'i3-msg [title="default-chat"] move scratchpad'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;'default-chat' is a chat joined by Pidgin by default upon startup. But this doesn't work. My guess is that this window isn't created yet by the time this line gets executed&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/?comment=6088#comment-6088</link><description>hey thanks I just figured that out :)</description><pubDate>Mon, 08 Jun 2015 12:56:16 +0000</pubDate><guid>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/?comment=6088#comment-6088</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I am using the append_layout commands to restore my layouts upon login.
+Everything goes where it's supposed to, except for my chat window that I have to send manually to a scratchapd.&lt;/p&gt;
+
+&lt;p&gt;It's a minor annoyance but still would be great to have it fixed.&lt;/p&gt;
+
+&lt;p&gt;I also tried to add this to my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id 'i3-msg [title="default-chat"] move scratchpad'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;'default-chat' is a chat joined by Pidgin by default upon startup. But this doesn't work. My guess is that this window isn't created yet by the time this line gets executed&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/?comment=6086#comment-6086</link><description>Just to be clear, `for_window [title="default-chat"] move scratchpad` is the whole line you need to put into your configuration instead of `exec ....`.</description><pubDate>Mon, 08 Jun 2015 12:53:07 +0000</pubDate><guid>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/?comment=6086#comment-6086</guid></item><item><title>Comment by Toufik for &lt;p&gt;I am using the append_layout commands to restore my layouts upon login.
+Everything goes where it's supposed to, except for my chat window that I have to send manually to a scratchapd.&lt;/p&gt;
+
+&lt;p&gt;It's a minor annoyance but still would be great to have it fixed.&lt;/p&gt;
+
+&lt;p&gt;I also tried to add this to my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id 'i3-msg [title="default-chat"] move scratchpad'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;'default-chat' is a chat joined by Pidgin by default upon startup. But this doesn't work. My guess is that this window isn't created yet by the time this line gets executed&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/?comment=6084#comment-6084</link><description>no luck either :/</description><pubDate>Mon, 08 Jun 2015 10:22:58 +0000</pubDate><guid>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/?comment=6084#comment-6084</guid></item><item><title>Comment by Airblader for &lt;p&gt;I am using the append_layout commands to restore my layouts upon login.
+Everything goes where it's supposed to, except for my chat window that I have to send manually to a scratchapd.&lt;/p&gt;
+
+&lt;p&gt;It's a minor annoyance but still would be great to have it fixed.&lt;/p&gt;
+
+&lt;p&gt;I also tried to add this to my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id 'i3-msg [title="default-chat"] move scratchpad'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;'default-chat' is a chat joined by Pidgin by default upon startup. But this doesn't work. My guess is that this window isn't created yet by the time this line gets executed&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/?comment=6082#comment-6082</link><description>Use "for_window [title='default-chat'] move scratchpad" instead.</description><pubDate>Mon, 08 Jun 2015 09:11:24 +0000</pubDate><guid>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/?comment=6082#comment-6082</guid></item><item><title>Answer by Toufik for &lt;p&gt;I am using the append_layout commands to restore my layouts upon login.
+Everything goes where it's supposed to, except for my chat window that I have to send manually to a scratchapd.&lt;/p&gt;
+
+&lt;p&gt;It's a minor annoyance but still would be great to have it fixed.&lt;/p&gt;
+
+&lt;p&gt;I also tried to add this to my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id 'i3-msg [title="default-chat"] move scratchpad'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;'default-chat' is a chat joined by Pidgin by default upon startup. But this doesn't work. My guess is that this window isn't created yet by the time this line gets executed&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/?answer=6087#post-id-6087</link><description>I take my comment back.
+
+for_window did the trick.
+
+I was trying to add 'for_window' in the command above which didn't work. Instead I added this line in my .i3/config:
+
+    for_window [title="default-chat"] move scratchpad
+
+And now it works perfectly
+
+All credits to @Airblader</description><pubDate>Mon, 08 Jun 2015 12:54:36 +0000</pubDate><guid>https://faq.i3wm.org/question/6081/how-to-restore-a-scratchpad/?answer=6087#post-id-6087</guid></item></channel></rss>

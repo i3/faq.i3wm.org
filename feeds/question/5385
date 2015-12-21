@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5385/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 23 Jan 2015 15:25:28 +0000</lastBuildDate><item><title>Code for window title border?</title><link>https://faq.i3wm.org/question/5385/code-for-window-title-border/</link><description>I'd like to change the thickness (height?) of the two horizontal borders in the titlebar from 1px to maybe 4px---an option not presently available via the config file. I've been looking through the i3 source and can't seem to find what sets the thickness of these lines. The closest (or at least most obvious) thing I've found relating to it is this snippet from `&lt;i3 source root&gt;/src/x.c`:
+
+    /* 5: draw two unconnected horizontal lines in border color */
+    xcb_change_gc(conn, parent-&gt;pm_gc, XCB_GC_FOREGROUND, (uint32_t[]) {p-&gt;color-&gt;border});
+    Rect *dr = &amp;(con-&gt;deco_rect);
+    int deco_diff_l = 2;
+    int deco_diff_r = 2;
+    if (parent-&gt;layout == L_TABBED) {
+        if (TAILQ_PREV(con, nodes_head, nodes) != NULL)
+            deco_diff_l = 0;
+        if (TAILQ_NEXT(con, nodes) != NULL)
+            deco_diff_r = 0;
+    }
+    xcb_segment_t segments[] = {
+        {dr-&gt;x, dr-&gt;y,
+         dr-&gt;x + dr-&gt;width - 1, dr-&gt;y},
+        {dr-&gt;x + deco_diff_l, dr-&gt;y + dr-&gt;height - 1,
+         dr-&gt;x - deco_diff_r + dr-&gt;width - 1, dr-&gt;y + dr-&gt;height - 1}};
+    xcb_poly_segment(conn, parent-&gt;pixmap, parent-&gt;pm_gc, 2, segments);
+I've fiddled with all the integers there, but they all seem to pertain to the padding of the lines within the titlebar. Again, just to clarify, I'm talking about the two lines in the titlebar affected by the **border** color setting in the config. Anyone have some pointers?</description><pubDate>Fri, 23 Jan 2015 15:25:28 +0000</pubDate><guid>https://faq.i3wm.org/question/5385/code-for-window-title-border/</guid></item></channel></rss>

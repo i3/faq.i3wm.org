@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2483/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 22 Jun 2015 16:16:07 +0000</lastBuildDate><item><title>[howto] Debian Wheezy : lightdm + i3</title><link>https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/</link><description>Hi,
+
+I don't have a blog, but this information is important to be indexed by web search, prism, nsa and partners.
+
+(note: I use lightdm stable, and i3 backported)
+
+I see some problems with lightdm and i3. This make me try: ligthdm, slim, xinit, thinking about compiling lxdm... (and count several days of thinking). I use xfce4-power-manager, and with some solution, I lost capability to suspend or hibernate with this application...
+Due to my difficult to document me from this problem, I will help you in two (fundamental) customizations that now I solved:
+
+1. Select i3 as default in lightdm
+2. Add your ~/bin for scripts in dmenu for execution
+
+**1 - Select i3 as default in ligthdm**
+
+This will NOT SHOW i3 as a WM to make it default:
+
+    $ update-alternatives --config x-session-manager
+
+you have to go edit lightdm configuration's file:
+
+    $ nano /etc/lightdm/lightdm.conf
+
+and change that line:
+user-session=i3
+
+This will make i3 as "default" when you login.
+
+**2 - Add your ~/bin for scripts in dmenu for execution**
+
+First you say: why I cannot execute commands in dmenu?
+I made some stuff I readed as `rm ~/.dmenu_cache` or `dmenu_path | grep &lt;myapp&gt;` and sometimes appear to be listed by dmenu, but never executed. You can try to export $PATH with your bin directory in .bashrc, .profile, .bashrc_profile, ... It will not work.
+
+A good point to solve this, was:
+
+    cat /proc/$(pidof i3)/environ | tr '\0' '\n' | grep '^PATH'
+
+Suggested by a partner in official irc #i3 (thanks!).
+With this, we will see that our binary isn't in the PATH of i3.
+And to make it work on Debian + lightdm + i3, we have to put in the appropiate way. As said in /etc/lightdm/lightdm.conf , the wrapper is:
+
+    session-wrapper=/etc/X11/Xsession
+
+If we go in, that shows:
+
+    USERXSESSION=$HOME/.xsession
+    USERXSESSIONRC=$HOME/.xsessionrc
+    ALTUSERXSESSION=$HOME/.Xsession
+
+That means, this 3 files are inspected by lightdm in the moment of initializing i3. If you put here scripts, this will take effect to i3. For debian, you should use **.xsessionrc** (the other are ignored) and put something like this:
+
+    export PATH=$HOME/bin:$PATH
+
+And that's it!</description><pubDate>Thu, 05 Sep 2013 08:29:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/</guid></item><item><title>Comment by joepd for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I don't have a blog, but this information is important to be indexed by web search, prism, nsa and partners.&lt;/p&gt;
+
+&lt;p&gt;(note: I use lightdm stable, and i3 backported)&lt;/p&gt;
+
+&lt;p&gt;I see some problems with lightdm and i3. This make me try: ligthdm, slim, xinit, thinking about compiling lxdm... (and count several days of thinking). I use xfce4-power-manager, and with some solution, I lost capability to suspend or hibernate with this application...
+Due to my difficult to document me from this problem, I will help you in two (fundamental) customizations that now I solved:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Select i3 as default in lightdm&lt;/li&gt;
+&lt;li&gt;Add your ~/bin for scripts in dmenu for execution&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;1 - Select i3 as default in ligthdm&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This will NOT SHOW i3 as a WM to make it default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ update-alternatives --config x-session-manager
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you have to go edit lightdm configuration's file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ nano /etc/lightdm/lightdm.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and change that line:
+user-session=i3&lt;/p&gt;
+
+&lt;p&gt;This will make i3 as "default" when you login.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2 - Add your ~/bin for scripts in dmenu for execution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First you say: why I cannot execute commands in dmenu?
+I made some stuff I readed as &lt;code&gt;rm ~/.dmenu_cache&lt;/code&gt; or &lt;code&gt;dmenu_path | grep &amp;lt;myapp&amp;gt;&lt;/code&gt; and sometimes appear to be listed by dmenu, but never executed. You can try to export $PATH with your bin directory in .bashrc, .profile, .bashrc_profile, ... It will not work.&lt;/p&gt;
+
+&lt;p&gt;A good point to solve this, was:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cat /proc/$(pidof i3)/environ | tr '\0' '\n' | grep '^PATH'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Suggested by a partner in official irc #i3 (thanks!).
+With this, we will see that our binary isn't in the PATH of i3.
+And to make it work on Debian + lightdm + i3, we have to put in the appropiate way. As said in /etc/lightdm/lightdm.conf , the wrapper is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;session-wrapper=/etc/X11/Xsession
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we go in, that shows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;USERXSESSION=$HOME/.xsession
+USERXSESSIONRC=$HOME/.xsessionrc
+ALTUSERXSESSION=$HOME/.Xsession
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That means, this 3 files are inspected by lightdm in the moment of initializing i3. If you put here scripts, this will take effect to i3. For debian, you should use &lt;strong&gt;.xsessionrc&lt;/strong&gt; (the other are ignored) and put something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export PATH=$HOME/bin:$PATH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that's it!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/?comment=2504#comment-2504</link><description>Thanks for your contribution! Upvoted question for karma :) Better stick to the Q&amp;A style of the site next time. </description><pubDate>Mon, 09 Sep 2013 11:04:31 +0000</pubDate><guid>https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/?comment=2504#comment-2504</guid></item><item><title>Comment by starton for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I don't have a blog, but this information is important to be indexed by web search, prism, nsa and partners.&lt;/p&gt;
+
+&lt;p&gt;(note: I use lightdm stable, and i3 backported)&lt;/p&gt;
+
+&lt;p&gt;I see some problems with lightdm and i3. This make me try: ligthdm, slim, xinit, thinking about compiling lxdm... (and count several days of thinking). I use xfce4-power-manager, and with some solution, I lost capability to suspend or hibernate with this application...
+Due to my difficult to document me from this problem, I will help you in two (fundamental) customizations that now I solved:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Select i3 as default in lightdm&lt;/li&gt;
+&lt;li&gt;Add your ~/bin for scripts in dmenu for execution&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;1 - Select i3 as default in ligthdm&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This will NOT SHOW i3 as a WM to make it default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ update-alternatives --config x-session-manager
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you have to go edit lightdm configuration's file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ nano /etc/lightdm/lightdm.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and change that line:
+user-session=i3&lt;/p&gt;
+
+&lt;p&gt;This will make i3 as "default" when you login.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2 - Add your ~/bin for scripts in dmenu for execution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First you say: why I cannot execute commands in dmenu?
+I made some stuff I readed as &lt;code&gt;rm ~/.dmenu_cache&lt;/code&gt; or &lt;code&gt;dmenu_path | grep &amp;lt;myapp&amp;gt;&lt;/code&gt; and sometimes appear to be listed by dmenu, but never executed. You can try to export $PATH with your bin directory in .bashrc, .profile, .bashrc_profile, ... It will not work.&lt;/p&gt;
+
+&lt;p&gt;A good point to solve this, was:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cat /proc/$(pidof i3)/environ | tr '\0' '\n' | grep '^PATH'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Suggested by a partner in official irc #i3 (thanks!).
+With this, we will see that our binary isn't in the PATH of i3.
+And to make it work on Debian + lightdm + i3, we have to put in the appropiate way. As said in /etc/lightdm/lightdm.conf , the wrapper is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;session-wrapper=/etc/X11/Xsession
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we go in, that shows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;USERXSESSION=$HOME/.xsession
+USERXSESSIONRC=$HOME/.xsessionrc
+ALTUSERXSESSION=$HOME/.Xsession
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That means, this 3 files are inspected by lightdm in the moment of initializing i3. If you put here scripts, this will take effect to i3. For debian, you should use &lt;strong&gt;.xsessionrc&lt;/strong&gt; (the other are ignored) and put something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export PATH=$HOME/bin:$PATH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that's it!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/?comment=2484#comment-2484</link><description>I made this post community wiki, and I don't have reputation to edit this. The tags are incorrect, should be: debian, dmenu, path, lightdm. And you will find some mistakes in the text. Sorry</description><pubDate>Thu, 05 Sep 2013 08:37:16 +0000</pubDate><guid>https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/?comment=2484#comment-2484</guid></item><item><title>Comment by neo1691 for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I don't have a blog, but this information is important to be indexed by web search, prism, nsa and partners.&lt;/p&gt;
+
+&lt;p&gt;(note: I use lightdm stable, and i3 backported)&lt;/p&gt;
+
+&lt;p&gt;I see some problems with lightdm and i3. This make me try: ligthdm, slim, xinit, thinking about compiling lxdm... (and count several days of thinking). I use xfce4-power-manager, and with some solution, I lost capability to suspend or hibernate with this application...
+Due to my difficult to document me from this problem, I will help you in two (fundamental) customizations that now I solved:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Select i3 as default in lightdm&lt;/li&gt;
+&lt;li&gt;Add your ~/bin for scripts in dmenu for execution&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;1 - Select i3 as default in ligthdm&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This will NOT SHOW i3 as a WM to make it default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ update-alternatives --config x-session-manager
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you have to go edit lightdm configuration's file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ nano /etc/lightdm/lightdm.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and change that line:
+user-session=i3&lt;/p&gt;
+
+&lt;p&gt;This will make i3 as "default" when you login.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2 - Add your ~/bin for scripts in dmenu for execution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First you say: why I cannot execute commands in dmenu?
+I made some stuff I readed as &lt;code&gt;rm ~/.dmenu_cache&lt;/code&gt; or &lt;code&gt;dmenu_path | grep &amp;lt;myapp&amp;gt;&lt;/code&gt; and sometimes appear to be listed by dmenu, but never executed. You can try to export $PATH with your bin directory in .bashrc, .profile, .bashrc_profile, ... It will not work.&lt;/p&gt;
+
+&lt;p&gt;A good point to solve this, was:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cat /proc/$(pidof i3)/environ | tr '\0' '\n' | grep '^PATH'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Suggested by a partner in official irc #i3 (thanks!).
+With this, we will see that our binary isn't in the PATH of i3.
+And to make it work on Debian + lightdm + i3, we have to put in the appropiate way. As said in /etc/lightdm/lightdm.conf , the wrapper is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;session-wrapper=/etc/X11/Xsession
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we go in, that shows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;USERXSESSION=$HOME/.xsession
+USERXSESSIONRC=$HOME/.xsessionrc
+ALTUSERXSESSION=$HOME/.Xsession
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That means, this 3 files are inspected by lightdm in the moment of initializing i3. If you put here scripts, this will take effect to i3. For debian, you should use &lt;strong&gt;.xsessionrc&lt;/strong&gt; (the other are ignored) and put something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export PATH=$HOME/bin:$PATH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that's it!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/?comment=3532#comment-3532</link><description>Thanks this helped me too!</description><pubDate>Sat, 15 Mar 2014 20:22:57 +0000</pubDate><guid>https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/?comment=3532#comment-3532</guid></item><item><title>Answer by adRn for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I don't have a blog, but this information is important to be indexed by web search, prism, nsa and partners.&lt;/p&gt;
+
+&lt;p&gt;(note: I use lightdm stable, and i3 backported)&lt;/p&gt;
+
+&lt;p&gt;I see some problems with lightdm and i3. This make me try: ligthdm, slim, xinit, thinking about compiling lxdm... (and count several days of thinking). I use xfce4-power-manager, and with some solution, I lost capability to suspend or hibernate with this application...
+Due to my difficult to document me from this problem, I will help you in two (fundamental) customizations that now I solved:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Select i3 as default in lightdm&lt;/li&gt;
+&lt;li&gt;Add your ~/bin for scripts in dmenu for execution&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;1 - Select i3 as default in ligthdm&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This will NOT SHOW i3 as a WM to make it default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ update-alternatives --config x-session-manager
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you have to go edit lightdm configuration's file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ nano /etc/lightdm/lightdm.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and change that line:
+user-session=i3&lt;/p&gt;
+
+&lt;p&gt;This will make i3 as "default" when you login.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2 - Add your ~/bin for scripts in dmenu for execution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First you say: why I cannot execute commands in dmenu?
+I made some stuff I readed as &lt;code&gt;rm ~/.dmenu_cache&lt;/code&gt; or &lt;code&gt;dmenu_path | grep &amp;lt;myapp&amp;gt;&lt;/code&gt; and sometimes appear to be listed by dmenu, but never executed. You can try to export $PATH with your bin directory in .bashrc, .profile, .bashrc_profile, ... It will not work.&lt;/p&gt;
+
+&lt;p&gt;A good point to solve this, was:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cat /proc/$(pidof i3)/environ | tr '\0' '\n' | grep '^PATH'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Suggested by a partner in official irc #i3 (thanks!).
+With this, we will see that our binary isn't in the PATH of i3.
+And to make it work on Debian + lightdm + i3, we have to put in the appropiate way. As said in /etc/lightdm/lightdm.conf , the wrapper is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;session-wrapper=/etc/X11/Xsession
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we go in, that shows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;USERXSESSION=$HOME/.xsession
+USERXSESSIONRC=$HOME/.xsessionrc
+ALTUSERXSESSION=$HOME/.Xsession
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That means, this 3 files are inspected by lightdm in the moment of initializing i3. If you put here scripts, this will take effect to i3. For debian, you should use &lt;strong&gt;.xsessionrc&lt;/strong&gt; (the other are ignored) and put something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export PATH=$HOME/bin:$PATH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that's it!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/?answer=6170#post-id-6170</link><description>Great! I needed this :) </description><pubDate>Mon, 22 Jun 2015 16:16:07 +0000</pubDate><guid>https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/?answer=6170#post-id-6170</guid></item></channel></rss>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5430/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 09 Feb 2015 08:55:36 +0000</lastBuildDate><item><title>Can't get a window to start in the scratchpad - and i3 behaves very oddly</title><link>https://faq.i3wm.org/question/5430/cant-get-a-window-to-start-in-the-scratchpad-and-i3-behaves-very-oddly/</link><description>Following the advice in other questions here, I put this in my config:
+
+    exec_always urxvtc  -fn xft:Inconsolata:size=11 -fg white -bg black -name scratchurxvt -e /usr/bin/fizsh 
+    for_window [instance="scratchurxvt"] move scratchpad
+
+urxvtc is the client program for starting a urxvt terminal when urxvtd (the daemon) is running.  I start urxvtd with an exec line above these lines in the config.
+
+Later on I have this
+
+    bindsym $mod+p scratchpad show
+
+But once I start i3 the scratchpad does not respond. The scratchpad works ok if I manually move a window to it (using another keybinding).  If I remove the `for_window` directive, the terminal window pops up correctly on startup with the right title.  When the `for_window` directive is on, the terminal window does not appear - implying that it should have been moved to the scratchpad - but nothing happens when I press $mod+p.  The same problem occurs if I use xterm instead of urxvtc.
+
+The behaviour becomes even weirder if I use urxvt instead of urxvtc:
+
+    exec_always urxvt  -fn xft:Inconsolata:size=11 -fg white -bg black -name scratchurxvt -e /usr/bin/fizsh
+
+If I do this I cannot get any program to start.  Pressing $mod + 2 does not open a new workspace either.  
+
+I find this very puzzling.  How do I get this to work?
+ </description><pubDate>Fri, 06 Feb 2015 06:31:37 +0000</pubDate><guid>https://faq.i3wm.org/question/5430/cant-get-a-window-to-start-in-the-scratchpad-and-i3-behaves-very-oddly/</guid></item><item><title>Answer by Shankar for &lt;p&gt;Following the advice in other questions here, I put this in my config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec_always urxvtc  -fn xft:Inconsolata:size=11 -fg white -bg black -name scratchurxvt -e /usr/bin/fizsh 
+for_window [instance="scratchurxvt"] move scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;urxvtc is the client program for starting a urxvt terminal when urxvtd (the daemon) is running.  I start urxvtd with an exec line above these lines in the config.&lt;/p&gt;
+
+&lt;p&gt;Later on I have this&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+p scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But once I start i3 the scratchpad does not respond. The scratchpad works ok if I manually move a window to it (using another keybinding).  If I remove the &lt;code&gt;for_window&lt;/code&gt; directive, the terminal window pops up correctly on startup with the right title.  When the &lt;code&gt;for_window&lt;/code&gt; directive is on, the terminal window does not appear - implying that it should have been moved to the scratchpad - but nothing happens when I press $mod+p.  The same problem occurs if I use xterm instead of urxvtc.&lt;/p&gt;
+
+&lt;p&gt;The behaviour becomes even weirder if I use urxvt instead of urxvtc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec_always urxvt  -fn xft:Inconsolata:size=11 -fg white -bg black -name scratchurxvt -e /usr/bin/fizsh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I do this I cannot get any program to start.  Pressing $mod + 2 does not open a new workspace either.  &lt;/p&gt;
+
+&lt;p&gt;I find this very puzzling.  How do I get this to work?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5430/cant-get-a-window-to-start-in-the-scratchpad-and-i3-behaves-very-oddly/?answer=5438#post-id-5438</link><description>The problem seems to be that the scratchpad is not "ready" when i3 starts.  Windows moved into it through the `for_window` directive or even through `i3-msg` in the initial few seconds just vanish.  
+
+I finally got it to work by shifting a lot of my exec commands into a shell script, then ensuring that the script sleeps for 5 seconds before using `i3-msg` to shift the window into the scratchpad (I've also switched to lilyterm but that seems to be incidental).  The script is called using `exec_always` from the main config file, like so:
+
+    exec_always /mnt/docfile/root/my-documents/Software/i3start.sh
+
+The script itself has the following:
+
+    i3-msg exec "lilyterm --title scratchlilyterm -e offlineimap"
+    i3-msg exec --no-startup-id "run_once nm-applet"
+    # &lt; various utility scripts are also run&gt;
+    i3-msg exec iceweasel &amp;
+    i3-msg exec claws-mail &amp;
+    sleep 5
+    i3-msg '[ title="scratchlilyterm" ] move scratchpad'
+
+If I get the chance I'll file a bug report in this regard.</description><pubDate>Mon, 09 Feb 2015 08:55:36 +0000</pubDate><guid>https://faq.i3wm.org/question/5430/cant-get-a-window-to-start-in-the-scratchpad-and-i3-behaves-very-oddly/?answer=5438#post-id-5438</guid></item></channel></rss>

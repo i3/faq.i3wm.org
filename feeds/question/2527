@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2527/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 16 Jun 2015 13:15:31 +0000</lastBuildDate><item><title>Setting up gnome-session + i3</title><link>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/</link><description>hi,
+my goal was something like this:
+blog.hugochinchilla.net/2013/03/using-gnome-3-with-i3-window-manager/,
+setting i3 as window manager in gnome-session thus enabling the gnome-panel on top.
+
+His setup didn't work at all, on logon i just got an error that the session couldn't be loaded. So i adapted this one:
+makandracards.com/makandra/1367-running-the-awesome-window-manager-within-gnome
+resulting in:
+
+**/usr/share/xsessions/gnome-i3.desktop**&lt;br&gt;
+[Desktop Entry]&lt;br&gt;
+Name=GNOME with i3&lt;br&gt;
+Comment=A GNOME fallback mode session using i3 as the window manager.&lt;br&gt;
+TryExec=gnome-session&lt;br&gt;
+Exec=gnome-session --session=i3
+
+**/usr/share/gnome-session/sessions/i3.session**&lt;br&gt;
+[GNOME Session]&lt;br&gt;
+Name=i3&lt;br&gt;
+RequiredComponents=gnome-panel;gnome-settings-daemon;&lt;br&gt;
+RequiredProviders=windowmanager;&lt;br&gt;
+DefaultProvider-windowmanager=i3
+
+**/usr/share/applications/i3.desktop**&lt;br&gt;
+[Desktop Entry]&lt;br&gt;
+Version=1.0&lt;br&gt;
+Type=Application&lt;br&gt;
+Name=i3&lt;br&gt;
+TryExec=i3&lt;br&gt;
+Exec=i3
+
+the session works fine but the top gnome-panel is completely empty. I removed the tray icons from the i3status bar in the i3 config file in hope that the tray icons will show up in the gnome-panel but it didn't work.
+
+I thought this would be the ideal setup on ubuntu for newbies and i was quite surprised that there was just one such article on the internet</description><pubDate>Sat, 14 Sep 2013 20:15:24 +0000</pubDate><guid>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;hi,
+my goal was something like this:
+blog.hugochinchilla.net/2013/03/using-gnome-3-with-i3-window-manager/,
+setting i3 as window manager in gnome-session thus enabling the gnome-panel on top.&lt;/p&gt;
+
+&lt;p&gt;His setup didn't work at all, on logon i just got an error that the session couldn't be loaded. So i adapted this one:
+makandracards.com/makandra/1367-running-the-awesome-window-manager-within-gnome
+resulting in:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/xsessions/gnome-i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Name=GNOME with i3&lt;br/&gt;
+Comment=A GNOME fallback mode session using i3 as the window manager.&lt;br/&gt;
+TryExec=gnome-session&lt;br/&gt;
+Exec=gnome-session --session=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/gnome-session/sessions/i3.session&lt;/strong&gt;&lt;br/&gt;
+[GNOME Session]&lt;br/&gt;
+Name=i3&lt;br/&gt;
+RequiredComponents=gnome-panel;gnome-settings-daemon;&lt;br/&gt;
+RequiredProviders=windowmanager;&lt;br/&gt;
+DefaultProvider-windowmanager=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/applications/i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Version=1.0&lt;br/&gt;
+Type=Application&lt;br/&gt;
+Name=i3&lt;br/&gt;
+TryExec=i3&lt;br/&gt;
+Exec=i3&lt;/p&gt;
+
+&lt;p&gt;the session works fine but the top gnome-panel is completely empty. I removed the tray icons from the i3status bar in the i3 config file in hope that the tray icons will show up in the gnome-panel but it didn't work.&lt;/p&gt;
+
+&lt;p&gt;I thought this would be the ideal setup on ubuntu for newbies and i was quite surprised that there was just one such article on the internet&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=4108#comment-4108</link><description>Does not work, at least with Ubuntu 12.04. I get a message complaining the i3 session could not be loaded.</description><pubDate>Thu, 03 Jul 2014 10:10:54 +0000</pubDate><guid>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=4108#comment-4108</guid></item><item><title>Comment by TBurette for &lt;p&gt;hi,
+my goal was something like this:
+blog.hugochinchilla.net/2013/03/using-gnome-3-with-i3-window-manager/,
+setting i3 as window manager in gnome-session thus enabling the gnome-panel on top.&lt;/p&gt;
+
+&lt;p&gt;His setup didn't work at all, on logon i just got an error that the session couldn't be loaded. So i adapted this one:
+makandracards.com/makandra/1367-running-the-awesome-window-manager-within-gnome
+resulting in:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/xsessions/gnome-i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Name=GNOME with i3&lt;br/&gt;
+Comment=A GNOME fallback mode session using i3 as the window manager.&lt;br/&gt;
+TryExec=gnome-session&lt;br/&gt;
+Exec=gnome-session --session=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/gnome-session/sessions/i3.session&lt;/strong&gt;&lt;br/&gt;
+[GNOME Session]&lt;br/&gt;
+Name=i3&lt;br/&gt;
+RequiredComponents=gnome-panel;gnome-settings-daemon;&lt;br/&gt;
+RequiredProviders=windowmanager;&lt;br/&gt;
+DefaultProvider-windowmanager=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/applications/i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Version=1.0&lt;br/&gt;
+Type=Application&lt;br/&gt;
+Name=i3&lt;br/&gt;
+TryExec=i3&lt;br/&gt;
+Exec=i3&lt;/p&gt;
+
+&lt;p&gt;the session works fine but the top gnome-panel is completely empty. I removed the tray icons from the i3status bar in the i3 config file in hope that the tray icons will show up in the gnome-panel but it didn't work.&lt;/p&gt;
+
+&lt;p&gt;I thought this would be the ideal setup on ubuntu for newbies and i was quite surprised that there was just one such article on the internet&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=6135#comment-6135</link><description>The instructions do not work for recent versions of Gnome (&gt;=3.9). These instructions do work : https://awesome.naquadah.org/wiki/Quickly_Setting_up_Awesome_with_Gnome#Gnome_3.9_.2F_Ubuntu_13.10</description><pubDate>Tue, 16 Jun 2015 13:15:31 +0000</pubDate><guid>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=6135#comment-6135</guid></item><item><title>Comment by Michael for &lt;p&gt;hi,
+my goal was something like this:
+blog.hugochinchilla.net/2013/03/using-gnome-3-with-i3-window-manager/,
+setting i3 as window manager in gnome-session thus enabling the gnome-panel on top.&lt;/p&gt;
+
+&lt;p&gt;His setup didn't work at all, on logon i just got an error that the session couldn't be loaded. So i adapted this one:
+makandracards.com/makandra/1367-running-the-awesome-window-manager-within-gnome
+resulting in:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/xsessions/gnome-i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Name=GNOME with i3&lt;br/&gt;
+Comment=A GNOME fallback mode session using i3 as the window manager.&lt;br/&gt;
+TryExec=gnome-session&lt;br/&gt;
+Exec=gnome-session --session=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/gnome-session/sessions/i3.session&lt;/strong&gt;&lt;br/&gt;
+[GNOME Session]&lt;br/&gt;
+Name=i3&lt;br/&gt;
+RequiredComponents=gnome-panel;gnome-settings-daemon;&lt;br/&gt;
+RequiredProviders=windowmanager;&lt;br/&gt;
+DefaultProvider-windowmanager=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/applications/i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Version=1.0&lt;br/&gt;
+Type=Application&lt;br/&gt;
+Name=i3&lt;br/&gt;
+TryExec=i3&lt;br/&gt;
+Exec=i3&lt;/p&gt;
+
+&lt;p&gt;the session works fine but the top gnome-panel is completely empty. I removed the tray icons from the i3status bar in the i3 config file in hope that the tray icons will show up in the gnome-panel but it didn't work.&lt;/p&gt;
+
+&lt;p&gt;I thought this would be the ideal setup on ubuntu for newbies and i was quite surprised that there was just one such article on the internet&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=2534#comment-2534</link><description>Re: removed the tray icons: can you edit your post to reflect how you did that? “tray_output none” should do the trick.</description><pubDate>Sun, 15 Sep 2013 19:13:42 +0000</pubDate><guid>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=2534#comment-2534</guid></item><item><title>Comment by ghibe for &lt;p&gt;hi,
+my goal was something like this:
+blog.hugochinchilla.net/2013/03/using-gnome-3-with-i3-window-manager/,
+setting i3 as window manager in gnome-session thus enabling the gnome-panel on top.&lt;/p&gt;
+
+&lt;p&gt;His setup didn't work at all, on logon i just got an error that the session couldn't be loaded. So i adapted this one:
+makandracards.com/makandra/1367-running-the-awesome-window-manager-within-gnome
+resulting in:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/xsessions/gnome-i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Name=GNOME with i3&lt;br/&gt;
+Comment=A GNOME fallback mode session using i3 as the window manager.&lt;br/&gt;
+TryExec=gnome-session&lt;br/&gt;
+Exec=gnome-session --session=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/gnome-session/sessions/i3.session&lt;/strong&gt;&lt;br/&gt;
+[GNOME Session]&lt;br/&gt;
+Name=i3&lt;br/&gt;
+RequiredComponents=gnome-panel;gnome-settings-daemon;&lt;br/&gt;
+RequiredProviders=windowmanager;&lt;br/&gt;
+DefaultProvider-windowmanager=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/applications/i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Version=1.0&lt;br/&gt;
+Type=Application&lt;br/&gt;
+Name=i3&lt;br/&gt;
+TryExec=i3&lt;br/&gt;
+Exec=i3&lt;/p&gt;
+
+&lt;p&gt;the session works fine but the top gnome-panel is completely empty. I removed the tray icons from the i3status bar in the i3 config file in hope that the tray icons will show up in the gnome-panel but it didn't work.&lt;/p&gt;
+
+&lt;p&gt;I thought this would be the ideal setup on ubuntu for newbies and i was quite surprised that there was just one such article on the internet&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=2538#comment-2538</link><description>update:
+i added the ubuntu repository referenced in http://i3wm.org/docs/repositories.html and updated i3. Now the tray icons work right therefore the gnome bar isn't needed anymore and i'm going to use the simple i3 session.
+
+i'm really sorry for wasting your time.</description><pubDate>Sun, 15 Sep 2013 21:09:09 +0000</pubDate><guid>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=2538#comment-2538</guid></item><item><title>Comment by Michael for &lt;p&gt;hi,
+my goal was something like this:
+blog.hugochinchilla.net/2013/03/using-gnome-3-with-i3-window-manager/,
+setting i3 as window manager in gnome-session thus enabling the gnome-panel on top.&lt;/p&gt;
+
+&lt;p&gt;His setup didn't work at all, on logon i just got an error that the session couldn't be loaded. So i adapted this one:
+makandracards.com/makandra/1367-running-the-awesome-window-manager-within-gnome
+resulting in:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/xsessions/gnome-i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Name=GNOME with i3&lt;br/&gt;
+Comment=A GNOME fallback mode session using i3 as the window manager.&lt;br/&gt;
+TryExec=gnome-session&lt;br/&gt;
+Exec=gnome-session --session=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/gnome-session/sessions/i3.session&lt;/strong&gt;&lt;br/&gt;
+[GNOME Session]&lt;br/&gt;
+Name=i3&lt;br/&gt;
+RequiredComponents=gnome-panel;gnome-settings-daemon;&lt;br/&gt;
+RequiredProviders=windowmanager;&lt;br/&gt;
+DefaultProvider-windowmanager=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/applications/i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Version=1.0&lt;br/&gt;
+Type=Application&lt;br/&gt;
+Name=i3&lt;br/&gt;
+TryExec=i3&lt;br/&gt;
+Exec=i3&lt;/p&gt;
+
+&lt;p&gt;the session works fine but the top gnome-panel is completely empty. I removed the tray icons from the i3status bar in the i3 config file in hope that the tray icons will show up in the gnome-panel but it didn't work.&lt;/p&gt;
+
+&lt;p&gt;I thought this would be the ideal setup on ubuntu for newbies and i was quite surprised that there was just one such article on the internet&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=2539#comment-2539</link><description>No worries. So as far as I can tell, we’ve had an XY problem here: you didn’t want to use gnome-session, but gnome-session was your workaround for an i3 bug :).</description><pubDate>Mon, 16 Sep 2013 00:53:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=2539#comment-2539</guid></item><item><title>Comment by Michael for &lt;p&gt;hi,
+my goal was something like this:
+blog.hugochinchilla.net/2013/03/using-gnome-3-with-i3-window-manager/,
+setting i3 as window manager in gnome-session thus enabling the gnome-panel on top.&lt;/p&gt;
+
+&lt;p&gt;His setup didn't work at all, on logon i just got an error that the session couldn't be loaded. So i adapted this one:
+makandracards.com/makandra/1367-running-the-awesome-window-manager-within-gnome
+resulting in:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/xsessions/gnome-i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Name=GNOME with i3&lt;br/&gt;
+Comment=A GNOME fallback mode session using i3 as the window manager.&lt;br/&gt;
+TryExec=gnome-session&lt;br/&gt;
+Exec=gnome-session --session=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/gnome-session/sessions/i3.session&lt;/strong&gt;&lt;br/&gt;
+[GNOME Session]&lt;br/&gt;
+Name=i3&lt;br/&gt;
+RequiredComponents=gnome-panel;gnome-settings-daemon;&lt;br/&gt;
+RequiredProviders=windowmanager;&lt;br/&gt;
+DefaultProvider-windowmanager=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/applications/i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Version=1.0&lt;br/&gt;
+Type=Application&lt;br/&gt;
+Name=i3&lt;br/&gt;
+TryExec=i3&lt;br/&gt;
+Exec=i3&lt;/p&gt;
+
+&lt;p&gt;the session works fine but the top gnome-panel is completely empty. I removed the tray icons from the i3status bar in the i3 config file in hope that the tray icons will show up in the gnome-panel but it didn't work.&lt;/p&gt;
+
+&lt;p&gt;I thought this would be the ideal setup on ubuntu for newbies and i was quite surprised that there was just one such article on the internet&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=2535#comment-2535</link><description>Re: ideal setup for newbies: i3’s target audience is advanced users and developers. Most of our users don’t use any desktop environment at all. I’m not surprised that there are not that many articles about such a setup out there.</description><pubDate>Sun, 15 Sep 2013 19:14:14 +0000</pubDate><guid>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=2535#comment-2535</guid></item><item><title>Comment by Gary Bishop for &lt;p&gt;hi,
+my goal was something like this:
+blog.hugochinchilla.net/2013/03/using-gnome-3-with-i3-window-manager/,
+setting i3 as window manager in gnome-session thus enabling the gnome-panel on top.&lt;/p&gt;
+
+&lt;p&gt;His setup didn't work at all, on logon i just got an error that the session couldn't be loaded. So i adapted this one:
+makandracards.com/makandra/1367-running-the-awesome-window-manager-within-gnome
+resulting in:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/xsessions/gnome-i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Name=GNOME with i3&lt;br/&gt;
+Comment=A GNOME fallback mode session using i3 as the window manager.&lt;br/&gt;
+TryExec=gnome-session&lt;br/&gt;
+Exec=gnome-session --session=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/gnome-session/sessions/i3.session&lt;/strong&gt;&lt;br/&gt;
+[GNOME Session]&lt;br/&gt;
+Name=i3&lt;br/&gt;
+RequiredComponents=gnome-panel;gnome-settings-daemon;&lt;br/&gt;
+RequiredProviders=windowmanager;&lt;br/&gt;
+DefaultProvider-windowmanager=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/applications/i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Version=1.0&lt;br/&gt;
+Type=Application&lt;br/&gt;
+Name=i3&lt;br/&gt;
+TryExec=i3&lt;br/&gt;
+Exec=i3&lt;/p&gt;
+
+&lt;p&gt;the session works fine but the top gnome-panel is completely empty. I removed the tray icons from the i3status bar in the i3 config file in hope that the tray icons will show up in the gnome-panel but it didn't work.&lt;/p&gt;
+
+&lt;p&gt;I thought this would be the ideal setup on ubuntu for newbies and i was quite surprised that there was just one such article on the internet&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=3740#comment-3740</link><description>I'm following up late on this, I can post a new question if that would be better... I'm setup just as above and can login but I see that i3 is not starting. If I add i3 to requireComponents above, then i3 starts and seems to work. Seems strange that i3 isn't started for being a requiredProvider.</description><pubDate>Sun, 27 Apr 2014 19:49:41 +0000</pubDate><guid>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=3740#comment-3740</guid></item><item><title>Comment by ghibe for &lt;p&gt;hi,
+my goal was something like this:
+blog.hugochinchilla.net/2013/03/using-gnome-3-with-i3-window-manager/,
+setting i3 as window manager in gnome-session thus enabling the gnome-panel on top.&lt;/p&gt;
+
+&lt;p&gt;His setup didn't work at all, on logon i just got an error that the session couldn't be loaded. So i adapted this one:
+makandracards.com/makandra/1367-running-the-awesome-window-manager-within-gnome
+resulting in:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/xsessions/gnome-i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Name=GNOME with i3&lt;br/&gt;
+Comment=A GNOME fallback mode session using i3 as the window manager.&lt;br/&gt;
+TryExec=gnome-session&lt;br/&gt;
+Exec=gnome-session --session=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/gnome-session/sessions/i3.session&lt;/strong&gt;&lt;br/&gt;
+[GNOME Session]&lt;br/&gt;
+Name=i3&lt;br/&gt;
+RequiredComponents=gnome-panel;gnome-settings-daemon;&lt;br/&gt;
+RequiredProviders=windowmanager;&lt;br/&gt;
+DefaultProvider-windowmanager=i3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;/usr/share/applications/i3.desktop&lt;/strong&gt;&lt;br/&gt;
+[Desktop Entry]&lt;br/&gt;
+Version=1.0&lt;br/&gt;
+Type=Application&lt;br/&gt;
+Name=i3&lt;br/&gt;
+TryExec=i3&lt;br/&gt;
+Exec=i3&lt;/p&gt;
+
+&lt;p&gt;the session works fine but the top gnome-panel is completely empty. I removed the tray icons from the i3status bar in the i3 config file in hope that the tray icons will show up in the gnome-panel but it didn't work.&lt;/p&gt;
+
+&lt;p&gt;I thought this would be the ideal setup on ubuntu for newbies and i was quite surprised that there was just one such article on the internet&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=2536#comment-2536</link><description>"tray_output none" is exactly what i used. the tray icons dissapeared from the i3 bar but they didn't show up in the gnome-panel
+
+by the way i have ubuntu 12.04 and i3, gnome and gnome-session-fallback installed from the default repositories</description><pubDate>Sun, 15 Sep 2013 19:31:20 +0000</pubDate><guid>https://faq.i3wm.org/question/2527/setting-up-gnome-session-i3/?comment=2536#comment-2536</guid></item></channel></rss>

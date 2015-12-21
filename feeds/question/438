@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/438/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 18 Jun 2015 15:09:41 +0000</lastBuildDate><item><title>cssh window placement</title><link>https://faq.i3wm.org/question/438/cssh-window-placement/</link><description>For those unfamiliar with cssh, it allows multiple ssh sessions to be controlled via a single input and is very useful if you are doing the same task on multiple servers.
+
+The downside to this on i3 is that it turns my workspace into a mess of striped terminals.  I'll admit, when only doing 2-3 servers, it's not so bad, but after that the windows start becoming less useful for displaying info...
+
+[Screenshot](http://blog.seventhmoon.info/wp-content/uploads/2012/09/screen.png)
+
+I was able to enable floating on just the cssh windows, but the downside to that is I have to move them myself after they are created. (the all get spawned on top of each other)
+
+"The position and size of a (floating) window are not managed by i3, but by you." - i3 User Guide
+
+Long story longer, is there a way to dictate how successive windows of a class are spawned?  If I could get just cssh windows to spawn in a grid layout automatically, that would be amazing.</description><pubDate>Fri, 07 Sep 2012 13:59:11 +0000</pubDate><guid>https://faq.i3wm.org/question/438/cssh-window-placement/</guid></item><item><title>Comment by Adrian for &lt;p&gt;For those unfamiliar with cssh, it allows multiple ssh sessions to be controlled via a single input and is very useful if you are doing the same task on multiple servers.&lt;/p&gt;
+
+&lt;p&gt;The downside to this on i3 is that it turns my workspace into a mess of striped terminals.  I'll admit, when only doing 2-3 servers, it's not so bad, but after that the windows start becoming less useful for displaying info...&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://blog.seventhmoon.info/wp-content/uploads/2012/09/screen.png"&gt;Screenshot&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I was able to enable floating on just the cssh windows, but the downside to that is I have to move them myself after they are created. (the all get spawned on top of each other)&lt;/p&gt;
+
+&lt;p&gt;"The position and size of a (floating) window are not managed by i3, but by you." - i3 User Guide&lt;/p&gt;
+
+&lt;p&gt;Long story longer, is there a way to dictate how successive windows of a class are spawned?  If I could get just cssh windows to spawn in a grid layout automatically, that would be amazing.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/438/cssh-window-placement/?comment=525#comment-525</link><description>I switched from cssh to tmux, you might want to try it. When you're connecting to more than about 10 servers, you might want to look into using something like fabric instead</description><pubDate>Wed, 19 Sep 2012 09:45:59 +0000</pubDate><guid>https://faq.i3wm.org/question/438/cssh-window-placement/?comment=525#comment-525</guid></item><item><title>Comment by Holger for &lt;p&gt;For those unfamiliar with cssh, it allows multiple ssh sessions to be controlled via a single input and is very useful if you are doing the same task on multiple servers.&lt;/p&gt;
+
+&lt;p&gt;The downside to this on i3 is that it turns my workspace into a mess of striped terminals.  I'll admit, when only doing 2-3 servers, it's not so bad, but after that the windows start becoming less useful for displaying info...&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://blog.seventhmoon.info/wp-content/uploads/2012/09/screen.png"&gt;Screenshot&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I was able to enable floating on just the cssh windows, but the downside to that is I have to move them myself after they are created. (the all get spawned on top of each other)&lt;/p&gt;
+
+&lt;p&gt;"The position and size of a (floating) window are not managed by i3, but by you." - i3 User Guide&lt;/p&gt;
+
+&lt;p&gt;Long story longer, is there a way to dictate how successive windows of a class are spawned?  If I could get just cssh windows to spawn in a grid layout automatically, that would be amazing.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/438/cssh-window-placement/?comment=439#comment-439</link><description>I'm having the same problem.  Just to clarify: cssh usually controls window placement itself.  I *think* it worked with some earlier (4.x) version of i3; i.e., the windows weren't spawned on top of each other when floating was enabled for cssh windows.  I guess we should provide some debug output.</description><pubDate>Fri, 07 Sep 2012 16:07:06 +0000</pubDate><guid>https://faq.i3wm.org/question/438/cssh-window-placement/?comment=439#comment-439</guid></item><item><title>Answer by oberon for &lt;p&gt;For those unfamiliar with cssh, it allows multiple ssh sessions to be controlled via a single input and is very useful if you are doing the same task on multiple servers.&lt;/p&gt;
+
+&lt;p&gt;The downside to this on i3 is that it turns my workspace into a mess of striped terminals.  I'll admit, when only doing 2-3 servers, it's not so bad, but after that the windows start becoming less useful for displaying info...&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://blog.seventhmoon.info/wp-content/uploads/2012/09/screen.png"&gt;Screenshot&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I was able to enable floating on just the cssh windows, but the downside to that is I have to move them myself after they are created. (the all get spawned on top of each other)&lt;/p&gt;
+
+&lt;p&gt;"The position and size of a (floating) window are not managed by i3, but by you." - i3 User Guide&lt;/p&gt;
+
+&lt;p&gt;Long story longer, is there a way to dictate how successive windows of a class are spawned?  If I could get just cssh windows to spawn in a grid layout automatically, that would be amazing.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/438/cssh-window-placement/?answer=6138#post-id-6138</link><description>Maybe for those situations would it be useful to switch your desktop layout to stacking or even better tabbed?:
+
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+:)</description><pubDate>Thu, 18 Jun 2015 15:09:41 +0000</pubDate><guid>https://faq.i3wm.org/question/438/cssh-window-placement/?answer=6138#post-id-6138</guid></item><item><title>Answer by tof for &lt;p&gt;For those unfamiliar with cssh, it allows multiple ssh sessions to be controlled via a single input and is very useful if you are doing the same task on multiple servers.&lt;/p&gt;
+
+&lt;p&gt;The downside to this on i3 is that it turns my workspace into a mess of striped terminals.  I'll admit, when only doing 2-3 servers, it's not so bad, but after that the windows start becoming less useful for displaying info...&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://blog.seventhmoon.info/wp-content/uploads/2012/09/screen.png"&gt;Screenshot&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I was able to enable floating on just the cssh windows, but the downside to that is I have to move them myself after they are created. (the all get spawned on top of each other)&lt;/p&gt;
+
+&lt;p&gt;"The position and size of a (floating) window are not managed by i3, but by you." - i3 User Guide&lt;/p&gt;
+
+&lt;p&gt;Long story longer, is there a way to dictate how successive windows of a class are spawned?  If I could get just cssh windows to spawn in a grid layout automatically, that would be amazing.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/438/cssh-window-placement/?answer=6137#post-id-6137</link><description>It does work for me, with this i3 config :
+
+    for_window [title="CSSH"] floating enable
+
+Maybe you can just select the "retile windows" menu entry of cssh, after launch ? (alt-r shortcut).
+
+</description><pubDate>Wed, 17 Jun 2015 09:35:20 +0000</pubDate><guid>https://faq.i3wm.org/question/438/cssh-window-placement/?answer=6137#post-id-6137</guid></item><item><title>Answer by Michael for &lt;p&gt;For those unfamiliar with cssh, it allows multiple ssh sessions to be controlled via a single input and is very useful if you are doing the same task on multiple servers.&lt;/p&gt;
+
+&lt;p&gt;The downside to this on i3 is that it turns my workspace into a mess of striped terminals.  I'll admit, when only doing 2-3 servers, it's not so bad, but after that the windows start becoming less useful for displaying info...&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://blog.seventhmoon.info/wp-content/uploads/2012/09/screen.png"&gt;Screenshot&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I was able to enable floating on just the cssh windows, but the downside to that is I have to move them myself after they are created. (the all get spawned on top of each other)&lt;/p&gt;
+
+&lt;p&gt;"The position and size of a (floating) window are not managed by i3, but by you." - i3 User Guide&lt;/p&gt;
+
+&lt;p&gt;Long story longer, is there a way to dictate how successive windows of a class are spawned?  If I could get just cssh windows to spawn in a grid layout automatically, that would be amazing.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/438/cssh-window-placement/?answer=447#post-id-447</link><description>Spawning windows in a grid automatically is not possible currently, unless you write an external script for it (which is possible, but I haven’t done it and I don’t know of any such script).
+
+As for floating windows not opening in the right spot: You can check the i3 logfile (see http://i3wm.org/docs/debugging.html) for the geometry which a floating window requests.
+
+One likely cause for floating windows not opening in the right spot is that the application might save the previous window position/size and try to restore it.
+
+You mentioned that it worked with a previous version of i3. Reverting to that version and narrowing it down would be helpful. If you figure out it’s between (say) 4.1 and current git "next", you could use `git bisect` to figure out the exact commit which introduced the problem. In any case, once you’re sure this is a regression, please file a ticket at http://bugs.i3wm.org/</description><pubDate>Sat, 08 Sep 2012 23:15:40 +0000</pubDate><guid>https://faq.i3wm.org/question/438/cssh-window-placement/?answer=447#post-id-447</guid></item><item><title>Comment by TheQueasle for &lt;p&gt;Spawning windows in a grid automatically is not possible currently, unless you write an external script for it (which is possible, but I haven’t done it and I don’t know of any such script).&lt;/p&gt;
+
+&lt;p&gt;As for floating windows not opening in the right spot: You can check the i3 logfile (see &lt;a href="http://i3wm.org/docs/debugging.html"&gt;http://i3wm.org/docs/debugging.html&lt;/a&gt;) for the geometry which a floating window requests.&lt;/p&gt;
+
+&lt;p&gt;One likely cause for floating windows not opening in the right spot is that the application might save the previous window position/size and try to restore it.&lt;/p&gt;
+
+&lt;p&gt;You mentioned that it worked with a previous version of i3. Reverting to that version and narrowing it down would be helpful. If you figure out it’s between (say) 4.1 and current git "next", you could use &lt;code&gt;git bisect&lt;/code&gt;to figure out the exact commit which introduced the problem. In any case, once you’re sure this is a regression, please file a ticket at &lt;a href="http://bugs.i3wm.org/"&gt;http://bugs.i3wm.org/&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/438/cssh-window-placement/?comment=463#comment-463</link><description>I'll definitely take a look at the logs and/or start a script.  I'm always up for a challenge :)
+
+As far as 'it worked with a previous version of i3' goes, that was from Holger's comments to the original post.  I just started using i3 at 4.2
+
+Thanks!</description><pubDate>Mon, 10 Sep 2012 17:56:56 +0000</pubDate><guid>https://faq.i3wm.org/question/438/cssh-window-placement/?comment=463#comment-463</guid></item></channel></rss>

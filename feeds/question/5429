@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5429/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 04 May 2015 19:19:31 +0000</lastBuildDate><item><title>stay in mode only while key is pressed</title><link>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/</link><description>I've started using modes
+
+    mode "foo" {
+        bindsym x exec foo
+        bindsym y exec bar
+        bindsym z exec baz
+        bindsym Escape mode "default"
+    }
+    bindcode 108 mode "vim"
+
+and this is very nice.  However, I would like to enter the mode foo only while a key is pressed.  That is, I would like x,y and z to execute foo, bar and baz only while key 108 is held.   Is this possible?  Am I understanding modes poorly?</description><pubDate>Fri, 06 Feb 2015 03:21:50 +0000</pubDate><guid>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I've started using modes&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindsym x exec foo
+    bindsym y exec bar
+    bindsym z exec baz
+    bindsym Escape mode "default"
+}
+bindcode 108 mode "vim"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and this is very nice.  However, I would like to enter the mode foo only while a key is pressed.  That is, I would like x,y and z to execute foo, bar and baz only while key 108 is held.   Is this possible?  Am I understanding modes poorly?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?answer=5439#post-id-5439</link><description>It is somewhat possible but there are side-effects when binding the mode to modifier keys.
+
+**Do you really need modes for that?**
+
+
+As the key with the code 108 usually is a modifier key (depending on your keyboard layout either right Alt [`Mod1`] or Alt-Gr [`Mod5`]) it will not work smoothly. But why not just bind the key combination explicitly? Assuming it is the right Alt key on the US keyboard layout:
+
+    bindsym Mod1+x exec foo
+    bindsym Mod1+y exec bar
+    bindsym Mod1bz exec baz
+
+----
+
+**Yes, I really want to use modes!**
+
+**1. Modes on modifier keys**
+
+You can bind to the release of a key instead of the default press by using `bindsym --release` or `bindcode --release`. So something like this
+
+    mode "foo" {
+        bindcode --release 108
+    }
+    bindcode 108 
+
+would switch into modo "foo" when pressing "Alt" (on US layout) and leaving it again when releasing the key. (Note: it does not seem to work the very first time after loading the configuration)
+
+Of course, just switching modes does not really help anything and so you need to set additional bindings. As key 108 is a modifier key, and will be pressed while the mode is open, it will affect any key pressed during that time. So you have to set the key bindings *with* that modifier (again assuming US layout):
+
+
+    mode "foo" {
+        bindsym Mod1+x exec foo
+        bindsym Mod1+y exec bar
+        bindsym Mod1+z exec baz
+        bindcode --release 108
+        bindsym Escape mode "default"
+    }
+    bindcode 108 mode "foo"
+
+This basically does work: The mode will be entered and the key bindings become only available if the right Alt key is used (really the only advantage I can see compared to the mode-less solution above) and you can start the programs with the respective keys. **But** when the Alt key is used in a key combination (that is by actually pressing Alt+x), its release will not be registered by *i3* and the mode "foo" will remain active until pressing and releasing key 108 again (or by pressing Escape).
+
+This seems to be the case for all modifier keys.
+
+**2. Modes on non-modifier keys**
+
+Keys that are not modifiers seem to work better and are more straight-forward to set up. Of course for that you need some keys that you do not need otherwise, for example multimedia keys.
+
+For example, on my keyboard I have a key labeled "Print" with code 218 (which is not identical to the key with the code 107, which can usually be found in the 3-key cluster to the right of the function keys). Using that key I set up the following:
+
+    mode "foo" {
+        bindcode --release 218 mode "default"
+        bindsym x exec foo
+        bindsym y exec bar
+        bindsym z exec baz
+    }
+    bindcode 218 mode "foo"
+
+and it seemed to work just fine, without the problems I experienced when using modifier keys.</description><pubDate>Mon, 09 Feb 2015 12:58:08 +0000</pubDate><guid>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?answer=5439#post-id-5439</guid></item><item><title>Comment by i3convert for &lt;p&gt;It is somewhat possible but there are side-effects when binding the mode to modifier keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Do you really need modes for that?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As the key with the code 108 usually is a modifier key (depending on your keyboard layout either right Alt [&lt;code&gt;Mod1&lt;/code&gt;] or Alt-Gr [&lt;code&gt;Mod5&lt;/code&gt;]) it will not work smoothly. But why not just bind the key combination explicitly? Assuming it is the right Alt key on the US keyboard layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+x exec foo
+bindsym Mod1+y exec bar
+bindsym Mod1bz exec baz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Yes, I really want to use modes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Modes on modifier keys&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can bind to the release of a key instead of the default press by using &lt;code&gt;bindsym --release&lt;/code&gt; or &lt;code&gt;bindcode --release&lt;/code&gt;. So something like this&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindcode --release 108
+}
+bindcode 108
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would switch into modo "foo" when pressing "Alt" (on US layout) and leaving it again when releasing the key. (Note: it does not seem to work the very first time after loading the configuration)&lt;/p&gt;
+
+&lt;p&gt;Of course, just switching modes does not really help anything and so you need to set additional bindings. As key 108 is a modifier key, and will be pressed while the mode is open, it will affect any key pressed during that time. So you have to set the key bindings &lt;em&gt;with&lt;/em&gt; that modifier (again assuming US layout):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindsym Mod1+x exec foo
+    bindsym Mod1+y exec bar
+    bindsym Mod1+z exec baz
+    bindcode --release 108
+    bindsym Escape mode "default"
+}
+bindcode 108 mode "foo"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This basically does work: The mode will be entered and the key bindings become only available if the right Alt key is used (really the only advantage I can see compared to the mode-less solution above) and you can start the programs with the respective keys. &lt;strong&gt;But&lt;/strong&gt; when the Alt key is used in a key combination (that is by actually pressing Alt+x), its release will not be registered by &lt;em&gt;i3&lt;/em&gt; and the mode "foo" will remain active until pressing and releasing key 108 again (or by pressing Escape).&lt;/p&gt;
+
+&lt;p&gt;This seems to be the case for all modifier keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Modes on non-modifier keys&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Keys that are not modifiers seem to work better and are more straight-forward to set up. Of course for that you need some keys that you do not need otherwise, for example multimedia keys.&lt;/p&gt;
+
+&lt;p&gt;For example, on my keyboard I have a key labeled "Print" with code 218 (which is not identical to the key with the code 107, which can usually be found in the 3-key cluster to the right of the function keys). Using that key I set up the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindcode --release 218 mode "default"
+    bindsym x exec foo
+    bindsym y exec bar
+    bindsym z exec baz
+}
+bindcode 218 mode "foo"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it seemed to work just fine, without the problems I experienced when using modifier keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?comment=5948#comment-5948</link><description>I'd love to use Win+R to enter the window resizing mode, use arrows to resize my window (with Win still pressed), and exit the resizing mode by releasing Win. This seems impossible right now. Would it make sense to request this as a new feature? xev detects all necessary keystrokes.</description><pubDate>Mon, 04 May 2015 19:19:31 +0000</pubDate><guid>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?comment=5948#comment-5948</guid></item><item><title>Comment by i3convert for &lt;p&gt;It is somewhat possible but there are side-effects when binding the mode to modifier keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Do you really need modes for that?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As the key with the code 108 usually is a modifier key (depending on your keyboard layout either right Alt [&lt;code&gt;Mod1&lt;/code&gt;] or Alt-Gr [&lt;code&gt;Mod5&lt;/code&gt;]) it will not work smoothly. But why not just bind the key combination explicitly? Assuming it is the right Alt key on the US keyboard layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+x exec foo
+bindsym Mod1+y exec bar
+bindsym Mod1bz exec baz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Yes, I really want to use modes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Modes on modifier keys&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can bind to the release of a key instead of the default press by using &lt;code&gt;bindsym --release&lt;/code&gt; or &lt;code&gt;bindcode --release&lt;/code&gt;. So something like this&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindcode --release 108
+}
+bindcode 108
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would switch into modo "foo" when pressing "Alt" (on US layout) and leaving it again when releasing the key. (Note: it does not seem to work the very first time after loading the configuration)&lt;/p&gt;
+
+&lt;p&gt;Of course, just switching modes does not really help anything and so you need to set additional bindings. As key 108 is a modifier key, and will be pressed while the mode is open, it will affect any key pressed during that time. So you have to set the key bindings &lt;em&gt;with&lt;/em&gt; that modifier (again assuming US layout):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindsym Mod1+x exec foo
+    bindsym Mod1+y exec bar
+    bindsym Mod1+z exec baz
+    bindcode --release 108
+    bindsym Escape mode "default"
+}
+bindcode 108 mode "foo"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This basically does work: The mode will be entered and the key bindings become only available if the right Alt key is used (really the only advantage I can see compared to the mode-less solution above) and you can start the programs with the respective keys. &lt;strong&gt;But&lt;/strong&gt; when the Alt key is used in a key combination (that is by actually pressing Alt+x), its release will not be registered by &lt;em&gt;i3&lt;/em&gt; and the mode "foo" will remain active until pressing and releasing key 108 again (or by pressing Escape).&lt;/p&gt;
+
+&lt;p&gt;This seems to be the case for all modifier keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Modes on non-modifier keys&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Keys that are not modifiers seem to work better and are more straight-forward to set up. Of course for that you need some keys that you do not need otherwise, for example multimedia keys.&lt;/p&gt;
+
+&lt;p&gt;For example, on my keyboard I have a key labeled "Print" with code 218 (which is not identical to the key with the code 107, which can usually be found in the 3-key cluster to the right of the function keys). Using that key I set up the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindcode --release 218 mode "default"
+    bindsym x exec foo
+    bindsym y exec bar
+    bindsym z exec baz
+}
+bindcode 218 mode "foo"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it seemed to work just fine, without the problems I experienced when using modifier keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?comment=5947#comment-5947</link><description>@Adaephon: Thanks! Great discussion of the current situation.</description><pubDate>Mon, 04 May 2015 19:16:38 +0000</pubDate><guid>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?comment=5947#comment-5947</guid></item><item><title>Comment by Adaephon for &lt;p&gt;It is somewhat possible but there are side-effects when binding the mode to modifier keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Do you really need modes for that?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As the key with the code 108 usually is a modifier key (depending on your keyboard layout either right Alt [&lt;code&gt;Mod1&lt;/code&gt;] or Alt-Gr [&lt;code&gt;Mod5&lt;/code&gt;]) it will not work smoothly. But why not just bind the key combination explicitly? Assuming it is the right Alt key on the US keyboard layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+x exec foo
+bindsym Mod1+y exec bar
+bindsym Mod1bz exec baz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Yes, I really want to use modes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Modes on modifier keys&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can bind to the release of a key instead of the default press by using &lt;code&gt;bindsym --release&lt;/code&gt; or &lt;code&gt;bindcode --release&lt;/code&gt;. So something like this&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindcode --release 108
+}
+bindcode 108
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would switch into modo "foo" when pressing "Alt" (on US layout) and leaving it again when releasing the key. (Note: it does not seem to work the very first time after loading the configuration)&lt;/p&gt;
+
+&lt;p&gt;Of course, just switching modes does not really help anything and so you need to set additional bindings. As key 108 is a modifier key, and will be pressed while the mode is open, it will affect any key pressed during that time. So you have to set the key bindings &lt;em&gt;with&lt;/em&gt; that modifier (again assuming US layout):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindsym Mod1+x exec foo
+    bindsym Mod1+y exec bar
+    bindsym Mod1+z exec baz
+    bindcode --release 108
+    bindsym Escape mode "default"
+}
+bindcode 108 mode "foo"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This basically does work: The mode will be entered and the key bindings become only available if the right Alt key is used (really the only advantage I can see compared to the mode-less solution above) and you can start the programs with the respective keys. &lt;strong&gt;But&lt;/strong&gt; when the Alt key is used in a key combination (that is by actually pressing Alt+x), its release will not be registered by &lt;em&gt;i3&lt;/em&gt; and the mode "foo" will remain active until pressing and releasing key 108 again (or by pressing Escape).&lt;/p&gt;
+
+&lt;p&gt;This seems to be the case for all modifier keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Modes on non-modifier keys&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Keys that are not modifiers seem to work better and are more straight-forward to set up. Of course for that you need some keys that you do not need otherwise, for example multimedia keys.&lt;/p&gt;
+
+&lt;p&gt;For example, on my keyboard I have a key labeled "Print" with code 218 (which is not identical to the key with the code 107, which can usually be found in the 3-key cluster to the right of the function keys). Using that key I set up the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindcode --release 218 mode "default"
+    bindsym x exec foo
+    bindsym y exec bar
+    bindsym z exec baz
+}
+bindcode 218 mode "foo"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it seemed to work just fine, without the problems I experienced when using modifier keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?comment=5944#comment-5944</link><description>@teto That is, of course, correct. I fixed it now.</description><pubDate>Mon, 04 May 2015 13:28:51 +0000</pubDate><guid>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?comment=5944#comment-5944</guid></item><item><title>Comment by teto for &lt;p&gt;It is somewhat possible but there are side-effects when binding the mode to modifier keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Do you really need modes for that?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As the key with the code 108 usually is a modifier key (depending on your keyboard layout either right Alt [&lt;code&gt;Mod1&lt;/code&gt;] or Alt-Gr [&lt;code&gt;Mod5&lt;/code&gt;]) it will not work smoothly. But why not just bind the key combination explicitly? Assuming it is the right Alt key on the US keyboard layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+x exec foo
+bindsym Mod1+y exec bar
+bindsym Mod1bz exec baz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Yes, I really want to use modes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Modes on modifier keys&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can bind to the release of a key instead of the default press by using &lt;code&gt;bindsym --release&lt;/code&gt; or &lt;code&gt;bindcode --release&lt;/code&gt;. So something like this&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindcode --release 108
+}
+bindcode 108
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would switch into modo "foo" when pressing "Alt" (on US layout) and leaving it again when releasing the key. (Note: it does not seem to work the very first time after loading the configuration)&lt;/p&gt;
+
+&lt;p&gt;Of course, just switching modes does not really help anything and so you need to set additional bindings. As key 108 is a modifier key, and will be pressed while the mode is open, it will affect any key pressed during that time. So you have to set the key bindings &lt;em&gt;with&lt;/em&gt; that modifier (again assuming US layout):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindsym Mod1+x exec foo
+    bindsym Mod1+y exec bar
+    bindsym Mod1+z exec baz
+    bindcode --release 108
+    bindsym Escape mode "default"
+}
+bindcode 108 mode "foo"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This basically does work: The mode will be entered and the key bindings become only available if the right Alt key is used (really the only advantage I can see compared to the mode-less solution above) and you can start the programs with the respective keys. &lt;strong&gt;But&lt;/strong&gt; when the Alt key is used in a key combination (that is by actually pressing Alt+x), its release will not be registered by &lt;em&gt;i3&lt;/em&gt; and the mode "foo" will remain active until pressing and releasing key 108 again (or by pressing Escape).&lt;/p&gt;
+
+&lt;p&gt;This seems to be the case for all modifier keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Modes on non-modifier keys&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Keys that are not modifiers seem to work better and are more straight-forward to set up. Of course for that you need some keys that you do not need otherwise, for example multimedia keys.&lt;/p&gt;
+
+&lt;p&gt;For example, on my keyboard I have a key labeled "Print" with code 218 (which is not identical to the key with the code 107, which can usually be found in the 3-key cluster to the right of the function keys). Using that key I set up the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindcode --release 218 mode "default"
+    bindsym x exec foo
+    bindsym y exec bar
+    bindsym z exec baz
+}
+bindcode 218 mode "foo"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it seemed to work just fine, without the problems I experienced when using modifier keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?comment=5941#comment-5941</link><description>There is an error in "bindsym --release 108", it should be bindcode. The detail about Alt+another key is very interesting.</description><pubDate>Mon, 04 May 2015 11:05:17 +0000</pubDate><guid>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?comment=5941#comment-5941</guid></item><item><title>Comment by kzsh for &lt;p&gt;It is somewhat possible but there are side-effects when binding the mode to modifier keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Do you really need modes for that?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As the key with the code 108 usually is a modifier key (depending on your keyboard layout either right Alt [&lt;code&gt;Mod1&lt;/code&gt;] or Alt-Gr [&lt;code&gt;Mod5&lt;/code&gt;]) it will not work smoothly. But why not just bind the key combination explicitly? Assuming it is the right Alt key on the US keyboard layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+x exec foo
+bindsym Mod1+y exec bar
+bindsym Mod1bz exec baz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Yes, I really want to use modes!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Modes on modifier keys&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can bind to the release of a key instead of the default press by using &lt;code&gt;bindsym --release&lt;/code&gt; or &lt;code&gt;bindcode --release&lt;/code&gt;. So something like this&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindcode --release 108
+}
+bindcode 108
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would switch into modo "foo" when pressing "Alt" (on US layout) and leaving it again when releasing the key. (Note: it does not seem to work the very first time after loading the configuration)&lt;/p&gt;
+
+&lt;p&gt;Of course, just switching modes does not really help anything and so you need to set additional bindings. As key 108 is a modifier key, and will be pressed while the mode is open, it will affect any key pressed during that time. So you have to set the key bindings &lt;em&gt;with&lt;/em&gt; that modifier (again assuming US layout):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindsym Mod1+x exec foo
+    bindsym Mod1+y exec bar
+    bindsym Mod1+z exec baz
+    bindcode --release 108
+    bindsym Escape mode "default"
+}
+bindcode 108 mode "foo"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This basically does work: The mode will be entered and the key bindings become only available if the right Alt key is used (really the only advantage I can see compared to the mode-less solution above) and you can start the programs with the respective keys. &lt;strong&gt;But&lt;/strong&gt; when the Alt key is used in a key combination (that is by actually pressing Alt+x), its release will not be registered by &lt;em&gt;i3&lt;/em&gt; and the mode "foo" will remain active until pressing and releasing key 108 again (or by pressing Escape).&lt;/p&gt;
+
+&lt;p&gt;This seems to be the case for all modifier keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Modes on non-modifier keys&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Keys that are not modifiers seem to work better and are more straight-forward to set up. Of course for that you need some keys that you do not need otherwise, for example multimedia keys.&lt;/p&gt;
+
+&lt;p&gt;For example, on my keyboard I have a key labeled "Print" with code 218 (which is not identical to the key with the code 107, which can usually be found in the 3-key cluster to the right of the function keys). Using that key I set up the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "foo" {
+    bindcode --release 218 mode "default"
+    bindsym x exec foo
+    bindsym y exec bar
+    bindsym z exec baz
+}
+bindcode 218 mode "foo"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it seemed to work just fine, without the problems I experienced when using modifier keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?comment=5440#comment-5440</link><description>Your point about not even needing modes is excellent!  Thanks!</description><pubDate>Mon, 09 Feb 2015 13:35:20 +0000</pubDate><guid>https://faq.i3wm.org/question/5429/stay-in-mode-only-while-key-is-pressed/?comment=5440#comment-5440</guid></item></channel></rss>

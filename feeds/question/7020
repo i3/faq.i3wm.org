@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7020/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 30 Oct 2015 15:19:28 +0000</lastBuildDate><item><title>custom dzen2 statusbar notification shell script reports "status_command exited unexpectedly"</title><link>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/</link><description> Hello.
+
+I use a shell script to display the date and such things in my statusbar. I cut out irrelevant parts of both the i3 config file and the shellscript. When i3 is started, the statusbar displays "Error: status_command exited unexpectedly (exit 0)" along with the dzen2 bar. How can i fix that?
+
+My i3 config contains:
+
+    bar {
+    		status_command sh ~/.i3/statusbar.sh
+    }
+
+statusbar.sh:
+
+    #!/bin/sh
+    
+    DZEN_FG="#A0A0A0"
+    DZEN_BG="#1f1f1f"
+    HEIGHT=20
+    WIDTH=300
+    X=1300
+    Y=2000
+    DZEN="dzen2 -x $X -y $Y -w $WIDTH -h $HEIGHT -ta right -bg $DZEN_BG -fg $DZEN_FG"
+    
+    while true
+    do
+    	echo "`date`"
+    done | $DZEN &amp;
+
+</description><pubDate>Fri, 23 Oct 2015 14:34:15 +0000</pubDate><guid>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/</guid></item><item><title>Answer by Airblader for &lt;p&gt;Hello.&lt;/p&gt;
+
+&lt;p&gt;I use a shell script to display the date and such things in my statusbar. I cut out irrelevant parts of both the i3 config file and the shellscript. When i3 is started, the statusbar displays "Error: status_command exited unexpectedly (exit 0)" along with the dzen2 bar. How can i fix that?&lt;/p&gt;
+
+&lt;p&gt;My i3 config contains:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+        status_command sh ~/.i3/statusbar.sh
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;statusbar.sh:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+
+DZEN_FG="#A0A0A0"
+DZEN_BG="#1f1f1f"
+HEIGHT=20
+WIDTH=300
+X=1300
+Y=2000
+DZEN="dzen2 -x $X -y $Y -w $WIDTH -h $HEIGHT -ta right -bg $DZEN_BG -fg $DZEN_FG"
+
+while true
+do
+    echo "`date`"
+done | $DZEN &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?answer=7024#post-id-7024</link><description>Remove the bar block from your i3 config entirely and instead add
+
+    exec --no-startup-id ~/.i3/statusbar.sh
+
+Dzen is a complete status bar, you don't want to feed its output into i3bar but actually just start it. </description><pubDate>Fri, 23 Oct 2015 15:39:29 +0000</pubDate><guid>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?answer=7024#post-id-7024</guid></item><item><title>Comment by toogley for &lt;p&gt;Remove the bar block from your i3 config entirely and instead add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id ~/.i3/statusbar.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dzen is a complete status bar, you don't want to feed its output into i3bar but actually just start it. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?comment=7107#comment-7107</link><description>Thanks for the clarification :)</description><pubDate>Fri, 30 Oct 2015 15:19:28 +0000</pubDate><guid>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?comment=7107#comment-7107</guid></item><item><title>Comment by Airblader for &lt;p&gt;Remove the bar block from your i3 config entirely and instead add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id ~/.i3/statusbar.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dzen is a complete status bar, you don't want to feed its output into i3bar but actually just start it. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?comment=7037#comment-7037</link><description>You're confusing very different things here. i3bar is a bar, i3status only a data tool. Dzen is a bar, conky is a data tool (in this context). So Dzen and conky are entirely different things and not "alternatives".Anyway, I usually recommend using i3blocks with i3bar, but conky and i3bar is fine too</description><pubDate>Sat, 24 Oct 2015 16:29:56 +0000</pubDate><guid>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?comment=7037#comment-7037</guid></item><item><title>Comment by toogley for &lt;p&gt;Remove the bar block from your i3 config entirely and instead add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id ~/.i3/statusbar.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dzen is a complete status bar, you don't want to feed its output into i3bar but actually just start it. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?comment=7035#comment-7035</link><description>Hey, I wanted to have more control over my statusbar (like different colors for time and date), and for that i didn't liked i3status. I'm using now conky for that, it solves my problems much better as dzen2. =&gt; solved, thanks</description><pubDate>Sat, 24 Oct 2015 11:35:40 +0000</pubDate><guid>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?comment=7035#comment-7035</guid></item><item><title>Comment by Airblader for &lt;p&gt;Remove the bar block from your i3 config entirely and instead add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id ~/.i3/statusbar.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dzen is a complete status bar, you don't want to feed its output into i3bar but actually just start it. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?comment=7026#comment-7026</link><description>You can only do that by providing all that information to dzen using the i3 IPC. That's a bit of work, I'm sure solutions exist out there already, though. But I don't know them, you'll have to search for them. Why exactly do you want to use dzen? What do you want to do that i3bar can't do?</description><pubDate>Fri, 23 Oct 2015 17:57:40 +0000</pubDate><guid>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?comment=7026#comment-7026</guid></item><item><title>Comment by toogley for &lt;p&gt;Remove the bar block from your i3 config entirely and instead add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id ~/.i3/statusbar.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dzen is a complete status bar, you don't want to feed its output into i3bar but actually just start it. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?comment=7025#comment-7025</link><description>i actualy like the rest of my Statusbar (mainly the displaying of the windows). I assume, i can get that equally with dzen2, but a little search hasn't answered the problem. 
+
+==&gt; Is this the only option and if so, could you give me a hint how to display the windows like the default i3bar in dzen2?</description><pubDate>Fri, 23 Oct 2015 17:10:22 +0000</pubDate><guid>https://faq.i3wm.org/question/7020/custom-dzen2-statusbar-notification-shell-script-reports-status_command-exited-unexpectedly/?comment=7025#comment-7025</guid></item></channel></rss>

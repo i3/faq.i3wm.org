@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/150/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 30 Sep 2015 14:11:21 +0000</lastBuildDate><item><title>How to launch a terminal "from here"?</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/</link><description>I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? </description><pubDate>Thu, 21 Jun 2012 07:44:55 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/</guid></item><item><title>Answer by joepd for &lt;p&gt;I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=542#post-id-542</link><description>Wanted to comment, but there was not enough space...
+
+I worked with Tahtisilma's script. I needed to add 1 to the PID, in stead of 2. This is because the working directory of the terminal is irrelevant, we need to have the one of the shell contained in the terminal. I used `pstree -p` to find the heuristics of PID-enumeration, and made a keybind to $mod+Shift+Return. 
+
+Beware: urxvt{d,c} does not work, as only the PID of the daemon is returned with `xprop`. 
+
+Would be cool to have a cwd-parser for more than just terminals, so you can open a term in the directory where you have a pdf loaded... </description><pubDate>Sun, 23 Sep 2012 18:51:05 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=542#post-id-542</guid></item><item><title>Comment by Tahtisilma for &lt;p&gt;Wanted to comment, but there was not enough space...&lt;/p&gt;
+
+&lt;p&gt;I worked with Tahtisilma's script. I needed to add 1 to the PID, in stead of 2. This is because the working directory of the terminal is irrelevant, we need to have the one of the shell contained in the terminal. I used &lt;code&gt;pstree -p&lt;/code&gt; to find the heuristics of PID-enumeration, and made a keybind to $mod+Shift+Return. &lt;/p&gt;
+
+&lt;p&gt;Beware: urxvt{d,c} does not work, as only the PID of the daemon is returned with &lt;code&gt;xprop&lt;/code&gt;. &lt;/p&gt;
+
+&lt;p&gt;Would be cool to have a cwd-parser for more than just terminals, so you can open a term in the directory where you have a pdf loaded... &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=743#comment-743</link><description>Based on your idea of pstree I modified the script to walk to the deepest child with proper working directory. Here it is:http://pastebin.com/MEy9hXdr</description><pubDate>Fri, 09 Nov 2012 14:30:00 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=743#comment-743</guid></item><item><title>Answer by victor for &lt;p&gt;I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=152#post-id-152</link><description>I wrote a simple script which seems to work:
+
+    #!/bin/bash
+    ID=$(xdpyinfo | grep focus | cut -f4 -d " ")
+    PID=$(($(xprop -id $ID | grep -m 1 PID | cut -d " " -f 3) + 2))
+    if [ -e "/proc/$PID/cwd" ]
+    then
+        urxvt -cd $(readlink /proc/$PID/cwd) &amp;
+    else
+        urxvt
+    fi
+
+With bindsym $mod+b exec ~/.i3/shell.sh in your config file.</description><pubDate>Thu, 21 Jun 2012 10:33:40 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=152#post-id-152</guid></item><item><title>Comment by Tahtisilma for &lt;p&gt;I wrote a simple script which seems to work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+ID=$(xdpyinfo | grep focus | cut -f4 -d " ")
+PID=$(($(xprop -id $ID | grep -m 1 PID | cut -d " " -f 3) + 2))
+if [ -e "/proc/$PID/cwd" ]
+then
+    urxvt -cd $(readlink /proc/$PID/cwd) &amp;amp;
+else
+    urxvt
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With bindsym $mod+b exec ~/.i3/shell.sh in your config file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=154#comment-154</link><description>Great idea and quite simple solution! For me your script works only for terminals like urxvt or xterm. It does not work for gvim for example. Why you add 2 to pid ? Anyway this is version of your script that works for me: http://pastebin.com/eKy1smm1</description><pubDate>Thu, 21 Jun 2012 15:04:41 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=154#comment-154</guid></item><item><title>Comment by viking for &lt;p&gt;I wrote a simple script which seems to work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+ID=$(xdpyinfo | grep focus | cut -f4 -d " ")
+PID=$(($(xprop -id $ID | grep -m 1 PID | cut -d " " -f 3) + 2))
+if [ -e "/proc/$PID/cwd" ]
+then
+    urxvt -cd $(readlink /proc/$PID/cwd) &amp;amp;
+else
+    urxvt
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With bindsym $mod+b exec ~/.i3/shell.sh in your config file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2084#comment-2084</link><description>I've modified the script to more reliably find the child process. It uses the pstree command. https://gist.github.com/viking/5851049</description><pubDate>Mon, 24 Jun 2013 15:47:56 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2084#comment-2084</guid></item><item><title>Comment by kevin for &lt;p&gt;I wrote a simple script which seems to work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+ID=$(xdpyinfo | grep focus | cut -f4 -d " ")
+PID=$(($(xprop -id $ID | grep -m 1 PID | cut -d " " -f 3) + 2))
+if [ -e "/proc/$PID/cwd" ]
+then
+    urxvt -cd $(readlink /proc/$PID/cwd) &amp;amp;
+else
+    urxvt
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With bindsym $mod+b exec ~/.i3/shell.sh in your config file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=1482#comment-1482</link><description>+2 is (certainly) to get the pid of the *child* processs of the terminal, ie the shell (after a fork). However, this trick doesn't work with urxvtd/c, as only the daemon opens all the shells ...</description><pubDate>Mon, 25 Mar 2013 15:17:46 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=1482#comment-1482</guid></item><item><title>Comment by napcode for &lt;p&gt;I wrote a simple script which seems to work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+ID=$(xdpyinfo | grep focus | cut -f4 -d " ")
+PID=$(($(xprop -id $ID | grep -m 1 PID | cut -d " " -f 3) + 2))
+if [ -e "/proc/$PID/cwd" ]
+then
+    urxvt -cd $(readlink /proc/$PID/cwd) &amp;amp;
+else
+    urxvt
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With bindsym $mod+b exec ~/.i3/shell.sh in your config file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=153#comment-153</link><description>Thanks victor! IGood idea!</description><pubDate>Thu, 21 Jun 2012 12:31:35 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=153#comment-153</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=1483#post-id-1483</link><description>@Victor's snippet doesn't work for me on Ubuntu/Gnome-Terminal... some how the xdpyinfo returns the wrong window ID. From @Tahtisilma code, with small adjustments, I got it working for me:
+
+    #!/bin/bash
+    ID=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
+    PID=($(xprop -id $ID | awk '/_NET_WM_PID\(CARDINAL\)/{print $NF}'))
+    for CPID in `ps --ppid $PID | awk '/^ [0-9]/ {print $1}'`; do
+      [ -e "/proc/$CPID/cwd" ] &amp;&amp; PID=$CPID # loop to get last tty
+    done
+    [ -e "/proc/$PID/cwd" ] &amp;&amp; gnome-terminal --working-directory="`readlink "/proc/$PID/cwd"`" || gnome-terminal
+    </description><pubDate>Tue, 26 Mar 2013 01:06:33 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=1483#post-id-1483</guid></item><item><title>Answer by V0id for &lt;p&gt;I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=2125#post-id-2125</link><description>For zsh, I have the keybinding CTRL+N to open a terminal in the cwd of the current one.
+
+    # Open a new window in this term's cwd
+    alias nw="urxvt256c-mlc"
+    nwZle() { zle push-line; BUFFER="nw"; zle accept-line; }
+    zle -N nwZle
+    # CTRL+n
+    bindkey '^n' nwZle
+
+Note the keybinding is only a shortcut to a command, so it works only when the prompt can accept a command. That is, either the line is blank or a command has been typed (in this case it will be restored upon launch), but not if you're in a pager, vim, a command is blocking, etc.</description><pubDate>Mon, 01 Jul 2013 18:31:59 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=2125#post-id-2125</guid></item><item><title>Comment by joepd for &lt;p&gt;For zsh, I have the keybinding CTRL+N to open a terminal in the cwd of the current one.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Open a new window in this term's cwd
+alias nw="urxvt256c-mlc"
+nwZle() { zle push-line; BUFFER="nw"; zle accept-line; }
+zle -N nwZle
+# CTRL+n
+bindkey '^n' nwZle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the keybinding is only a shortcut to a command, so it works only when the prompt can accept a command. That is, either the line is blank or a command has been typed (in this case it will be restored upon launch), but not if you're in a pager, vim, a command is blocking, etc.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=3556#comment-3556</link><description>Excellent idea! I did away with the alias, and altered the function so it becomes like this: ``nwZle() { zle push-line; BUFFER="setsid urxvt"; zle accept-line; }``</description><pubDate>Mon, 24 Mar 2014 08:43:32 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=3556#comment-3556</guid></item><item><title>Answer by ctemplin for &lt;p&gt;I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=6228#post-id-6228</link><description>For users of xfce4-terminal, like me, I put together a little shell script.
+
+[Here's a gist](https://gist.github.com/ctemplin/3c626af969c67e51d805)
+
+In ~/.i3/config:
+
+    bindsym $mod+T exec "~/.i3/xfce4-terminal-pwd.sh"</description><pubDate>Tue, 30 Jun 2015 18:43:52 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=6228#post-id-6228</guid></item><item><title>Answer by machielo for &lt;p&gt;I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=5767#post-id-5767</link><description>For those of you using urxvtd/c, none of the above answers work. This, however, works:
+
+github.com/myeisha/urxvt-fork-here
+
+I use it like this in my .Xresources:
+
+    URxvt.perl-ext-common: others,fork-here
+    URxvt.keysym.Mod4-Shift-Return: perl:fork-here:fork-at-cwd
+
+Then with `Mod4+Enter` I open a normal `urxvtc` terminal, but with `Mod4+Shift+Enter` I have the new `urxvtc` terminal "here", as the OP wants.
+
+Remember to  reread resources with `xrdb ~/.Xresources`, relaunch `urxvtd` to load the new perl extension, then relaunch a new `urxvtc` for it to take effect (or just reboot).
+
+Hope this helps!
+
+</description><pubDate>Fri, 10 Apr 2015 12:21:42 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=5767#post-id-5767</guid></item><item><title>Comment by machielo for &lt;p&gt;For those of you using urxvtd/c, none of the above answers work. This, however, works:&lt;/p&gt;
+
+&lt;p&gt;github.com/myeisha/urxvt-fork-here&lt;/p&gt;
+
+&lt;p&gt;I use it like this in my .Xresources:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;URxvt.perl-ext-common: others,fork-here
+URxvt.keysym.Mod4-Shift-Return: perl:fork-here:fork-at-cwd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then with &lt;code&gt;Mod4+Enter&lt;/code&gt; I open a normal &lt;code&gt;urxvtc&lt;/code&gt; terminal, but with &lt;code&gt;Mod4+Shift+Enter&lt;/code&gt; I have the new &lt;code&gt;urxvtc&lt;/code&gt; terminal "here", as the OP wants.&lt;/p&gt;
+
+&lt;p&gt;Remember to  reread resources with &lt;code&gt;xrdb ~/.Xresources&lt;/code&gt;, relaunch &lt;code&gt;urxvtd&lt;/code&gt; to load the new perl extension, then relaunch a new &lt;code&gt;urxvtc&lt;/code&gt; for it to take effect (or just reboot).&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=5966#comment-5966</link><description>Awesome! But credit to where it's due: I didn't made the original fork-here extension, I just documented it here because it solved my needs :)</description><pubDate>Thu, 07 May 2015 14:37:58 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=5966#comment-5966</guid></item><item><title>Comment by i3convert for &lt;p&gt;For those of you using urxvtd/c, none of the above answers work. This, however, works:&lt;/p&gt;
+
+&lt;p&gt;github.com/myeisha/urxvt-fork-here&lt;/p&gt;
+
+&lt;p&gt;I use it like this in my .Xresources:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;URxvt.perl-ext-common: others,fork-here
+URxvt.keysym.Mod4-Shift-Return: perl:fork-here:fork-at-cwd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then with &lt;code&gt;Mod4+Enter&lt;/code&gt; I open a normal &lt;code&gt;urxvtc&lt;/code&gt; terminal, but with &lt;code&gt;Mod4+Shift+Enter&lt;/code&gt; I have the new &lt;code&gt;urxvtc&lt;/code&gt; terminal "here", as the OP wants.&lt;/p&gt;
+
+&lt;p&gt;Remember to  reread resources with &lt;code&gt;xrdb ~/.Xresources&lt;/code&gt;, relaunch &lt;code&gt;urxvtd&lt;/code&gt; to load the new perl extension, then relaunch a new &lt;code&gt;urxvtc&lt;/code&gt; for it to take effect (or just reboot).&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=5957#comment-5957</link><description>@machielo: My current solution is I modified fork-here to get the pid of the shell for urxvtd/c and then I use another solution to extract the folder of the deepest child. This works at least in the Midnight Commander case I mentioned above. Thanks for the fork-here extension!</description><pubDate>Tue, 05 May 2015 16:00:33 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=5957#comment-5957</guid></item><item><title>Comment by machielo for &lt;p&gt;For those of you using urxvtd/c, none of the above answers work. This, however, works:&lt;/p&gt;
+
+&lt;p&gt;github.com/myeisha/urxvt-fork-here&lt;/p&gt;
+
+&lt;p&gt;I use it like this in my .Xresources:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;URxvt.perl-ext-common: others,fork-here
+URxvt.keysym.Mod4-Shift-Return: perl:fork-here:fork-at-cwd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then with &lt;code&gt;Mod4+Enter&lt;/code&gt; I open a normal &lt;code&gt;urxvtc&lt;/code&gt; terminal, but with &lt;code&gt;Mod4+Shift+Enter&lt;/code&gt; I have the new &lt;code&gt;urxvtc&lt;/code&gt; terminal "here", as the OP wants.&lt;/p&gt;
+
+&lt;p&gt;Remember to  reread resources with &lt;code&gt;xrdb ~/.Xresources&lt;/code&gt;, relaunch &lt;code&gt;urxvtd&lt;/code&gt; to load the new perl extension, then relaunch a new &lt;code&gt;urxvtc&lt;/code&gt; for it to take effect (or just reboot).&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=5955#comment-5955</link><description>Perhaps a hybrid approach can be done inside the perl script, with xprop and if the process returned is URxvt then follow with this fork-here approach, but ideally we would use the xprop approach for everything, to launch a terminal in the same folder as, say, a pdf viewer, as explained by others :S</description><pubDate>Tue, 05 May 2015 08:53:58 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=5955#comment-5955</guid></item><item><title>Comment by machielo for &lt;p&gt;For those of you using urxvtd/c, none of the above answers work. This, however, works:&lt;/p&gt;
+
+&lt;p&gt;github.com/myeisha/urxvt-fork-here&lt;/p&gt;
+
+&lt;p&gt;I use it like this in my .Xresources:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;URxvt.perl-ext-common: others,fork-here
+URxvt.keysym.Mod4-Shift-Return: perl:fork-here:fork-at-cwd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then with &lt;code&gt;Mod4+Enter&lt;/code&gt; I open a normal &lt;code&gt;urxvtc&lt;/code&gt; terminal, but with &lt;code&gt;Mod4+Shift+Enter&lt;/code&gt; I have the new &lt;code&gt;urxvtc&lt;/code&gt; terminal "here", as the OP wants.&lt;/p&gt;
+
+&lt;p&gt;Remember to  reread resources with &lt;code&gt;xrdb ~/.Xresources&lt;/code&gt;, relaunch &lt;code&gt;urxvtd&lt;/code&gt; to load the new perl extension, then relaunch a new &lt;code&gt;urxvtc&lt;/code&gt; for it to take effect (or just reboot).&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=5954#comment-5954</link><description>Hmmm I see, different use-cases :S I really like urxvtd/c to save some memory, but processes forked (launched) from urxvtc don't usually modify the parent terminal cwd so this doesn't work for those :(</description><pubDate>Tue, 05 May 2015 08:52:15 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=5954#comment-5954</guid></item><item><title>Comment by i3convert for &lt;p&gt;For those of you using urxvtd/c, none of the above answers work. This, however, works:&lt;/p&gt;
+
+&lt;p&gt;github.com/myeisha/urxvt-fork-here&lt;/p&gt;
+
+&lt;p&gt;I use it like this in my .Xresources:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;URxvt.perl-ext-common: others,fork-here
+URxvt.keysym.Mod4-Shift-Return: perl:fork-here:fork-at-cwd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then with &lt;code&gt;Mod4+Enter&lt;/code&gt; I open a normal &lt;code&gt;urxvtc&lt;/code&gt; terminal, but with &lt;code&gt;Mod4+Shift+Enter&lt;/code&gt; I have the new &lt;code&gt;urxvtc&lt;/code&gt; terminal "here", as the OP wants.&lt;/p&gt;
+
+&lt;p&gt;Remember to  reread resources with &lt;code&gt;xrdb ~/.Xresources&lt;/code&gt;, relaunch &lt;code&gt;urxvtd&lt;/code&gt; to load the new perl extension, then relaunch a new &lt;code&gt;urxvtc&lt;/code&gt; for it to take effect (or just reboot).&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=5920#comment-5920</link><description>This does indeed work with pure urxvtd/c.
+
+However, it doesn't work in another situation which I find important. If I run mc (Midnight Commander), it switches to the folder from which mc was started, not to the current folder of mc. Some previous solutions work in this case with regular urxvt.</description><pubDate>Fri, 01 May 2015 05:39:23 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=5920#comment-5920</guid></item><item><title>Answer by ack006 for &lt;p&gt;I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=2124#post-id-2124</link><description>Here's my simple snippet for use with Bash, to be added to ${HOME}/.bashrc:
+
+    # Commands to be executed before the prompt is displayed
+    # Save current working dir
+    PROMPT_COMMAND='pwd &gt; "${HOME}/.cwd"'
+    
+    # Change to saved working dir
+    [[ -f "${HOME}/.cwd" ]] &amp;&amp; cd "$(&lt; ${HOME}/.cwd)"
+
+No need to find the pid of the most recent shell, the only requirement is a shell which supports running a command either when the prompt is displayed or each time a command is entered at the prompt.
+
+The saved directory even persists across logout/login, if you don't want that, simply delete ${HOME}/.cwd on logout.
+
+Note: If you have multiple terminals open at different directories, switch to the terminal whose directory you want to 'clone', type &lt;Enter&gt; or run some other command at the prompt to save that directory, then open a new terminal.</description><pubDate>Mon, 01 Jul 2013 18:02:18 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=2124#post-id-2124</guid></item><item><title>Comment by ack006 for &lt;p&gt;Here's my simple snippet for use with Bash, to be added to ${HOME}/.bashrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Commands to be executed before the prompt is displayed
+# Save current working dir
+PROMPT_COMMAND='pwd &amp;gt; "${HOME}/.cwd"'
+
+# Change to saved working dir
+[[ -f "${HOME}/.cwd" ]] &amp;amp;&amp;amp; cd "$(&amp;lt; ${HOME}/.cwd)"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No need to find the pid of the most recent shell, the only requirement is a shell which supports running a command either when the prompt is displayed or each time a command is entered at the prompt.&lt;/p&gt;
+
+&lt;p&gt;The saved directory even persists across logout/login, if you don't want that, simply delete ${HOME}/.cwd on logout.&lt;/p&gt;
+
+&lt;p&gt;Note: If you have multiple terminals open at different directories, switch to the terminal whose directory you want to 'clone', type &amp;lt;enter&amp;gt; or run some other command at the prompt to save that directory, then open a new terminal.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=6415#comment-6415</link><description>For those who worry about too many disk writes, on a relatively modern Linux installation you can change $HOME to $XDG_RUNTIME_DIR which should expand to a per-user directory for run-time volatile storage. This should normally be mounted as a tmpfs, so no worries wearing out your precious SSDs :)</description><pubDate>Mon, 10 Aug 2015 19:48:45 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=6415#comment-6415</guid></item><item><title>Comment by ShadowPrince for &lt;p&gt;Here's my simple snippet for use with Bash, to be added to ${HOME}/.bashrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Commands to be executed before the prompt is displayed
+# Save current working dir
+PROMPT_COMMAND='pwd &amp;gt; "${HOME}/.cwd"'
+
+# Change to saved working dir
+[[ -f "${HOME}/.cwd" ]] &amp;amp;&amp;amp; cd "$(&amp;lt; ${HOME}/.cwd)"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No need to find the pid of the most recent shell, the only requirement is a shell which supports running a command either when the prompt is displayed or each time a command is entered at the prompt.&lt;/p&gt;
+
+&lt;p&gt;The saved directory even persists across logout/login, if you don't want that, simply delete ${HOME}/.cwd on logout.&lt;/p&gt;
+
+&lt;p&gt;Note: If you have multiple terminals open at different directories, switch to the terminal whose directory you want to 'clone', type &amp;lt;enter&amp;gt; or run some other command at the prompt to save that directory, then open a new terminal.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2200#comment-2200</link><description>But that will force HDD to write data on every [Enter] press!</description><pubDate>Fri, 12 Jul 2013 21:09:00 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2200#comment-2200</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Here's my simple snippet for use with Bash, to be added to ${HOME}/.bashrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Commands to be executed before the prompt is displayed
+# Save current working dir
+PROMPT_COMMAND='pwd &amp;gt; "${HOME}/.cwd"'
+
+# Change to saved working dir
+[[ -f "${HOME}/.cwd" ]] &amp;amp;&amp;amp; cd "$(&amp;lt; ${HOME}/.cwd)"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No need to find the pid of the most recent shell, the only requirement is a shell which supports running a command either when the prompt is displayed or each time a command is entered at the prompt.&lt;/p&gt;
+
+&lt;p&gt;The saved directory even persists across logout/login, if you don't want that, simply delete ${HOME}/.cwd on logout.&lt;/p&gt;
+
+&lt;p&gt;Note: If you have multiple terminals open at different directories, switch to the terminal whose directory you want to 'clone', type &amp;lt;enter&amp;gt; or run some other command at the prompt to save that directory, then open a new terminal.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2130#comment-2130</link><description>Awesome! This works great for me! First solution that actually works with gnome-terminal... and taking the simplicity of this, I am sure it will work anywhere with bash. Cheers for sharing!</description><pubDate>Mon, 01 Jul 2013 22:19:22 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2130#comment-2130</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Here's my simple snippet for use with Bash, to be added to ${HOME}/.bashrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Commands to be executed before the prompt is displayed
+# Save current working dir
+PROMPT_COMMAND='pwd &amp;gt; "${HOME}/.cwd"'
+
+# Change to saved working dir
+[[ -f "${HOME}/.cwd" ]] &amp;amp;&amp;amp; cd "$(&amp;lt; ${HOME}/.cwd)"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No need to find the pid of the most recent shell, the only requirement is a shell which supports running a command either when the prompt is displayed or each time a command is entered at the prompt.&lt;/p&gt;
+
+&lt;p&gt;The saved directory even persists across logout/login, if you don't want that, simply delete ${HOME}/.cwd on logout.&lt;/p&gt;
+
+&lt;p&gt;Note: If you have multiple terminals open at different directories, switch to the terminal whose directory you want to 'clone', type &amp;lt;enter&amp;gt; or run some other command at the prompt to save that directory, then open a new terminal.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2214#comment-2214</link><description>That's what "history" command does anyway, right?</description><pubDate>Sun, 14 Jul 2013 11:14:02 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2214#comment-2214</guid></item><item><title>Answer by schischi for &lt;p&gt;I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=1700#post-id-1700</link><description>Hi,
+
+Being faced with the same problem, I wrote a simple program, which seems to work in most cases: [xcwd on github](https://github.com/schischi-a/xcwd)</description><pubDate>Thu, 25 Apr 2013 13:07:48 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=1700#post-id-1700</guid></item><item><title>Comment by syban for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Being faced with the same problem, I wrote a simple program, which seems to work in most cases: &lt;a href="https://github.com/schischi-a/xcwd"&gt;xcwd on github&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=6753#comment-6753</link><description>xcwd works as expected when launched from the command line but I can't make it work with a shortcut like this bindsym $mod+Return exec gnome-terminal --working-directory="`xcwd`"</description><pubDate>Wed, 30 Sep 2015 14:11:21 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=6753#comment-6753</guid></item><item><title>Comment by cee for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Being faced with the same problem, I wrote a simple program, which seems to work in most cases: &lt;a href="https://github.com/schischi-a/xcwd"&gt;xcwd on github&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2057#comment-2057</link><description>I tried all the other scripts mentioned in this thread, but this small c program was the only one that really worked for me. Thank you </description><pubDate>Thu, 20 Jun 2013 16:04:05 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2057#comment-2057</guid></item><item><title>Comment by syl20bnr for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Being faced with the same problem, I wrote a simple program, which seems to work in most cases: &lt;a href="https://github.com/schischi-a/xcwd"&gt;xcwd on github&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2307#comment-2307</link><description>Works great (Ubuntu 12.04 and 13.04), thank you.</description><pubDate>Tue, 30 Jul 2013 02:15:57 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=2307#comment-2307</guid></item><item><title>Answer by Michael for &lt;p&gt;I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=151#post-id-151</link><description>There is a script called cwd-spawn for urvxt which does this:
+
+http://labs.qu.cx/urxvt-perl/tree/cwd-spawn</description><pubDate>Thu, 21 Jun 2012 09:29:58 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=151#post-id-151</guid></item><item><title>Comment by bricksoup for &lt;p&gt;There is a script called cwd-spawn for urvxt which does this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://labs.qu.cx/urxvt-perl/tree/cwd-spawn"&gt;http://labs.qu.cx/urxvt-perl/tree/cwd...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=497#comment-497</link><description>The link is dead and I can't find any other copies of or references to cwd-spawn. Any chance you could mirror the script?</description><pubDate>Sat, 15 Sep 2012 19:30:12 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=497#comment-497</guid></item><item><title>Comment by Michael for &lt;p&gt;There is a script called cwd-spawn for urvxt which does this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://labs.qu.cx/urxvt-perl/tree/cwd-spawn"&gt;http://labs.qu.cx/urxvt-perl/tree/cwd...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=543#comment-543</link><description>Sure, there you go: http://code.stapelberg.de/git/configfiles/tree/cwd-spawn</description><pubDate>Sun, 23 Sep 2012 19:09:44 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?comment=543#comment-543</guid></item><item><title>Answer by gehidore for &lt;p&gt;I often need another terminal in the same working directory (debugging, compiling... there are many use cases). 
+How can I launch a terminal (rxvt) via i3 and set it to the working directory of the currently selected window? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=1733#post-id-1733</link><description>If only this worked in tabbed mode on a new tab...</description><pubDate>Wed, 01 May 2013 04:44:39 +0000</pubDate><guid>https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/?answer=1733#post-id-1733</guid></item></channel></rss>

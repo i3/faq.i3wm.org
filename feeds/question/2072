@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2072/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 23 Jun 2013 19:27:55 +0000</lastBuildDate><item><title>How do I get i3 to run over a VNC connection?</title><link>https://faq.i3wm.org/question/2072/how-do-i-get-i3-to-run-over-a-vnc-connection/</link><description>I'm running Debian Wheezy on a server I intend to use as a blender rendering machine so I installed i3 (version 4.2 from Wheezy repos) and TightVNC server on it.
+I added 'i3 &amp;' to the ~/.vnc/xstartup file, but it's not showing up when I connect from my main box.
+</description><pubDate>Sun, 23 Jun 2013 18:57:50 +0000</pubDate><guid>https://faq.i3wm.org/question/2072/how-do-i-get-i3-to-run-over-a-vnc-connection/</guid></item><item><title>Answer by edvard for &lt;p&gt;I'm running Debian Wheezy on a server I intend to use as a blender rendering machine so I installed i3 (version 4.2 from Wheezy repos) and TightVNC server on it.
+I added 'i3 &amp;amp;' to the ~/.vnc/xstartup file, but it's not showing up when I connect from my main box.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2072/how-do-i-get-i3-to-run-over-a-vnc-connection/?answer=2073#post-id-2073</link><description>Although similar questions have been asked before on this FAQ, they didn't address what I was experienceing.  So I asked this question in the IRC page and got it working with the help of friendly folks there, so I'll answer myself.
+
+**First** of all, make sure you have i3 version &gt;= 4.5.  The version included in the Debian Wheezy repos is 4.2, which will exit with an error "XKB not supported by X-server".  
+To install on Debian Wheezy, I had to enable the backports repository by adding:
+
+    [web search for how to add backports, I don't have enough 'karma' to post the deb line cause it has a http link in it]
+
+to /etc/apt/sources.list (replace 'ftp.us.debian.org' with your favorite mirror)
+and installing i3 version 4.5 like so:
+
+    aptitude update
+    aptitude -t wheezy-backports install i3
+
+**Second**, make sure the ~/.vnc/xstartup file has the Xsession line commented out or removed, and "i3" or "i3 &amp;" (without quotes) is the last line.
+
+    #!/bin/sh
+    
+    xrdb $HOME/.Xresources
+    xsetroot -solid grey
+    #x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &amp;
+    #x-window-manager &amp;
+    #Fix to make GNOME work
+    export XKL_XMODMAP_DISABLE=1
+    #/etc/X11/Xsession
+    i3 &amp;
+
+You may also have to use the line "DISPLAY=:1 i3" instead, if you plan on running the VNC server in a different display (replace '1' with your chosen display number).
+
+**Third**, make sure you have a terminal emulator installed.  I did not, and after getting i3 working over VNC, I could not open a terminal by pressing $mod+Enter.  I installed rxvt, but you may have another already installed, or choose a favorite.
+
+**Fourth**, running i3 in a VNC session will create a bad config file with all the key bindings replaced with "Mod1+(null)".  I just copied a local config file over but you can also copy the one from /etc/i3/config.</description><pubDate>Sun, 23 Jun 2013 19:27:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2072/how-do-i-get-i3-to-run-over-a-vnc-connection/?answer=2073#post-id-2073</guid></item></channel></rss>

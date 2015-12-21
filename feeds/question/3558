@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3558/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 26 Mar 2014 20:47:56 +0000</lastBuildDate><item><title>Invisible workspaces or scratchpad for entire workspaces</title><link>https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/</link><description>I have a number of workspaces that I would like to be disappear when they are no longer the active workspace on a screen. In effect they would disappear just like empty workspaces disappear when you navigate away, though their contents would remain if you revisited them with their dedicated workspace switcher (`bindsym $mod+1 workspace 1`). They would not however be accessible by cycling with `next_on_output`. Ideally these clients would also be invisible on the the i3-status bar, though this is a optional consideration. 
+
+Another way of framing this is that I want a scratchpad for entire workspaces. 
+
+I think that this could be achieved with liberal use of i3-py (though I'm not sure it even includes every call I'd need). In any case it is _horrifyingly_ kludgy.
+
+    on keypress exec
+        if focus not on workspace
+            go to workspace
+            
+            # i have a multi-head setup so focus might just have been on the other output
+            if workspace is empty
+                get client matching instance from scratchpad
+                toggle float mode of client
+
+        else
+            verify that all clients in workspace have defined instance
+            store all clients with said instance in scratchpad
+
+            # does i3-py let you figure this out?
+            # back_and_forth is the previously focused workspace
+            if back_and_forth is on current output
+                # causes the empty workspace now disappears
+                workspace back_and_forth
+
+            # i don't want to leave the now empty workspace open on that output
+            else
+                prev_workspace = back_and_forth
+                # causes the empty workspace now disappears
+                navigate to next_on_output
+                # jumps focus back to previous output
+                navigate to prev_workspace
+
+
+    # this seems like a particularly terrible idea!
+    with all requests to change workspaces exec
+        temporary_workspaces = ["foo", "bar", "baz"]
+        if workspace in temporary_workspaces is not active workspace on an output
+            verify that all clients in that workspace have defined instance
+            store all clients with said instance in scratchpad
+
+Please, please, please tell me there is a better way to do that!</description><pubDate>Mon, 24 Mar 2014 15:37:59 +0000</pubDate><guid>https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/</guid></item><item><title>Comment by hbaughman for &lt;p&gt;I have a number of workspaces that I would like to be disappear when they are no longer the active workspace on a screen. In effect they would disappear just like empty workspaces disappear when you navigate away, though their contents would remain if you revisited them with their dedicated workspace switcher (&lt;code&gt;bindsym $mod+1 workspace 1&lt;/code&gt;). They would not however be accessible by cycling with &lt;code&gt;next_on_output&lt;/code&gt;. Ideally these clients would also be invisible on the the i3-status bar, though this is a optional consideration. &lt;/p&gt;
+
+&lt;p&gt;Another way of framing this is that I want a scratchpad for entire workspaces. &lt;/p&gt;
+
+&lt;p&gt;I think that this could be achieved with liberal use of i3-py (though I'm not sure it even includes every call I'd need). In any case it is &lt;em&gt;horrifyingly&lt;/em&gt; kludgy.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;on keypress exec
+    if focus not on workspace
+        go to workspace
+
+        # i have a multi-head setup so focus might just have been on the other output
+        if workspace is empty
+            get client matching instance from scratchpad
+            toggle float mode of client
+
+    else
+        verify that all clients in workspace have defined instance
+        store all clients with said instance in scratchpad
+
+        # does i3-py let you figure this out?
+        # back_and_forth is the previously focused workspace
+        if back_and_forth is on current output
+            # causes the empty workspace now disappears
+            workspace back_and_forth
+
+        # i don't want to leave the now empty workspace open on that output
+        else
+            prev_workspace = back_and_forth
+            # causes the empty workspace now disappears
+            navigate to next_on_output
+            # jumps focus back to previous output
+            navigate to prev_workspace
+
+
+# this seems like a particularly terrible idea!
+with all requests to change workspaces exec
+    temporary_workspaces = ["foo", "bar", "baz"]
+    if workspace in temporary_workspaces is not active workspace on an output
+        verify that all clients in that workspace have defined instance
+        store all clients with said instance in scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please, please, please tell me there is a better way to do that!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/?comment=3571#comment-3571</link><description>@KJ44 Just tried it. Unfortunately it doesn't work if the output is disconnected, but definitely a clever idea. I'll see if I can trick my computer into thinking that VGA-1 is connected. In any case, I like how you think!</description><pubDate>Tue, 25 Mar 2014 23:53:16 +0000</pubDate><guid>https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/?comment=3571#comment-3571</guid></item><item><title>Comment by KJ44 for &lt;p&gt;I have a number of workspaces that I would like to be disappear when they are no longer the active workspace on a screen. In effect they would disappear just like empty workspaces disappear when you navigate away, though their contents would remain if you revisited them with their dedicated workspace switcher (&lt;code&gt;bindsym $mod+1 workspace 1&lt;/code&gt;). They would not however be accessible by cycling with &lt;code&gt;next_on_output&lt;/code&gt;. Ideally these clients would also be invisible on the the i3-status bar, though this is a optional consideration. &lt;/p&gt;
+
+&lt;p&gt;Another way of framing this is that I want a scratchpad for entire workspaces. &lt;/p&gt;
+
+&lt;p&gt;I think that this could be achieved with liberal use of i3-py (though I'm not sure it even includes every call I'd need). In any case it is &lt;em&gt;horrifyingly&lt;/em&gt; kludgy.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;on keypress exec
+    if focus not on workspace
+        go to workspace
+
+        # i have a multi-head setup so focus might just have been on the other output
+        if workspace is empty
+            get client matching instance from scratchpad
+            toggle float mode of client
+
+    else
+        verify that all clients in workspace have defined instance
+        store all clients with said instance in scratchpad
+
+        # does i3-py let you figure this out?
+        # back_and_forth is the previously focused workspace
+        if back_and_forth is on current output
+            # causes the empty workspace now disappears
+            workspace back_and_forth
+
+        # i don't want to leave the now empty workspace open on that output
+        else
+            prev_workspace = back_and_forth
+            # causes the empty workspace now disappears
+            navigate to next_on_output
+            # jumps focus back to previous output
+            navigate to prev_workspace
+
+
+# this seems like a particularly terrible idea!
+with all requests to change workspaces exec
+    temporary_workspaces = ["foo", "bar", "baz"]
+    if workspace in temporary_workspaces is not active workspace on an output
+        verify that all clients in that workspace have defined instance
+        store all clients with said instance in scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please, please, please tell me there is a better way to do that!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/?comment=3576#comment-3576</link><description>Hardware hack! http://www.mp3car.com/general-hardware-discussion/1763-how-does-a-video-card-detect-vga-monitor-is-present.html. </description><pubDate>Wed, 26 Mar 2014 20:47:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/?comment=3576#comment-3576</guid></item><item><title>Comment by KJ44 for &lt;p&gt;I have a number of workspaces that I would like to be disappear when they are no longer the active workspace on a screen. In effect they would disappear just like empty workspaces disappear when you navigate away, though their contents would remain if you revisited them with their dedicated workspace switcher (&lt;code&gt;bindsym $mod+1 workspace 1&lt;/code&gt;). They would not however be accessible by cycling with &lt;code&gt;next_on_output&lt;/code&gt;. Ideally these clients would also be invisible on the the i3-status bar, though this is a optional consideration. &lt;/p&gt;
+
+&lt;p&gt;Another way of framing this is that I want a scratchpad for entire workspaces. &lt;/p&gt;
+
+&lt;p&gt;I think that this could be achieved with liberal use of i3-py (though I'm not sure it even includes every call I'd need). In any case it is &lt;em&gt;horrifyingly&lt;/em&gt; kludgy.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;on keypress exec
+    if focus not on workspace
+        go to workspace
+
+        # i have a multi-head setup so focus might just have been on the other output
+        if workspace is empty
+            get client matching instance from scratchpad
+            toggle float mode of client
+
+    else
+        verify that all clients in workspace have defined instance
+        store all clients with said instance in scratchpad
+
+        # does i3-py let you figure this out?
+        # back_and_forth is the previously focused workspace
+        if back_and_forth is on current output
+            # causes the empty workspace now disappears
+            workspace back_and_forth
+
+        # i don't want to leave the now empty workspace open on that output
+        else
+            prev_workspace = back_and_forth
+            # causes the empty workspace now disappears
+            navigate to next_on_output
+            # jumps focus back to previous output
+            navigate to prev_workspace
+
+
+# this seems like a particularly terrible idea!
+with all requests to change workspaces exec
+    temporary_workspaces = ["foo", "bar", "baz"]
+    if workspace in temporary_workspaces is not active workspace on an output
+        verify that all clients in that workspace have defined instance
+        store all clients with said instance in scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please, please, please tell me there is a better way to do that!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/?comment=3570#comment-3570</link><description>This suggestion is untried and probably bogus. Maybe you could hide workspaces by moving them to an unused RandR monitor output such as VGA? In the userguide see: http://i3wm.org/docs/userguide.html#_moving_containers_workspaces_to_randr_outputs</description><pubDate>Tue, 25 Mar 2014 17:57:18 +0000</pubDate><guid>https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/?comment=3570#comment-3570</guid></item><item><title>Answer by TonyC for &lt;p&gt;I have a number of workspaces that I would like to be disappear when they are no longer the active workspace on a screen. In effect they would disappear just like empty workspaces disappear when you navigate away, though their contents would remain if you revisited them with their dedicated workspace switcher (&lt;code&gt;bindsym $mod+1 workspace 1&lt;/code&gt;). They would not however be accessible by cycling with &lt;code&gt;next_on_output&lt;/code&gt;. Ideally these clients would also be invisible on the the i3-status bar, though this is a optional consideration. &lt;/p&gt;
+
+&lt;p&gt;Another way of framing this is that I want a scratchpad for entire workspaces. &lt;/p&gt;
+
+&lt;p&gt;I think that this could be achieved with liberal use of i3-py (though I'm not sure it even includes every call I'd need). In any case it is &lt;em&gt;horrifyingly&lt;/em&gt; kludgy.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;on keypress exec
+    if focus not on workspace
+        go to workspace
+
+        # i have a multi-head setup so focus might just have been on the other output
+        if workspace is empty
+            get client matching instance from scratchpad
+            toggle float mode of client
+
+    else
+        verify that all clients in workspace have defined instance
+        store all clients with said instance in scratchpad
+
+        # does i3-py let you figure this out?
+        # back_and_forth is the previously focused workspace
+        if back_and_forth is on current output
+            # causes the empty workspace now disappears
+            workspace back_and_forth
+
+        # i don't want to leave the now empty workspace open on that output
+        else
+            prev_workspace = back_and_forth
+            # causes the empty workspace now disappears
+            navigate to next_on_output
+            # jumps focus back to previous output
+            navigate to prev_workspace
+
+
+# this seems like a particularly terrible idea!
+with all requests to change workspaces exec
+    temporary_workspaces = ["foo", "bar", "baz"]
+    if workspace in temporary_workspaces is not active workspace on an output
+        verify that all clients in that workspace have defined instance
+        store all clients with said instance in scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please, please, please tell me there is a better way to do that!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/?answer=3572#post-id-3572</link><description>Here is an example from the new [ipc project](https://github.com/acrisci/i3ipc-glib) (you can find the latest file [here](https://github.com/acrisci/i3ipc-gjs/blob/master/examples/hidden-ws-scratchpad.js)). This uses the [JavaScript](https://github.com/acrisci/i3ipc-gjs) version of the library but the same API is available in many languages. i3-py is not maintained and does not include many new features of i3wm.
+
+I like the idea that was brought up in the comments about sending it another output better. Maybe I will work on that later.
+
+    #!/usr/bin/env gjs
+
+    /*
+       This example shows how to implement a "hidden workspace" using the
+       scratchpad. The workspace should "disapear" from i3bar when you switch
+       away.
+
+       Unfortunately, it cannot handle complex workspace layouts, and will make
+       your scratchpad unusable for other things.
+       
+       https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/
+    */
+
+    const i3ipc = imports.gi.i3ipc;
+
+    let conn = new i3ipc.Connection;
+
+    const HIDDEN_WS = "5";
+    let scratchpad_len = 0;
+
+    conn.on('workspace::focus', function(conn, e) {
+        if (e.current.name === HIDDEN_WS) {
+            for (let i = 0; i &lt; scratchpad_len; i += 1)
+                conn.command('scratchpad show, floating disable');
+            
+            scratchpad_len = 0;
+        } else if (e.old.name === HIDDEN_WS) {
+            e.old.command_children('move scratchpad');
+
+            scratchpad_len = e.old.nodes.length;
+        }
+    });
+
+    conn.main();
+</description><pubDate>Wed, 26 Mar 2014 04:00:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3558/invisible-workspaces-or-scratchpad-for-entire-workspaces/?answer=3572#post-id-3572</guid></item></channel></rss>

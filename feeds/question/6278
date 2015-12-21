@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6278/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 13 Jul 2015 16:13:37 +0000</lastBuildDate><item><title>Why can I send input to i3bar with bash script, but not with python?</title><link>https://faq.i3wm.org/question/6278/why-can-i-send-input-to-i3bar-with-bash-script-but-not-with-python/</link><description>As a test, I added this to my .i3/config:
+
+    bar {
+        status_command i3status | ~/.i3/status.sh
+    }
+with the script:
+
+    #!/bin/bash
+    
+    echo '{ "version": 1 }'
+    echo '['
+    echo '[]'
+    while :;
+    do
+    	echo ",[{\"name\":\"time\",\"full_text\":\"test\"}]"
+    	sleep 1
+    done
+I see "test" on the i3bar. Nice. However, I want to use python for the real script, so I tried:
+
+    bar {
+        status_command i3status | ~/.i3/status.py
+    }
+
+with:
+
+    #!/usr/bin/env python
+    import time
+    
+    print '{ "version": 1 }'
+    print '['
+    print '[]'
+    while True:
+        print ',[{"name":"time","full_text":"test"}]'
+        time.sleep(1)
+but... no joy. Nothing on the i3bar. Running the scripts in terminal, the output looks the same. Even output to file and examined in hex, and it was the same. Is it some sort of problem with buffering? Even if I wait, nothing shows up on the bar.
+Tried running with "python ~/.i3/status.py", still nothing. Am I missing something obvious? (That does happen to me a lot.) Thanks in advance!
+
+</description><pubDate>Mon, 13 Jul 2015 13:28:38 +0000</pubDate><guid>https://faq.i3wm.org/question/6278/why-can-i-send-input-to-i3bar-with-bash-script-but-not-with-python/</guid></item><item><title>Comment by Airblader for &lt;p&gt;As a test, I added this to my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    status_command i3status | ~/.i3/status.sh
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with the script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+echo '{ "version": 1 }'
+echo '['
+echo '[]'
+while :;
+do
+    echo ",[{\"name\":\"time\",\"full_text\":\"test\"}]"
+    sleep 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I see "test" on the i3bar. Nice. However, I want to use python for the real script, so I tried:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    status_command i3status | ~/.i3/status.py
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+import time
+
+print '{ "version": 1 }'
+print '['
+print '[]'
+while True:
+    print ',[{"name":"time","full_text":"test"}]'
+    time.sleep(1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but... no joy. Nothing on the i3bar. Running the scripts in terminal, the output looks the same. Even output to file and examined in hex, and it was the same. Is it some sort of problem with buffering? Even if I wait, nothing shows up on the bar.
+Tried running with "python ~/.i3/status.py", still nothing. Am I missing something obvious? (That does happen to me a lot.) Thanks in advance!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6278/why-can-i-send-input-to-i3bar-with-bash-script-but-not-with-python/?comment=6282#comment-6282</link><description>To be fair, stdbuf only meant to prove the theory, not to be a solution, so it wasn't an answer. Using "-u" is the right solution :)</description><pubDate>Mon, 13 Jul 2015 16:13:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6278/why-can-i-send-input-to-i3bar-with-bash-script-but-not-with-python/?comment=6282#comment-6282</guid></item><item><title>Comment by will_82 for &lt;p&gt;As a test, I added this to my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    status_command i3status | ~/.i3/status.sh
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with the script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+echo '{ "version": 1 }'
+echo '['
+echo '[]'
+while :;
+do
+    echo ",[{\"name\":\"time\",\"full_text\":\"test\"}]"
+    sleep 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I see "test" on the i3bar. Nice. However, I want to use python for the real script, so I tried:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    status_command i3status | ~/.i3/status.py
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+import time
+
+print '{ "version": 1 }'
+print '['
+print '[]'
+while True:
+    print ',[{"name":"time","full_text":"test"}]'
+    time.sleep(1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but... no joy. Nothing on the i3bar. Running the scripts in terminal, the output looks the same. Even output to file and examined in hex, and it was the same. Is it some sort of problem with buffering? Even if I wait, nothing shows up on the bar.
+Tried running with "python ~/.i3/status.py", still nothing. Am I missing something obvious? (That does happen to me a lot.) Thanks in advance!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6278/why-can-i-send-input-to-i3bar-with-bash-script-but-not-with-python/?comment=6281#comment-6281</link><description>Thanks! Looks like you just beat me to it. Can't upvote, but props for the quick reply. There's a good discussion on the issue here (explains why it all looked fine in terminal):
+
+http://stackoverflow.com/questions/15731231/python-script-prints-output-of-os-system-before-print</description><pubDate>Mon, 13 Jul 2015 13:59:09 +0000</pubDate><guid>https://faq.i3wm.org/question/6278/why-can-i-send-input-to-i3bar-with-bash-script-but-not-with-python/?comment=6281#comment-6281</guid></item><item><title>Comment by Airblader for &lt;p&gt;As a test, I added this to my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    status_command i3status | ~/.i3/status.sh
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with the script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+echo '{ "version": 1 }'
+echo '['
+echo '[]'
+while :;
+do
+    echo ",[{\"name\":\"time\",\"full_text\":\"test\"}]"
+    sleep 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I see "test" on the i3bar. Nice. However, I want to use python for the real script, so I tried:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    status_command i3status | ~/.i3/status.py
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+import time
+
+print '{ "version": 1 }'
+print '['
+print '[]'
+while True:
+    print ',[{"name":"time","full_text":"test"}]'
+    time.sleep(1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but... no joy. Nothing on the i3bar. Running the scripts in terminal, the output looks the same. Even output to file and examined in hex, and it was the same. Is it some sort of problem with buffering? Even if I wait, nothing shows up on the bar.
+Tried running with "python ~/.i3/status.py", still nothing. Am I missing something obvious? (That does happen to me a lot.) Thanks in advance!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6278/why-can-i-send-input-to-i3bar-with-bash-script-but-not-with-python/?comment=6280#comment-6280</link><description>Yes, it's buffering. Try using "stdbuf -o 0 -e 0 python2.7 ~/.i3/status.py" and you can see it works.</description><pubDate>Mon, 13 Jul 2015 13:53:21 +0000</pubDate><guid>https://faq.i3wm.org/question/6278/why-can-i-send-input-to-i3bar-with-bash-script-but-not-with-python/?comment=6280#comment-6280</guid></item><item><title>Answer by will_82 for &lt;p&gt;As a test, I added this to my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    status_command i3status | ~/.i3/status.sh
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with the script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+echo '{ "version": 1 }'
+echo '['
+echo '[]'
+while :;
+do
+    echo ",[{\"name\":\"time\",\"full_text\":\"test\"}]"
+    sleep 1
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I see "test" on the i3bar. Nice. However, I want to use python for the real script, so I tried:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    status_command i3status | ~/.i3/status.py
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+import time
+
+print '{ "version": 1 }'
+print '['
+print '[]'
+while True:
+    print ',[{"name":"time","full_text":"test"}]'
+    time.sleep(1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but... no joy. Nothing on the i3bar. Running the scripts in terminal, the output looks the same. Even output to file and examined in hex, and it was the same. Is it some sort of problem with buffering? Even if I wait, nothing shows up on the bar.
+Tried running with "python ~/.i3/status.py", still nothing. Am I missing something obvious? (That does happen to me a lot.) Thanks in advance!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6278/why-can-i-send-input-to-i3bar-with-bash-script-but-not-with-python/?answer=6279#post-id-6279</link><description>Aghhh... just figured it out... it *was* a buffering problem. Needed to launch with
+
+    bar {
+        status_command i3status | python -u ~/.i3/status.py
+    }
+
+This makes python send unbuffered output. Hope this helps someone else who's playing around with the i3bar and python. I've been pulling out my hair all day!</description><pubDate>Mon, 13 Jul 2015 13:53:21 +0000</pubDate><guid>https://faq.i3wm.org/question/6278/why-can-i-send-input-to-i3bar-with-bash-script-but-not-with-python/?answer=6279#post-id-6279</guid></item></channel></rss>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3973/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 13 Jun 2014 22:00:48 +0000</lastBuildDate><item><title>Binding backspace unsuccessful</title><link>https://faq.i3wm.org/question/3973/binding-backspace-unsuccessful/</link><description>Physical problem with Delete key, so trying to bind control backspace to delete, so I tried both lines unsuccessfully:
+
+    bindsym control+BackSpace exec xdotool keyup control &amp;&amp; sleep 0.1 &amp;&amp; xdotool key Delete
+    bindcode control+135 exec xdotool keyup control &amp;&amp; sleep 0.1 &amp;&amp; xdotool key Delete
+
+They don't seem to work. 
+
+However, when I tried binding backspace with $mod, it actually works deleting characters to the right. Then I tried control+a and this works. So the combination of control and backspace does not work.</description><pubDate>Fri, 13 Jun 2014 11:08:26 +0000</pubDate><guid>https://faq.i3wm.org/question/3973/binding-backspace-unsuccessful/</guid></item><item><title>Comment by phairland for &lt;p&gt;Physical problem with Delete key, so trying to bind control backspace to delete, so I tried both lines unsuccessfully:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym control+BackSpace exec xdotool keyup control &amp;amp;&amp;amp; sleep 0.1 &amp;amp;&amp;amp; xdotool key Delete
+bindcode control+135 exec xdotool keyup control &amp;amp;&amp;amp; sleep 0.1 &amp;amp;&amp;amp; xdotool key Delete
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;They don't seem to work. &lt;/p&gt;
+
+&lt;p&gt;However, when I tried binding backspace with $mod, it actually works deleting characters to the right. Then I tried control+a and this works. So the combination of control and backspace does not work.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3973/binding-backspace-unsuccessful/?comment=3977#comment-3977</link><description>I found the problem, same keybinding from another program.</description><pubDate>Fri, 13 Jun 2014 22:00:48 +0000</pubDate><guid>https://faq.i3wm.org/question/3973/binding-backspace-unsuccessful/?comment=3977#comment-3977</guid></item><item><title>Answer by phairland for &lt;p&gt;Physical problem with Delete key, so trying to bind control backspace to delete, so I tried both lines unsuccessfully:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym control+BackSpace exec xdotool keyup control &amp;amp;&amp;amp; sleep 0.1 &amp;amp;&amp;amp; xdotool key Delete
+bindcode control+135 exec xdotool keyup control &amp;amp;&amp;amp; sleep 0.1 &amp;amp;&amp;amp; xdotool key Delete
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;They don't seem to work. &lt;/p&gt;
+
+&lt;p&gt;However, when I tried binding backspace with $mod, it actually works deleting characters to the right. Then I tried control+a and this works. So the combination of control and backspace does not work.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3973/binding-backspace-unsuccessful/?answer=3975#post-id-3975</link><description>I just needed to add the following line:
+
+ modifier_map Control { &lt;HENK&gt;  };
+</description><pubDate>Fri, 13 Jun 2014 21:40:57 +0000</pubDate><guid>https://faq.i3wm.org/question/3973/binding-backspace-unsuccessful/?answer=3975#post-id-3975</guid></item><item><title>Answer by goldie for &lt;p&gt;Physical problem with Delete key, so trying to bind control backspace to delete, so I tried both lines unsuccessfully:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym control+BackSpace exec xdotool keyup control &amp;amp;&amp;amp; sleep 0.1 &amp;amp;&amp;amp; xdotool key Delete
+bindcode control+135 exec xdotool keyup control &amp;amp;&amp;amp; sleep 0.1 &amp;amp;&amp;amp; xdotool key Delete
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;They don't seem to work. &lt;/p&gt;
+
+&lt;p&gt;However, when I tried binding backspace with $mod, it actually works deleting characters to the right. Then I tried control+a and this works. So the combination of control and backspace does not work.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3973/binding-backspace-unsuccessful/?answer=3976#post-id-3976</link><description>you need to add:
+modifier_map Control { &lt;HENK&gt;  };
+</description><pubDate>Fri, 13 Jun 2014 21:46:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3973/binding-backspace-unsuccessful/?answer=3976#post-id-3976</guid></item></channel></rss>

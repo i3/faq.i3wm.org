@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3926/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 10 Jun 2014 05:52:56 +0000</lastBuildDate><item><title>Configure floating window location</title><link>https://faq.i3wm.org/question/3926/configure-floating-window-location/</link><description>Is there a way to automatically send a floating window to a particular location? For example, I have the following line in my `i3` configuration file:
+
+    for_window [class="Xfce4-notifyd"] floating enable
+When I manually send notifications to the daemon via `notify-send`, they appear in the upper right corner of the active workspace. However, certain applications (in my case, Amarok and Guayadeque) send notifications to the center of the workspace. This is inconvenient as the messages persist for a while unless clicked. I would like to uniformly have all floating windows of this class be moved to the upper right corner of the current workspace. Can this be done in the `i3` configuration file or is the problem somehow application-specific?</description><pubDate>Sat, 07 Jun 2014 20:20:53 +0000</pubDate><guid>https://faq.i3wm.org/question/3926/configure-floating-window-location/</guid></item><item><title>Answer by phairland for &lt;p&gt;Is there a way to automatically send a floating window to a particular location? For example, I have the following line in my &lt;code&gt;i3&lt;/code&gt; configuration file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Xfce4-notifyd"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I manually send notifications to the daemon via &lt;code&gt;notify-send&lt;/code&gt;, they appear in the upper right corner of the active workspace. However, certain applications (in my case, Amarok and Guayadeque) send notifications to the center of the workspace. This is inconvenient as the messages persist for a while unless clicked. I would like to uniformly have all floating windows of this class be moved to the upper right corner of the current workspace. Can this be done in the &lt;code&gt;i3&lt;/code&gt; configuration file or is the problem somehow application-specific?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3926/configure-floating-window-location/?answer=3930#post-id-3930</link><description>i3 does not manage system or application notifications.  It is a more low level configuration specific to the notification program e.g. dunst, or the application GUI e.g. Gnome and KDE.
+
+There was a similar question posted here: [http://faq.i3wm.org/question/936/floating-windows-initial-position/](http://faq.i3wm.org/question/936/floating-windows-initial-position/).
+
+You can have a look at this section of the User's Guide:
+[http://i3wm.org/docs/userguide.html#_focusing_moving_containers](http://i3wm.org/docs/userguide.html#_focusing_moving_containers)</description><pubDate>Mon, 09 Jun 2014 17:23:34 +0000</pubDate><guid>https://faq.i3wm.org/question/3926/configure-floating-window-location/?answer=3930#post-id-3930</guid></item><item><title>Comment by phairland for &lt;p&gt;i3 does not manage system or application notifications.  It is a more low level configuration specific to the notification program e.g. dunst, or the application GUI e.g. Gnome and KDE.&lt;/p&gt;
+
+&lt;p&gt;There was a similar question posted here: &lt;a href="http://faq.i3wm.org/question/936/floating-windows-initial-position/"&gt;http://faq.i3wm.org/question/936/floating-windows-initial-position/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can have a look at this section of the User's Guide:
+&lt;a href="http://i3wm.org/docs/userguide.html#_focusing_moving_containers"&gt;http://i3wm.org/docs/userguide.html#&lt;em&gt;focusing&lt;/em&gt;moving_containers&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3926/configure-floating-window-location/?comment=3938#comment-3938</link><description>I updated the answer to include some links which may help you.</description><pubDate>Tue, 10 Jun 2014 05:12:17 +0000</pubDate><guid>https://faq.i3wm.org/question/3926/configure-floating-window-location/?comment=3938#comment-3938</guid></item><item><title>Comment by bsidhom for &lt;p&gt;i3 does not manage system or application notifications.  It is a more low level configuration specific to the notification program e.g. dunst, or the application GUI e.g. Gnome and KDE.&lt;/p&gt;
+
+&lt;p&gt;There was a similar question posted here: &lt;a href="http://faq.i3wm.org/question/936/floating-windows-initial-position/"&gt;http://faq.i3wm.org/question/936/floating-windows-initial-position/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can have a look at this section of the User's Guide:
+&lt;a href="http://i3wm.org/docs/userguide.html#_focusing_moving_containers"&gt;http://i3wm.org/docs/userguide.html#&lt;em&gt;focusing&lt;/em&gt;moving_containers&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3926/configure-floating-window-location/?comment=3941#comment-3941</link><description>Thanks. `move absolute position 0 0` did it for me. However, setting position only seems to work for the notifications that were originally in the center of the screen.</description><pubDate>Tue, 10 Jun 2014 05:52:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3926/configure-floating-window-location/?comment=3941#comment-3941</guid></item><item><title>Comment by bsidhom for &lt;p&gt;i3 does not manage system or application notifications.  It is a more low level configuration specific to the notification program e.g. dunst, or the application GUI e.g. Gnome and KDE.&lt;/p&gt;
+
+&lt;p&gt;There was a similar question posted here: &lt;a href="http://faq.i3wm.org/question/936/floating-windows-initial-position/"&gt;http://faq.i3wm.org/question/936/floating-windows-initial-position/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can have a look at this section of the User's Guide:
+&lt;a href="http://i3wm.org/docs/userguide.html#_focusing_moving_containers"&gt;http://i3wm.org/docs/userguide.html#&lt;em&gt;focusing&lt;/em&gt;moving_containers&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3926/configure-floating-window-location/?comment=3935#comment-3935</link><description>The question is not specific to notification managers, though. Do you mean to say that it's not possible to send a particular floating window to a specific location?</description><pubDate>Mon, 09 Jun 2014 21:27:53 +0000</pubDate><guid>https://faq.i3wm.org/question/3926/configure-floating-window-location/?comment=3935#comment-3935</guid></item></channel></rss>

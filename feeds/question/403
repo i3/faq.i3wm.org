@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/403/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 13 Mar 2014 16:59:58 +0000</lastBuildDate><item><title>Executing applications (exec)</title><link>https://faq.i3wm.org/question/403/executing-applications-exec/</link><description>Hi, i3 docs states:
+
+&gt; What good is a window manager if you
+&gt; can’t actually start any applications?
+&gt; The exec command starts an application
+&gt; by passing the command you specify to
+&gt; a shell. This implies that you can use
+&gt; globbing (wildcards) and programs will
+&gt; be searched in your $PATH.
+
+Couple of questions:
+
+* which shell is used (I assume user's default shell)
+* can I use everything that is available in full shell (like variables, pipes, multiple commands separated with ; and other things)
+* its the i3 process that spawns them right?
+
+Because for some reason this is not working for me:
+
+     bindsym Control+Mod1+l exec i3-msg workspace 1; i3lock -c 111111 -d
+
+and only the first command is executed.</description><pubDate>Tue, 28 Aug 2012 10:50:21 +0000</pubDate><guid>https://faq.i3wm.org/question/403/executing-applications-exec/</guid></item><item><title>Comment by lzap for &lt;p&gt;Hi, i3 docs states:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;What good is a window manager if you
+  can’t actually start any applications?
+  The exec command starts an application
+  by passing the command you specify to
+  a shell. This implies that you can use
+  globbing (wildcards) and programs will
+  be searched in your $PATH.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Couple of questions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;which shell is used (I assume user's default shell)&lt;/li&gt;
+&lt;li&gt;can I use everything that is available in full shell (like variables, pipes, multiple commands separated with ; and other things)&lt;/li&gt;
+&lt;li&gt;its the i3 process that spawns them right?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Because for some reason this is not working for me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; bindsym Control+Mod1+l exec i3-msg workspace 1; i3lock -c 111111 -d
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and only the first command is executed.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/403/executing-applications-exec/?comment=404#comment-404</link><description>I found that &amp;&amp; instead ; works but I am interested in limitations. Thanks!</description><pubDate>Tue, 28 Aug 2012 10:52:01 +0000</pubDate><guid>https://faq.i3wm.org/question/403/executing-applications-exec/?comment=404#comment-404</guid></item><item><title>Comment by MeanEYE for &lt;p&gt;Hi, i3 docs states:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;What good is a window manager if you
+  can’t actually start any applications?
+  The exec command starts an application
+  by passing the command you specify to
+  a shell. This implies that you can use
+  globbing (wildcards) and programs will
+  be searched in your $PATH.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Couple of questions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;which shell is used (I assume user's default shell)&lt;/li&gt;
+&lt;li&gt;can I use everything that is available in full shell (like variables, pipes, multiple commands separated with ; and other things)&lt;/li&gt;
+&lt;li&gt;its the i3 process that spawns them right?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Because for some reason this is not working for me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; bindsym Control+Mod1+l exec i3-msg workspace 1; i3lock -c 111111 -d
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and only the first command is executed.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/403/executing-applications-exec/?comment=1320#comment-1320</link><description>When you are using semicolon `;` all commands will be executed regardless of their exit code. When you are using `&amp;&amp;` and one of the commands fail, remaining ones won't be executed.</description><pubDate>Tue, 05 Mar 2013 15:35:24 +0000</pubDate><guid>https://faq.i3wm.org/question/403/executing-applications-exec/?comment=1320#comment-1320</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi, i3 docs states:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;What good is a window manager if you
+  can’t actually start any applications?
+  The exec command starts an application
+  by passing the command you specify to
+  a shell. This implies that you can use
+  globbing (wildcards) and programs will
+  be searched in your $PATH.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Couple of questions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;which shell is used (I assume user's default shell)&lt;/li&gt;
+&lt;li&gt;can I use everything that is available in full shell (like variables, pipes, multiple commands separated with ; and other things)&lt;/li&gt;
+&lt;li&gt;its the i3 process that spawns them right?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Because for some reason this is not working for me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; bindsym Control+Mod1+l exec i3-msg workspace 1; i3lock -c 111111 -d
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and only the first command is executed.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/403/executing-applications-exec/?answer=405#post-id-405</link><description> 1. `$SHELL` is used (if set), otherwise `/bin/sh`. See http://code.stapelberg.de/git/i3/tree/src/startup.c?h=next#n136
+ 2. Yes. i3 calls `$SHELL -c &lt;your command&gt;`
+ 3. Yes.
+
+The reason your bindsym doesn’t work is because `;` is the separator for i3 commands. Use `exec "i3-msg workspace 1; i3lock -c 111111 -d` (with double quotes) instead:
+
+    midna ~ $ i3 'exec "echo foo &gt; /tmp/bar; echo bar &gt; /tmp/baz"'
+    2012-08-28 12:56:15 - Additional arguments passed. Sending them as a command to i3.
+    [{"success":true}]
+    midna ~ $ cat /tmp/bar /tmp/baz                               
+    foo
+    bar
+</description><pubDate>Tue, 28 Aug 2012 10:59:36 +0000</pubDate><guid>https://faq.i3wm.org/question/403/executing-applications-exec/?answer=405#post-id-405</guid></item><item><title>Comment by lzap for &lt;ol&gt;
+&lt;li&gt;&lt;code&gt;$SHELL&lt;/code&gt; is used (if set), otherwise &lt;code&gt;/bin/sh&lt;/code&gt;. See &lt;a href="http://code.stapelberg.de/git/i3/tree/src/startup.c?h=next#n136"&gt;http://code.stapelberg.de/git/i3/tree...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Yes. i3 calls &lt;code&gt;$SHELL -c &amp;lt;your command&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Yes.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The reason your bindsym doesn’t work is because &lt;code&gt;;&lt;/code&gt; is the separator for i3 commands. Use &lt;code&gt;exec "i3-msg workspace 1; i3lock -c 111111 -d&lt;/code&gt; (with double quotes) instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;midna ~ $ i3 'exec "echo foo &amp;gt; /tmp/bar; echo bar &amp;gt; /tmp/baz"'
+2012-08-28 12:56:15 - Additional arguments passed. Sending them as a command to i3.
+[{"success":true}]
+midna ~ $ cat /tmp/bar /tmp/baz                               
+foo
+bar
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/403/executing-applications-exec/?comment=406#comment-406</link><description>Thank you for nice explanation and big patience with me. But it seems other folks in our team are interested in i3 too ;-)</description><pubDate>Tue, 28 Aug 2012 13:31:56 +0000</pubDate><guid>https://faq.i3wm.org/question/403/executing-applications-exec/?comment=406#comment-406</guid></item><item><title>Comment by Julien Jehannet for &lt;ol&gt;
+&lt;li&gt;&lt;code&gt;$SHELL&lt;/code&gt; is used (if set), otherwise &lt;code&gt;/bin/sh&lt;/code&gt;. See &lt;a href="http://code.stapelberg.de/git/i3/tree/src/startup.c?h=next#n136"&gt;http://code.stapelberg.de/git/i3/tree...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Yes. i3 calls &lt;code&gt;$SHELL -c &amp;lt;your command&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Yes.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The reason your bindsym doesn’t work is because &lt;code&gt;;&lt;/code&gt; is the separator for i3 commands. Use &lt;code&gt;exec "i3-msg workspace 1; i3lock -c 111111 -d&lt;/code&gt; (with double quotes) instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;midna ~ $ i3 'exec "echo foo &amp;gt; /tmp/bar; echo bar &amp;gt; /tmp/baz"'
+2012-08-28 12:56:15 - Additional arguments passed. Sending them as a command to i3.
+[{"success":true}]
+midna ~ $ cat /tmp/bar /tmp/baz                               
+foo
+bar
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/403/executing-applications-exec/?comment=3522#comment-3522</link><description>Is it still the case? The code comment in http://code.stapelberg.de/git/i3/tree/src/startup.c?h=next#n136 is quite misleading because _PATH_BSHELL seems to be used everywhere.</description><pubDate>Thu, 13 Mar 2014 16:59:58 +0000</pubDate><guid>https://faq.i3wm.org/question/403/executing-applications-exec/?comment=3522#comment-3522</guid></item></channel></rss>

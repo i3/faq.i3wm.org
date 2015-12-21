@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4000/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 30 Jun 2014 13:57:29 +0000</lastBuildDate><item><title>How can I get audible desktop notifications with i3?</title><link>https://faq.i3wm.org/question/4000/how-can-i-get-audible-desktop-notifications-with-i3/</link><description>Hey guys. All I want out of life is desktop notifications that play a sound. Why is this so hard? Here's what i've tried:
+
+* I'm using i3 on Ubuntu, and I launch gnome-settings-daemon from my i3 config, so by default notify-osd is running. I cannot for the life of me configure notify-osd to play a sound. I've googled and googled and googled, everything says that you just have to select a sound theme in your gnome-control-center, well I've done that and notify-osd does not play a sound.
+
+(I should mention, I know that my soundcard is working, because the sound config panel is able to play test sounds, and I can watch youtube videos, and other things can make sounds. But notify-osd does not make a sound. Ever.)
+
+* Then I thought i would try out dunst. Dunst of course does not have any sound feature, but it has a feature to run a script. So I wrote a script that plays a sound! Here's the weird thing though: If I run dunst from a terminal, it works great! Plays the sound no problem. But when I start dunst from my i3 config, it totally fails. The first iteration of my script failed because I was using the 'play' command, which by default does not play any sound when run backgrounded. but then I switched it to 'play -q', confirmed that running my script backgrounded still plays a sound, but *still* running dunst from i3 config does not play a sound. What is going on here?!?!
+
+here is my script:
+
+    $ cat .local/bin/dunst_sound.sh
+    #!/bin/sh -e
+   
+    play -q /usr/share/sounds/gnome/default/alerts/glass.ogg
+
+Here is the relevant part of my dunstrc:
+
+    [sound]
+        summary = "*"
+        script = ~/.local/bin/dunst_sound.sh
+
+Aaaand here's the relevant part of my i3 config:
+
+    exec dunst &amp;
+    exec gnome-settings-daemon
+
+What have I done wrong here?
+
+Please note, this question isn't "how can I make dunst play a sound". If there's some other notification tool that plays sounds, by all means please recommend it. 
+
+But I mean, what the heck is going on here? 
+
+ * Running `play -q ...` in a terminal plays a sound.
+ * Running `play -q ... &amp;` in a terminal plays a sound.
+ * Running `dunst_sound.sh` in a terminal plays a sound.
+ * Running `dunst_sound.sh &amp;` in a terminal plays a sound.
+ * Running `dunst` in a terminal plays sounds when notifications come in.
+ * Running `dunst &amp;` in a terminal plays sounds... 
+ * BUT running dunst from my i3 config DOES NOT PLAY SOUNDS. Wut?</description><pubDate>Mon, 16 Jun 2014 20:06:09 +0000</pubDate><guid>https://faq.i3wm.org/question/4000/how-can-i-get-audible-desktop-notifications-with-i3/</guid></item><item><title>Comment by Yenal for &lt;p&gt;Hey guys. All I want out of life is desktop notifications that play a sound. Why is this so hard? Here's what i've tried:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I'm using i3 on Ubuntu, and I launch gnome-settings-daemon from my i3 config, so by default notify-osd is running. I cannot for the life of me configure notify-osd to play a sound. I've googled and googled and googled, everything says that you just have to select a sound theme in your gnome-control-center, well I've done that and notify-osd does not play a sound.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(I should mention, I know that my soundcard is working, because the sound config panel is able to play test sounds, and I can watch youtube videos, and other things can make sounds. But notify-osd does not make a sound. Ever.)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Then I thought i would try out dunst. Dunst of course does not have any sound feature, but it has a feature to run a script. So I wrote a script that plays a sound! Here's the weird thing though: If I run dunst from a terminal, it works great! Plays the sound no problem. But when I start dunst from my i3 config, it totally fails. The first iteration of my script failed because I was using the 'play' command, which by default does not play any sound when run backgrounded. but then I switched it to 'play -q', confirmed that running my script backgrounded still plays a sound, but &lt;em&gt;still&lt;/em&gt; running dunst from i3 config does not play a sound. What is going on here?!?!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;here is my script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat .local/bin/dunst_sound.sh
+#!/bin/sh -e
+
+play -q /usr/share/sounds/gnome/default/alerts/glass.ogg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the relevant part of my dunstrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[sound]
+    summary = "*"
+    script = ~/.local/bin/dunst_sound.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Aaaand here's the relevant part of my i3 config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec dunst &amp;amp;
+exec gnome-settings-daemon
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What have I done wrong here?&lt;/p&gt;
+
+&lt;p&gt;Please note, this question isn't "how can I make dunst play a sound". If there's some other notification tool that plays sounds, by all means please recommend it. &lt;/p&gt;
+
+&lt;p&gt;But I mean, what the heck is going on here? &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Running &lt;code&gt;play -q ...&lt;/code&gt; in a terminal plays a sound.&lt;/li&gt;
+&lt;li&gt;Running &lt;code&gt;play -q ... &amp;amp;&lt;/code&gt; in a terminal plays a sound.&lt;/li&gt;
+&lt;li&gt;Running &lt;code&gt;dunst_sound.sh&lt;/code&gt; in a terminal plays a sound.&lt;/li&gt;
+&lt;li&gt;Running &lt;code&gt;dunst_sound.sh &amp;amp;&lt;/code&gt; in a terminal plays a sound.&lt;/li&gt;
+&lt;li&gt;Running &lt;code&gt;dunst&lt;/code&gt; in a terminal plays sounds when notifications come in.&lt;/li&gt;
+&lt;li&gt;Running &lt;code&gt;dunst &amp;amp;&lt;/code&gt; in a terminal plays sounds... &lt;/li&gt;
+&lt;li&gt;BUT running dunst from my i3 config DOES NOT PLAY SOUNDS. Wut?&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/4000/how-can-i-get-audible-desktop-notifications-with-i3/?comment=4073#comment-4073</link><description>You could also use https://github.com/sboli/twmn ....you can specify a sound command for all notifications i.e. sound_command=/usr/bin/aplay /path/to/some/wav</description><pubDate>Mon, 30 Jun 2014 13:57:29 +0000</pubDate><guid>https://faq.i3wm.org/question/4000/how-can-i-get-audible-desktop-notifications-with-i3/?comment=4073#comment-4073</guid></item><item><title>Answer by robru for &lt;p&gt;Hey guys. All I want out of life is desktop notifications that play a sound. Why is this so hard? Here's what i've tried:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I'm using i3 on Ubuntu, and I launch gnome-settings-daemon from my i3 config, so by default notify-osd is running. I cannot for the life of me configure notify-osd to play a sound. I've googled and googled and googled, everything says that you just have to select a sound theme in your gnome-control-center, well I've done that and notify-osd does not play a sound.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(I should mention, I know that my soundcard is working, because the sound config panel is able to play test sounds, and I can watch youtube videos, and other things can make sounds. But notify-osd does not make a sound. Ever.)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Then I thought i would try out dunst. Dunst of course does not have any sound feature, but it has a feature to run a script. So I wrote a script that plays a sound! Here's the weird thing though: If I run dunst from a terminal, it works great! Plays the sound no problem. But when I start dunst from my i3 config, it totally fails. The first iteration of my script failed because I was using the 'play' command, which by default does not play any sound when run backgrounded. but then I switched it to 'play -q', confirmed that running my script backgrounded still plays a sound, but &lt;em&gt;still&lt;/em&gt; running dunst from i3 config does not play a sound. What is going on here?!?!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;here is my script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat .local/bin/dunst_sound.sh
+#!/bin/sh -e
+
+play -q /usr/share/sounds/gnome/default/alerts/glass.ogg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the relevant part of my dunstrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[sound]
+    summary = "*"
+    script = ~/.local/bin/dunst_sound.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Aaaand here's the relevant part of my i3 config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec dunst &amp;amp;
+exec gnome-settings-daemon
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What have I done wrong here?&lt;/p&gt;
+
+&lt;p&gt;Please note, this question isn't "how can I make dunst play a sound". If there's some other notification tool that plays sounds, by all means please recommend it. &lt;/p&gt;
+
+&lt;p&gt;But I mean, what the heck is going on here? &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Running &lt;code&gt;play -q ...&lt;/code&gt; in a terminal plays a sound.&lt;/li&gt;
+&lt;li&gt;Running &lt;code&gt;play -q ... &amp;amp;&lt;/code&gt; in a terminal plays a sound.&lt;/li&gt;
+&lt;li&gt;Running &lt;code&gt;dunst_sound.sh&lt;/code&gt; in a terminal plays a sound.&lt;/li&gt;
+&lt;li&gt;Running &lt;code&gt;dunst_sound.sh &amp;amp;&lt;/code&gt; in a terminal plays a sound.&lt;/li&gt;
+&lt;li&gt;Running &lt;code&gt;dunst&lt;/code&gt; in a terminal plays sounds when notifications come in.&lt;/li&gt;
+&lt;li&gt;Running &lt;code&gt;dunst &amp;amp;&lt;/code&gt; in a terminal plays sounds... &lt;/li&gt;
+&lt;li&gt;BUT running dunst from my i3 config DOES NOT PLAY SOUNDS. Wut?&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/4000/how-can-i-get-audible-desktop-notifications-with-i3/?answer=4002#post-id-4002</link><description>Well I wasn't able to figure out dunst. Instead I simply wrote a plugin for my IRC client (Smuxi) to just play the sounds itself. The upside here is that I programmed it to play different sounds based on different highlights, but the downside is that now the script has to load &amp; parse the smuxi config for my highlights every time I receive a message, which can be inefficient.
+
+My karma is insufficient to publish links, but if you were to browse through the robru/dotfiles project on github, and look under `.local/share/smuxi/...` you would find the script, if you were interested.</description><pubDate>Tue, 17 Jun 2014 04:03:46 +0000</pubDate><guid>https://faq.i3wm.org/question/4000/how-can-i-get-audible-desktop-notifications-with-i3/?answer=4002#post-id-4002</guid></item></channel></rss>

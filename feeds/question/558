@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/558/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 09 Oct 2013 15:32:03 +0000</lastBuildDate><item><title>Xmodmap loading</title><link>https://faq.i3wm.org/question/558/xmodmap-loading/</link><description>Hello,
+
+I have a script that I run in i3 config using exec. And in this script I load Xmodmap:
+
+    xmodmap ~/.Xmodmap &amp;
+
+The content is
+
+    keycode 166 = Prior
+    keycode 167 = Next
+    remove Lock = Caps_Lock
+    keysym Caps_Lock = apostrophe
+
+But it is not working, this is what I have in .xsession-errors:
+
+    xmodmap:  /home/lzap/.Xmodmap:3:  bad keysym in remove modifier list 'Caps_Lock', no corresponding keycodes
+    xmodmap:  /home/lzap/.Xmodmap:4:  bad keysym target keysym 'Caps_Lock', no corresponding keycodes
+    xmodmap:  2 errors encountered, aborting.
+
+The strange thing is when I try to execute xmodmap ~/.Xmodmap in a rxvt terminal once i3 is running, there are no errors reported and it is finally working. What can be wrong during the start? Thanks</description><pubDate>Wed, 26 Sep 2012 20:15:43 +0000</pubDate><guid>https://faq.i3wm.org/question/558/xmodmap-loading/</guid></item><item><title>Comment by Michael for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have a script that I run in i3 config using exec. And in this script I load Xmodmap:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap ~/.Xmodmap &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The content is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 166 = Prior
+keycode 167 = Next
+remove Lock = Caps_Lock
+keysym Caps_Lock = apostrophe
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it is not working, this is what I have in .xsession-errors:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  /home/lzap/.Xmodmap:3:  bad keysym in remove modifier list 'Caps_Lock', no corresponding keycodes
+xmodmap:  /home/lzap/.Xmodmap:4:  bad keysym target keysym 'Caps_Lock', no corresponding keycodes
+xmodmap:  2 errors encountered, aborting.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The strange thing is when I try to execute xmodmap ~/.Xmodmap in a rxvt terminal once i3 is running, there are no errors reported and it is finally working. What can be wrong during the start? Thanks&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/558/xmodmap-loading/?comment=559#comment-559</link><description>I’m not too sure if that really is the answer, but try removing it from your i3 config and run it in a terminal. Does it still fail? Some xmodmap files need to be run twice (they can be rewritten to work on the first try, though).</description><pubDate>Thu, 27 Sep 2012 17:23:55 +0000</pubDate><guid>https://faq.i3wm.org/question/558/xmodmap-loading/?comment=559#comment-559</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have a script that I run in i3 config using exec. And in this script I load Xmodmap:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap ~/.Xmodmap &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The content is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 166 = Prior
+keycode 167 = Next
+remove Lock = Caps_Lock
+keysym Caps_Lock = apostrophe
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it is not working, this is what I have in .xsession-errors:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  /home/lzap/.Xmodmap:3:  bad keysym in remove modifier list 'Caps_Lock', no corresponding keycodes
+xmodmap:  /home/lzap/.Xmodmap:4:  bad keysym target keysym 'Caps_Lock', no corresponding keycodes
+xmodmap:  2 errors encountered, aborting.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The strange thing is when I try to execute xmodmap ~/.Xmodmap in a rxvt terminal once i3 is running, there are no errors reported and it is finally working. What can be wrong during the start? Thanks&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/558/xmodmap-loading/?comment=1986#comment-1986</link><description>weird, this started to happen with me after I added another keyboard via gnome settings...</description><pubDate>Tue, 11 Jun 2013 10:29:46 +0000</pubDate><guid>https://faq.i3wm.org/question/558/xmodmap-loading/?comment=1986#comment-1986</guid></item><item><title>Comment by lzap for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have a script that I run in i3 config using exec. And in this script I load Xmodmap:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap ~/.Xmodmap &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The content is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 166 = Prior
+keycode 167 = Next
+remove Lock = Caps_Lock
+keysym Caps_Lock = apostrophe
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it is not working, this is what I have in .xsession-errors:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  /home/lzap/.Xmodmap:3:  bad keysym in remove modifier list 'Caps_Lock', no corresponding keycodes
+xmodmap:  /home/lzap/.Xmodmap:4:  bad keysym target keysym 'Caps_Lock', no corresponding keycodes
+xmodmap:  2 errors encountered, aborting.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The strange thing is when I try to execute xmodmap ~/.Xmodmap in a rxvt terminal once i3 is running, there are no errors reported and it is finally working. What can be wrong during the start? Thanks&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/558/xmodmap-loading/?comment=1753#comment-1753</link><description>I try to load twice in the autostart - still does not work for me. The only way it works is from terminal. :-(</description><pubDate>Sun, 05 May 2013 19:24:07 +0000</pubDate><guid>https://faq.i3wm.org/question/558/xmodmap-loading/?comment=1753#comment-1753</guid></item><item><title>Comment by lzap for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have a script that I run in i3 config using exec. And in this script I load Xmodmap:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap ~/.Xmodmap &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The content is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 166 = Prior
+keycode 167 = Next
+remove Lock = Caps_Lock
+keysym Caps_Lock = apostrophe
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it is not working, this is what I have in .xsession-errors:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  /home/lzap/.Xmodmap:3:  bad keysym in remove modifier list 'Caps_Lock', no corresponding keycodes
+xmodmap:  /home/lzap/.Xmodmap:4:  bad keysym target keysym 'Caps_Lock', no corresponding keycodes
+xmodmap:  2 errors encountered, aborting.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The strange thing is when I try to execute xmodmap ~/.Xmodmap in a rxvt terminal once i3 is running, there are no errors reported and it is finally working. What can be wrong during the start? Thanks&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/558/xmodmap-loading/?comment=1341#comment-1341</link><description>Yeah,  second time works. Strange.</description><pubDate>Thu, 07 Mar 2013 21:33:11 +0000</pubDate><guid>https://faq.i3wm.org/question/558/xmodmap-loading/?comment=1341#comment-1341</guid></item><item><title>Answer by Flugsio for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I have a script that I run in i3 config using exec. And in this script I load Xmodmap:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap ~/.Xmodmap &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The content is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;keycode 166 = Prior
+keycode 167 = Next
+remove Lock = Caps_Lock
+keysym Caps_Lock = apostrophe
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it is not working, this is what I have in .xsession-errors:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  /home/lzap/.Xmodmap:3:  bad keysym in remove modifier list 'Caps_Lock', no corresponding keycodes
+xmodmap:  /home/lzap/.Xmodmap:4:  bad keysym target keysym 'Caps_Lock', no corresponding keycodes
+xmodmap:  2 errors encountered, aborting.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The strange thing is when I try to execute xmodmap ~/.Xmodmap in a rxvt terminal once i3 is running, there are no errors reported and it is finally working. What can be wrong during the start? Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/558/xmodmap-loading/?answer=2661#post-id-2661</link><description>change the line
+
+    remove Lock = Caps_Lock
+
+to
+
+    clear Lock</description><pubDate>Wed, 09 Oct 2013 15:32:03 +0000</pubDate><guid>https://faq.i3wm.org/question/558/xmodmap-loading/?answer=2661#post-id-2661</guid></item></channel></rss>

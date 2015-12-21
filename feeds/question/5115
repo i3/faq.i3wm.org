@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5115/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 13 Dec 2014 21:34:10 +0000</lastBuildDate><item><title>How do I correctly qualify event subscriptions with the IPC interface?</title><link>https://faq.i3wm.org/question/5115/how-do-i-correctly-qualify-event-subscriptions-with-the-ipc-interface/</link><description>Hello everyone,
+
+I am developing a small Python library to communicate with the i3 IPC interface and experience some problems when trying to subscribe to events [as described in the official documentation](http://i3wm.org/docs/ipc.html#_subscribing_to_events). There the documentation puts the following example for event subscription:
+
+&gt;**4.1 Subscribing to Events** 
+
+&gt;By sending a message of type SUBSCRIBE with a JSON-encoded array as payload you can register to an event.
+
+&gt; **Example:**
+
+&gt;     type: SUBSCRIBE
+&gt;     payload: [ "workspace", "focus" ]
+
+I take this to mean that I can specifically subscribe to focus events of workspaces. Why else would I want to add `"focus"` to the payload.
+
+But it seems that - at least for me - there is no difference in the events received between subscribing to `["workspace", "focus"]` or subscribing to just `["workspace"]`.
+
+I first tried to subscribe to "new window" events by supplying `["window", "new"]` as payload to the subcription message. But when doing this, I still received messages for any other window change - "focus", "title" and "fullscreen_mode". This did not seem to be different from subscribing to just `["window"]`. Therefore my question:
+
+What am I missing?
+
+</description><pubDate>Sat, 06 Dec 2014 21:47:04 +0000</pubDate><guid>https://faq.i3wm.org/question/5115/how-do-i-correctly-qualify-event-subscriptions-with-the-ipc-interface/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hello everyone,&lt;/p&gt;
+
+&lt;p&gt;I am developing a small Python library to communicate with the i3 IPC interface and experience some problems when trying to subscribe to events &lt;a href="http://i3wm.org/docs/ipc.html#_subscribing_to_events"&gt;as described in the official documentation&lt;/a&gt;. There the documentation puts the following example for event subscription:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;4.1 Subscribing to Events&lt;/strong&gt; &lt;/p&gt;
+  
+  &lt;p&gt;By sending a message of type SUBSCRIBE with a JSON-encoded array as payload you can register to an event.&lt;/p&gt;
+  
+  &lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type: SUBSCRIBE
+payload: [ "workspace", "focus" ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I take this to mean that I can specifically subscribe to focus events of workspaces. Why else would I want to add &lt;code&gt;"focus"&lt;/code&gt; to the payload.&lt;/p&gt;
+
+&lt;p&gt;But it seems that - at least for me - there is no difference in the events received between subscribing to &lt;code&gt;["workspace", "focus"]&lt;/code&gt; or subscribing to just &lt;code&gt;["workspace"]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I first tried to subscribe to "new window" events by supplying &lt;code&gt;["window", "new"]&lt;/code&gt; as payload to the subcription message. But when doing this, I still received messages for any other window change - "focus", "title" and "fullscreen_mode". This did not seem to be different from subscribing to just &lt;code&gt;["window"]&lt;/code&gt;. Therefore my question:&lt;/p&gt;
+
+&lt;p&gt;What am I missing?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5115/how-do-i-correctly-qualify-event-subscriptions-with-the-ipc-interface/?answer=5116#post-id-5116</link><description>Can you clarify which part of the documentation seemed to suggested that?
+
+The truth is that event types are more coarse: the “window” event type simply contains a “change” member that tells you what changed. Both the “"change": "new"” event and the “"change": "focus"” event are of type “window”.
+
+As a rule of thumb: an event type is everything that has a subsection in section “4. Events” in http://i3wm.org/docs/ipc.html
+
+Any further filtering should be done in the application itself.</description><pubDate>Sat, 06 Dec 2014 22:18:21 +0000</pubDate><guid>https://faq.i3wm.org/question/5115/how-do-i-correctly-qualify-event-subscriptions-with-the-ipc-interface/?answer=5116#post-id-5116</guid></item><item><title>Comment by Michael for &lt;p&gt;Can you clarify which part of the documentation seemed to suggested that?&lt;/p&gt;
+
+&lt;p&gt;The truth is that event types are more coarse: the “window” event type simply contains a “change” member that tells you what changed. Both the “"change": "new"” event and the “"change": "focus"” event are of type “window”.&lt;/p&gt;
+
+&lt;p&gt;As a rule of thumb: an event type is everything that has a subsection in section “4. Events” in &lt;a href="http://i3wm.org/docs/ipc.html"&gt;http://i3wm.org/docs/ipc.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Any further filtering should be done in the application itself.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5115/how-do-i-correctly-qualify-event-subscriptions-with-the-ipc-interface/?comment=5174#comment-5174</link><description>fixed: http://c.i3wm.org/04fa40d</description><pubDate>Sat, 13 Dec 2014 21:34:10 +0000</pubDate><guid>https://faq.i3wm.org/question/5115/how-do-i-correctly-qualify-event-subscriptions-with-the-ipc-interface/?comment=5174#comment-5174</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Can you clarify which part of the documentation seemed to suggested that?&lt;/p&gt;
+
+&lt;p&gt;The truth is that event types are more coarse: the “window” event type simply contains a “change” member that tells you what changed. Both the “"change": "new"” event and the “"change": "focus"” event are of type “window”.&lt;/p&gt;
+
+&lt;p&gt;As a rule of thumb: an event type is everything that has a subsection in section “4. Events” in &lt;a href="http://i3wm.org/docs/ipc.html"&gt;http://i3wm.org/docs/ipc.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Any further filtering should be done in the application itself.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5115/how-do-i-correctly-qualify-event-subscriptions-with-the-ipc-interface/?comment=5140#comment-5140</link><description>Ok, I did some testing and found that I can subscribe multiple event types at once - for example `["workspace", "window", "mode"]`. So, am I right to assume that `"focus"` is just a typo or possibly a remnant from a time when there was a "focus" event?</description><pubDate>Mon, 08 Dec 2014 14:14:53 +0000</pubDate><guid>https://faq.i3wm.org/question/5115/how-do-i-correctly-qualify-event-subscriptions-with-the-ipc-interface/?comment=5140#comment-5140</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Can you clarify which part of the documentation seemed to suggested that?&lt;/p&gt;
+
+&lt;p&gt;The truth is that event types are more coarse: the “window” event type simply contains a “change” member that tells you what changed. Both the “"change": "new"” event and the “"change": "focus"” event are of type “window”.&lt;/p&gt;
+
+&lt;p&gt;As a rule of thumb: an event type is everything that has a subsection in section “4. Events” in &lt;a href="http://i3wm.org/docs/ipc.html"&gt;http://i3wm.org/docs/ipc.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Any further filtering should be done in the application itself.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5115/how-do-i-correctly-qualify-event-subscriptions-with-the-ipc-interface/?comment=5138#comment-5138</link><description>Thanks for the quick response. To answer your question: the example in Section 4.1 - `["workspace", "focus"]` - lead me to believe that I could - and maybe even should - subcribe to specific events. I also updated my question accordingly.</description><pubDate>Mon, 08 Dec 2014 09:49:24 +0000</pubDate><guid>https://faq.i3wm.org/question/5115/how-do-i-correctly-qualify-event-subscriptions-with-the-ipc-interface/?comment=5138#comment-5138</guid></item></channel></rss>

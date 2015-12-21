@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5559/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 03 Mar 2015 09:51:42 +0000</lastBuildDate><item><title>bindsym behaving like bind of corresponding keycode</title><link>https://faq.i3wm.org/question/5559/bindsym-behaving-like-bind-of-corresponding-keycode/</link><description>Since an `apt-get upgrade` on trusty a few weeks back I'm having a strange issue that has seemingly only affected i3,
+
+Key bindings such as `bindsym $mod+r mode "resize"` binds the physical key of `r` on pc105 (keycode 27) to resize. My issue is that I'm using a dvorak layout though; 
+
+    ~ % setxkbmap -query |grep layout
+    
+    layout:     se_sv_dvorak,us
+
+Using `xev` I see that when I press my physical `r`, it is mapped to `p` (as expected) and in the terminal a `p` is printed. However, in i3, I must now use this key to resize.
+
+A few weeks back I was using `o` (keycode 32, mapped to `r` in my dvorak) for resize. 
+
+My i3 configuration hasn't changed.
+
+    ~ % i3 --version
+    i3 version 4.9 (2015-02-28, branch "tags/4.9") © 2009-2014 Michael Stapelberg and contributors
+
+In fact, if I issue a configuration reload, key bindings take effect as expected and I can use keycode 32 for resize (physical `o`). It seems that the wrong keys are only being bound once at my first login after boot.
+
+Are there any known changes to i3 that could have cause this? Any other suggestions or hints where to look?</description><pubDate>Tue, 03 Mar 2015 07:10:51 +0000</pubDate><guid>https://faq.i3wm.org/question/5559/bindsym-behaving-like-bind-of-corresponding-keycode/</guid></item><item><title>Comment by phromo for &lt;p&gt;Since an &lt;code&gt;apt-get upgrade&lt;/code&gt; on trusty a few weeks back I'm having a strange issue that has seemingly only affected i3,&lt;/p&gt;
+
+&lt;p&gt;Key bindings such as &lt;code&gt;bindsym $mod+r mode "resize"&lt;/code&gt; binds the physical key of &lt;code&gt;r&lt;/code&gt; on pc105 (keycode 27) to resize. My issue is that I'm using a dvorak layout though; &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~ % setxkbmap -query |grep layout
+
+layout:     se_sv_dvorak,us
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Using &lt;code&gt;xev&lt;/code&gt; I see that when I press my physical &lt;code&gt;r&lt;/code&gt;, it is mapped to &lt;code&gt;p&lt;/code&gt; (as expected) and in the terminal a &lt;code&gt;p&lt;/code&gt; is printed. However, in i3, I must now use this key to resize.&lt;/p&gt;
+
+&lt;p&gt;A few weeks back I was using &lt;code&gt;o&lt;/code&gt; (keycode 32, mapped to &lt;code&gt;r&lt;/code&gt; in my dvorak) for resize. &lt;/p&gt;
+
+&lt;p&gt;My i3 configuration hasn't changed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~ % i3 --version
+i3 version 4.9 (2015-02-28, branch "tags/4.9") © 2009-2014 Michael Stapelberg and contributors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In fact, if I issue a configuration reload, key bindings take effect as expected and I can use keycode 32 for resize (physical &lt;code&gt;o&lt;/code&gt;). It seems that the wrong keys are only being bound once at my first login after boot.&lt;/p&gt;
+
+&lt;p&gt;Are there any known changes to i3 that could have cause this? Any other suggestions or hints where to look?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5559/bindsym-behaving-like-bind-of-corresponding-keycode/?comment=5563#comment-5563</link><description>If anyone else experiences this and comes to this page, note that running restart is a workaround, so adding `exec --no-startup-id i3-msg restart` is a temporary fix.</description><pubDate>Tue, 03 Mar 2015 09:51:42 +0000</pubDate><guid>https://faq.i3wm.org/question/5559/bindsym-behaving-like-bind-of-corresponding-keycode/?comment=5563#comment-5563</guid></item><item><title>Comment by Michael for &lt;p&gt;Since an &lt;code&gt;apt-get upgrade&lt;/code&gt; on trusty a few weeks back I'm having a strange issue that has seemingly only affected i3,&lt;/p&gt;
+
+&lt;p&gt;Key bindings such as &lt;code&gt;bindsym $mod+r mode "resize"&lt;/code&gt; binds the physical key of &lt;code&gt;r&lt;/code&gt; on pc105 (keycode 27) to resize. My issue is that I'm using a dvorak layout though; &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~ % setxkbmap -query |grep layout
+
+layout:     se_sv_dvorak,us
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Using &lt;code&gt;xev&lt;/code&gt; I see that when I press my physical &lt;code&gt;r&lt;/code&gt;, it is mapped to &lt;code&gt;p&lt;/code&gt; (as expected) and in the terminal a &lt;code&gt;p&lt;/code&gt; is printed. However, in i3, I must now use this key to resize.&lt;/p&gt;
+
+&lt;p&gt;A few weeks back I was using &lt;code&gt;o&lt;/code&gt; (keycode 32, mapped to &lt;code&gt;r&lt;/code&gt; in my dvorak) for resize. &lt;/p&gt;
+
+&lt;p&gt;My i3 configuration hasn't changed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~ % i3 --version
+i3 version 4.9 (2015-02-28, branch "tags/4.9") © 2009-2014 Michael Stapelberg and contributors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In fact, if I issue a configuration reload, key bindings take effect as expected and I can use keycode 32 for resize (physical &lt;code&gt;o&lt;/code&gt;). It seems that the wrong keys are only being bound once at my first login after boot.&lt;/p&gt;
+
+&lt;p&gt;Are there any known changes to i3 that could have cause this? Any other suggestions or hints where to look?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5559/bindsym-behaving-like-bind-of-corresponding-keycode/?comment=5562#comment-5562</link><description>Please report this as a bug at https://github.com/i3/i3, the faq is not a bugtracker. I think https://github.com/i3/i3/issues/1302 is the corresponding issue.</description><pubDate>Tue, 03 Mar 2015 07:51:28 +0000</pubDate><guid>https://faq.i3wm.org/question/5559/bindsym-behaving-like-bind-of-corresponding-keycode/?comment=5562#comment-5562</guid></item></channel></rss>

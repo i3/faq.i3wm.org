@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7082/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 29 Oct 2015 19:10:59 +0000</lastBuildDate><item><title>Different font for workspace and status section</title><link>https://faq.i3wm.org/question/7082/different-font-for-workspace-and-status-section/</link><description>I would like to set two different fonts for the workspace section on left side and the status output on the right side of the i3bar. I know that I can change the font for the whole i3bar, but as far as I can tell by reading the official documentation using two different fonts is not possible. 
+
+Does someone has a solution for this problem or would I need to change the source code?</description><pubDate>Wed, 28 Oct 2015 19:38:50 +0000</pubDate><guid>https://faq.i3wm.org/question/7082/different-font-for-workspace-and-status-section/</guid></item><item><title>Answer by MK13 for &lt;p&gt;I would like to set two different fonts for the workspace section on left side and the status output on the right side of the i3bar. I know that I can change the font for the whole i3bar, but as far as I can tell by reading the official documentation using two different fonts is not possible. &lt;/p&gt;
+
+&lt;p&gt;Does someone has a solution for this problem or would I need to change the source code?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7082/different-font-for-workspace-and-status-section/?answer=7097#post-id-7097</link><description>Thanks to airblader for pointing me into the right direction :)
+
+Here is the solution I came up with by utilizing pango markup:
+ 
+
+  
+i3statuswrapper.sh:
+
+      1 #!/bin/bash
+      2 
+      3 function f_ram()
+      4 {
+      5         echo $(free | grep Mem | awk '{printf("%.0fMiB/%.0fMiB", $3/1024, $2/1024)}')
+      6 }
+      7 
+      8 function f_uptime()
+      9 {
+     10         echo $(uptime -p)
+     11 }
+     12 
+     13 echo '{ "version": 1 }'
+     14 echo '['
+     15 echo '[]'
+     16 
+     17 i3status | while :
+     18 do
+     19         read line
+     20         ram_s=$(f_ram)
+     21         uptime_s=$(f_uptime)
+     22         full="UP: $uptime_s | RAM: $ram_s | $line"
+     23 
+     24         echo ",[{\"name\": \"all\",\"full_text\":\"&lt;span font='DejaVu Sans Mono'&gt;"$full"&lt;/span&gt;\",\"align\": \"right\",\"urgent\": false,\"separator\": false,\"markup\": \"pango\"}]"
+     25 done    
+
+i3status/config:
+
+    ...
+    # ordinary config
+    14 order += "cpu_usage"
+    15 order += "disk /media"
+    16 order += "disk /home"
+    17 order += "disk /"
+    18 order += "volume master"
+    19 order += "tztime local"
+    ...
+
+
+i3/config:
+
+    144 bar {                                                                                                                                                      
+    145         status_command /home/USER/.config/i3status/i3statuswrapper.sh
+    146         
+    147 
+    148         font pango:RealChinese 10
+    ...
+    159 }
+
+</description><pubDate>Thu, 29 Oct 2015 19:10:59 +0000</pubDate><guid>https://faq.i3wm.org/question/7082/different-font-for-workspace-and-status-section/?answer=7097#post-id-7097</guid></item><item><title>Answer by Airblader for &lt;p&gt;I would like to set two different fonts for the workspace section on left side and the status output on the right side of the i3bar. I know that I can change the font for the whole i3bar, but as far as I can tell by reading the official documentation using two different fonts is not possible. &lt;/p&gt;
+
+&lt;p&gt;Does someone has a solution for this problem or would I need to change the source code?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7082/different-font-for-workspace-and-status-section/?answer=7083#post-id-7083</link><description>You can try using pango markup which allows changing the font. If that doesn't work, you either need to change the source code or hack together a really tricky font that combines two others (not exactly my recommendation).</description><pubDate>Wed, 28 Oct 2015 20:52:34 +0000</pubDate><guid>https://faq.i3wm.org/question/7082/different-font-for-workspace-and-status-section/?answer=7083#post-id-7083</guid></item><item><title>Comment by MK13 for &lt;p&gt;You can try using pango markup which allows changing the font. If that doesn't work, you either need to change the source code or hack together a really tricky font that combines two others (not exactly my recommendation).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7082/different-font-for-workspace-and-status-section/?comment=7084#comment-7084</link><description>Thanks for your fast reply. I will look into into pango markup.</description><pubDate>Wed, 28 Oct 2015 21:33:23 +0000</pubDate><guid>https://faq.i3wm.org/question/7082/different-font-for-workspace-and-status-section/?comment=7084#comment-7084</guid></item></channel></rss>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6357/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 28 Jul 2015 12:47:54 +0000</lastBuildDate><item><title>Spawn placeholder</title><link>https://faq.i3wm.org/question/6357/spawn-placeholder/</link><description> Is it possible to spawn a (specific) placeholder exactly at the position at which a new window would spawn?
+
+Currently, I used
+
+    i3-msg append_layout file
+
+with ````file```` being
+
+    {
+    "name": "aa",
+        "swallows": [
+           {
+              "class": "bb",
+              "instance": "cc"
+           }
+        ],
+        "type": "con"
+    }
+
+However, this window spawns at the top-node of the workspace (i.e. on the very right/bottom).
+
+Maybe there is another possibilty to create those handy placeholder windows?</description><pubDate>Mon, 27 Jul 2015 20:35:27 +0000</pubDate><guid>https://faq.i3wm.org/question/6357/spawn-placeholder/</guid></item><item><title>Answer by gerw for &lt;p&gt;Is it possible to spawn a (specific) placeholder exactly at the position at which a new window would spawn?&lt;/p&gt;
+
+&lt;p&gt;Currently, I used&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg append_layout file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with &lt;code&gt;file&lt;/code&gt; being&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+"name": "aa",
+    "swallows": [
+       {
+          "class": "bb",
+          "instance": "cc"
+       }
+    ],
+    "type": "con"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, this window spawns at the top-node of the workspace (i.e. on the very right/bottom).&lt;/p&gt;
+
+&lt;p&gt;Maybe there is another possibilty to create those handy placeholder windows?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6357/spawn-placeholder/?answer=6361#post-id-6361</link><description>One can simply use
+
+    i3-msg "workspace dummy; append_layout file; focus child; move window to workspace back_and_forth; workspace back_and_forth"
+
+Here, ````dummy```` is a workspace which is not used elsewhere. The only drawback seems to be that this command changes `back_and_forth`.</description><pubDate>Tue, 28 Jul 2015 07:24:55 +0000</pubDate><guid>https://faq.i3wm.org/question/6357/spawn-placeholder/?answer=6361#post-id-6361</guid></item><item><title>Comment by i3convert for &lt;p&gt;One can simply use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg "workspace dummy; append_layout file; focus child; move window to workspace back_and_forth; workspace back_and_forth"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here, &lt;code&gt;dummy&lt;/code&gt; is a workspace which is not used elsewhere. The only drawback seems to be that this command changes &lt;code&gt;back_and_forth&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6357/spawn-placeholder/?comment=6362#comment-6362</link><description>Nice idea. You can of course fix the drawback by moving to the previous workspace first and saving its name.</description><pubDate>Tue, 28 Jul 2015 12:47:54 +0000</pubDate><guid>https://faq.i3wm.org/question/6357/spawn-placeholder/?comment=6362#comment-6362</guid></item><item><title>Answer by i3convert for &lt;p&gt;Is it possible to spawn a (specific) placeholder exactly at the position at which a new window would spawn?&lt;/p&gt;
+
+&lt;p&gt;Currently, I used&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg append_layout file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with &lt;code&gt;file&lt;/code&gt; being&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+"name": "aa",
+    "swallows": [
+       {
+          "class": "bb",
+          "instance": "cc"
+       }
+    ],
+    "type": "con"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, this window spawns at the top-node of the workspace (i.e. on the very right/bottom).&lt;/p&gt;
+
+&lt;p&gt;Maybe there is another possibilty to create those handy placeholder windows?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6357/spawn-placeholder/?answer=6359#post-id-6359</link><description>Let me sketch a possible solution (assuming that “aa” is a unique name). First, move the layout window to the scratchpad automatically by adding the following line to the config file:
+
+    for_window [title="^aa$"] move scratchpad
+
+Next write a script that places the placeholder as follows. First it should issue the `append_layout` command. Then it should wait for the layout window to be opened (you can subscribe to i3 events, which I won't go into, or use an ugly solution that waits in loop and checks every, say, 0.01s whether the window has been opened). When it has been opened, it should issue two commands:
+
+ - `[title="^aa$"] scratchpad show` to show the layout window.
+ - `floating disable` to make it tiling in the current position.</description><pubDate>Tue, 28 Jul 2015 04:45:48 +0000</pubDate><guid>https://faq.i3wm.org/question/6357/spawn-placeholder/?answer=6359#post-id-6359</guid></item><item><title>Comment by gerw for &lt;p&gt;Let me sketch a possible solution (assuming that “aa” is a unique name). First, move the layout window to the scratchpad automatically by adding the following line to the config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [title="^aa$"] move scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next write a script that places the placeholder as follows. First it should issue the &lt;code&gt;append_layout&lt;/code&gt; command. Then it should wait for the layout window to be opened (you can subscribe to i3 events, which I won't go into, or use an ugly solution that waits in loop and checks every, say, 0.01s whether the window has been opened). When it has been opened, it should issue two commands:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;[title="^aa$"] scratchpad show&lt;/code&gt; to show the layout window.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;floating disable&lt;/code&gt; to make it tiling in the current position.&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/6357/spawn-placeholder/?comment=6360#comment-6360</link><description>Thank you for your valuable input. By playing around with your suggestion, I have found an easier solution.</description><pubDate>Tue, 28 Jul 2015 07:22:38 +0000</pubDate><guid>https://faq.i3wm.org/question/6357/spawn-placeholder/?comment=6360#comment-6360</guid></item></channel></rss>

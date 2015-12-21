@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/319/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 07 Aug 2012 06:39:32 +0000</lastBuildDate><item><title>After upgrading i3, I see error messages when accidentally pressing keybinding X</title><link>https://faq.i3wm.org/question/319/after-upgrading-i3-i-see-error-messages-when-accidentally-pressing-keybinding-x/</link><description>When I press X, I get an error. I often press X by accident and don’t want to see that error. What can I do about it?</description><pubDate>Tue, 07 Aug 2012 06:34:38 +0000</pubDate><guid>https://faq.i3wm.org/question/319/after-upgrading-i3-i-see-error-messages-when-accidentally-pressing-keybinding-x/</guid></item><item><title>Answer by Michael for &lt;p&gt;When I press X, I get an error. I often press X by accident and don’t want to see that error. What can I do about it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/319/after-upgrading-i3-i-see-error-messages-when-accidentally-pressing-keybinding-x/?answer=320#post-id-320</link><description>Since commit http://code.stapelberg.de/git/i3/commit/?h=next&amp;id=cc7f16007a21a3e105d6b093be615a574e0d486c, i3 will report errors in any keybinding. This deals with a very common case of mistakes, such as people configuring `bindsym Mod1+x firefox` instead of `bindsym Mod1+x exec firefox` or having typos in configured commands.
+
+To disable error reporting for a particular binding, change it from this:
+
+    bindsym Mod1+x move absolute position center
+
+to this:
+
+    bindsym Mod1+x exec --no-startup-id i3-msg move absolute position center &gt;/dev/null 2&gt;&amp;1
+
+This will send the command to i3 using the IPC interface and redirect any errors (or output) to `/dev/null`.</description><pubDate>Tue, 07 Aug 2012 06:39:32 +0000</pubDate><guid>https://faq.i3wm.org/question/319/after-upgrading-i3-i-see-error-messages-when-accidentally-pressing-keybinding-x/?answer=320#post-id-320</guid></item></channel></rss>

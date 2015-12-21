@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/245/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 17 Oct 2012 14:01:58 +0000</lastBuildDate><item><title>How can I define my workspace on startup</title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/</link><description>Is there any way to define the workspace tiling from the config during startup?
+
+I would like to have all my windows in place by default, instead of arranging them manually, something like:
+
+    +------------------------------+-------------------------------+
+    |                              |                               |
+    |                              |             App 2             |
+    |                              |                               |
+    |            App 1             |-------------------------------|
+    |                              |                               |
+    |                              |                               |
+    |                              |                               |
+    |------------------------------|             App 4             |
+    |                              |                               |
+    |           App 3              |                               |
+    |                              |                               |
+    +------------------------------+-------------------------------+
+
+(it could start simpler, with just dividing the space equally, but I wonder if you could do more, like the above).</description><pubDate>Wed, 11 Jul 2012 15:07:26 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/</guid></item><item><title>Answer by Otchipoi for &lt;p&gt;Is there any way to define the workspace tiling from the config during startup?&lt;/p&gt;
+
+&lt;p&gt;I would like to have all my windows in place by default, instead of arranging them manually, something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+------------------------------+-------------------------------+
+|                              |                               |
+|                              |             App 2             |
+|                              |                               |
+|            App 1             |-------------------------------|
+|                              |                               |
+|                              |                               |
+|                              |                               |
+|------------------------------|             App 4             |
+|                              |                               |
+|           App 3              |                               |
+|                              |                               |
++------------------------------+-------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(it could start simpler, with just dividing the space equally, but I wonder if you could do more, like the above).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?answer=325#post-id-325</link><description>But here is now answer too. Where is the person which has solved the problem?
+
+My question was how to open on startup of i3 a quattro screen, like the above mentioned example.
+
+Any solutions?
+
+chers
+Udo</description><pubDate>Thu, 09 Aug 2012 08:36:29 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?answer=325#post-id-325</guid></item><item><title>Comment by joepd for &lt;p&gt;But here is now answer too. Where is the person which has solved the problem?&lt;/p&gt;
+
+&lt;p&gt;My question was how to open on startup of i3 a quattro screen, like the above mentioned example.&lt;/p&gt;
+
+&lt;p&gt;Any solutions?&lt;/p&gt;
+
+&lt;p&gt;chers
+Udo&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=445#comment-445</link><description>Have a look at the link. You will have to make your solution yourself. The ingredients are there :) Maybe this link is more helpful for constructing your solution: https://github.com/fhaun/config-misc/blob/master/i3-stuff/auto-start-for-i3-simple</description><pubDate>Sat, 08 Sep 2012 16:59:26 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=445#comment-445</guid></item><item><title>Comment by joepd for &lt;p&gt;But here is now answer too. Where is the person which has solved the problem?&lt;/p&gt;
+
+&lt;p&gt;My question was how to open on startup of i3 a quattro screen, like the above mentioned example.&lt;/p&gt;
+
+&lt;p&gt;Any solutions?&lt;/p&gt;
+
+&lt;p&gt;chers
+Udo&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=446#comment-446</link><description>Have a look at the link. You will have to make your solution yourself. The ingredients are there :) Maybe this link is more helpful for construein</description><pubDate>Sat, 08 Sep 2012 16:59:27 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=446#comment-446</guid></item><item><title>Answer by i3-tiler for &lt;p&gt;Is there any way to define the workspace tiling from the config during startup?&lt;/p&gt;
+
+&lt;p&gt;I would like to have all my windows in place by default, instead of arranging them manually, something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+------------------------------+-------------------------------+
+|                              |                               |
+|                              |             App 2             |
+|                              |                               |
+|            App 1             |-------------------------------|
+|                              |                               |
+|                              |                               |
+|                              |                               |
+|------------------------------|             App 4             |
+|                              |                               |
+|           App 3              |                               |
+|                              |                               |
++------------------------------+-------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(it could start simpler, with just dividing the space equally, but I wonder if you could do more, like the above).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?answer=631#post-id-631</link><description>hey,
+
+I'm using a simple bash script which actually works just with i3-msg calls. I start that script with exec in ~/.i3/config. I'm sure it could be improved on some parts but it works for me and is simple to read. (The only thing you must not do is play around with the mouse while the layout is created. Otherwise your focus will get somewhere else and the layout is not like you wanted it.)
+
+If somebody wants to take a look:
+http://paste.ubuntu.com/1274788/</description><pubDate>Fri, 12 Oct 2012 11:54:01 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?answer=631#post-id-631</guid></item><item><title>Comment by i3-tiler for &lt;p&gt;hey,&lt;/p&gt;
+
+&lt;p&gt;I'm using a simple bash script which actually works just with i3-msg calls. I start that script with exec in ~/.i3/config. I'm sure it could be improved on some parts but it works for me and is simple to read. (The only thing you must not do is play around with the mouse while the layout is created. Otherwise your focus will get somewhere else and the layout is not like you wanted it.)&lt;/p&gt;
+
+&lt;p&gt;If somebody wants to take a look:
+&lt;a href="http://paste.ubuntu.com/1274788/"&gt;http://paste.ubuntu.com/1274788/&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=656#comment-656</link><description>Brief feedback @nichtleiter: I did like you suggested and changed my script to something like: i3-msg "focus output LVDS1; exec pidgin; exec thunderbird; ...;" but it works not like expected. It seems that the X windows of the apps need a certain state otherwise they are mixed up at creation time.</description><pubDate>Wed, 17 Oct 2012 14:01:58 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=656#comment-656</guid></item><item><title>Comment by i3-tiler for &lt;p&gt;hey,&lt;/p&gt;
+
+&lt;p&gt;I'm using a simple bash script which actually works just with i3-msg calls. I start that script with exec in ~/.i3/config. I'm sure it could be improved on some parts but it works for me and is simple to read. (The only thing you must not do is play around with the mouse while the layout is created. Otherwise your focus will get somewhere else and the layout is not like you wanted it.)&lt;/p&gt;
+
+&lt;p&gt;If somebody wants to take a look:
+&lt;a href="http://paste.ubuntu.com/1274788/"&gt;http://paste.ubuntu.com/1274788/&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=655#comment-655</link><description>That sounds to me like i3-msg commands go to background immediately after execution. That really could be because when I tested it without the sleep time between the result was never like I expected. I will give it a try.</description><pubDate>Wed, 17 Oct 2012 14:01:58 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=655#comment-655</guid></item><item><title>Comment by nichtleiter for &lt;p&gt;hey,&lt;/p&gt;
+
+&lt;p&gt;I'm using a simple bash script which actually works just with i3-msg calls. I start that script with exec in ~/.i3/config. I'm sure it could be improved on some parts but it works for me and is simple to read. (The only thing you must not do is play around with the mouse while the layout is created. Otherwise your focus will get somewhere else and the layout is not like you wanted it.)&lt;/p&gt;
+
+&lt;p&gt;If somebody wants to take a look:
+&lt;a href="http://paste.ubuntu.com/1274788/"&gt;http://paste.ubuntu.com/1274788/&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=638#comment-638</link><description>It looks like you abuse `sleep` to achieve a sequential execution of the i3 commands. You can avoid the use of `sleep` if you concatenate the particular i3 commands with a `;` and take the concatenated string as a command line argument for a single `i3-msg` execution... </description><pubDate>Sun, 14 Oct 2012 11:04:08 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=638#comment-638</guid></item><item><title>Answer by Michael for &lt;p&gt;Is there any way to define the workspace tiling from the config during startup?&lt;/p&gt;
+
+&lt;p&gt;I would like to have all my windows in place by default, instead of arranging them manually, something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+------------------------------+-------------------------------+
+|                              |                               |
+|                              |             App 2             |
+|                              |                               |
+|            App 1             |-------------------------------|
+|                              |                               |
+|                              |                               |
+|                              |                               |
+|------------------------------|             App 4             |
+|                              |                               |
+|           App 3              |                               |
+|                              |                               |
++------------------------------+-------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(it could start simpler, with just dividing the space equally, but I wonder if you could do more, like the above).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?answer=246#post-id-246</link><description>You can’t do this right now unless you write some script which sends move commands etc. to i3.</description><pubDate>Wed, 11 Jul 2012 15:45:40 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?answer=246#post-id-246</guid></item><item><title>Comment by BroX for &lt;p&gt;You can’t do this right now unless you write some script which sends move commands etc. to i3.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=304#comment-304</link><description>I'd like to do the exact same thing. Have not come accross a solution yet.</description><pubDate>Fri, 27 Jul 2012 21:52:10 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=304#comment-304</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;You can’t do this right now unless you write some script which sends move commands etc. to i3.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=251#comment-251</link><description>Would that be the i3-msg command? 
+Can I execute it from config to build up my workspace?
+Do you have an example of that in action?</description><pubDate>Thu, 12 Jul 2012 01:12:46 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=251#comment-251</guid></item><item><title>Comment by Holger for &lt;p&gt;You can’t do this right now unless you write some script which sends move commands etc. to i3.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=326#comment-326</link><description>Here's an example for such a script: https://github.com/fhaun/config-misc/blob/master/i3-stuff/auto-start-for-i3</description><pubDate>Thu, 09 Aug 2012 14:15:57 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=326#comment-326</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;You can’t do this right now unless you write some script which sends move commands etc. to i3.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=329#comment-329</link><description>Fantastic! Thanks!</description><pubDate>Sat, 11 Aug 2012 13:27:16 +0000</pubDate><guid>https://faq.i3wm.org/question/245/how-can-i-define-my-workspace-on-startup/?comment=329#comment-329</guid></item></channel></rss>

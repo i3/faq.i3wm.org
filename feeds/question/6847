@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6847/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 08 Oct 2015 06:07:40 +0000</lastBuildDate><item><title>Context sensitive shortcuts</title><link>https://faq.i3wm.org/question/6847/context-sensitive-shortcuts/</link><description>Hello,
+
+is it possible to have context sensitive shortcuts. E. g. a shortcut should only be possible to trigger if application A is (not) running.
+
+Best Regards</description><pubDate>Wed, 07 Oct 2015 23:28:13 +0000</pubDate><guid>https://faq.i3wm.org/question/6847/context-sensitive-shortcuts/</guid></item><item><title>Answer by Airblader for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;is it possible to have context sensitive shortcuts. E. g. a shortcut should only be possible to trigger if application A is (not) running.&lt;/p&gt;
+
+&lt;p&gt;Best Regards&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6847/context-sensitive-shortcuts/?answer=6853#post-id-6853</link><description>As @i3convert pointed out, this isn't possible directly. However, starting with 4.11 the `focus` command returns success depending on whether a window was focused. This allows something like this:
+
+    [ "$(i3-msg '[class=\"firefox\"] focus')" = "[{\"success\":true\}]" ] || i3-msg exec firefox`
+
+Also see https://github.com/i3/i3/issues/1809 </description><pubDate>Thu, 08 Oct 2015 06:07:40 +0000</pubDate><guid>https://faq.i3wm.org/question/6847/context-sensitive-shortcuts/?answer=6853#post-id-6853</guid></item><item><title>Answer by i3convert for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;is it possible to have context sensitive shortcuts. E. g. a shortcut should only be possible to trigger if application A is (not) running.&lt;/p&gt;
+
+&lt;p&gt;Best Regards&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6847/context-sensitive-shortcuts/?answer=6848#post-id-6848</link><description>I don't think i3 directly provides this functionality. However, you can write a script that checks whether a given application is running (maybe checking the output of `ps -A` will be good enough in your case? read the man page for ps to fine-tune it), and triggers a given action only if it is (not) running. Then you bind the script to the shortcut you had in mind.</description><pubDate>Thu, 08 Oct 2015 02:01:25 +0000</pubDate><guid>https://faq.i3wm.org/question/6847/context-sensitive-shortcuts/?answer=6848#post-id-6848</guid></item></channel></rss>

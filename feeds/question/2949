@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2949/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 13 Jan 2015 21:05:37 +0000</lastBuildDate><item><title>Making popup window appear on their parent's workspace</title><link>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/</link><description>Sometimes I launch a long process in an application that once finished will popup a window.
+
+Usually in this case, I switch to another workspace and do something else. But as soon as the task is finished the popup window appears, steal the focus and receive the keys and everything else.
+
+The behaviour I would have expected is that the popup window appears on the workspace of the parent that created it.</description><pubDate>Thu, 21 Nov 2013 23:33:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/</guid></item><item><title>Answer by Michael for &lt;p&gt;Sometimes I launch a long process in an application that once finished will popup a window.&lt;/p&gt;
+
+&lt;p&gt;Usually in this case, I switch to another workspace and do something else. But as soon as the task is finished the popup window appears, steal the focus and receive the keys and everything else.&lt;/p&gt;
+
+&lt;p&gt;The behaviour I would have expected is that the popup window appears on the workspace of the parent that created it.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/?answer=2980#post-id-2980</link><description>I’d recommend to use the urgency hint instead of a popup window. That way, the workspace (and window) will be highlighted in red and you won’t have focus stealing.</description><pubDate>Tue, 26 Nov 2013 21:28:16 +0000</pubDate><guid>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/?answer=2980#post-id-2980</guid></item><item><title>Comment by nicoe for &lt;p&gt;I’d recommend to use the urgency hint instead of a popup window. That way, the workspace (and window) will be highlighted in red and you won’t have focus stealing.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/?comment=2983#comment-2983</link><description>Sometimes you don't have the choice. For example wizards in libreoffice.</description><pubDate>Tue, 26 Nov 2013 21:54:51 +0000</pubDate><guid>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/?comment=2983#comment-2983</guid></item><item><title>Answer by TonyC for &lt;p&gt;Sometimes I launch a long process in an application that once finished will popup a window.&lt;/p&gt;
+
+&lt;p&gt;Usually in this case, I switch to another workspace and do something else. But as soon as the task is finished the popup window appears, steal the focus and receive the keys and everything else.&lt;/p&gt;
+
+&lt;p&gt;The behaviour I would have expected is that the popup window appears on the workspace of the parent that created it.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/?answer=2950#post-id-2950</link><description>The only way to do this now is with a workspace assignment (the stupid way). See `build.i3wm.org/docs/hacking-howto.html#_using_cgroups_per_workspace` for a discussion about how this could be implemented.</description><pubDate>Fri, 22 Nov 2013 00:46:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/?answer=2950#post-id-2950</guid></item><item><title>Comment by Michael for &lt;p&gt;The only way to do this now is with a workspace assignment (the stupid way). See &lt;code&gt;build.i3wm.org/docs/hacking-howto.html#_using_cgroups_per_workspace&lt;/code&gt; for a discussion about how this could be implemented.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/?comment=2979#comment-2979</link><description>Note that the documentation you refer to explains how _not_ to implement this. The current implementation (startup notifications and manual assignments) covers all the cases better than what the thought-experiment.</description><pubDate>Tue, 26 Nov 2013 21:27:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/?comment=2979#comment-2979</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Sometimes I launch a long process in an application that once finished will popup a window.&lt;/p&gt;
+
+&lt;p&gt;Usually in this case, I switch to another workspace and do something else. But as soon as the task is finished the popup window appears, steal the focus and receive the keys and everything else.&lt;/p&gt;
+
+&lt;p&gt;The behaviour I would have expected is that the popup window appears on the workspace of the parent that created it.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/?answer=5336#post-id-5336</link><description>*i3* does not support the exact feature you are asking for out of the box.
+
+A simple workaround would be to use `assign` to force certain applications to open all their windows on the same workspace:
+
+    assign [class="AppWithPopups1"] SomeWorkspace
+    assign [class="AppWithPopups2"] SomeOtherWorkspace
+
+Also, in more recent versions of *i3* a workspace will be marked as urgent if a window is opened on it while the workspace is not visible. This way you will also know immediately when and which application opened a new window.
+</description><pubDate>Tue, 13 Jan 2015 21:05:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2949/making-popup-window-appear-on-their-parents-workspace/?answer=5336#post-id-5336</guid></item></channel></rss>

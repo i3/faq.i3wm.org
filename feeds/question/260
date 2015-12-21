@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/260/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 26 Jan 2013 03:27:12 +0000</lastBuildDate><item><title>Setting layouts upon i3 launch</title><link>https://faq.i3wm.org/question/260/setting-layouts-upon-i3-launch/</link><description>Arch Linux, i3 4.2-2.
+
+The last line of my i3 config file is
+
+    exec_always i3-init
+
+Where i3-init is the following shell script:
+
+    #!/bin/bash
+    
+    tabbed=( 1 4 6 7 )
+    
+    for w in $tabbed; do
+        i3-msg "workspace $w; layout tabbed"
+    done
+    
+    i3-msg "workspace 1"
+
+So on workspaces 1, 4, 6, and 7, set the tabbed layout. The problem is that the layout isn't actually set when this script is run unless there are windows on the workspace, so I either have to set the layout manually or restart i3 after the windows exist. Am I doing this wrong or is this a limitation?</description><pubDate>Fri, 13 Jul 2012 01:33:11 +0000</pubDate><guid>https://faq.i3wm.org/question/260/setting-layouts-upon-i3-launch/</guid></item><item><title>Answer by Michael for &lt;p&gt;Arch Linux, i3 4.2-2.&lt;/p&gt;
+
+&lt;p&gt;The last line of my i3 config file is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec_always i3-init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where i3-init is the following shell script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+tabbed=( 1 4 6 7 )
+
+for w in $tabbed; do
+    i3-msg "workspace $w; layout tabbed"
+done
+
+i3-msg "workspace 1"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So on workspaces 1, 4, 6, and 7, set the tabbed layout. The problem is that the layout isn't actually set when this script is run unless there are windows on the workspace, so I either have to set the layout manually or restart i3 after the windows exist. Am I doing this wrong or is this a limitation?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/260/setting-layouts-upon-i3-launch/?answer=261#post-id-261</link><description>You can’t do it this way. Workspaces are destroyed when you switch away from them (and that’s not going to change). Instead, have a look at this ticket: https://github.com/i3/i3/issues/581</description><pubDate>Fri, 13 Jul 2012 06:20:56 +0000</pubDate><guid>https://faq.i3wm.org/question/260/setting-layouts-upon-i3-launch/?answer=261#post-id-261</guid></item><item><title>Comment by 0x000000 for &lt;p&gt;You can’t do it this way. Workspaces are destroyed when you switch away from them (and that’s not going to change). Instead, have a look at this ticket: &lt;a href="https://github.com/i3/i3/issues/581"&gt;https://github.com/i3/i3/issues/581&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/260/setting-layouts-upon-i3-launch/?comment=262#comment-262</link><description>Right on, I didn't realize the workspaces were destroyed. Thanks for the link.</description><pubDate>Fri, 13 Jul 2012 12:44:45 +0000</pubDate><guid>https://faq.i3wm.org/question/260/setting-layouts-upon-i3-launch/?comment=262#comment-262</guid></item><item><title>Answer by Lingzhu Xiang for &lt;p&gt;Arch Linux, i3 4.2-2.&lt;/p&gt;
+
+&lt;p&gt;The last line of my i3 config file is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec_always i3-init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where i3-init is the following shell script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+tabbed=( 1 4 6 7 )
+
+for w in $tabbed; do
+    i3-msg "workspace $w; layout tabbed"
+done
+
+i3-msg "workspace 1"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So on workspaces 1, 4, 6, and 7, set the tabbed layout. The problem is that the layout isn't actually set when this script is run unless there are windows on the workspace, so I either have to set the layout manually or restart i3 after the windows exist. Am I doing this wrong or is this a limitation?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/260/setting-layouts-upon-i3-launch/?answer=1118#post-id-1118</link><description>What about working around by adding extra commands to your workspace switch key?
+
+    workspace_layout tabbed
+    bindsym $mod+2 workspace 2; layout default
+    bindsym $mod+3 workspace 3; layout default
+    ...</description><pubDate>Sat, 26 Jan 2013 03:27:12 +0000</pubDate><guid>https://faq.i3wm.org/question/260/setting-layouts-upon-i3-launch/?answer=1118#post-id-1118</guid></item></channel></rss>

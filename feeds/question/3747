@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3747/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 04 Dec 2015 15:09:45 +0000</lastBuildDate><item><title>Enabling multimedia keys</title><link>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/</link><description>Hi,
+
+How can I make multimedia keys work in i3?
+
+Is it possible to create a **user-contributed article** for this? I think it would be helpful for beginners :)</description><pubDate>Tue, 29 Apr 2014 23:20:48 +0000</pubDate><guid>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;How can I make multimedia keys work in i3?&lt;/p&gt;
+
+&lt;p&gt;Is it possible to create a &lt;strong&gt;user-contributed article&lt;/strong&gt; for this? I think it would be helpful for beginners :)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=3750#comment-3750</link><description>I agree, that this would help new users. That is probably why the [User's Guide](http://i3wm.org/docs/userguide.html) already covers this in the section [4.3 Keyboard Bindings](http://i3wm.org/docs/userguide.html#keybindings). :)</description><pubDate>Wed, 30 Apr 2014 08:52:45 +0000</pubDate><guid>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=3750#comment-3750</guid></item><item><title>Answer by Ghostfield for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;How can I make multimedia keys work in i3?&lt;/p&gt;
+
+&lt;p&gt;Is it possible to create a &lt;strong&gt;user-contributed article&lt;/strong&gt; for this? I think it would be helpful for beginners :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?answer=7564#post-id-7564</link><description>In my case I have to use 
+
+    bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+
+where the sink-volume value is changed to 1. To find the right value one can use
+
+    pactl list sinks
+
+</description><pubDate>Fri, 04 Dec 2015 15:09:45 +0000</pubDate><guid>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?answer=7564#post-id-7564</guid></item><item><title>Answer by TonyC for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;How can I make multimedia keys work in i3?&lt;/p&gt;
+
+&lt;p&gt;Is it possible to create a &lt;strong&gt;user-contributed article&lt;/strong&gt; for this? I think it would be helpful for beginners :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?answer=3759#post-id-3759</link><description>In your **~/i3/config** add the following keybindings:
+
+&lt;pre&gt;&lt;code&gt;# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+&lt;/code&gt;&lt;/pre&gt;
+
+The script **toggletouchpad.sh** for toggling your touchpad should have following content:
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+if synclient -l | grep "TouchpadOff .*=.*0" ; then
+	synclient TouchpadOff=1 ;
+else
+	synclient TouchpadOff=0 ;
+fi&lt;/code&gt;&lt;/pre&gt;
+
+[**Playerctl**](https://github.com/acrisci/playerctl) is a command-line utility for controlling media players over DBus that works with most players.
+
+If the XF86* keysyms do not work for you, you can see the available keysyms for your computer by executing this command: &lt;pre&gt;&lt;code&gt;xmodmap -pke&lt;/code&gt;&lt;/pre&gt;
+
+Or `xev`, an interactive tool for finding key symbols: &lt;pre&gt;&lt;code&gt;xev&lt;/code&gt;&lt;/pre&gt;
+
+(thanks to tieni for this answer)</description><pubDate>Sat, 03 May 2014 19:24:00 +0000</pubDate><guid>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?answer=3759#post-id-3759</guid></item><item><title>Comment by fmasi for &lt;p&gt;In your &lt;strong&gt;~/i3/config&lt;/strong&gt; add the following keybindings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script &lt;strong&gt;toggletouchpad.sh&lt;/strong&gt; for toggling your touchpad should have following content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+if synclient -l | grep "TouchpadOff .*=.*0" ; then
+    synclient TouchpadOff=1 ;
+else
+    synclient TouchpadOff=0 ;
+fi&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/acrisci/playerctl"&gt;&lt;strong&gt;Playerctl&lt;/strong&gt;&lt;/a&gt; is a command-line utility for controlling media players over DBus that works with most players.&lt;/p&gt;
+
+&lt;p&gt;If the XF86* keysyms do not work for you, you can see the available keysyms for your computer by executing this command: &lt;/p&gt;&lt;pre&gt;&lt;code&gt;xmodmap -pke&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Or &lt;code&gt;xev&lt;/code&gt;, an interactive tool for finding key symbols: &lt;/p&gt;&lt;pre&gt;&lt;code&gt;xev&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;(thanks to tieni for this answer)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=7262#comment-7262</link><description>Any idea how to limit maximum volume that it could ever go to to say 100%?
+I have a das keyboard with a volume wheel and right now if i keep turning it clockwise it can easily boost the volume beyond 300% and introduce distortions.</description><pubDate>Tue, 10 Nov 2015 20:28:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=7262#comment-7262</guid></item><item><title>Comment by hmln for &lt;p&gt;In your &lt;strong&gt;~/i3/config&lt;/strong&gt; add the following keybindings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script &lt;strong&gt;toggletouchpad.sh&lt;/strong&gt; for toggling your touchpad should have following content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+if synclient -l | grep "TouchpadOff .*=.*0" ; then
+    synclient TouchpadOff=1 ;
+else
+    synclient TouchpadOff=0 ;
+fi&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/acrisci/playerctl"&gt;&lt;strong&gt;Playerctl&lt;/strong&gt;&lt;/a&gt; is a command-line utility for controlling media players over DBus that works with most players.&lt;/p&gt;
+
+&lt;p&gt;If the XF86* keysyms do not work for you, you can see the available keysyms for your computer by executing this command: &lt;/p&gt;&lt;pre&gt;&lt;code&gt;xmodmap -pke&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Or &lt;code&gt;xev&lt;/code&gt;, an interactive tool for finding key symbols: &lt;/p&gt;&lt;pre&gt;&lt;code&gt;xev&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;(thanks to tieni for this answer)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=7033#comment-7033</link><description>Miro, just intall from Github then: https://github.com/acrisci/playerctl .
+
+If your key board has only one key to play and pause, playerctl has an option to toggle between play and pause.Use something like this:
+bindsym XF86AudioPlay exec playerctl play-pause</description><pubDate>Sat, 24 Oct 2015 08:59:55 +0000</pubDate><guid>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=7033#comment-7033</guid></item><item><title>Comment by Miro for &lt;p&gt;In your &lt;strong&gt;~/i3/config&lt;/strong&gt; add the following keybindings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script &lt;strong&gt;toggletouchpad.sh&lt;/strong&gt; for toggling your touchpad should have following content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+if synclient -l | grep "TouchpadOff .*=.*0" ; then
+    synclient TouchpadOff=1 ;
+else
+    synclient TouchpadOff=0 ;
+fi&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/acrisci/playerctl"&gt;&lt;strong&gt;Playerctl&lt;/strong&gt;&lt;/a&gt; is a command-line utility for controlling media players over DBus that works with most players.&lt;/p&gt;
+
+&lt;p&gt;If the XF86* keysyms do not work for you, you can see the available keysyms for your computer by executing this command: &lt;/p&gt;&lt;pre&gt;&lt;code&gt;xmodmap -pke&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Or &lt;code&gt;xev&lt;/code&gt;, an interactive tool for finding key symbols: &lt;/p&gt;&lt;pre&gt;&lt;code&gt;xev&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;(thanks to tieni for this answer)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=6974#comment-6974</link><description>Is there alternative to playerctl? My distro doesn't provide playerctl in its packages</description><pubDate>Sat, 17 Oct 2015 06:32:33 +0000</pubDate><guid>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=6974#comment-6974</guid></item><item><title>Comment by Fabio Falci for &lt;p&gt;In your &lt;strong&gt;~/i3/config&lt;/strong&gt; add the following keybindings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script &lt;strong&gt;toggletouchpad.sh&lt;/strong&gt; for toggling your touchpad should have following content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+if synclient -l | grep "TouchpadOff .*=.*0" ; then
+    synclient TouchpadOff=1 ;
+else
+    synclient TouchpadOff=0 ;
+fi&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/acrisci/playerctl"&gt;&lt;strong&gt;Playerctl&lt;/strong&gt;&lt;/a&gt; is a command-line utility for controlling media players over DBus that works with most players.&lt;/p&gt;
+
+&lt;p&gt;If the XF86* keysyms do not work for you, you can see the available keysyms for your computer by executing this command: &lt;/p&gt;&lt;pre&gt;&lt;code&gt;xmodmap -pke&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Or &lt;code&gt;xev&lt;/code&gt;, an interactive tool for finding key symbols: &lt;/p&gt;&lt;pre&gt;&lt;code&gt;xev&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;(thanks to tieni for this answer)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=5708#comment-5708</link><description>To me volumes worked only like this:
+
+    # Pulse Audio controls
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume</description><pubDate>Tue, 31 Mar 2015 13:54:52 +0000</pubDate><guid>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=5708#comment-5708</guid></item><item><title>Comment by Fabio Falci for &lt;p&gt;In your &lt;strong&gt;~/i3/config&lt;/strong&gt; add the following keybindings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script &lt;strong&gt;toggletouchpad.sh&lt;/strong&gt; for toggling your touchpad should have following content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+if synclient -l | grep "TouchpadOff .*=.*0" ; then
+    synclient TouchpadOff=1 ;
+else
+    synclient TouchpadOff=0 ;
+fi&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/acrisci/playerctl"&gt;&lt;strong&gt;Playerctl&lt;/strong&gt;&lt;/a&gt; is a command-line utility for controlling media players over DBus that works with most players.&lt;/p&gt;
+
+&lt;p&gt;If the XF86* keysyms do not work for you, you can see the available keysyms for your computer by executing this command: &lt;/p&gt;&lt;pre&gt;&lt;code&gt;xmodmap -pke&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Or &lt;code&gt;xev&lt;/code&gt;, an interactive tool for finding key symbols: &lt;/p&gt;&lt;pre&gt;&lt;code&gt;xev&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;(thanks to tieni for this answer)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=5709#comment-5709</link><description>Or
+
+    # Pulse Audio controls
+    bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +5% #increase sound volume
+    bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 0 -5% #decrease sound volume</description><pubDate>Tue, 31 Mar 2015 13:58:16 +0000</pubDate><guid>https://faq.i3wm.org/question/3747/enabling-multimedia-keys/?comment=5709#comment-5709</guid></item></channel></rss>

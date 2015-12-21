@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7528/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 15 Dec 2015 18:48:40 +0000</lastBuildDate><item><title>Scrolling trough workspaces</title><link>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/</link><description> I want to scroll through my open workspaces.
+
+This is possible when hovering over the i3-bar
+
+I want to enable this feature when i press Ctrl+ScrollUp or ScrollDown.
+Is it possible to add something like this in my i3 config file.</description><pubDate>Wed, 02 Dec 2015 14:28:21 +0000</pubDate><guid>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/</guid></item><item><title>Answer by luytsm for &lt;p&gt;I want to scroll through my open workspaces.&lt;/p&gt;
+
+&lt;p&gt;This is possible when hovering over the i3-bar&lt;/p&gt;
+
+&lt;p&gt;I want to enable this feature when i press Ctrl+ScrollUp or ScrollDown.
+Is it possible to add something like this in my i3 config file.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?answer=7688#post-id-7688</link><description>I've finally got back to this issue. The following i3 bindsym are the answer to my question.
+
+    bindsym --whole-window $mod+button4 workspace next_on_output
+    bindsym --whole-window $mod+button5 workspace prev_on_output
+
+The problem was i was use MOUSE instead of BUTTON, which i3 didn't see as a wrong key or unknow key.  This will only work when a windows is active on the workspace.</description><pubDate>Tue, 15 Dec 2015 14:09:50 +0000</pubDate><guid>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?answer=7688#post-id-7688</guid></item><item><title>Comment by Airblader for &lt;p&gt;I've finally got back to this issue. The following i3 bindsym are the answer to my question.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym --whole-window $mod+button4 workspace next_on_output
+bindsym --whole-window $mod+button5 workspace prev_on_output
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem was i was use MOUSE instead of BUTTON, which i3 didn't see as a wrong key or unknow key.  This will only work when a windows is active on the workspace.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?comment=7695#comment-7695</link><description>The patch to make it work on empty workspaces has been merged now.</description><pubDate>Tue, 15 Dec 2015 18:48:40 +0000</pubDate><guid>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?comment=7695#comment-7695</guid></item><item><title>Comment by Airblader for &lt;p&gt;I've finally got back to this issue. The following i3 bindsym are the answer to my question.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym --whole-window $mod+button4 workspace next_on_output
+bindsym --whole-window $mod+button5 workspace prev_on_output
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem was i was use MOUSE instead of BUTTON, which i3 didn't see as a wrong key or unknow key.  This will only work when a windows is active on the workspace.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?comment=7690#comment-7690</link><description>Please note my comment below. This only works when there is a window on the workspace. For empty workspaces, this will work only once #2097 is implemented (patch is pending) and then starting with i3 4.12.</description><pubDate>Tue, 15 Dec 2015 14:37:37 +0000</pubDate><guid>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?comment=7690#comment-7690</guid></item><item><title>Answer by Airblader for &lt;p&gt;I want to scroll through my open workspaces.&lt;/p&gt;
+
+&lt;p&gt;This is possible when hovering over the i3-bar&lt;/p&gt;
+
+&lt;p&gt;I want to enable this feature when i press Ctrl+ScrollUp or ScrollDown.
+Is it possible to add something like this in my i3 config file.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?answer=7531#post-id-7531</link><description>Just bind those keys to "workspace next" and "workspace prev".  
+
+You may want to use "next\_on\_output" and "prev\_on\_output" to fully mirror the i3bar behavior. </description><pubDate>Wed, 02 Dec 2015 14:57:53 +0000</pubDate><guid>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?answer=7531#post-id-7531</guid></item><item><title>Comment by Airblader for &lt;p&gt;Just bind those keys to "workspace next" and "workspace prev".  &lt;/p&gt;
+
+&lt;p&gt;You may want to use "next_on_output" and "prev_on_output" to fully mirror the i3bar behavior. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?comment=7579#comment-7579</link><description>I've filed a feature request to make this work on the root window as well. It has been accepted, but it needs to be implemented first: https://github.com/i3/i3/issues/2097</description><pubDate>Mon, 07 Dec 2015 07:56:35 +0000</pubDate><guid>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?comment=7579#comment-7579</guid></item><item><title>Comment by Airblader for &lt;p&gt;Just bind those keys to "workspace next" and "workspace prev".  &lt;/p&gt;
+
+&lt;p&gt;You may want to use "next_on_output" and "prev_on_output" to fully mirror the i3bar behavior. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?comment=7548#comment-7548</link><description>It works fine for me. Make sure you are running the latest version of i3 (4.11, run i3 --version to find out). Also note that the binding only works on a window – it won't work when the mouse is on an empty workspace.</description><pubDate>Thu, 03 Dec 2015 20:32:27 +0000</pubDate><guid>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?comment=7548#comment-7548</guid></item><item><title>Comment by luytsm for &lt;p&gt;Just bind those keys to "workspace next" and "workspace prev".  &lt;/p&gt;
+
+&lt;p&gt;You may want to use "next_on_output" and "prev_on_output" to fully mirror the i3bar behavior. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?comment=7546#comment-7546</link><description>bindsym --whole-window $mod+mouse4 workspace next_on_output
+
+This keybind is not working. What am I doing wrong?</description><pubDate>Thu, 03 Dec 2015 19:39:39 +0000</pubDate><guid>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/?comment=7546#comment-7546</guid></item></channel></rss>

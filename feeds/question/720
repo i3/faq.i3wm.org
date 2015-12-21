@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/720/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 03 Nov 2012 06:34:12 +0000</lastBuildDate><item><title>How do I run i3status as root?</title><link>https://faq.i3wm.org/question/720/how-do-i-run-i3status-as-root/</link><description>In the i3status config it says:
+
+    ethernet eth0 {  
+        # if you use %speed, i3status requires root privileges  
+        format_up = "E: %ip (%speed)"  
+        format_down = "E: down"  
+    }
+
+Also download speed is not shown. I assume that is related to not being root.  
+
+How do I run it as root? I'm on Ubuntu 12.04.</description><pubDate>Sat, 03 Nov 2012 03:44:03 +0000</pubDate><guid>https://faq.i3wm.org/question/720/how-do-i-run-i3status-as-root/</guid></item><item><title>Answer by Else for &lt;p&gt;In the i3status config it says:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ethernet eth0 {  
+    # if you use %speed, i3status requires root privileges  
+    format_up = "E: %ip (%speed)"  
+    format_down = "E: down"  
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also download speed is not shown. I assume that is related to not being root.  &lt;/p&gt;
+
+&lt;p&gt;How do I run it as root? I'm on Ubuntu 12.04.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/720/how-do-i-run-i3status-as-root/?answer=721#post-id-721</link><description>Please read `man 1 i3status`:
+
+&gt; Getting the link speed requires the cap_net_admin capability. Set it using setcap cap_net_admin=ep $(which i3status).</description><pubDate>Sat, 03 Nov 2012 03:58:58 +0000</pubDate><guid>https://faq.i3wm.org/question/720/how-do-i-run-i3status-as-root/?answer=721#post-id-721</guid></item><item><title>Comment by joehillen for &lt;p&gt;Please read &lt;code&gt;man 1 i3status&lt;/code&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Getting the link speed requires the cap&lt;em&gt;net&lt;/em&gt;admin capability. Set it using setcap cap&lt;em&gt;net&lt;/em&gt;admin=ep $(which i3status).&lt;/p&gt;
+&lt;/blockquote&gt;
+</title><link>https://faq.i3wm.org/question/720/how-do-i-run-i3status-as-root/?comment=726#comment-726</link><description>Ah, I think I misunderstood what it is supposed to do. I thought it would show the upload/download rate, not the max speed of the network device. Not that useful. Thanks though. </description><pubDate>Sat, 03 Nov 2012 06:34:12 +0000</pubDate><guid>https://faq.i3wm.org/question/720/how-do-i-run-i3status-as-root/?comment=726#comment-726</guid></item><item><title>Answer by Else for &lt;p&gt;In the i3status config it says:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ethernet eth0 {  
+    # if you use %speed, i3status requires root privileges  
+    format_up = "E: %ip (%speed)"  
+    format_down = "E: down"  
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also download speed is not shown. I assume that is related to not being root.  &lt;/p&gt;
+
+&lt;p&gt;How do I run it as root? I'm on Ubuntu 12.04.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/720/how-do-i-run-i3status-as-root/?answer=722#post-id-722</link><description>Please read `man 1 i3status`:
+
+&gt; Getting the link speed requires the cap_net_admin capability. Set it using setcap cap_net_admin=ep $(which i3status).</description><pubDate>Sat, 03 Nov 2012 03:59:31 +0000</pubDate><guid>https://faq.i3wm.org/question/720/how-do-i-run-i3status-as-root/?answer=722#post-id-722</guid></item></channel></rss>

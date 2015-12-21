@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/552/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 26 Sep 2012 16:37:00 +0000</lastBuildDate><item><title>Leaving a window, nested in a tabbed container, without loosing focus</title><link>https://faq.i3wm.org/question/552/leaving-a-window-nested-in-a-tabbed-container-without-loosing-focus/</link><description>Hello,
+
+is there a way to step through the programs of a tabbed container without raising every window to the top when it is focused?
+
+    _______________________________________________________
+    |_progr1_|*progr2*|_progr3_|_progr4_|*progr5*|_progr6_|
+    |                          |                          |
+    |      progr 2 active      |       progr 5 active     |
+    |__________________________|__________________________|
+
+
+For example, if I have two tabbed containers side by side, each holding 3 programs. How can I activate the middle program in both containers without using my mouse?
+(Maybe there is even a more direct way than stepping through all windows for raising one of them?)
+
+Thanks,
+Richard
+    </description><pubDate>Wed, 26 Sep 2012 07:31:56 +0000</pubDate><guid>https://faq.i3wm.org/question/552/leaving-a-window-nested-in-a-tabbed-container-without-loosing-focus/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;is there a way to step through the programs of a tabbed container without raising every window to the top when it is focused?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_______________________________________________________
+|_progr1_|*progr2*|_progr3_|_progr4_|*progr5*|_progr6_|
+|                          |                          |
+|      progr 2 active      |       progr 5 active     |
+|__________________________|__________________________|
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For example, if I have two tabbed containers side by side, each holding 3 programs. How can I activate the middle program in both containers without using my mouse?
+(Maybe there is even a more direct way than stepping through all windows for raising one of them?)&lt;/p&gt;
+
+&lt;p&gt;Thanks,
+Richard&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/552/leaving-a-window-nested-in-a-tabbed-container-without-loosing-focus/?answer=553#post-id-553</link><description>You can use the following sequence of commands:
+
+    focus parent
+    focus right
+
+The first one will focus the tabbed container itself, the second one will move focus to the right, thus focusing the other tabbed container. Since focus descends, the middle window will be focused in the end.
+
+These commands are bound to Mod+a, Mod+Right by default.</description><pubDate>Wed, 26 Sep 2012 09:01:12 +0000</pubDate><guid>https://faq.i3wm.org/question/552/leaving-a-window-nested-in-a-tabbed-container-without-loosing-focus/?answer=553#post-id-553</guid></item><item><title>Comment by Richard for &lt;p&gt;You can use the following sequence of commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;focus parent
+focus right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first one will focus the tabbed container itself, the second one will move focus to the right, thus focusing the other tabbed container. Since focus descends, the middle window will be focused in the end.&lt;/p&gt;
+
+&lt;p&gt;These commands are bound to Mod+a, Mod+Right by default.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/552/leaving-a-window-nested-in-a-tabbed-container-without-loosing-focus/?comment=556#comment-556</link><description>Thanks! This is what I was looking for.</description><pubDate>Wed, 26 Sep 2012 16:37:00 +0000</pubDate><guid>https://faq.i3wm.org/question/552/leaving-a-window-nested-in-a-tabbed-container-without-loosing-focus/?comment=556#comment-556</guid></item></channel></rss>

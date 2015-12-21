@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1657/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 01 Apr 2015 20:29:52 +0000</lastBuildDate><item><title>Add friendly name to workspace, but keep numbers for shortcuts</title><link>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/</link><description>Hi,
+
+I'm new (from today :) to i3, and so far I love it!
+
+Now I'm starting some applications on logon like this: 
+
+    exec i3-msg workspace 1 ; i3-msg exec firefox ;
+Works fine.
+Now what I would like to have would be something like this:
+
+    exec i3-msg workspace 1:Firefox ; i3-msg exec firefox ;
+So my workspace would have a friendly name, the problem is that when I do this the shortcut to access the workspace 1 (logically) opens a new workspace.
+
+So my question is: is it possible to give a friendly name to a workspace while keeping its shortcut/number reference...?
+
+**== Edit after first answer ==**
+
+Ok, from the first answer and some more testing, I got even more lost... sorry for my noobyness.
+
+Basically, what I want to achieve on login is:
+
+ - Create a workspace called "1: Firefox" and start firefox within
+ - Create a workspace called "2: VIM" and start vim within
+ - etc
+
+And then being able with $mod+1 to go to workspace "1: Firefox", $mod+2 go to workspace "2: VIM", etc
+
+Could you post the config syntax to: 
+
+ - Create the workspaces and launch the application within
+ - Create the workspace shortcuts in order to be able to reach them
+
+</description><pubDate>Fri, 19 Apr 2013 11:53:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/</guid></item><item><title>Answer by Ultrabug for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm new (from today :) to i3, and so far I love it!&lt;/p&gt;
+
+&lt;p&gt;Now I'm starting some applications on logon like this: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3-msg workspace 1 ; i3-msg exec firefox ;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Works fine.
+Now what I would like to have would be something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3-msg workspace 1:Firefox ; i3-msg exec firefox ;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So my workspace would have a friendly name, the problem is that when I do this the shortcut to access the workspace 1 (logically) opens a new workspace.&lt;/p&gt;
+
+&lt;p&gt;So my question is: is it possible to give a friendly name to a workspace while keeping its shortcut/number reference...?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;== Edit after first answer ==&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, from the first answer and some more testing, I got even more lost... sorry for my noobyness.&lt;/p&gt;
+
+&lt;p&gt;Basically, what I want to achieve on login is:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a workspace called "1: Firefox" and start firefox within&lt;/li&gt;
+&lt;li&gt;Create a workspace called "2: VIM" and start vim within&lt;/li&gt;
+&lt;li&gt;etc&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And then being able with $mod+1 to go to workspace "1: Firefox", $mod+2 go to workspace "2: VIM", etc&lt;/p&gt;
+
+&lt;p&gt;Could you post the config syntax to: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create the workspaces and launch the application within&lt;/li&gt;
+&lt;li&gt;Create the workspace shortcuts in order to be able to reach them&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?answer=1663#post-id-1663</link><description>This a sample config to solve your problem (with my names, just adapt to yours):
+
+    # switch to workspace
+    bindsym $mod+ampersand workspace number 1 irc
+    bindsym $mod+eacute workspace number 2 www
+    bindsym $mod+quotedbl workspace number 3 code
+    bindsym $mod+apostrophe workspace number 4 code
+    bindsym $mod+parenleft workspace number 5 code
+    bindsym $mod+minus workspace number 6 code
+    bindsym $mod+egrave workspace number 7 code
+    bindsym $mod+underscore workspace number 8 code
+    bindsym $mod+ccedilla workspace number 9 mail
+    bindsym $mod+agrave workspace number 10 mon
+
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1 irc
+    bindsym $mod+Shift+2 move container to workspace number 2 www
+    bindsym $mod+Shift+3 move container to workspace number 3 code
+    bindsym $mod+Shift+4 move container to workspace number 4 code
+    bindsym $mod+Shift+5 move container to workspace number 5 code
+    bindsym $mod+Shift+6 move container to workspace number 6 code
+    bindsym $mod+Shift+7 move container to workspace number 7 code
+    bindsym $mod+Shift+8 move container to workspace number 8 code
+    bindsym $mod+Shift+9 move container to workspace number 9 mail
+    bindsym $mod+Shift+0 move container to workspace number 10 mon
+
+    # force a window on a named workspace
+    assign [class="Opera"] 2 www
+    assign [class="Firefox"] 10 mon
+</description><pubDate>Fri, 19 Apr 2013 12:43:29 +0000</pubDate><guid>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?answer=1663#post-id-1663</guid></item><item><title>Comment by eddie-dunn for &lt;p&gt;This a sample config to solve your problem (with my names, just adapt to yours):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+ampersand workspace number 1 irc
+bindsym $mod+eacute workspace number 2 www
+bindsym $mod+quotedbl workspace number 3 code
+bindsym $mod+apostrophe workspace number 4 code
+bindsym $mod+parenleft workspace number 5 code
+bindsym $mod+minus workspace number 6 code
+bindsym $mod+egrave workspace number 7 code
+bindsym $mod+underscore workspace number 8 code
+bindsym $mod+ccedilla workspace number 9 mail
+bindsym $mod+agrave workspace number 10 mon
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1 irc
+bindsym $mod+Shift+2 move container to workspace number 2 www
+bindsym $mod+Shift+3 move container to workspace number 3 code
+bindsym $mod+Shift+4 move container to workspace number 4 code
+bindsym $mod+Shift+5 move container to workspace number 5 code
+bindsym $mod+Shift+6 move container to workspace number 6 code
+bindsym $mod+Shift+7 move container to workspace number 7 code
+bindsym $mod+Shift+8 move container to workspace number 8 code
+bindsym $mod+Shift+9 move container to workspace number 9 mail
+bindsym $mod+Shift+0 move container to workspace number 10 mon
+
+# force a window on a named workspace
+assign [class="Opera"] 2 www
+assign [class="Firefox"] 10 mon
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=5324#comment-5324</link><description>This works, however, the commands for moving focused containers to a workspace should be of the format `bindsym $mod+Shift+5 move container to workspace number 5 code`. Otherwise, if a workspace is created by moving a container to it, it won't have its proper nickname.</description><pubDate>Mon, 12 Jan 2015 11:22:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=5324#comment-5324</guid></item><item><title>Comment by airblader for &lt;p&gt;This a sample config to solve your problem (with my names, just adapt to yours):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+ampersand workspace number 1 irc
+bindsym $mod+eacute workspace number 2 www
+bindsym $mod+quotedbl workspace number 3 code
+bindsym $mod+apostrophe workspace number 4 code
+bindsym $mod+parenleft workspace number 5 code
+bindsym $mod+minus workspace number 6 code
+bindsym $mod+egrave workspace number 7 code
+bindsym $mod+underscore workspace number 8 code
+bindsym $mod+ccedilla workspace number 9 mail
+bindsym $mod+agrave workspace number 10 mon
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1 irc
+bindsym $mod+Shift+2 move container to workspace number 2 www
+bindsym $mod+Shift+3 move container to workspace number 3 code
+bindsym $mod+Shift+4 move container to workspace number 4 code
+bindsym $mod+Shift+5 move container to workspace number 5 code
+bindsym $mod+Shift+6 move container to workspace number 6 code
+bindsym $mod+Shift+7 move container to workspace number 7 code
+bindsym $mod+Shift+8 move container to workspace number 8 code
+bindsym $mod+Shift+9 move container to workspace number 9 mail
+bindsym $mod+Shift+0 move container to workspace number 10 mon
+
+# force a window on a named workspace
+assign [class="Opera"] 2 www
+assign [class="Firefox"] 10 mon
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=5719#comment-5719</link><description>A generally good idea is to put workspace names into variables because it will make changing the name of a workspace in your config much easier.</description><pubDate>Wed, 01 Apr 2015 20:29:52 +0000</pubDate><guid>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=5719#comment-5719</guid></item><item><title>Comment by Ultrabug for &lt;p&gt;This a sample config to solve your problem (with my names, just adapt to yours):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+ampersand workspace number 1 irc
+bindsym $mod+eacute workspace number 2 www
+bindsym $mod+quotedbl workspace number 3 code
+bindsym $mod+apostrophe workspace number 4 code
+bindsym $mod+parenleft workspace number 5 code
+bindsym $mod+minus workspace number 6 code
+bindsym $mod+egrave workspace number 7 code
+bindsym $mod+underscore workspace number 8 code
+bindsym $mod+ccedilla workspace number 9 mail
+bindsym $mod+agrave workspace number 10 mon
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1 irc
+bindsym $mod+Shift+2 move container to workspace number 2 www
+bindsym $mod+Shift+3 move container to workspace number 3 code
+bindsym $mod+Shift+4 move container to workspace number 4 code
+bindsym $mod+Shift+5 move container to workspace number 5 code
+bindsym $mod+Shift+6 move container to workspace number 6 code
+bindsym $mod+Shift+7 move container to workspace number 7 code
+bindsym $mod+Shift+8 move container to workspace number 8 code
+bindsym $mod+Shift+9 move container to workspace number 9 mail
+bindsym $mod+Shift+0 move container to workspace number 10 mon
+
+# force a window on a named workspace
+assign [class="Opera"] 2 www
+assign [class="Firefox"] 10 mon
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=5592#comment-5592</link><description>Thx @eddie-dunn you're right, I've updated the answer.</description><pubDate>Tue, 10 Mar 2015 08:38:29 +0000</pubDate><guid>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=5592#comment-5592</guid></item><item><title>Answer by Tucos for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm new (from today :) to i3, and so far I love it!&lt;/p&gt;
+
+&lt;p&gt;Now I'm starting some applications on logon like this: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3-msg workspace 1 ; i3-msg exec firefox ;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Works fine.
+Now what I would like to have would be something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3-msg workspace 1:Firefox ; i3-msg exec firefox ;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So my workspace would have a friendly name, the problem is that when I do this the shortcut to access the workspace 1 (logically) opens a new workspace.&lt;/p&gt;
+
+&lt;p&gt;So my question is: is it possible to give a friendly name to a workspace while keeping its shortcut/number reference...?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;== Edit after first answer ==&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, from the first answer and some more testing, I got even more lost... sorry for my noobyness.&lt;/p&gt;
+
+&lt;p&gt;Basically, what I want to achieve on login is:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a workspace called "1: Firefox" and start firefox within&lt;/li&gt;
+&lt;li&gt;Create a workspace called "2: VIM" and start vim within&lt;/li&gt;
+&lt;li&gt;etc&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And then being able with $mod+1 to go to workspace "1: Firefox", $mod+2 go to workspace "2: VIM", etc&lt;/p&gt;
+
+&lt;p&gt;Could you post the config syntax to: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create the workspaces and launch the application within&lt;/li&gt;
+&lt;li&gt;Create the workspace shortcuts in order to be able to reach them&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?answer=1658#post-id-1658</link><description>This is what the `workspace number` command is for. Prefixing the workspace with a number means that number can be used to reference to the named workspace.
+
+As per the [userguide](http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces), given a workspace called '1: Firefox', `workspace number 1` will take you to '1: Firefox' (so the bindsym would become `bindsym $mod+1 workspace number 1`. As for starting an app on a given workspace once, see the last paragraph [here](http://i3wm.org/docs/userguide.html#_automatically_putting_clients_on_specific_workspaces).
+
+If the app does not support startup-notification (GTK does, so i think you should be fine as far as firefox and gvim go), things get much nastier and you'll need hacky scripts. I personally just assign firefox to a fixed workspace.</description><pubDate>Fri, 19 Apr 2013 12:06:01 +0000</pubDate><guid>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?answer=1658#post-id-1658</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;This is what the &lt;code&gt;workspace number&lt;/code&gt; command is for. Prefixing the workspace with a number means that number can be used to reference to the named workspace.&lt;/p&gt;
+
+&lt;p&gt;As per the &lt;a href="http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces"&gt;userguide&lt;/a&gt;, given a workspace called '1: Firefox', &lt;code&gt;workspace number 1&lt;/code&gt; will take you to '1: Firefox' (so the bindsym would become &lt;code&gt;bindsym $mod+1 workspace number 1&lt;/code&gt;. As for starting an app on a given workspace once, see the last paragraph &lt;a href="http://i3wm.org/docs/userguide.html#_automatically_putting_clients_on_specific_workspaces"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If the app does not support startup-notification (GTK does, so i think you should be fine as far as firefox and gvim go), things get much nastier and you'll need hacky scripts. I personally just assign firefox to a fixed workspace.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=4135#comment-4135</link><description>Why is the default configuration using `workspace N` instead of `workspace number N`, which looks (at least to me) a better candidate for a default? This better match intuitive expectation. If one have a workspace named “1:foo”, pressing `$mod+1` he/she probably expect to go to workspace “1:foo”.</description><pubDate>Sat, 05 Jul 2014 08:51:18 +0000</pubDate><guid>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=4135#comment-4135</guid></item><item><title>Comment by ierpe for &lt;p&gt;This is what the &lt;code&gt;workspace number&lt;/code&gt; command is for. Prefixing the workspace with a number means that number can be used to reference to the named workspace.&lt;/p&gt;
+
+&lt;p&gt;As per the &lt;a href="http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces"&gt;userguide&lt;/a&gt;, given a workspace called '1: Firefox', &lt;code&gt;workspace number 1&lt;/code&gt; will take you to '1: Firefox' (so the bindsym would become &lt;code&gt;bindsym $mod+1 workspace number 1&lt;/code&gt;. As for starting an app on a given workspace once, see the last paragraph &lt;a href="http://i3wm.org/docs/userguide.html#_automatically_putting_clients_on_specific_workspaces"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If the app does not support startup-notification (GTK does, so i think you should be fine as far as firefox and gvim go), things get much nastier and you'll need hacky scripts. I personally just assign firefox to a fixed workspace.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=1660#comment-1660</link><description>Hey sorry I tried different things but I still could not get it to work :( I edited my question</description><pubDate>Fri, 19 Apr 2013 12:30:52 +0000</pubDate><guid>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=1660#comment-1660</guid></item><item><title>Comment by Tucos for &lt;p&gt;This is what the &lt;code&gt;workspace number&lt;/code&gt; command is for. Prefixing the workspace with a number means that number can be used to reference to the named workspace.&lt;/p&gt;
+
+&lt;p&gt;As per the &lt;a href="http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces"&gt;userguide&lt;/a&gt;, given a workspace called '1: Firefox', &lt;code&gt;workspace number 1&lt;/code&gt; will take you to '1: Firefox' (so the bindsym would become &lt;code&gt;bindsym $mod+1 workspace number 1&lt;/code&gt;. As for starting an app on a given workspace once, see the last paragraph &lt;a href="http://i3wm.org/docs/userguide.html#_automatically_putting_clients_on_specific_workspaces"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If the app does not support startup-notification (GTK does, so i think you should be fine as far as firefox and gvim go), things get much nastier and you'll need hacky scripts. I personally just assign firefox to a fixed workspace.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=1662#comment-1662</link><description>And I've updated the answer.</description><pubDate>Fri, 19 Apr 2013 12:40:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?comment=1662#comment-1662</guid></item><item><title>Answer by teto for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm new (from today :) to i3, and so far I love it!&lt;/p&gt;
+
+&lt;p&gt;Now I'm starting some applications on logon like this: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3-msg workspace 1 ; i3-msg exec firefox ;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Works fine.
+Now what I would like to have would be something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3-msg workspace 1:Firefox ; i3-msg exec firefox ;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So my workspace would have a friendly name, the problem is that when I do this the shortcut to access the workspace 1 (logically) opens a new workspace.&lt;/p&gt;
+
+&lt;p&gt;So my question is: is it possible to give a friendly name to a workspace while keeping its shortcut/number reference...?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;== Edit after first answer ==&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, from the first answer and some more testing, I got even more lost... sorry for my noobyness.&lt;/p&gt;
+
+&lt;p&gt;Basically, what I want to achieve on login is:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a workspace called "1: Firefox" and start firefox within&lt;/li&gt;
+&lt;li&gt;Create a workspace called "2: VIM" and start vim within&lt;/li&gt;
+&lt;li&gt;etc&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And then being able with $mod+1 to go to workspace "1: Firefox", $mod+2 go to workspace "2: VIM", etc&lt;/p&gt;
+
+&lt;p&gt;Could you post the config syntax to: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create the workspaces and launch the application within&lt;/li&gt;
+&lt;li&gt;Create the workspace shortcuts in order to be able to reach them&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?answer=1674#post-id-1674</link><description>I do something similar with scratchpad so this should be a near working example (i3 4.5.1).
+
+
+    set $w1 1 main
+    
+    urxvtc -name vim -e vim
+    
+    # unsure about the syntax, I use "move scratchpad" here
+    for_window [instance="vim"] move to workspace $w1
+    
+    
+    
+    bindsym $mod+ampersand workspace $w1
+    bindsym $mod+Shift+1 move container to workspace $w1</description><pubDate>Sun, 21 Apr 2013 11:26:51 +0000</pubDate><guid>https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/?answer=1674#post-id-1674</guid></item></channel></rss>

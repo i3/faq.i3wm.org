@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5579/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 14 Jul 2015 10:38:26 +0000</lastBuildDate><item><title>How can I check if either of 2 paths exist in VPN check?</title><link>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/</link><description>I use openvpn to connect to one provider and openconnect to another provider.  In i3status I'd like to check if either path exists but I'm not sure how.
+
+```
+path_exists VPN {
+        path = "/proc/sys/net/ipv4/conf/{vpn,tun}0"
+}
+```
+
+doesn't work and only one path statement will work.  Seems I can only make the VPN check one path.  Can I check if either path exists and give a YES/NO display in the status bar?</description><pubDate>Fri, 06 Mar 2015 22:22:27 +0000</pubDate><guid>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/</guid></item><item><title>Comment by biocyberman for &lt;p&gt;I use openvpn to connect to one provider and openconnect to another provider.  In i3status I'd like to check if either path exists but I'm not sure how.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+path_exists VPN {
+        path = "/proc/sys/net/ipv4/conf/{vpn,tun}0"
+}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work and only one path statement will work.  Seems I can only make the VPN check one path.  Can I check if either path exists and give a YES/NO display in the status bar?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?comment=6288#comment-6288</link><description>This is a use case for condition/logical operators support in config files</description><pubDate>Tue, 14 Jul 2015 09:59:46 +0000</pubDate><guid>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?comment=6288#comment-6288</guid></item><item><title>Answer by biocyberman for &lt;p&gt;I use openvpn to connect to one provider and openconnect to another provider.  In i3status I'd like to check if either path exists but I'm not sure how.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+path_exists VPN {
+        path = "/proc/sys/net/ipv4/conf/{vpn,tun}0"
+}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work and only one path statement will work.  Seems I can only make the VPN check one path.  Can I check if either path exists and give a YES/NO display in the status bar?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?answer=6292#post-id-6292</link><description> Below is my i3status config file, which has  two unambiguous reports of VPN status (i.e. VPN for OpenVPN, Anyconnect for CISCO anyconnect). Pay attention to the consistency between 'order' lines and the run_watch definition below.
+
+Bonus: I clean up other statuses that I do not use by commenting the corresponding 'order' lines. 
+
+    # i3status configuration file.
+    # see "man i3status" for documentation.
+    
+    # It is important that this file is edited as UTF-8.
+    # The following line should contain a sharp s:
+    # ß
+    # If the above line is not correctly displayed, fix your editor first!
+    
+    general {
+            colors = true
+            interval = 5 
+    }
+    
+    # order += "ipv6"
+    order += "disk /"
+    # order += "run_watch DHCP"
+    order += "run_watch VPN"
+    order += "run_watch Anyconnect"
+    order += "wireless wlan0"
+    # order += "ethernet eth0"
+    # order += "battery 0"
+    order += "load"
+    order += "tztime local"
+    
+    wireless wlan0 {
+            format_up = "W: (%quality at %essid) %ip"
+            format_down = "W: down"
+    }
+    
+    ethernet eth0 {
+            # if you use %speed, i3status requires root privileges
+            format_up = "E: %ip (%speed)"
+            format_down = "E: down"
+    }
+    
+    battery 0 { 
+            format = "%status %percentage %remaining"
+    }
+    
+    run_watch DHCP {
+            pidfile = "/var/run/dhclient*.pid"
+    }
+    
+    run_watch VPN {
+            pidfile = "/sys/class/net/tun0/dev_id"
+    }
+    
+    run_watch Anyconnect {
+            pidfile = "/var/run/vpnagentd.pid"
+            }   
+    
+    tztime local {
+            format = "%Y-%m-%d %H:%M:%S"
+    }
+    
+    load {
+            format = "%1min"
+    }
+    
+    disk "/" {
+            format = "%avail"
+    }
+
+</description><pubDate>Tue, 14 Jul 2015 10:38:26 +0000</pubDate><guid>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?answer=6292#post-id-6292</guid></item><item><title>Answer by i3convert for &lt;p&gt;I use openvpn to connect to one provider and openconnect to another provider.  In i3status I'd like to check if either path exists but I'm not sure how.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+path_exists VPN {
+        path = "/proc/sys/net/ipv4/conf/{vpn,tun}0"
+}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work and only one path statement will work.  Seems I can only make the VPN check one path.  Can I check if either path exists and give a YES/NO display in the status bar?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?answer=5588#post-id-5588</link><description>A somewhat ugly solution is to create a script that checks from time to time if either of the files exists and then creates some other file (say, &lt;code&gt;/home/username/.i3/vpn&lt;/code&gt;). You then check if this other file exists. I'm attaching a Bash script that does this.
+
+    #!/bin/bash
+    MYFILE=/home/username/.i3/vpn
+    while true
+    do
+        if [[ -e /proc/sys/net/ipv4/conf/vpn0 || -e /proc/sys/net/ipv4/conf/tun0 ]]
+        then
+            touch $MYFILE # this creates $MYFILE
+        else
+            rm -f $MYFILE # this deletes $MYFILE
+        fi
+        sleep 1 # check every second, modify to run the check at other intervals
+    done
+
+Now you have to start the script automatically, which can be achieved by adding this line to the config &lt;code&gt;exec --no-startup-id /home/username/.i3/checkVPN.sh&lt;/code&gt;, where &lt;code&gt;/home/username/.i3/checkVPN.sh&lt;/code&gt; is the script.
+</description><pubDate>Mon, 09 Mar 2015 05:16:51 +0000</pubDate><guid>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?answer=5588#post-id-5588</guid></item><item><title>Comment by biocyberman for &lt;p&gt;A somewhat ugly solution is to create a script that checks from time to time if either of the files exists and then creates some other file (say, &lt;code&gt;/home/username/.i3/vpn&lt;/code&gt;). You then check if this other file exists. I'm attaching a Bash script that does this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+MYFILE=/home/username/.i3/vpn
+while true
+do
+    if [[ -e /proc/sys/net/ipv4/conf/vpn0 || -e /proc/sys/net/ipv4/conf/tun0 ]]
+    then
+        touch $MYFILE # this creates $MYFILE
+    else
+        rm -f $MYFILE # this deletes $MYFILE
+    fi
+    sleep 1 # check every second, modify to run the check at other intervals
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you have to start the script automatically, which can be achieved by adding this line to the config &lt;code&gt;exec --no-startup-id /home/username/.i3/checkVPN.sh&lt;/code&gt;, where &lt;code&gt;/home/username/.i3/checkVPN.sh&lt;/code&gt; is the script.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?comment=6291#comment-6291</link><description>Since i3status does the regular checking, you do not need to do the interval checking yourself. In a different approach, I prefer to have two unambiguous separate VPN status reports. I will post the solution in the answer because of limit for number of characters in comments.</description><pubDate>Tue, 14 Jul 2015 10:29:28 +0000</pubDate><guid>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?comment=6291#comment-6291</guid></item><item><title>Answer by joepd for &lt;p&gt;I use openvpn to connect to one provider and openconnect to another provider.  In i3status I'd like to check if either path exists but I'm not sure how.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+path_exists VPN {
+        path = "/proc/sys/net/ipv4/conf/{vpn,tun}0"
+}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work and only one path statement will work.  Seems I can only make the VPN check one path.  Can I check if either path exists and give a YES/NO display in the status bar?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?answer=5587#post-id-5587</link><description>Openvpn has an option "writepid /path/to/file", traditionally that would be a file under /var/run. You can point i3status to examine the existence of that file. 
+</description><pubDate>Sun, 08 Mar 2015 00:00:04 +0000</pubDate><guid>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?answer=5587#post-id-5587</guid></item><item><title>Comment by robin108@gmail.com for &lt;p&gt;Openvpn has an option "writepid /path/to/file", traditionally that would be a file under /var/run. You can point i3status to examine the existence of that file. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?comment=5614#comment-5614</link><description>both vpn clients have an option to write to a common pid file.  Nice simple solution, thank you!</description><pubDate>Sat, 14 Mar 2015 19:02:23 +0000</pubDate><guid>https://faq.i3wm.org/question/5579/how-can-i-check-if-either-of-2-paths-exist-in-vpn-check/?comment=5614#comment-5614</guid></item></channel></rss>

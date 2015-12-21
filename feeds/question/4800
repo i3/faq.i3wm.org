@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4800/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 21 Oct 2014 21:23:04 +0000</lastBuildDate><item><title>Set a border around i3bar</title><link>https://faq.i3wm.org/question/4800/set-a-border-around-i3bar/</link><description>How do I set up a 1px border around i3bar?
+
+Thanks</description><pubDate>Sun, 19 Oct 2014 01:16:32 +0000</pubDate><guid>https://faq.i3wm.org/question/4800/set-a-border-around-i3bar/</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;How do I set up a 1px border around i3bar?&lt;/p&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4800/set-a-border-around-i3bar/?answer=4802#post-id-4802</link><description>Short answer: This is not possible without hacking the source code.
+
+Long answer: If you're looking to add a colored border around i3bar, you'd have to add new code to the existing code base. I haven't bothered looking into this myself. However, if what you're looking for is to add a 1px border *of the same color as the bar*, to serve as padding around the status line and workspace list, this is already done by i3bar. The height is set according to (font size) + 6 logical pixels. In `&lt;i3 source root&gt;/i3bar/src/xcb.c`:
+
+    1115 void init_xcb_late(char *fontname) {
+    1116     if (fontname == NULL)
+    1117         fontname = "-misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1";
+    1118
+    1119     /* Load the font */
+    1120     font = load_font(fontname, true);
+    1121     set_font(&amp;font);
+    1122     DLOG("Calculated Font-height: %d\n", font.height);
+    ---------------------------------------------------------------------------------
+    1123     bar_height = font.height + logical_px(6); &lt;----THIS SETS THE BAR SIZE
+    ---------------------------------------------------------------------------------
+    1124
+    1125     xcb_flush(xcb_connection);
+    1126
+    1127     if (config.hide_on_modifier == M_HIDE)
+    1128         register_xkb_keyevents();
+    1129 }
+
+If you're willing to build i3 (or at least i3bar) from source, you can play around with that setting to tweak it to your liking.</description><pubDate>Sun, 19 Oct 2014 05:17:54 +0000</pubDate><guid>https://faq.i3wm.org/question/4800/set-a-border-around-i3bar/?answer=4802#post-id-4802</guid></item><item><title>Comment by jr88er for &lt;p&gt;Short answer: This is not possible without hacking the source code.&lt;/p&gt;
+
+&lt;p&gt;Long answer: If you're looking to add a colored border around i3bar, you'd have to add new code to the existing code base. I haven't bothered looking into this myself. However, if what you're looking for is to add a 1px border &lt;em&gt;of the same color as the bar&lt;/em&gt;, to serve as padding around the status line and workspace list, this is already done by i3bar. The height is set according to (font size) + 6 logical pixels. In &lt;code&gt;&amp;lt;i3 source root&amp;gt;/i3bar/src/xcb.c&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1115 void init_xcb_late(char *fontname) {
+1116     if (fontname == NULL)
+1117         fontname = "-misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1";
+1118
+1119     /* Load the font */
+1120     font = load_font(fontname, true);
+1121     set_font(&amp;amp;font);
+1122     DLOG("Calculated Font-height: %d\n", font.height);
+---------------------------------------------------------------------------------
+1123     bar_height = font.height + logical_px(6); &amp;lt;----THIS SETS THE BAR SIZE
+---------------------------------------------------------------------------------
+1124
+1125     xcb_flush(xcb_connection);
+1126
+1127     if (config.hide_on_modifier == M_HIDE)
+1128         register_xkb_keyevents();
+1129 }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you're willing to build i3 (or at least i3bar) from source, you can play around with that setting to tweak it to your liking.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4800/set-a-border-around-i3bar/?comment=4823#comment-4823</link><description>Thank you for the answers, very helpful of you.</description><pubDate>Tue, 21 Oct 2014 21:23:04 +0000</pubDate><guid>https://faq.i3wm.org/question/4800/set-a-border-around-i3bar/?comment=4823#comment-4823</guid></item></channel></rss>

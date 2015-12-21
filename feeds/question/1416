@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1416/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 23 Apr 2013 11:06:23 +0000</lastBuildDate><item><title>Keyboard layout change problem</title><link>https://faq.i3wm.org/question/1416/keyboard-layout-change-problem/</link><description>I can not toggle keyboard layout English-Greek.
+I have tried in xinitrc
+
+    setxkbmap -option grp:switch,grp:alt_shift_toggle us,el
+
+it works only with left alt_shift, both directions us&gt;gr, gr&gt;us, but breaks right Alt shortcuts
+
+    setxkbmap -option grp:switch,grp:lalt_shift_toggle,grp_led:scroll us,gr
+does not work and breaks right Alt shortcuts
+
+    setxkbmap -option grp:switch,grp:Super_L_shift_toggle,grp_led:scroll us,gr
+
+does not work and breaks right Alt shortcuts
+My mod is Mod1
+So now I am doing it from console with setxkbmap us/gr
+Any solution?
+Thank you</description><pubDate>Fri, 15 Mar 2013 17:44:34 +0000</pubDate><guid>https://faq.i3wm.org/question/1416/keyboard-layout-change-problem/</guid></item><item><title>Answer by archer-ka for &lt;p&gt;I can not toggle keyboard layout English-Greek.
+I have tried in xinitrc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setxkbmap -option grp:switch,grp:alt_shift_toggle us,el
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;it works only with left alt_shift, both directions us&amp;gt;gr, gr&amp;gt;us, but breaks right Alt shortcuts&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setxkbmap -option grp:switch,grp:lalt_shift_toggle,grp_led:scroll us,gr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;does not work and breaks right Alt shortcuts&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setxkbmap -option grp:switch,grp:Super_L_shift_toggle,grp_led:scroll us,gr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;does not work and breaks right Alt shortcuts
+My mod is Mod1
+So now I am doing it from console with setxkbmap us/gr
+Any solution?
+Thank you&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1416/keyboard-layout-change-problem/?answer=1689#post-id-1689</link><description>
+Try to add these lines to your /etc/X11/xorg.conf and you don't need to use "setxkbmap"
+
+    Section "InputClass"
+              Identifier "keyboard-all"
+              Driver "evdev"
+              Option "XkbLayout"    "us,gr"
+              Option "XkbOptions"   "grp:alt_shift_toggle,grp_led:scroll"
+              MatchIsKeyboard "on"
+    EndSection</description><pubDate>Tue, 23 Apr 2013 11:06:23 +0000</pubDate><guid>https://faq.i3wm.org/question/1416/keyboard-layout-change-problem/?answer=1689#post-id-1689</guid></item><item><title>Answer by matma6 for &lt;p&gt;I can not toggle keyboard layout English-Greek.
+I have tried in xinitrc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setxkbmap -option grp:switch,grp:alt_shift_toggle us,el
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;it works only with left alt_shift, both directions us&amp;gt;gr, gr&amp;gt;us, but breaks right Alt shortcuts&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setxkbmap -option grp:switch,grp:lalt_shift_toggle,grp_led:scroll us,gr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;does not work and breaks right Alt shortcuts&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setxkbmap -option grp:switch,grp:Super_L_shift_toggle,grp_led:scroll us,gr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;does not work and breaks right Alt shortcuts
+My mod is Mod1
+So now I am doing it from console with setxkbmap us/gr
+Any solution?
+Thank you&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1416/keyboard-layout-change-problem/?answer=1686#post-id-1686</link><description>I do it that way:
+
+    bindsym Ctrl+Shift+1 exec --no-startup-id setxkbmap us -variant colemak
+    bindsym Ctrl+Shift+2 exec --no-startup-id setxkbmap pl
+
+</description><pubDate>Mon, 22 Apr 2013 18:07:08 +0000</pubDate><guid>https://faq.i3wm.org/question/1416/keyboard-layout-change-problem/?answer=1686#post-id-1686</guid></item></channel></rss>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5822/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 26 Apr 2015 16:55:40 +0000</lastBuildDate><item><title>Different keyboard layot for every window</title><link>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/</link><description>Hello!
+&lt;br&gt;
+I'm new in i3 and I really love it more than other WMs.
+But I have an issue, which can be easy solved in other "gui" WMs: I want my change keyboard layout(from ru to us) keys switch layout only in active window, but not all X.
+&lt;br&gt;
+For example: I have terminal and chat. I type english in terminal, than switch to chat and have russian layout there(saved from previous typing)
+I've tried to google this issue, but failed. To be honest, i don't know which keywords should I use?</description><pubDate>Sat, 18 Apr 2015 13:07:26 +0000</pubDate><guid>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/</guid></item><item><title>Comment by i3convert for &lt;p&gt;Hello!
+&lt;br/&gt;
+I'm new in i3 and I really love it more than other WMs.
+But I have an issue, which can be easy solved in other "gui" WMs: I want my change keyboard layout(from ru to us) keys switch layout only in active window, but not all X.
+&lt;br/&gt;
+For example: I have terminal and chat. I type english in terminal, than switch to chat and have russian layout there(saved from previous typing)
+I've tried to google this issue, but failed. To be honest, i don't know which keywords should I use?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?comment=5835#comment-5835</link><description>This is probably doable, but might require quite a bit of work. You could write a script that keeps an assignment of layouts to windows, listens to [i3events](https://i3wm.org/docs/ipc.html#_events), and whenever a different windows receives focus, it changes the layout the the appropriate one.</description><pubDate>Mon, 20 Apr 2015 06:02:34 +0000</pubDate><guid>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?comment=5835#comment-5835</guid></item><item><title>Answer by gurkensalat for &lt;p&gt;Hello!
+&lt;br/&gt;
+I'm new in i3 and I really love it more than other WMs.
+But I have an issue, which can be easy solved in other "gui" WMs: I want my change keyboard layout(from ru to us) keys switch layout only in active window, but not all X.
+&lt;br/&gt;
+For example: I have terminal and chat. I type english in terminal, than switch to chat and have russian layout there(saved from previous typing)
+I've tried to google this issue, but failed. To be honest, i don't know which keywords should I use?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?answer=5887#post-id-5887</link><description>As i3convert commented already, you could try this approach; depending on your chat program you need to adjust the class name.
+This uses the [i3subscribe script](https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?answer=5722#post-id-5722) which I made available some weeks ago:
+
+    #!/bin/bash
+    i3subscribe window | grep window:focus | \
+    while read -r line; do
+    	id="$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
+    	case "$(xprop -id "$id" WM_CLASS | cut -d\" -f4)" in
+    		Firefox)		kb=de ;;
+    		ChatProgram)	kb=ru ;;
+    		*)				kb=us ;;
+    	esac
+    	setxkbmap "$kb"
+    done
+Save, make the script executable and put it into the startup-applications.</description><pubDate>Fri, 24 Apr 2015 00:05:30 +0000</pubDate><guid>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?answer=5887#post-id-5887</guid></item><item><title>Comment by KirillTim for &lt;p&gt;As i3convert commented already, you could try this approach; depending on your chat program you need to adjust the class name.
+This uses the &lt;a href="https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?answer=5722#post-id-5722"&gt;i3subscribe script&lt;/a&gt; which I made available some weeks ago:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+i3subscribe window | grep window:focus | \
+while read -r line; do
+    id="$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
+    case "$(xprop -id "$id" WM_CLASS | cut -d\" -f4)" in
+        Firefox)        kb=de ;;
+        ChatProgram)    kb=ru ;;
+        *)              kb=us ;;
+    esac
+    setxkbmap "$kb"
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save, make the script executable and put it into the startup-applications.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?comment=5898#comment-5898</link><description>Link is valid, but "Not Found" is only what i can see on that page</description><pubDate>Sun, 26 Apr 2015 08:03:34 +0000</pubDate><guid>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?comment=5898#comment-5898</guid></item><item><title>Comment by gurkensalat for &lt;p&gt;As i3convert commented already, you could try this approach; depending on your chat program you need to adjust the class name.
+This uses the &lt;a href="https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?answer=5722#post-id-5722"&gt;i3subscribe script&lt;/a&gt; which I made available some weeks ago:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+i3subscribe window | grep window:focus | \
+while read -r line; do
+    id="$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
+    case "$(xprop -id "$id" WM_CLASS | cut -d\" -f4)" in
+        Firefox)        kb=de ;;
+        ChatProgram)    kb=ru ;;
+        *)              kb=us ;;
+    esac
+    setxkbmap "$kb"
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save, make the script executable and put it into the startup-applications.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?comment=5892#comment-5892</link><description>My post seems to have been edited incorrectly by someone, the link is now valid...</description><pubDate>Fri, 24 Apr 2015 23:01:32 +0000</pubDate><guid>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?comment=5892#comment-5892</guid></item><item><title>Comment by KirillTim for &lt;p&gt;As i3convert commented already, you could try this approach; depending on your chat program you need to adjust the class name.
+This uses the &lt;a href="https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?answer=5722#post-id-5722"&gt;i3subscribe script&lt;/a&gt; which I made available some weeks ago:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+i3subscribe window | grep window:focus | \
+while read -r line; do
+    id="$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
+    case "$(xprop -id "$id" WM_CLASS | cut -d\" -f4)" in
+        Firefox)        kb=de ;;
+        ChatProgram)    kb=ru ;;
+        *)              kb=us ;;
+    esac
+    setxkbmap "$kb"
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save, make the script executable and put it into the startup-applications.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?comment=5891#comment-5891</link><description>Invalid link to i3subscribe script. I even can't google it. Could you, please post that script here for me.</description><pubDate>Fri, 24 Apr 2015 09:23:06 +0000</pubDate><guid>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?comment=5891#comment-5891</guid></item><item><title>Comment by gurkensalat for &lt;p&gt;As i3convert commented already, you could try this approach; depending on your chat program you need to adjust the class name.
+This uses the &lt;a href="https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?answer=5722#post-id-5722"&gt;i3subscribe script&lt;/a&gt; which I made available some weeks ago:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+i3subscribe window | grep window:focus | \
+while read -r line; do
+    id="$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
+    case "$(xprop -id "$id" WM_CLASS | cut -d\" -f4)" in
+        Firefox)        kb=de ;;
+        ChatProgram)    kb=ru ;;
+        *)              kb=us ;;
+    esac
+    setxkbmap "$kb"
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save, make the script executable and put it into the startup-applications.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?comment=5902#comment-5902</link><description>didnt notice that one, updated:)</description><pubDate>Sun, 26 Apr 2015 16:55:40 +0000</pubDate><guid>https://faq.i3wm.org/question/5822/different-keyboard-layot-for-every-window/?comment=5902#comment-5902</guid></item></channel></rss>

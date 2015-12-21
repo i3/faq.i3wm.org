@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3813/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 16 May 2014 07:58:56 +0000</lastBuildDate><item><title>Error when renaming workspaces</title><link>https://faq.i3wm.org/question/3813/error-when-renaming-workspaces/</link><description>I've just installed i3 and I'm currently trying to rename the default workspaces. I don't understand why I have this error:
+
+&gt; ERROR: CONFIG: Line 154: rename workspace 1 to "1: Coding"
+
+&gt; ERROR: CONFIG:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+&gt; ERROR: FYI: You are using i3 version 4.7.2 (2014-01-23, branch "tags/4.7.2")
+
+</description><pubDate>Wed, 14 May 2014 15:12:44 +0000</pubDate><guid>https://faq.i3wm.org/question/3813/error-when-renaming-workspaces/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I've just installed i3 and I'm currently trying to rename the default workspaces. I don't understand why I have this error:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ERROR: CONFIG: Line 154: rename workspace 1 to "1: Coding"&lt;/p&gt;
+  
+  &lt;p&gt;ERROR: CONFIG:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&lt;/p&gt;
+  
+  &lt;p&gt;ERROR: FYI: You are using i3 version 4.7.2 (2014-01-23, branch "tags/4.7.2")&lt;/p&gt;
+&lt;/blockquote&gt;
+ </title><link>https://faq.i3wm.org/question/3813/error-when-renaming-workspaces/?answer=3828#post-id-3828</link><description>`rename` is a command, not a configuration option. As such it can only be bound to a key (`bindkey` or `bindsym`) or called with the i3-IPC (for example `i3-msg`) while i3 is already running.
+
+If you want your workspace `1` to be named `1: Coding` instead, you just have to modify the keybinding for it. 
+
+    bindsym $mod+1 workspace 1: Coding
+
+i3 will take the names of workspaces from these bindings.</description><pubDate>Fri, 16 May 2014 07:58:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3813/error-when-renaming-workspaces/?answer=3828#post-id-3828</guid></item></channel></rss>

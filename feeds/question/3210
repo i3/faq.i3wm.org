@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3210/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 19 Apr 2015 16:21:20 +0000</lastBuildDate><item><title>Ubuntu 13.10 (Gnome 3.8) and i3wm - Media Keys (Brightness, Volume, ...)</title><link>https://faq.i3wm.org/question/3210/ubuntu-1310-gnome-38-and-i3wm-media-keys-brightness-volume/</link><description>Hi,
+
+to get my laptop media keys working under i3 I added the following to my *~/.i3/config*:
+
+    exec --no-startup-id gnome-settings-daemon
+
+After updating to Ubuntu 13.10 the media keys no longer work under i3 (they still work in Gnome/Unity). How can I get them back working with i3?
+
+Regards</description><pubDate>Sun, 12 Jan 2014 14:42:00 +0000</pubDate><guid>https://faq.i3wm.org/question/3210/ubuntu-1310-gnome-38-and-i3wm-media-keys-brightness-volume/</guid></item><item><title>Comment by Lindhe for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;to get my laptop media keys working under i3 I added the following to my &lt;em&gt;~/.i3/config&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id gnome-settings-daemon
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After updating to Ubuntu 13.10 the media keys no longer work under i3 (they still work in Gnome/Unity). How can I get them back working with i3?&lt;/p&gt;
+
+&lt;p&gt;Regards&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3210/ubuntu-1310-gnome-38-and-i3wm-media-keys-brightness-volume/?comment=5829#comment-5829</link><description>Is it customary to startup the gnome-settings-daemon (or some other settings daemon) like this to take care of many "small" problems like media keys, audio etc?</description><pubDate>Sun, 19 Apr 2015 16:21:20 +0000</pubDate><guid>https://faq.i3wm.org/question/3210/ubuntu-1310-gnome-38-and-i3wm-media-keys-brightness-volume/?comment=5829#comment-5829</guid></item><item><title>Answer by foofoobar for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;to get my laptop media keys working under i3 I added the following to my &lt;em&gt;~/.i3/config&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id gnome-settings-daemon
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After updating to Ubuntu 13.10 the media keys no longer work under i3 (they still work in Gnome/Unity). How can I get them back working with i3?&lt;/p&gt;
+
+&lt;p&gt;Regards&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3210/ubuntu-1310-gnome-38-and-i3wm-media-keys-brightness-volume/?answer=3211#post-id-3211</link><description>I solved it by myself. The problem is that media key handling was moved from *gnome-settings-daemon* to *gnome-shell*.
+However this feature was added back to *gnome-settings-daemon* in the Ubuntu Trusty Repository which can be installed via PPA ([https://launchpad.net/~ezyang/+archive/ppa](https://launchpad.net/~ezyang/+archive/ppa)):
+
+    sudo apt-add-repository ppa:ezyang/ppa
+    sudo apt-get update
+    sudo apt-get upgrade
+
+Best Regards</description><pubDate>Sun, 12 Jan 2014 14:43:59 +0000</pubDate><guid>https://faq.i3wm.org/question/3210/ubuntu-1310-gnome-38-and-i3wm-media-keys-brightness-volume/?answer=3211#post-id-3211</guid></item></channel></rss>

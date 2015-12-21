@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2581/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 25 Sep 2013 17:47:01 +0000</lastBuildDate><item><title>command chaining in i3-input?</title><link>https://faq.i3wm.org/question/2581/command-chaining-in-i3-input/</link><description>I want to bind a key to query for input and perform a "complex" action based on that.
+Specifically, I want to both mark a window with a user-specified name AND send it to the scratchpad.
+
+I tried both of the following options, and both did not work as intended:
+
+
+    bindsym $mod+Shift+minus exec --no-startup-id i3-input -P 'Mark window as:' -F "mark %s"; move to scratchpad
+
+The problem with the above is that it sends the focused window the the scratchpad, and then marks the *remaining*, newly-focused window with the provided name.  For some reason it does not wait for i3-input to return prior to performing the next action in the chain
+
+I also tried:
+
+        
+    bindsym $mod+Shift+minus exec --no-startup-id i3-input  -P 'Mark window as:' -F "mark %s; move to scratchpad"
+
+Here i3 does not parse the line well, as it is confused by the ; inside the quotes.
+
+Any tips on how to resolve this?
+
+</description><pubDate>Wed, 25 Sep 2013 17:36:27 +0000</pubDate><guid>https://faq.i3wm.org/question/2581/command-chaining-in-i3-input/</guid></item><item><title>Answer by Michael for &lt;p&gt;I want to bind a key to query for input and perform a "complex" action based on that.
+Specifically, I want to both mark a window with a user-specified name AND send it to the scratchpad.&lt;/p&gt;
+
+&lt;p&gt;I tried both of the following options, and both did not work as intended:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+minus exec --no-startup-id i3-input -P 'Mark window as:' -F "mark %s"; move to scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem with the above is that it sends the focused window the the scratchpad, and then marks the &lt;em&gt;remaining&lt;/em&gt;, newly-focused window with the provided name.  For some reason it does not wait for i3-input to return prior to performing the next action in the chain&lt;/p&gt;
+
+&lt;p&gt;I also tried:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+minus exec --no-startup-id i3-input  -P 'Mark window as:' -F "mark %s; move to scratchpad"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here i3 does not parse the line well, as it is confused by the ; inside the quotes.&lt;/p&gt;
+
+&lt;p&gt;Any tips on how to resolve this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2581/command-chaining-in-i3-input/?answer=2582#post-id-2582</link><description>You need to quote the exec argument so that the parser skips the semicolon:
+
+    bindsym $mod+Shift+minus exec --no-startup-id "i3-input -P 'Mark window as:' -F 'mark %s; move to scratchpad'"
+</description><pubDate>Wed, 25 Sep 2013 17:42:31 +0000</pubDate><guid>https://faq.i3wm.org/question/2581/command-chaining-in-i3-input/?answer=2582#post-id-2582</guid></item><item><title>Comment by yoav for &lt;p&gt;You need to quote the exec argument so that the parser skips the semicolon:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+minus exec --no-startup-id "i3-input -P 'Mark window as:' -F 'mark %s; move to scratchpad'"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2581/command-chaining-in-i3-input/?comment=2583#comment-2583</link><description>Great, thanks, working perfectly now!  (and also thanks for this really cool wm!)</description><pubDate>Wed, 25 Sep 2013 17:47:01 +0000</pubDate><guid>https://faq.i3wm.org/question/2581/command-chaining-in-i3-input/?comment=2583#comment-2583</guid></item></channel></rss>

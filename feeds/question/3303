@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3303/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 23 Jan 2014 23:21:52 +0000</lastBuildDate><item><title>Mouse not changing focus to application or workspace after system update</title><link>https://faq.i3wm.org/question/3303/mouse-not-changing-focus-to-application-or-workspace-after-system-update/</link><description>Hello,
+
+Yesterday I did an update on my Arch Linux and this broke i3. Now, whenever I move the mouse over to a different application or even to another workspace, the focus doesn't change. However, if I reload i3 (mod+Shift+r), it goes back to normal for a few seconds, and then stops working. Changing focus with the keyboard works as expected. Below is Pacman's log.
+
+Any help is appreciated. Thank you.
+
+    [2014-01-21 15:44] [PACMAN] Running 'pacman -Syu'
+    [2014-01-21 15:44] [PACMAN] synchronizing package lists
+    [2014-01-21 15:44] [PACMAN] starting full system upgrade
+    [2014-01-21 15:47] [PACMAN] upgraded cogl (1.16.0-3 -&gt; 1.16.2-1)
+    [2014-01-21 15:47] [PACMAN] upgraded device-mapper (2.02.104-1 -&gt; 2.02.105-1)
+    [2014-01-21 15:47] [PACMAN] upgraded iw (3.11-1 -&gt; 3.13-1)
+    [2014-01-21 15:47] [PACMAN] upgraded libgcrypt (1.6.0-1 -&gt; 1.6.0-2)
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] &gt;&gt;&gt; Updating module dependencies. Please wait ...
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] &gt;&gt;&gt; Generating initial ramdisk, using mkinitcpio.  Please wait...
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; Building image from preset: /etc/mkinitcpio.d/linux.preset: 'default'
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; Starting build: 3.12.8-1-ARCH
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [base]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [udev]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [autodetect]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [modconf]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [block]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [filesystems]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [keyboard]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [fsck]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; Generating module dependencies
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; Creating gzip initcpio image: /boot/initramfs-linux.img
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; Image generation successful
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; Building image from preset: /etc/mkinitcpio.d/linux.preset: 'fallback'
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-fallback.img -S autodetect
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; Starting build: 3.12.8-1-ARCH
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [base]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [udev]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [modconf]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [block]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; WARNING: Possibly missing firmware for module: aic94xx
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; WARNING: Possibly missing firmware for module: smsmdtv
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [filesystems]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [keyboard]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET]   -&gt; Running build hook: [fsck]
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; Generating module dependencies
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; Creating gzip initcpio image: /boot/initramfs-linux-fallback.img
+    [2014-01-21 15:47] [ALPM-SCRIPTLET] ==&gt; Image generation successful
+    [2014-01-21 15:47] [PACMAN] upgraded linux (3.12.7-2 -&gt; 3.12.8-1)
+    [2014-01-21 15:47] [PACMAN] upgraded linux-headers (3.12.7-2 -&gt; 3.12.8-1)
+    [2014-01-21 15:47] [PACMAN] upgraded lirc-utils (1:0.9.0-68 -&gt; 1:0.9.0-69)
+    [2014-01-21 15:47] [PACMAN] upgraded lvm2 (2.02.104-1 -&gt; 2.02.105-1)
+    [2014-01-21 15:47] [PACMAN] upgraded python-dbus-common (1.2.0-1 -&gt; 1.2.0-2)
+    [2014-01-21 15:47] [PACMAN] upgraded python2-dbus (1.2.0-1 -&gt; 1.2.0-2)
+    [2014-01-21 15:47] [PACMAN] upgraded xdg-utils (1.1.0.git20130520-1 -&gt; 1.1.0.git20140109-1)
+    [2014-01-21 15:47] [PACMAN] upgraded xterm (300-1 -&gt; 301-1)
+    [2014-01-21 16:41] [PACMAN] Running 'pacman -S nightingale-git'
+    [2014-01-21 16:43] [PACMAN] Running '/usr/bin/pacman -S --asdeps libidl2'
+    [2014-01-21 16:43] [PACMAN] installed libidl2 (0.8.14-3)
+    [2014-01-21 17:13] [PACMAN] Running 'pacman -U nightingale-git-c162124-2-x86_64.pkg.tar.xz'
+    [2014-01-21 17:13] [PACMAN] installed nightingale-git (c162124-2)
+    [2014-01-21 17:14] [PACMAN] Running 'pacman -U nightingale-git-c162124-2-x86_64.pkg.tar.xz'
+    [2014-01-21 17:14] [PACMAN] reinstalled nightingale-git (c162124-2)
+    [2014-01-21 17:16] [PACMAN] Running 'pacman -U nightingale-git-c162124-2-x86_64.pkg.tar.xz'
+    [2014-01-21 17:16] [PACMAN] reinstalled nightingale-git (c162124-2)
+    [2014-01-21 17:48] [PACMAN] Running 'pacman -U nightingale-git-c162124-2-x86_64.pkg.tar.xz'
+    [2014-01-21 17:48] [PACMAN] reinstalled nightingale-git (c162124-2)
+    [2014-01-21 20:38] [PACMAN] Running 'pacman -Syu'
+    [2014-01-21 20:38] [PACMAN] synchronizing package lists
+    [2014-01-21 20:39] [PACMAN] starting full system upgrade
+    [2014-01-21 20:39] [PACMAN] upgraded i3-wm (4.7-1 -&gt; 4.7.1-1)
+    [2014-01-21 20:39] [PACMAN] upgraded libdrm (2.4.51-1 -&gt; 2.4.52-1)
+    [2014-01-21 20:39] [PACMAN] upgraded lib32-libdrm (2.4.51-1 -&gt; 2.4.52-1)
+    [2014-01-21 21:23] [PACMAN] Running 'pacman -Rs nightingale-git'
+    [2014-01-21 21:23] [PACMAN] removed nightingale-git (c162124-2)
+    [2014-01-21 22:45] [PACMAN] Running 'pacman -S mplayer'
+    [2014-01-21 22:45] [PACMAN] reinstalled mplayer (36498-5)
+    [2014-01-21 22:49] [PACMAN] Running 'pacman -S gstreamer'
+    [2014-01-21 22:50] [PACMAN] Running 'pacman -S gstreamer0.10'
+    [2014-01-21 22:51] [PACMAN] Running 'pacman -S gstreamer0.10-good-plugins'
+    [2014-01-21 22:51] [PACMAN] Running 'pacman -S gstreamer0.10-base-plugins'
+    [2014-01-21 22:51] [PACMAN] reinstalled gstreamer0.10-base-plugins (0.10.36-2)
+    [2014-01-21 22:51] [PACMAN] Running 'pacman -S gstreamer0.10-good-plugins'
+    [2014-01-21 22:51] [PACMAN] installed gstreamer0.10-good (0.10.31-4)
+    [2014-01-21 22:51] [PACMAN] installed gstreamer0.10-good-plugins (0.10.31-4)
+    [2014-01-21 22:52] [PACMAN] Running 'pacman -Rs gstreamer0.10-good-plugins'
+    [2014-01-21 22:52] [PACMAN] removed gstreamer0.10-good-plugins (0.10.31-4)
+    [2014-01-21 22:52] [PACMAN] removed gstreamer0.10-good (0.10.31-4)
+    [2014-01-22 13:16] [PACMAN] Running 'pacman -S gstreamer'
+    [2014-01-22 13:16] [PACMAN] reinstalled gstreamer (1.2.2-1)
+    [2014-01-22 13:17] [PACMAN] Running 'pacman -S phonon-gstreamer'</description><pubDate>Wed, 22 Jan 2014 16:23:52 +0000</pubDate><guid>https://faq.i3wm.org/question/3303/mouse-not-changing-focus-to-application-or-workspace-after-system-update/</guid></item><item><title>Comment by Adaephon for &lt;div class="snippet"&gt;&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;Yesterday I did an update on my Arch Linux and this broke i3. Now, whenever I move the mouse over to a different application or even to another workspace, the focus doesn't change. However, if I reload i3 (mod+Shift+r), it goes back to normal for a few seconds, and then stops working. Changing focus with the keyboard works as expected. Below is Pacman's log.&lt;/p&gt;
+
+&lt;p&gt;Any help is appreciated. Thank you.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-01-21 15:44] [PACMAN] Running 'pacman -Syu'
+[2014-01-21 15:44] [PACMAN] synchronizing package lists
+[2014-01-21 15:44] [PACMAN] starting full system upgrade
+[2014-01-21 15:47] [PACMAN] upgraded cogl (1.16.0-3 -&amp;gt; 1.16.2-1)
+[2014-01-21 15:47] [PACMAN] upgraded device-mapper (2.02.104-1 -&amp;gt; 2.02.105-1)
+[2014-01-21 15:47] [PACMAN] upgraded iw (3.11-1 -&amp;gt; 3.13-1)
+[2014-01-21 15:47] [PACMAN] upgraded libgcrypt (1.6.0-1 -&amp;gt; 1.6.0-2)
+[2014-01-21 15:47] [ALPM-SCRIPTLET] &amp;gt;&amp;gt;&amp;gt; Updating module dependencies. Please wait ...
+[2014-01-21 15:47] [ALPM-SCRIPTLET] &amp;gt;&amp;gt;&amp;gt; Generating initial ramdisk, using mkinitcpio.  Please wait...
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Building image from preset: /etc/mkinitcpio.d/linux.preset: 'default'
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Starting build: 3.12.8-1-ARCH
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [base]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [udev]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [autodetect]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [modconf]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [block]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [filesystems]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [keyboard]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [fsck]
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Generating module dependencies
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Creating gzip initcpio image: /boot/initramfs-linux.img
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Image generation successful
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Building image from preset: /etc/mkinitcpio.d/linux.preset: 'fallback'
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-fallback.img -S autodetect
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Starting build: 3.12.8-1-ARCH
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [base]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [udev]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [modconf]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [block]
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; WARNING: Possibly missing firmware for module: aic94xx
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; WARNING: Possibly missing firmware for module: smsmdtv
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [filesystems]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [keyboard]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [fsck]
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Generating module dependencies
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Creating gzip initcpio image: /boot/initramfs-linux-fallback.img
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Image generation successful
+[2014-01-21 15:47] [PACMAN] upgraded linux (3.12.7-2 -&amp;gt; 3.12.8-1)
+[2014-01-21 15:47] [PACMAN] upgraded linux-headers (3.12.7-2 -&amp;gt; 3.12.8-1)
+[2014-01-21 15:47] [PACMAN] upgraded lirc-utils (1:0.9.0-68 -&amp;gt; 1:0.9.0-69)
+[2014-01-21 15:47] [PACMAN] upgraded lvm2 (2.02.104-1 -&amp;gt; 2.02.105-1)
+[2014-01-21 15:47] [PACMAN] upgraded python-dbus-common (1.2.0-1 -&amp;gt; 1.2.0-2)
+[2014-01-21 15:47] [PACMAN] upgraded ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/3303/mouse-not-changing-focus-to-application-or-workspace-after-system-update/?comment=3308#comment-3308</link><description>This seems to be a bug and therefore does not belong here. I'd suggest to downgrade i3-wm to 4.7-1 and see if problem persists. You may notify the package maintainer for Arch and/or [post a bug report](http://newticket.i3wm.org/). The [i3 log](http://i3wm.org/docs/debugging.html) may help with that.</description><pubDate>Wed, 22 Jan 2014 23:55:17 +0000</pubDate><guid>https://faq.i3wm.org/question/3303/mouse-not-changing-focus-to-application-or-workspace-after-system-update/?comment=3308#comment-3308</guid></item><item><title>Comment by joepd for &lt;div class="snippet"&gt;&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;Yesterday I did an update on my Arch Linux and this broke i3. Now, whenever I move the mouse over to a different application or even to another workspace, the focus doesn't change. However, if I reload i3 (mod+Shift+r), it goes back to normal for a few seconds, and then stops working. Changing focus with the keyboard works as expected. Below is Pacman's log.&lt;/p&gt;
+
+&lt;p&gt;Any help is appreciated. Thank you.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-01-21 15:44] [PACMAN] Running 'pacman -Syu'
+[2014-01-21 15:44] [PACMAN] synchronizing package lists
+[2014-01-21 15:44] [PACMAN] starting full system upgrade
+[2014-01-21 15:47] [PACMAN] upgraded cogl (1.16.0-3 -&amp;gt; 1.16.2-1)
+[2014-01-21 15:47] [PACMAN] upgraded device-mapper (2.02.104-1 -&amp;gt; 2.02.105-1)
+[2014-01-21 15:47] [PACMAN] upgraded iw (3.11-1 -&amp;gt; 3.13-1)
+[2014-01-21 15:47] [PACMAN] upgraded libgcrypt (1.6.0-1 -&amp;gt; 1.6.0-2)
+[2014-01-21 15:47] [ALPM-SCRIPTLET] &amp;gt;&amp;gt;&amp;gt; Updating module dependencies. Please wait ...
+[2014-01-21 15:47] [ALPM-SCRIPTLET] &amp;gt;&amp;gt;&amp;gt; Generating initial ramdisk, using mkinitcpio.  Please wait...
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Building image from preset: /etc/mkinitcpio.d/linux.preset: 'default'
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Starting build: 3.12.8-1-ARCH
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [base]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [udev]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [autodetect]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [modconf]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [block]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [filesystems]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [keyboard]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [fsck]
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Generating module dependencies
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Creating gzip initcpio image: /boot/initramfs-linux.img
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Image generation successful
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Building image from preset: /etc/mkinitcpio.d/linux.preset: 'fallback'
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-fallback.img -S autodetect
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Starting build: 3.12.8-1-ARCH
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [base]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [udev]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [modconf]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [block]
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; WARNING: Possibly missing firmware for module: aic94xx
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; WARNING: Possibly missing firmware for module: smsmdtv
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [filesystems]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [keyboard]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [fsck]
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Generating module dependencies
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Creating gzip initcpio image: /boot/initramfs-linux-fallback.img
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Image generation successful
+[2014-01-21 15:47] [PACMAN] upgraded linux (3.12.7-2 -&amp;gt; 3.12.8-1)
+[2014-01-21 15:47] [PACMAN] upgraded linux-headers (3.12.7-2 -&amp;gt; 3.12.8-1)
+[2014-01-21 15:47] [PACMAN] upgraded lirc-utils (1:0.9.0-68 -&amp;gt; 1:0.9.0-69)
+[2014-01-21 15:47] [PACMAN] upgraded lvm2 (2.02.104-1 -&amp;gt; 2.02.105-1)
+[2014-01-21 15:47] [PACMAN] upgraded python-dbus-common (1.2.0-1 -&amp;gt; 1.2.0-2)
+[2014-01-21 15:47] [PACMAN] upgraded ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/3303/mouse-not-changing-focus-to-application-or-workspace-after-system-update/?comment=3310#comment-3310</link><description>Kernel upgrade, funny behavior: You did restart your machine after the update, right? </description><pubDate>Thu, 23 Jan 2014 23:19:13 +0000</pubDate><guid>https://faq.i3wm.org/question/3303/mouse-not-changing-focus-to-application-or-workspace-after-system-update/?comment=3310#comment-3310</guid></item><item><title>Comment by iomartin for &lt;div class="snippet"&gt;&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;Yesterday I did an update on my Arch Linux and this broke i3. Now, whenever I move the mouse over to a different application or even to another workspace, the focus doesn't change. However, if I reload i3 (mod+Shift+r), it goes back to normal for a few seconds, and then stops working. Changing focus with the keyboard works as expected. Below is Pacman's log.&lt;/p&gt;
+
+&lt;p&gt;Any help is appreciated. Thank you.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2014-01-21 15:44] [PACMAN] Running 'pacman -Syu'
+[2014-01-21 15:44] [PACMAN] synchronizing package lists
+[2014-01-21 15:44] [PACMAN] starting full system upgrade
+[2014-01-21 15:47] [PACMAN] upgraded cogl (1.16.0-3 -&amp;gt; 1.16.2-1)
+[2014-01-21 15:47] [PACMAN] upgraded device-mapper (2.02.104-1 -&amp;gt; 2.02.105-1)
+[2014-01-21 15:47] [PACMAN] upgraded iw (3.11-1 -&amp;gt; 3.13-1)
+[2014-01-21 15:47] [PACMAN] upgraded libgcrypt (1.6.0-1 -&amp;gt; 1.6.0-2)
+[2014-01-21 15:47] [ALPM-SCRIPTLET] &amp;gt;&amp;gt;&amp;gt; Updating module dependencies. Please wait ...
+[2014-01-21 15:47] [ALPM-SCRIPTLET] &amp;gt;&amp;gt;&amp;gt; Generating initial ramdisk, using mkinitcpio.  Please wait...
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Building image from preset: /etc/mkinitcpio.d/linux.preset: 'default'
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Starting build: 3.12.8-1-ARCH
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [base]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [udev]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [autodetect]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [modconf]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [block]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [filesystems]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [keyboard]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [fsck]
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Generating module dependencies
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Creating gzip initcpio image: /boot/initramfs-linux.img
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Image generation successful
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Building image from preset: /etc/mkinitcpio.d/linux.preset: 'fallback'
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-fallback.img -S autodetect
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Starting build: 3.12.8-1-ARCH
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [base]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [udev]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [modconf]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [block]
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; WARNING: Possibly missing firmware for module: aic94xx
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; WARNING: Possibly missing firmware for module: smsmdtv
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [filesystems]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [keyboard]
+[2014-01-21 15:47] [ALPM-SCRIPTLET]   -&amp;gt; Running build hook: [fsck]
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Generating module dependencies
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Creating gzip initcpio image: /boot/initramfs-linux-fallback.img
+[2014-01-21 15:47] [ALPM-SCRIPTLET] ==&amp;gt; Image generation successful
+[2014-01-21 15:47] [PACMAN] upgraded linux (3.12.7-2 -&amp;gt; 3.12.8-1)
+[2014-01-21 15:47] [PACMAN] upgraded linux-headers (3.12.7-2 -&amp;gt; 3.12.8-1)
+[2014-01-21 15:47] [PACMAN] upgraded lirc-utils (1:0.9.0-68 -&amp;gt; 1:0.9.0-69)
+[2014-01-21 15:47] [PACMAN] upgraded lvm2 (2.02.104-1 -&amp;gt; 2.02.105-1)
+[2014-01-21 15:47] [PACMAN] upgraded python-dbus-common (1.2.0-1 -&amp;gt; 1.2.0-2)
+[2014-01-21 15:47] [PACMAN] upgraded ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/3303/mouse-not-changing-focus-to-application-or-workspace-after-system-update/?comment=3311#comment-3311</link><description>Yes, I restarted the machine. I was with an external monitor when I noticed this behavior, now on a single monitor this isn't happening anymore. I'll try with an external monitor tomorrow and see how it goes.</description><pubDate>Thu, 23 Jan 2014 23:21:52 +0000</pubDate><guid>https://faq.i3wm.org/question/3303/mouse-not-changing-focus-to-application-or-workspace-after-system-update/?comment=3311#comment-3311</guid></item></channel></rss>

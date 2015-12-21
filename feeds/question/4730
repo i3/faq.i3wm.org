@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4730/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 13 Oct 2014 07:41:11 +0000</lastBuildDate><item><title>Launch program floating</title><link>https://faq.i3wm.org/question/4730/launch-program-floating/</link><description>I am looking to be able to launch a program in float mode. However I also need the program to be able to not float when opened normally. 
+
+Very simliar to question: 4550, launch-in-floating-mode 
+
+(sorry for not linking, not enough karma to post links.), however I can't just match on an instance type, since I only want it to float sometimes.
+Specifically, I use sublime text to do text edits, as well as edit git commit messages. I'd like to have the git commits float (as to not disrupt my current layout).
+
+Here's the xprop output from both examples
+### commit message
+```
+_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35652881
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_NET_WM_USER_TIME(CARDINAL) = 186414856
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x2200510
+WM_CLIENT_LEADER(WINDOW): window id # 0x2200001
+_NET_WM_PID(CARDINAL) = 23978
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "archbear"
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+		program specified minimum size: 536 by 27
+		window gravity: NorthWest
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS, _NET_WM_PING, _NET_WM_SYNC_REQUEST
+WM_CLASS(STRING) = "subl3", "Subl3"
+WM_ICON_NAME(STRING) = "~/.git/COMMIT_EDITMSG - Sublime Text (UNREGISTERED)"
+_NET_WM_ICON_NAME(UTF8_STRING) = "~/.git/COMMIT_EDITMSG - Sublime Text (UNREGISTERED)"
+WM_NAME(STRING) = "~/.git/COMMIT_EDITMSG - Sublime Text (UNREGISTERED)"
+_NET_WM_NAME(UTF8_STRING) = "~/.git/COMMIT_EDITMSG - Sublime Text (UNREGISTERED)
+```
+
+### normal
+```
+_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35651905
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_NET_WM_USER_TIME(CARDINAL) = 186449524
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x2200140
+WM_CLIENT_LEADER(WINDOW): window id # 0x2200001
+_NET_WM_PID(CARDINAL) = 23978
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "archbear"
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+		program specified minimum size: 536 by 27
+		window gravity: NorthWest
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS, _NET_WM_PING, _NET_WM_SYNC_REQUEST
+WM_CLASS(STRING) = "subl3", "Subl3"
+WM_ICON_NAME(COMPOUND_TEXT) = "_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35652881 • - Sublime Text (UNREGISTERED)"
+_NET_WM_ICON_NAME(UTF8_STRING) = "_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35652881 • - Sublime Text (UNREGISTERED)"
+WM_NAME(COMPOUND_TEXT) = "_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35652881 • - Sublime Text (UNREGISTERED)"
+_NET_WM_NAME(UTF8_STRING) = "_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35652881 • - Sublime Text (UNREGISTERED)"
+```
+
+The only relevant difference I noticed was that the WM_NAME contained `COMMIT_EDITMSG`. However I'm unsure how to invoke `floating enable` on a partial name. 
+
+I also figured I might just edit the xproperties with xprop to solve my problem (and match on window_role), but, now after a few tries, I'm not even sure that's something you can reasonably do (I honestly don't have an understanding of these things).
+Running `xprop -set window_role popup` and clicking sublime caused this as output
+`xprop: error: unsupported conversion for window_role`. I'm also not entirely sure how I'd determine window Id of a newly launched window in order to alter *its* properties specifically.
+
+Anyway, I was wondering if anyone has a solution. Preferably one I could use on other applications when needed, I'm alright with making separate shell scripts altering xprops for running an app in floating mode.
+</description><pubDate>Sun, 12 Oct 2014 00:37:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4730/launch-program-floating/</guid></item><item><title>Answer by mikedmcfarland for &lt;p&gt;I am looking to be able to launch a program in float mode. However I also need the program to be able to not float when opened normally. &lt;/p&gt;
+
+&lt;p&gt;Very simliar to question: 4550, launch-in-floating-mode &lt;/p&gt;
+
+&lt;p&gt;(sorry for not linking, not enough karma to post links.), however I can't just match on an instance type, since I only want it to float sometimes.
+Specifically, I use sublime text to do text edits, as well as edit git commit messages. I'd like to have the git commits float (as to not disrupt my current layout).&lt;/p&gt;
+
+&lt;p&gt;Here's the xprop output from both examples&lt;/p&gt;
+
+&lt;h3&gt;commit message&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;
+_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35652881
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_NET_WM_USER_TIME(CARDINAL) = 186414856
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x2200510
+WM_CLIENT_LEADER(WINDOW): window id # 0x2200001
+_NET_WM_PID(CARDINAL) = 23978
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "archbear"
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        program specified minimum size: 536 by 27
+        window gravity: NorthWest
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS, _NET_WM_PING, _NET_WM_SYNC_REQUEST
+WM_CLASS(STRING) = "subl3", "Subl3"
+WM_ICON_NAME(STRING) = "~/.git/COMMIT_EDITMSG - Sublime Text (UNREGISTERED)"
+_NET_WM_ICON_NAME(UTF8_STRING) = "~/.git/COMMIT_EDITMSG - Sublime Text (UNREGISTERED)"
+WM_NAME(STRING) = "~/.git/COMMIT_EDITMSG - Sublime Text (UNREGISTERED)"
+_NET_WM_NAME(UTF8_STRING) = "~/.git/COMMIT_EDITMSG - Sublime Text (UNREGISTERED)
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3&gt;normal&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;
+_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35651905
+_NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+_NET_WM_USER_TIME(CARDINAL) = 186449524
+_NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x2200140
+WM_CLIENT_LEADER(WINDOW): window id # 0x2200001
+_NET_WM_PID(CARDINAL) = 23978
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLIENT_MACHINE(STRING) = "archbear"
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        program specified minimum size: 536 by 27
+        window gravity: NorthWest
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, WM_TAKE_FOCUS, _NET_WM_PING, _NET_WM_SYNC_REQUEST
+WM_CLASS(STRING) = "subl3", "Subl3"
+WM_ICON_NAME(COMPOUND_TEXT) = "_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35652881 • - Sublime Text (UNREGISTERED)"
+_NET_WM_ICON_NAME(UTF8_STRING) = "_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35652881 • - Sublime Text (UNREGISTERED)"
+WM_NAME(COMPOUND_TEXT) = "_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35652881 • - Sublime Text (UNREGISTERED)"
+_NET_WM_NAME(UTF8_STRING) = "_NET_WM_SYNC_REQUEST_COUNTER(CARDINAL) = 35652881 • - Sublime Text (UNREGISTERED)"
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The only relevant difference I noticed was that the WM_NAME contained &lt;code&gt;COMMIT_EDITMSG&lt;/code&gt;. However I'm unsure how to invoke &lt;code&gt;floating enable&lt;/code&gt; on a partial name. &lt;/p&gt;
+
+&lt;p&gt;I also figured I might just edit the xproperties with xprop to solve my problem (and match on window_role), but, now after a few tries, I'm not even sure that's something you can reasonably do (I honestly don't have an understanding of these things).
+Running &lt;code&gt;xprop -set window_role popup&lt;/code&gt; and clicking sublime caused this as output
+&lt;code&gt;xprop: error: unsupported conversion for window_role&lt;/code&gt;. I'm also not entirely sure how I'd determine window Id of a newly launched window in order to alter &lt;em&gt;its&lt;/em&gt; properties specifically.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I was wondering if anyone has a solution. Preferably one I could use on other applications when needed, I'm alright with making separate shell scripts altering xprops for running an app in floating mode.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4730/launch-program-floating/?answer=4734#post-id-4734</link><description>Well, I apparently suck at reading documentation. So it was fairly straightforward to enable floating on a window with a particular title. Here's what the solution could look like
+
+    #!/bin/sh
+    /usr/bin/subl3 -n -w $@
+    i3-msg '[title="COMMIT_EDITMSG"] floating enable'
+
+So, first launch subl3 with a new window (-n) and wait for file to close before exiting process (-w). Then msg i3 to have it float any windows containing the text COMMIT_EDITMSG in the title.</description><pubDate>Sun, 12 Oct 2014 02:51:09 +0000</pubDate><guid>https://faq.i3wm.org/question/4730/launch-program-floating/?answer=4734#post-id-4734</guid></item><item><title>Comment by Michael for &lt;p&gt;Well, I apparently suck at reading documentation. So it was fairly straightforward to enable floating on a window with a particular title. Here's what the solution could look like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+/usr/bin/subl3 -n -w $@
+i3-msg '[title="COMMIT_EDITMSG"] floating enable'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, first launch subl3 with a new window (-n) and wait for file to close before exiting process (-w). Then msg i3 to have it float any windows containing the text COMMIT_EDITMSG in the title.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4730/launch-program-floating/?comment=4739#comment-4739</link><description>Note that there might be a race condition here (or when adapting this to other programs): if subl3 returns _before_ it created the X11 window, i3-msg may reach i3 first and your command doesn’t match the window that gets picked up by i3 just afterwards.</description><pubDate>Mon, 13 Oct 2014 07:41:11 +0000</pubDate><guid>https://faq.i3wm.org/question/4730/launch-program-floating/?comment=4739#comment-4739</guid></item></channel></rss>

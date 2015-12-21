@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6928/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 17 Oct 2015 12:43:00 +0000</lastBuildDate><item><title>AltGr not working after upgrade to v4.11</title><link>https://faq.i3wm.org/question/6928/altgr-not-working-after-upgrade-to-v411/</link><description>I use AltGr (the right Alt key) as modifier. But after the upgrade to v.4.11 it's not working correctly anymore. Some bindings are still working like $mod+Return or $mod+Left but bindings with alphanumeric symbols like $mod+h or $mod+1 are not working anymore.
+In the change-log I read following: 
+
+&gt; Keyboard binding handling has been
+&gt; made more correct, for details see:
+&gt; [github]/i3/i3/commit/bf3cd41b5ddf1e757515ab5fbf811be56e5f69cc
+
+But I can't find a way to get AltGr work again as modifier.
+
+xmodmap -pm:
+
+    shift       Shift_L (0x32),  Shift_R (0x3e)
+    lock      
+    control     Control_L (0x25),  Control_R (0x69)
+    mod1        Alt_L (0x40),  Meta_L (0xcd)
+    mod2        Num_Lock (0x4d)
+    mod3        Escape (0x9),  Escape (0x42)
+    mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+    mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+
+.config/i3/config
+
+    set $mod Mod5
+    bindsym $mod+h focus left
+    bindsym $mod+j focus down
+    bindsym $mod+k focus up
+    bindsym $mod+l focus right</description><pubDate>Wed, 14 Oct 2015 08:23:36 +0000</pubDate><guid>https://faq.i3wm.org/question/6928/altgr-not-working-after-upgrade-to-v411/</guid></item><item><title>Comment by tigrezno for &lt;p&gt;I use AltGr (the right Alt key) as modifier. But after the upgrade to v.4.11 it's not working correctly anymore. Some bindings are still working like $mod+Return or $mod+Left but bindings with alphanumeric symbols like $mod+h or $mod+1 are not working anymore.
+In the change-log I read following: &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Keyboard binding handling has been
+  made more correct, for details see:
+  [github]/i3/i3/commit/bf3cd41b5ddf1e757515ab5fbf811be56e5f69cc&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But I can't find a way to get AltGr work again as modifier.&lt;/p&gt;
+
+&lt;p&gt;xmodmap -pm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3        Escape (0x9),  Escape (0x42)
+mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;.config/i3/config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mod Mod5
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6928/altgr-not-working-after-upgrade-to-v411/?comment=6979#comment-6979</link><description>you should open a bug report in the github page.</description><pubDate>Sat, 17 Oct 2015 12:43:00 +0000</pubDate><guid>https://faq.i3wm.org/question/6928/altgr-not-working-after-upgrade-to-v411/?comment=6979#comment-6979</guid></item></channel></rss>

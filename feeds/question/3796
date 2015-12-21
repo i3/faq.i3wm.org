@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3796/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 25 May 2014 18:19:15 +0000</lastBuildDate><item><title>nmcli: Connection activation failed: no valid VPN secrets.</title><link>https://faq.i3wm.org/question/3796/nmcli-connection-activation-failed-no-valid-vpn-secrets/</link><description>I have the following setup:
+
+    [connection]
+    id=My connection name
+    uuid=aa-bb-cc-dd
+    type=vpn
+    permissions=user:theuser:;
+
+    [vpn]
+    service-type=org.freedesktop.NetworkManager.openvpn
+    connection-type=tls
+    remote=xxx.xxx.xxx.xxx
+    cipher=BF-CBC
+    comp-lzo=yes
+    tunnel-mtu=1400
+    cert-pass-flags=1
+    port=xxxx
+    cert=/home/theuser/.vpn/key.p12
+    ca=/home/theuser/.vpn/key.p12
+    key=/home/theuser/.vpn/key.p12
+    tls-remote=xxx.xxx.xxx.xxx
+    
+    [ipv4]
+    method=auto
+
+When I'm logged into the default ubuntu session I can type `nmcli con up id "My connection name"` which will setup the VPN respectively.
+
+Executing exactly the same under i3 gives me:
+
+    Error: Connection activation failed: no valid VPN secrets.
+
+I am logged in with the same user and do not execute the `nmcli`-command under root.
+
+What do I miss?</description><pubDate>Mon, 12 May 2014 17:21:07 +0000</pubDate><guid>https://faq.i3wm.org/question/3796/nmcli-connection-activation-failed-no-valid-vpn-secrets/</guid></item><item><title>Comment by Michael for &lt;p&gt;I have the following setup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[connection]
+id=My connection name
+uuid=aa-bb-cc-dd
+type=vpn
+permissions=user:theuser:;
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=xxx.xxx.xxx.xxx
+cipher=BF-CBC
+comp-lzo=yes
+tunnel-mtu=1400
+cert-pass-flags=1
+port=xxxx
+cert=/home/theuser/.vpn/key.p12
+ca=/home/theuser/.vpn/key.p12
+key=/home/theuser/.vpn/key.p12
+tls-remote=xxx.xxx.xxx.xxx
+
+[ipv4]
+method=auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I'm logged into the default ubuntu session I can type &lt;code&gt;nmcli con up id "My connection name"&lt;/code&gt; which will setup the VPN respectively.&lt;/p&gt;
+
+&lt;p&gt;Executing exactly the same under i3 gives me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Error: Connection activation failed: no valid VPN secrets.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I am logged in with the same user and do not execute the &lt;code&gt;nmcli&lt;/code&gt;-command under root.&lt;/p&gt;
+
+&lt;p&gt;What do I miss?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3796/nmcli-connection-activation-failed-no-valid-vpn-secrets/?comment=3878#comment-3878</link><description>I am not entirely sure about what’s the problem, so I’m not going to write this as an answer, but it sounds like this is a (gnome-)keyring problem?</description><pubDate>Sun, 25 May 2014 18:19:15 +0000</pubDate><guid>https://faq.i3wm.org/question/3796/nmcli-connection-activation-failed-no-valid-vpn-secrets/?comment=3878#comment-3878</guid></item><item><title>Answer by bonidydy for &lt;p&gt;I have the following setup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[connection]
+id=My connection name
+uuid=aa-bb-cc-dd
+type=vpn
+permissions=user:theuser:;
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote=xxx.xxx.xxx.xxx
+cipher=BF-CBC
+comp-lzo=yes
+tunnel-mtu=1400
+cert-pass-flags=1
+port=xxxx
+cert=/home/theuser/.vpn/key.p12
+ca=/home/theuser/.vpn/key.p12
+key=/home/theuser/.vpn/key.p12
+tls-remote=xxx.xxx.xxx.xxx
+
+[ipv4]
+method=auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I'm logged into the default ubuntu session I can type &lt;code&gt;nmcli con up id "My connection name"&lt;/code&gt; which will setup the VPN respectively.&lt;/p&gt;
+
+&lt;p&gt;Executing exactly the same under i3 gives me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Error: Connection activation failed: no valid VPN secrets.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I am logged in with the same user and do not execute the &lt;code&gt;nmcli&lt;/code&gt;-command under root.&lt;/p&gt;
+
+&lt;p&gt;What do I miss?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3796/nmcli-connection-activation-failed-no-valid-vpn-secrets/?answer=3835#post-id-3835</link><description>My configuration looks like this and works:
+
+    [connection]
+    id=my_connection
+    uuid=x-y-z
+    type=vpn
+    autoconnect=false
+    timestamp=1394900890
+    
+    [vpn]
+    service-type=org.freedesktop.NetworkManager.pptp
+    password-flags=0
+    require-mppe=yes
+    user=my_user_name
+    refuse-eap=yes
+    refuse-chap=yes
+    nobsdcomp=yes
+    gateway=xx.xx.xx.xx
+    domain=my_domain
+    refuse-pap=yes
+    
+    [vpn-secrets]
+    password=my_password
+    
+    [ipv4]
+    method=auto
+
+Important is to add "password-flags=0" and "password=my_password". Otherwise Network Manager tries to get the data from gnome keyring. Your case looks even more complicated as some keys are used :).</description><pubDate>Fri, 16 May 2014 21:07:09 +0000</pubDate><guid>https://faq.i3wm.org/question/3796/nmcli-connection-activation-failed-no-valid-vpn-secrets/?answer=3835#post-id-3835</guid></item><item><title>Comment by Weishaupt for &lt;p&gt;My configuration looks like this and works:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[connection]
+id=my_connection
+uuid=x-y-z
+type=vpn
+autoconnect=false
+timestamp=1394900890
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.pptp
+password-flags=0
+require-mppe=yes
+user=my_user_name
+refuse-eap=yes
+refuse-chap=yes
+nobsdcomp=yes
+gateway=xx.xx.xx.xx
+domain=my_domain
+refuse-pap=yes
+
+[vpn-secrets]
+password=my_password
+
+[ipv4]
+method=auto
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Important is to add "password-flags=0" and "password=my_password". Otherwise Network Manager tries to get the data from gnome keyring. Your case looks even more complicated as some keys are used :).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3796/nmcli-connection-activation-failed-no-valid-vpn-secrets/?comment=3841#comment-3841</link><description>This config doesn't help me, as I'm using TLS. The thing is though, it works in Unity but won't work in i3.</description><pubDate>Sun, 18 May 2014 11:53:32 +0000</pubDate><guid>https://faq.i3wm.org/question/3796/nmcli-connection-activation-failed-no-valid-vpn-secrets/?comment=3841#comment-3841</guid></item></channel></rss>

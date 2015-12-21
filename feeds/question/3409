@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3409/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 21 Feb 2014 13:20:56 +0000</lastBuildDate><item><title>How do I prevent i3 from refreshing window's contents while dragging?</title><link>https://faq.i3wm.org/question/3409/how-do-i-prevent-i3-from-refreshing-windows-contents-while-dragging/</link><description>On my desktop dragging a floating window with mouse is laggy (not smooth). The window moves much slower than the cursor and I must wait for it to arrive at desired position. (probably my graphics card is very slow)
+
+Some window managers I had used before allowed the user to disable refreshing window contents while dragging/resizing, so that only a border appeared. One could drag that border around and the screen (the window itself as well as windows behind it) was redrawn after releasing the mouse button.
+
+Does i3 provide such a feature?</description><pubDate>Fri, 21 Feb 2014 10:41:21 +0000</pubDate><guid>https://faq.i3wm.org/question/3409/how-do-i-prevent-i3-from-refreshing-windows-contents-while-dragging/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;On my desktop dragging a floating window with mouse is laggy (not smooth). The window moves much slower than the cursor and I must wait for it to arrive at desired position. (probably my graphics card is very slow)&lt;/p&gt;
+
+&lt;p&gt;Some window managers I had used before allowed the user to disable refreshing window contents while dragging/resizing, so that only a border appeared. One could drag that border around and the screen (the window itself as well as windows behind it) was redrawn after releasing the mouse button.&lt;/p&gt;
+
+&lt;p&gt;Does i3 provide such a feature?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3409/how-do-i-prevent-i3-from-refreshing-windows-contents-while-dragging/?answer=3412#post-id-3412</link><description>At the moment there is no such feature. 
+
+The floating mode in *i3* is mainly intended for popups and the odd application that does not like to be resized. Therefore quite a lot features known from other (floating) window managers are not available and probably never will.
+
+If you need to move windows quite often, consider to (re)map some keybindings:
+
+    bindsym $mod+Shift+Up move up 200
+    bindsym $mod+Shift+Down move down 200
+    bindsym $mod+Shift+Left move left 200
+    bindsym $mod+Shift+Right move right 200
+
+This moves floating windows 200 pixel in the given direction. Tiled windows will ignore the number and just move windows one position in the given direction as before.
+As windows are directly placed at the new position, that reduces the need for redraws.
+
+-----
+
+For more flexibility, have a look at `xdotool`</description><pubDate>Fri, 21 Feb 2014 13:20:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3409/how-do-i-prevent-i3-from-refreshing-windows-contents-while-dragging/?answer=3412#post-id-3412</guid></item></channel></rss>

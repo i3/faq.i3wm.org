@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5753/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 08 Apr 2015 19:59:30 +0000</lastBuildDate><item><title>Move workspace to primary screen</title><link>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/</link><description>With `xrandr` it’s possible to set a primary screen. As an example I’m currently using `xrandr --output HDMI-0 --auto --right-of LVDS --primary` to connect a bigger monitor.
+
+At the moment I’m using the following two commands in my `.i3/config` to move a workspace from the laptop screen to the VGA-connected monitor and back to my laptop.
+
+    bindsym $mod+m move workspace to output VGA-0
+    bindsym $mod+Shift+m move workspace to output LVDS
+
+These two commands have a few problems. Sometimes I’m using a screen connected with VGA, but sometimes I’m using HDMI. Someday I will have it left of my laptop, on another day I will have it on the right.
+
+So I’m wondering:
+
+1. Is there a way to move a workspace to the primary screen?
+2. If not: How can I use a single shortcut to move a workspace away from my laptops monitor?</description><pubDate>Wed, 08 Apr 2015 07:44:16 +0000</pubDate><guid>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/</guid></item><item><title>Answer by i3convert for &lt;p&gt;With &lt;code&gt;xrandr&lt;/code&gt; it’s possible to set a primary screen. As an example I’m currently using &lt;code&gt;xrandr --output HDMI-0 --auto --right-of LVDS --primary&lt;/code&gt; to connect a bigger monitor.&lt;/p&gt;
+
+&lt;p&gt;At the moment I’m using the following two commands in my &lt;code&gt;.i3/config&lt;/code&gt; to move a workspace from the laptop screen to the VGA-connected monitor and back to my laptop.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m move workspace to output VGA-0
+bindsym $mod+Shift+m move workspace to output LVDS
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;These two commands have a few problems. Sometimes I’m using a screen connected with VGA, but sometimes I’m using HDMI. Someday I will have it left of my laptop, on another day I will have it on the right.&lt;/p&gt;
+
+&lt;p&gt;So I’m wondering:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Is there a way to move a workspace to the primary screen?&lt;/li&gt;
+&lt;li&gt;If not: How can I use a single shortcut to move a workspace away from my laptops monitor?&lt;/li&gt;
+&lt;/ol&gt;
+ </title><link>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/?answer=5756#post-id-5756</link><description> 1. This is doable. You have to parse the output of `i3-msg -t get_outputs` to figure out which output is primary (I recommend using the json library in Python). Then you have to issue `move workspace to output ???`, where `???` is your workspace. If you don't know how to program (it's never too late to learn!), perhaps someone else fills out the details.
+ 2. Have you tried `move workspace to output right` and `move workspace to output left`? Maybe they will do the job for you? In my config file I have:
+
+&gt;     bindsym Shift+$mod+bracketright move workspace to output right
+&gt;     bindsym Shift+$mod+bracketleft move workspace to output left
+
+
+</description><pubDate>Wed, 08 Apr 2015 13:16:30 +0000</pubDate><guid>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/?answer=5756#post-id-5756</guid></item><item><title>Comment by rosetree for &lt;ol&gt;
+&lt;li&gt;This is doable. You have to parse the output of &lt;code&gt;i3-msg -t get_outputs&lt;/code&gt; to figure out which output is primary (I recommend using the json library in Python). Then you have to issue &lt;code&gt;move workspace to output ???&lt;/code&gt;, where &lt;code&gt;???&lt;/code&gt; is your workspace. If you don't know how to program (it's never too late to learn!), perhaps someone else fills out the details.&lt;/li&gt;
+&lt;li&gt;Have you tried &lt;code&gt;move workspace to output right&lt;/code&gt; and &lt;code&gt;move workspace to output left&lt;/code&gt;? Maybe they will do the job for you? In my config file I have:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;bindsym Shift+$mod+bracketright move workspace to output right
+bindsym Shift+$mod+bracketleft move workspace to output left
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+</title><link>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/?comment=5758#comment-5758</link><description>Thank you for your answer. It’s a useful suggestion and I will keep your second point in mind, maybe that will be more handy in my case. However @Adaephon answered more directly to my question so I will accept his answer. Thanks again!</description><pubDate>Wed, 08 Apr 2015 14:09:00 +0000</pubDate><guid>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/?comment=5758#comment-5758</guid></item><item><title>Answer by Adaephon for &lt;p&gt;With &lt;code&gt;xrandr&lt;/code&gt; it’s possible to set a primary screen. As an example I’m currently using &lt;code&gt;xrandr --output HDMI-0 --auto --right-of LVDS --primary&lt;/code&gt; to connect a bigger monitor.&lt;/p&gt;
+
+&lt;p&gt;At the moment I’m using the following two commands in my &lt;code&gt;.i3/config&lt;/code&gt; to move a workspace from the laptop screen to the VGA-connected monitor and back to my laptop.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m move workspace to output VGA-0
+bindsym $mod+Shift+m move workspace to output LVDS
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;These two commands have a few problems. Sometimes I’m using a screen connected with VGA, but sometimes I’m using HDMI. Someday I will have it left of my laptop, on another day I will have it on the right.&lt;/p&gt;
+
+&lt;p&gt;So I’m wondering:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Is there a way to move a workspace to the primary screen?&lt;/li&gt;
+&lt;li&gt;If not: How can I use a single shortcut to move a workspace away from my laptops monitor?&lt;/li&gt;
+&lt;/ol&gt;
+ </title><link>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/?answer=5757#post-id-5757</link><description>The output of `xrandr -q` shows which, if any, screen is the primary screen. So a small script can be used to retrieve the name of the primary screen and send a workspace to it using `i3-msg`:
+
+    #!/bin/sh
+    PRIMARY_SCREEN=$( xrandr -q | awk '/ connected primary/ {print $1}' )
+    if [ -n "$PRIMARY_SCREEN" ] ; then
+        i3-msg "move workspace to output $PRIMARY_SCREEN"
+    else
+        # there is no primary screen
+        i3-nagbar -m 'No primary screen defined' -t warning
+    fi
+
+This script can then be bound to a shortcut of your liking:
+
+    bindsym $mod+m exec --no-startup-id /path/to/send2primary.sh
+
+----
+
+You can also use i3's IPC interface to retrieve a list of outputs and move workspaces. For example using [ziberna's i3 Python library](https://github.com/ziberna/i3-py):
+
+    import i3
+    import sys
+    
+    activeOutputs = filter(
+        lambda x: x[u'active'],
+        i3.get_outputs())
+    try:
+        primaryOutput = filter(
+            lambda x: x[u'primary'],
+            activeOutputs)[0]
+    except IndexError:
+        primaryOutput = None
+    currentWorkspace = filter(
+        lambda x: x[u'focused'],
+        i3.get_workspaces())[0]
+    currentOutput = filter(
+        lambda x: x[u'current_workspace'] == currentWorkspace[u'name'], 
+        activeOutputs)[0]
+    otherOutputs = filter(
+        lambda x: x[u'name'] != currentOutput[u'name'], 
+        activeOutputs)
+    
+    # if there is a primary screen move to it, 
+    # else move to the first other output (if there is one)
+    if primaryOutput:
+        i3.move('workspace to output', primaryOutput[u'name']
+    elif len(otherOutputs) &gt; 0:
+        i3.move('workspace to output', otherOutputs[0][u'name']</description><pubDate>Wed, 08 Apr 2015 13:46:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/?answer=5757#post-id-5757</guid></item><item><title>Comment by Adaephon for &lt;p&gt;The output of &lt;code&gt;xrandr -q&lt;/code&gt; shows which, if any, screen is the primary screen. So a small script can be used to retrieve the name of the primary screen and send a workspace to it using &lt;code&gt;i3-msg&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+PRIMARY_SCREEN=$( xrandr -q | awk '/ connected primary/ {print $1}' )
+if [ -n "$PRIMARY_SCREEN" ] ; then
+    i3-msg "move workspace to output $PRIMARY_SCREEN"
+else
+    # there is no primary screen
+    i3-nagbar -m 'No primary screen defined' -t warning
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This script can then be bound to a shortcut of your liking:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m exec --no-startup-id /path/to/send2primary.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;You can also use i3's IPC interface to retrieve a list of outputs and move workspaces. For example using &lt;a href="https://github.com/ziberna/i3-py"&gt;ziberna's i3 Python library&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import i3
+import sys
+
+activeOutputs = filter(
+    lambda x: x[u'active'],
+    i3.get_outputs())
+try:
+    primaryOutput = filter(
+        lambda x: x[u'primary'],
+        activeOutputs)[0]
+except IndexError:
+    primaryOutput = None
+currentWorkspace = filter(
+    lambda x: x[u'focused'],
+    i3.get_workspaces())[0]
+currentOutput = filter(
+    lambda x: x[u'current_workspace'] == currentWorkspace[u'name'], 
+    activeOutputs)[0]
+otherOutputs = filter(
+    lambda x: x[u'name'] != currentOutput[u'name'], 
+    activeOutputs)
+
+# if there is a primary screen move to it, 
+# else move to the first other output (if there is one)
+if primaryOutput:
+    i3.move('workspace to output', primaryOutput[u'name']
+elif len(otherOutputs) &amp;gt; 0:
+    i3.move('workspace to output', otherOutputs[0][u'name']
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/?comment=5760#comment-5760</link><description>Thanks for telling me. It is fixed now.</description><pubDate>Wed, 08 Apr 2015 19:59:30 +0000</pubDate><guid>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/?comment=5760#comment-5760</guid></item><item><title>Comment by rosetree for &lt;p&gt;The output of &lt;code&gt;xrandr -q&lt;/code&gt; shows which, if any, screen is the primary screen. So a small script can be used to retrieve the name of the primary screen and send a workspace to it using &lt;code&gt;i3-msg&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+PRIMARY_SCREEN=$( xrandr -q | awk '/ connected primary/ {print $1}' )
+if [ -n "$PRIMARY_SCREEN" ] ; then
+    i3-msg "move workspace to output $PRIMARY_SCREEN"
+else
+    # there is no primary screen
+    i3-nagbar -m 'No primary screen defined' -t warning
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This script can then be bound to a shortcut of your liking:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m exec --no-startup-id /path/to/send2primary.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;You can also use i3's IPC interface to retrieve a list of outputs and move workspaces. For example using &lt;a href="https://github.com/ziberna/i3-py"&gt;ziberna's i3 Python library&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import i3
+import sys
+
+activeOutputs = filter(
+    lambda x: x[u'active'],
+    i3.get_outputs())
+try:
+    primaryOutput = filter(
+        lambda x: x[u'primary'],
+        activeOutputs)[0]
+except IndexError:
+    primaryOutput = None
+currentWorkspace = filter(
+    lambda x: x[u'focused'],
+    i3.get_workspaces())[0]
+currentOutput = filter(
+    lambda x: x[u'current_workspace'] == currentWorkspace[u'name'], 
+    activeOutputs)[0]
+otherOutputs = filter(
+    lambda x: x[u'name'] != currentOutput[u'name'], 
+    activeOutputs)
+
+# if there is a primary screen move to it, 
+# else move to the first other output (if there is one)
+if primaryOutput:
+    i3.move('workspace to output', primaryOutput[u'name']
+elif len(otherOutputs) &amp;gt; 0:
+    i3.move('workspace to output', otherOutputs[0][u'name']
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/?comment=5759#comment-5759</link><description>Thank you for your answer. I tested the shell script and it works as expected. Just one small bug: A closing bracket is missing at the end of the first line (`PRIMARY_SCREEN=$(…)`). Thanks for your fast help.</description><pubDate>Wed, 08 Apr 2015 14:12:57 +0000</pubDate><guid>https://faq.i3wm.org/question/5753/move-workspace-to-primary-screen/?comment=5759#comment-5759</guid></item></channel></rss>

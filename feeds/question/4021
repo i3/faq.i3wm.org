@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4021/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 02 Oct 2015 21:22:52 +0000</lastBuildDate><item><title>Transparency and saved window layout, is it possible?</title><link>https://faq.i3wm.org/question/4021/transparency-and-saved-window-layout-is-it-possible/</link><description>Is it possible to have transparent terminal windows when I use the restore window layout script?</description><pubDate>Fri, 20 Jun 2014 08:29:26 +0000</pubDate><guid>https://faq.i3wm.org/question/4021/transparency-and-saved-window-layout-is-it-possible/</guid></item><item><title>Comment by Man from Mars for &lt;p&gt;Is it possible to have transparent terminal windows when I use the restore window layout script?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4021/transparency-and-saved-window-layout-is-it-possible/?comment=4032#comment-4032</link><description>Do you mean the "placeholder" windows? If so you should get the window details (name, class, role) with xprop and instruct your compositor (compton?) to recognize them and make transparent. I haven't yet used the restore layout feature but from what I have seen the placeholde windows aren't terms</description><pubDate>Tue, 24 Jun 2014 12:37:35 +0000</pubDate><guid>https://faq.i3wm.org/question/4021/transparency-and-saved-window-layout-is-it-possible/?comment=4032#comment-4032</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;Is it possible to have transparent terminal windows when I use the restore window layout script?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4021/transparency-and-saved-window-layout-is-it-possible/?answer=4115#post-id-4115</link><description>What you can do is make every terminal window have the same transparency by automatically setting it transparent when its started.
+
+Example
+
+transset -i windowid .numbernumber will set window id to numbernumber percent transperent
+
+so a shell function called trans that runs transset -i on the result of 
+xdotool getactivewindow and the argument to the function
+
+in fish shell transset -i (xdotool getactivewindow) .{$argv}
+
+is sufficient to enable you to run trans numbernumber and change the transparency of the current application
+
+In your i3config then you may add a line like so
+
+for_window [class="Lxterminal"] exec "trans .80"
+
+with the proper window class for your application and the desired transparency
+
+This means for every window which matches the window class run the desired command or command.</description><pubDate>Thu, 03 Jul 2014 22:49:55 +0000</pubDate><guid>https://faq.i3wm.org/question/4021/transparency-and-saved-window-layout-is-it-possible/?answer=4115#post-id-4115</guid></item><item><title>Comment by Michael Rose for &lt;p&gt;What you can do is make every terminal window have the same transparency by automatically setting it transparent when its started.&lt;/p&gt;
+
+&lt;p&gt;Example&lt;/p&gt;
+
+&lt;p&gt;transset -i windowid .numbernumber will set window id to numbernumber percent transperent&lt;/p&gt;
+
+&lt;p&gt;so a shell function called trans that runs transset -i on the result of 
+xdotool getactivewindow and the argument to the function&lt;/p&gt;
+
+&lt;p&gt;in fish shell transset -i (xdotool getactivewindow) .{$argv}&lt;/p&gt;
+
+&lt;p&gt;is sufficient to enable you to run trans numbernumber and change the transparency of the current application&lt;/p&gt;
+
+&lt;p&gt;In your i3config then you may add a line like so&lt;/p&gt;
+
+&lt;p&gt;for_window [class="Lxterminal"] exec "trans .80"&lt;/p&gt;
+
+&lt;p&gt;with the proper window class for your application and the desired transparency&lt;/p&gt;
+
+&lt;p&gt;This means for every window which matches the window class run the desired command or command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4021/transparency-and-saved-window-layout-is-it-possible/?comment=6783#comment-6783</link><description>You are better off configuring this in your compton config if you use compton see
+
+https://gist.github.com/michaelmrose/9ae00854ab5674146256</description><pubDate>Fri, 02 Oct 2015 21:22:52 +0000</pubDate><guid>https://faq.i3wm.org/question/4021/transparency-and-saved-window-layout-is-it-possible/?comment=6783#comment-6783</guid></item><item><title>Comment by Michael Rose for &lt;p&gt;What you can do is make every terminal window have the same transparency by automatically setting it transparent when its started.&lt;/p&gt;
+
+&lt;p&gt;Example&lt;/p&gt;
+
+&lt;p&gt;transset -i windowid .numbernumber will set window id to numbernumber percent transperent&lt;/p&gt;
+
+&lt;p&gt;so a shell function called trans that runs transset -i on the result of 
+xdotool getactivewindow and the argument to the function&lt;/p&gt;
+
+&lt;p&gt;in fish shell transset -i (xdotool getactivewindow) .{$argv}&lt;/p&gt;
+
+&lt;p&gt;is sufficient to enable you to run trans numbernumber and change the transparency of the current application&lt;/p&gt;
+
+&lt;p&gt;In your i3config then you may add a line like so&lt;/p&gt;
+
+&lt;p&gt;for_window [class="Lxterminal"] exec "trans .80"&lt;/p&gt;
+
+&lt;p&gt;with the proper window class for your application and the desired transparency&lt;/p&gt;
+
+&lt;p&gt;This means for every window which matches the window class run the desired command or command.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4021/transparency-and-saved-window-layout-is-it-possible/?comment=4121#comment-4121</link><description>You absolutely cannot restore anything about the windows.  The layout functionality merely creates placeholders to be replaced by your windows as you create them.  Its your responsibility to open the windows and do whatever needs to be done to them.</description><pubDate>Fri, 04 Jul 2014 19:10:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4021/transparency-and-saved-window-layout-is-it-possible/?comment=4121#comment-4121</guid></item></channel></rss>

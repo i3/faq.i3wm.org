@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/927/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 24 Dec 2012 20:29:29 +0000</lastBuildDate><item><title>How can I change the left and right mouse buttons?</title><link>https://faq.i3wm.org/question/927/how-can-i-change-the-left-and-right-mouse-buttons/</link><description>Recently i've had a problem with my mouse,i really love i3 and maybe i falled in love,for this situation  i need to change the right button to the left.Is there anyway to do this..  Is there any idea about how to solve it ?thanks in advance 
+</description><pubDate>Fri, 21 Dec 2012 22:04:17 +0000</pubDate><guid>https://faq.i3wm.org/question/927/how-can-i-change-the-left-and-right-mouse-buttons/</guid></item><item><title>Answer by c1b3rh4ck for &lt;p&gt;Recently i've had a problem with my mouse,i really love i3 and maybe i falled in love,for this situation  i need to change the right button to the left.Is there anyway to do this..  Is there any idea about how to solve it ?thanks in advance &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/927/how-can-i-change-the-left-and-right-mouse-buttons/?answer=935#post-id-935</link><description>Hi folks
+Michael's option is  good,however it  seems  difficult to identify your mouse buttons.Here is how i solved with  some of help:
+
+Using the xmodmap we can identify the correct buttons.
+For those with the same question:
+
+*"xmodmap - utility for modifying keymaps and pointer button mappings in X"*,by default the mouse configuration is :
+
+&gt; **xmodmap -e "pointer = 3 2 1 "**
+
+if you want to change or invert left-right mouse buttons you only need to change the pointer position 
+
+&gt; **xmodmap -e "pointer = 1 2 3 "**
+you could add this lines in i3 config,beside you could do a quick script :
+
+!/bin/bash
+
+current=$(xmodmap -pp | head -5 | tail -1 | awk '{print $2}');
+
+if [ "$current" -eq "1" ]
+
+then 
+
+        xmodmap -e "pointer = 3 2 1";
+
+else
+       
+        xmodmap -e "pointer = 1 2 3";
+fi
+
+If you want to identify your mouse buttons copy this in a terminal:
+
+&gt; xev | grep button
+
+Best Regards.
+
+</description><pubDate>Mon, 24 Dec 2012 20:29:29 +0000</pubDate><guid>https://faq.i3wm.org/question/927/how-can-i-change-the-left-and-right-mouse-buttons/?answer=935#post-id-935</guid></item><item><title>Answer by Michael for &lt;p&gt;Recently i've had a problem with my mouse,i really love i3 and maybe i falled in love,for this situation  i need to change the right button to the left.Is there anyway to do this..  Is there any idea about how to solve it ?thanks in advance &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/927/how-can-i-change-the-left-and-right-mouse-buttons/?answer=929#post-id-929</link><description>This page explains how to remap mouse buttons in X11:
+http://wiki.birth-online.de/know-how/software/linux/remapping-mousebuttons
+
+This is not i3-specific.</description><pubDate>Fri, 21 Dec 2012 22:10:47 +0000</pubDate><guid>https://faq.i3wm.org/question/927/how-can-i-change-the-left-and-right-mouse-buttons/?answer=929#post-id-929</guid></item><item><title>Comment by c1b3rh4ck for &lt;p&gt;This page explains how to remap mouse buttons in X11:
+&lt;a href="http://wiki.birth-online.de/know-how/software/linux/remapping-mousebuttons"&gt;http://wiki.birth-online.de/know-how/...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This is not i3-specific.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/927/how-can-i-change-the-left-and-right-mouse-buttons/?comment=932#comment-932</link><description>Hi that's an interesting  and quick option ,however it seems is a little bit complicated identify your mouse buttons.                                                                        </description><pubDate>Mon, 24 Dec 2012 20:10:40 +0000</pubDate><guid>https://faq.i3wm.org/question/927/how-can-i-change-the-left-and-right-mouse-buttons/?comment=932#comment-932</guid></item></channel></rss>

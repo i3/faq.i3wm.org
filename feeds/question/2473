@@ -1,0 +1,1642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2473/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 06 Mar 2015 08:26:02 +0000</lastBuildDate><item><title>Run or focus in i3</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/</link><description>I have a keybinding in my i3 config (`bindsym Control+3 [class="Firefox"]  focus`) that focus on firefox with Ctrl+3. However I would like that if firefox is not open it will run it.
+
+In awesome WM there was a function in lua called "Run or raise" which achieve this goal. 
+
+How can I do this in i3?
+
+</description><pubDate>Mon, 02 Sep 2013 18:59:29 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/</guid></item><item><title>Answer by mschaefer for &lt;p&gt;I have a keybinding in my i3 config (&lt;code&gt;bindsym Control+3 [class="Firefox"]  focus&lt;/code&gt;) that focus on firefox with Ctrl+3. However I would like that if firefox is not open it will run it.&lt;/p&gt;
+
+&lt;p&gt;In awesome WM there was a function in lua called "Run or raise" which achieve this goal. &lt;/p&gt;
+
+&lt;p&gt;How can I do this in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?answer=2476#post-id-2476</link><description>The following bash-script should do the job:
+
+&lt;pre&gt;
+#!/bin/sh
+count=`ps aux | grep -c firefox`
+if [ $count -eq 1 ]; then
+    firefox
+else
+    i3-msg "[class=Firefox] focus"
+fi
+&lt;/pre&gt;
+
+Store it ie. to ~/runorraise.sh, make it executable and bind this via
+&lt;code&gt;bindsym Control+3 exec ~/runorraise.sh&lt;/code&gt;
+
+Edit: The fourth line of the script was changed according to zwl's comment.</description><pubDate>Tue, 03 Sep 2013 08:54:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?answer=2476#post-id-2476</guid></item><item><title>Comment by mschaefer for &lt;p&gt;The following bash-script should do the job:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/sh
+count=`ps aux | grep -c firefox`
+if [ $count -eq 1 ]; then
+    firefox
+else
+    i3-msg "[class=Firefox] focus"
+fi
+&lt;/pre&gt;
+
+&lt;p&gt;Store it ie. to ~/runorraise.sh, make it executable and bind this via
+&lt;code&gt;bindsym Control+3 exec ~/runorraise.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Edit: The fourth line of the script was changed according to zwl's comment.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=5578#comment-5578</link><description>That's a good question. I think it has to do with "missing the forest for the trees" ;-) So no reason at all, I corrected it.</description><pubDate>Fri, 06 Mar 2015 08:26:02 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=5578#comment-5578</guid></item><item><title>Comment by zwl for &lt;p&gt;The following bash-script should do the job:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/sh
+count=`ps aux | grep -c firefox`
+if [ $count -eq 1 ]; then
+    firefox
+else
+    i3-msg "[class=Firefox] focus"
+fi
+&lt;/pre&gt;
+
+&lt;p&gt;Store it ie. to ~/runorraise.sh, make it executable and bind this via
+&lt;code&gt;bindsym Control+3 exec ~/runorraise.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Edit: The fourth line of the script was changed according to zwl's comment.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=5571#comment-5571</link><description>Why use i3-msg "exec firefox" instead of just firefox?</description><pubDate>Thu, 05 Mar 2015 17:51:16 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=5571#comment-5571</guid></item><item><title>Comment by phairland for &lt;p&gt;The following bash-script should do the job:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/sh
+count=`ps aux | grep -c firefox`
+if [ $count -eq 1 ]; then
+    firefox
+else
+    i3-msg "[class=Firefox] focus"
+fi
+&lt;/pre&gt;
+
+&lt;p&gt;Store it ie. to ~/runorraise.sh, make it executable and bind this via
+&lt;code&gt;bindsym Control+3 exec ~/runorraise.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Edit: The fourth line of the script was changed according to zwl's comment.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=2478#comment-2478</link><description>Thank you. </description><pubDate>Tue, 03 Sep 2013 14:21:19 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=2478#comment-2478</guid></item><item><title>Answer by GermainZ for &lt;p&gt;I have a keybinding in my i3 config (&lt;code&gt;bindsym Control+3 [class="Firefox"]  focus&lt;/code&gt;) that focus on firefox with Ctrl+3. However I would like that if firefox is not open it will run it.&lt;/p&gt;
+
+&lt;p&gt;In awesome WM there was a function in lua called "Run or raise" which achieve this goal. &lt;/p&gt;
+
+&lt;p&gt;How can I do this in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?answer=2792#post-id-2792</link><description>I wanted something that's similar to awesome's RoR. That is, matching by class and cycling through matching windows. gustavnikolaj's solution matches by window title, which I didn't want, so I wrote this (the walk_tree function is from his script):
+
+    import json
+    import subprocess
+    import sys
+
+    def get_output(cmd):
+        process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+        out = process.communicate()[0].decode()
+        process.stdout.close()
+        return out
+
+    def get_tree():
+        cmd = ["i3-msg", "-t", "get_tree"]
+        return json.loads(get_output(cmd))
+
+    def get_matching_class():
+        cmd = ["xdotool", "search", "--class", sys.argv[1]]
+        return get_output(cmd).split('\n')
+
+    windows = []
+    def walk_tree(tree):
+        if tree['window']:
+            windows.append({'window': str(tree['window']),
+                            'focused': tree['focused']})
+        if len(tree['nodes']) &gt; 0:
+            for node in tree['nodes']:
+                walk_tree(node)
+
+    def get_matches():
+        matches = []
+        tree = get_tree()
+        check = get_matching_class()
+        walk_tree(tree)
+        for window in windows:
+            for winid in check:
+                if window['window'] == winid:
+                    matches.append(window)
+        return matches
+
+    def main():
+        matches = get_matches()
+        # Sort the list by window IDs
+        matches = [(match['window'], match) for match in matches]
+        matches.sort()
+        matches = [match for (key, match) in matches]
+        # Iterate over the matches to find the first focused one, then focus the
+        # next one.
+        for ind, match in enumerate(matches):
+            if match['focused'] == True:
+                subprocess.call(["i3-msg", "[id=%s] focus" % matches[(ind+1)%len(matches)]['window']])
+                return
+        # No focused match was found, so focus the first one
+        if len(matches) &gt; 0:
+                subprocess.call(["i3-msg", "[id=%s] focus" % matches[0]['window']])
+                return
+        # No matches found, launch program
+        subprocess.call(["i3-msg", "exec", "--no-startup-id", sys.argv[2]])
+
+    if __name__ == '__main__':
+        main()
+
+
+Save it in e.g. ~.i3/runorfocus.py. To use it, just call the script (first argument is the class to match, the second argument is the program to launch if no matching window is found):
+
+    bindsym $mod+w exec python ~/.i3/runorfocus.py "Firefox" firefox
+
+Note that you need xdotool to use the script.</description><pubDate>Mon, 28 Oct 2013 19:03:06 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?answer=2792#post-id-2792</guid></item><item><title>Comment by Pkkm for &lt;p&gt;I wanted something that's similar to awesome's RoR. That is, matching by class and cycling through matching windows. gustavnikolaj's solution matches by window title, which I didn't want, so I wrote this (the walk_tree function is from his script):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import json
+import subprocess
+import sys
+
+def get_output(cmd):
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    out = process.communicate()[0].decode()
+    process.stdout.close()
+    return out
+
+def get_tree():
+    cmd = ["i3-msg", "-t", "get_tree"]
+    return json.loads(get_output(cmd))
+
+def get_matching_class():
+    cmd = ["xdotool", "search", "--class", sys.argv[1]]
+    return get_output(cmd).split('\n')
+
+windows = []
+def walk_tree(tree):
+    if tree['window']:
+        windows.append({'window': str(tree['window']),
+                        'focused': tree['focused']})
+    if len(tree['nodes']) &amp;gt; 0:
+        for node in tree['nodes']:
+            walk_tree(node)
+
+def get_matches():
+    matches = []
+    tree = get_tree()
+    check = get_matching_class()
+    walk_tree(tree)
+    for window in windows:
+        for winid in check:
+            if window['window'] == winid:
+                matches.append(window)
+    return matches
+
+def main():
+    matches = get_matches()
+    # Sort the list by window IDs
+    matches = [(match['window'], match) for match in matches]
+    matches.sort()
+    matches = [match for (key, match) in matches]
+    # Iterate over the matches to find the first focused one, then focus the
+    # next one.
+    for ind, match in enumerate(matches):
+        if match['focused'] == True:
+            subprocess.call(["i3-msg", "[id=%s] focus" % matches[(ind+1)%len(matches)]['window']])
+            return
+    # No focused match was found, so focus the first one
+    if len(matches) &amp;gt; 0:
+            subprocess.call(["i3-msg", "[id=%s] focus" % matches[0]['window']])
+            return
+    # No matches found, launch program
+    subprocess.call(["i3-msg", "exec", "--no-startup-id", sys.argv[2]])
+
+if __name__ == '__main__':
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save it in e.g. ~.i3/runorfocus.py. To use it, just call the script (first argument is the class to match, the second argument is the program to launch if no matching window is found):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+w exec python ~/.i3/runorfocus.py "Firefox" firefox
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you need xdotool to use the script.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3809#comment-3809</link><description>I'd suggest changing `process.communicate()[0].decode()` to `process.communicate()[0].decode('utf8')` and `"exec", "--no-startup-id"` to `"exec --no-startup-id"`. (I don't have enough reputation to make the edits myself.)</description><pubDate>Tue, 13 May 2014 14:07:38 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3809#comment-3809</guid></item><item><title>Comment by gustavnikolaj for &lt;p&gt;I wanted something that's similar to awesome's RoR. That is, matching by class and cycling through matching windows. gustavnikolaj's solution matches by window title, which I didn't want, so I wrote this (the walk_tree function is from his script):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import json
+import subprocess
+import sys
+
+def get_output(cmd):
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    out = process.communicate()[0].decode()
+    process.stdout.close()
+    return out
+
+def get_tree():
+    cmd = ["i3-msg", "-t", "get_tree"]
+    return json.loads(get_output(cmd))
+
+def get_matching_class():
+    cmd = ["xdotool", "search", "--class", sys.argv[1]]
+    return get_output(cmd).split('\n')
+
+windows = []
+def walk_tree(tree):
+    if tree['window']:
+        windows.append({'window': str(tree['window']),
+                        'focused': tree['focused']})
+    if len(tree['nodes']) &amp;gt; 0:
+        for node in tree['nodes']:
+            walk_tree(node)
+
+def get_matches():
+    matches = []
+    tree = get_tree()
+    check = get_matching_class()
+    walk_tree(tree)
+    for window in windows:
+        for winid in check:
+            if window['window'] == winid:
+                matches.append(window)
+    return matches
+
+def main():
+    matches = get_matches()
+    # Sort the list by window IDs
+    matches = [(match['window'], match) for match in matches]
+    matches.sort()
+    matches = [match for (key, match) in matches]
+    # Iterate over the matches to find the first focused one, then focus the
+    # next one.
+    for ind, match in enumerate(matches):
+        if match['focused'] == True:
+            subprocess.call(["i3-msg", "[id=%s] focus" % matches[(ind+1)%len(matches)]['window']])
+            return
+    # No focused match was found, so focus the first one
+    if len(matches) &amp;gt; 0:
+            subprocess.call(["i3-msg", "[id=%s] focus" % matches[0]['window']])
+            return
+    # No matches found, launch program
+    subprocess.call(["i3-msg", "exec", "--no-startup-id", sys.argv[2]])
+
+if __name__ == '__main__':
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save it in e.g. ~.i3/runorfocus.py. To use it, just call the script (first argument is the class to match, the second argument is the program to launch if no matching window is found):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+w exec python ~/.i3/runorfocus.py "Firefox" firefox
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you need xdotool to use the script.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3391#comment-3391</link><description>Great! I didnt know about xdotool - that's a nifty little tool. I wanted to build my script so it could match both name and class - but I weren't able to find a good way to do it. If you don't mind I'd like to take a stab at combining the two scripts we have :-) Sorry for the late reply btw...</description><pubDate>Thu, 13 Feb 2014 07:40:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3391#comment-3391</guid></item><item><title>Comment by gustavnikolaj for &lt;p&gt;I wanted something that's similar to awesome's RoR. That is, matching by class and cycling through matching windows. gustavnikolaj's solution matches by window title, which I didn't want, so I wrote this (the walk_tree function is from his script):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import json
+import subprocess
+import sys
+
+def get_output(cmd):
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    out = process.communicate()[0].decode()
+    process.stdout.close()
+    return out
+
+def get_tree():
+    cmd = ["i3-msg", "-t", "get_tree"]
+    return json.loads(get_output(cmd))
+
+def get_matching_class():
+    cmd = ["xdotool", "search", "--class", sys.argv[1]]
+    return get_output(cmd).split('\n')
+
+windows = []
+def walk_tree(tree):
+    if tree['window']:
+        windows.append({'window': str(tree['window']),
+                        'focused': tree['focused']})
+    if len(tree['nodes']) &amp;gt; 0:
+        for node in tree['nodes']:
+            walk_tree(node)
+
+def get_matches():
+    matches = []
+    tree = get_tree()
+    check = get_matching_class()
+    walk_tree(tree)
+    for window in windows:
+        for winid in check:
+            if window['window'] == winid:
+                matches.append(window)
+    return matches
+
+def main():
+    matches = get_matches()
+    # Sort the list by window IDs
+    matches = [(match['window'], match) for match in matches]
+    matches.sort()
+    matches = [match for (key, match) in matches]
+    # Iterate over the matches to find the first focused one, then focus the
+    # next one.
+    for ind, match in enumerate(matches):
+        if match['focused'] == True:
+            subprocess.call(["i3-msg", "[id=%s] focus" % matches[(ind+1)%len(matches)]['window']])
+            return
+    # No focused match was found, so focus the first one
+    if len(matches) &amp;gt; 0:
+            subprocess.call(["i3-msg", "[id=%s] focus" % matches[0]['window']])
+            return
+    # No matches found, launch program
+    subprocess.call(["i3-msg", "exec", "--no-startup-id", sys.argv[2]])
+
+if __name__ == '__main__':
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save it in e.g. ~.i3/runorfocus.py. To use it, just call the script (first argument is the class to match, the second argument is the program to launch if no matching window is found):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+w exec python ~/.i3/runorfocus.py "Firefox" firefox
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you need xdotool to use the script.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3563#comment-3563</link><description>Just wanted to add that I've updated my answer in this thread with a new node.js based version. It has the functionality of our scripts combined.</description><pubDate>Mon, 24 Mar 2014 22:18:53 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3563#comment-3563</guid></item><item><title>Answer by KJ44 for &lt;p&gt;I have a keybinding in my i3 config (&lt;code&gt;bindsym Control+3 [class="Firefox"]  focus&lt;/code&gt;) that focus on firefox with Ctrl+3. However I would like that if firefox is not open it will run it.&lt;/p&gt;
+
+&lt;p&gt;In awesome WM there was a function in lua called "Run or raise" which achieve this goal. &lt;/p&gt;
+
+&lt;p&gt;How can I do this in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?answer=2479#post-id-2479</link><description>I have a script that I have bound to control-tab. An i3 input dialog (very minimal) appears. I type a short alias for the program I'm interested in. If it is running, focus is changed to make its window visible on its workspace, otherwise it is started.
+
+How the script is invoked
+
+    # Launch a program using a string alias.                                                                                                                                                                          
+    bindsym    Control+Tab exec i3-input -F 'exec i3-wrapper "%s"'
+
+The script:
+
+    #!/bin/bash
+    #
+    # i3-wrapper associates strings supplied by i3-input with programs.
+    #
+    # It is inspired by the configurable keyboard shortcuts for bookmarks
+    # in web browsers such as Firefox and Google Chrome.
+    #
+    # Type a string and the corresponding program is brought into focus;
+    # if it is already running focus moves to its associate workspace,
+    # otherwise it is launched in the current workspace.
+    #
+    # Take care to match long strings before short strings beginning with
+    # identical substrings.
+    #
+    # The easiest match to use is 'instance' because the instance sring
+    # usually matches the program name. Using 'title' is complicated by
+    # the need to enclose the matched substring in quotes but it can be a
+    # good choice in some cases.
+    #
+    # Contains at least one bashism: (link deleted so I can post)
+    #
+    
+    focus ()
+    {
+        case $1 in
+            (instance)
+            W=$(xdotool search --classname "$2" | head -1)
+            ;;
+            (class)
+            W=$(xdotool search --class "$2" | head -1)
+            ;;
+            (title)
+            W=$(xdotool search --name "$2" | head -1)
+            ;;
+            (*)
+            W=''
+            ;;
+        esac
+        if [ -z "$W" ]; then
+            # Launch the program. 
+            eval ${@:3} &amp;  # bash
+        else
+            # Focus the window.
+            # Used 'sed' to escape any whitepace to suit 'i3-msg'.
+            i3-msg "[$1=$(echo $2 | sed s/\\x20/\\\\x20/g)] focus"
+        fi
+    }
+    
+    start ()
+    {
+        case "$@" in
+            (gc)
+            focus instance google-chrome google-chrome
+            ;;
+            (sy)
+            focus instance synaptic gksu synaptic
+            ;;
+            (th)
+            focus instance thunar thunar
+            ;;
+            (dc|py)
+            focus title Calculator python-interactive 
+            ;;
+            (wr)
+            focus title 'LibreOffice Writer' libreoffice --writer
+            ;;
+            (pp)
+            focus title 'LibreOffice Impress' libreoffice --impress
+            ;;
+            (ss)
+            focus title 'LibreOffice Calc' libreoffice --calc
+            ;;
+            (pdf)
+            focus instance okular okular
+            ;;
+            (am)
+            focus instance clementine clementine
+            ;;
+            (vc|vlc)
+            focus instance vlc vlc
+            ;;
+            (*)
+            ;;
+        esac
+    }
+    
+    start "$@"
+    
+    #
+    # Done.
+    #
+
+
+</description><pubDate>Wed, 04 Sep 2013 18:00:38 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?answer=2479#post-id-2479</guid></item><item><title>Comment by mschaefer for &lt;p&gt;I have a script that I have bound to control-tab. An i3 input dialog (very minimal) appears. I type a short alias for the program I'm interested in. If it is running, focus is changed to make its window visible on its workspace, otherwise it is started.&lt;/p&gt;
+
+&lt;p&gt;How the script is invoked&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Launch a program using a string alias.                                                                                                                                                                          
+bindsym    Control+Tab exec i3-input -F 'exec i3-wrapper "%s"'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+#
+# i3-wrapper associates strings supplied by i3-input with programs.
+#
+# It is inspired by the configurable keyboard shortcuts for bookmarks
+# in web browsers such as Firefox and Google Chrome.
+#
+# Type a string and the corresponding program is brought into focus;
+# if it is already running focus moves to its associate workspace,
+# otherwise it is launched in the current workspace.
+#
+# Take care to match long strings before short strings beginning with
+# identical substrings.
+#
+# The easiest match to use is 'instance' because the instance sring
+# usually matches the program name. Using 'title' is complicated by
+# the need to enclose the matched substring in quotes but it can be a
+# good choice in some cases.
+#
+# Contains at least one bashism: (link deleted so I can post)
+#
+
+focus ()
+{
+    case $1 in
+        (instance)
+        W=$(xdotool search --classname "$2" | head -1)
+        ;;
+        (class)
+        W=$(xdotool search --class "$2" | head -1)
+        ;;
+        (title)
+        W=$(xdotool search --name "$2" | head -1)
+        ;;
+        (*)
+        W=''
+        ;;
+    esac
+    if [ -z "$W" ]; then
+        # Launch the program. 
+        eval ${@:3} &amp;amp;  # bash
+    else
+        # Focus the window.
+        # Used 'sed' to escape any whitepace to suit 'i3-msg'.
+        i3-msg "[$1=$(echo $2 | sed s/\\x20/\\\\x20/g)] focus"
+    fi
+}
+
+start ()
+{
+    case "$@" in
+        (gc)
+        focus instance google-chrome google-chrome
+        ;;
+        (sy)
+        focus instance synaptic gksu synaptic
+        ;;
+        (th)
+        focus instance thunar thunar
+        ;;
+        (dc|py)
+        focus title Calculator python-interactive 
+        ;;
+        (wr)
+        focus title 'LibreOffice Writer' libreoffice --writer
+        ;;
+        (pp)
+        focus title 'LibreOffice Impress' libreoffice --impress
+        ;;
+        (ss)
+        focus title 'LibreOffice Calc' libreoffice --calc
+        ;;
+        (pdf)
+        focus instance okular okular
+        ;;
+        (am)
+        focus instance clementine clementine
+        ;;
+        (vc|vlc)
+        focus instance vlc vlc
+        ;;
+        (*)
+        ;;
+    esac
+}
+
+start "$@"
+
+#
+# Done.
+#
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=2490#comment-2490</link><description>Nice idea, I'm thinking about using this script as an addition to dmenu</description><pubDate>Fri, 06 Sep 2013 08:56:43 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=2490#comment-2490</guid></item><item><title>Comment by KJ44 for &lt;p&gt;I have a script that I have bound to control-tab. An i3 input dialog (very minimal) appears. I type a short alias for the program I'm interested in. If it is running, focus is changed to make its window visible on its workspace, otherwise it is started.&lt;/p&gt;
+
+&lt;p&gt;How the script is invoked&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Launch a program using a string alias.                                                                                                                                                                          
+bindsym    Control+Tab exec i3-input -F 'exec i3-wrapper "%s"'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+#
+# i3-wrapper associates strings supplied by i3-input with programs.
+#
+# It is inspired by the configurable keyboard shortcuts for bookmarks
+# in web browsers such as Firefox and Google Chrome.
+#
+# Type a string and the corresponding program is brought into focus;
+# if it is already running focus moves to its associate workspace,
+# otherwise it is launched in the current workspace.
+#
+# Take care to match long strings before short strings beginning with
+# identical substrings.
+#
+# The easiest match to use is 'instance' because the instance sring
+# usually matches the program name. Using 'title' is complicated by
+# the need to enclose the matched substring in quotes but it can be a
+# good choice in some cases.
+#
+# Contains at least one bashism: (link deleted so I can post)
+#
+
+focus ()
+{
+    case $1 in
+        (instance)
+        W=$(xdotool search --classname "$2" | head -1)
+        ;;
+        (class)
+        W=$(xdotool search --class "$2" | head -1)
+        ;;
+        (title)
+        W=$(xdotool search --name "$2" | head -1)
+        ;;
+        (*)
+        W=''
+        ;;
+    esac
+    if [ -z "$W" ]; then
+        # Launch the program. 
+        eval ${@:3} &amp;amp;  # bash
+    else
+        # Focus the window.
+        # Used 'sed' to escape any whitepace to suit 'i3-msg'.
+        i3-msg "[$1=$(echo $2 | sed s/\\x20/\\\\x20/g)] focus"
+    fi
+}
+
+start ()
+{
+    case "$@" in
+        (gc)
+        focus instance google-chrome google-chrome
+        ;;
+        (sy)
+        focus instance synaptic gksu synaptic
+        ;;
+        (th)
+        focus instance thunar thunar
+        ;;
+        (dc|py)
+        focus title Calculator python-interactive 
+        ;;
+        (wr)
+        focus title 'LibreOffice Writer' libreoffice --writer
+        ;;
+        (pp)
+        focus title 'LibreOffice Impress' libreoffice --impress
+        ;;
+        (ss)
+        focus title 'LibreOffice Calc' libreoffice --calc
+        ;;
+        (pdf)
+        focus instance okular okular
+        ;;
+        (am)
+        focus instance clementine clementine
+        ;;
+        (vc|vlc)
+        focus instance vlc vlc
+        ;;
+        (*)
+        ;;
+    esac
+}
+
+start "$@"
+
+#
+# Done.
+#
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3948#comment-3948</link><description>The instance string for the well known web browser has changed from 'google-chrome' to 'Google-chrome' recently. </description><pubDate>Tue, 10 Jun 2014 16:17:47 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3948#comment-3948</guid></item><item><title>Comment by phairland for &lt;p&gt;I have a script that I have bound to control-tab. An i3 input dialog (very minimal) appears. I type a short alias for the program I'm interested in. If it is running, focus is changed to make its window visible on its workspace, otherwise it is started.&lt;/p&gt;
+
+&lt;p&gt;How the script is invoked&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Launch a program using a string alias.                                                                                                                                                                          
+bindsym    Control+Tab exec i3-input -F 'exec i3-wrapper "%s"'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+#
+# i3-wrapper associates strings supplied by i3-input with programs.
+#
+# It is inspired by the configurable keyboard shortcuts for bookmarks
+# in web browsers such as Firefox and Google Chrome.
+#
+# Type a string and the corresponding program is brought into focus;
+# if it is already running focus moves to its associate workspace,
+# otherwise it is launched in the current workspace.
+#
+# Take care to match long strings before short strings beginning with
+# identical substrings.
+#
+# The easiest match to use is 'instance' because the instance sring
+# usually matches the program name. Using 'title' is complicated by
+# the need to enclose the matched substring in quotes but it can be a
+# good choice in some cases.
+#
+# Contains at least one bashism: (link deleted so I can post)
+#
+
+focus ()
+{
+    case $1 in
+        (instance)
+        W=$(xdotool search --classname "$2" | head -1)
+        ;;
+        (class)
+        W=$(xdotool search --class "$2" | head -1)
+        ;;
+        (title)
+        W=$(xdotool search --name "$2" | head -1)
+        ;;
+        (*)
+        W=''
+        ;;
+    esac
+    if [ -z "$W" ]; then
+        # Launch the program. 
+        eval ${@:3} &amp;amp;  # bash
+    else
+        # Focus the window.
+        # Used 'sed' to escape any whitepace to suit 'i3-msg'.
+        i3-msg "[$1=$(echo $2 | sed s/\\x20/\\\\x20/g)] focus"
+    fi
+}
+
+start ()
+{
+    case "$@" in
+        (gc)
+        focus instance google-chrome google-chrome
+        ;;
+        (sy)
+        focus instance synaptic gksu synaptic
+        ;;
+        (th)
+        focus instance thunar thunar
+        ;;
+        (dc|py)
+        focus title Calculator python-interactive 
+        ;;
+        (wr)
+        focus title 'LibreOffice Writer' libreoffice --writer
+        ;;
+        (pp)
+        focus title 'LibreOffice Impress' libreoffice --impress
+        ;;
+        (ss)
+        focus title 'LibreOffice Calc' libreoffice --calc
+        ;;
+        (pdf)
+        focus instance okular okular
+        ;;
+        (am)
+        focus instance clementine clementine
+        ;;
+        (vc|vlc)
+        focus instance vlc vlc
+        ;;
+        (*)
+        ;;
+    esac
+}
+
+start "$@"
+
+#
+# Done.
+#
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=2485#comment-2485</link><description>I like your approach. Good for using xdotool. I used to use wmctrl but doesn't seem to work in i3.</description><pubDate>Thu, 05 Sep 2013 13:19:00 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=2485#comment-2485</guid></item><item><title>Answer by gustavnikolaj for &lt;p&gt;I have a keybinding in my i3 config (&lt;code&gt;bindsym Control+3 [class="Firefox"]  focus&lt;/code&gt;) that focus on firefox with Ctrl+3. However I would like that if firefox is not open it will run it.&lt;/p&gt;
+
+&lt;p&gt;In awesome WM there was a function in lua called "Run or raise" which achieve this goal. &lt;/p&gt;
+
+&lt;p&gt;How can I do this in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?answer=2506#post-id-2506</link><description>I just completed a long overdue item on my todo-list. A combination of the scripts that @GermainZ and I made. It can match by either name and class - both regex enabled. It's written as in node.js.
+
+See this repository:
+
+https://github.com/gustavnikolaj/i3-run-or-raise
+
+You will need to have node installed and run npm install in the directory you've cloned it into. After that, you can either reference it by the full path to bin/i3-run-or-raise or you could add it somewhere on your path. (Remember that you'll have to manually set that path available to the X server, by adding it to .xsession/.xinitrc or where it would be appropriate on your system).
+
+Rewriting the examples that I made in my first answer in this thread:
+
+    bindsym F1 exec ~/path/to/i3-run-or-raise -c "Google-chrome" google-chrome
+    bindsym F2 exec ~/path/to/i3-run-or-raise -n "Sublime Text 2$" sublime-text
+
+Below is my original answer for reference.
+
+----------
+
+
+I wrote a python script to solve this problem.
+
+I use it in my configuration like this:
+
+    bindsym F1 exec python ~/.i3/scripts/next_window.py "Chrome$" google-chrome
+    bindsym F2 exec python ~/.i3/scripts/next_window.py "Sublime Text 2$" sublime-text
+
+
+The first parameter is a regex to match the window title. The second parameter is the application to launch if no active window is found.
+
+
+    import json
+    import re
+    import subprocess
+    import sys
+
+
+    I3MSG = '/usr/bin/i3-msg'
+
+
+    windows = []
+
+
+    def parse_args():
+        if len(sys.argv) == 3:
+            return (sys.argv[1], sys.argv[2])
+        else:
+            sys.exit('Must provide 2 arguments.')
+
+
+    def get_tree():
+        process = subprocess.Popen([I3MSG, "-t", "get_tree"], stdout=subprocess.PIPE)
+        tree = str(process.communicate()[0])
+        process.stdout.close()
+        return json.loads(tree)
+
+
+    def walk_tree(tree):
+        if tree['window']:
+            windows.append({
+                'name': tree['name'],
+                'id': str(tree['id']),
+                'focused': tree['focused']
+            })
+        if len(tree['nodes']) &gt; 0:
+            for node in tree['nodes']:
+                walk_tree(node)
+
+
+    def main():
+        pattern, command = parse_args()
+
+        tree = get_tree()
+        walk_tree(tree)
+
+        focused = filter(lambda x: x['focused'], windows)
+        if len(focused) == 1:
+            focused = focused[0]
+        else:
+            focused = False
+
+        filteredWindows = filter(lambda x: re.search(pattern, x['name']), windows)
+
+        if len(filteredWindows) == 0:
+            subprocess.call([I3MSG, 'exec', '--no-startup-id', command])
+        else:
+            nextWindow = False
+
+            try:
+                if not focused:
+                    raise ValueError
+
+                nextIndex = filteredWindows.index(focused) + 1
+
+                if nextIndex == len(filteredWindows):
+                    raise ValueError
+                else:
+                    nextWindow = filteredWindows[nextIndex]
+
+            except ValueError:
+                nextWindow = filteredWindows[0]
+
+            con_id = nextWindow['id']
+
+            subprocess.call([I3MSG, '[con_id=' + con_id + ']', 'focus'])
+
+
+    if __name__ == '__main__':
+        main()
+
+
+You can see the code at my github dotfiles repository: https://github.com/gustavnikolaj/dotfiles/blob/master/i3/.i3/scripts/next_window.py</description><pubDate>Mon, 09 Sep 2013 21:35:33 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?answer=2506#post-id-2506</guid></item><item><title>Comment by KJ44 for &lt;p&gt;I just completed a long overdue item on my todo-list. A combination of the scripts that &lt;a href="/users/737/germainz/"&gt;@GermainZ&lt;/a&gt; and I made. It can match by either name and class - both regex enabled. It's written as in node.js.&lt;/p&gt;
+
+&lt;p&gt;See this repository:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/gustavnikolaj/i3-run-or-raise"&gt;https://github.com/gustavnikolaj/i3-r...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You will need to have node installed and run npm install in the directory you've cloned it into. After that, you can either reference it by the full path to bin/i3-run-or-raise or you could add it somewhere on your path. (Remember that you'll have to manually set that path available to the X server, by adding it to .xsession/.xinitrc or where it would be appropriate on your system).&lt;/p&gt;
+
+&lt;p&gt;Rewriting the examples that I made in my first answer in this thread:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec ~/path/to/i3-run-or-raise -c "Google-chrome" google-chrome
+bindsym F2 exec ~/path/to/i3-run-or-raise -n "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below is my original answer for reference.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I wrote a python script to solve this problem.&lt;/p&gt;
+
+&lt;p&gt;I use it in my configuration like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec python ~/.i3/scripts/next_window.py "Chrome$" google-chrome
+bindsym F2 exec python ~/.i3/scripts/next_window.py "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first parameter is a regex to match the window title. The second parameter is the application to launch if no active window is found.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import json
+import re
+import subprocess
+import sys
+
+
+I3MSG = '/usr/bin/i3-msg'
+
+
+windows = []
+
+
+def parse_args():
+    if len(sys.argv) == 3:
+        return (sys.argv[1], sys.argv[2])
+    else:
+        sys.exit('Must provide 2 arguments.')
+
+
+def get_tree():
+    process = subprocess.Popen([I3MSG, "-t", "get_tree"], stdout=subprocess.PIPE)
+    tree = str(process.communicate()[0])
+    process.stdout.close()
+    return json.loads(tree)
+
+
+def walk_tree(tree):
+    if tree['window']:
+        windows.append({
+            'name': tree['name'],
+            'id': str(tree['id']),
+            'focused': tree['focused']
+        })
+    if len(tree['nodes']) &amp;gt; 0:
+        for node in tree['nodes']:
+            walk_tree(node)
+
+
+def main():
+    pattern, command = parse_args()
+
+    tree = get_tree()
+    walk_tree(tree)
+
+    focused = filter(lambda x: x['focused'], windows)
+    if len(focused) == 1:
+        focused = focused[0]
+    else:
+        focused = False
+
+    filteredWindows = filter(lambda x: re.search(pattern, x['name']), windows)
+
+    if len(filteredWindows) == 0:
+        subprocess.call([I3MSG, 'exec', '--no-startup-id', command])
+    else:
+        nextWindow = False
+
+        try:
+            if not focused:
+                raise ValueError
+
+            nextIndex = filteredWindows.index(focused) + 1
+
+            if nextIndex == len(filteredWindows):
+                raise ValueError
+            else:
+                nextWindow = filteredWindows[nextIndex]
+
+        except ValueError:
+            nextWindow = filteredWindows[0]
+
+        con_id = nextWindow['id']
+
+        subprocess.call([I3MSG, '[con_id=' + con_id + ']', 'focus'])
+
+
+if __name__ == '__main__':
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can see the code at my github dotfiles repository: &lt;a href="https://github.com/gustavnikolaj/dotfiles/blob/master/i3/.i3/scripts/next_window.py"&gt;https://github.com/gustavnikolaj/dotf...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3569#comment-3569</link><description>This is a great thread. My bash script version now takes an argument to change to a named workspace (or not) when starting a program. In my experience matching windows with assign+criteria at program startup is problematic, I had to give up on simplicity and define the workspace explicitly.</description><pubDate>Tue, 25 Mar 2014 09:38:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3569#comment-3569</guid></item><item><title>Comment by phairland for &lt;p&gt;I just completed a long overdue item on my todo-list. A combination of the scripts that &lt;a href="/users/737/germainz/"&gt;@GermainZ&lt;/a&gt; and I made. It can match by either name and class - both regex enabled. It's written as in node.js.&lt;/p&gt;
+
+&lt;p&gt;See this repository:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/gustavnikolaj/i3-run-or-raise"&gt;https://github.com/gustavnikolaj/i3-r...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You will need to have node installed and run npm install in the directory you've cloned it into. After that, you can either reference it by the full path to bin/i3-run-or-raise or you could add it somewhere on your path. (Remember that you'll have to manually set that path available to the X server, by adding it to .xsession/.xinitrc or where it would be appropriate on your system).&lt;/p&gt;
+
+&lt;p&gt;Rewriting the examples that I made in my first answer in this thread:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec ~/path/to/i3-run-or-raise -c "Google-chrome" google-chrome
+bindsym F2 exec ~/path/to/i3-run-or-raise -n "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below is my original answer for reference.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I wrote a python script to solve this problem.&lt;/p&gt;
+
+&lt;p&gt;I use it in my configuration like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec python ~/.i3/scripts/next_window.py "Chrome$" google-chrome
+bindsym F2 exec python ~/.i3/scripts/next_window.py "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first parameter is a regex to match the window title. The second parameter is the application to launch if no active window is found.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import json
+import re
+import subprocess
+import sys
+
+
+I3MSG = '/usr/bin/i3-msg'
+
+
+windows = []
+
+
+def parse_args():
+    if len(sys.argv) == 3:
+        return (sys.argv[1], sys.argv[2])
+    else:
+        sys.exit('Must provide 2 arguments.')
+
+
+def get_tree():
+    process = subprocess.Popen([I3MSG, "-t", "get_tree"], stdout=subprocess.PIPE)
+    tree = str(process.communicate()[0])
+    process.stdout.close()
+    return json.loads(tree)
+
+
+def walk_tree(tree):
+    if tree['window']:
+        windows.append({
+            'name': tree['name'],
+            'id': str(tree['id']),
+            'focused': tree['focused']
+        })
+    if len(tree['nodes']) &amp;gt; 0:
+        for node in tree['nodes']:
+            walk_tree(node)
+
+
+def main():
+    pattern, command = parse_args()
+
+    tree = get_tree()
+    walk_tree(tree)
+
+    focused = filter(lambda x: x['focused'], windows)
+    if len(focused) == 1:
+        focused = focused[0]
+    else:
+        focused = False
+
+    filteredWindows = filter(lambda x: re.search(pattern, x['name']), windows)
+
+    if len(filteredWindows) == 0:
+        subprocess.call([I3MSG, 'exec', '--no-startup-id', command])
+    else:
+        nextWindow = False
+
+        try:
+            if not focused:
+                raise ValueError
+
+            nextIndex = filteredWindows.index(focused) + 1
+
+            if nextIndex == len(filteredWindows):
+                raise ValueError
+            else:
+                nextWindow = filteredWindows[nextIndex]
+
+        except ValueError:
+            nextWindow = filteredWindows[0]
+
+        con_id = nextWindow['id']
+
+        subprocess.call([I3MSG, '[con_id=' + con_id + ']', 'focus'])
+
+
+if __name__ == '__main__':
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can see the code at my github dotfiles repository: &lt;a href="https://github.com/gustavnikolaj/dotfiles/blob/master/i3/.i3/scripts/next_window.py"&gt;https://github.com/gustavnikolaj/dotf...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=2510#comment-2510</link><description>Thanks for the script</description><pubDate>Tue, 10 Sep 2013 15:39:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=2510#comment-2510</guid></item><item><title>Comment by blueyed for &lt;p&gt;I just completed a long overdue item on my todo-list. A combination of the scripts that &lt;a href="/users/737/germainz/"&gt;@GermainZ&lt;/a&gt; and I made. It can match by either name and class - both regex enabled. It's written as in node.js.&lt;/p&gt;
+
+&lt;p&gt;See this repository:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/gustavnikolaj/i3-run-or-raise"&gt;https://github.com/gustavnikolaj/i3-r...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You will need to have node installed and run npm install in the directory you've cloned it into. After that, you can either reference it by the full path to bin/i3-run-or-raise or you could add it somewhere on your path. (Remember that you'll have to manually set that path available to the X server, by adding it to .xsession/.xinitrc or where it would be appropriate on your system).&lt;/p&gt;
+
+&lt;p&gt;Rewriting the examples that I made in my first answer in this thread:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec ~/path/to/i3-run-or-raise -c "Google-chrome" google-chrome
+bindsym F2 exec ~/path/to/i3-run-or-raise -n "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below is my original answer for reference.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I wrote a python script to solve this problem.&lt;/p&gt;
+
+&lt;p&gt;I use it in my configuration like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec python ~/.i3/scripts/next_window.py "Chrome$" google-chrome
+bindsym F2 exec python ~/.i3/scripts/next_window.py "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first parameter is a regex to match the window title. The second parameter is the application to launch if no active window is found.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import json
+import re
+import subprocess
+import sys
+
+
+I3MSG = '/usr/bin/i3-msg'
+
+
+windows = []
+
+
+def parse_args():
+    if len(sys.argv) == 3:
+        return (sys.argv[1], sys.argv[2])
+    else:
+        sys.exit('Must provide 2 arguments.')
+
+
+def get_tree():
+    process = subprocess.Popen([I3MSG, "-t", "get_tree"], stdout=subprocess.PIPE)
+    tree = str(process.communicate()[0])
+    process.stdout.close()
+    return json.loads(tree)
+
+
+def walk_tree(tree):
+    if tree['window']:
+        windows.append({
+            'name': tree['name'],
+            'id': str(tree['id']),
+            'focused': tree['focused']
+        })
+    if len(tree['nodes']) &amp;gt; 0:
+        for node in tree['nodes']:
+            walk_tree(node)
+
+
+def main():
+    pattern, command = parse_args()
+
+    tree = get_tree()
+    walk_tree(tree)
+
+    focused = filter(lambda x: x['focused'], windows)
+    if len(focused) == 1:
+        focused = focused[0]
+    else:
+        focused = False
+
+    filteredWindows = filter(lambda x: re.search(pattern, x['name']), windows)
+
+    if len(filteredWindows) == 0:
+        subprocess.call([I3MSG, 'exec', '--no-startup-id', command])
+    else:
+        nextWindow = False
+
+        try:
+            if not focused:
+                raise ValueError
+
+            nextIndex = filteredWindows.index(focused) + 1
+
+            if nextIndex == len(filteredWindows):
+                raise ValueError
+            else:
+                nextWindow = filteredWindows[nextIndex]
+
+        except ValueError:
+            nextWindow = filteredWindows[0]
+
+        con_id = nextWindow['id']
+
+        subprocess.call([I3MSG, '[con_id=' + con_id + ']', 'focus'])
+
+
+if __name__ == '__main__':
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can see the code at my github dotfiles repository: &lt;a href="https://github.com/gustavnikolaj/dotfiles/blob/master/i3/.i3/scripts/next_window.py"&gt;https://github.com/gustavnikolaj/dotf...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3425#comment-3425</link><description>It would be nice if this could be used in a more general way, e.g. by searching for the class and instance criteria (http://i3wm.org/docs/userguide.html#exec).</description><pubDate>Tue, 25 Feb 2014 11:56:22 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3425#comment-3425</guid></item><item><title>Comment by KJ44 for &lt;p&gt;I just completed a long overdue item on my todo-list. A combination of the scripts that &lt;a href="/users/737/germainz/"&gt;@GermainZ&lt;/a&gt; and I made. It can match by either name and class - both regex enabled. It's written as in node.js.&lt;/p&gt;
+
+&lt;p&gt;See this repository:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/gustavnikolaj/i3-run-or-raise"&gt;https://github.com/gustavnikolaj/i3-r...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You will need to have node installed and run npm install in the directory you've cloned it into. After that, you can either reference it by the full path to bin/i3-run-or-raise or you could add it somewhere on your path. (Remember that you'll have to manually set that path available to the X server, by adding it to .xsession/.xinitrc or where it would be appropriate on your system).&lt;/p&gt;
+
+&lt;p&gt;Rewriting the examples that I made in my first answer in this thread:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec ~/path/to/i3-run-or-raise -c "Google-chrome" google-chrome
+bindsym F2 exec ~/path/to/i3-run-or-raise -n "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below is my original answer for reference.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I wrote a python script to solve this problem.&lt;/p&gt;
+
+&lt;p&gt;I use it in my configuration like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec python ~/.i3/scripts/next_window.py "Chrome$" google-chrome
+bindsym F2 exec python ~/.i3/scripts/next_window.py "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first parameter is a regex to match the window title. The second parameter is the application to launch if no active window is found.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import json
+import re
+import subprocess
+import sys
+
+
+I3MSG = '/usr/bin/i3-msg'
+
+
+windows = []
+
+
+def parse_args():
+    if len(sys.argv) == 3:
+        return (sys.argv[1], sys.argv[2])
+    else:
+        sys.exit('Must provide 2 arguments.')
+
+
+def get_tree():
+    process = subprocess.Popen([I3MSG, "-t", "get_tree"], stdout=subprocess.PIPE)
+    tree = str(process.communicate()[0])
+    process.stdout.close()
+    return json.loads(tree)
+
+
+def walk_tree(tree):
+    if tree['window']:
+        windows.append({
+            'name': tree['name'],
+            'id': str(tree['id']),
+            'focused': tree['focused']
+        })
+    if len(tree['nodes']) &amp;gt; 0:
+        for node in tree['nodes']:
+            walk_tree(node)
+
+
+def main():
+    pattern, command = parse_args()
+
+    tree = get_tree()
+    walk_tree(tree)
+
+    focused = filter(lambda x: x['focused'], windows)
+    if len(focused) == 1:
+        focused = focused[0]
+    else:
+        focused = False
+
+    filteredWindows = filter(lambda x: re.search(pattern, x['name']), windows)
+
+    if len(filteredWindows) == 0:
+        subprocess.call([I3MSG, 'exec', '--no-startup-id', command])
+    else:
+        nextWindow = False
+
+        try:
+            if not focused:
+                raise ValueError
+
+            nextIndex = filteredWindows.index(focused) + 1
+
+            if nextIndex == len(filteredWindows):
+                raise ValueError
+            else:
+                nextWindow = filteredWindows[nextIndex]
+
+        except ValueError:
+            nextWindow = filteredWindows[0]
+
+        con_id = nextWindow['id']
+
+        subprocess.call([I3MSG, '[con_id=' + con_id + ']', 'focus'])
+
+
+if __name__ == '__main__':
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can see the code at my github dotfiles repository: &lt;a href="https://github.com/gustavnikolaj/dotfiles/blob/master/i3/.i3/scripts/next_window.py"&gt;https://github.com/gustavnikolaj/dotf...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=2511#comment-2511</link><description>Nice to see this done in python.</description><pubDate>Tue, 10 Sep 2013 17:49:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=2511#comment-2511</guid></item><item><title>Comment by TonyC for &lt;p&gt;I just completed a long overdue item on my todo-list. A combination of the scripts that &lt;a href="/users/737/germainz/"&gt;@GermainZ&lt;/a&gt; and I made. It can match by either name and class - both regex enabled. It's written as in node.js.&lt;/p&gt;
+
+&lt;p&gt;See this repository:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/gustavnikolaj/i3-run-or-raise"&gt;https://github.com/gustavnikolaj/i3-r...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You will need to have node installed and run npm install in the directory you've cloned it into. After that, you can either reference it by the full path to bin/i3-run-or-raise or you could add it somewhere on your path. (Remember that you'll have to manually set that path available to the X server, by adding it to .xsession/.xinitrc or where it would be appropriate on your system).&lt;/p&gt;
+
+&lt;p&gt;Rewriting the examples that I made in my first answer in this thread:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec ~/path/to/i3-run-or-raise -c "Google-chrome" google-chrome
+bindsym F2 exec ~/path/to/i3-run-or-raise -n "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below is my original answer for reference.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I wrote a python script to solve this problem.&lt;/p&gt;
+
+&lt;p&gt;I use it in my configuration like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec python ~/.i3/scripts/next_window.py "Chrome$" google-chrome
+bindsym F2 exec python ~/.i3/scripts/next_window.py "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first parameter is a regex to match the window title. The second parameter is the application to launch if no active window is found.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import json
+import re
+import subprocess
+import sys
+
+
+I3MSG = '/usr/bin/i3-msg'
+
+
+windows = []
+
+
+def parse_args():
+    if len(sys.argv) == 3:
+        return (sys.argv[1], sys.argv[2])
+    else:
+        sys.exit('Must provide 2 arguments.')
+
+
+def get_tree():
+    process = subprocess.Popen([I3MSG, "-t", "get_tree"], stdout=subprocess.PIPE)
+    tree = str(process.communicate()[0])
+    process.stdout.close()
+    return json.loads(tree)
+
+
+def walk_tree(tree):
+    if tree['window']:
+        windows.append({
+            'name': tree['name'],
+            'id': str(tree['id']),
+            'focused': tree['focused']
+        })
+    if len(tree['nodes']) &amp;gt; 0:
+        for node in tree['nodes']:
+            walk_tree(node)
+
+
+def main():
+    pattern, command = parse_args()
+
+    tree = get_tree()
+    walk_tree(tree)
+
+    focused = filter(lambda x: x['focused'], windows)
+    if len(focused) == 1:
+        focused = focused[0]
+    else:
+        focused = False
+
+    filteredWindows = filter(lambda x: re.search(pattern, x['name']), windows)
+
+    if len(filteredWindows) == 0:
+        subprocess.call([I3MSG, 'exec', '--no-startup-id', command])
+    else:
+        nextWindow = False
+
+        try:
+            if not focused:
+                raise ValueError
+
+            nextIndex = filteredWindows.index(focused) + 1
+
+            if nextIndex == len(filteredWindows):
+                raise ValueError
+            else:
+                nextWindow = filteredWindows[nextIndex]
+
+        except ValueError:
+            nextWindow = filteredWindows[0]
+
+        con_id = nextWindow['id']
+
+        subprocess.call([I3MSG, '[con_id=' + con_id + ']', 'focus'])
+
+
+if __name__ == '__main__':
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can see the code at my github dotfiles repository: &lt;a href="https://github.com/gustavnikolaj/dotfiles/blob/master/i3/.i3/scripts/next_window.py"&gt;https://github.com/gustavnikolaj/dotf...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3566#comment-3566</link><description>Check out the new library: https://github.com/acrisci/i3ipc-python which is designed to help you do exactly this sort of thing.</description><pubDate>Mon, 24 Mar 2014 23:43:51 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3566#comment-3566</guid></item><item><title>Comment by gustavnikolaj for &lt;p&gt;I just completed a long overdue item on my todo-list. A combination of the scripts that &lt;a href="/users/737/germainz/"&gt;@GermainZ&lt;/a&gt; and I made. It can match by either name and class - both regex enabled. It's written as in node.js.&lt;/p&gt;
+
+&lt;p&gt;See this repository:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/gustavnikolaj/i3-run-or-raise"&gt;https://github.com/gustavnikolaj/i3-r...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You will need to have node installed and run npm install in the directory you've cloned it into. After that, you can either reference it by the full path to bin/i3-run-or-raise or you could add it somewhere on your path. (Remember that you'll have to manually set that path available to the X server, by adding it to .xsession/.xinitrc or where it would be appropriate on your system).&lt;/p&gt;
+
+&lt;p&gt;Rewriting the examples that I made in my first answer in this thread:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec ~/path/to/i3-run-or-raise -c "Google-chrome" google-chrome
+bindsym F2 exec ~/path/to/i3-run-or-raise -n "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below is my original answer for reference.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I wrote a python script to solve this problem.&lt;/p&gt;
+
+&lt;p&gt;I use it in my configuration like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec python ~/.i3/scripts/next_window.py "Chrome$" google-chrome
+bindsym F2 exec python ~/.i3/scripts/next_window.py "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first parameter is a regex to match the window title. The second parameter is the application to launch if no active window is found.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import json
+import re
+import subprocess
+import sys
+
+
+I3MSG = '/usr/bin/i3-msg'
+
+
+windows = []
+
+
+def parse_args():
+    if len(sys.argv) == 3:
+        return (sys.argv[1], sys.argv[2])
+    else:
+        sys.exit('Must provide 2 arguments.')
+
+
+def get_tree():
+    process = subprocess.Popen([I3MSG, "-t", "get_tree"], stdout=subprocess.PIPE)
+    tree = str(process.communicate()[0])
+    process.stdout.close()
+    return json.loads(tree)
+
+
+def walk_tree(tree):
+    if tree['window']:
+        windows.append({
+            'name': tree['name'],
+            'id': str(tree['id']),
+            'focused': tree['focused']
+        })
+    if len(tree['nodes']) &amp;gt; 0:
+        for node in tree['nodes']:
+            walk_tree(node)
+
+
+def main():
+    pattern, command = parse_args()
+
+    tree = get_tree()
+    walk_tree(tree)
+
+    focused = filter(lambda x: x['focused'], windows)
+    if len(focused) == 1:
+        focused = focused[0]
+    else:
+        focused = False
+
+    filteredWindows = filter(lambda x: re.search(pattern, x['name']), windows)
+
+    if len(filteredWindows) == 0:
+        subprocess.call([I3MSG, 'exec', '--no-startup-id', command])
+    else:
+        nextWindow = False
+
+        try:
+            if not focused:
+                raise ValueError
+
+            nextIndex = filteredWindows.index(focused) + 1
+
+            if nextIndex == len(filteredWindows):
+                raise ValueError
+            else:
+                nextWindow = filteredWindows[nextIndex]
+
+        except ValueError:
+            nextWindow = filteredWindows[0]
+
+        con_id = nextWindow['id']
+
+        subprocess.call([I3MSG, '[con_id=' + con_id + ']', 'focus'])
+
+
+if __name__ == '__main__':
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can see the code at my github dotfiles repository: &lt;a href="https://github.com/gustavnikolaj/dotfiles/blob/master/i3/.i3/scripts/next_window.py"&gt;https://github.com/gustavnikolaj/dotf...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3513#comment-3513</link><description>@blueyed I'm actually considering expanding this to do exactly that. I will of course update this when I get around to it. Thanks for the hint with the parameters to i3-msg :-)</description><pubDate>Tue, 11 Mar 2014 12:46:23 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3513#comment-3513</guid></item><item><title>Comment by blueyed for &lt;p&gt;I just completed a long overdue item on my todo-list. A combination of the scripts that &lt;a href="/users/737/germainz/"&gt;@GermainZ&lt;/a&gt; and I made. It can match by either name and class - both regex enabled. It's written as in node.js.&lt;/p&gt;
+
+&lt;p&gt;See this repository:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/gustavnikolaj/i3-run-or-raise"&gt;https://github.com/gustavnikolaj/i3-r...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You will need to have node installed and run npm install in the directory you've cloned it into. After that, you can either reference it by the full path to bin/i3-run-or-raise or you could add it somewhere on your path. (Remember that you'll have to manually set that path available to the X server, by adding it to .xsession/.xinitrc or where it would be appropriate on your system).&lt;/p&gt;
+
+&lt;p&gt;Rewriting the examples that I made in my first answer in this thread:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec ~/path/to/i3-run-or-raise -c "Google-chrome" google-chrome
+bindsym F2 exec ~/path/to/i3-run-or-raise -n "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below is my original answer for reference.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I wrote a python script to solve this problem.&lt;/p&gt;
+
+&lt;p&gt;I use it in my configuration like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym F1 exec python ~/.i3/scripts/next_window.py "Chrome$" google-chrome
+bindsym F2 exec python ~/.i3/scripts/next_window.py "Sublime Text 2$" sublime-text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first parameter is a regex to match the window title. The second parameter is the application to launch if no active window is found.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import json
+import re
+import subprocess
+import sys
+
+
+I3MSG = '/usr/bin/i3-msg'
+
+
+windows = []
+
+
+def parse_args():
+    if len(sys.argv) == 3:
+        return (sys.argv[1], sys.argv[2])
+    else:
+        sys.exit('Must provide 2 arguments.')
+
+
+def get_tree():
+    process = subprocess.Popen([I3MSG, "-t", "get_tree"], stdout=subprocess.PIPE)
+    tree = str(process.communicate()[0])
+    process.stdout.close()
+    return json.loads(tree)
+
+
+def walk_tree(tree):
+    if tree['window']:
+        windows.append({
+            'name': tree['name'],
+            'id': str(tree['id']),
+            'focused': tree['focused']
+        })
+    if len(tree['nodes']) &amp;gt; 0:
+        for node in tree['nodes']:
+            walk_tree(node)
+
+
+def main():
+    pattern, command = parse_args()
+
+    tree = get_tree()
+    walk_tree(tree)
+
+    focused = filter(lambda x: x['focused'], windows)
+    if len(focused) == 1:
+        focused = focused[0]
+    else:
+        focused = False
+
+    filteredWindows = filter(lambda x: re.search(pattern, x['name']), windows)
+
+    if len(filteredWindows) == 0:
+        subprocess.call([I3MSG, 'exec', '--no-startup-id', command])
+    else:
+        nextWindow = False
+
+        try:
+            if not focused:
+                raise ValueError
+
+            nextIndex = filteredWindows.index(focused) + 1
+
+            if nextIndex == len(filteredWindows):
+                raise ValueError
+            else:
+                nextWindow = filteredWindows[nextIndex]
+
+        except ValueError:
+            nextWindow = filteredWindows[0]
+
+        con_id = nextWindow['id']
+
+        subprocess.call([I3MSG, '[con_id=' + con_id + ']', 'focus'])
+
+
+if __name__ == '__main__':
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can see the code at my github dotfiles repository: &lt;a href="https://github.com/gustavnikolaj/dotfiles/blob/master/i3/.i3/scripts/next_window.py"&gt;https://github.com/gustavnikolaj/dotf...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3424#comment-3424</link><description>The `exec` call should be `subprocess.call([I3MSG, 'exec --no-startup-id', command])`, otherwise i3-msg complains about the unknown `--no-startup-id` argument.</description><pubDate>Tue, 25 Feb 2014 11:52:36 +0000</pubDate><guid>https://faq.i3wm.org/question/2473/run-or-focus-in-i3/?comment=3424#comment-3424</guid></item></channel></rss>

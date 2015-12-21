@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/498/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 18 Sep 2012 11:31:19 +0000</lastBuildDate><item><title>Display dmenu inside i3bar, ideas?</title><link>https://faq.i3wm.org/question/498/display-dmenu-inside-i3bar-ideas/</link><description>Hello everybody,
+
+scanf here with another question. So, I thought it would be cool to have dmenu display its text inside i3bar, instead of in a separate window (the stripe that comes up on top, I'm guessing that is an X window). I thought about it for a while, but found no obvious solution.
+
+This is the "best" idea I has thus far:
+
+1. Bind $mod+d to enter *dmenu_mode*.
+2. In this mode, key presses write to a file, how I need to figure out yet (I would avoid binding every character key to a command).
+3. Meanwhile, a program which more or less replicates dmenu reads that file and produces a dmenu-like output, which is sent to i3bar.
+4. When the **enter** key is pressed, a special character is printed to the file, which signals the dmenu-like program to executes whatever it needs and clear the file. Pressing **enter** also makes us leave *dmenu_mode*.
+
+First: any simpler solutions? Second: could it work?
+
+Thanks in advance, Scanf</description><pubDate>Sun, 16 Sep 2012 16:28:49 +0000</pubDate><guid>https://faq.i3wm.org/question/498/display-dmenu-inside-i3bar-ideas/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hello everybody,&lt;/p&gt;
+
+&lt;p&gt;scanf here with another question. So, I thought it would be cool to have dmenu display its text inside i3bar, instead of in a separate window (the stripe that comes up on top, I'm guessing that is an X window). I thought about it for a while, but found no obvious solution.&lt;/p&gt;
+
+&lt;p&gt;This is the "best" idea I has thus far:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Bind $mod+d to enter &lt;em&gt;dmenu_mode&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;In this mode, key presses write to a file, how I need to figure out yet (I would avoid binding every character key to a command).&lt;/li&gt;
+&lt;li&gt;Meanwhile, a program which more or less replicates dmenu reads that file and produces a dmenu-like output, which is sent to i3bar.&lt;/li&gt;
+&lt;li&gt;When the &lt;strong&gt;enter&lt;/strong&gt; key is pressed, a special character is printed to the file, which signals the dmenu-like program to executes whatever it needs and clear the file. Pressing &lt;strong&gt;enter&lt;/strong&gt; also makes us leave &lt;em&gt;dmenu_mode&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;First: any simpler solutions? Second: could it work?&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance, Scanf&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/498/display-dmenu-inside-i3bar-ideas/?answer=516#post-id-516</link><description>Ugh, why would you even want that?
+
+1. You are correct, the thing dmenu opens is an X11 window. Please consider that many GUI elements of toolkits such as GTK or Qt are also windows, and using one less window for dmenu is not going to make anything faster or more efficient.
+2. If it’s only for the visual effect, why don’t you just overlay dmenu over i3bar? You can change dmenu’s position and colors.</description><pubDate>Tue, 18 Sep 2012 10:13:44 +0000</pubDate><guid>https://faq.i3wm.org/question/498/display-dmenu-inside-i3bar-ideas/?answer=516#post-id-516</guid></item><item><title>Comment by scanf for &lt;p&gt;Ugh, why would you even want that?&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;You are correct, the thing dmenu opens is an X11 window. Please consider that many GUI elements of toolkits such as GTK or Qt are also windows, and using one less window for dmenu is not going to make anything faster or more efficient.&lt;/li&gt;
+&lt;li&gt;If it’s only for the visual effect, why don’t you just overlay dmenu over i3bar? You can change dmenu’s position and colors.&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/498/display-dmenu-inside-i3bar-ideas/?comment=518#comment-518</link><description>It is just for the visual effect. My convoluted approach was to avoid the dmenu window covering i3bar, which is again only for visual reasons. I have too much time on my hands... Anyway. I think I'll do as you suggest and try to constrain the dmenu window into the unused space of i3bar. Thanks</description><pubDate>Tue, 18 Sep 2012 11:31:19 +0000</pubDate><guid>https://faq.i3wm.org/question/498/display-dmenu-inside-i3bar-ideas/?comment=518#comment-518</guid></item></channel></rss>

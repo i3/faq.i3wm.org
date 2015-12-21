@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/474/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 11 Sep 2012 11:44:25 +0000</lastBuildDate><item><title>Marking applications on i3 startup</title><link>https://faq.i3wm.org/question/474/marking-applications-on-i3-startup/</link><description>Is there a way to *mark* an application that is fired on *i3 startup*?</description><pubDate>Tue, 11 Sep 2012 11:38:26 +0000</pubDate><guid>https://faq.i3wm.org/question/474/marking-applications-on-i3-startup/</guid></item><item><title>Answer by Michael for &lt;p&gt;Is there a way to &lt;em&gt;mark&lt;/em&gt; an application that is fired on &lt;em&gt;i3 startup&lt;/em&gt;?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/474/marking-applications-on-i3-startup/?answer=475#post-id-475</link><description>Depends on the application. You can always use `for_window` and match the window’s class/title/…
+
+If it’s a terminal emulator you are starting, urxvt (for example) supports `urxvt -name foo` and you can match on that.
+
+Since you commented that it’s chrome you care about, here is how to match that:
+
+    # Make chrome set its class to something distinguishable, also use a separate profile:
+    exec google-chrome --user-data-dir=/tmp/chrome-test --class=chrometest http://i3wm.org/
+    
+    # As an example, make that floating:
+    for_window [class="^chrometest$"] floating enable
+
+All GTK applications support this kind of thing, see http://developer.gnome.org/gtk/stable/gtk-running.html</description><pubDate>Tue, 11 Sep 2012 11:41:22 +0000</pubDate><guid>https://faq.i3wm.org/question/474/marking-applications-on-i3-startup/?answer=475#post-id-475</guid></item><item><title>Comment by spordha for &lt;p&gt;Depends on the application. You can always use &lt;code&gt;for_window&lt;/code&gt; and match the window’s class/title/…&lt;/p&gt;
+
+&lt;p&gt;If it’s a terminal emulator you are starting, urxvt (for example) supports &lt;code&gt;urxvt -name foo&lt;/code&gt; and you can match on that.&lt;/p&gt;
+
+&lt;p&gt;Since you commented that it’s chrome you care about, here is how to match that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Make chrome set its class to something distinguishable, also use a separate profile:
+exec google-chrome --user-data-dir=/tmp/chrome-test --class=chrometest http://i3wm.org/
+
+# As an example, make that floating:
+for_window [class="^chrometest$"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All GTK applications support this kind of thing, see &lt;a href="http://developer.gnome.org/gtk/stable/gtk-running.html"&gt;http://developer.gnome.org/gtk/stable...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/474/marking-applications-on-i3-startup/?comment=476#comment-476</link><description>Maybe I should have elaborated my requirement a bit more. I would like i3 to open a bunch of google-chrome instances each opening a different website. Now I would like to tag each of the instance with a separate tag so that later I can directly jump to that window regardless of where the window lies</description><pubDate>Tue, 11 Sep 2012 11:44:25 +0000</pubDate><guid>https://faq.i3wm.org/question/474/marking-applications-on-i3-startup/?comment=476#comment-476</guid></item></channel></rss>

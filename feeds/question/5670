@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5670/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 27 Mar 2015 05:45:24 +0000</lastBuildDate><item><title>window switches to floating layout on restart</title><link>https://faq.i3wm.org/question/5670/window-switches-to-floating-layout-on-restart/</link><description>**UPDATE:** [Reported to Github](https://github.com/i3/i3/issues/1617) (with more details and against 4.10.1 which is exposing slightly different behavior,)
+
+Sometimes, probably related to non-standard or buggy behavior of some clients, it happens that on restart, i3 will arbitrarily switch current window to floating mode --- if another window exists in particular (buggy) state.
+
+So far I was able to observe this with owncloud client, but probably it will not be the only client that can  trigger this.
+
+Steps:
+
+  1. Open any window, e.g. terminal.
+  2. Run owncloud client. The client hides itself in notification area.
+  3. Click owncloud icon in the notification area twice to open it and hide it back again.  You should
+      now see only the terminal window again as focused
+  4. Restart i3 (e.g. `$mod+Shift+r` or `i3-msg restart`)
+
+After restart, you will find that the terminal window is switched to floating mode.
+
+Note that this will not happen if you omit step 3, i.e. if the owncloud window has never existed in the session.  Apparently there is something funny about the way owncloud hides the window, and there may be need to file a bug there. On the other hand, clients will misbehave so i3 should be more robust here as well.
+
+i3 is built from 4.9.1 tag in github repo, owncloud client is 1.8.0 from the official repos (1.8 is fairly new and I don't think I have seen this with 1.7).</description><pubDate>Thu, 26 Mar 2015 13:10:12 +0000</pubDate><guid>https://faq.i3wm.org/question/5670/window-switches-to-floating-layout-on-restart/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; &lt;a href="https://github.com/i3/i3/issues/1617"&gt;Reported to Github&lt;/a&gt; (with more details and against 4.10.1 which is exposing slightly different behavior,)&lt;/p&gt;
+
+&lt;p&gt;Sometimes, probably related to non-standard or buggy behavior of some clients, it happens that on restart, i3 will arbitrarily switch current window to floating mode --- if another window exists in particular (buggy) state.&lt;/p&gt;
+
+&lt;p&gt;So far I was able to observe this with owncloud client, but probably it will not be the only client that can  trigger this.&lt;/p&gt;
+
+&lt;p&gt;Steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Open any window, e.g. terminal.&lt;/li&gt;
+&lt;li&gt;Run owncloud client. The client hides itself in notification area.&lt;/li&gt;
+&lt;li&gt;Click owncloud icon in the notification area twice to open it and hide it back again.  You should
+  now see only the terminal window again as focused&lt;/li&gt;
+&lt;li&gt;Restart i3 (e.g. &lt;code&gt;$mod+Shift+r&lt;/code&gt; or &lt;code&gt;i3-msg restart&lt;/code&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;After restart, you will find that the terminal window is switched to floating mode.&lt;/p&gt;
+
+&lt;p&gt;Note that this will not happen if you omit step 3, i.e. if the owncloud window has never existed in the session.  Apparently there is something funny about the way owncloud hides the window, and there may be need to file a bug there. On the other hand, clients will misbehave so i3 should be more robust here as well.&lt;/p&gt;
+
+&lt;p&gt;i3 is built from 4.9.1 tag in github repo, owncloud client is 1.8.0 from the official repos (1.8 is fairly new and I don't think I have seen this with 1.7).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5670/window-switches-to-floating-layout-on-restart/?comment=5673#comment-5673</link><description>The FAQ is not the right place for bug reports. Please use [the issue tracker on *i3*'s GitHub page](https://github.com/i3/i3/issues) for that.</description><pubDate>Fri, 27 Mar 2015 05:45:24 +0000</pubDate><guid>https://faq.i3wm.org/question/5670/window-switches-to-floating-layout-on-restart/?comment=5673#comment-5673</guid></item></channel></rss>

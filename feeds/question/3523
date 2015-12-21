@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3523/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 15 Mar 2014 21:23:05 +0000</lastBuildDate><item><title>"Sleep" or delay for autostarted apps?</title><link>https://faq.i3wm.org/question/3523/sleep-or-delay-for-autostarted-apps/</link><description> Is there a way to delay an application's startup time in ~/.i3/config? Currently in ~/.i3/config I have the line
+
+exec --no-startup-id i3-msg 'workspace 6; exec qbittorrent; workspace 1'
+
+but I would like to delay qbittorrent's start for 10 or 15 seconds after i3 starts. If I could add "sleep 15" somewhere in the exec line that would be great, if anyone knows.</description><pubDate>Fri, 14 Mar 2014 00:25:28 +0000</pubDate><guid>https://faq.i3wm.org/question/3523/sleep-or-delay-for-autostarted-apps/</guid></item><item><title>Answer by oldos2er for &lt;p&gt;Is there a way to delay an application's startup time in ~/.i3/config? Currently in ~/.i3/config I have the line&lt;/p&gt;
+
+&lt;p&gt;exec --no-startup-id i3-msg 'workspace 6; exec qbittorrent; workspace 1'&lt;/p&gt;
+
+&lt;p&gt;but I would like to delay qbittorrent's start for 10 or 15 seconds after i3 starts. If I could add "sleep 15" somewhere in the exec line that would be great, if anyone knows.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3523/sleep-or-delay-for-autostarted-apps/?answer=3534#post-id-3534</link><description>Thank you. This line finally worked for me:
+
+exec "sh -c 'sleep 15; exec qbittorrent'"
+
+I have qbittorrent set to start minimized.</description><pubDate>Sat, 15 Mar 2014 20:56:50 +0000</pubDate><guid>https://faq.i3wm.org/question/3523/sleep-or-delay-for-autostarted-apps/?answer=3534#post-id-3534</guid></item><item><title>Comment by joepd for &lt;p&gt;Thank you. This line finally worked for me:&lt;/p&gt;
+
+&lt;p&gt;exec "sh -c 'sleep 15; exec qbittorrent'"&lt;/p&gt;
+
+&lt;p&gt;I have qbittorrent set to start minimized.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3523/sleep-or-delay-for-autostarted-apps/?comment=3535#comment-3535</link><description>Great! Then, accept the answer ;)</description><pubDate>Sat, 15 Mar 2014 21:23:05 +0000</pubDate><guid>https://faq.i3wm.org/question/3523/sleep-or-delay-for-autostarted-apps/?comment=3535#comment-3535</guid></item><item><title>Answer by joepd for &lt;p&gt;Is there a way to delay an application's startup time in ~/.i3/config? Currently in ~/.i3/config I have the line&lt;/p&gt;
+
+&lt;p&gt;exec --no-startup-id i3-msg 'workspace 6; exec qbittorrent; workspace 1'&lt;/p&gt;
+
+&lt;p&gt;but I would like to delay qbittorrent's start for 10 or 15 seconds after i3 starts. If I could add "sleep 15" somewhere in the exec line that would be great, if anyone knows.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3523/sleep-or-delay-for-autostarted-apps/?answer=3531#post-id-3531</link><description>The workspace assignment can better be fixed with a ``for_window``-matcher. See elsewhere in the FAQ. This solves multiple issues with your command already. As for the `sleep` thing, you could try (untested): 
+
+    exec --no-startup-id "sh -c 'sleep 10; exec qbittorent'"
+
+Explanation: Here it says: `exec --no-startup-id program`, where the program is `sh`. The exec in `sh` means that the PID of `sh` will be replaced by the PID of qtorrent. If you would look at `pstree -ap | less`, you will notice that `qtbittorrent` is a direct descendant of `i3`, without another shell process in between. </description><pubDate>Sat, 15 Mar 2014 19:54:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3523/sleep-or-delay-for-autostarted-apps/?answer=3531#post-id-3531</guid></item></channel></rss>

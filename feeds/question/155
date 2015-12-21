@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/155/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 23 Jun 2012 00:45:28 +0000</lastBuildDate><item><title>Broken URxvt when restarting in place</title><link>https://faq.i3wm.org/question/155/broken-urxvt-when-restarting-in-place/</link><description>I was setting up i3 earlier and having some fun with it (I'm really digging it, it's a neat WM for sure) and ran into a problem when I restarted it in place while I was editing the config in URxvt.
+
+Here it is before restart, looking nice (and automatically taking up wasted space like a champ!)
+![before restart](http://i.imgur.com/TBcTR.png)
+
+But after I restarted, it no longer had a border and WASN'T taking up that "wasted" space. It shows whatever was on the screen before it loads it.
+![after restart](http://i.imgur.com/jMzHh.png)
+
+This is pretty much the last thing I need figured out to finally make my switch over. I can log what startx yells at me when I run it and pastebin it in a minute, and see if using SLiM to start it makes a difference.
+
+EDIT: It doesn't happen until I do `xrdb -load ~/.Xresources` and close it and open it again. :/ I'm not sure why that's an issue, but startx isn't using .Xresources so I get a WRONG terminal when I open it normally.</description><pubDate>Sat, 23 Jun 2012 00:20:02 +0000</pubDate><guid>https://faq.i3wm.org/question/155/broken-urxvt-when-restarting-in-place/</guid></item><item><title>Answer by thevdude for &lt;p&gt;I was setting up i3 earlier and having some fun with it (I'm really digging it, it's a neat WM for sure) and ran into a problem when I restarted it in place while I was editing the config in URxvt.&lt;/p&gt;
+
+&lt;p&gt;Here it is before restart, looking nice (and automatically taking up wasted space like a champ!)
+&lt;img alt="before restart" src="http://i.imgur.com/TBcTR.png"/&gt;&lt;/p&gt;
+
+&lt;p&gt;But after I restarted, it no longer had a border and WASN'T taking up that "wasted" space. It shows whatever was on the screen before it loads it.
+&lt;img alt="after restart" src="http://i.imgur.com/jMzHh.png"/&gt;&lt;/p&gt;
+
+&lt;p&gt;This is pretty much the last thing I need figured out to finally make my switch over. I can log what startx yells at me when I run it and pastebin it in a minute, and see if using SLiM to start it makes a difference.&lt;/p&gt;
+
+&lt;p&gt;EDIT: It doesn't happen until I do &lt;code&gt;xrdb -load ~/.Xresources&lt;/code&gt; and close it and open it again. :/ I'm not sure why that's an issue, but startx isn't using .Xresources so I get a WRONG terminal when I open it normally.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/155/broken-urxvt-when-restarting-in-place/?answer=156#post-id-156</link><description>This is slightly embarrassing.
+
+When I originally set up my .Xresources, it was on openbox with xcompmgr, so I had compositing. This means that I had set compositing up for urxvt, which is normally fine.
+
+Pretty much every other WM I've worked with hasn't had a problem with this either, so no big deal until now.
+
+The background wasn't set with an alpha layer, but the line `URxvt.Depth = 32` was still there in my .Xresources. Commenting it out fixed my problem. :D</description><pubDate>Sat, 23 Jun 2012 00:45:28 +0000</pubDate><guid>https://faq.i3wm.org/question/155/broken-urxvt-when-restarting-in-place/?answer=156#post-id-156</guid></item></channel></rss>

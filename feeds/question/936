@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/936/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 22 Jan 2013 23:35:25 +0000</lastBuildDate><item><title>Floating windows initial position</title><link>https://faq.i3wm.org/question/936/floating-windows-initial-position/</link><description>Is it possible to force the initial position for a "floating enable" window? (By default, it appears on the center of the screen)
+
+More specifically, I'm trying to put a simple GTK calendar near the bottom-right corner:
+
+    for_window [class="Gsimplecal"] floating enable
+    for_window [class="Gsimplecal"] border none
+
+I tried something like:
+
+    for_window [class="Gsimplecal"] geometry {"x": 1600, "y": 1, "width": 150, "height": 150}
+
+but no luck.
+</description><pubDate>Mon, 24 Dec 2012 21:25:23 +0000</pubDate><guid>https://faq.i3wm.org/question/936/floating-windows-initial-position/</guid></item><item><title>Answer by dkeg for &lt;p&gt;Is it possible to force the initial position for a "floating enable" window? (By default, it appears on the center of the screen)&lt;/p&gt;
+
+&lt;p&gt;More specifically, I'm trying to put a simple GTK calendar near the bottom-right corner:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Gsimplecal"] floating enable
+for_window [class="Gsimplecal"] border none
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Gsimplecal"] geometry {"x": 1600, "y": 1, "width": 150, "height": 150}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but no luck.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/936/floating-windows-initial-position/?answer=1106#post-id-1106</link><description>you could also try to set a keybinding and force the position upon exec
+&lt;pre&gt;
+bindsym $MOD+[?] exec foo -g 150x150+1600+150
+&lt;/pre&gt;
+
+EDIT: above seems to only work with urxvt, or other terminal emulator's, I just happen to use urxvt.  Positioning another app, like thunar or mousepad is as follows:
+&lt;pre&gt;
+for_window [class="Thunar"] floating enable move right 330px,move down 70px
+&lt;/pre&gt;
+</description><pubDate>Tue, 22 Jan 2013 23:35:25 +0000</pubDate><guid>https://faq.i3wm.org/question/936/floating-windows-initial-position/?answer=1106#post-id-1106</guid></item><item><title>Answer by Michael for &lt;p&gt;Is it possible to force the initial position for a "floating enable" window? (By default, it appears on the center of the screen)&lt;/p&gt;
+
+&lt;p&gt;More specifically, I'm trying to put a simple GTK calendar near the bottom-right corner:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Gsimplecal"] floating enable
+for_window [class="Gsimplecal"] border none
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Gsimplecal"] geometry {"x": 1600, "y": 1, "width": 150, "height": 150}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but no luck.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/936/floating-windows-initial-position/?answer=937#post-id-937</link><description>i3 respects the original requested geometry by floating windows, so it’s the responsibility of the app.
+
+There is also the "move" command with which you can move floating windows, see
+http://i3wm.org/docs/userguide.html#_focusing_moving_containers</description><pubDate>Mon, 24 Dec 2012 21:45:52 +0000</pubDate><guid>https://faq.i3wm.org/question/936/floating-windows-initial-position/?answer=937#post-id-937</guid></item><item><title>Comment by just-22 for &lt;p&gt;i3 respects the original requested geometry by floating windows, so it’s the responsibility of the app.&lt;/p&gt;
+
+&lt;p&gt;There is also the "move" command with which you can move floating windows, see
+&lt;a href="http://i3wm.org/docs/userguide.html"&gt;http://i3wm.org/docs/userguide.html#&lt;/a&gt;&lt;em&gt;focusing&lt;/em&gt;moving_containers&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/936/floating-windows-initial-position/?comment=938#comment-938</link><description>Thanks a lot, Michael, for the hint. I did this way:
+for_window [instance="gsimplecal"] move absolute position 1600 px 920 px</description><pubDate>Mon, 24 Dec 2012 22:18:45 +0000</pubDate><guid>https://faq.i3wm.org/question/936/floating-windows-initial-position/?comment=938#comment-938</guid></item></channel></rss>

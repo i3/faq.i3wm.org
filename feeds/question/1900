@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1900/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 29 May 2013 12:07:07 +0000</lastBuildDate><item><title>Wrong battery status</title><link>https://faq.i3wm.org/question/1900/wrong-battery-status/</link><description>Hello,
+
+My i3 status bar is displaying my battery information incorrectly. When fully charged, I get this:
+
+    BAT 100% 5200:00:00
+
+This is my `.i3status.conf`:
+
+    battery 0 {
+        format = "%status %percentage %remaining"
+        integer_battery_capacity = true
+    }
+
+And this is the output of `/sys/class/power_supply/BAT0/uevent`
+
+    $ cat /sys/class/power_supply/BAT0/uevent
+    POWER_SUPPLY_NAME=BAT0
+    POWER_SUPPLY_STATUS=Unknown
+    POWER_SUPPLY_PRESENT=1
+    POWER_SUPPLY_TECHNOLOGY=Li-ion
+    POWER_SUPPLY_CYCLE_COUNT=0
+    POWER_SUPPLY_VOLTAGE_MIN_DESIGN=11196000
+    POWER_SUPPLY_VOLTAGE_NOW=12479000
+    POWER_SUPPLY_CURRENT_NOW=1000
+    POWER_SUPPLY_CHARGE_FULL_DESIGN=5212000
+    POWER_SUPPLY_CHARGE_FULL=4176000
+    POWER_SUPPLY_CHARGE_NOW=5200000
+    POWER_SUPPLY_MODEL_NAME=DELL TXWRR15
+    POWER_SUPPLY_MANUFACTURER=SMP
+    POWER_SUPPLY_SERIAL_NUMBER= 2495
+
+If I use the `last_full_capacity = true` option, I get:
+
+    BAT 125% 5200:00:00</description><pubDate>Mon, 27 May 2013 13:12:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1900/wrong-battery-status/</guid></item><item><title>Comment by mschaefer for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;My i3 status bar is displaying my battery information incorrectly. When fully charged, I get this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;BAT 100% 5200:00:00
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is my &lt;code&gt;.i3status.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;battery 0 {
+    format = "%status %percentage %remaining"
+    integer_battery_capacity = true
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this is the output of &lt;code&gt;/sys/class/power_supply/BAT0/uevent&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat /sys/class/power_supply/BAT0/uevent
+POWER_SUPPLY_NAME=BAT0
+POWER_SUPPLY_STATUS=Unknown
+POWER_SUPPLY_PRESENT=1
+POWER_SUPPLY_TECHNOLOGY=Li-ion
+POWER_SUPPLY_CYCLE_COUNT=0
+POWER_SUPPLY_VOLTAGE_MIN_DESIGN=11196000
+POWER_SUPPLY_VOLTAGE_NOW=12479000
+POWER_SUPPLY_CURRENT_NOW=1000
+POWER_SUPPLY_CHARGE_FULL_DESIGN=5212000
+POWER_SUPPLY_CHARGE_FULL=4176000
+POWER_SUPPLY_CHARGE_NOW=5200000
+POWER_SUPPLY_MODEL_NAME=DELL TXWRR15
+POWER_SUPPLY_MANUFACTURER=SMP
+POWER_SUPPLY_SERIAL_NUMBER= 2495
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I use the &lt;code&gt;last_full_capacity = true&lt;/code&gt; option, I get:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;BAT 125% 5200:00:00
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1900/wrong-battery-status/?comment=1902#comment-1902</link><description>In my old config (I am using py3status now) there is format="%status %percentage %emptytime". I think this should be the solution for you.</description><pubDate>Mon, 27 May 2013 15:07:59 +0000</pubDate><guid>https://faq.i3wm.org/question/1900/wrong-battery-status/?comment=1902#comment-1902</guid></item><item><title>Comment by iomartin for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;My i3 status bar is displaying my battery information incorrectly. When fully charged, I get this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;BAT 100% 5200:00:00
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is my &lt;code&gt;.i3status.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;battery 0 {
+    format = "%status %percentage %remaining"
+    integer_battery_capacity = true
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this is the output of &lt;code&gt;/sys/class/power_supply/BAT0/uevent&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat /sys/class/power_supply/BAT0/uevent
+POWER_SUPPLY_NAME=BAT0
+POWER_SUPPLY_STATUS=Unknown
+POWER_SUPPLY_PRESENT=1
+POWER_SUPPLY_TECHNOLOGY=Li-ion
+POWER_SUPPLY_CYCLE_COUNT=0
+POWER_SUPPLY_VOLTAGE_MIN_DESIGN=11196000
+POWER_SUPPLY_VOLTAGE_NOW=12479000
+POWER_SUPPLY_CURRENT_NOW=1000
+POWER_SUPPLY_CHARGE_FULL_DESIGN=5212000
+POWER_SUPPLY_CHARGE_FULL=4176000
+POWER_SUPPLY_CHARGE_NOW=5200000
+POWER_SUPPLY_MODEL_NAME=DELL TXWRR15
+POWER_SUPPLY_MANUFACTURER=SMP
+POWER_SUPPLY_SERIAL_NUMBER= 2495
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I use the &lt;code&gt;last_full_capacity = true&lt;/code&gt; option, I get:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;BAT 125% 5200:00:00
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1900/wrong-battery-status/?comment=1914#comment-1914</link><description>@mschaefer This kind of works. I'm down to a more reasonable time, but my emptytime keeps growing. Every two seconds, it gets two seconds larger. My laptop has been charging all night, so it should be already fully charged. Also, I keep getting 125% when I use `last_full_capacity = true`</description><pubDate>Tue, 28 May 2013 11:49:42 +0000</pubDate><guid>https://faq.i3wm.org/question/1900/wrong-battery-status/?comment=1914#comment-1914</guid></item><item><title>Comment by iomartin for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;My i3 status bar is displaying my battery information incorrectly. When fully charged, I get this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;BAT 100% 5200:00:00
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is my &lt;code&gt;.i3status.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;battery 0 {
+    format = "%status %percentage %remaining"
+    integer_battery_capacity = true
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this is the output of &lt;code&gt;/sys/class/power_supply/BAT0/uevent&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat /sys/class/power_supply/BAT0/uevent
+POWER_SUPPLY_NAME=BAT0
+POWER_SUPPLY_STATUS=Unknown
+POWER_SUPPLY_PRESENT=1
+POWER_SUPPLY_TECHNOLOGY=Li-ion
+POWER_SUPPLY_CYCLE_COUNT=0
+POWER_SUPPLY_VOLTAGE_MIN_DESIGN=11196000
+POWER_SUPPLY_VOLTAGE_NOW=12479000
+POWER_SUPPLY_CURRENT_NOW=1000
+POWER_SUPPLY_CHARGE_FULL_DESIGN=5212000
+POWER_SUPPLY_CHARGE_FULL=4176000
+POWER_SUPPLY_CHARGE_NOW=5200000
+POWER_SUPPLY_MODEL_NAME=DELL TXWRR15
+POWER_SUPPLY_MANUFACTURER=SMP
+POWER_SUPPLY_SERIAL_NUMBER= 2495
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I use the &lt;code&gt;last_full_capacity = true&lt;/code&gt; option, I get:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;BAT 125% 5200:00:00
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1900/wrong-battery-status/?comment=1918#comment-1918</link><description>It started at 1h40 mins left and now is almost at 8hs!</description><pubDate>Tue, 28 May 2013 17:54:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1900/wrong-battery-status/?comment=1918#comment-1918</guid></item><item><title>Answer by Michael for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;My i3 status bar is displaying my battery information incorrectly. When fully charged, I get this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;BAT 100% 5200:00:00
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is my &lt;code&gt;.i3status.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;battery 0 {
+    format = "%status %percentage %remaining"
+    integer_battery_capacity = true
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this is the output of &lt;code&gt;/sys/class/power_supply/BAT0/uevent&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat /sys/class/power_supply/BAT0/uevent
+POWER_SUPPLY_NAME=BAT0
+POWER_SUPPLY_STATUS=Unknown
+POWER_SUPPLY_PRESENT=1
+POWER_SUPPLY_TECHNOLOGY=Li-ion
+POWER_SUPPLY_CYCLE_COUNT=0
+POWER_SUPPLY_VOLTAGE_MIN_DESIGN=11196000
+POWER_SUPPLY_VOLTAGE_NOW=12479000
+POWER_SUPPLY_CURRENT_NOW=1000
+POWER_SUPPLY_CHARGE_FULL_DESIGN=5212000
+POWER_SUPPLY_CHARGE_FULL=4176000
+POWER_SUPPLY_CHARGE_NOW=5200000
+POWER_SUPPLY_MODEL_NAME=DELL TXWRR15
+POWER_SUPPLY_MANUFACTURER=SMP
+POWER_SUPPLY_SERIAL_NUMBER= 2495
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I use the &lt;code&gt;last_full_capacity = true&lt;/code&gt; option, I get:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;BAT 125% 5200:00:00
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1900/wrong-battery-status/?answer=1920#post-id-1920</link><description>First of all, make sure you are using i3status 2.7. In case you are already using that, your battery might just report wrong values — nothing we can do about it.
+
+There are no known bugs in the i3status battery code and you are the first person reporting such behavior.</description><pubDate>Tue, 28 May 2013 19:59:10 +0000</pubDate><guid>https://faq.i3wm.org/question/1900/wrong-battery-status/?answer=1920#post-id-1920</guid></item><item><title>Comment by iomartin for &lt;p&gt;First of all, make sure you are using i3status 2.7. In case you are already using that, your battery might just report wrong values — nothing we can do about it.&lt;/p&gt;
+
+&lt;p&gt;There are no known bugs in the i3status battery code and you are the first person reporting such behavior.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1900/wrong-battery-status/?comment=1923#comment-1923</link><description>I'm using i3status 2.7. Here is what my battery is reporting: http://pastebin.com/hmdFJFRw - I'm not sure what information it uses to calculate the %emptytime or %remaining</description><pubDate>Wed, 29 May 2013 12:07:07 +0000</pubDate><guid>https://faq.i3wm.org/question/1900/wrong-battery-status/?comment=1923#comment-1923</guid></item></channel></rss>

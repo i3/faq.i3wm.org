@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6735/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 13 Oct 2015 16:48:33 +0000</lastBuildDate><item><title>sound is not working</title><link>https://faq.i3wm.org/question/6735/sound-is-not-working/</link><description> Hello
+I face a difficulty I do not turn the sound although I added pulseaudio at startup.
+someone could help me ? please 
+&lt;pre&gt;
+# [...]
+exec mpd
+# [...]
+set $mod Mod4
+# [...]
+
+#--- Pulse Audio controls------------------------------------
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -- -5% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+#----------------------------------------------------------------------
+
+# [...]
+exec --no-startup-id pulseaudio
+&lt;/pre&gt;</description><pubDate>Tue, 29 Sep 2015 11:21:15 +0000</pubDate><guid>https://faq.i3wm.org/question/6735/sound-is-not-working/</guid></item><item><title>Comment by Michael Rose for &lt;p&gt;Hello
+I face a difficulty I do not turn the sound although I added pulseaudio at startup.
+someone could help me ? please &lt;/p&gt;
+
+&lt;pre&gt;# [...]
+exec mpd
+# [...]
+set $mod Mod4
+# [...]
+
+#--- Pulse Audio controls------------------------------------
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -- -5% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+#----------------------------------------------------------------------
+
+# [...]
+exec --no-startup-id pulseaudio
+&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6735/sound-is-not-working/?comment=6834#comment-6834</link><description>I3 doesn't do sound and can't make your sound work or not work.  Note pulseaudio requires other services to work. On my system I think I had to enable dbus and consolekit which on a minimal os may not be enabled by default.</description><pubDate>Wed, 07 Oct 2015 02:19:12 +0000</pubDate><guid>https://faq.i3wm.org/question/6735/sound-is-not-working/?comment=6834#comment-6834</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hello
+I face a difficulty I do not turn the sound although I added pulseaudio at startup.
+someone could help me ? please &lt;/p&gt;
+
+&lt;pre&gt;# [...]
+exec mpd
+# [...]
+set $mod Mod4
+# [...]
+
+#--- Pulse Audio controls------------------------------------
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -- -5% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+#----------------------------------------------------------------------
+
+# [...]
+exec --no-startup-id pulseaudio
+&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6735/sound-is-not-working/?comment=6826#comment-6826</link><description>Did you check volume levels with some other tools, e.g. `pavucontrol`? Are you sure that your sound card has actually the index "0"? For example the HDMI output of your graphics adapter may also be recognized by pulseaudio. You can check this with `pactl list`.</description><pubDate>Tue, 06 Oct 2015 13:20:15 +0000</pubDate><guid>https://faq.i3wm.org/question/6735/sound-is-not-working/?comment=6826#comment-6826</guid></item><item><title>Comment by i3convert for &lt;p&gt;Hello
+I face a difficulty I do not turn the sound although I added pulseaudio at startup.
+someone could help me ? please &lt;/p&gt;
+
+&lt;pre&gt;# [...]
+exec mpd
+# [...]
+set $mod Mod4
+# [...]
+
+#--- Pulse Audio controls------------------------------------
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -- -5% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+#----------------------------------------------------------------------
+
+# [...]
+exec --no-startup-id pulseaudio
+&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6735/sound-is-not-working/?comment=6742#comment-6742</link><description>I doubt someone will be patient enough to read your config file, especially with this formatting.</description><pubDate>Tue, 29 Sep 2015 14:00:47 +0000</pubDate><guid>https://faq.i3wm.org/question/6735/sound-is-not-working/?comment=6742#comment-6742</guid></item><item><title>Answer by dllkevin for &lt;p&gt;Hello
+I face a difficulty I do not turn the sound although I added pulseaudio at startup.
+someone could help me ? please &lt;/p&gt;
+
+&lt;pre&gt;# [...]
+exec mpd
+# [...]
+set $mod Mod4
+# [...]
+
+#--- Pulse Audio controls------------------------------------
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -- -5% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+#----------------------------------------------------------------------
+
+# [...]
+exec --no-startup-id pulseaudio
+&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/6735/sound-is-not-working/?answer=6913#post-id-6913</link><description>thank you guys i fixed it finally </description><pubDate>Tue, 13 Oct 2015 16:48:33 +0000</pubDate><guid>https://faq.i3wm.org/question/6735/sound-is-not-working/?answer=6913#post-id-6913</guid></item></channel></rss>

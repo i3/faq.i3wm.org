@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2828/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 07 Feb 2014 15:38:09 +0000</lastBuildDate><item><title>Open application and fix workspace</title><link>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/</link><description>If i launch an application lets say on workspace1 and switch to another workspace before
+the application has started, the application launches on the new workspace.
+Instead i would like the app. to stay  at workspace1
+Is it somehow possible to fix this?</description><pubDate>Tue, 05 Nov 2013 08:37:41 +0000</pubDate><guid>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;If i launch an application lets say on workspace1 and switch to another workspace before
+the application has started, the application launches on the new workspace.
+Instead i would like the app. to stay  at workspace1
+Is it somehow possible to fix this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?answer=2830#post-id-2830</link><description>This already works, if you use
+
+    i3-msg exec application
+
+to start your application it will appear on the workspace on which you called it. [See here](http://i3wm.org/docs/userguide.html#exec)
+
+
+----------
+For example, if you are using dmenu_run to start your application you can use this instead:
+
+    #!/bin/sh
+    exe=`dmenu_path | dmenu ${1+"$@"}` &amp;&amp; i3-msg "exec $exe"
+</description><pubDate>Tue, 05 Nov 2013 09:48:31 +0000</pubDate><guid>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?answer=2830#post-id-2830</guid></item><item><title>Comment by jr for &lt;p&gt;This already works, if you use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg exec application
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to start your application it will appear on the workspace on which you called it. &lt;a href="http://i3wm.org/docs/userguide.html#exec"&gt;See here&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;For example, if you are using dmenu_run to start your application you can use this instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+exe=`dmenu_path | dmenu ${1+"$@"}` &amp;amp;&amp;amp; i3-msg "exec $exe"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?comment=2835#comment-2835</link><description>does the behaviour of i3-msg exec application depends on the i3 version? the script runs but the behaviour is the same as the default setting edit: i compiled i3 from source and it works now but not with each programm. Is there a variable which contains the current worksp. so i can set it explict? </description><pubDate>Tue, 05 Nov 2013 14:07:24 +0000</pubDate><guid>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?comment=2835#comment-2835</guid></item><item><title>Comment by Adaephon for &lt;p&gt;This already works, if you use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg exec application
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to start your application it will appear on the workspace on which you called it. &lt;a href="http://i3wm.org/docs/userguide.html#exec"&gt;See here&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;For example, if you are using dmenu_run to start your application you can use this instead:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+exe=`dmenu_path | dmenu ${1+"$@"}` &amp;amp;&amp;amp; i3-msg "exec $exe"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?comment=2836#comment-2836</link><description>The User's guide and Flugsio mentioned that some apps that do not support this feature. You can retrieve the current workspace with `i3-msg -t get_workspaces`. This returns a list of all workspaces in JSON format. The current one has its "focused" flag set to true.</description><pubDate>Tue, 05 Nov 2013 21:06:08 +0000</pubDate><guid>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?comment=2836#comment-2836</guid></item><item><title>Answer by benkaiser for &lt;p&gt;If i launch an application lets say on workspace1 and switch to another workspace before
+the application has started, the application launches on the new workspace.
+Instead i would like the app. to stay  at workspace1
+Is it somehow possible to fix this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?answer=3379#post-id-3379</link><description>I wrote a python script to implement this. So here is my config:
+
+    bindsym $mod+d exec /path/to/script.py
+
+And my script contains the following, apologies for the verbosity:
+
+    #!/usr/bin/python3
+    import subprocess
+    import json
+    from os.path import expanduser
+    
+    def get_workspace():
+      test = subprocess.Popen(["i3-msg","-t","get_workspaces"], stdout=subprocess.PIPE)
+      output = test.communicate()[0]
+      data = json.loads(output.decode())
+      data = sorted(data, key=lambda k: k['name']) 
+      for i in data:
+        if(i['focused']):
+          return i['name']
+
+    home = expanduser("~")
+    applications = open(home+"/.cache/dmenu_run")
+    dmenu_run = subprocess.Popen(["dmenu","-b"], stdout=subprocess.PIPE, stdin=applications)
+    output = (dmenu_run.communicate()[0]).decode().strip()
+    subprocess.Popen(["i3-msg","workspace "+get_workspace()+"; exec " + output], stdout=subprocess.PIPE)
+    
+The script simply:
+
+ 1. Pipes the current dmenu_run cache (located at ~/.cache/dmenu_run) of applications to dmenu
+ 2. Gets the result from dmenu and calls `i3msg 'workspace &lt;current&gt;; exec &lt;dmenu_result&gt;'` where `current` is the current workspace and `dmenu_result` is what you enter into the dmenu prompt
+
+
+</description><pubDate>Fri, 07 Feb 2014 15:38:09 +0000</pubDate><guid>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?answer=3379#post-id-3379</guid></item><item><title>Answer by Flugsio for &lt;p&gt;If i launch an application lets say on workspace1 and switch to another workspace before
+the application has started, the application launches on the new workspace.
+Instead i would like the app. to stay  at workspace1
+Is it somehow possible to fix this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?answer=2829#post-id-2829</link><description>Not at the moment, (edit) unless the application is startup-notification aware; see Adaephon's answer. http://build.i3wm.org/docs/hacking-howto.html#_using_cgroups_per_workspace
+
+Although, you can pre-assign certain applications to workspaces http://i3wm.org/docs/userguide.html#_automatically_putting_clients_on_specific_workspaces</description><pubDate>Tue, 05 Nov 2013 08:50:15 +0000</pubDate><guid>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?answer=2829#post-id-2829</guid></item><item><title>Comment by Flugsio for &lt;p&gt;Not at the moment, (edit) unless the application is startup-notification aware; see Adaephon's answer. &lt;a href="http://build.i3wm.org/docs/hacking-howto.html"&gt;http://build.i3wm.org/docs/hacking-ho...&lt;/a&gt;&lt;em&gt;using&lt;/em&gt;cgroups&lt;em&gt;per&lt;/em&gt;workspace&lt;/p&gt;
+
+&lt;p&gt;Although, you can pre-assign certain applications to workspaces &lt;a href="http://i3wm.org/docs/userguide.html"&gt;http://i3wm.org/docs/userguide.html#&lt;/a&gt;&lt;em&gt;automatically&lt;/em&gt;putting&lt;em&gt;clients&lt;/em&gt;on&lt;em&gt;specific&lt;/em&gt;workspaces&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?comment=2832#comment-2832</link><description>I had completely missed that feature. But there are some exception as the document says. chromium won't work with cgroups but might be fixable with startup-notification awareness. urxvt could be solved with either. Using exec for those doesn't work for me at the moment. i3 version 4.6 2013-08-07</description><pubDate>Tue, 05 Nov 2013 11:25:40 +0000</pubDate><guid>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?comment=2832#comment-2832</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Not at the moment, (edit) unless the application is startup-notification aware; see Adaephon's answer. &lt;a href="http://build.i3wm.org/docs/hacking-howto.html"&gt;http://build.i3wm.org/docs/hacking-ho...&lt;/a&gt;&lt;em&gt;using&lt;/em&gt;cgroups&lt;em&gt;per&lt;/em&gt;workspace&lt;/p&gt;
+
+&lt;p&gt;Although, you can pre-assign certain applications to workspaces &lt;a href="http://i3wm.org/docs/userguide.html"&gt;http://i3wm.org/docs/userguide.html#&lt;/a&gt;&lt;em&gt;automatically&lt;/em&gt;putting&lt;em&gt;clients&lt;/em&gt;on&lt;em&gt;specific&lt;/em&gt;workspaces&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?comment=2831#comment-2831</link><description>The part of the document you linked seems to be rather old (at least 2012 going by the ©) and the main focus is on cgroups not workspace awareness. I guess it did not get updated when the feature in question was introduced.</description><pubDate>Tue, 05 Nov 2013 09:55:52 +0000</pubDate><guid>https://faq.i3wm.org/question/2828/open-application-and-fix-workspace/?comment=2831#comment-2831</guid></item></channel></rss>

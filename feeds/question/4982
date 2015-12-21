@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4982/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 21 Nov 2014 15:09:35 +0000</lastBuildDate><item><title>dmenu multi-monitor issue</title><link>https://faq.i3wm.org/question/4982/dmenu-multi-monitor-issue/</link><description>I'm using xrandr for my multi-monitor setup, in the examples bellow $monitor1 is 17" CRT and $monitor2 is 24" LCD. In the simplest setup:
+
+    xrandr --output $monitor1 --left-of $monitor2
+
+dmenu will span across both screens which is fine as long as I can see both displays, but I frequently turn the 17" one away from me, to be able to read while in bed, and therefore I can't see "half" of what the dmenu shows on the bigger one while sitting at the desk. To complicate things a bit more, I don't use the above simple setup but do some position adjusting to smooth out the mouse transitions between the screens.
+
+    xrandr \
+        --output $monitor1 --pos 0x660 --left-of $monitor2 \
+        --output $monitor2 --pos 1024x0
+
+The 17" CRT height is of course lower than the 24" one and is located on a lower desk so I set it's logical y-position accordingly, i.e. lower it by 660 px. Also, $monitor2 then needs x-position adjustment by the width of the $monitor1 (1024 px) or else the displays overlap.
+
+This setup makes "half" of the dmenu entirely invisible because it is presumably displayed in the gray area of the entire logical screen, the space above the 17" monitor. 
+
+It would be great if I could get dmenu to show only on the currently active display and not be stretched across both, but I don't know where to look since there is quite a few unusual things going on here and I even suspect it might be a bug in dmenu or i3 or xrandr or in my setup or whatever because I really don't know why the dmenu would stretch across the screens when everything else behaves normal. Maybe it matters, I'm using FreeBSD.
+
+Thanks in advance! And by the way thank you for developing i3wm! I really don't like using any desktops but once I've set up i3 it has been working great for me!</description><pubDate>Thu, 20 Nov 2014 20:06:02 +0000</pubDate><guid>https://faq.i3wm.org/question/4982/dmenu-multi-monitor-issue/</guid></item><item><title>Comment by morl for &lt;p&gt;I'm using xrandr for my multi-monitor setup, in the examples bellow $monitor1 is 17" CRT and $monitor2 is 24" LCD. In the simplest setup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output $monitor1 --left-of $monitor2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;dmenu will span across both screens which is fine as long as I can see both displays, but I frequently turn the 17" one away from me, to be able to read while in bed, and therefore I can't see "half" of what the dmenu shows on the bigger one while sitting at the desk. To complicate things a bit more, I don't use the above simple setup but do some position adjusting to smooth out the mouse transitions between the screens.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr \
+    --output $monitor1 --pos 0x660 --left-of $monitor2 \
+    --output $monitor2 --pos 1024x0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The 17" CRT height is of course lower than the 24" one and is located on a lower desk so I set it's logical y-position accordingly, i.e. lower it by 660 px. Also, $monitor2 then needs x-position adjustment by the width of the $monitor1 (1024 px) or else the displays overlap.&lt;/p&gt;
+
+&lt;p&gt;This setup makes "half" of the dmenu entirely invisible because it is presumably displayed in the gray area of the entire logical screen, the space above the 17" monitor. &lt;/p&gt;
+
+&lt;p&gt;It would be great if I could get dmenu to show only on the currently active display and not be stretched across both, but I don't know where to look since there is quite a few unusual things going on here and I even suspect it might be a bug in dmenu or i3 or xrandr or in my setup or whatever because I really don't know why the dmenu would stretch across the screens when everything else behaves normal. Maybe it matters, I'm using FreeBSD.&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance! And by the way thank you for developing i3wm! I really don't like using any desktops but once I've set up i3 it has been working great for me!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4982/dmenu-multi-monitor-issue/?comment=4993#comment-4993</link><description>I'm using dmenu 4.5, I will check if there is a newer version out there and try it. And by the way, I'm using i3-dmenu-desktop to start it instead of dmenu_run but it makes no difference for my problem. </description><pubDate>Fri, 21 Nov 2014 13:43:44 +0000</pubDate><guid>https://faq.i3wm.org/question/4982/dmenu-multi-monitor-issue/?comment=4993#comment-4993</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I'm using xrandr for my multi-monitor setup, in the examples bellow $monitor1 is 17" CRT and $monitor2 is 24" LCD. In the simplest setup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output $monitor1 --left-of $monitor2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;dmenu will span across both screens which is fine as long as I can see both displays, but I frequently turn the 17" one away from me, to be able to read while in bed, and therefore I can't see "half" of what the dmenu shows on the bigger one while sitting at the desk. To complicate things a bit more, I don't use the above simple setup but do some position adjusting to smooth out the mouse transitions between the screens.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr \
+    --output $monitor1 --pos 0x660 --left-of $monitor2 \
+    --output $monitor2 --pos 1024x0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The 17" CRT height is of course lower than the 24" one and is located on a lower desk so I set it's logical y-position accordingly, i.e. lower it by 660 px. Also, $monitor2 then needs x-position adjustment by the width of the $monitor1 (1024 px) or else the displays overlap.&lt;/p&gt;
+
+&lt;p&gt;This setup makes "half" of the dmenu entirely invisible because it is presumably displayed in the gray area of the entire logical screen, the space above the 17" monitor. &lt;/p&gt;
+
+&lt;p&gt;It would be great if I could get dmenu to show only on the currently active display and not be stretched across both, but I don't know where to look since there is quite a few unusual things going on here and I even suspect it might be a bug in dmenu or i3 or xrandr or in my setup or whatever because I really don't know why the dmenu would stretch across the screens when everything else behaves normal. Maybe it matters, I'm using FreeBSD.&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance! And by the way thank you for developing i3wm! I really don't like using any desktops but once I've set up i3 it has been working great for me!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4982/dmenu-multi-monitor-issue/?comment=4987#comment-4987</link><description>That is a bit strange, `dmenu` always pops up on just one screen for me. I am using Linux, but I do not think that should not matter. Which version of dmenu are you using?</description><pubDate>Fri, 21 Nov 2014 08:33:51 +0000</pubDate><guid>https://faq.i3wm.org/question/4982/dmenu-multi-monitor-issue/?comment=4987#comment-4987</guid></item><item><title>Comment by morl for &lt;p&gt;I'm using xrandr for my multi-monitor setup, in the examples bellow $monitor1 is 17" CRT and $monitor2 is 24" LCD. In the simplest setup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output $monitor1 --left-of $monitor2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;dmenu will span across both screens which is fine as long as I can see both displays, but I frequently turn the 17" one away from me, to be able to read while in bed, and therefore I can't see "half" of what the dmenu shows on the bigger one while sitting at the desk. To complicate things a bit more, I don't use the above simple setup but do some position adjusting to smooth out the mouse transitions between the screens.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr \
+    --output $monitor1 --pos 0x660 --left-of $monitor2 \
+    --output $monitor2 --pos 1024x0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The 17" CRT height is of course lower than the 24" one and is located on a lower desk so I set it's logical y-position accordingly, i.e. lower it by 660 px. Also, $monitor2 then needs x-position adjustment by the width of the $monitor1 (1024 px) or else the displays overlap.&lt;/p&gt;
+
+&lt;p&gt;This setup makes "half" of the dmenu entirely invisible because it is presumably displayed in the gray area of the entire logical screen, the space above the 17" monitor. &lt;/p&gt;
+
+&lt;p&gt;It would be great if I could get dmenu to show only on the currently active display and not be stretched across both, but I don't know where to look since there is quite a few unusual things going on here and I even suspect it might be a bug in dmenu or i3 or xrandr or in my setup or whatever because I really don't know why the dmenu would stretch across the screens when everything else behaves normal. Maybe it matters, I'm using FreeBSD.&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance! And by the way thank you for developing i3wm! I really don't like using any desktops but once I've set up i3 it has been working great for me!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4982/dmenu-multi-monitor-issue/?comment=4994#comment-4994</link><description>4.5 the newest version.</description><pubDate>Fri, 21 Nov 2014 14:00:11 +0000</pubDate><guid>https://faq.i3wm.org/question/4982/dmenu-multi-monitor-issue/?comment=4994#comment-4994</guid></item><item><title>Answer by morl for &lt;p&gt;I'm using xrandr for my multi-monitor setup, in the examples bellow $monitor1 is 17" CRT and $monitor2 is 24" LCD. In the simplest setup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output $monitor1 --left-of $monitor2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;dmenu will span across both screens which is fine as long as I can see both displays, but I frequently turn the 17" one away from me, to be able to read while in bed, and therefore I can't see "half" of what the dmenu shows on the bigger one while sitting at the desk. To complicate things a bit more, I don't use the above simple setup but do some position adjusting to smooth out the mouse transitions between the screens.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr \
+    --output $monitor1 --pos 0x660 --left-of $monitor2 \
+    --output $monitor2 --pos 1024x0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The 17" CRT height is of course lower than the 24" one and is located on a lower desk so I set it's logical y-position accordingly, i.e. lower it by 660 px. Also, $monitor2 then needs x-position adjustment by the width of the $monitor1 (1024 px) or else the displays overlap.&lt;/p&gt;
+
+&lt;p&gt;This setup makes "half" of the dmenu entirely invisible because it is presumably displayed in the gray area of the entire logical screen, the space above the 17" monitor. &lt;/p&gt;
+
+&lt;p&gt;It would be great if I could get dmenu to show only on the currently active display and not be stretched across both, but I don't know where to look since there is quite a few unusual things going on here and I even suspect it might be a bug in dmenu or i3 or xrandr or in my setup or whatever because I really don't know why the dmenu would stretch across the screens when everything else behaves normal. Maybe it matters, I'm using FreeBSD.&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance! And by the way thank you for developing i3wm! I really don't like using any desktops but once I've set up i3 it has been working great for me!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4982/dmenu-multi-monitor-issue/?answer=4995#post-id-4995</link><description>I've compiled the newest patched dmenu from the official git repository and now it shows only on the active screen!
+
+Thank you for nudging me in the right direction :)
+
+</description><pubDate>Fri, 21 Nov 2014 15:09:35 +0000</pubDate><guid>https://faq.i3wm.org/question/4982/dmenu-multi-monitor-issue/?answer=4995#post-id-4995</guid></item></channel></rss>

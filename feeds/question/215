@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/215/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 02 Aug 2012 07:30:17 +0000</lastBuildDate><item><title>How to fix some wine application issues when hotplugging monitors?</title><link>https://faq.i3wm.org/question/215/how-to-fix-some-wine-application-issues-when-hotplugging-monitors/</link><description>I encountered the same issues with Awesome WM so I'm pretty sure now it's something to do with how Wine works things. Perhaps you can give me some initial pointers.
+
+Issues below are not limited to just my sample application, KeePass 2. Picasa also behaves similarly so I'm pretty sure this is a wine-wide issue. 
+
+**How to reproduce**
+
+ 1. Start with single monitor
+ 2. Install [Windows version of KeePass 2](http://keepass.info) in wine
+ 3. Run KeePass, minimize into system tray (*all is fine for now*)
+ 4. plug in another monitor, do something like 
+&gt; xrandr --output LVDS1 --auto --output HDMI1 --auto --above LVDS1 --primary
+
+Observe "Wine System Tray" becoming an unpainted ghost window into window manager control and the KeePass system tray icon disappearing with no way to return it.
+
+Observe there is no way to maximize the Wine app window on the bigger monitor.
+
+Observe various broken drawing behavior when you send the workspace from one output to another.
+
+Any clues about how to attack this?</description><pubDate>Wed, 04 Jul 2012 16:43:36 +0000</pubDate><guid>https://faq.i3wm.org/question/215/how-to-fix-some-wine-application-issues-when-hotplugging-monitors/</guid></item><item><title>Comment by lkraav for &lt;p&gt;I encountered the same issues with Awesome WM so I'm pretty sure now it's something to do with how Wine works things. Perhaps you can give me some initial pointers.&lt;/p&gt;
+
+&lt;p&gt;Issues below are not limited to just my sample application, KeePass 2. Picasa also behaves similarly so I'm pretty sure this is a wine-wide issue. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How to reproduce&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Start with single monitor&lt;/li&gt;
+&lt;li&gt;Install &lt;a href="http://keepass.info"&gt;Windows version of KeePass 2&lt;/a&gt; in wine&lt;/li&gt;
+&lt;li&gt;Run KeePass, minimize into system tray (&lt;em&gt;all is fine for now&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;plug in another monitor, do something like 
+&amp;gt; xrandr --output LVDS1 --auto --output HDMI1 --auto --above LVDS1 --primary&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Observe "Wine System Tray" becoming an unpainted ghost window into window manager control and the KeePass system tray icon disappearing with no way to return it.&lt;/p&gt;
+
+&lt;p&gt;Observe there is no way to maximize the Wine app window on the bigger monitor.&lt;/p&gt;
+
+&lt;p&gt;Observe various broken drawing behavior when you send the workspace from one output to another.&lt;/p&gt;
+
+&lt;p&gt;Any clues about how to attack this?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/215/how-to-fix-some-wine-application-issues-when-hotplugging-monitors/?comment=237#comment-237</link><description>First of all, make sure you have for_window [class="Wine"] floating enable. This improves many window painting issues. It doesn't solve them, but improves.</description><pubDate>Tue, 10 Jul 2012 12:06:44 +0000</pubDate><guid>https://faq.i3wm.org/question/215/how-to-fix-some-wine-application-issues-when-hotplugging-monitors/?comment=237#comment-237</guid></item><item><title>Answer by lkraav for &lt;p&gt;I encountered the same issues with Awesome WM so I'm pretty sure now it's something to do with how Wine works things. Perhaps you can give me some initial pointers.&lt;/p&gt;
+
+&lt;p&gt;Issues below are not limited to just my sample application, KeePass 2. Picasa also behaves similarly so I'm pretty sure this is a wine-wide issue. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How to reproduce&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Start with single monitor&lt;/li&gt;
+&lt;li&gt;Install &lt;a href="http://keepass.info"&gt;Windows version of KeePass 2&lt;/a&gt; in wine&lt;/li&gt;
+&lt;li&gt;Run KeePass, minimize into system tray (&lt;em&gt;all is fine for now&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;plug in another monitor, do something like 
+&amp;gt; xrandr --output LVDS1 --auto --output HDMI1 --auto --above LVDS1 --primary&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Observe "Wine System Tray" becoming an unpainted ghost window into window manager control and the KeePass system tray icon disappearing with no way to return it.&lt;/p&gt;
+
+&lt;p&gt;Observe there is no way to maximize the Wine app window on the bigger monitor.&lt;/p&gt;
+
+&lt;p&gt;Observe various broken drawing behavior when you send the workspace from one output to another.&lt;/p&gt;
+
+&lt;p&gt;Any clues about how to attack this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/215/how-to-fix-some-wine-application-issues-when-hotplugging-monitors/?answer=309#post-id-309</link><description>Dropping "xinerama" from wine-1.4.1 USE flags has improved the situation greatly. Wine windows like Picasa and KeePass now safely stay within in their tiled containers even across xrandr layout changes.</description><pubDate>Thu, 02 Aug 2012 07:30:17 +0000</pubDate><guid>https://faq.i3wm.org/question/215/how-to-fix-some-wine-application-issues-when-hotplugging-monitors/?answer=309#post-id-309</guid></item></channel></rss>

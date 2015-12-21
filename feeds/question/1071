@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1071/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 18 Feb 2014 11:15:03 +0000</lastBuildDate><item><title>Battery Status Indicator?</title><link>https://faq.i3wm.org/question/1071/battery-status-indicator/</link><description>I'm using an HP Envy 4 laptop.
+
+The battery indicator shows "no battery", even though it most definitely does exist, and i'm using it right now.
+
+    johnnyfive@mint-envy:/sys/class/power_supply$ ll
+    lrwxrwxrwx  1 root root 0 Jan 16 23:03 ACAD -&gt;     ../../devices/LNXSYSTM:00/device:00/PNP0A08:00/device:02/ACPI0003:00/power_supply/ACAD/
+    lrwxrwxrwx  1 root root 0 Jan 17 08:43 BAT1 -&gt; ../../devices/LNXSYSTM:00/device:00/PNP0A08:00/device:02/PNP0C0A:00/power_supply/BAT1/
+
+Any ideas? I have no idea where to start. </description><pubDate>Thu, 17 Jan 2013 17:20:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1071/battery-status-indicator/</guid></item><item><title>Answer by IzeBit for &lt;p&gt;I'm using an HP Envy 4 laptop.&lt;/p&gt;
+
+&lt;p&gt;The battery indicator shows "no battery", even though it most definitely does exist, and i'm using it right now.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;johnnyfive@mint-envy:/sys/class/power_supply$ ll
+lrwxrwxrwx  1 root root 0 Jan 16 23:03 ACAD -&amp;gt;     ../../devices/LNXSYSTM:00/device:00/PNP0A08:00/device:02/ACPI0003:00/power_supply/ACAD/
+lrwxrwxrwx  1 root root 0 Jan 17 08:43 BAT1 -&amp;gt; ../../devices/LNXSYSTM:00/device:00/PNP0A08:00/device:02/PNP0C0A:00/power_supply/BAT1/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any ideas? I have no idea where to start. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1071/battery-status-indicator/?answer=3403#post-id-3403</link><description>I solved this issue with "no battery" on Debian by adding the following path to my i3status config file.
+
+Here's an excerpt from my i3status.conf.
+
+battery 0 { &lt;br /&gt;
+        format = "%status %percentage %remaining" &lt;br /&gt;
+        path = "/sys/class/power_supply/CMB1/uevent" &lt;br /&gt;
+}
+</description><pubDate>Tue, 18 Feb 2014 11:15:03 +0000</pubDate><guid>https://faq.i3wm.org/question/1071/battery-status-indicator/?answer=3403#post-id-3403</guid></item><item><title>Answer by Michael for &lt;p&gt;I'm using an HP Envy 4 laptop.&lt;/p&gt;
+
+&lt;p&gt;The battery indicator shows "no battery", even though it most definitely does exist, and i'm using it right now.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;johnnyfive@mint-envy:/sys/class/power_supply$ ll
+lrwxrwxrwx  1 root root 0 Jan 16 23:03 ACAD -&amp;gt;     ../../devices/LNXSYSTM:00/device:00/PNP0A08:00/device:02/ACPI0003:00/power_supply/ACAD/
+lrwxrwxrwx  1 root root 0 Jan 17 08:43 BAT1 -&amp;gt; ../../devices/LNXSYSTM:00/device:00/PNP0A08:00/device:02/PNP0C0A:00/power_supply/BAT1/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any ideas? I have no idea where to start. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1071/battery-status-indicator/?answer=1073#post-id-1073</link><description>    sed -ie 's/battery 0/battery 1/g' ~/.i3status.conf
+    i3 restart
+
+Alternatively, change the path property in the battery block, see http://i3wm.org/i3status/manpage.html</description><pubDate>Thu, 17 Jan 2013 18:58:31 +0000</pubDate><guid>https://faq.i3wm.org/question/1071/battery-status-indicator/?answer=1073#post-id-1073</guid></item><item><title>Comment by JohnnyFive for &lt;pre&gt;&lt;code&gt;sed -ie 's/battery 0/battery 1/g' ~/.i3status.conf
+i3 restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alternatively, change the path property in the battery block, see &lt;a href="http://i3wm.org/i3status/manpage.html"&gt;http://i3wm.org/i3status/manpage.html&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1071/battery-status-indicator/?comment=1074#comment-1074</link><description>Thanks. I had to cp /etc/i3status.conf ~/.i3status.conf first, but that worked beautifully!</description><pubDate>Thu, 17 Jan 2013 19:10:03 +0000</pubDate><guid>https://faq.i3wm.org/question/1071/battery-status-indicator/?comment=1074#comment-1074</guid></item><item><title>Comment by Michael for &lt;pre&gt;&lt;code&gt;sed -ie 's/battery 0/battery 1/g' ~/.i3status.conf
+i3 restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alternatively, change the path property in the battery block, see &lt;a href="http://i3wm.org/i3status/manpage.html"&gt;http://i3wm.org/i3status/manpage.html&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1071/battery-status-indicator/?comment=1101#comment-1101</link><description>Please post a new question for that. And provide a better example (screenshot?), I don’t really know what you are talking about.</description><pubDate>Tue, 22 Jan 2013 06:31:41 +0000</pubDate><guid>https://faq.i3wm.org/question/1071/battery-status-indicator/?comment=1101#comment-1101</guid></item><item><title>Comment by JohnnyFive for &lt;pre&gt;&lt;code&gt;sed -ie 's/battery 0/battery 1/g' ~/.i3status.conf
+i3 restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alternatively, change the path property in the battery block, see &lt;a href="http://i3wm.org/i3status/manpage.html"&gt;http://i3wm.org/i3status/manpage.html&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1071/battery-status-indicator/?comment=1089#comment-1089</link><description>After using it for a bit, i'm confused. Although a number shows up, it doesn't seem to make any sense. 
+The number shows up as something in the format d.dd, like 0.74. It randomly, it seems, jumps around anywhere from 0.09 to 1.8, and it doesn't really seem to hover around any one number.</description><pubDate>Fri, 18 Jan 2013 18:43:15 +0000</pubDate><guid>https://faq.i3wm.org/question/1071/battery-status-indicator/?comment=1089#comment-1089</guid></item></channel></rss>

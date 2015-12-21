@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1122/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 27 Jan 2013 10:11:24 +0000</lastBuildDate><item><title>How to react to udev keymap keys without gnome-settings-daemon?</title><link>https://faq.i3wm.org/question/1122/how-to-react-to-udev-keymap-keys-without-gnome-settings-daemon/</link><description>My laptop has a keymap /usr/lib64/udev/keymaps/samsung-90x3a:
+
+    0x96 kbdillumup         # Fn+F8 keyboard backlit up
+    0x97 kbdillumdown       # Fn+F7 keyboard backlit down
+    0xD5 wlan               # Fn+F12 wifi on/off
+    0xCE prog1              # Fn+F1 performance mode
+    0x8D prog2              # Fn+F6 battery life extender
+
+And it works:
+
+    leho@s9 ~ $ [git:master+?] sudo input-events 4
+    /dev/input/event4
+       bustype : BUS_I8042
+       vendor  : 0x1
+       product : 0x1
+       version : 43841
+       name    : "AT Translated Set 2 keyboard"
+       phys    : "isa0060/serio0/input0"
+       bits ev : EV_SYN EV_KEY EV_MSC EV_LED EV_REP
+    
+    waiting for events
+    00:07:32.631989: EV_MSC MSC_SCAN 28
+    00:07:32.631995: EV_KEY KEY_ENTER released
+    00:07:32.631997: EV_SYN code=0 value=0
+    00:07:38.247388: EV_MSC MSC_SCAN 151
+    00:07:38.247394: EV_KEY KEY_KBDILLUMDOWN pressed
+    00:07:38.247396: EV_SYN code=0 value=0
+    00:07:38.247416: EV_KEY KEY_KBDILLUMDOWN released
+    00:07:38.247417: EV_SYN code=0 value=0
+
+But what tools do I use with i3 to assign these keypresses to some script actions?  gnome-settings-daemon takes care of it for Gnome, but I prefer not to run it inside i3.</description><pubDate>Sat, 26 Jan 2013 22:22:10 +0000</pubDate><guid>https://faq.i3wm.org/question/1122/how-to-react-to-udev-keymap-keys-without-gnome-settings-daemon/</guid></item><item><title>Answer by lkraav for &lt;p&gt;My laptop has a keymap /usr/lib64/udev/keymaps/samsung-90x3a:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;0x96 kbdillumup         # Fn+F8 keyboard backlit up
+0x97 kbdillumdown       # Fn+F7 keyboard backlit down
+0xD5 wlan               # Fn+F12 wifi on/off
+0xCE prog1              # Fn+F1 performance mode
+0x8D prog2              # Fn+F6 battery life extender
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And it works:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;leho@s9 ~ $ [git:master+?] sudo input-events 4
+/dev/input/event4
+   bustype : BUS_I8042
+   vendor  : 0x1
+   product : 0x1
+   version : 43841
+   name    : "AT Translated Set 2 keyboard"
+   phys    : "isa0060/serio0/input0"
+   bits ev : EV_SYN EV_KEY EV_MSC EV_LED EV_REP
+
+waiting for events
+00:07:32.631989: EV_MSC MSC_SCAN 28
+00:07:32.631995: EV_KEY KEY_ENTER released
+00:07:32.631997: EV_SYN code=0 value=0
+00:07:38.247388: EV_MSC MSC_SCAN 151
+00:07:38.247394: EV_KEY KEY_KBDILLUMDOWN pressed
+00:07:38.247396: EV_SYN code=0 value=0
+00:07:38.247416: EV_KEY KEY_KBDILLUMDOWN released
+00:07:38.247417: EV_SYN code=0 value=0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But what tools do I use with i3 to assign these keypresses to some script actions?  gnome-settings-daemon takes care of it for Gnome, but I prefer not to run it inside i3.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1122/how-to-react-to-udev-keymap-keys-without-gnome-settings-daemon/?answer=1123#post-id-1123</link><description>Get the keycodes with `xev` and then `.i3/config`
+
+    bindcode 237 exec xbacklight -inc 10
+
+and so on. Magic! Thank you for your attention :)</description><pubDate>Sun, 27 Jan 2013 10:11:24 +0000</pubDate><guid>https://faq.i3wm.org/question/1122/how-to-react-to-udev-keymap-keys-without-gnome-settings-daemon/?answer=1123#post-id-1123</guid></item></channel></rss>

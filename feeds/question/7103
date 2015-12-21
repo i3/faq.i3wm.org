@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7103/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 19 Nov 2015 01:09:34 +0000</lastBuildDate><item><title>Why can't I use Alt/Mod1 for bindings?</title><link>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/</link><description> I would like the following functionality:
+
+    bindsym --release Print exec --no-startup-id scrot -z
+    bindsym --release Mod1+Print exec --no-startup-id scrot -zu
+    bindsym --release Shift+Print exec --no-startup-id scrot -zs
+
+Lines 1 and 3 work as expected. 
+
+Line 2 does nothing. 
+
+I have tried using bindcodes instead. I have also double-checked checked xev and xmodmap outputs.
+
+Am I doing something wrong?</description><pubDate>Fri, 30 Oct 2015 03:50:19 +0000</pubDate><guid>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I would like the following functionality:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym --release Print exec --no-startup-id scrot -z
+bindsym --release Mod1+Print exec --no-startup-id scrot -zu
+bindsym --release Shift+Print exec --no-startup-id scrot -zs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lines 1 and 3 work as expected. &lt;/p&gt;
+
+&lt;p&gt;Line 2 does nothing. &lt;/p&gt;
+
+&lt;p&gt;I have tried using bindcodes instead. I have also double-checked checked xev and xmodmap outputs.&lt;/p&gt;
+
+&lt;p&gt;Am I doing something wrong?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/?answer=7106#post-id-7106</link><description>There are two likely causes for this issue:
+
+**i3 internal**: Since version 4.11 (at least in some cases) the key symbols used with `bindsym` need to be the ones that X recognizes when the given Modifiers are pressed. In your case with **Alt+Print** that means you have to actually use
+
+    bindsym Mod1+Sys_Req exec --no-startup-id scrot -zu
+
+Because the key symbol of the **Print** key is actually `Sys_Req` when when **Alt** is pressed.
+
+----
+
+**Kernel configuration**: It is also possible that the `MAGIC_SYSRQ` configuration option is enabled in your Linux kernel. Depending on your distribution and kernel configuration, you **may** be able to check this with one of these lines:
+
+    grep CONFIG_MAGIC_SYSRQ /boot/config*
+    zgrep CONFIG_MAGIC_SYSRQ /proc/config.gz
+
+With this option enable`Mod1+Print` is caught by the kernel as part of the [*Magic System Request Keys*](https://www.kernel.org/doc/Documentation/sysrq.txt), which all follow the pattern **Alt+Print+[b-z0-9]**. 
+
+As it is caught by the kernel itself, the only thing you could do, would be to use a kernel that has this option disabled or disable it temporarily (until next boot) with `sysctl -w kernel.sysrq=0`. (Credits for the `sysctl`-workaround go to [beanaroo](https://faq.i3wm.org/users/24978/beanaroo/))</description><pubDate>Fri, 30 Oct 2015 14:46:19 +0000</pubDate><guid>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/?answer=7106#post-id-7106</guid></item><item><title>Comment by Adaephon for &lt;p&gt;There are two likely causes for this issue:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;i3 internal&lt;/strong&gt;: Since version 4.11 (at least in some cases) the key symbols used with &lt;code&gt;bindsym&lt;/code&gt; need to be the ones that X recognizes when the given Modifiers are pressed. In your case with &lt;strong&gt;Alt+Print&lt;/strong&gt; that means you have to actually use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+Sys_Req exec --no-startup-id scrot -zu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Because the key symbol of the &lt;strong&gt;Print&lt;/strong&gt; key is actually &lt;code&gt;Sys_Req&lt;/code&gt; when when &lt;strong&gt;Alt&lt;/strong&gt; is pressed.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Kernel configuration&lt;/strong&gt;: It is also possible that the &lt;code&gt;MAGIC_SYSRQ&lt;/code&gt; configuration option is enabled in your Linux kernel. Depending on your distribution and kernel configuration, you &lt;strong&gt;may&lt;/strong&gt; be able to check this with one of these lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep CONFIG_MAGIC_SYSRQ /boot/config*
+zgrep CONFIG_MAGIC_SYSRQ /proc/config.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this option enable&lt;code&gt;Mod1+Print&lt;/code&gt; is caught by the kernel as part of the &lt;a href="https://www.kernel.org/doc/Documentation/sysrq.txt"&gt;&lt;em&gt;Magic System Request Keys&lt;/em&gt;&lt;/a&gt;, which all follow the pattern &lt;strong&gt;Alt+Print+[b-z0-9]&lt;/strong&gt;. &lt;/p&gt;
+
+&lt;p&gt;As it is caught by the kernel itself, the only thing you could do, would be to use a kernel that has this option disabled or disable it temporarily (until next boot) with &lt;code&gt;sysctl -w kernel.sysrq=0&lt;/code&gt;. (Credits for the &lt;code&gt;sysctl&lt;/code&gt;-workaround go to &lt;a href="https://faq.i3wm.org/users/24978/beanaroo/"&gt;beanaroo&lt;/a&gt;)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/?comment=7367#comment-7367</link><description>Strange, on my machine `xev` reports Print as Sys_Req when Alt is pressed, which actually reminded me of the recent change. Checking the source repository of xev does not reveal any (obvious) changes that would explain this. But as long as it works now, I am glad I was able to help.</description><pubDate>Thu, 19 Nov 2015 01:09:34 +0000</pubDate><guid>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/?comment=7367#comment-7367</guid></item><item><title>Comment by beanaroo for &lt;p&gt;There are two likely causes for this issue:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;i3 internal&lt;/strong&gt;: Since version 4.11 (at least in some cases) the key symbols used with &lt;code&gt;bindsym&lt;/code&gt; need to be the ones that X recognizes when the given Modifiers are pressed. In your case with &lt;strong&gt;Alt+Print&lt;/strong&gt; that means you have to actually use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+Sys_Req exec --no-startup-id scrot -zu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Because the key symbol of the &lt;strong&gt;Print&lt;/strong&gt; key is actually &lt;code&gt;Sys_Req&lt;/code&gt; when when &lt;strong&gt;Alt&lt;/strong&gt; is pressed.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Kernel configuration&lt;/strong&gt;: It is also possible that the &lt;code&gt;MAGIC_SYSRQ&lt;/code&gt; configuration option is enabled in your Linux kernel. Depending on your distribution and kernel configuration, you &lt;strong&gt;may&lt;/strong&gt; be able to check this with one of these lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep CONFIG_MAGIC_SYSRQ /boot/config*
+zgrep CONFIG_MAGIC_SYSRQ /proc/config.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this option enable&lt;code&gt;Mod1+Print&lt;/code&gt; is caught by the kernel as part of the &lt;a href="https://www.kernel.org/doc/Documentation/sysrq.txt"&gt;&lt;em&gt;Magic System Request Keys&lt;/em&gt;&lt;/a&gt;, which all follow the pattern &lt;strong&gt;Alt+Print+[b-z0-9]&lt;/strong&gt;. &lt;/p&gt;
+
+&lt;p&gt;As it is caught by the kernel itself, the only thing you could do, would be to use a kernel that has this option disabled or disable it temporarily (until next boot) with &lt;code&gt;sysctl -w kernel.sysrq=0&lt;/code&gt;. (Credits for the &lt;code&gt;sysctl&lt;/code&gt;-workaround go to &lt;a href="https://faq.i3wm.org/users/24978/beanaroo/"&gt;beanaroo&lt;/a&gt;)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/?comment=7358#comment-7358</link><description>Thank you for the update. It is confusing because xev and xbindkeys report Print as Print when Alt is pressed but as you say, changing the bindsym to `Mod1+Sys_Req` creates the expected behaviour and solves the issue. I really appreciate your assistance.</description><pubDate>Wed, 18 Nov 2015 09:18:17 +0000</pubDate><guid>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/?comment=7358#comment-7358</guid></item><item><title>Comment by beanaroo for &lt;p&gt;There are two likely causes for this issue:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;i3 internal&lt;/strong&gt;: Since version 4.11 (at least in some cases) the key symbols used with &lt;code&gt;bindsym&lt;/code&gt; need to be the ones that X recognizes when the given Modifiers are pressed. In your case with &lt;strong&gt;Alt+Print&lt;/strong&gt; that means you have to actually use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+Sys_Req exec --no-startup-id scrot -zu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Because the key symbol of the &lt;strong&gt;Print&lt;/strong&gt; key is actually &lt;code&gt;Sys_Req&lt;/code&gt; when when &lt;strong&gt;Alt&lt;/strong&gt; is pressed.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Kernel configuration&lt;/strong&gt;: It is also possible that the &lt;code&gt;MAGIC_SYSRQ&lt;/code&gt; configuration option is enabled in your Linux kernel. Depending on your distribution and kernel configuration, you &lt;strong&gt;may&lt;/strong&gt; be able to check this with one of these lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep CONFIG_MAGIC_SYSRQ /boot/config*
+zgrep CONFIG_MAGIC_SYSRQ /proc/config.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this option enable&lt;code&gt;Mod1+Print&lt;/code&gt; is caught by the kernel as part of the &lt;a href="https://www.kernel.org/doc/Documentation/sysrq.txt"&gt;&lt;em&gt;Magic System Request Keys&lt;/em&gt;&lt;/a&gt;, which all follow the pattern &lt;strong&gt;Alt+Print+[b-z0-9]&lt;/strong&gt;. &lt;/p&gt;
+
+&lt;p&gt;As it is caught by the kernel itself, the only thing you could do, would be to use a kernel that has this option disabled or disable it temporarily (until next boot) with &lt;code&gt;sysctl -w kernel.sysrq=0&lt;/code&gt;. (Credits for the &lt;code&gt;sysctl&lt;/code&gt;-workaround go to &lt;a href="https://faq.i3wm.org/users/24978/beanaroo/"&gt;beanaroo&lt;/a&gt;)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/?comment=7336#comment-7336</link><description>Hmmm. Looks like I was too hasty. I have tried `sudo sysctl -w kernel.sysrq=0` as well as a kernel with it disabled. `Mod1+Print` just doesn't work in i3. It does work with xbindkeys, however.</description><pubDate>Mon, 16 Nov 2015 00:42:49 +0000</pubDate><guid>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/?comment=7336#comment-7336</guid></item><item><title>Comment by beanaroo for &lt;p&gt;There are two likely causes for this issue:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;i3 internal&lt;/strong&gt;: Since version 4.11 (at least in some cases) the key symbols used with &lt;code&gt;bindsym&lt;/code&gt; need to be the ones that X recognizes when the given Modifiers are pressed. In your case with &lt;strong&gt;Alt+Print&lt;/strong&gt; that means you have to actually use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+Sys_Req exec --no-startup-id scrot -zu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Because the key symbol of the &lt;strong&gt;Print&lt;/strong&gt; key is actually &lt;code&gt;Sys_Req&lt;/code&gt; when when &lt;strong&gt;Alt&lt;/strong&gt; is pressed.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Kernel configuration&lt;/strong&gt;: It is also possible that the &lt;code&gt;MAGIC_SYSRQ&lt;/code&gt; configuration option is enabled in your Linux kernel. Depending on your distribution and kernel configuration, you &lt;strong&gt;may&lt;/strong&gt; be able to check this with one of these lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep CONFIG_MAGIC_SYSRQ /boot/config*
+zgrep CONFIG_MAGIC_SYSRQ /proc/config.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this option enable&lt;code&gt;Mod1+Print&lt;/code&gt; is caught by the kernel as part of the &lt;a href="https://www.kernel.org/doc/Documentation/sysrq.txt"&gt;&lt;em&gt;Magic System Request Keys&lt;/em&gt;&lt;/a&gt;, which all follow the pattern &lt;strong&gt;Alt+Print+[b-z0-9]&lt;/strong&gt;. &lt;/p&gt;
+
+&lt;p&gt;As it is caught by the kernel itself, the only thing you could do, would be to use a kernel that has this option disabled or disable it temporarily (until next boot) with &lt;code&gt;sysctl -w kernel.sysrq=0&lt;/code&gt;. (Credits for the &lt;code&gt;sysctl&lt;/code&gt;-workaround go to &lt;a href="https://faq.i3wm.org/users/24978/beanaroo/"&gt;beanaroo&lt;/a&gt;)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/?comment=7335#comment-7335</link><description>Oh, cool! You are spot on. I knew they existed but never bothered learning about it. Thanks for the link. Curious how GNOME catches the key combo first.</description><pubDate>Sun, 15 Nov 2015 23:27:04 +0000</pubDate><guid>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/?comment=7335#comment-7335</guid></item></channel></rss>

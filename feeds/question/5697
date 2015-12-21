@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5697/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 08 Aug 2015 14:55:01 +0000</lastBuildDate><item><title>Remap power button/key?</title><link>https://faq.i3wm.org/question/5697/remap-power-buttonkey/</link><description>I have an Asus UX305 laptop with a power button that is a key on the keyboard, directly above the &lt;backspace&gt; key where &lt;delete&gt; usually is.  
+
+In Windows the power options include a setting to disable the power key, in Ubuntu/Gnome it seems to be automatically mapped to a dialog that opens when the power key is hit, giving option of cancel/restart/logout/shutdown.
+
+When running i3 the key simply triggers a shutdown operation with no opportunity for user to intervene.  Since this key is right above &lt;backspace&gt; and it's easy to hit accidentally, I want to disable it in i3 or at least map it so that it displays something like I get in Unity/Gnome, avoiding accidental shutdowns.
+
+I tried using 'xev -event keyboard' (while running Unity) to see if I could see what key binding/mapping is being used.  The key doesn't trigger a 'key release' event like other keys that would reveal a keycode/keysym.
+
+Can anybody help with a way to do this?  Thanks.</description><pubDate>Tue, 31 Mar 2015 00:12:51 +0000</pubDate><guid>https://faq.i3wm.org/question/5697/remap-power-buttonkey/</guid></item><item><title>Answer by hes for &lt;p&gt;I have an Asus UX305 laptop with a power button that is a key on the keyboard, directly above the &amp;lt;backspace&amp;gt; key where &amp;lt;delete&amp;gt; usually is.  &lt;/p&gt;
+
+&lt;p&gt;In Windows the power options include a setting to disable the power key, in Ubuntu/Gnome it seems to be automatically mapped to a dialog that opens when the power key is hit, giving option of cancel/restart/logout/shutdown.&lt;/p&gt;
+
+&lt;p&gt;When running i3 the key simply triggers a shutdown operation with no opportunity for user to intervene.  Since this key is right above &amp;lt;backspace&amp;gt; and it's easy to hit accidentally, I want to disable it in i3 or at least map it so that it displays something like I get in Unity/Gnome, avoiding accidental shutdowns.&lt;/p&gt;
+
+&lt;p&gt;I tried using 'xev -event keyboard' (while running Unity) to see if I could see what key binding/mapping is being used.  The key doesn't trigger a 'key release' event like other keys that would reveal a keycode/keysym.&lt;/p&gt;
+
+&lt;p&gt;Can anybody help with a way to do this?  Thanks.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5697/remap-power-buttonkey/?answer=5716#post-id-5716</link><description>After poking around a bit I found an acceptable way to disable power button, not sure if it's the best method or not.  I added this line at the bottom of my i3 config file
+
+    unity-settings-daemon
+
+Not sure what directory it's in (one of the libs, I think) but it's on the path somewhere and gets started okay.  I had thought this might somehow enable same interactive dialog as I get when I press power button in Unity, but instead it simply does nothing, which is fine.
+
+Has side benefit of brining over some Unity desktop theme settings, not sure what else.  In any case seems to be an acceptable solution for now.</description><pubDate>Tue, 31 Mar 2015 22:12:10 +0000</pubDate><guid>https://faq.i3wm.org/question/5697/remap-power-buttonkey/?answer=5716#post-id-5716</guid></item><item><title>Comment by Sam73 for &lt;p&gt;After poking around a bit I found an acceptable way to disable power button, not sure if it's the best method or not.  I added this line at the bottom of my i3 config file&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unity-settings-daemon
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not sure what directory it's in (one of the libs, I think) but it's on the path somewhere and gets started okay.  I had thought this might somehow enable same interactive dialog as I get when I press power button in Unity, but instead it simply does nothing, which is fine.&lt;/p&gt;
+
+&lt;p&gt;Has side benefit of brining over some Unity desktop theme settings, not sure what else.  In any case seems to be an acceptable solution for now.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5697/remap-power-buttonkey/?comment=6407#comment-6407</link><description>not the answer I would have liked, but it works. Thanks because on laptop you regularly hit the power button by mistake.</description><pubDate>Sat, 08 Aug 2015 14:55:01 +0000</pubDate><guid>https://faq.i3wm.org/question/5697/remap-power-buttonkey/?comment=6407#comment-6407</guid></item></channel></rss>

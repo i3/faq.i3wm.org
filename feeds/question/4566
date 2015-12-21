@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4566/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 28 Aug 2014 15:26:22 +0000</lastBuildDate><item><title>Using colours in script 'could not parse JSON (lexical error)'</title><link>https://faq.i3wm.org/question/4566/using-colours-in-script-could-not-parse-json-lexical-error/</link><description>Hey,
+
+I've just finished writing a script to get the temperatures of my CPU cores. I've noticed that if I use colours in the script like '\e[38;5;198m' the bar crashes and I get the following error:
+
+'Error: Could not parse JSON (lexical error: invalid character inside string.)
+
+But if I remove my colour codes from the script it works fine.
+
+The script works fine from the terminal and only crashes on i3.
+
+I'm also using the degree C symbol as Unicode and it works OK. 
+
+From my web development background I'd guess that it isn't being escaped properly but then again this is the first shell script I've written so I could have done something dumb.
+
+Any help would be great.
+
+Code causing the issue:
+
+declare -A format
+format[none]="\033[38;5;7m"
+format[good]="\033[38;5;76m"
+format[bad]="\033[38;5;220m"
+format[ugly]="\033[38;5;196m"</description><pubDate>Fri, 22 Aug 2014 20:08:39 +0000</pubDate><guid>https://faq.i3wm.org/question/4566/using-colours-in-script-could-not-parse-json-lexical-error/</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;Hey,&lt;/p&gt;
+
+&lt;p&gt;I've just finished writing a script to get the temperatures of my CPU cores. I've noticed that if I use colours in the script like '\e[38;5;198m' the bar crashes and I get the following error:&lt;/p&gt;
+
+&lt;p&gt;'Error: Could not parse JSON (lexical error: invalid character inside string.)&lt;/p&gt;
+
+&lt;p&gt;But if I remove my colour codes from the script it works fine.&lt;/p&gt;
+
+&lt;p&gt;The script works fine from the terminal and only crashes on i3.&lt;/p&gt;
+
+&lt;p&gt;I'm also using the degree C symbol as Unicode and it works OK. &lt;/p&gt;
+
+&lt;p&gt;From my web development background I'd guess that it isn't being escaped properly but then again this is the first shell script I've written so I could have done something dumb.&lt;/p&gt;
+
+&lt;p&gt;Any help would be great.&lt;/p&gt;
+
+&lt;p&gt;Code causing the issue:&lt;/p&gt;
+
+&lt;p&gt;declare -A format
+format[none]="\033[38;5;7m"
+format[good]="\033[38;5;76m"
+format[bad]="\033[38;5;220m"
+format[ugly]="\033[38;5;196m"&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4566/using-colours-in-script-could-not-parse-json-lexical-error/?answer=4577#post-id-4577</link><description>The error occurs because the bracket '[' symbol is a delimeter in JSON syntax. You need to [specify colors using hex values.](http://i3wm.org/docs/i3bar-protocol.html)</description><pubDate>Sun, 24 Aug 2014 12:41:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4566/using-colours-in-script-could-not-parse-json-lexical-error/?answer=4577#post-id-4577</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;The error occurs because the bracket '[' symbol is a delimeter in JSON syntax. You need to &lt;a href="http://i3wm.org/docs/i3bar-protocol.html"&gt;specify colors using hex values.&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4566/using-colours-in-script-could-not-parse-json-lexical-error/?comment=4586#comment-4586</link><description>Not sure what you mean by adding "extra formatting in the i3 .conf file." You'd just pass the hex color values to i3bar in your script instead of the terminal color code sequence. Also not sure what you mean by "converting the script into a binary"---what shell language allows for that?</description><pubDate>Thu, 28 Aug 2014 15:26:22 +0000</pubDate><guid>https://faq.i3wm.org/question/4566/using-colours-in-script-could-not-parse-json-lexical-error/?comment=4586#comment-4586</guid></item><item><title>Comment by riks24 for &lt;p&gt;The error occurs because the bracket '[' symbol is a delimeter in JSON syntax. You need to &lt;a href="http://i3wm.org/docs/i3bar-protocol.html"&gt;specify colors using hex values.&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4566/using-colours-in-script-could-not-parse-json-lexical-error/?comment=4582#comment-4582</link><description>Thanks for the reply. Is it possible for me to set the colours in the script without having to add extra formatting in the i3 .conf file?
+
+I've just tried converting the script to a binary but I still get the same error.</description><pubDate>Mon, 25 Aug 2014 17:35:43 +0000</pubDate><guid>https://faq.i3wm.org/question/4566/using-colours-in-script-could-not-parse-json-lexical-error/?comment=4582#comment-4582</guid></item></channel></rss>

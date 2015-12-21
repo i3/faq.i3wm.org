@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2819/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 04 Nov 2013 22:44:58 +0000</lastBuildDate><item><title>naming and keybind dont work together</title><link>https://faq.i3wm.org/question/2819/naming-and-keybind-dont-work-together/</link><description>Claws launches on mail workspace fine all is well
+
+assign [class="Claws-mail" instance="claws-mail"] mail
+exec GTK2_RC_FILES="/usr/share/themes/Default/gtk-2.0/gtkrc" /usr/bin/claws-mail
+
+when i use keybinding to switch to mail,  a new empty workspace named mail appears and the original workspace named mail with claws on it is left alone.
+
+bindsym $super+m workspace mail
+
+Not sure what i am doing wrong here</description><pubDate>Mon, 04 Nov 2013 20:25:46 +0000</pubDate><guid>https://faq.i3wm.org/question/2819/naming-and-keybind-dont-work-together/</guid></item><item><title>Answer by Flugsio for &lt;p&gt;Claws launches on mail workspace fine all is well&lt;/p&gt;
+
+&lt;p&gt;assign [class="Claws-mail" instance="claws-mail"] mail
+exec GTK2&lt;em&gt;RC&lt;/em&gt;FILES="/usr/share/themes/Default/gtk-2.0/gtkrc" /usr/bin/claws-mail&lt;/p&gt;
+
+&lt;p&gt;when i use keybinding to switch to mail,  a new empty workspace named mail appears and the original workspace named mail with claws on it is left alone.&lt;/p&gt;
+
+&lt;p&gt;bindsym $super+m workspace mail&lt;/p&gt;
+
+&lt;p&gt;Not sure what i am doing wrong here&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2819/naming-and-keybind-dont-work-together/?answer=2820#post-id-2820</link><description>Can't be sure how your config file looks because you didn't use a code block, make sure the exec is on the next line. The issue might be extra spaces around mail, using quotes could help.
+
+    assign [class="Claws-mail" instance="claws-mail"] "mail"
+    exec GTK2RCFILES="/usr/share/themes/Default/gtk-2.0/gtkrc" /usr/bin/claws-mail
+    bindsym $super+m workspace "mail"</description><pubDate>Mon, 04 Nov 2013 21:44:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2819/naming-and-keybind-dont-work-together/?answer=2820#post-id-2820</guid></item><item><title>Comment by bfortified for &lt;p&gt;Can't be sure how your config file looks because you didn't use a code block, make sure the exec is on the next line. The issue might be extra spaces around mail, using quotes could help.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Claws-mail" instance="claws-mail"] "mail"
+exec GTK2RCFILES="/usr/share/themes/Default/gtk-2.0/gtkrc" /usr/bin/claws-mail
+bindsym $super+m workspace "mail"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2819/naming-and-keybind-dont-work-together/?comment=2821#comment-2821</link><description>yes must have been something like cause i got it working. odd though because i tried diff names numbers etc. Thanks!</description><pubDate>Mon, 04 Nov 2013 22:44:11 +0000</pubDate><guid>https://faq.i3wm.org/question/2819/naming-and-keybind-dont-work-together/?comment=2821#comment-2821</guid></item><item><title>Answer by bfortified for &lt;p&gt;Claws launches on mail workspace fine all is well&lt;/p&gt;
+
+&lt;p&gt;assign [class="Claws-mail" instance="claws-mail"] mail
+exec GTK2&lt;em&gt;RC&lt;/em&gt;FILES="/usr/share/themes/Default/gtk-2.0/gtkrc" /usr/bin/claws-mail&lt;/p&gt;
+
+&lt;p&gt;when i use keybinding to switch to mail,  a new empty workspace named mail appears and the original workspace named mail with claws on it is left alone.&lt;/p&gt;
+
+&lt;p&gt;bindsym $super+m workspace mail&lt;/p&gt;
+
+&lt;p&gt;Not sure what i am doing wrong here&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2819/naming-and-keybind-dont-work-together/?answer=2822#post-id-2822</link><description>Must have been a typo as it is working now.</description><pubDate>Mon, 04 Nov 2013 22:44:58 +0000</pubDate><guid>https://faq.i3wm.org/question/2819/naming-and-keybind-dont-work-together/?answer=2822#post-id-2822</guid></item></channel></rss>

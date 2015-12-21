@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/639/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 13 Nov 2012 16:53:00 +0000</lastBuildDate><item><title>auto login with lxdm</title><link>https://faq.i3wm.org/question/639/auto-login-with-lxdm/</link><description>as title.
+
+arch wiki for lxdm suggests editing /etc/lxdm/lxdm.conf 
+
+"session=/usr/bin/startlxde"
+
+and changing "startlxde" to eg "startxfce4" etc.
+
+i tried "starti3", but this does not work, logging into the default xfce desktop instead.
+
+any help appreciated.</description><pubDate>Mon, 15 Oct 2012 19:51:46 +0000</pubDate><guid>https://faq.i3wm.org/question/639/auto-login-with-lxdm/</guid></item><item><title>Answer by Michael for &lt;p&gt;as title.&lt;/p&gt;
+
+&lt;p&gt;arch wiki for lxdm suggests editing /etc/lxdm/lxdm.conf &lt;/p&gt;
+
+&lt;p&gt;"session=/usr/bin/startlxde"&lt;/p&gt;
+
+&lt;p&gt;and changing "startlxde" to eg "startxfce4" etc.&lt;/p&gt;
+
+&lt;p&gt;i tried "starti3", but this does not work, logging into the default xfce desktop instead.&lt;/p&gt;
+
+&lt;p&gt;any help appreciated.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/639/auto-login-with-lxdm/?answer=649#post-id-649</link><description>"starti3" is not the name of a binary in /usr/bin.
+
+Instead, https://bbs.archlinux.org/viewtopic.php?id=124088 and https://wiki.archlinux.org/index.php/LXDM#Sessionlist suggest that lxdm respects /usr/share/xsessions/*.desktop, so try `session=i3` (there should also be an i3 entry in the session drop-down menu in LXDM).
+
+This is all speculative since I don’t use LXDM.</description><pubDate>Tue, 16 Oct 2012 15:05:56 +0000</pubDate><guid>https://faq.i3wm.org/question/639/auto-login-with-lxdm/?answer=649#post-id-649</guid></item><item><title>Answer by Klaas for &lt;p&gt;as title.&lt;/p&gt;
+
+&lt;p&gt;arch wiki for lxdm suggests editing /etc/lxdm/lxdm.conf &lt;/p&gt;
+
+&lt;p&gt;"session=/usr/bin/startlxde"&lt;/p&gt;
+
+&lt;p&gt;and changing "startlxde" to eg "startxfce4" etc.&lt;/p&gt;
+
+&lt;p&gt;i tried "starti3", but this does not work, logging into the default xfce desktop instead.&lt;/p&gt;
+
+&lt;p&gt;any help appreciated.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/639/auto-login-with-lxdm/?answer=751#post-id-751</link><description>Basically, the Arch wiki page has all the info you need: https://wiki.archlinux.org/index.php/LXDM
+"session=/usr/bin/i3" should work, but is only a fallback. Instead, you should configure your "~/.dmrc" as suggested on the wiki with:
+
+    [Desktop]
+    Session=i3
+Since /usr/share/xsessions/i3.desktop should exist, this should set i3 as the wm for your user.
+</description><pubDate>Tue, 13 Nov 2012 16:53:00 +0000</pubDate><guid>https://faq.i3wm.org/question/639/auto-login-with-lxdm/?answer=751#post-id-751</guid></item></channel></rss>

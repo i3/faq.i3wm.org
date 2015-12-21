@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7662/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 15 Dec 2015 23:42:54 +0000</lastBuildDate><item><title>Reverse perl matches in 'criteria' in i3 config</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/</link><description>Hello,
+
+I switched to i3 recently (from pekwm), to see if I could persuade myself to start to use tiling WM. So far, so good, I find i3 very configurable and maleable. If not directly, then by simple scripting and a bit of hacking. 
+
+However, one thing is bothering me ... let me explain: I regularly use VirtualBox; very often I want to close certain window inside particular virtual machine, and instinctively press the i3 'kill' keyboard shortcut $mod+Shift+q. Of course, it closes entire virtual machine ... which makes me cry and mad :)
+
+What I need is to disable 'kill' action on windows with [instance="VirtualBox"]. I tried:
+
+    bindsym $mod+Shift+q [instance="(?!VirtualBox)"] kill
+However, it doesn't do what I need ... instead, to my horror, it closes all other windows!
+
+Is there a simple solution to this, or I must resort to the IPC (this would be overkill for such a simple operation, wouldn't it)?
+
+Unfortunately, programming in C/C++ is over my head, but if there is a chance, I would vouch for adding such config option: 'do something to focused widow, unless window satisfies such-and-such criteria".
+
+(Note: my question is connected to this one [How do I use an exclude regex in i3 config] here in this FAQ, so I'm not the only one in a need for such thing.)
+
+Thanks a lot for all your answers.</description><pubDate>Sun, 13 Dec 2015 22:24:09 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/</guid></item><item><title>Answer by Airblader for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I switched to i3 recently (from pekwm), to see if I could persuade myself to start to use tiling WM. So far, so good, I find i3 very configurable and maleable. If not directly, then by simple scripting and a bit of hacking. &lt;/p&gt;
+
+&lt;p&gt;However, one thing is bothering me ... let me explain: I regularly use VirtualBox; very often I want to close certain window inside particular virtual machine, and instinctively press the i3 'kill' keyboard shortcut $mod+Shift+q. Of course, it closes entire virtual machine ... which makes me cry and mad :)&lt;/p&gt;
+
+&lt;p&gt;What I need is to disable 'kill' action on windows with [instance="VirtualBox"]. I tried:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="(?!VirtualBox)"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, it doesn't do what I need ... instead, to my horror, it closes all other windows!&lt;/p&gt;
+
+&lt;p&gt;Is there a simple solution to this, or I must resort to the IPC (this would be overkill for such a simple operation, wouldn't it)?&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, programming in C/C++ is over my head, but if there is a chance, I would vouch for adding such config option: 'do something to focused widow, unless window satisfies such-and-such criteria".&lt;/p&gt;
+
+&lt;p&gt;(Note: my question is connected to this one [How do I use an exclude regex in i3 config] here in this FAQ, so I'm not the only one in a need for such thing.)&lt;/p&gt;
+
+&lt;p&gt;Thanks a lot for all your answers.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?answer=7663#post-id-7663</link><description>What you need to do is extend the match to match on the focused window AND on the negation.
+
+## i3 4.11 and older
+
+    bindsym $mod+Shift+q exec --no-startup-id i3-msg [id="$(xdotool getactivewindow)" instance="^(?!VirtualBox).*$"] kill
+
+This requires xdotool to be installed, of course.
+
+## i3 4.12 and newer
+
+Starting with i3 4.12 and newer, you can ditch this little workaround and instead do this:
+
+    bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!VirtualBox).*$"] kill
+
+At the time of writing this answer, 4.12 is not yet released, so building the development branch from source is required for the time being.</description><pubDate>Mon, 14 Dec 2015 01:06:03 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?answer=7663#post-id-7663</guid></item><item><title>Comment by basletic for &lt;p&gt;What you need to do is extend the match to match on the focused window AND on the negation.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.11 and older&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q exec --no-startup-id i3-msg [id="$(xdotool getactivewindow)" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This requires xdotool to be installed, of course.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.12 and newer&lt;/h2&gt;
+
+&lt;p&gt;Starting with i3 4.12 and newer, you can ditch this little workaround and instead do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At the time of writing this answer, 4.12 is not yet released, so building the development branch from source is required for the time being.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7681#comment-7681</link><description>@Adaephon  Yes, thanks. Actually, I managed to find this myself, and went this route.</description><pubDate>Tue, 15 Dec 2015 09:07:15 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7681#comment-7681</guid></item><item><title>Comment by Adaephon for &lt;p&gt;What you need to do is extend the match to match on the focused window AND on the negation.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.11 and older&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q exec --no-startup-id i3-msg [id="$(xdotool getactivewindow)" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This requires xdotool to be installed, of course.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.12 and newer&lt;/h2&gt;
+
+&lt;p&gt;Starting with i3 4.12 and newer, you can ditch this little workaround and instead do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At the time of writing this answer, 4.12 is not yet released, so building the development branch from source is required for the time being.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7680#comment-7680</link><description>@basletic Instead of compiling yourself, you may want to have a look at http://i3wm.org/docs/repositories.html for instructions on how to get the latest developer version of i3 as ready-made package.</description><pubDate>Tue, 15 Dec 2015 08:19:34 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7680#comment-7680</guid></item><item><title>Comment by basletic for &lt;p&gt;What you need to do is extend the match to match on the focused window AND on the negation.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.11 and older&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q exec --no-startup-id i3-msg [id="$(xdotool getactivewindow)" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This requires xdotool to be installed, of course.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.12 and newer&lt;/h2&gt;
+
+&lt;p&gt;Starting with i3 4.12 and newer, you can ditch this little workaround and instead do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At the time of writing this answer, 4.12 is not yet released, so building the development branch from source is required for the time being.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7673#comment-7673</link><description>Thanks Airblader and Adaephon a lot for information and possible solutions. So far I'm novice in i3, but probably I should have looked at dev branch. I'm on debian unstable, but I will not wait for offical package; instead I will try to compile 4.12 by myself. I will report here if it doesn't work.</description><pubDate>Mon, 14 Dec 2015 23:18:09 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7673#comment-7673</guid></item><item><title>Comment by Airblader for &lt;p&gt;What you need to do is extend the match to match on the focused window AND on the negation.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.11 and older&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q exec --no-startup-id i3-msg [id="$(xdotool getactivewindow)" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This requires xdotool to be installed, of course.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.12 and newer&lt;/h2&gt;
+
+&lt;p&gt;Starting with i3 4.12 and newer, you can ditch this little workaround and instead do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At the time of writing this answer, 4.12 is not yet released, so building the development branch from source is required for the time being.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7672#comment-7672</link><description>We did actually document it correctly, my mistake was using the currently released userguide for reference. My vacation is getting to me. Thanks for the hint!</description><pubDate>Mon, 14 Dec 2015 23:07:40 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7672#comment-7672</guid></item><item><title>Comment by Airblader for &lt;p&gt;What you need to do is extend the match to match on the focused window AND on the negation.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.11 and older&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q exec --no-startup-id i3-msg [id="$(xdotool getactivewindow)" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This requires xdotool to be installed, of course.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.12 and newer&lt;/h2&gt;
+
+&lt;p&gt;Starting with i3 4.12 and newer, you can ditch this little workaround and instead do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At the time of writing this answer, 4.12 is not yet released, so building the development branch from source is required for the time being.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7671#comment-7671</link><description>@Adaephon Dangit, I did consider that but we seem to have forgotten to document that con_id allows this special value. The other (documented) ones were simply insufficient. I'll fix this in the documentation and update my answer.</description><pubDate>Mon, 14 Dec 2015 23:02:28 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7671#comment-7671</guid></item><item><title>Comment by Adaephon for &lt;p&gt;What you need to do is extend the match to match on the focused window AND on the negation.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.11 and older&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q exec --no-startup-id i3-msg [id="$(xdotool getactivewindow)" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This requires xdotool to be installed, of course.&lt;/p&gt;
+
+&lt;h2&gt;i3 4.12 and newer&lt;/h2&gt;
+
+&lt;p&gt;Starting with i3 4.12 and newer, you can ditch this little workaround and instead do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!VirtualBox).*$"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At the time of writing this answer, 4.12 is not yet released, so building the development branch from source is required for the time being.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7670#comment-7670</link><description>Thanks to your work on issue #2014 (https://github.com/i3/i3/issues/2014) the workaround with `i3msg` and `xdotool` should not be needed any longer starting with the next release (current release is 4.11). Then `bindsym _ [con_id=__focused__ instance='(?!VirtualBox)'] kill` should be sufficient.</description><pubDate>Mon, 14 Dec 2015 22:03:01 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7670#comment-7670</guid></item><item><title>Answer by basletic for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I switched to i3 recently (from pekwm), to see if I could persuade myself to start to use tiling WM. So far, so good, I find i3 very configurable and maleable. If not directly, then by simple scripting and a bit of hacking. &lt;/p&gt;
+
+&lt;p&gt;However, one thing is bothering me ... let me explain: I regularly use VirtualBox; very often I want to close certain window inside particular virtual machine, and instinctively press the i3 'kill' keyboard shortcut $mod+Shift+q. Of course, it closes entire virtual machine ... which makes me cry and mad :)&lt;/p&gt;
+
+&lt;p&gt;What I need is to disable 'kill' action on windows with [instance="VirtualBox"]. I tried:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="(?!VirtualBox)"] kill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, it doesn't do what I need ... instead, to my horror, it closes all other windows!&lt;/p&gt;
+
+&lt;p&gt;Is there a simple solution to this, or I must resort to the IPC (this would be overkill for such a simple operation, wouldn't it)?&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, programming in C/C++ is over my head, but if there is a chance, I would vouch for adding such config option: 'do something to focused widow, unless window satisfies such-and-such criteria".&lt;/p&gt;
+
+&lt;p&gt;(Note: my question is connected to this one [How do I use an exclude regex in i3 config] here in this FAQ, so I'm not the only one in a need for such thing.)&lt;/p&gt;
+
+&lt;p&gt;Thanks a lot for all your answers.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?answer=7682#post-id-7682</link><description>OK, it doesn't work as expected. Or I'm doing something wrong.
+
+Let me describe what I have found out in more details (I will play with 'galculator' instead of 'VirtualBox', and simplify regex to 'match' the string instaed of 'reverse match').
+
+1) with the config
+
+`bindsym $mod+Shift+q [instance="galculator"] kill`
+
+I get expected behaviour. I can kill only the `galculator` app. I cannot kill other clients (for example: `terminal`). And `galculator` is killed irrespective of currently focused window.
+
+2) with the config
+
+`bindsym $mod+Shift+q [instance="galculator" con_id="__focused__"] kill`
+
+I can kill any currently *focused* client. This is not really expected. It looks like, contrary to what I expect, the 'instance' and 'con_id' are logically OR-ed, instead of AND-ed.
+
+And I know that the 'instance' and 'class' are logically AND-ed: `bindsym $mod+Shift+q [instance="galculator" class="randomstringfgfgfg"] kill` wouldn't kill galculator nor anything other.
+
+I hope what I write above makes sense ... Is it intended behaviour? Do I have to do something more? Like mark window or something?
+
+EDIT: I forgot to specify that I now use i3 repository, with i3 version:
+
+`$ i3 -v`
+
+`i3 version 4.11-134-g04be42f (2015-12-04, branch "next") © 2009 Michael Stapelberg and contributors`
+
+EDIT1: I'm a bit confused with the fact that I cannot add yet another answer (about xdotool way), so here it is, below:
+
+As for the 'xdotool' way ... it also doesn't work. Either I'm doing something wrong, or certain features of i3 don't work as expected. (Admittedly, what I need might be a corner case ...)
+
+To simplify things, let's go back to simple 'galculator', and let's try to do it without 'xdotool'.
+
+1) this
+
+`bindsym $mod+Shift+q [id="31457283"] kill`
+
+where '31457283' is 'galculator' window id (as obtained by 'xwininfo -int') works as expected: it kills (only) 'galculator', no matter what window has focus.
+
+2) however, this
+
+`bindsym $mod+Shift+q [id="31457283" instance="(?!galculator)"] kill`
+
+doesn't work as expected - it, again, kills (only) 'galculator' window, no matter what window has focus. As if the 'id' criteria cause any other criteria to be ignored, similar to 'con_id' case. Is it possible?
+
+Therefore, the solution for original problem using 'xdotool' doesn't seem to work, either.
+ </description><pubDate>Tue, 15 Dec 2015 09:34:06 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?answer=7682#post-id-7682</guid></item><item><title>Comment by Airblader for &lt;p&gt;OK, it doesn't work as expected. Or I'm doing something wrong.&lt;/p&gt;
+
+&lt;p&gt;Let me describe what I have found out in more details (I will play with 'galculator' instead of 'VirtualBox', and simplify regex to 'match' the string instaed of 'reverse match').&lt;/p&gt;
+
+&lt;p&gt;1) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I get expected behaviour. I can kill only the &lt;code&gt;galculator&lt;/code&gt; app. I cannot kill other clients (for example: &lt;code&gt;terminal&lt;/code&gt;). And &lt;code&gt;galculator&lt;/code&gt; is killed irrespective of currently focused window.&lt;/p&gt;
+
+&lt;p&gt;2) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator" con_id="__focused__"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I can kill any currently &lt;em&gt;focused&lt;/em&gt; client. This is not really expected. It looks like, contrary to what I expect, the 'instance' and 'con_id' are logically OR-ed, instead of AND-ed.&lt;/p&gt;
+
+&lt;p&gt;And I know that the 'instance' and 'class' are logically AND-ed: &lt;code&gt;bindsym $mod+Shift+q [instance="galculator" class="randomstringfgfgfg"] kill&lt;/code&gt; wouldn't kill galculator nor anything other.&lt;/p&gt;
+
+&lt;p&gt;I hope what I write above makes sense ... Is it intended behaviour? Do I have to do something more? Like mark window or something?&lt;/p&gt;
+
+&lt;p&gt;EDIT: I forgot to specify that I now use i3 repository, with i3 version:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ i3 -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3 version 4.11-134-g04be42f (2015-12-04, branch "next") © 2009 Michael Stapelberg and contributors&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;EDIT1: I'm a bit confused with the fact that I cannot add yet another answer (about xdotool way), so here it is, below:&lt;/p&gt;
+
+&lt;p&gt;As for the 'xdotool' way ... it also doesn't work. Either I'm doing something wrong, or certain features of i3 don't work as expected. (Admittedly, what I need might be a corner case ...)&lt;/p&gt;
+
+&lt;p&gt;To simplify things, let's go back to simple 'galculator', and let's try to do it without 'xdotool'.&lt;/p&gt;
+
+&lt;p&gt;1) this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;where '31457283' is 'galculator' window id (as obtained by 'xwininfo -int') works as expected: it kills (only) 'galculator', no matter what window has focus.&lt;/p&gt;
+
+&lt;p&gt;2) however, this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283" instance="(?!galculator)"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work as expected - it, again, kills (only) 'galculator' window, no matter what window has focus. As if the 'id' criteria cause any other criteria to be ignored, similar to 'con_id' case. Is it possible?&lt;/p&gt;
+
+&lt;p&gt;Therefore, the solution for original problem using 'xdotool' doesn't seem to work, either.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7704#comment-7704</link><description>I'm fairly sure it worked that way for me, but I'll just remove them to be sure. :)</description><pubDate>Tue, 15 Dec 2015 23:42:54 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7704#comment-7704</guid></item><item><title>Comment by basletic for &lt;p&gt;OK, it doesn't work as expected. Or I'm doing something wrong.&lt;/p&gt;
+
+&lt;p&gt;Let me describe what I have found out in more details (I will play with 'galculator' instead of 'VirtualBox', and simplify regex to 'match' the string instaed of 'reverse match').&lt;/p&gt;
+
+&lt;p&gt;1) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I get expected behaviour. I can kill only the &lt;code&gt;galculator&lt;/code&gt; app. I cannot kill other clients (for example: &lt;code&gt;terminal&lt;/code&gt;). And &lt;code&gt;galculator&lt;/code&gt; is killed irrespective of currently focused window.&lt;/p&gt;
+
+&lt;p&gt;2) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator" con_id="__focused__"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I can kill any currently &lt;em&gt;focused&lt;/em&gt; client. This is not really expected. It looks like, contrary to what I expect, the 'instance' and 'con_id' are logically OR-ed, instead of AND-ed.&lt;/p&gt;
+
+&lt;p&gt;And I know that the 'instance' and 'class' are logically AND-ed: &lt;code&gt;bindsym $mod+Shift+q [instance="galculator" class="randomstringfgfgfg"] kill&lt;/code&gt; wouldn't kill galculator nor anything other.&lt;/p&gt;
+
+&lt;p&gt;I hope what I write above makes sense ... Is it intended behaviour? Do I have to do something more? Like mark window or something?&lt;/p&gt;
+
+&lt;p&gt;EDIT: I forgot to specify that I now use i3 repository, with i3 version:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ i3 -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3 version 4.11-134-g04be42f (2015-12-04, branch "next") © 2009 Michael Stapelberg and contributors&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;EDIT1: I'm a bit confused with the fact that I cannot add yet another answer (about xdotool way), so here it is, below:&lt;/p&gt;
+
+&lt;p&gt;As for the 'xdotool' way ... it also doesn't work. Either I'm doing something wrong, or certain features of i3 don't work as expected. (Admittedly, what I need might be a corner case ...)&lt;/p&gt;
+
+&lt;p&gt;To simplify things, let's go back to simple 'galculator', and let's try to do it without 'xdotool'.&lt;/p&gt;
+
+&lt;p&gt;1) this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;where '31457283' is 'galculator' window id (as obtained by 'xwininfo -int') works as expected: it kills (only) 'galculator', no matter what window has focus.&lt;/p&gt;
+
+&lt;p&gt;2) however, this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283" instance="(?!galculator)"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work as expected - it, again, kills (only) 'galculator' window, no matter what window has focus. As if the 'id' criteria cause any other criteria to be ignored, similar to 'con_id' case. Is it possible?&lt;/p&gt;
+
+&lt;p&gt;Therefore, the solution for original problem using 'xdotool' doesn't seem to work, either.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7700#comment-7700</link><description>@Airblader Excellent, eagerly waiting for 4.12. However: please remove single quotes from the xdotool-based solution. For me it doesn't work (i.e. it kills ALL windows except 'galculator'). It should be precisely as I put it in the comment above. (Not sure why, must be some bash qutiong effect.)</description><pubDate>Tue, 15 Dec 2015 20:49:52 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7700#comment-7700</guid></item><item><title>Comment by Airblader for &lt;p&gt;OK, it doesn't work as expected. Or I'm doing something wrong.&lt;/p&gt;
+
+&lt;p&gt;Let me describe what I have found out in more details (I will play with 'galculator' instead of 'VirtualBox', and simplify regex to 'match' the string instaed of 'reverse match').&lt;/p&gt;
+
+&lt;p&gt;1) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I get expected behaviour. I can kill only the &lt;code&gt;galculator&lt;/code&gt; app. I cannot kill other clients (for example: &lt;code&gt;terminal&lt;/code&gt;). And &lt;code&gt;galculator&lt;/code&gt; is killed irrespective of currently focused window.&lt;/p&gt;
+
+&lt;p&gt;2) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator" con_id="__focused__"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I can kill any currently &lt;em&gt;focused&lt;/em&gt; client. This is not really expected. It looks like, contrary to what I expect, the 'instance' and 'con_id' are logically OR-ed, instead of AND-ed.&lt;/p&gt;
+
+&lt;p&gt;And I know that the 'instance' and 'class' are logically AND-ed: &lt;code&gt;bindsym $mod+Shift+q [instance="galculator" class="randomstringfgfgfg"] kill&lt;/code&gt; wouldn't kill galculator nor anything other.&lt;/p&gt;
+
+&lt;p&gt;I hope what I write above makes sense ... Is it intended behaviour? Do I have to do something more? Like mark window or something?&lt;/p&gt;
+
+&lt;p&gt;EDIT: I forgot to specify that I now use i3 repository, with i3 version:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ i3 -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3 version 4.11-134-g04be42f (2015-12-04, branch "next") © 2009 Michael Stapelberg and contributors&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;EDIT1: I'm a bit confused with the fact that I cannot add yet another answer (about xdotool way), so here it is, below:&lt;/p&gt;
+
+&lt;p&gt;As for the 'xdotool' way ... it also doesn't work. Either I'm doing something wrong, or certain features of i3 don't work as expected. (Admittedly, what I need might be a corner case ...)&lt;/p&gt;
+
+&lt;p&gt;To simplify things, let's go back to simple 'galculator', and let's try to do it without 'xdotool'.&lt;/p&gt;
+
+&lt;p&gt;1) this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;where '31457283' is 'galculator' window id (as obtained by 'xwininfo -int') works as expected: it kills (only) 'galculator', no matter what window has focus.&lt;/p&gt;
+
+&lt;p&gt;2) however, this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283" instance="(?!galculator)"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work as expected - it, again, kills (only) 'galculator' window, no matter what window has focus. As if the 'id' criteria cause any other criteria to be ignored, similar to 'con_id' case. Is it possible?&lt;/p&gt;
+
+&lt;p&gt;Therefore, the solution for original problem using 'xdotool' doesn't seem to work, either.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7699#comment-7699</link><description>@basletic Awesome. Yeah, I've also fixed the quoting now. :) Removing the xdotool workaround will be possible in 4.12 then (or in the dev branch), as soon as it's merged.</description><pubDate>Tue, 15 Dec 2015 20:06:23 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7699#comment-7699</guid></item><item><title>Comment by basletic for &lt;p&gt;OK, it doesn't work as expected. Or I'm doing something wrong.&lt;/p&gt;
+
+&lt;p&gt;Let me describe what I have found out in more details (I will play with 'galculator' instead of 'VirtualBox', and simplify regex to 'match' the string instaed of 'reverse match').&lt;/p&gt;
+
+&lt;p&gt;1) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I get expected behaviour. I can kill only the &lt;code&gt;galculator&lt;/code&gt; app. I cannot kill other clients (for example: &lt;code&gt;terminal&lt;/code&gt;). And &lt;code&gt;galculator&lt;/code&gt; is killed irrespective of currently focused window.&lt;/p&gt;
+
+&lt;p&gt;2) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator" con_id="__focused__"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I can kill any currently &lt;em&gt;focused&lt;/em&gt; client. This is not really expected. It looks like, contrary to what I expect, the 'instance' and 'con_id' are logically OR-ed, instead of AND-ed.&lt;/p&gt;
+
+&lt;p&gt;And I know that the 'instance' and 'class' are logically AND-ed: &lt;code&gt;bindsym $mod+Shift+q [instance="galculator" class="randomstringfgfgfg"] kill&lt;/code&gt; wouldn't kill galculator nor anything other.&lt;/p&gt;
+
+&lt;p&gt;I hope what I write above makes sense ... Is it intended behaviour? Do I have to do something more? Like mark window or something?&lt;/p&gt;
+
+&lt;p&gt;EDIT: I forgot to specify that I now use i3 repository, with i3 version:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ i3 -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3 version 4.11-134-g04be42f (2015-12-04, branch "next") © 2009 Michael Stapelberg and contributors&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;EDIT1: I'm a bit confused with the fact that I cannot add yet another answer (about xdotool way), so here it is, below:&lt;/p&gt;
+
+&lt;p&gt;As for the 'xdotool' way ... it also doesn't work. Either I'm doing something wrong, or certain features of i3 don't work as expected. (Admittedly, what I need might be a corner case ...)&lt;/p&gt;
+
+&lt;p&gt;To simplify things, let's go back to simple 'galculator', and let's try to do it without 'xdotool'.&lt;/p&gt;
+
+&lt;p&gt;1) this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;where '31457283' is 'galculator' window id (as obtained by 'xwininfo -int') works as expected: it kills (only) 'galculator', no matter what window has focus.&lt;/p&gt;
+
+&lt;p&gt;2) however, this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283" instance="(?!galculator)"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work as expected - it, again, kills (only) 'galculator' window, no matter what window has focus. As if the 'id' criteria cause any other criteria to be ignored, similar to 'con_id' case. Is it possible?&lt;/p&gt;
+
+&lt;p&gt;Therefore, the solution for original problem using 'xdotool' doesn't seem to work, either.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7698#comment-7698</link><description>@Airblader Thanks a lot. This now works as required: bindsym $mod+Shift+q exec --no-startup-id i3-msg [id="$(xdotool getactivewindow)" instance="^(?!galculator).*$"] kill (but only with this particular quoting; your inital quoting doesn't work!). I apologize for my nonfamiliarity with PCRE.</description><pubDate>Tue, 15 Dec 2015 20:03:11 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7698#comment-7698</guid></item><item><title>Comment by Airblader for &lt;p&gt;OK, it doesn't work as expected. Or I'm doing something wrong.&lt;/p&gt;
+
+&lt;p&gt;Let me describe what I have found out in more details (I will play with 'galculator' instead of 'VirtualBox', and simplify regex to 'match' the string instaed of 'reverse match').&lt;/p&gt;
+
+&lt;p&gt;1) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I get expected behaviour. I can kill only the &lt;code&gt;galculator&lt;/code&gt; app. I cannot kill other clients (for example: &lt;code&gt;terminal&lt;/code&gt;). And &lt;code&gt;galculator&lt;/code&gt; is killed irrespective of currently focused window.&lt;/p&gt;
+
+&lt;p&gt;2) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator" con_id="__focused__"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I can kill any currently &lt;em&gt;focused&lt;/em&gt; client. This is not really expected. It looks like, contrary to what I expect, the 'instance' and 'con_id' are logically OR-ed, instead of AND-ed.&lt;/p&gt;
+
+&lt;p&gt;And I know that the 'instance' and 'class' are logically AND-ed: &lt;code&gt;bindsym $mod+Shift+q [instance="galculator" class="randomstringfgfgfg"] kill&lt;/code&gt; wouldn't kill galculator nor anything other.&lt;/p&gt;
+
+&lt;p&gt;I hope what I write above makes sense ... Is it intended behaviour? Do I have to do something more? Like mark window or something?&lt;/p&gt;
+
+&lt;p&gt;EDIT: I forgot to specify that I now use i3 repository, with i3 version:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ i3 -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3 version 4.11-134-g04be42f (2015-12-04, branch "next") © 2009 Michael Stapelberg and contributors&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;EDIT1: I'm a bit confused with the fact that I cannot add yet another answer (about xdotool way), so here it is, below:&lt;/p&gt;
+
+&lt;p&gt;As for the 'xdotool' way ... it also doesn't work. Either I'm doing something wrong, or certain features of i3 don't work as expected. (Admittedly, what I need might be a corner case ...)&lt;/p&gt;
+
+&lt;p&gt;To simplify things, let's go back to simple 'galculator', and let's try to do it without 'xdotool'.&lt;/p&gt;
+
+&lt;p&gt;1) this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;where '31457283' is 'galculator' window id (as obtained by 'xwininfo -int') works as expected: it kills (only) 'galculator', no matter what window has focus.&lt;/p&gt;
+
+&lt;p&gt;2) however, this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283" instance="(?!galculator)"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work as expected - it, again, kills (only) 'galculator' window, no matter what window has focus. As if the 'id' criteria cause any other criteria to be ignored, similar to 'con_id' case. Is it possible?&lt;/p&gt;
+
+&lt;p&gt;Therefore, the solution for original problem using 'xdotool' doesn't seem to work, either.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7696#comment-7696</link><description>@basletic Sorry for the confusion. Using id+instance does work, but the negative lookahead must look slightly different. I've updated my answer accordingly. Please try it the way it's described there, i.e.,
+
+    bindsym $mod+Shift+q [id=31457283 instance="^(?!galculator).*$"] kill</description><pubDate>Tue, 15 Dec 2015 19:47:36 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7696#comment-7696</guid></item><item><title>Comment by Airblader for &lt;p&gt;OK, it doesn't work as expected. Or I'm doing something wrong.&lt;/p&gt;
+
+&lt;p&gt;Let me describe what I have found out in more details (I will play with 'galculator' instead of 'VirtualBox', and simplify regex to 'match' the string instaed of 'reverse match').&lt;/p&gt;
+
+&lt;p&gt;1) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I get expected behaviour. I can kill only the &lt;code&gt;galculator&lt;/code&gt; app. I cannot kill other clients (for example: &lt;code&gt;terminal&lt;/code&gt;). And &lt;code&gt;galculator&lt;/code&gt; is killed irrespective of currently focused window.&lt;/p&gt;
+
+&lt;p&gt;2) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator" con_id="__focused__"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I can kill any currently &lt;em&gt;focused&lt;/em&gt; client. This is not really expected. It looks like, contrary to what I expect, the 'instance' and 'con_id' are logically OR-ed, instead of AND-ed.&lt;/p&gt;
+
+&lt;p&gt;And I know that the 'instance' and 'class' are logically AND-ed: &lt;code&gt;bindsym $mod+Shift+q [instance="galculator" class="randomstringfgfgfg"] kill&lt;/code&gt; wouldn't kill galculator nor anything other.&lt;/p&gt;
+
+&lt;p&gt;I hope what I write above makes sense ... Is it intended behaviour? Do I have to do something more? Like mark window or something?&lt;/p&gt;
+
+&lt;p&gt;EDIT: I forgot to specify that I now use i3 repository, with i3 version:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ i3 -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3 version 4.11-134-g04be42f (2015-12-04, branch "next") © 2009 Michael Stapelberg and contributors&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;EDIT1: I'm a bit confused with the fact that I cannot add yet another answer (about xdotool way), so here it is, below:&lt;/p&gt;
+
+&lt;p&gt;As for the 'xdotool' way ... it also doesn't work. Either I'm doing something wrong, or certain features of i3 don't work as expected. (Admittedly, what I need might be a corner case ...)&lt;/p&gt;
+
+&lt;p&gt;To simplify things, let's go back to simple 'galculator', and let's try to do it without 'xdotool'.&lt;/p&gt;
+
+&lt;p&gt;1) this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;where '31457283' is 'galculator' window id (as obtained by 'xwininfo -int') works as expected: it kills (only) 'galculator', no matter what window has focus.&lt;/p&gt;
+
+&lt;p&gt;2) however, this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283" instance="(?!galculator)"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work as expected - it, again, kills (only) 'galculator' window, no matter what window has focus. As if the 'id' criteria cause any other criteria to be ignored, similar to 'con_id' case. Is it possible?&lt;/p&gt;
+
+&lt;p&gt;Therefore, the solution for original problem using 'xdotool' doesn't seem to work, either.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7686#comment-7686</link><description>https://github.com/i3/i3/issues/2111</description><pubDate>Tue, 15 Dec 2015 12:16:35 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7686#comment-7686</guid></item><item><title>Comment by Airblader for &lt;p&gt;OK, it doesn't work as expected. Or I'm doing something wrong.&lt;/p&gt;
+
+&lt;p&gt;Let me describe what I have found out in more details (I will play with 'galculator' instead of 'VirtualBox', and simplify regex to 'match' the string instaed of 'reverse match').&lt;/p&gt;
+
+&lt;p&gt;1) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I get expected behaviour. I can kill only the &lt;code&gt;galculator&lt;/code&gt; app. I cannot kill other clients (for example: &lt;code&gt;terminal&lt;/code&gt;). And &lt;code&gt;galculator&lt;/code&gt; is killed irrespective of currently focused window.&lt;/p&gt;
+
+&lt;p&gt;2) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator" con_id="__focused__"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I can kill any currently &lt;em&gt;focused&lt;/em&gt; client. This is not really expected. It looks like, contrary to what I expect, the 'instance' and 'con_id' are logically OR-ed, instead of AND-ed.&lt;/p&gt;
+
+&lt;p&gt;And I know that the 'instance' and 'class' are logically AND-ed: &lt;code&gt;bindsym $mod+Shift+q [instance="galculator" class="randomstringfgfgfg"] kill&lt;/code&gt; wouldn't kill galculator nor anything other.&lt;/p&gt;
+
+&lt;p&gt;I hope what I write above makes sense ... Is it intended behaviour? Do I have to do something more? Like mark window or something?&lt;/p&gt;
+
+&lt;p&gt;EDIT: I forgot to specify that I now use i3 repository, with i3 version:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ i3 -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3 version 4.11-134-g04be42f (2015-12-04, branch "next") © 2009 Michael Stapelberg and contributors&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;EDIT1: I'm a bit confused with the fact that I cannot add yet another answer (about xdotool way), so here it is, below:&lt;/p&gt;
+
+&lt;p&gt;As for the 'xdotool' way ... it also doesn't work. Either I'm doing something wrong, or certain features of i3 don't work as expected. (Admittedly, what I need might be a corner case ...)&lt;/p&gt;
+
+&lt;p&gt;To simplify things, let's go back to simple 'galculator', and let's try to do it without 'xdotool'.&lt;/p&gt;
+
+&lt;p&gt;1) this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;where '31457283' is 'galculator' window id (as obtained by 'xwininfo -int') works as expected: it kills (only) 'galculator', no matter what window has focus.&lt;/p&gt;
+
+&lt;p&gt;2) however, this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283" instance="(?!galculator)"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work as expected - it, again, kills (only) 'galculator' window, no matter what window has focus. As if the 'id' criteria cause any other criteria to be ignored, similar to 'con_id' case. Is it possible?&lt;/p&gt;
+
+&lt;p&gt;Therefore, the solution for original problem using 'xdotool' doesn't seem to work, either.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7685#comment-7685</link><description>Yeah, you're right. con_id and mark are criteria that cause any other criteria to be ignored. I think you need to use the xdotool solution I mentioned. Let us know whether that works. Meanwhile I'll open a bug.</description><pubDate>Tue, 15 Dec 2015 11:37:12 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7685#comment-7685</guid></item><item><title>Comment by Airblader for &lt;p&gt;OK, it doesn't work as expected. Or I'm doing something wrong.&lt;/p&gt;
+
+&lt;p&gt;Let me describe what I have found out in more details (I will play with 'galculator' instead of 'VirtualBox', and simplify regex to 'match' the string instaed of 'reverse match').&lt;/p&gt;
+
+&lt;p&gt;1) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I get expected behaviour. I can kill only the &lt;code&gt;galculator&lt;/code&gt; app. I cannot kill other clients (for example: &lt;code&gt;terminal&lt;/code&gt;). And &lt;code&gt;galculator&lt;/code&gt; is killed irrespective of currently focused window.&lt;/p&gt;
+
+&lt;p&gt;2) with the config&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [instance="galculator" con_id="__focused__"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I can kill any currently &lt;em&gt;focused&lt;/em&gt; client. This is not really expected. It looks like, contrary to what I expect, the 'instance' and 'con_id' are logically OR-ed, instead of AND-ed.&lt;/p&gt;
+
+&lt;p&gt;And I know that the 'instance' and 'class' are logically AND-ed: &lt;code&gt;bindsym $mod+Shift+q [instance="galculator" class="randomstringfgfgfg"] kill&lt;/code&gt; wouldn't kill galculator nor anything other.&lt;/p&gt;
+
+&lt;p&gt;I hope what I write above makes sense ... Is it intended behaviour? Do I have to do something more? Like mark window or something?&lt;/p&gt;
+
+&lt;p&gt;EDIT: I forgot to specify that I now use i3 repository, with i3 version:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ i3 -v&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3 version 4.11-134-g04be42f (2015-12-04, branch "next") © 2009 Michael Stapelberg and contributors&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;EDIT1: I'm a bit confused with the fact that I cannot add yet another answer (about xdotool way), so here it is, below:&lt;/p&gt;
+
+&lt;p&gt;As for the 'xdotool' way ... it also doesn't work. Either I'm doing something wrong, or certain features of i3 don't work as expected. (Admittedly, what I need might be a corner case ...)&lt;/p&gt;
+
+&lt;p&gt;To simplify things, let's go back to simple 'galculator', and let's try to do it without 'xdotool'.&lt;/p&gt;
+
+&lt;p&gt;1) this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;where '31457283' is 'galculator' window id (as obtained by 'xwininfo -int') works as expected: it kills (only) 'galculator', no matter what window has focus.&lt;/p&gt;
+
+&lt;p&gt;2) however, this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bindsym $mod+Shift+q [id="31457283" instance="(?!galculator)"] kill&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;doesn't work as expected - it, again, kills (only) 'galculator' window, no matter what window has focus. As if the 'id' criteria cause any other criteria to be ignored, similar to 'con_id' case. Is it possible?&lt;/p&gt;
+
+&lt;p&gt;Therefore, the solution for original problem using 'xdotool' doesn't seem to work, either.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7683#comment-7683</link><description>That does sound odd. I'm going to check it out later.</description><pubDate>Tue, 15 Dec 2015 11:21:18 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/?comment=7683#comment-7683</guid></item></channel></rss>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6212/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 30 Jun 2015 08:47:26 +0000</lastBuildDate><item><title>$mod+Shift+A works, Strg+Alt+a doesn't</title><link>https://faq.i3wm.org/question/6212/modshifta-works-strgalta-doesnt/</link><description>I've tried several bindsym's to have a programm exec'd:
+
+    $mod+Shift+A exec flamethrowers ..works
+    $mod+Alt+a exec flamethrowers ..doesnt work
+    Strg+Alt+a exec flamethrowers ..doesnt work either..
+
+can someone explain this to me,
+thank you! 
+</description><pubDate>Sun, 28 Jun 2015 13:53:12 +0000</pubDate><guid>https://faq.i3wm.org/question/6212/modshifta-works-strgalta-doesnt/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I've tried several bindsym's to have a programm exec'd:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$mod+Shift+A exec flamethrowers ..works
+$mod+Alt+a exec flamethrowers ..doesnt work
+Strg+Alt+a exec flamethrowers ..doesnt work either..
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;can someone explain this to me,
+thank you! &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6212/modshifta-works-strgalta-doesnt/?answer=6226#post-id-6226</link><description>Neither `Alt` nor `Strg` are valid modifiers. According to [the User's Guide](http://i3wm.org/docs/userguide.html#keybindings), key bindings are to be defined like this:
+
+    bindsym [--release] [Modifiers+]keysym command
+    bindcode [--release] [Modifiers+]keycode command
+
+where `[Modifiers+]` is a list of modifiers separated and ended with `+`. Recognized modifiers are
+
+- `Mod1` (usually aka "Alt" or "Meta")
+- `Mod2` ("NumLock") 
+- `Mod3` (unused on default QWERTY layout)
+- `Mod4` (aka "Super" or "Windows-Key")
+- `Mod5` (e.g. "Alt_Gr" on german QWERTZ layout)
+- `Shift`
+- `Control`
+- `Mode_Switch`
+
+Depending on the physical keyboard and keyboard layout you use, not every modifier is necessarily available or mapped to a key that your keyboard actually has. You can use `xmodmap -pm` to get a list of modifiers and the key symbols and codes they are mapped to. For the US layout ("QWERTY") it looks something like that:
+
+    xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+    shift       Shift_L (0x32),  Shift_R (0x3e)
+    lock        Caps_Lock (0x42)
+    control     Control_L (0x25),  Control_R (0x69)
+    mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+    mod2        Num_Lock (0x4d)
+    mod3      
+    mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+    mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+
+As you can see, here the "Alt" keys (`Alt_L` and `Alt_R`) are mapped to the `mod1` modifier. So in order to utilize them in the *i3* configuration, you would write:
+
+    bindsym Mod1+a exec flamethrowers
+    bindsym Control+Mod1+a exec flamethrowers
+    bindsym $mod+Control+Mod1+a exec flamethrowers
+
+**Note:** some combinations of modifiers may not work, depending on layout and possibly keyboard hardware.</description><pubDate>Tue, 30 Jun 2015 08:47:26 +0000</pubDate><guid>https://faq.i3wm.org/question/6212/modshifta-works-strgalta-doesnt/?answer=6226#post-id-6226</guid></item><item><title>Answer by Airblader for &lt;p&gt;I've tried several bindsym's to have a programm exec'd:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$mod+Shift+A exec flamethrowers ..works
+$mod+Alt+a exec flamethrowers ..doesnt work
+Strg+Alt+a exec flamethrowers ..doesnt work either..
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;can someone explain this to me,
+thank you! &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6212/modshifta-works-strgalta-doesnt/?answer=6213#post-id-6213</link><description>That's because `Alt` isn't a valid keysym. Use `xev` to figure out the correct one. You can just start it, move the mouse over the window it opens, press the Alt key and look into the stdout to find the keysym. The output you are looking for looks something like this:
+
+    KeyPress event, serial 32, synthetic NO, window 0x2c00001,
+        root 0x29f, subw 0x0, time 19956153, (126,563), root:(1095,627),
+        state 0x0, keycode 50 (keysym 0xffe1, Shift_L), same_screen YES,
+        XLookupString gives 0 bytes: 
+        XmbLookupString gives 0 bytes: 
+        XFilterEvent returns: False
+    
+    KeyRelease event, serial 32, synthetic NO, window 0x2c00001,
+        root 0x29f, subw 0x0, time 19956223, (126,563), root:(1095,627),
+        state 0x1, keycode 50 (keysym 0xffe1, Shift_L), same_screen YES,
+        XLookupString gives 0 bytes: 
+        XFilterEvent returns: False</description><pubDate>Sun, 28 Jun 2015 14:36:22 +0000</pubDate><guid>https://faq.i3wm.org/question/6212/modshifta-works-strgalta-doesnt/?answer=6213#post-id-6213</guid></item><item><title>Comment by a_flamethrowing_duck for &lt;p&gt;That's because &lt;code&gt;Alt&lt;/code&gt; isn't a valid keysym. Use &lt;code&gt;xev&lt;/code&gt; to figure out the correct one. You can just start it, move the mouse over the window it opens, press the Alt key and look into the stdout to find the keysym. The output you are looking for looks something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;KeyPress event, serial 32, synthetic NO, window 0x2c00001,
+    root 0x29f, subw 0x0, time 19956153, (126,563), root:(1095,627),
+    state 0x0, keycode 50 (keysym 0xffe1, Shift_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+KeyRelease event, serial 32, synthetic NO, window 0x2c00001,
+    root 0x29f, subw 0x0, time 19956223, (126,563), root:(1095,627),
+    state 0x1, keycode 50 (keysym 0xffe1, Shift_L), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/6212/modshifta-works-strgalta-doesnt/?comment=6215#comment-6215</link><description>Thanks for the explanation! I've tried this and came to the conclusion that the following command should work `bindsym Control_L+Alt_L+a exec "keepass2 --auto-type"`.. I've reloaded i3's config but it doesn't seem to work for me. What am I missing?</description><pubDate>Sun, 28 Jun 2015 15:03:30 +0000</pubDate><guid>https://faq.i3wm.org/question/6212/modshifta-works-strgalta-doesnt/?comment=6215#comment-6215</guid></item><item><title>Answer by oberon for &lt;p&gt;I've tried several bindsym's to have a programm exec'd:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$mod+Shift+A exec flamethrowers ..works
+$mod+Alt+a exec flamethrowers ..doesnt work
+Strg+Alt+a exec flamethrowers ..doesnt work either..
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;can someone explain this to me,
+thank you! &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6212/modshifta-works-strgalta-doesnt/?answer=6214#post-id-6214</link><description>Easier:
+&lt;code&gt;$mod+Mod1+a&lt;/code&gt; :)</description><pubDate>Sun, 28 Jun 2015 14:53:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6212/modshifta-works-strgalta-doesnt/?answer=6214#post-id-6214</guid></item></channel></rss>

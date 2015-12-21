@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7500/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 01 Dec 2015 16:26:58 +0000</lastBuildDate><item><title>i3bar multiple instances of script.</title><link>https://faq.i3wm.org/question/7500/i3bar-multiple-instances-of-script/</link><description>Hey all,
+
+First of all, my English isn't good so I apologize if something is misspelled. :( 
+
+So, I wrote a small script to pipe some informations to i3status/i3bar. The script is below. 
+My question is, if I do "ps aux | grep /bin/sh" I get 4 instances of my script (I believe 2 for each bar - cuz I have two monitors). There is a reason why 4 instances?Shouldn't it be just two of them? 
+
+    #!/bin/sh 
+    
+    # Global variables
+    show_caps=NULL
+    show_num=NULL
+    show_aur=NULL
+    show_pacman=NULL
+    show_public=NULL
+    
+    # Functions
+    get_caps() {
+    	if [ "$(xset -q | grep Caps | awk '{print $4}')" = "on" ]; then
+    		show_caps="{\"color\": \"#cd626d\", \"full_text\": \"Caps: On\"}"
+    	else
+    		show_caps="{\"full_text\": \"Caps: Off\"}"
+    	fi
+    }
+    
+    get_num() {
+    	if [ "$(xset -q | grep Num | awk '{print $8}')" = "on" ]; then
+    		show_num="{\"color\": \"#cd626d\", \"full_text\": \"Num: On\"}"
+    	else
+    		show_num="{\"full_text\": \"Num: Off\"}"
+    	fi
+    }
+    
+    get_updates() {	
+    	if [ "$(cat ~/.config/hasupdatecower)" = "1" ]; then
+    		show_aur="{\"color\": \"#cd626d\", \"full_text\": \"AUR: Yes\"}"
+    	else
+    		show_aur="{\"full_text\": \"AUR: No\"}"
+    	fi
+    	
+    	if [ "$(cat ~/.config/hasupdatepacman)" = "1" ]; then
+    		show_pacman="{\"color\": \"#cd626d\", \"full_text\": \"Pacman: Yes\"}"
+    	else
+    		show_pacman="{\"full_text\": \"Pacman: No\"}"
+    	fi
+    	
+    }
+    
+    get_publicip() {
+    	gets_ip=$(cat ~/Drive/System/my_ip | awk '{print "IP: "$8}')
+    	show_public="{\"full_text\": \"${gets_ip}\"}"
+    }
+    
+    #echo '{"version":1}'
+    #echo '['
+    #echo '[]'
+    
+    # i3status output (JSON)
+    i3status | while :
+    do
+    	read line 
+    	get_caps
+    	#get_num
+    	get_updates
+    	#get_publicip
+    	show_status="[$show_pacman,$show_aur,$show_caps,"
+    	#echo ",[$show_public,$show_pacman,$show_cower,$show_caps,$show_num]" || exit 1
+    	echo "${line/[/$show_status}" || exit 1
+    done
+    
+    # END
+
+My i3's configuration file has: `status_command ~/Programming/Shell/i3more.sh`
+
+Output of "ps aux | grep /bin/sh": 
+
+    pedrofr+  5430  0.0  0.0  13616  3004 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+    pedrofr+  5431  0.0  0.0  13616  3132 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+    pedrofr+  5433  0.0  0.0  13620  2728 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+    pedrofr+  5435  0.0  0.0  13620  2820 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+
+Unfortunately I can't post link, so the output isn't formatted.
+</description><pubDate>Sun, 29 Nov 2015 17:27:13 +0000</pubDate><guid>https://faq.i3wm.org/question/7500/i3bar-multiple-instances-of-script/</guid></item><item><title>Comment by Anon1234 for &lt;p&gt;Hey all,&lt;/p&gt;
+
+&lt;p&gt;First of all, my English isn't good so I apologize if something is misspelled. :( &lt;/p&gt;
+
+&lt;p&gt;So, I wrote a small script to pipe some informations to i3status/i3bar. The script is below. 
+My question is, if I do "ps aux | grep /bin/sh" I get 4 instances of my script (I believe 2 for each bar - cuz I have two monitors). There is a reason why 4 instances?Shouldn't it be just two of them? &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh 
+
+# Global variables
+show_caps=NULL
+show_num=NULL
+show_aur=NULL
+show_pacman=NULL
+show_public=NULL
+
+# Functions
+get_caps() {
+    if [ "$(xset -q | grep Caps | awk '{print $4}')" = "on" ]; then
+        show_caps="{\"color\": \"#cd626d\", \"full_text\": \"Caps: On\"}"
+    else
+        show_caps="{\"full_text\": \"Caps: Off\"}"
+    fi
+}
+
+get_num() {
+    if [ "$(xset -q | grep Num | awk '{print $8}')" = "on" ]; then
+        show_num="{\"color\": \"#cd626d\", \"full_text\": \"Num: On\"}"
+    else
+        show_num="{\"full_text\": \"Num: Off\"}"
+    fi
+}
+
+get_updates() { 
+    if [ "$(cat ~/.config/hasupdatecower)" = "1" ]; then
+        show_aur="{\"color\": \"#cd626d\", \"full_text\": \"AUR: Yes\"}"
+    else
+        show_aur="{\"full_text\": \"AUR: No\"}"
+    fi
+
+    if [ "$(cat ~/.config/hasupdatepacman)" = "1" ]; then
+        show_pacman="{\"color\": \"#cd626d\", \"full_text\": \"Pacman: Yes\"}"
+    else
+        show_pacman="{\"full_text\": \"Pacman: No\"}"
+    fi
+
+}
+
+get_publicip() {
+    gets_ip=$(cat ~/Drive/System/my_ip | awk '{print "IP: "$8}')
+    show_public="{\"full_text\": \"${gets_ip}\"}"
+}
+
+#echo '{"version":1}'
+#echo '['
+#echo '[]'
+
+# i3status output (JSON)
+i3status | while :
+do
+    read line 
+    get_caps
+    #get_num
+    get_updates
+    #get_publicip
+    show_status="[$show_pacman,$show_aur,$show_caps,"
+    #echo ",[$show_public,$show_pacman,$show_cower,$show_caps,$show_num]" || exit 1
+    echo "${line/[/$show_status}" || exit 1
+done
+
+# END
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My i3's configuration file has: &lt;code&gt;status_command ~/Programming/Shell/i3more.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Output of "ps aux | grep /bin/sh": &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pedrofr+  5430  0.0  0.0  13616  3004 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+pedrofr+  5431  0.0  0.0  13616  3132 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+pedrofr+  5433  0.0  0.0  13620  2728 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+pedrofr+  5435  0.0  0.0  13620  2820 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unfortunately I can't post link, so the output isn't formatted.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7500/i3bar-multiple-instances-of-script/?comment=7519#comment-7519</link><description>Maybe try to kill them one by one and see what will happen.</description><pubDate>Tue, 01 Dec 2015 16:26:58 +0000</pubDate><guid>https://faq.i3wm.org/question/7500/i3bar-multiple-instances-of-script/?comment=7519#comment-7519</guid></item></channel></rss>

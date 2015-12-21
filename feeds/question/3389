@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3389/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 27 Feb 2014 17:05:27 +0000</lastBuildDate><item><title>Start on specific workspace failing</title><link>https://faq.i3wm.org/question/3389/start-on-specific-workspace-failing/</link><description>My questions are:
+
+1. Why does *virtualbox* keep opening up on **workspace 1** or **workspace 3**?
+2. Why doesn't an empty **workspace 2** consistently open on my second monitor (HDMI1)?
+3. How can I fix this?
+
+I am using i3 version 4.7.2 under Ubuntu 13.10. 
+
+I have the following lines in my config.
+
+    workspace 9 output HDMI1
+    workspace 2 output HDMI1
+    workspace 1 output VGA1
+    workspace 7 output VGA1
+    workspace 8 output VGA1
+    exec --no-startup-id i3-msg 'workspace 7; exec libreoffice --calc'
+    exec --no-startup-id i3-msg 'workspace 8; exec virtualbox'
+    exec --no-startup-id i3-msg 'workspace 1; exec google-chrome'
+    exec --no-startup-id i3-msg 'workspace 9; exec banshee; workspace 2'
+
+*virtualbox* always starts on **workspace 1** or **workspace 3** (why does that even open?), no matter where it's placed or whether I include switching to another workspace after running the other exec commands (ie `    exec --no-startup-id i3-msg 'workspace 7; exec libreoffice --calc'; workspace 8`). 
+
+Also, The behavior of *banshee* is dependent on the *virtualbox* line for some reason. If I comment the *virtualbox* line out, then *banshee* starts like normal and an empty **workspace 2** opens up on my second monitor. If I leave the *virtualbox* exec in, *banshee* opens, but **workspace 9** remains the active workspace on my second monitor and **workspace 2** is not created.
+</description><pubDate>Tue, 11 Feb 2014 19:36:10 +0000</pubDate><guid>https://faq.i3wm.org/question/3389/start-on-specific-workspace-failing/</guid></item><item><title>Answer by Pinyaka for &lt;p&gt;My questions are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Why does &lt;em&gt;virtualbox&lt;/em&gt; keep opening up on &lt;strong&gt;workspace 1&lt;/strong&gt; or &lt;strong&gt;workspace 3&lt;/strong&gt;?&lt;/li&gt;
+&lt;li&gt;Why doesn't an empty &lt;strong&gt;workspace 2&lt;/strong&gt; consistently open on my second monitor (HDMI1)?&lt;/li&gt;
+&lt;li&gt;How can I fix this?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I am using i3 version 4.7.2 under Ubuntu 13.10. &lt;/p&gt;
+
+&lt;p&gt;I have the following lines in my config.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 9 output HDMI1
+workspace 2 output HDMI1
+workspace 1 output VGA1
+workspace 7 output VGA1
+workspace 8 output VGA1
+exec --no-startup-id i3-msg 'workspace 7; exec libreoffice --calc'
+exec --no-startup-id i3-msg 'workspace 8; exec virtualbox'
+exec --no-startup-id i3-msg 'workspace 1; exec google-chrome'
+exec --no-startup-id i3-msg 'workspace 9; exec banshee; workspace 2'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;virtualbox&lt;/em&gt; always starts on &lt;strong&gt;workspace 1&lt;/strong&gt; or &lt;strong&gt;workspace 3&lt;/strong&gt; (why does that even open?), no matter where it's placed or whether I include switching to another workspace after running the other exec commands (ie &lt;code&gt;exec --no-startup-id i3-msg 'workspace 7; exec libreoffice --calc'; workspace 8&lt;/code&gt;). &lt;/p&gt;
+
+&lt;p&gt;Also, The behavior of &lt;em&gt;banshee&lt;/em&gt; is dependent on the &lt;em&gt;virtualbox&lt;/em&gt; line for some reason. If I comment the &lt;em&gt;virtualbox&lt;/em&gt; line out, then &lt;em&gt;banshee&lt;/em&gt; starts like normal and an empty &lt;strong&gt;workspace 2&lt;/strong&gt; opens up on my second monitor. If I leave the &lt;em&gt;virtualbox&lt;/em&gt; exec in, &lt;em&gt;banshee&lt;/em&gt; opens, but &lt;strong&gt;workspace 9&lt;/strong&gt; remains the active workspace on my second monitor and &lt;strong&gt;workspace 2&lt;/strong&gt; is not created.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3389/start-on-specific-workspace-failing/?answer=3455#post-id-3455</link><description>Some programs don't use startup-notifications (all of them, in this case). Because of this, they will open on whichever desktop is open at the time. You can get around this by using the assign statement for some programs (VirtualBox, libreoffic and banshee). For others without useful classes (google-chrome) you can use keywords from the title and open local html files as in the answer to the following question.
+
+[faq.i3wm.org/question/3447/race-condition-for-startup-applications/](http://faq.i3wm.org/question/3447/race-condition-for-startup-applications/)</description><pubDate>Thu, 27 Feb 2014 17:05:27 +0000</pubDate><guid>https://faq.i3wm.org/question/3389/start-on-specific-workspace-failing/?answer=3455#post-id-3455</guid></item><item><title>Answer by cee for &lt;p&gt;My questions are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Why does &lt;em&gt;virtualbox&lt;/em&gt; keep opening up on &lt;strong&gt;workspace 1&lt;/strong&gt; or &lt;strong&gt;workspace 3&lt;/strong&gt;?&lt;/li&gt;
+&lt;li&gt;Why doesn't an empty &lt;strong&gt;workspace 2&lt;/strong&gt; consistently open on my second monitor (HDMI1)?&lt;/li&gt;
+&lt;li&gt;How can I fix this?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I am using i3 version 4.7.2 under Ubuntu 13.10. &lt;/p&gt;
+
+&lt;p&gt;I have the following lines in my config.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 9 output HDMI1
+workspace 2 output HDMI1
+workspace 1 output VGA1
+workspace 7 output VGA1
+workspace 8 output VGA1
+exec --no-startup-id i3-msg 'workspace 7; exec libreoffice --calc'
+exec --no-startup-id i3-msg 'workspace 8; exec virtualbox'
+exec --no-startup-id i3-msg 'workspace 1; exec google-chrome'
+exec --no-startup-id i3-msg 'workspace 9; exec banshee; workspace 2'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;virtualbox&lt;/em&gt; always starts on &lt;strong&gt;workspace 1&lt;/strong&gt; or &lt;strong&gt;workspace 3&lt;/strong&gt; (why does that even open?), no matter where it's placed or whether I include switching to another workspace after running the other exec commands (ie &lt;code&gt;exec --no-startup-id i3-msg 'workspace 7; exec libreoffice --calc'; workspace 8&lt;/code&gt;). &lt;/p&gt;
+
+&lt;p&gt;Also, The behavior of &lt;em&gt;banshee&lt;/em&gt; is dependent on the &lt;em&gt;virtualbox&lt;/em&gt; line for some reason. If I comment the &lt;em&gt;virtualbox&lt;/em&gt; line out, then &lt;em&gt;banshee&lt;/em&gt; starts like normal and an empty &lt;strong&gt;workspace 2&lt;/strong&gt; opens up on my second monitor. If I leave the &lt;em&gt;virtualbox&lt;/em&gt; exec in, &lt;em&gt;banshee&lt;/em&gt; opens, but &lt;strong&gt;workspace 9&lt;/strong&gt; remains the active workspace on my second monitor and &lt;strong&gt;workspace 2&lt;/strong&gt; is not created.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3389/start-on-specific-workspace-failing/?answer=3390#post-id-3390</link><description>I did it like that and it works reliably.  
+
+    bindsym $sup+a exec audacious  
+    assign [class="Audacious"]   $w9
+
+Where 
+
+    set $sup Mod4
+    set $w9 ws9 #name workspace 9
+</description><pubDate>Wed, 12 Feb 2014 07:48:26 +0000</pubDate><guid>https://faq.i3wm.org/question/3389/start-on-specific-workspace-failing/?answer=3390#post-id-3390</guid></item></channel></rss>

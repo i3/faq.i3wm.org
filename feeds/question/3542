@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3542/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 28 Mar 2014 11:46:19 +0000</lastBuildDate><item><title>Problem Displaying Conky in i3bar using JSON</title><link>https://faq.i3wm.org/question/3542/problem-displaying-conky-in-i3bar-using-json/</link><description>I have gone over several tutorials and can not figure out why my Conky script does not work for i3bar. When I run i3 / bar I either get the last line that was echo'd from the conky script in plain text or nothing at all. Ideas I have is maybe there is a problem running conky when I run conky with no config I get a Warning gnome-keyring couldn't connect to... 
+
+Here is my status wrapper:
+
+    #!/bin/sh
+    echo '{"version":1}'
+    echo '['
+    echo '[],'
+    exec conky -c ~/.i3/conkyrc2
+
+here is the conkyrc2 file:
+
+    out_to_x no
+    own_window no
+    out_to_console yes
+    background no
+    max_text_width 0
+    
+    # Update interval in seconds
+    update_interval 2.0
+    
+    # This is the number of times Conky will update before quitting.
+    # Set to zero to run forever.
+    total_run_times 0
+    
+    # Shortens units to a single character (kiB-&gt;k, GiB-&gt;G, etc.). Default is off.
+    short_units yes
+    
+    # How strict should if_up be when testing an interface for being up?
+    # The value is one of up, link or address, to check for the interface
+    # being solely up, being up and having link or being up, having link
+    # and an assigned IP address.
+    #if_up_strictness route
+    
+    # Add spaces to keep things from moving about?  This only affects certain objects.
+    # use_spacer should have an argument of left, right, or none
+    use_spacer left
+    
+    # Force UTF8? note that UTF8 support required XFT
+    override_utf8_locale no
+    
+    # number of cpu samples to average
+    # set to 1 to disable averaging
+    cpu_avg_samples 2
+    
+    # Stuff after 'TEXT' will be formatted on screen
+    TEXT
+    
+    # JSON for i3bar
+    [
+    { "full_text" : " Uptime $uptime_short " , "color" : "\#ffffff" },
+    { "full_text" : " RAM ${mem} " , "color" : ${if_match ${memperc}&lt;90}"\#ffffff"${else}"\#ff0000"${endif} },
+    { "full_text" : " Load ${loadavg 1} " , "color" : "\#ffffff" },
+    { "full_text" : " I/O ${diskio /dev/sda} " , "color" : "\#ffffff" },
+    { "full_text" : " $time " , "color" : "\#ffffff" }],
+
+I currently get this as an output:
+
+    {"version":1}
+    [
+    [],
+    WARNING: gnome-keyring:: couldn't connect to: /tmp/keyring-dzpfwO/pkcs11: No such file or directory
+    [
+    { "full_text" : " Uptime 2h 27m " , "color" : "#ffffff" },
+    { "full_text" : " RAM 1.04G " , "color" : "#ffffff" },
+    { "full_text" : " Load 0.26 " , "color" : "#ffffff" },
+    { "full_text" : " I/O    0B " , "color" : "#ffffff" },
+    { "full_text" : " 2014-03-17 22:11:57 " , "color" : "#ffffff" }],
+
+</description><pubDate>Tue, 18 Mar 2014 02:14:06 +0000</pubDate><guid>https://faq.i3wm.org/question/3542/problem-displaying-conky-in-i3bar-using-json/</guid></item><item><title>Answer by Tahtisilma for &lt;p&gt;I have gone over several tutorials and can not figure out why my Conky script does not work for i3bar. When I run i3 / bar I either get the last line that was echo'd from the conky script in plain text or nothing at all. Ideas I have is maybe there is a problem running conky when I run conky with no config I get a Warning gnome-keyring couldn't connect to... &lt;/p&gt;
+
+&lt;p&gt;Here is my status wrapper:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+echo '{"version":1}'
+echo '['
+echo '[],'
+exec conky -c ~/.i3/conkyrc2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;here is the conkyrc2 file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+
+# Update interval in seconds
+update_interval 2.0
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Shortens units to a single character (kiB-&amp;gt;k, GiB-&amp;gt;G, etc.). Default is off.
+short_units yes
+
+# How strict should if_up be when testing an interface for being up?
+# The value is one of up, link or address, to check for the interface
+# being solely up, being up and having link or being up, having link
+# and an assigned IP address.
+#if_up_strictness route
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+# use_spacer should have an argument of left, right, or none
+use_spacer left
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# Stuff after 'TEXT' will be formatted on screen
+TEXT
+
+# JSON for i3bar
+[
+{ "full_text" : " Uptime $uptime_short " , "color" : "\#ffffff" },
+{ "full_text" : " RAM ${mem} " , "color" : ${if_match ${memperc}&amp;lt;90}"\#ffffff"${else}"\#ff0000"${endif} },
+{ "full_text" : " Load ${loadavg 1} " , "color" : "\#ffffff" },
+{ "full_text" : " I/O ${diskio /dev/sda} " , "color" : "\#ffffff" },
+{ "full_text" : " $time " , "color" : "\#ffffff" }],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I currently get this as an output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{"version":1}
+[
+[],
+WARNING: gnome-keyring:: couldn't connect to: /tmp/keyring-dzpfwO/pkcs11: No such file or directory
+[
+{ "full_text" : " Uptime 2h 27m " , "color" : "#ffffff" },
+{ "full_text" : " RAM 1.04G " , "color" : "#ffffff" },
+{ "full_text" : " Load 0.26 " , "color" : "#ffffff" },
+{ "full_text" : " I/O    0B " , "color" : "#ffffff" },
+{ "full_text" : " 2014-03-17 22:11:57 " , "color" : "#ffffff" }],
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/3542/problem-displaying-conky-in-i3bar-using-json/?answer=3583#post-id-3583</link><description>Your script works for me, so it must be the warning message. I remember that I had the same problem but now I am not sure how I solved it. Probably just by upgrading gnome-keyring package. You may try the solutions posted here:
+crunchbang.org/forums/viewtopic.php?pid=335149
+or
+askubuntu.com/questions/243210/why-do-i-get-this-warning-from-gnome-keyring-in-xubuntu</description><pubDate>Fri, 28 Mar 2014 11:46:19 +0000</pubDate><guid>https://faq.i3wm.org/question/3542/problem-displaying-conky-in-i3bar-using-json/?answer=3583#post-id-3583</guid></item></channel></rss>

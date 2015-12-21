@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3933/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 29 Jun 2014 21:33:46 +0000</lastBuildDate><item><title>Launcher or menu in i3</title><link>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/</link><description>Is there a way to create a launcher or menu within i3 without using an external program like dmenu?</description><pubDate>Mon, 09 Jun 2014 19:16:24 +0000</pubDate><guid>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/</guid></item><item><title>Answer by Man from Mars for &lt;p&gt;Is there a way to create a launcher or menu within i3 without using an external program like dmenu?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=3944#post-id-3944</link><description>I like both answers (though I slightly prefer phairland's one since Adaephon's suggestion resembles dmenu).
+I also use xfce application launcher which works well (it is also recognized as floating window and placed in the center of screen) because I have added i3 to original Debian + XFCE install.
+GMRun is also a nice option you might want to try.
+For the menu I always thought about adding lxpanel (a little out of i3 "spirit" but useful anyway) since I have no info about a "menu only" application.</description><pubDate>Tue, 10 Jun 2014 09:28:24 +0000</pubDate><guid>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=3944#post-id-3944</guid></item><item><title>Answer by phairland for &lt;p&gt;Is there a way to create a launcher or menu within i3 without using an external program like dmenu?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=3937#post-id-3937</link><description>I made a menu using the mode feature of i3. This is the code in my configuration file:
+
+    set $MENU "Audacious Chromium Dolphin dOublecmd Foxit giMp Gvim Irfanview Nixnote Palemoon Qbittorrent Ranger Skype Vlc Xnview Wps Et Libreoffice"
+    bindsym Menu mode $MENU
+    mode $MENU {
+    bindsym d exec dolphin, mode, "default"
+    bindsym a exec audacious, mode "default"
+    bindsym l exec libreoffice, mode "default"
+    bindsym m exec gimp, mode "default"
+    bindsym c exec chromium, mode "default"
+    bindsym i exec irfanview,mode "default"
+    bindsym p exec palemoon, mode "default"
+    bindsym f exec foxitreader, mode "default"
+    bindsym g exec gvim, mode "default"
+    bindsym w exec wps, mode "default"
+    bindsym e exec et, mode "default"
+    bindsym q exec qbittorrent, mode "default"
+    bindsym v exec vlc, mode "default"
+    bindsym o exec doublecmd, mode "default"
+    bindsym x exec xnviewmp, mode "default"
+    bindsym r exec terminator --profile ranger, mode "default"
+    bindsym s exec skype, mode "default"
+    bindsym n exec nixnote, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    }
+
+Just press the Menu key and on the i3bar will appear the menu and you will select the application by pressing the capital letter of each application. 
+</description><pubDate>Tue, 10 Jun 2014 04:59:39 +0000</pubDate><guid>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=3937#post-id-3937</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;Is there a way to create a launcher or menu within i3 without using an external program like dmenu?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=3970#post-id-3970</link><description>I did something similar to this, though I got tired of it after a while and slimmed it down to just a few things. (I'm a big fan of dmenu, myself). A keybinding is paired with a number to enter a mode for a category of applications, after which the number keys correspond to applications in that category.
+
+Here's a snippet of what I had in my old config. The glyphs are from Font Awesome, so that needs to be locally installed if you actually want to use them:
+
+    # Enter Index mode
+    bindsym $mod+Mod1+2 mode   Index [Editor]
+    bindsym $mod+Mod1+3 mode   Index [Messages]
+
+    mode "  Index [Editor]" {
+        bindsym 1 exec --no-startup-id termite -t "  Work" -r edr -e "vim '+cd ~/doc/work'"; mode default
+        bindsym 2 exec --no-startup-id termite -t "  Blog" -r edr -e "vim '+cd ~/prj/web/crepcran'"; mode default
+        bindsym 3 exec --no-startup-id termite -t "  Code" -r edr -e "vim '+cd ~/prj'"; mode default
+        bindsym 4 exec --no-startup-id termite -t "  Conf" -r edr -e vim; mode default
+        bindsym Escape mode "default"
+    }
+    mode "  Index [Messages]" {
+        bindsym 1 exec --no-startup-id termite -t "  Mail" -r msg -e mutt; mode default
+        bindsym 2 exec --no-startup-id termite -t '  Twitter' -r msg; mode default
+        bindsym Escape mode "default"
+    }
+
+
+</description><pubDate>Fri, 13 Jun 2014 04:58:52 +0000</pubDate><guid>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=3970#post-id-3970</guid></item><item><title>Answer by sycamorex for &lt;p&gt;Is there a way to create a launcher or menu within i3 without using an external program like dmenu?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=3934#post-id-3934</link><description>You can launch applications that you like by binding them to particular keyboard shortcuts, eg:
+
+    bindsym $mod+Return exec xterm
+    bindsym XF86Search exec /usr/bin/firefox
+    bindsym XF86Mail exec /usr/bin/thunderbird
+
+</description><pubDate>Mon, 09 Jun 2014 20:27:28 +0000</pubDate><guid>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=3934#post-id-3934</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Is there a way to create a launcher or menu within i3 without using an external program like dmenu?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=3939#post-id-3939</link><description>You could use `i3-input` for a primitive launcher:
+
+    bindsym $mod+p exec --no-startup-id i3-input -F 'exec "%s"' -P 'run&gt; '
+
+Although - strictly speaking - `i3-input` is an external program, it comes with *i3* and should always be available.
+
+</description><pubDate>Tue, 10 Jun 2014 05:19:11 +0000</pubDate><guid>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=3939#post-id-3939</guid></item><item><title>Comment by Adaephon for &lt;p&gt;You could use &lt;code&gt;i3-input&lt;/code&gt; for a primitive launcher:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+p exec --no-startup-id i3-input -F 'exec "%s"' -P 'run&amp;gt; '
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Although - strictly speaking - &lt;code&gt;i3-input&lt;/code&gt; is an external program, it comes with &lt;em&gt;i3&lt;/em&gt; and should always be available.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?comment=3943#comment-3943</link><description>You're right, that would work. I removed the paragraph about this no being possible ;)</description><pubDate>Tue, 10 Jun 2014 07:22:54 +0000</pubDate><guid>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?comment=3943#comment-3943</guid></item><item><title>Comment by phairland for &lt;p&gt;You could use &lt;code&gt;i3-input&lt;/code&gt; for a primitive launcher:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+p exec --no-startup-id i3-input -F 'exec "%s"' -P 'run&amp;gt; '
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Although - strictly speaking - &lt;code&gt;i3-input&lt;/code&gt; is an external program, it comes with &lt;em&gt;i3&lt;/em&gt; and should always be available.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?comment=3940#comment-3940</link><description>How about the mode feature of i3. I managed to display a menu, much like when resizing the word "resize" appear on the i3bar, then capitalised each letter that binds the execution of the program as shown on my answer.</description><pubDate>Tue, 10 Jun 2014 05:28:49 +0000</pubDate><guid>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?comment=3940#comment-3940</guid></item><item><title>Answer by Idefixerl for &lt;p&gt;Is there a way to create a launcher or menu within i3 without using an external program like dmenu?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=4067#post-id-4067</link><description>I use synapse with keybinding
+
+bindsym $mod+x exec --no-startup-id synapse</description><pubDate>Sun, 29 Jun 2014 21:33:46 +0000</pubDate><guid>https://faq.i3wm.org/question/3933/launcher-or-menu-in-i3/?answer=4067#post-id-4067</guid></item></channel></rss>

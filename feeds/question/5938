@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5938/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 04 May 2015 12:01:09 +0000</lastBuildDate><item><title>Getting Screen to Blank</title><link>https://faq.i3wm.org/question/5938/getting-screen-to-blank/</link><description>Howdy. My monitor no longer blanks after going idle. It used to when I ran gnome-classic. I am running Ubuntu 14.04.
+
+Running `xset 0 0 300` seems to get things working properly, but I have to do this by hand. Where is the proper place to configure this so that it is the default for all users/logins? </description><pubDate>Mon, 04 May 2015 03:13:40 +0000</pubDate><guid>https://faq.i3wm.org/question/5938/getting-screen-to-blank/</guid></item><item><title>Answer by i3convert for &lt;p&gt;Howdy. My monitor no longer blanks after going idle. It used to when I ran gnome-classic. I am running Ubuntu 14.04.&lt;/p&gt;
+
+&lt;p&gt;Running &lt;code&gt;xset 0 0 300&lt;/code&gt; seems to get things working properly, but I have to do this by hand. Where is the proper place to configure this so that it is the default for all users/logins? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5938/getting-screen-to-blank/?answer=5940#post-id-5940</link><description>Probably adding it to your local i3 configuration file will solve the problem. Add the following line to `~/.config/i3/config` or `~/.i3/config`:
+
+&gt; `exec --no-startup-id xset 0 0 300`
+
+If you have neither of the files, create a local copy of `/etc/i3/config` first.</description><pubDate>Mon, 04 May 2015 05:26:09 +0000</pubDate><guid>https://faq.i3wm.org/question/5938/getting-screen-to-blank/?answer=5940#post-id-5940</guid></item><item><title>Comment by mankyd for &lt;p&gt;Probably adding it to your local i3 configuration file will solve the problem. Add the following line to &lt;code&gt;~/.config/i3/config&lt;/code&gt; or &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code&gt;exec --no-startup-id xset 0 0 300&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you have neither of the files, create a local copy of &lt;code&gt;/etc/i3/config&lt;/code&gt; first.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5938/getting-screen-to-blank/?comment=5943#comment-5943</link><description>This will fix it for me, but not for other users who login. How do I make the change global?</description><pubDate>Mon, 04 May 2015 12:01:09 +0000</pubDate><guid>https://faq.i3wm.org/question/5938/getting-screen-to-blank/?comment=5943#comment-5943</guid></item></channel></rss>

@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2809/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 26 Feb 2014 21:04:25 +0000</lastBuildDate><item><title>Focus between and inside containers</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/</link><description>My question is: how can I do a bindsym to focus between containers and another bindsym inside a container?
+
+An example: I've a container named "A" and two clients inside A: A1 and A2. On same workspace I've an another container named "B" with two clients: B1 and B2.
+I want a bindsym to change focus in the focused container (A1 and A2 and back to A1, etc.) and another bindsym to change the focused container.
+
+My (first) idea:
+
+    force_focus_wrapping true
+    # change focused container
+    bindsym $mod+Tab focus parent; focus right
+    bindsym $mod+Shift+Tab focus parent; focus left
+    # change focused client in container 
+    bindsym $winkey+Left focus left
+    bindsym $winkey+Right focus right
+
+It works well when I've containers. But when I don't have containers the `focus parent` will fails. Maybe would be nice when the focused "object" is a simple client `focus parent` sets the focus to the client.
+
+Any idea?</description><pubDate>Sun, 03 Nov 2013 18:37:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;My question is: how can I do a bindsym to focus between containers and another bindsym inside a container?&lt;/p&gt;
+
+&lt;p&gt;An example: I've a container named "A" and two clients inside A: A1 and A2. On same workspace I've an another container named "B" with two clients: B1 and B2.
+I want a bindsym to change focus in the focused container (A1 and A2 and back to A1, etc.) and another bindsym to change the focused container.&lt;/p&gt;
+
+&lt;p&gt;My (first) idea:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;force_focus_wrapping true
+# change focused container
+bindsym $mod+Tab focus parent; focus right
+bindsym $mod+Shift+Tab focus parent; focus left
+# change focused client in container 
+bindsym $winkey+Left focus left
+bindsym $winkey+Right focus right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It works well when I've containers. But when I don't have containers the &lt;code&gt;focus parent&lt;/code&gt; will fails. Maybe would be nice when the focused "object" is a simple client &lt;code&gt;focus parent&lt;/code&gt; sets the focus to the client.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2813#comment-2813</link><description>So you end up with both windows selected when doing `focus parent; focus right`?</description><pubDate>Mon, 04 Nov 2013 10:26:17 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2813#comment-2813</guid></item><item><title>Comment by uzsolt for &lt;p&gt;My question is: how can I do a bindsym to focus between containers and another bindsym inside a container?&lt;/p&gt;
+
+&lt;p&gt;An example: I've a container named "A" and two clients inside A: A1 and A2. On same workspace I've an another container named "B" with two clients: B1 and B2.
+I want a bindsym to change focus in the focused container (A1 and A2 and back to A1, etc.) and another bindsym to change the focused container.&lt;/p&gt;
+
+&lt;p&gt;My (first) idea:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;force_focus_wrapping true
+# change focused container
+bindsym $mod+Tab focus parent; focus right
+bindsym $mod+Shift+Tab focus parent; focus left
+# change focused client in container 
+bindsym $winkey+Left focus left
+bindsym $winkey+Right focus right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It works well when I've containers. But when I don't have containers the &lt;code&gt;focus parent&lt;/code&gt; will fails. Maybe would be nice when the focused "object" is a simple client &lt;code&gt;focus parent&lt;/code&gt; sets the focus to the client.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2814#comment-2814</link><description>Yes. And after I can't do "focus left" or anything only with mouse.</description><pubDate>Mon, 04 Nov 2013 10:40:30 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2814#comment-2814</guid></item><item><title>Comment by uzsolt for &lt;p&gt;My question is: how can I do a bindsym to focus between containers and another bindsym inside a container?&lt;/p&gt;
+
+&lt;p&gt;An example: I've a container named "A" and two clients inside A: A1 and A2. On same workspace I've an another container named "B" with two clients: B1 and B2.
+I want a bindsym to change focus in the focused container (A1 and A2 and back to A1, etc.) and another bindsym to change the focused container.&lt;/p&gt;
+
+&lt;p&gt;My (first) idea:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;force_focus_wrapping true
+# change focused container
+bindsym $mod+Tab focus parent; focus right
+bindsym $mod+Shift+Tab focus parent; focus left
+# change focused client in container 
+bindsym $winkey+Left focus left
+bindsym $winkey+Right focus right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It works well when I've containers. But when I don't have containers the &lt;code&gt;focus parent&lt;/code&gt; will fails. Maybe would be nice when the focused "object" is a simple client &lt;code&gt;focus parent&lt;/code&gt; sets the focus to the client.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2812#comment-2812</link><description>Maybe I was equivocal: don't have containers means: I open two seperate windows e.g. a terminal and a browsers and doesn't exist child-parent relationship.</description><pubDate>Mon, 04 Nov 2013 09:53:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2812#comment-2812</guid></item><item><title>Comment by Adaephon for &lt;p&gt;My question is: how can I do a bindsym to focus between containers and another bindsym inside a container?&lt;/p&gt;
+
+&lt;p&gt;An example: I've a container named "A" and two clients inside A: A1 and A2. On same workspace I've an another container named "B" with two clients: B1 and B2.
+I want a bindsym to change focus in the focused container (A1 and A2 and back to A1, etc.) and another bindsym to change the focused container.&lt;/p&gt;
+
+&lt;p&gt;My (first) idea:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;force_focus_wrapping true
+# change focused container
+bindsym $mod+Tab focus parent; focus right
+bindsym $mod+Shift+Tab focus parent; focus left
+# change focused client in container 
+bindsym $winkey+Left focus left
+bindsym $winkey+Right focus right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It works well when I've containers. But when I don't have containers the &lt;code&gt;focus parent&lt;/code&gt; will fails. Maybe would be nice when the focused "object" is a simple client &lt;code&gt;focus parent&lt;/code&gt; sets the focus to the client.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2810#comment-2810</link><description>I'm not sure, what you mean with "don't have containers". Unless there is no window at all on a workspace, there are containers. And there are no windows, where should `focus right` go? With two outputs the combined command seems to work even when starting from an empty workspace.</description><pubDate>Mon, 04 Nov 2013 07:48:08 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2810#comment-2810</guid></item><item><title>Comment by blueyed for &lt;p&gt;My question is: how can I do a bindsym to focus between containers and another bindsym inside a container?&lt;/p&gt;
+
+&lt;p&gt;An example: I've a container named "A" and two clients inside A: A1 and A2. On same workspace I've an another container named "B" with two clients: B1 and B2.
+I want a bindsym to change focus in the focused container (A1 and A2 and back to A1, etc.) and another bindsym to change the focused container.&lt;/p&gt;
+
+&lt;p&gt;My (first) idea:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;force_focus_wrapping true
+# change focused container
+bindsym $mod+Tab focus parent; focus right
+bindsym $mod+Shift+Tab focus parent; focus left
+# change focused client in container 
+bindsym $winkey+Left focus left
+bindsym $winkey+Right focus right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It works well when I've containers. But when I don't have containers the &lt;code&gt;focus parent&lt;/code&gt; will fails. Maybe would be nice when the focused "object" is a simple client &lt;code&gt;focus parent&lt;/code&gt; sets the focus to the client.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=3442#comment-3442</link><description>FWIW: there is also `focus child` (not bound by default): this would allow to move the focus down again at least (without using the mouse). Also switching workspaces back and forth might help then.</description><pubDate>Wed, 26 Feb 2014 21:04:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=3442#comment-3442</guid></item><item><title>Answer by Adaephon for &lt;p&gt;My question is: how can I do a bindsym to focus between containers and another bindsym inside a container?&lt;/p&gt;
+
+&lt;p&gt;An example: I've a container named "A" and two clients inside A: A1 and A2. On same workspace I've an another container named "B" with two clients: B1 and B2.
+I want a bindsym to change focus in the focused container (A1 and A2 and back to A1, etc.) and another bindsym to change the focused container.&lt;/p&gt;
+
+&lt;p&gt;My (first) idea:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;force_focus_wrapping true
+# change focused container
+bindsym $mod+Tab focus parent; focus right
+bindsym $mod+Shift+Tab focus parent; focus left
+# change focused client in container 
+bindsym $winkey+Left focus left
+bindsym $winkey+Right focus right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It works well when I've containers. But when I don't have containers the &lt;code&gt;focus parent&lt;/code&gt; will fails. Maybe would be nice when the focused "object" is a simple client &lt;code&gt;focus parent&lt;/code&gt; sets the focus to the client.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?answer=2815#post-id-2815</link><description>Every window in i3 is inside one container or another (the outermost being workspaces). When a window is created on an empty workspace, a new container is opened with the settings of `workspace_layout`. Each following window is placed in the same container unless another container is explicitly created (by moving a window outside the container or with the `split` command).
+
+So there is no such thing as a "simple" client as there is no "normal" or "complex" client from which it could be distinguished. 
+
+The problems you are experiencing do not result from `focus parent` but from the `focus right` portion of your command. After shifting focus to another container, i3 focuses the last active window in this container. In the case you are describing there is no other container, so i3 has nothing new to focus and does just nothing when you say `focus right` and so the parent container remains focused.
+
+An easy solution for the immediate problem is just adding `focus child` to each command:
+    
+    # change focused container
+    bindsym $mod+Tab focus parent; focus right; focus child
+    bindsym $mod+Shift+Tab focus parent; focus left; focus child
+
+This way at least the previous window gets refocused when no other container is selected (i.e. the focus seems not to be moved in any way) and you can use the other binding to switch focus.
+(Strictly speaking, `focus child` will fail in cases where a new window is already selected, but there are no side effects to trying.) 
+
+There is no way to make `focus parent; focus right` behave like `focus right` in cases where there is no other container next to the parent container (which is the case you are describing in your comment) by just using i3 configuration.
+
+----------
+
+With the exception of the window criteria (which do not include the windows position), i3 does not provide conditional statements inside its configuration. In order to do what you are looking for you need to access the i3 IPC interface. You can use `i3-msg`, which comes with i3, or a [third-party library](http://i3wm.org/docs/ipc.html#_see_also_existing_libraries). I'll concentrate on `i3-msg`, some libraries may already have predefined functions for some parts.
+
+With `i3-msg` you can call any command you may bind to a key in the i3 configuration, e.g. `i3-msg focus right`. It also returns JSON on every call to tell you if it was successful. (Sadly it does not return exitcodes other than 0 to tell you of failures)
+
+Knowing that a successful shift of focus ends up with a window focused and that windows do not have children this is probably one of the shortest solutions:
+
+    #/bin/sh
+    i3-msg "focus parent; focus ${1}; focus child"
+    i3-msg "focus child" | grep "true" || i3-msg "focus ${1}"
+
+Save as "superfocus" and set `bindsym+Tab exec superfocus right`
+
+
+----------
+
+
+Another possibility would be parsing the tree in which i3 manages its windows and containers and check actively if there is only one container on the workspace. You can get a list of workspaces with `i3-msg -t get_workspaces`, the active one has `"focused": true`. You can also get the tree in which the windows and containers are managed with `i3-msg -t tree`. The active window has also `"focused": true`.  
+
+As far as I can tell the branch of a tiled window looks like that: 
+
+    root-&gt;output-&gt;workspace-&gt;container-&gt;...-&gt;container-&gt;window
+
+each element is kept in the list of the "nodes" attribute of its parent. Output and workspace names are unique and can be found with `i3-msg -t get_workspaces`. If there is only one element in the "nodes" element of the (single) "nodes" element of the workspace, it is your special case.
+
+    ws-&gt;cont-&gt;cont-&gt;window
+         ^     ^
+         |     \_ that one has to be alone
+         \_ this seems always to be the single element of a workspace
+    
+Of course this is rather more complicated, and some of the things mentioned are just inferred by how the output looks in all of my test cases. But it may help if there are some things you want do not like the try-and-error approach of the short solution. If you want to go down that road using one of the IPC libraries may be a good idea.
+</description><pubDate>Mon, 04 Nov 2013 13:02:13 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?answer=2815#post-id-2815</guid></item><item><title>Comment by Adaephon for &lt;div class="snippet"&gt;&lt;p&gt;Every window in i3 is inside one container or another (the outermost being workspaces). When a window is created on an empty workspace, a new container is opened with the settings of &lt;code&gt;workspace_layout&lt;/code&gt;. Each following window is placed in the same container unless another container is explicitly created (by moving a window outside the container or with the &lt;code&gt;split&lt;/code&gt; command).&lt;/p&gt;
+
+&lt;p&gt;So there is no such thing as a "simple" client as there is no "normal" or "complex" client from which it could be distinguished. &lt;/p&gt;
+
+&lt;p&gt;The problems you are experiencing do not result from &lt;code&gt;focus parent&lt;/code&gt; but from the &lt;code&gt;focus right&lt;/code&gt; portion of your command. After shifting focus to another container, i3 focuses the last active window in this container. In the case you are describing there is no other container, so i3 has nothing new to focus and does just nothing when you say &lt;code&gt;focus right&lt;/code&gt; and so the parent container remains focused.&lt;/p&gt;
+
+&lt;p&gt;An easy solution for the immediate problem is just adding &lt;code&gt;focus child&lt;/code&gt; to each command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focused container
+bindsym $mod+Tab focus parent; focus right; focus child
+bindsym $mod+Shift+Tab focus parent; focus left; focus child
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This way at least the previous window gets refocused when no other container is selected (i.e. the focus seems not to be moved in any way) and you can use the other binding to switch focus.
+(Strictly speaking, &lt;code&gt;focus child&lt;/code&gt; will fail in cases where a new window is already selected, but there are no side effects to trying.) &lt;/p&gt;
+
+&lt;p&gt;There is no way to make &lt;code&gt;focus parent; focus right&lt;/code&gt; behave like &lt;code&gt;focus right&lt;/code&gt; in cases where there is no other container next to the parent container (which is the case you are describing in your comment) by just using i3 configuration.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;With the exception of the window criteria (which do not include the windows position), i3 does not provide conditional statements inside its configuration. In order to do what you are looking for you need to access the i3 IPC interface. You can use &lt;code&gt;i3-msg&lt;/code&gt;, which comes with i3, or a &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;third-party library&lt;/a&gt;. I'll concentrate on &lt;code&gt;i3-msg&lt;/code&gt;, some libraries may already have predefined functions for some parts.&lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;i3-msg&lt;/code&gt; you can call any command you may bind to a key in the i3 configuration, e.g. &lt;code&gt;i3-msg focus right&lt;/code&gt;. It also returns JSON on every call to tell you if it was successful. (Sadly it does not return exitcodes other than 0 to tell you of failures)&lt;/p&gt;
+
+&lt;p&gt;Knowing that a successful shift of focus ends up with a window focused and that windows do not have children this is probably one of the shortest solutions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#/bin/sh
+i3-msg "focus parent; focus ${1}; focus child"
+i3-msg "focus child" | grep "true" || i3-msg "focus ${1}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save as "superfocus" and set &lt;code&gt;bindsym+Tab exec superfocus right&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Another possibility would be parsing the tree in which i3 manages its windows and containers and check actively if there is only one container on the workspace. You can get a list of workspaces with &lt;code&gt;i3-msg ...&lt;/code&gt;&lt;/p&gt;&lt;/hr/&gt;&lt;/hr/&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2817#comment-2817</link><description>That's strange. I tested it before posting and while I couldn't change focus with $mod+Tab, at least I didn't end up with both windows (or rather their parent container) selected. Could you bind the single commands to separate keys and see where it stops working as expected?</description><pubDate>Mon, 04 Nov 2013 14:30:19 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2817#comment-2817</guid></item><item><title>Comment by Adaephon for &lt;div class="snippet"&gt;&lt;p&gt;Every window in i3 is inside one container or another (the outermost being workspaces). When a window is created on an empty workspace, a new container is opened with the settings of &lt;code&gt;workspace_layout&lt;/code&gt;. Each following window is placed in the same container unless another container is explicitly created (by moving a window outside the container or with the &lt;code&gt;split&lt;/code&gt; command).&lt;/p&gt;
+
+&lt;p&gt;So there is no such thing as a "simple" client as there is no "normal" or "complex" client from which it could be distinguished. &lt;/p&gt;
+
+&lt;p&gt;The problems you are experiencing do not result from &lt;code&gt;focus parent&lt;/code&gt; but from the &lt;code&gt;focus right&lt;/code&gt; portion of your command. After shifting focus to another container, i3 focuses the last active window in this container. In the case you are describing there is no other container, so i3 has nothing new to focus and does just nothing when you say &lt;code&gt;focus right&lt;/code&gt; and so the parent container remains focused.&lt;/p&gt;
+
+&lt;p&gt;An easy solution for the immediate problem is just adding &lt;code&gt;focus child&lt;/code&gt; to each command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focused container
+bindsym $mod+Tab focus parent; focus right; focus child
+bindsym $mod+Shift+Tab focus parent; focus left; focus child
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This way at least the previous window gets refocused when no other container is selected (i.e. the focus seems not to be moved in any way) and you can use the other binding to switch focus.
+(Strictly speaking, &lt;code&gt;focus child&lt;/code&gt; will fail in cases where a new window is already selected, but there are no side effects to trying.) &lt;/p&gt;
+
+&lt;p&gt;There is no way to make &lt;code&gt;focus parent; focus right&lt;/code&gt; behave like &lt;code&gt;focus right&lt;/code&gt; in cases where there is no other container next to the parent container (which is the case you are describing in your comment) by just using i3 configuration.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;With the exception of the window criteria (which do not include the windows position), i3 does not provide conditional statements inside its configuration. In order to do what you are looking for you need to access the i3 IPC interface. You can use &lt;code&gt;i3-msg&lt;/code&gt;, which comes with i3, or a &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;third-party library&lt;/a&gt;. I'll concentrate on &lt;code&gt;i3-msg&lt;/code&gt;, some libraries may already have predefined functions for some parts.&lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;i3-msg&lt;/code&gt; you can call any command you may bind to a key in the i3 configuration, e.g. &lt;code&gt;i3-msg focus right&lt;/code&gt;. It also returns JSON on every call to tell you if it was successful. (Sadly it does not return exitcodes other than 0 to tell you of failures)&lt;/p&gt;
+
+&lt;p&gt;Knowing that a successful shift of focus ends up with a window focused and that windows do not have children this is probably one of the shortest solutions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#/bin/sh
+i3-msg "focus parent; focus ${1}; focus child"
+i3-msg "focus child" | grep "true" || i3-msg "focus ${1}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save as "superfocus" and set &lt;code&gt;bindsym+Tab exec superfocus right&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Another possibility would be parsing the tree in which i3 manages its windows and containers and check actively if there is only one container on the workspace. You can get a list of workspaces with &lt;code&gt;i3-msg ...&lt;/code&gt;&lt;/p&gt;&lt;/hr/&gt;&lt;/hr/&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2823#comment-2823</link><description>Yes, that is what I wrote just after the block of code. What you are looking for will need some scripting/programming, using i3-msg or other i3 IPC library.  [http://i3wm.org/docs/ipc.html#_see_also_existing_libraries] I'll add a paragraph that outlines a possible solution.</description><pubDate>Tue, 05 Nov 2013 06:09:41 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2823#comment-2823</guid></item><item><title>Comment by uzsolt for &lt;div class="snippet"&gt;&lt;p&gt;Every window in i3 is inside one container or another (the outermost being workspaces). When a window is created on an empty workspace, a new container is opened with the settings of &lt;code&gt;workspace_layout&lt;/code&gt;. Each following window is placed in the same container unless another container is explicitly created (by moving a window outside the container or with the &lt;code&gt;split&lt;/code&gt; command).&lt;/p&gt;
+
+&lt;p&gt;So there is no such thing as a "simple" client as there is no "normal" or "complex" client from which it could be distinguished. &lt;/p&gt;
+
+&lt;p&gt;The problems you are experiencing do not result from &lt;code&gt;focus parent&lt;/code&gt; but from the &lt;code&gt;focus right&lt;/code&gt; portion of your command. After shifting focus to another container, i3 focuses the last active window in this container. In the case you are describing there is no other container, so i3 has nothing new to focus and does just nothing when you say &lt;code&gt;focus right&lt;/code&gt; and so the parent container remains focused.&lt;/p&gt;
+
+&lt;p&gt;An easy solution for the immediate problem is just adding &lt;code&gt;focus child&lt;/code&gt; to each command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focused container
+bindsym $mod+Tab focus parent; focus right; focus child
+bindsym $mod+Shift+Tab focus parent; focus left; focus child
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This way at least the previous window gets refocused when no other container is selected (i.e. the focus seems not to be moved in any way) and you can use the other binding to switch focus.
+(Strictly speaking, &lt;code&gt;focus child&lt;/code&gt; will fail in cases where a new window is already selected, but there are no side effects to trying.) &lt;/p&gt;
+
+&lt;p&gt;There is no way to make &lt;code&gt;focus parent; focus right&lt;/code&gt; behave like &lt;code&gt;focus right&lt;/code&gt; in cases where there is no other container next to the parent container (which is the case you are describing in your comment) by just using i3 configuration.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;With the exception of the window criteria (which do not include the windows position), i3 does not provide conditional statements inside its configuration. In order to do what you are looking for you need to access the i3 IPC interface. You can use &lt;code&gt;i3-msg&lt;/code&gt;, which comes with i3, or a &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;third-party library&lt;/a&gt;. I'll concentrate on &lt;code&gt;i3-msg&lt;/code&gt;, some libraries may already have predefined functions for some parts.&lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;i3-msg&lt;/code&gt; you can call any command you may bind to a key in the i3 configuration, e.g. &lt;code&gt;i3-msg focus right&lt;/code&gt;. It also returns JSON on every call to tell you if it was successful. (Sadly it does not return exitcodes other than 0 to tell you of failures)&lt;/p&gt;
+
+&lt;p&gt;Knowing that a successful shift of focus ends up with a window focused and that windows do not have children this is probably one of the shortest solutions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#/bin/sh
+i3-msg "focus parent; focus ${1}; focus child"
+i3-msg "focus child" | grep "true" || i3-msg "focus ${1}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save as "superfocus" and set &lt;code&gt;bindsym+Tab exec superfocus right&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Another possibility would be parsing the tree in which i3 manages its windows and containers and check actively if there is only one container on the workspace. You can get a list of workspaces with &lt;code&gt;i3-msg ...&lt;/code&gt;&lt;/p&gt;&lt;/hr/&gt;&lt;/hr/&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2818#comment-2818</link><description>Tested. "focus parent" -&gt; works (seems focused full workspace) but "focus left" does nothing. And after "focus child" back to original state.</description><pubDate>Mon, 04 Nov 2013 18:37:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2818#comment-2818</guid></item><item><title>Comment by uzsolt for &lt;div class="snippet"&gt;&lt;p&gt;Every window in i3 is inside one container or another (the outermost being workspaces). When a window is created on an empty workspace, a new container is opened with the settings of &lt;code&gt;workspace_layout&lt;/code&gt;. Each following window is placed in the same container unless another container is explicitly created (by moving a window outside the container or with the &lt;code&gt;split&lt;/code&gt; command).&lt;/p&gt;
+
+&lt;p&gt;So there is no such thing as a "simple" client as there is no "normal" or "complex" client from which it could be distinguished. &lt;/p&gt;
+
+&lt;p&gt;The problems you are experiencing do not result from &lt;code&gt;focus parent&lt;/code&gt; but from the &lt;code&gt;focus right&lt;/code&gt; portion of your command. After shifting focus to another container, i3 focuses the last active window in this container. In the case you are describing there is no other container, so i3 has nothing new to focus and does just nothing when you say &lt;code&gt;focus right&lt;/code&gt; and so the parent container remains focused.&lt;/p&gt;
+
+&lt;p&gt;An easy solution for the immediate problem is just adding &lt;code&gt;focus child&lt;/code&gt; to each command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focused container
+bindsym $mod+Tab focus parent; focus right; focus child
+bindsym $mod+Shift+Tab focus parent; focus left; focus child
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This way at least the previous window gets refocused when no other container is selected (i.e. the focus seems not to be moved in any way) and you can use the other binding to switch focus.
+(Strictly speaking, &lt;code&gt;focus child&lt;/code&gt; will fail in cases where a new window is already selected, but there are no side effects to trying.) &lt;/p&gt;
+
+&lt;p&gt;There is no way to make &lt;code&gt;focus parent; focus right&lt;/code&gt; behave like &lt;code&gt;focus right&lt;/code&gt; in cases where there is no other container next to the parent container (which is the case you are describing in your comment) by just using i3 configuration.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;With the exception of the window criteria (which do not include the windows position), i3 does not provide conditional statements inside its configuration. In order to do what you are looking for you need to access the i3 IPC interface. You can use &lt;code&gt;i3-msg&lt;/code&gt;, which comes with i3, or a &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;third-party library&lt;/a&gt;. I'll concentrate on &lt;code&gt;i3-msg&lt;/code&gt;, some libraries may already have predefined functions for some parts.&lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;i3-msg&lt;/code&gt; you can call any command you may bind to a key in the i3 configuration, e.g. &lt;code&gt;i3-msg focus right&lt;/code&gt;. It also returns JSON on every call to tell you if it was successful. (Sadly it does not return exitcodes other than 0 to tell you of failures)&lt;/p&gt;
+
+&lt;p&gt;Knowing that a successful shift of focus ends up with a window focused and that windows do not have children this is probably one of the shortest solutions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#/bin/sh
+i3-msg "focus parent; focus ${1}; focus child"
+i3-msg "focus child" | grep "true" || i3-msg "focus ${1}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save as "superfocus" and set &lt;code&gt;bindsym+Tab exec superfocus right&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Another possibility would be parsing the tree in which i3 manages its windows and containers and check actively if there is only one container on the workspace. You can get a list of workspaces with &lt;code&gt;i3-msg ...&lt;/code&gt;&lt;/p&gt;&lt;/hr/&gt;&lt;/hr/&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2816#comment-2816</link><description>Oh, understand the logic of behavior :) But it doesn't work when you've two windows on a workspace.</description><pubDate>Mon, 04 Nov 2013 13:33:04 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2816#comment-2816</guid></item><item><title>Comment by uzsolt for &lt;div class="snippet"&gt;&lt;p&gt;Every window in i3 is inside one container or another (the outermost being workspaces). When a window is created on an empty workspace, a new container is opened with the settings of &lt;code&gt;workspace_layout&lt;/code&gt;. Each following window is placed in the same container unless another container is explicitly created (by moving a window outside the container or with the &lt;code&gt;split&lt;/code&gt; command).&lt;/p&gt;
+
+&lt;p&gt;So there is no such thing as a "simple" client as there is no "normal" or "complex" client from which it could be distinguished. &lt;/p&gt;
+
+&lt;p&gt;The problems you are experiencing do not result from &lt;code&gt;focus parent&lt;/code&gt; but from the &lt;code&gt;focus right&lt;/code&gt; portion of your command. After shifting focus to another container, i3 focuses the last active window in this container. In the case you are describing there is no other container, so i3 has nothing new to focus and does just nothing when you say &lt;code&gt;focus right&lt;/code&gt; and so the parent container remains focused.&lt;/p&gt;
+
+&lt;p&gt;An easy solution for the immediate problem is just adding &lt;code&gt;focus child&lt;/code&gt; to each command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focused container
+bindsym $mod+Tab focus parent; focus right; focus child
+bindsym $mod+Shift+Tab focus parent; focus left; focus child
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This way at least the previous window gets refocused when no other container is selected (i.e. the focus seems not to be moved in any way) and you can use the other binding to switch focus.
+(Strictly speaking, &lt;code&gt;focus child&lt;/code&gt; will fail in cases where a new window is already selected, but there are no side effects to trying.) &lt;/p&gt;
+
+&lt;p&gt;There is no way to make &lt;code&gt;focus parent; focus right&lt;/code&gt; behave like &lt;code&gt;focus right&lt;/code&gt; in cases where there is no other container next to the parent container (which is the case you are describing in your comment) by just using i3 configuration.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;With the exception of the window criteria (which do not include the windows position), i3 does not provide conditional statements inside its configuration. In order to do what you are looking for you need to access the i3 IPC interface. You can use &lt;code&gt;i3-msg&lt;/code&gt;, which comes with i3, or a &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;third-party library&lt;/a&gt;. I'll concentrate on &lt;code&gt;i3-msg&lt;/code&gt;, some libraries may already have predefined functions for some parts.&lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;i3-msg&lt;/code&gt; you can call any command you may bind to a key in the i3 configuration, e.g. &lt;code&gt;i3-msg focus right&lt;/code&gt;. It also returns JSON on every call to tell you if it was successful. (Sadly it does not return exitcodes other than 0 to tell you of failures)&lt;/p&gt;
+
+&lt;p&gt;Knowing that a successful shift of focus ends up with a window focused and that windows do not have children this is probably one of the shortest solutions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#/bin/sh
+i3-msg "focus parent; focus ${1}; focus child"
+i3-msg "focus child" | grep "true" || i3-msg "focus ${1}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save as "superfocus" and set &lt;code&gt;bindsym+Tab exec superfocus right&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Another possibility would be parsing the tree in which i3 manages its windows and containers and check actively if there is only one container on the workspace. You can get a list of workspaces with &lt;code&gt;i3-msg ...&lt;/code&gt;&lt;/p&gt;&lt;/hr/&gt;&lt;/hr/&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2827#comment-2827</link><description>Thanks. I'll check this and I want try with some scripting (I've used awesome wm so I've some experience ;) ).</description><pubDate>Tue, 05 Nov 2013 07:03:30 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2827#comment-2827</guid></item><item><title>Comment by uzsolt for &lt;div class="snippet"&gt;&lt;p&gt;Every window in i3 is inside one container or another (the outermost being workspaces). When a window is created on an empty workspace, a new container is opened with the settings of &lt;code&gt;workspace_layout&lt;/code&gt;. Each following window is placed in the same container unless another container is explicitly created (by moving a window outside the container or with the &lt;code&gt;split&lt;/code&gt; command).&lt;/p&gt;
+
+&lt;p&gt;So there is no such thing as a "simple" client as there is no "normal" or "complex" client from which it could be distinguished. &lt;/p&gt;
+
+&lt;p&gt;The problems you are experiencing do not result from &lt;code&gt;focus parent&lt;/code&gt; but from the &lt;code&gt;focus right&lt;/code&gt; portion of your command. After shifting focus to another container, i3 focuses the last active window in this container. In the case you are describing there is no other container, so i3 has nothing new to focus and does just nothing when you say &lt;code&gt;focus right&lt;/code&gt; and so the parent container remains focused.&lt;/p&gt;
+
+&lt;p&gt;An easy solution for the immediate problem is just adding &lt;code&gt;focus child&lt;/code&gt; to each command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# change focused container
+bindsym $mod+Tab focus parent; focus right; focus child
+bindsym $mod+Shift+Tab focus parent; focus left; focus child
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This way at least the previous window gets refocused when no other container is selected (i.e. the focus seems not to be moved in any way) and you can use the other binding to switch focus.
+(Strictly speaking, &lt;code&gt;focus child&lt;/code&gt; will fail in cases where a new window is already selected, but there are no side effects to trying.) &lt;/p&gt;
+
+&lt;p&gt;There is no way to make &lt;code&gt;focus parent; focus right&lt;/code&gt; behave like &lt;code&gt;focus right&lt;/code&gt; in cases where there is no other container next to the parent container (which is the case you are describing in your comment) by just using i3 configuration.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;With the exception of the window criteria (which do not include the windows position), i3 does not provide conditional statements inside its configuration. In order to do what you are looking for you need to access the i3 IPC interface. You can use &lt;code&gt;i3-msg&lt;/code&gt;, which comes with i3, or a &lt;a href="http://i3wm.org/docs/ipc.html#_see_also_existing_libraries"&gt;third-party library&lt;/a&gt;. I'll concentrate on &lt;code&gt;i3-msg&lt;/code&gt;, some libraries may already have predefined functions for some parts.&lt;/p&gt;
+
+&lt;p&gt;With &lt;code&gt;i3-msg&lt;/code&gt; you can call any command you may bind to a key in the i3 configuration, e.g. &lt;code&gt;i3-msg focus right&lt;/code&gt;. It also returns JSON on every call to tell you if it was successful. (Sadly it does not return exitcodes other than 0 to tell you of failures)&lt;/p&gt;
+
+&lt;p&gt;Knowing that a successful shift of focus ends up with a window focused and that windows do not have children this is probably one of the shortest solutions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#/bin/sh
+i3-msg "focus parent; focus ${1}; focus child"
+i3-msg "focus child" | grep "true" || i3-msg "focus ${1}"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save as "superfocus" and set &lt;code&gt;bindsym+Tab exec superfocus right&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Another possibility would be parsing the tree in which i3 manages its windows and containers and check actively if there is only one container on the workspace. You can get a list of workspaces with &lt;code&gt;i3-msg ...&lt;/code&gt;&lt;/p&gt;&lt;/hr/&gt;&lt;/hr/&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2841#comment-2841</link><description>Almost perfect. It doesn't work when I've two windows, one is a windows and other is a container with two "sub-windows". I'm working on too :) Thanks for idea :)</description><pubDate>Wed, 06 Nov 2013 09:36:59 +0000</pubDate><guid>https://faq.i3wm.org/question/2809/focus-between-and-inside-containers/?comment=2841#comment-2841</guid></item></channel></rss>

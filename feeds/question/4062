@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4062/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 10 Nov 2014 21:26:11 +0000</lastBuildDate><item><title>Which notification-tool is i3 using by default?</title><link>https://faq.i3wm.org/question/4062/which-notification-tool-is-i3-using-by-default/</link><description>I was reinstalling i3wm, after playing around with other tiling WMs, through the ubuntu repository and when I started pidgin, I saw that i3 now obviously is using a notification bar when a blue bar with a "contact is online now"-message occured on top of the left side of my screen.
+
+What tool exactly is this and how do I configure it? :)
+
+Thanks a lot,
+jake</description><pubDate>Sun, 29 Jun 2014 12:12:36 +0000</pubDate><guid>https://faq.i3wm.org/question/4062/which-notification-tool-is-i3-using-by-default/</guid></item><item><title>Answer by badboy_ for &lt;p&gt;I was reinstalling i3wm, after playing around with other tiling WMs, through the ubuntu repository and when I started pidgin, I saw that i3 now obviously is using a notification bar when a blue bar with a "contact is online now"-message occured on top of the left side of my screen.&lt;/p&gt;
+
+&lt;p&gt;What tool exactly is this and how do I configure it? :)&lt;/p&gt;
+
+&lt;p&gt;Thanks a lot,
+jake&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4062/which-notification-tool-is-i3-using-by-default/?answer=4063#post-id-4063</link><description>i3 is not responsible for notifications and does not provide a default either. What you saw is probably provided by your distribution by default or pidgin provides its own implementation.</description><pubDate>Sun, 29 Jun 2014 12:19:58 +0000</pubDate><guid>https://faq.i3wm.org/question/4062/which-notification-tool-is-i3-using-by-default/?answer=4063#post-id-4063</guid></item><item><title>Comment by alecb for &lt;p&gt;i3 is not responsible for notifications and does not provide a default either. What you saw is probably provided by your distribution by default or pidgin provides its own implementation.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4062/which-notification-tool-is-i3-using-by-default/?comment=4933#comment-4933</link><description>FYI: on ubuntu installing i3 seems to be modifying the behavior of notify-osd so that notifications look different. I'm not sure how to get the normal ubuntu style notifications back. https://askubuntu.com/questions/544036/very-spartan-and-ugly-rendering-of-osd-notify-messages</description><pubDate>Mon, 10 Nov 2014 20:29:59 +0000</pubDate><guid>https://faq.i3wm.org/question/4062/which-notification-tool-is-i3-using-by-default/?comment=4933#comment-4933</guid></item><item><title>Answer by alecb for &lt;p&gt;I was reinstalling i3wm, after playing around with other tiling WMs, through the ubuntu repository and when I started pidgin, I saw that i3 now obviously is using a notification bar when a blue bar with a "contact is online now"-message occured on top of the left side of my screen.&lt;/p&gt;
+
+&lt;p&gt;What tool exactly is this and how do I configure it? :)&lt;/p&gt;
+
+&lt;p&gt;Thanks a lot,
+jake&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4062/which-notification-tool-is-i3-using-by-default/?answer=4934#post-id-4934</link><description>It seems that the i3 package in ubuntu is installing dunst, which takes over for notifications from notify-osd.</description><pubDate>Mon, 10 Nov 2014 21:26:11 +0000</pubDate><guid>https://faq.i3wm.org/question/4062/which-notification-tool-is-i3-using-by-default/?answer=4934#post-id-4934</guid></item><item><title>Answer by mschaefer for &lt;p&gt;I was reinstalling i3wm, after playing around with other tiling WMs, through the ubuntu repository and when I started pidgin, I saw that i3 now obviously is using a notification bar when a blue bar with a "contact is online now"-message occured on top of the left side of my screen.&lt;/p&gt;
+
+&lt;p&gt;What tool exactly is this and how do I configure it? :)&lt;/p&gt;
+
+&lt;p&gt;Thanks a lot,
+jake&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4062/which-notification-tool-is-i3-using-by-default/?answer=4065#post-id-4065</link><description>badboy_ is right. Ubuntu based Systems use the command `notify-send` for desktop messages to be displayed. By default Ubuntu uses the `notify-osd` daemon to display the messages. It seems that `~/.notify-osd` is used for its configuration however I didn't find a link with a howto. 
+
+You can use other notification daemons instead. I prefer [dunst](http://www.knopwob.org/dunst/) over it, but there are others, see [here](https://faq.i3wm.org/question/121/whats-a-good-notification-daemon-for-i3/).
+
+In order to run a different daemon I have the following lines in my i3 config:
+
+    exec killall -q notify-osd
+    exec --no-startup-id dunst -config ~/.i3/config_dunst
+
+This exchanges the daemons.</description><pubDate>Sun, 29 Jun 2014 13:44:18 +0000</pubDate><guid>https://faq.i3wm.org/question/4062/which-notification-tool-is-i3-using-by-default/?answer=4065#post-id-4065</guid></item></channel></rss>

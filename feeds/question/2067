@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2067/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 10 Jul 2013 16:08:20 +0000</lastBuildDate><item><title>Focus on a window of a certain class *unless* it has a certain title</title><link>https://faq.i3wm.org/question/2067/focus-on-a-window-of-a-certain-class-unless-it-has-a-certain-title/</link><description>As explained in the i3 documentation, to focus on a window of class, say, "Emacs", it is enough to write:
+
+    bindsym $mod+x [class="Emacs"] focus
+
+However, I'd like to focus on a Emacs window **unless** the Emacs window has a certain title, say, "emacs_scratchpad". I'm not sure how to implement the unless bit. Does anyone know?
+
+</description><pubDate>Sun, 23 Jun 2013 04:54:27 +0000</pubDate><guid>https://faq.i3wm.org/question/2067/focus-on-a-window-of-a-certain-class-unless-it-has-a-certain-title/</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;As explained in the i3 documentation, to focus on a window of class, say, "Emacs", it is enough to write:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+x [class="Emacs"] focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, I'd like to focus on a Emacs window &lt;strong&gt;unless&lt;/strong&gt; the Emacs window has a certain title, say, "emacs_scratchpad". I'm not sure how to implement the unless bit. Does anyone know?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2067/focus-on-a-window-of-a-certain-class-unless-it-has-a-certain-title/?answer=2068#post-id-2068</link><description>You can try the criteria for "title" and **Negative Lookahead assertion**, which is PCRE (Perl Compatible Regular Expression) compliant:
+
+    bindsym $mod+x [class="Emacs" title="^(?!emacs_scratchpad)"] focus 
+
+Haven't tried, but should work.
+
+References:
+ 
+  [1] [http://www.regular-expressions.info/lookaround.html](http://www.regular-expressions.info/lookaround.html)
+
+  [2] [http://i3wm.org/docs/userguide.html#_list_of_commands](http://i3wm.org/docs/userguide.html#_list_of_commands)
+</description><pubDate>Sun, 23 Jun 2013 08:04:49 +0000</pubDate><guid>https://faq.i3wm.org/question/2067/focus-on-a-window-of-a-certain-class-unless-it-has-a-certain-title/?answer=2068#post-id-2068</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;You can try the criteria for "title" and &lt;strong&gt;Negative Lookahead assertion&lt;/strong&gt;, which is PCRE (Perl Compatible Regular Expression) compliant:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+x [class="Emacs" title="^(?!emacs_scratchpad)"] focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Haven't tried, but should work.&lt;/p&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+
+&lt;p&gt;[1] [&lt;a href="http://www.regular-expressions.info/lookaround.html](http://www.regular-expressions.info/lookaround.html)"&gt;http://www.regular-expressions.info/l...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[2] [&lt;a href="http://i3wm.org/docs/userguide.html"&gt;http://i3wm.org/docs/userguide.html#&lt;/a&gt;&lt;em&gt;list&lt;/em&gt;of&lt;em&gt;commands](http://i3wm.org/docs/userguide.html#&lt;/em&gt;list&lt;em&gt;of&lt;/em&gt;commands)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2067/focus-on-a-window-of-a-certain-class-unless-it-has-a-certain-title/?comment=2077#comment-2077</link><description>ok, makes sense. (will edit the answer for future reference, and it answers your question, mark it as answered, or it will keep popping up in the main page).</description><pubDate>Mon, 24 Jun 2013 06:29:23 +0000</pubDate><guid>https://faq.i3wm.org/question/2067/focus-on-a-window-of-a-certain-class-unless-it-has-a-certain-title/?comment=2077#comment-2077</guid></item><item><title>Comment by mk for &lt;p&gt;You can try the criteria for "title" and &lt;strong&gt;Negative Lookahead assertion&lt;/strong&gt;, which is PCRE (Perl Compatible Regular Expression) compliant:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+x [class="Emacs" title="^(?!emacs_scratchpad)"] focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Haven't tried, but should work.&lt;/p&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+
+&lt;p&gt;[1] [&lt;a href="http://www.regular-expressions.info/lookaround.html](http://www.regular-expressions.info/lookaround.html)"&gt;http://www.regular-expressions.info/l...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[2] [&lt;a href="http://i3wm.org/docs/userguide.html"&gt;http://i3wm.org/docs/userguide.html#&lt;/a&gt;&lt;em&gt;list&lt;/em&gt;of&lt;em&gt;commands](http://i3wm.org/docs/userguide.html#&lt;/em&gt;list&lt;em&gt;of&lt;/em&gt;commands)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2067/focus-on-a-window-of-a-certain-class-unless-it-has-a-certain-title/?comment=2074#comment-2074</link><description>?! alone didn't work out for me. I had to add "^" before---i.e., "^(?!emacs_scratchpad)." Thanks a bunch!</description><pubDate>Mon, 24 Jun 2013 00:08:18 +0000</pubDate><guid>https://faq.i3wm.org/question/2067/focus-on-a-window-of-a-certain-class-unless-it-has-a-certain-title/?comment=2074#comment-2074</guid></item><item><title>Comment by ack006 for &lt;p&gt;You can try the criteria for "title" and &lt;strong&gt;Negative Lookahead assertion&lt;/strong&gt;, which is PCRE (Perl Compatible Regular Expression) compliant:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+x [class="Emacs" title="^(?!emacs_scratchpad)"] focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Haven't tried, but should work.&lt;/p&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+
+&lt;p&gt;[1] [&lt;a href="http://www.regular-expressions.info/lookaround.html](http://www.regular-expressions.info/lookaround.html)"&gt;http://www.regular-expressions.info/l...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[2] [&lt;a href="http://i3wm.org/docs/userguide.html"&gt;http://i3wm.org/docs/userguide.html#&lt;/a&gt;&lt;em&gt;list&lt;/em&gt;of&lt;em&gt;commands](http://i3wm.org/docs/userguide.html#&lt;/em&gt;list&lt;em&gt;of&lt;/em&gt;commands)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2067/focus-on-a-window-of-a-certain-class-unless-it-has-a-certain-title/?comment=2169#comment-2169</link><description>wow, this is one of those things which make i3 great! I've yet to find another window manager which allows for doing this in such a concise and clean way. Brilliant!</description><pubDate>Wed, 10 Jul 2013 16:08:20 +0000</pubDate><guid>https://faq.i3wm.org/question/2067/focus-on-a-window-of-a-certain-class-unless-it-has-a-certain-title/?comment=2169#comment-2169</guid></item></channel></rss>

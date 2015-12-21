@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1611/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 11 Apr 2013 21:49:34 +0000</lastBuildDate><item><title>Ubuntuone and dropbox</title><link>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/</link><description>Is i3 compatible with Dropbox/UbuntuOne apps in Ubuntu ?
+
+Because I added couple of documents to dropbox folder and when I opened the website they weren't there. Meaning it seems syncing doesn't work when using i3wm.
+
+Is there a solution or workaround to this problem ?
+
+
+-------------------------------------------------
+
+**EDIT: For those who want to start the UbuntuOne client**. Type :
+
+`Ubuntuone-launch`
+
+and to control it use the command `u1sdtool` </description><pubDate>Thu, 11 Apr 2013 16:51:19 +0000</pubDate><guid>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/</guid></item><item><title>Answer by konni for &lt;p&gt;Is i3 compatible with Dropbox/UbuntuOne apps in Ubuntu ?&lt;/p&gt;
+
+&lt;p&gt;Because I added couple of documents to dropbox folder and when I opened the website they weren't there. Meaning it seems syncing doesn't work when using i3wm.&lt;/p&gt;
+
+&lt;p&gt;Is there a solution or workaround to this problem ?&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT: For those who want to start the UbuntuOne client&lt;/strong&gt;. Type :&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Ubuntuone-launch&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;and to control it use the command &lt;code&gt;u1sdtool&lt;/code&gt; &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/?answer=1615#post-id-1615</link><description>this has nothing to do with the window manager you use. start the respective daemons and it will work.</description><pubDate>Thu, 11 Apr 2013 17:10:32 +0000</pubDate><guid>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/?answer=1615#post-id-1615</guid></item><item><title>Comment by sohaeb for &lt;p&gt;this has nothing to do with the window manager you use. start the respective daemons and it will work.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/?comment=1616#comment-1616</link><description>Ya, I just figured out that. I am still newb :-)</description><pubDate>Thu, 11 Apr 2013 17:18:52 +0000</pubDate><guid>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/?comment=1616#comment-1616</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;Is i3 compatible with Dropbox/UbuntuOne apps in Ubuntu ?&lt;/p&gt;
+
+&lt;p&gt;Because I added couple of documents to dropbox folder and when I opened the website they weren't there. Meaning it seems syncing doesn't work when using i3wm.&lt;/p&gt;
+
+&lt;p&gt;Is there a solution or workaround to this problem ?&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT: For those who want to start the UbuntuOne client&lt;/strong&gt;. Type :&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Ubuntuone-launch&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;and to control it use the command &lt;code&gt;u1sdtool&lt;/code&gt; &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/?answer=1617#post-id-1617</link><description>I depend heavily on Dropbox, so it's one of the first things I got sorted with i3...
+
+Not only the sync works, but the Nautilus integration.
+
+![image description](/upfiles/13657166943832642.jpg)
+
+In my config file, I basically have this:
+
+    exec ~/.dropbox-dist/dropboxd
+    exec sudo bash -c "echo 100000 &gt; /proc/sys/fs/inotify/max_user_watches"
+
+(latter is required for Dropbox to manage large file quantities)
+
+Note: the command "dropbox" (/usr/bin/dropbox) does not work. Didn't spend too much time on this, but I guess it is because this is not the daemon, but the download/configuration for the proprietary stuff, which is stored in your ~/.dropbox-dist directory.</description><pubDate>Thu, 11 Apr 2013 21:49:34 +0000</pubDate><guid>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/?answer=1617#post-id-1617</guid></item><item><title>Answer by badboy_ for &lt;p&gt;Is i3 compatible with Dropbox/UbuntuOne apps in Ubuntu ?&lt;/p&gt;
+
+&lt;p&gt;Because I added couple of documents to dropbox folder and when I opened the website they weren't there. Meaning it seems syncing doesn't work when using i3wm.&lt;/p&gt;
+
+&lt;p&gt;Is there a solution or workaround to this problem ?&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT: For those who want to start the UbuntuOne client&lt;/strong&gt;. Type :&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Ubuntuone-launch&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;and to control it use the command &lt;code&gt;u1sdtool&lt;/code&gt; &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/?answer=1613#post-id-1613</link><description>How about starting the Dropbox client first? If "dropbox start" works from the command line, put "exec --no-startup-id dropbox start" in your i3 config.</description><pubDate>Thu, 11 Apr 2013 16:56:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/?answer=1613#post-id-1613</guid></item><item><title>Comment by sohaeb for &lt;p&gt;How about starting the Dropbox client first? If "dropbox start" works from the command line, put "exec --no-startup-id dropbox start" in your i3 config.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/?comment=1614#comment-1614</link><description>ya it says done after running `dropbox start` command. Let me try copying a file there.EDIT: it worked. Now trying to add the command to i3 config.</description><pubDate>Thu, 11 Apr 2013 16:58:07 +0000</pubDate><guid>https://faq.i3wm.org/question/1611/ubuntuone-and-dropbox/?comment=1614#comment-1614</guid></item></channel></rss>

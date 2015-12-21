@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3612/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 28 Sep 2015 16:51:59 +0000</lastBuildDate><item><title>ssh prompt like Xmonad.Prompt.Ssh</title><link>https://faq.i3wm.org/question/3612/ssh-prompt-like-xmonadpromptssh/</link><description>Is there a way to implement an ssh prompt, similar to Xmonad.Prompt.Ssh (sorry can't post a link)?
+
+The way it works in Xmonad, is that when you press the key binding, you get a prompt, like dmenu, in which you type in a name of a host, and when you press &lt;enter&gt; you get a terminal with ssh to that host.
+
+Very useful when working a lot with remote machines, saves the trouble of openning a shell and calling 'ssh &lt;host&gt;'
+
+I guess one could come up with a script that parses .ssh/config, and calls dmenu on it, but I'm wondering if there's already something like that out there</description><pubDate>Tue, 01 Apr 2014 20:02:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3612/ssh-prompt-like-xmonadpromptssh/</guid></item><item><title>Answer by yhager for &lt;p&gt;Is there a way to implement an ssh prompt, similar to Xmonad.Prompt.Ssh (sorry can't post a link)?&lt;/p&gt;
+
+&lt;p&gt;The way it works in Xmonad, is that when you press the key binding, you get a prompt, like dmenu, in which you type in a name of a host, and when you press &amp;lt;enter&amp;gt; you get a terminal with ssh to that host.&lt;/p&gt;
+
+&lt;p&gt;Very useful when working a lot with remote machines, saves the trouble of openning a shell and calling 'ssh &amp;lt;host&amp;gt;'&lt;/p&gt;
+
+&lt;p&gt;I guess one could come up with a script that parses .ssh/config, and calls dmenu on it, but I'm wondering if there's already something like that out there&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3612/ssh-prompt-like-xmonadpromptssh/?answer=6724#post-id-6724</link><description>I now mostly use `.ssh/config`, so the following is a better option now:
+
+     bindsym $mod+c exec "urxvt -e ssh $(grep -i ^host ~/.ssh/config|grep -v '\*' |cut -d' ' -f 2-|sed 's/ /\n/g'|sort|uniq |grep -v '^$' | dmenu -i -nb black -nf red -sf black -sb red -l 12)"</description><pubDate>Mon, 28 Sep 2015 16:51:59 +0000</pubDate><guid>https://faq.i3wm.org/question/3612/ssh-prompt-like-xmonadpromptssh/?answer=6724#post-id-6724</guid></item><item><title>Answer by joepd for &lt;p&gt;Is there a way to implement an ssh prompt, similar to Xmonad.Prompt.Ssh (sorry can't post a link)?&lt;/p&gt;
+
+&lt;p&gt;The way it works in Xmonad, is that when you press the key binding, you get a prompt, like dmenu, in which you type in a name of a host, and when you press &amp;lt;enter&amp;gt; you get a terminal with ssh to that host.&lt;/p&gt;
+
+&lt;p&gt;Very useful when working a lot with remote machines, saves the trouble of openning a shell and calling 'ssh &amp;lt;host&amp;gt;'&lt;/p&gt;
+
+&lt;p&gt;I guess one could come up with a script that parses .ssh/config, and calls dmenu on it, but I'm wondering if there's already something like that out there&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3612/ssh-prompt-like-xmonadpromptssh/?answer=3613#post-id-3613</link><description>Wrap something like this with a keybind, that should do the trick: 
+
+    urxvt -e ssh $(awk '{print $1}' ~/.ssh/known_hosts | dmenu -i -nb black -nf red -sb red -sf black -l 12)</description><pubDate>Tue, 01 Apr 2014 22:17:11 +0000</pubDate><guid>https://faq.i3wm.org/question/3612/ssh-prompt-like-xmonadpromptssh/?answer=3613#post-id-3613</guid></item><item><title>Comment by yhager for &lt;p&gt;Wrap something like this with a keybind, that should do the trick: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;urxvt -e ssh $(awk '{print $1}' ~/.ssh/known_hosts | dmenu -i -nb black -nf red -sb red -sf black -l 12)
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3612/ssh-prompt-like-xmonadpromptssh/?comment=3614#comment-3614</link><description>perfect, thanks!</description><pubDate>Tue, 01 Apr 2014 22:34:22 +0000</pubDate><guid>https://faq.i3wm.org/question/3612/ssh-prompt-like-xmonadpromptssh/?comment=3614#comment-3614</guid></item></channel></rss>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/25/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 15 Apr 2015 21:04:46 +0000</lastBuildDate><item><title>How to launch applications in i3?</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/</link><description>i3 is great in helping you manage existing windows, but what solution do you fancy to launch new windows? </description><pubDate>Mon, 04 Jun 2012 18:49:00 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/</guid></item><item><title>Answer by mheiber for &lt;p&gt;i3 is great in helping you manage existing windows, but what solution do you fancy to launch new windows? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=179#post-id-179</link><description>I just discoved [fehlstart](https://gitorious.org/fehlstart). It holds one substantial advantage over the otherwise useful dmenu_run: It is able to launch freedesktop enabled (i.e. .desktop file) applications. So, if you put the proper .desktop files into .local/share/applications it will find and launch them (with autocomplete!). It was the last puzzle piece in my now near perfect i3wm setup.
+
+Hint: Use 'fehlstart --one-way' to avoid it going into "daemon" mode. Comes in handy if you plan on using with the mod4+d shortcut that would otherwise be launching dmenu_run.</description><pubDate>Sat, 30 Jun 2012 13:04:36 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=179#post-id-179</guid></item><item><title>Comment by Alois Mahdal for &lt;p&gt;I just discoved &lt;a href="https://gitorious.org/fehlstart"&gt;fehlstart&lt;/a&gt;. It holds one substantial advantage over the otherwise useful dmenu_run: It is able to launch freedesktop enabled (i.e. .desktop file) applications. So, if you put the proper .desktop files into .local/share/applications it will find and launch them (with autocomplete!). It was the last puzzle piece in my now near perfect i3wm setup.&lt;/p&gt;
+
+&lt;p&gt;Hint: Use 'fehlstart --one-way' to avoid it going into "daemon" mode. Comes in handy if you plan on using with the mod4+d shortcut that would otherwise be launching dmenu_run.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=5799#comment-5799</link><description>*...the last puzzle piece in my now near perfect i3wm setup.* Yeah, I'm obsessed with these ;)</description><pubDate>Wed, 15 Apr 2015 21:04:46 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=5799#comment-5799</guid></item><item><title>Answer by joepd for &lt;p&gt;i3 is great in helping you manage existing windows, but what solution do you fancy to launch new windows? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=26#post-id-26</link><description>dmenu is my solution. 
+
+Next to dmenurun, I have in ~.config/i3/config:
+
+    bindsym $mod+p exec --no-startup-id ~/bin/launch
+
+With ~/bin/launch: 
+
+        #!/bin/sh
+        output=`ls -1 ~/launch`
+        cmd=`echo "$output" | dmenu -i -nb black -nf red -sb red -sf black -l 10` 
+        sh -c "~/launch/$cmd &amp;
+
+...and in the directory ~/launch a number of executable files. Two examples: 
+
+    $ cat launch/music
+    #!/bin/sh
+    urxvtc -tr -e ncmpc -f ~/.config/ncmpc/config &amp;
+
+For visual entertainment: 
+
+    $ cat launch/video
+    #!/bin/sh
+    smplayer &amp;</description><pubDate>Mon, 04 Jun 2012 19:11:51 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=26#post-id-26</guid></item><item><title>Answer by Marcos Moyano for &lt;p&gt;i3 is great in helping you manage existing windows, but what solution do you fancy to launch new windows? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=984#post-id-984</link><description>I use Kupfer (http://engla.github.com/kupfer/)</description><pubDate>Fri, 04 Jan 2013 20:12:23 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=984#post-id-984</guid></item><item><title>Comment by acgtyrant for &lt;p&gt;I use Kupfer (&lt;a href="http://engla.github.com/kupfer/"&gt;http://engla.github.com/kupfer/&lt;/a&gt;)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=2984#comment-2984</link><description>You have two same answers! Delete one of them for love and peace.</description><pubDate>Wed, 27 Nov 2013 11:10:03 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=2984#comment-2984</guid></item><item><title>Answer by Zucca for &lt;p&gt;i3 is great in helping you manage existing windows, but what solution do you fancy to launch new windows? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=968#post-id-968</link><description>I just tested an application called menutray. Seems to work quite nicely.
+It uses freedesktop files to generate menu. It's quite simple to use. Just run 'menutray' in your terminal first to get some info about the usage and then edit the config if you like.
+
+http://code.google.com/p/trizen/downloads/detail?name=menutray-0.36.tar.gz
+There just isn't much documentation on the site. :(
+If you happen to be Arch Linux user, you can install it from AUR. It's called menutray.
+
+There's also ADeskBar, but it didn't work that well on my i3 setup.
+http://adeskbar.tuxfamily.org/
+
+In conclusion: menutray seems to do what it promises and only it (that's how I like it). It's simple and _shold_ be lightweight. - give it a try
+
+Also: a very different launcher, but for sure lightweight: wbar. I have used it for a long time. It sits on your desktop, so it will be out of sight after you open an application that fills the entire display (like many do in i3 ;).
+
+I hope these options will help you (and others).</description><pubDate>Thu, 03 Jan 2013 14:43:48 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=968#post-id-968</guid></item><item><title>Comment by Zucca for &lt;p&gt;I just tested an application called menutray. Seems to work quite nicely.
+It uses freedesktop files to generate menu. It's quite simple to use. Just run 'menutray' in your terminal first to get some info about the usage and then edit the config if you like.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://code.google.com/p/trizen/downloads/detail?name=menutray-0.36.tar.gz"&gt;http://code.google.com/p/trizen/downl...&lt;/a&gt;
+There just isn't much documentation on the site. :(
+If you happen to be Arch Linux user, you can install it from AUR. It's called menutray.&lt;/p&gt;
+
+&lt;p&gt;There's also ADeskBar, but it didn't work that well on my i3 setup.
+&lt;a href="http://adeskbar.tuxfamily.org/"&gt;http://adeskbar.tuxfamily.org/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In conclusion: menutray seems to do what it promises and only it (that's how I like it). It's simple and &lt;em&gt;shold&lt;/em&gt; be lightweight. - give it a try&lt;/p&gt;
+
+&lt;p&gt;Also: a very different launcher, but for sure lightweight: wbar. I have used it for a long time. It sits on your desktop, so it will be out of sight after you open an application that fills the entire display (like many do in i3 ;).&lt;/p&gt;
+
+&lt;p&gt;I hope these options will help you (and others).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=1462#comment-1462</link><description>I have fully adopted menutray as part of my i3 setup.
+
+It's simple and very low on resources.</description><pubDate>Thu, 21 Mar 2013 23:06:16 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=1462#comment-1462</guid></item><item><title>Answer by Klaas for &lt;p&gt;i3 is great in helping you manage existing windows, but what solution do you fancy to launch new windows? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=168#post-id-168</link><description>I like [Synapse](http://launchpad.net/synapse-project "Synapse"), a more "graphic" launcher that can also open files, directly search the web or connect to zeitgeist (if you configure and run zeitgeist, I didn't).
+
+    bindsym $mod+F3 exec synapse
+
+When opening applications, it can also search via single letters. I.e. when you type "efo" it can match "Ex Falso".</description><pubDate>Wed, 27 Jun 2012 17:44:22 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=168#post-id-168</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;I like &lt;a href="http://launchpad.net/synapse-project" title="Synapse"&gt;Synapse&lt;/a&gt;, a more "graphic" launcher that can also open files, directly search the web or connect to zeitgeist (if you configure and run zeitgeist, I didn't).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+F3 exec synapse
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When opening applications, it can also search via single letters. I.e. when you type "efo" it can match "Ex Falso".&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=297#comment-297</link><description>I liked the Synapse concept... the only problem with the dmenu for me, same in terminal, is that sometimes I need that particular program but I can't remember its name (remote desktop -&gt; vino)... being able to search by what the applications also do is also an important feature... +1</description><pubDate>Sat, 21 Jul 2012 13:13:11 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=297#comment-297</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;i3 is great in helping you manage existing windows, but what solution do you fancy to launch new windows? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=41#post-id-41</link><description>I still prefer the default:
+
+    bindsym $mod+d exec dmenu_run
+
+as it shows a nice top bar with all available commands (applications) within your $PATH. So, you hit your Mod+D and start typing the application name, it will then filter the list until you have your application selected (you can also move in the list with the array keys)... 
+
+IMO, what's most handy here is that it works better than the terminal's TAB because its filter works not only from ceiling. For example, you type "term" and you should be able to see "gnome-terminal", "xterm", etc... pretty handy!
+</description><pubDate>Tue, 05 Jun 2012 23:24:49 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=41#post-id-41</guid></item><item><title>Comment by Aaron for &lt;p&gt;I still prefer the default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+d exec dmenu_run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as it shows a nice top bar with all available commands (applications) within your $PATH. So, you hit your Mod+D and start typing the application name, it will then filter the list until you have your application selected (you can also move in the list with the array keys)... &lt;/p&gt;
+
+&lt;p&gt;IMO, what's most handy here is that it works better than the terminal's TAB because its filter works not only from ceiling. For example, you type "term" and you should be able to see "gnome-terminal", "xterm", etc... pretty handy!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=49#comment-49</link><description>... and if you put your own startup scripts in ~/bin and add it to your $PATH, you can run your scripts with dmenu like all other applications.</description><pubDate>Wed, 06 Jun 2012 06:02:29 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=49#comment-49</guid></item><item><title>Comment by blueyed for &lt;p&gt;I still prefer the default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+d exec dmenu_run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as it shows a nice top bar with all available commands (applications) within your $PATH. So, you hit your Mod+D and start typing the application name, it will then filter the list until you have your application selected (you can also move in the list with the array keys)... &lt;/p&gt;
+
+&lt;p&gt;IMO, what's most handy here is that it works better than the terminal's TAB because its filter works not only from ceiling. For example, you type "term" and you should be able to see "gnome-terminal", "xterm", etc... pretty handy!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=3431#comment-3431</link><description>@Julien: for this to work, you need to start i3 from inside of a zsh instance, don't you?
+This does not work for me when using i3 via gnome-session.</description><pubDate>Wed, 26 Feb 2014 18:28:02 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=3431#comment-3431</guid></item><item><title>Comment by joepd for &lt;p&gt;I still prefer the default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+d exec dmenu_run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as it shows a nice top bar with all available commands (applications) within your $PATH. So, you hit your Mod+D and start typing the application name, it will then filter the list until you have your application selected (you can also move in the list with the array keys)... &lt;/p&gt;
+
+&lt;p&gt;IMO, what's most handy here is that it works better than the terminal's TAB because its filter works not only from ceiling. For example, you type "term" and you should be able to see "gnome-terminal", "xterm", etc... pretty handy!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=3019#comment-3019</link><description>Sweet trick, Julien! +1</description><pubDate>Wed, 04 Dec 2013 10:23:55 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=3019#comment-3019</guid></item><item><title>Comment by Julien Jehannet for &lt;p&gt;I still prefer the default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+d exec dmenu_run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as it shows a nice top bar with all available commands (applications) within your $PATH. So, you hit your Mod+D and start typing the application name, it will then filter the list until you have your application selected (you can also move in the list with the array keys)... &lt;/p&gt;
+
+&lt;p&gt;IMO, what's most handy here is that it works better than the terminal's TAB because its filter works not only from ceiling. For example, you type "term" and you should be able to see "gnome-terminal", "xterm", etc... pretty handy!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=1011#comment-1011</link><description>If you use zsh, you can benefit of the $commands shell variable:
+
+bindsym $Modkey+p exec $(print -lo ${commands:t} | dmenu -p Command)
+</description><pubDate>Wed, 09 Jan 2013 22:40:46 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=1011#comment-1011</guid></item><item><title>Comment by Julien Jehannet for &lt;p&gt;I still prefer the default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+d exec dmenu_run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as it shows a nice top bar with all available commands (applications) within your $PATH. So, you hit your Mod+D and start typing the application name, it will then filter the list until you have your application selected (you can also move in the list with the array keys)... &lt;/p&gt;
+
+&lt;p&gt;IMO, what's most handy here is that it works better than the terminal's TAB because its filter works not only from ceiling. For example, you type "term" and you should be able to see "gnome-terminal", "xterm", etc... pretty handy!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=3521#comment-3521</link><description>@blueyed: since 4.7, i3 uses \_PATH\_BSHELL instead of your $SHELL. You can write instead: bindsym $Modkey+p exec zsh -c 'print -lo ${commands:t}' | dmenu  -p Command
+</description><pubDate>Thu, 13 Mar 2014 16:46:34 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=3521#comment-3521</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;I still prefer the default:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+d exec dmenu_run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as it shows a nice top bar with all available commands (applications) within your $PATH. So, you hit your Mod+D and start typing the application name, it will then filter the list until you have your application selected (you can also move in the list with the array keys)... &lt;/p&gt;
+
+&lt;p&gt;IMO, what's most handy here is that it works better than the terminal's TAB because its filter works not only from ceiling. For example, you type "term" and you should be able to see "gnome-terminal", "xterm", etc... pretty handy!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=56#comment-56</link><description>That's best practice, in deed!</description><pubDate>Wed, 06 Jun 2012 08:42:58 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=56#comment-56</guid></item><item><title>Answer by Marcos Moyano for &lt;p&gt;i3 is great in helping you manage existing windows, but what solution do you fancy to launch new windows? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=983#post-id-983</link><description>I use Kupfer (http://engla.github.com/kupfer/)</description><pubDate>Fri, 04 Jan 2013 20:11:51 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=983#post-id-983</guid></item><item><title>Answer by joepd for &lt;p&gt;i3 is great in helping you manage existing windows, but what solution do you fancy to launch new windows? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=921#post-id-921</link><description>Now the answer is easy: [i3-dmenu-desktop](http://code.stapelberg.de/git/i3/tree/i3-dmenu-desktop), installed by default since version 4.4. Now I need to create some desktop files to the ugly scripts I use...  </description><pubDate>Wed, 19 Dec 2012 00:45:00 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?answer=921#post-id-921</guid></item><item><title>Comment by enkore for &lt;p&gt;Now the answer is easy: &lt;a href="http://code.stapelberg.de/git/i3/tree/i3-dmenu-desktop"&gt;i3-dmenu-desktop&lt;/a&gt;, installed by default since version 4.4. Now I need to create some desktop files to the ugly scripts I use...  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=2259#comment-2259</link><description>There is a native (i.e. much faster) alternative to i3-dmenu-desktop which does the exact same thing: [j4-dmenu-desktop](http://github.com/enkore/j4-dmenu-desktop) . On my machine (which sports a SSD) i3-dmenu-desktop takes about 400 ms, recent versions of j4-d-d take only 20-25 ms.</description><pubDate>Tue, 23 Jul 2013 00:50:42 +0000</pubDate><guid>https://faq.i3wm.org/question/25/how-to-launch-applications-in-i3/?comment=2259#comment-2259</guid></item></channel></rss>

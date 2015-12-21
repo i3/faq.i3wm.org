@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2761/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 23 Oct 2013 03:33:59 +0000</lastBuildDate><item><title>Why doesn't for_window work in i3-msg?</title><link>https://faq.i3wm.org/question/2761/why-doesnt-for_window-work-in-i3-msg/</link><description>Is `reload`ing config the only way to set `for_window` commands?
+
+     i3-msg 'for_window [instance="^floatme$"] floating enable'
+    ERROR: Your command: for_window [instance="^floatme$"] floating enable
+    ERROR:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ERROR: Expected one of these tokens: &lt;end&gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'
+    [{"success":false,"parse_error":true,"error":"Expected one of these tokens: &lt;end&gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'","input":"for_window [instance=\"^floatme$\"] floating enable","errorposition":"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}]
+
+</description><pubDate>Tue, 22 Oct 2013 00:05:24 +0000</pubDate><guid>https://faq.i3wm.org/question/2761/why-doesnt-for_window-work-in-i3-msg/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Is &lt;code&gt;reload&lt;/code&gt;ing config the only way to set &lt;code&gt;for_window&lt;/code&gt; commands?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; i3-msg 'for_window [instance="^floatme$"] floating enable'
+ERROR: Your command: for_window [instance="^floatme$"] floating enable
+ERROR:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR: Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'
+[{"success":false,"parse_error":true,"error":"Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'","input":"for_window [instance=\"^floatme$\"] floating enable","errorposition":"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}]
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/2761/why-doesnt-for_window-work-in-i3-msg/?answer=2765#post-id-2765</link><description>With i3-msg `for_window` is not needed. Just prepending the criteria is sufficient:
+
+    i3-msg '[instance="^floatme$"] floating enable'
+
+This will enable floating mode for any matching and existing window. But it will not change the behavior of windows that are created later.
+
+On the other hand, adding a `for_window` instruction to the configuration file and reloading will not change any already existing window but only affect new windows.
+
+Depending on what your goal is, you may have to do both.</description><pubDate>Tue, 22 Oct 2013 10:46:14 +0000</pubDate><guid>https://faq.i3wm.org/question/2761/why-doesnt-for_window-work-in-i3-msg/?answer=2765#post-id-2765</guid></item><item><title>Comment by npostavs for &lt;p&gt;With i3-msg &lt;code&gt;for_window&lt;/code&gt; is not needed. Just prepending the criteria is sufficient:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg '[instance="^floatme$"] floating enable'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will enable floating mode for any matching and existing window. But it will not change the behavior of windows that are created later.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, adding a &lt;code&gt;for_window&lt;/code&gt; instruction to the configuration file and reloading will not change any already existing window but only affect new windows.&lt;/p&gt;
+
+&lt;p&gt;Depending on what your goal is, you may have to do both.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2761/why-doesnt-for_window-work-in-i3-msg/?comment=2770#comment-2770</link><description>Right I meant 'without'. And the system just ate my comment when I tried to edit...</description><pubDate>Wed, 23 Oct 2013 03:33:59 +0000</pubDate><guid>https://faq.i3wm.org/question/2761/why-doesnt-for_window-work-in-i3-msg/?comment=2770#comment-2770</guid></item><item><title>Comment by Adaephon for &lt;p&gt;With i3-msg &lt;code&gt;for_window&lt;/code&gt; is not needed. Just prepending the criteria is sufficient:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg '[instance="^floatme$"] floating enable'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will enable floating mode for any matching and existing window. But it will not change the behavior of windows that are created later.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, adding a &lt;code&gt;for_window&lt;/code&gt; instruction to the configuration file and reloading will not change any already existing window but only affect new windows.&lt;/p&gt;
+
+&lt;p&gt;Depending on what your goal is, you may have to do both.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2761/why-doesnt-for_window-work-in-i3-msg/?comment=2767#comment-2767</link><description>You mean 'without reloading', as per your initial question? As far as I can tell, there  is indeed no way to change the configuration (as in initial settings) without reloading it from file. </description><pubDate>Tue, 22 Oct 2013 16:45:57 +0000</pubDate><guid>https://faq.i3wm.org/question/2761/why-doesnt-for_window-work-in-i3-msg/?comment=2767#comment-2767</guid></item></channel></rss>

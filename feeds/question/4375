@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4375/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 05 Aug 2014 16:42:16 +0000</lastBuildDate><item><title>i3 fails to consistently execute last order in command chain (ipc)</title><link>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/</link><description>I am making a ruby script to vertically swap pairs of screens on my 2x2 grid of monitors. The actual flipping works perfectly, but I am having difficulty consistently restoring focus to the original workspace. 
+
+My script works by building a single large command that switches to each workspace and moves it to a screen. An example command might be: 
+
+    workspace w:ff; move workspace to xinerama-2; workspace p:ref; move workspace to xinerama-3; workspace a:dl; move workspace to xinerama-3; workspace p:shop; move workspace to xinerama-3; workspace p:bet; move workspace to xinerama-3; workspace a:mail; move workspace to xinerama-3; workspace a:music; move workspace to xinerama-3; workspace p:fun; move workspace to xinerama-1; workspace a:file; move workspace to xinerama-1; workspace w:ref; move workspace to xinerama-1; workspace 4; move workspace to xinerama-0; workspace w:chr; move workspace to xinerama-3; workspace w:sub; move workspace to xinerama-2
+
+To this I append a command to focus the originally focused workspace (which I saved earlier). I have tried this by focusing the workspace itself (i.e., `workspace w:chr`) as well as focusing the output that it will be on when the script resolves (i.e., `focus output xinerama-2`). I then pass the whole command at once to i3 through i3ipc-glib (care of a ruby gem gir_ffi). 
+
+A minority of the time, the last command does not execute (or I think more likely, doesn't execute in order). In such cases, I believe it usually (always?) winds up focusing the output with the fewest workspaces. It also seems like the problem is more likely to occur when there is a greater disparity between the number of workspaces on the most and least populated outputs.
+
+This problem persists even when I move the final focusing command into its own call to i3.
+
+    @i3.command giant_flip_command
+    @i3.command "workspace w:chr"
+
+I have been able to kludge a solution by making the script `sleep 0.2` between these two commands. But this causes a distracting jump in the cursor. 
+
+How can I make i3 return focus to the original workspace at the end of my script?
+
+EDIT: Unfortunately the script it is hard-coded for 4 screens in a 2x2 grid using xinerama. If that doesn't scare you off it's on [my github](https://github.com/hbaughman/i3_config/blob/master/scripts/flip_screens.rb). Just comment out lines 24 and 25 (the kludge) and run if from the command line. It only happens sometimes so, try `for i in {1..10}; do ruby ./flip_screens.rb; sleep 1; done`.
+
+EDIT 2: To see the problem on your machine: 
+
+1. Populate your first screen with workspaces 1-5 (they all must contain a client so they don't auto-close) and put workspace 6 on your second screen. 
+2. Add this to your config file replacing `first_output_name` and `second_output_name` with your output names (e.g., DVI-I-1 and DVI-I-2)
+
+        set $screen0 first_output_name
+        set $screen1 second_output_name
+
+        bindsym $mod+z workspace 1; move workspace to $screen1; workspace 2; move workspace to $screen1; workspace 3; move workspace to $screen1; workspace 4; move workspace to $screen1; workspace 5; move workspace to $screen1; workspace 6; move workspace to $screen0; workspace 1
+        
+        bindsym $mod+x workspace 1; move workspace to $screen0; workspace 2; move workspace to $screen0; workspace 3; move workspace to $screen0; workspace 4; move workspace to $screen0; workspace 5; move workspace to $screen0; workspace 6; move workspace to $screen1; workspace 1
+
+3. Swap the workspaces back and forth by pressing $mod+z and $mod+x. Note that the focused workspace does not always wind up being 1. The issue _doesn't_ occur every time so you may have to do it a few times.</description><pubDate>Sun, 03 Aug 2014 12:16:34 +0000</pubDate><guid>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/</guid></item><item><title>Comment by hbaughman for &lt;div class="snippet"&gt;&lt;p&gt;I am making a ruby script to vertically swap pairs of screens on my 2x2 grid of monitors. The actual flipping works perfectly, but I am having difficulty consistently restoring focus to the original workspace. &lt;/p&gt;
+
+&lt;p&gt;My script works by building a single large command that switches to each workspace and moves it to a screen. An example command might be: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace w:ff; move workspace to xinerama-2; workspace p:ref; move workspace to xinerama-3; workspace a:dl; move workspace to xinerama-3; workspace p:shop; move workspace to xinerama-3; workspace p:bet; move workspace to xinerama-3; workspace a:mail; move workspace to xinerama-3; workspace a:music; move workspace to xinerama-3; workspace p:fun; move workspace to xinerama-1; workspace a:file; move workspace to xinerama-1; workspace w:ref; move workspace to xinerama-1; workspace 4; move workspace to xinerama-0; workspace w:chr; move workspace to xinerama-3; workspace w:sub; move workspace to xinerama-2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To this I append a command to focus the originally focused workspace (which I saved earlier). I have tried this by focusing the workspace itself (i.e., &lt;code&gt;workspace w:chr&lt;/code&gt;) as well as focusing the output that it will be on when the script resolves (i.e., &lt;code&gt;focus output xinerama-2&lt;/code&gt;). I then pass the whole command at once to i3 through i3ipc-glib (care of a ruby gem gir_ffi). &lt;/p&gt;
+
+&lt;p&gt;A minority of the time, the last command does not execute (or I think more likely, doesn't execute in order). In such cases, I believe it usually (always?) winds up focusing the output with the fewest workspaces. It also seems like the problem is more likely to occur when there is a greater disparity between the number of workspaces on the most and least populated outputs.&lt;/p&gt;
+
+&lt;p&gt;This problem persists even when I move the final focusing command into its own call to i3.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@i3.command giant_flip_command
+@i3.command "workspace w:chr"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have been able to kludge a solution by making the script &lt;code&gt;sleep 0.2&lt;/code&gt; between these two commands. But this causes a distracting jump in the cursor. &lt;/p&gt;
+
+&lt;p&gt;How can I make i3 return focus to the original workspace at the end of my script?&lt;/p&gt;
+
+&lt;p&gt;EDIT: Unfortunately the script it is hard-coded for 4 screens in a 2x2 grid using xinerama. If that doesn't scare you off it's on &lt;a href="https://github.com/hbaughman/i3_config/blob/master/scripts/flip_screens.rb"&gt;my github&lt;/a&gt;. Just comment out lines 24 and 25 (the kludge) and run if from the command line. It only happens sometimes so, try &lt;code&gt;for i in {1..10}; do ruby ./flip_screens.rb; sleep 1; done&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2: To see the problem on your machine: &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Populate your first screen with workspaces 1-5 (they all must contain a client so they don't auto-close) and put workspace 6 on your second screen. &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add this to your config file replacing &lt;code&gt;first_output_name&lt;/code&gt; and &lt;code&gt;second_output_name&lt;/code&gt; with your output names (e.g., DVI-I-1 and DVI-I-2)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $screen0 first_output_name
+set $screen1 second_output_name
+
+bindsym $mod+z workspace 1; move workspace to $screen1; workspace 2; move workspace to $screen1; workspace 3; move workspace to $screen1; workspace 4 ...&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ol&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4395#comment-4395</link><description>@zolar Are you suggesting that I target the workspace using marks? I'm pretty confident that I am correctly targeting the workspace I want. I believe the problem is that the order of execution gets messed up somehow and other tasks execute before the issue is resolved. </description><pubDate>Tue, 05 Aug 2014 16:42:16 +0000</pubDate><guid>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4395#comment-4395</guid></item><item><title>Comment by joepd for &lt;div class="snippet"&gt;&lt;p&gt;I am making a ruby script to vertically swap pairs of screens on my 2x2 grid of monitors. The actual flipping works perfectly, but I am having difficulty consistently restoring focus to the original workspace. &lt;/p&gt;
+
+&lt;p&gt;My script works by building a single large command that switches to each workspace and moves it to a screen. An example command might be: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace w:ff; move workspace to xinerama-2; workspace p:ref; move workspace to xinerama-3; workspace a:dl; move workspace to xinerama-3; workspace p:shop; move workspace to xinerama-3; workspace p:bet; move workspace to xinerama-3; workspace a:mail; move workspace to xinerama-3; workspace a:music; move workspace to xinerama-3; workspace p:fun; move workspace to xinerama-1; workspace a:file; move workspace to xinerama-1; workspace w:ref; move workspace to xinerama-1; workspace 4; move workspace to xinerama-0; workspace w:chr; move workspace to xinerama-3; workspace w:sub; move workspace to xinerama-2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To this I append a command to focus the originally focused workspace (which I saved earlier). I have tried this by focusing the workspace itself (i.e., &lt;code&gt;workspace w:chr&lt;/code&gt;) as well as focusing the output that it will be on when the script resolves (i.e., &lt;code&gt;focus output xinerama-2&lt;/code&gt;). I then pass the whole command at once to i3 through i3ipc-glib (care of a ruby gem gir_ffi). &lt;/p&gt;
+
+&lt;p&gt;A minority of the time, the last command does not execute (or I think more likely, doesn't execute in order). In such cases, I believe it usually (always?) winds up focusing the output with the fewest workspaces. It also seems like the problem is more likely to occur when there is a greater disparity between the number of workspaces on the most and least populated outputs.&lt;/p&gt;
+
+&lt;p&gt;This problem persists even when I move the final focusing command into its own call to i3.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@i3.command giant_flip_command
+@i3.command "workspace w:chr"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have been able to kludge a solution by making the script &lt;code&gt;sleep 0.2&lt;/code&gt; between these two commands. But this causes a distracting jump in the cursor. &lt;/p&gt;
+
+&lt;p&gt;How can I make i3 return focus to the original workspace at the end of my script?&lt;/p&gt;
+
+&lt;p&gt;EDIT: Unfortunately the script it is hard-coded for 4 screens in a 2x2 grid using xinerama. If that doesn't scare you off it's on &lt;a href="https://github.com/hbaughman/i3_config/blob/master/scripts/flip_screens.rb"&gt;my github&lt;/a&gt;. Just comment out lines 24 and 25 (the kludge) and run if from the command line. It only happens sometimes so, try &lt;code&gt;for i in {1..10}; do ruby ./flip_screens.rb; sleep 1; done&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2: To see the problem on your machine: &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Populate your first screen with workspaces 1-5 (they all must contain a client so they don't auto-close) and put workspace 6 on your second screen. &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add this to your config file replacing &lt;code&gt;first_output_name&lt;/code&gt; and &lt;code&gt;second_output_name&lt;/code&gt; with your output names (e.g., DVI-I-1 and DVI-I-2)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $screen0 first_output_name
+set $screen1 second_output_name
+
+bindsym $mod+z workspace 1; move workspace to $screen1; workspace 2; move workspace to $screen1; workspace 3; move workspace to $screen1; workspace 4 ...&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ol&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4389#comment-4389</link><description>No, I was attempting to ask for a concise, reproducable test case. A polite yet unclear way of saying: "TLDR" ;) </description><pubDate>Mon, 04 Aug 2014 17:48:15 +0000</pubDate><guid>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4389#comment-4389</guid></item><item><title>Comment by hbaughman for &lt;div class="snippet"&gt;&lt;p&gt;I am making a ruby script to vertically swap pairs of screens on my 2x2 grid of monitors. The actual flipping works perfectly, but I am having difficulty consistently restoring focus to the original workspace. &lt;/p&gt;
+
+&lt;p&gt;My script works by building a single large command that switches to each workspace and moves it to a screen. An example command might be: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace w:ff; move workspace to xinerama-2; workspace p:ref; move workspace to xinerama-3; workspace a:dl; move workspace to xinerama-3; workspace p:shop; move workspace to xinerama-3; workspace p:bet; move workspace to xinerama-3; workspace a:mail; move workspace to xinerama-3; workspace a:music; move workspace to xinerama-3; workspace p:fun; move workspace to xinerama-1; workspace a:file; move workspace to xinerama-1; workspace w:ref; move workspace to xinerama-1; workspace 4; move workspace to xinerama-0; workspace w:chr; move workspace to xinerama-3; workspace w:sub; move workspace to xinerama-2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To this I append a command to focus the originally focused workspace (which I saved earlier). I have tried this by focusing the workspace itself (i.e., &lt;code&gt;workspace w:chr&lt;/code&gt;) as well as focusing the output that it will be on when the script resolves (i.e., &lt;code&gt;focus output xinerama-2&lt;/code&gt;). I then pass the whole command at once to i3 through i3ipc-glib (care of a ruby gem gir_ffi). &lt;/p&gt;
+
+&lt;p&gt;A minority of the time, the last command does not execute (or I think more likely, doesn't execute in order). In such cases, I believe it usually (always?) winds up focusing the output with the fewest workspaces. It also seems like the problem is more likely to occur when there is a greater disparity between the number of workspaces on the most and least populated outputs.&lt;/p&gt;
+
+&lt;p&gt;This problem persists even when I move the final focusing command into its own call to i3.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@i3.command giant_flip_command
+@i3.command "workspace w:chr"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have been able to kludge a solution by making the script &lt;code&gt;sleep 0.2&lt;/code&gt; between these two commands. But this causes a distracting jump in the cursor. &lt;/p&gt;
+
+&lt;p&gt;How can I make i3 return focus to the original workspace at the end of my script?&lt;/p&gt;
+
+&lt;p&gt;EDIT: Unfortunately the script it is hard-coded for 4 screens in a 2x2 grid using xinerama. If that doesn't scare you off it's on &lt;a href="https://github.com/hbaughman/i3_config/blob/master/scripts/flip_screens.rb"&gt;my github&lt;/a&gt;. Just comment out lines 24 and 25 (the kludge) and run if from the command line. It only happens sometimes so, try &lt;code&gt;for i in {1..10}; do ruby ./flip_screens.rb; sleep 1; done&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2: To see the problem on your machine: &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Populate your first screen with workspaces 1-5 (they all must contain a client so they don't auto-close) and put workspace 6 on your second screen. &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add this to your config file replacing &lt;code&gt;first_output_name&lt;/code&gt; and &lt;code&gt;second_output_name&lt;/code&gt; with your output names (e.g., DVI-I-1 and DVI-I-2)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $screen0 first_output_name
+set $screen1 second_output_name
+
+bindsym $mod+z workspace 1; move workspace to $screen1; workspace 2; move workspace to $screen1; workspace 3; move workspace to $screen1; workspace 4 ...&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ol&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4379#comment-4379</link><description>@joepd Are you asking for the script? If so, I edited the post to include it. The script isn't very portable, at the moment, it is hard-coded for 4 screens in a 2x2 grid using xinerama.</description><pubDate>Sun, 03 Aug 2014 17:48:20 +0000</pubDate><guid>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4379#comment-4379</guid></item><item><title>Comment by joepd for &lt;div class="snippet"&gt;&lt;p&gt;I am making a ruby script to vertically swap pairs of screens on my 2x2 grid of monitors. The actual flipping works perfectly, but I am having difficulty consistently restoring focus to the original workspace. &lt;/p&gt;
+
+&lt;p&gt;My script works by building a single large command that switches to each workspace and moves it to a screen. An example command might be: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace w:ff; move workspace to xinerama-2; workspace p:ref; move workspace to xinerama-3; workspace a:dl; move workspace to xinerama-3; workspace p:shop; move workspace to xinerama-3; workspace p:bet; move workspace to xinerama-3; workspace a:mail; move workspace to xinerama-3; workspace a:music; move workspace to xinerama-3; workspace p:fun; move workspace to xinerama-1; workspace a:file; move workspace to xinerama-1; workspace w:ref; move workspace to xinerama-1; workspace 4; move workspace to xinerama-0; workspace w:chr; move workspace to xinerama-3; workspace w:sub; move workspace to xinerama-2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To this I append a command to focus the originally focused workspace (which I saved earlier). I have tried this by focusing the workspace itself (i.e., &lt;code&gt;workspace w:chr&lt;/code&gt;) as well as focusing the output that it will be on when the script resolves (i.e., &lt;code&gt;focus output xinerama-2&lt;/code&gt;). I then pass the whole command at once to i3 through i3ipc-glib (care of a ruby gem gir_ffi). &lt;/p&gt;
+
+&lt;p&gt;A minority of the time, the last command does not execute (or I think more likely, doesn't execute in order). In such cases, I believe it usually (always?) winds up focusing the output with the fewest workspaces. It also seems like the problem is more likely to occur when there is a greater disparity between the number of workspaces on the most and least populated outputs.&lt;/p&gt;
+
+&lt;p&gt;This problem persists even when I move the final focusing command into its own call to i3.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@i3.command giant_flip_command
+@i3.command "workspace w:chr"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have been able to kludge a solution by making the script &lt;code&gt;sleep 0.2&lt;/code&gt; between these two commands. But this causes a distracting jump in the cursor. &lt;/p&gt;
+
+&lt;p&gt;How can I make i3 return focus to the original workspace at the end of my script?&lt;/p&gt;
+
+&lt;p&gt;EDIT: Unfortunately the script it is hard-coded for 4 screens in a 2x2 grid using xinerama. If that doesn't scare you off it's on &lt;a href="https://github.com/hbaughman/i3_config/blob/master/scripts/flip_screens.rb"&gt;my github&lt;/a&gt;. Just comment out lines 24 and 25 (the kludge) and run if from the command line. It only happens sometimes so, try &lt;code&gt;for i in {1..10}; do ruby ./flip_screens.rb; sleep 1; done&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2: To see the problem on your machine: &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Populate your first screen with workspaces 1-5 (they all must contain a client so they don't auto-close) and put workspace 6 on your second screen. &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add this to your config file replacing &lt;code&gt;first_output_name&lt;/code&gt; and &lt;code&gt;second_output_name&lt;/code&gt; with your output names (e.g., DVI-I-1 and DVI-I-2)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $screen0 first_output_name
+set $screen1 second_output_name
+
+bindsym $mod+z workspace 1; move workspace to $screen1; workspace 2; move workspace to $screen1; workspace 3; move workspace to $screen1; workspace 4 ...&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ol&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4378#comment-4378</link><description>Could you provide an example of the failure that works with a default i3 config? </description><pubDate>Sun, 03 Aug 2014 17:32:33 +0000</pubDate><guid>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4378#comment-4378</guid></item><item><title>Comment by hbaughman for &lt;div class="snippet"&gt;&lt;p&gt;I am making a ruby script to vertically swap pairs of screens on my 2x2 grid of monitors. The actual flipping works perfectly, but I am having difficulty consistently restoring focus to the original workspace. &lt;/p&gt;
+
+&lt;p&gt;My script works by building a single large command that switches to each workspace and moves it to a screen. An example command might be: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace w:ff; move workspace to xinerama-2; workspace p:ref; move workspace to xinerama-3; workspace a:dl; move workspace to xinerama-3; workspace p:shop; move workspace to xinerama-3; workspace p:bet; move workspace to xinerama-3; workspace a:mail; move workspace to xinerama-3; workspace a:music; move workspace to xinerama-3; workspace p:fun; move workspace to xinerama-1; workspace a:file; move workspace to xinerama-1; workspace w:ref; move workspace to xinerama-1; workspace 4; move workspace to xinerama-0; workspace w:chr; move workspace to xinerama-3; workspace w:sub; move workspace to xinerama-2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To this I append a command to focus the originally focused workspace (which I saved earlier). I have tried this by focusing the workspace itself (i.e., &lt;code&gt;workspace w:chr&lt;/code&gt;) as well as focusing the output that it will be on when the script resolves (i.e., &lt;code&gt;focus output xinerama-2&lt;/code&gt;). I then pass the whole command at once to i3 through i3ipc-glib (care of a ruby gem gir_ffi). &lt;/p&gt;
+
+&lt;p&gt;A minority of the time, the last command does not execute (or I think more likely, doesn't execute in order). In such cases, I believe it usually (always?) winds up focusing the output with the fewest workspaces. It also seems like the problem is more likely to occur when there is a greater disparity between the number of workspaces on the most and least populated outputs.&lt;/p&gt;
+
+&lt;p&gt;This problem persists even when I move the final focusing command into its own call to i3.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@i3.command giant_flip_command
+@i3.command "workspace w:chr"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have been able to kludge a solution by making the script &lt;code&gt;sleep 0.2&lt;/code&gt; between these two commands. But this causes a distracting jump in the cursor. &lt;/p&gt;
+
+&lt;p&gt;How can I make i3 return focus to the original workspace at the end of my script?&lt;/p&gt;
+
+&lt;p&gt;EDIT: Unfortunately the script it is hard-coded for 4 screens in a 2x2 grid using xinerama. If that doesn't scare you off it's on &lt;a href="https://github.com/hbaughman/i3_config/blob/master/scripts/flip_screens.rb"&gt;my github&lt;/a&gt;. Just comment out lines 24 and 25 (the kludge) and run if from the command line. It only happens sometimes so, try &lt;code&gt;for i in {1..10}; do ruby ./flip_screens.rb; sleep 1; done&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2: To see the problem on your machine: &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Populate your first screen with workspaces 1-5 (they all must contain a client so they don't auto-close) and put workspace 6 on your second screen. &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add this to your config file replacing &lt;code&gt;first_output_name&lt;/code&gt; and &lt;code&gt;second_output_name&lt;/code&gt; with your output names (e.g., DVI-I-1 and DVI-I-2)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $screen0 first_output_name
+set $screen1 second_output_name
+
+bindsym $mod+z workspace 1; move workspace to $screen1; workspace 2; move workspace to $screen1; workspace 3; move workspace to $screen1; workspace 4 ...&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ol&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4393#comment-4393</link><description>@joepd I added a test case that will hopefully work on your machine.</description><pubDate>Tue, 05 Aug 2014 15:50:09 +0000</pubDate><guid>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4393#comment-4393</guid></item><item><title>Comment by zolar for &lt;div class="snippet"&gt;&lt;p&gt;I am making a ruby script to vertically swap pairs of screens on my 2x2 grid of monitors. The actual flipping works perfectly, but I am having difficulty consistently restoring focus to the original workspace. &lt;/p&gt;
+
+&lt;p&gt;My script works by building a single large command that switches to each workspace and moves it to a screen. An example command might be: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace w:ff; move workspace to xinerama-2; workspace p:ref; move workspace to xinerama-3; workspace a:dl; move workspace to xinerama-3; workspace p:shop; move workspace to xinerama-3; workspace p:bet; move workspace to xinerama-3; workspace a:mail; move workspace to xinerama-3; workspace a:music; move workspace to xinerama-3; workspace p:fun; move workspace to xinerama-1; workspace a:file; move workspace to xinerama-1; workspace w:ref; move workspace to xinerama-1; workspace 4; move workspace to xinerama-0; workspace w:chr; move workspace to xinerama-3; workspace w:sub; move workspace to xinerama-2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To this I append a command to focus the originally focused workspace (which I saved earlier). I have tried this by focusing the workspace itself (i.e., &lt;code&gt;workspace w:chr&lt;/code&gt;) as well as focusing the output that it will be on when the script resolves (i.e., &lt;code&gt;focus output xinerama-2&lt;/code&gt;). I then pass the whole command at once to i3 through i3ipc-glib (care of a ruby gem gir_ffi). &lt;/p&gt;
+
+&lt;p&gt;A minority of the time, the last command does not execute (or I think more likely, doesn't execute in order). In such cases, I believe it usually (always?) winds up focusing the output with the fewest workspaces. It also seems like the problem is more likely to occur when there is a greater disparity between the number of workspaces on the most and least populated outputs.&lt;/p&gt;
+
+&lt;p&gt;This problem persists even when I move the final focusing command into its own call to i3.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@i3.command giant_flip_command
+@i3.command "workspace w:chr"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have been able to kludge a solution by making the script &lt;code&gt;sleep 0.2&lt;/code&gt; between these two commands. But this causes a distracting jump in the cursor. &lt;/p&gt;
+
+&lt;p&gt;How can I make i3 return focus to the original workspace at the end of my script?&lt;/p&gt;
+
+&lt;p&gt;EDIT: Unfortunately the script it is hard-coded for 4 screens in a 2x2 grid using xinerama. If that doesn't scare you off it's on &lt;a href="https://github.com/hbaughman/i3_config/blob/master/scripts/flip_screens.rb"&gt;my github&lt;/a&gt;. Just comment out lines 24 and 25 (the kludge) and run if from the command line. It only happens sometimes so, try &lt;code&gt;for i in {1..10}; do ruby ./flip_screens.rb; sleep 1; done&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;EDIT 2: To see the problem on your machine: &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Populate your first screen with workspaces 1-5 (they all must contain a client so they don't auto-close) and put workspace 6 on your second screen. &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add this to your config file replacing &lt;code&gt;first_output_name&lt;/code&gt; and &lt;code&gt;second_output_name&lt;/code&gt; with your output names (e.g., DVI-I-1 and DVI-I-2)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $screen0 first_output_name
+set $screen1 second_output_name
+
+bindsym $mod+z workspace 1; move workspace to $screen1; workspace 2; move workspace to $screen1; workspace 3; move workspace to $screen1; workspace 4 ...&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ol&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4382#comment-4382</link><description>Using "mark" maybe?</description><pubDate>Sun, 03 Aug 2014 19:05:57 +0000</pubDate><guid>https://faq.i3wm.org/question/4375/i3-fails-to-consistently-execute-last-order-in-command-chain-ipc/?comment=4382#comment-4382</guid></item></channel></rss>

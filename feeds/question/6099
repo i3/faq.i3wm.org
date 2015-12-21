@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6099/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 10 Jun 2015 22:07:43 +0000</lastBuildDate><item><title>i3 with kde tools</title><link>https://faq.i3wm.org/question/6099/i3-with-kde-tools/</link><description>I have a debian installation (8.1). I am able to run i3 with many gnome/xfce and cli tools. I have kde installed on my system too. So I was wondering if I can use the kdetools instead. For example, I would like to have the nm applet, power management and kdewallet run for easing some tasks (I do these things manually right now using nmtui, systemctl and xbacklight). Can someone tell me the commands to run when I start i3 so that these kde utilities can run properly? </description><pubDate>Tue, 09 Jun 2015 15:22:19 +0000</pubDate><guid>https://faq.i3wm.org/question/6099/i3-with-kde-tools/</guid></item><item><title>Answer by valir for &lt;p&gt;I have a debian installation (8.1). I am able to run i3 with many gnome/xfce and cli tools. I have kde installed on my system too. So I was wondering if I can use the kdetools instead. For example, I would like to have the nm applet, power management and kdewallet run for easing some tasks (I do these things manually right now using nmtui, systemctl and xbacklight). Can someone tell me the commands to run when I start i3 so that these kde utilities can run properly? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6099/i3-with-kde-tools/?answer=6110#post-id-6110</link><description>KDE let you replace it's display manager with another one, I3 in this case.
+
+I put this in my ~/.xinitrc, among other things:
+
+    export KDEWM=/usr/bin/i3
+    kdeinit5 # you should have this and other KDE binaries in the PATH
+    startkde
+
+As you may guessed, I don't have a graphical login manager and I start my session by issuing **startx**. However, that should also work with your graphical login manager.
+
+Once in your KDE session, you can use kwallet or other KDE tools that use the classical QWidget-based UI. However, tools like the plasmoids, and the nm applet is a plasmoid, won't show. But it may be easily replaced with wicd - I use it and really love it, as it has a curses interface and it brings my wifi when still in text-mode login, before I start the graphical session.
+
+The power settings may be altered by launching **systemsettings** and by navigating to the Power Management section.</description><pubDate>Wed, 10 Jun 2015 22:07:43 +0000</pubDate><guid>https://faq.i3wm.org/question/6099/i3-with-kde-tools/?answer=6110#post-id-6110</guid></item></channel></rss>

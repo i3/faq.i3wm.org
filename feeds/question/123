@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/123/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 10 Oct 2013 16:22:27 +0000</lastBuildDate><item><title>automatic question for root</title><link>https://faq.i3wm.org/question/123/automatic-question-for-root/</link><description>Hi there!
+
+From gnome, unity and kde I am used to have a pop up asking for roots credentials when starting an application that needs root (ie: Synaptic Package Management).
+
+Is there something similar for i3? Or how can I use ksudo or gsudo (I think the tools have that names) in i3?</description><pubDate>Wed, 13 Jun 2012 13:43:00 +0000</pubDate><guid>https://faq.i3wm.org/question/123/automatic-question-for-root/</guid></item><item><title>Comment by mloskot for &lt;p&gt;Hi there!&lt;/p&gt;
+
+&lt;p&gt;From gnome, unity and kde I am used to have a pop up asking for roots credentials when starting an application that needs root (ie: Synaptic Package Management).&lt;/p&gt;
+
+&lt;p&gt;Is there something similar for i3? Or how can I use ksudo or gsudo (I think the tools have that names) in i3?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/123/automatic-question-for-root/?comment=141#comment-141</link><description>Similar question asked here http://superuser.com/questions/389397/ubuntu-and-privilege-elevation-in-i3wm with solution based on ConsoleKit, though I haven't checked it. p.s. Please, spell question titles correctly with capital letters.</description><pubDate>Mon, 18 Jun 2012 13:53:15 +0000</pubDate><guid>https://faq.i3wm.org/question/123/automatic-question-for-root/?comment=141#comment-141</guid></item><item><title>Answer by joepd for &lt;p&gt;Hi there!&lt;/p&gt;
+
+&lt;p&gt;From gnome, unity and kde I am used to have a pop up asking for roots credentials when starting an application that needs root (ie: Synaptic Package Management).&lt;/p&gt;
+
+&lt;p&gt;Is there something similar for i3? Or how can I use ksudo or gsudo (I think the tools have that names) in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/123/automatic-question-for-root/?answer=126#post-id-126</link><description>You are probably looking for gksudo. You just need to type 'gksudo synaptic,' in stead of 'synaptic'. And if you want to have this available under a key binding, put the command that works in your i3/config, or in another program launcher that you happen to use. 
+</description><pubDate>Thu, 14 Jun 2012 10:43:29 +0000</pubDate><guid>https://faq.i3wm.org/question/123/automatic-question-for-root/?answer=126#post-id-126</guid></item><item><title>Answer by fernandotcl for &lt;p&gt;Hi there!&lt;/p&gt;
+
+&lt;p&gt;From gnome, unity and kde I am used to have a pop up asking for roots credentials when starting an application that needs root (ie: Synaptic Package Management).&lt;/p&gt;
+
+&lt;p&gt;Is there something similar for i3? Or how can I use ksudo or gsudo (I think the tools have that names) in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/123/automatic-question-for-root/?answer=135#post-id-135</link><description>Note that desktop Linux is moving away from running X clients. A daemon (such as udisks) runs with privileged access. When a client (such as your graphical file manager) needs to perform an operation through this daemon (such as mounting a filesystem on a removable device), it asks the daemon to perform the action. The daemon will then check with PolicyKit if this is allowed. Depending on PolicyKit policies, an authentication agent will be invoked (perhaps prompting for credentials in the form of passwords or biometrics). If access is allowed, the daemon will perform the requested action.
+
+All this stuff is done through D-Bus and D-Bus activation. This means you don't need to do anything other than installing an authentication agent. There are authentication agents for KDE and Gnome. Alternatively, add some local PolicyKit policies to allow access to the resources you need without requesting authorization through an agent.
+
+Not all software supports PolicyKit, though. So basically, you have options:
+
+1. If the program you're planning to run as root supports PolicyKit, you can simply install a PolicyKit authentication agent and just launch the program with your regular account. You'll be prompted for authentication if needed.
+
+2. If the program you're planning to run as root supports PolicyKit, you can create a local policy so the requested privileged actions are always allowed for you. Then you can just launch the program with your regular account and access will be automatically granted.
+
+3. Use gksudo or similar programs by prefixing them with gksudo, as joepd described.
+
+4. Use password-less sudo.
+
+I haven't yet experimented with option 1 yet, option 2 works fine here.</description><pubDate>Sat, 16 Jun 2012 23:12:01 +0000</pubDate><guid>https://faq.i3wm.org/question/123/automatic-question-for-root/?answer=135#post-id-135</guid></item><item><title>Answer by gagou9 for &lt;p&gt;Hi there!&lt;/p&gt;
+
+&lt;p&gt;From gnome, unity and kde I am used to have a pop up asking for roots credentials when starting an application that needs root (ie: Synaptic Package Management).&lt;/p&gt;
+
+&lt;p&gt;Is there something similar for i3? Or how can I use ksudo or gsudo (I think the tools have that names) in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/123/automatic-question-for-root/?answer=2654#post-id-2654</link><description>okay, i installed gksu and started gksu unetbootin from dmenu.
+i typed my password, validate, then, small window flash, and blank workspace. like if nothing happened.
+nothing in ps aux|grep unetbootin|gksu
+
+any clue ?
+thanks a lot !
+</description><pubDate>Tue, 08 Oct 2013 23:29:54 +0000</pubDate><guid>https://faq.i3wm.org/question/123/automatic-question-for-root/?answer=2654#post-id-2654</guid></item><item><title>Comment by joepd for &lt;p&gt;okay, i installed gksu and started gksu unetbootin from dmenu.
+i typed my password, validate, then, small window flash, and blank workspace. like if nothing happened.
+nothing in ps aux|grep unetbootin|gksu&lt;/p&gt;
+
+&lt;p&gt;any clue ?
+thanks a lot !&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/123/automatic-question-for-root/?comment=2655#comment-2655</link><description>Take dmenu out, and run your command from a shell. Maybe you'll get a helpful error. </description><pubDate>Tue, 08 Oct 2013 23:41:57 +0000</pubDate><guid>https://faq.i3wm.org/question/123/automatic-question-for-root/?comment=2655#comment-2655</guid></item><item><title>Comment by Michael for &lt;p&gt;okay, i installed gksu and started gksu unetbootin from dmenu.
+i typed my password, validate, then, small window flash, and blank workspace. like if nothing happened.
+nothing in ps aux|grep unetbootin|gksu&lt;/p&gt;
+
+&lt;p&gt;any clue ?
+thanks a lot !&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/123/automatic-question-for-root/?comment=2671#comment-2671</link><description>Deleting this “answer” because it’s not an answer. Please ask a new question for each problem.</description><pubDate>Thu, 10 Oct 2013 16:22:27 +0000</pubDate><guid>https://faq.i3wm.org/question/123/automatic-question-for-root/?comment=2671#comment-2671</guid></item><item><title>Comment by gagou9 for &lt;p&gt;okay, i installed gksu and started gksu unetbootin from dmenu.
+i typed my password, validate, then, small window flash, and blank workspace. like if nothing happened.
+nothing in ps aux|grep unetbootin|gksu&lt;/p&gt;
+
+&lt;p&gt;any clue ?
+thanks a lot !&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/123/automatic-question-for-root/?comment=2658#comment-2658</link><description>see this : https://faq.i3wm.org/question/2652/run-gui-programs-as-root/
+
+Doesn't work either !</description><pubDate>Wed, 09 Oct 2013 11:03:28 +0000</pubDate><guid>https://faq.i3wm.org/question/123/automatic-question-for-root/?comment=2658#comment-2658</guid></item></channel></rss>

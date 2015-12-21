@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/65/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 10 Jun 2012 10:16:45 +0000</lastBuildDate><item><title>i3bar Wifi disconnected</title><link>https://faq.i3wm.org/question/65/i3bar-wifi-disconnected/</link><description>I don't know if it only happens with me. In previous versions of i3wm, the default bar showed values all in white, and the wifi info worked just fine, displaying "down" when disconnected. 
+
+I started using dzen to get it coloured (the newer version makes this obsolete for me), and since then I have this weird message instead: 
+
+    # in green color
+    W: (100% at ) no IP 
+
+even though my interfaces are down:
+
+    bruno@mac17: ~ $ ifconfig
+    lo        Link encap:Local Loopback  
+              inet addr:127.0.0.1  Mask:255.0.0.0
+              inet6 addr: ::1/128 Scope:Host
+              UP LOOPBACK RUNNING  MTU:16436  Metric:1
+              RX packets:4247 errors:0 dropped:0 overruns:0 frame:0
+              TX packets:4247 errors:0 dropped:0 overruns:0 carrier:0
+              collisions:0 txqueuelen:0 
+              RX bytes:261343 (261.3 KB)  TX bytes:261343 (261.3 KB)
+     bruno@mac17: ~ $
+
+I will post a snapshot of this (can not upload images here directly).
+
+I wonder why this happens. Any thoughts?</description><pubDate>Wed, 06 Jun 2012 15:56:26 +0000</pubDate><guid>https://faq.i3wm.org/question/65/i3bar-wifi-disconnected/</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;I don't know if it only happens with me. In previous versions of i3wm, the default bar showed values all in white, and the wifi info worked just fine, displaying "down" when disconnected. &lt;/p&gt;
+
+&lt;p&gt;I started using dzen to get it coloured (the newer version makes this obsolete for me), and since then I have this weird message instead: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# in green color
+W: (100% at ) no IP
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;even though my interfaces are down:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bruno@mac17: ~ $ ifconfig
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:4247 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:4247 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:261343 (261.3 KB)  TX bytes:261343 (261.3 KB)
+ bruno@mac17: ~ $
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I will post a snapshot of this (can not upload images here directly).&lt;/p&gt;
+
+&lt;p&gt;I wonder why this happens. Any thoughts?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/65/i3bar-wifi-disconnected/?comment=66#comment-66</link><description>Here is the snapshot:
+https://sites.google.com/a/brunobraga.net/personal/images/i3wm-faq-65-i3bar-wifi-issue.jpg</description><pubDate>Wed, 06 Jun 2012 15:57:47 +0000</pubDate><guid>https://faq.i3wm.org/question/65/i3bar-wifi-disconnected/?comment=66#comment-66</guid></item><item><title>Answer by Michael for &lt;p&gt;I don't know if it only happens with me. In previous versions of i3wm, the default bar showed values all in white, and the wifi info worked just fine, displaying "down" when disconnected. &lt;/p&gt;
+
+&lt;p&gt;I started using dzen to get it coloured (the newer version makes this obsolete for me), and since then I have this weird message instead: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# in green color
+W: (100% at ) no IP
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;even though my interfaces are down:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bruno@mac17: ~ $ ifconfig
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:4247 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:4247 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:261343 (261.3 KB)  TX bytes:261343 (261.3 KB)
+ bruno@mac17: ~ $
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I will post a snapshot of this (can not upload images here directly).&lt;/p&gt;
+
+&lt;p&gt;I wonder why this happens. Any thoughts?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/65/i3bar-wifi-disconnected/?answer=67#post-id-67</link><description>This is not related to dzen2. Also, you have colors when using i3 4.2 and i3status 2.5.1.
+
+The WiFi things work for me, it’s probably related to your driver. I think this question doesn’t fit here, so please create a ticket at http://bugs.i3wm.org/ with more information — which version of i3, i3bar, which driver, etc.</description><pubDate>Wed, 06 Jun 2012 16:26:51 +0000</pubDate><guid>https://faq.i3wm.org/question/65/i3bar-wifi-disconnected/?answer=67#post-id-67</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;This is not related to dzen2. Also, you have colors when using i3 4.2 and i3status 2.5.1.&lt;/p&gt;
+
+&lt;p&gt;The WiFi things work for me, it’s probably related to your driver. I think this question doesn’t fit here, so please create a ticket at &lt;a href="http://bugs.i3wm.org/"&gt;http://bugs.i3wm.org/&lt;/a&gt; with more information — which version of i3, i3bar, which driver, etc.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/65/i3bar-wifi-disconnected/?comment=79#comment-79</link><description>Thanks Michael, I will do that!</description><pubDate>Thu, 07 Jun 2012 05:55:03 +0000</pubDate><guid>https://faq.i3wm.org/question/65/i3bar-wifi-disconnected/?comment=79#comment-79</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;This is not related to dzen2. Also, you have colors when using i3 4.2 and i3status 2.5.1.&lt;/p&gt;
+
+&lt;p&gt;The WiFi things work for me, it’s probably related to your driver. I think this question doesn’t fit here, so please create a ticket at &lt;a href="http://bugs.i3wm.org/"&gt;http://bugs.i3wm.org/&lt;/a&gt; with more information — which version of i3, i3bar, which driver, etc.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/65/i3bar-wifi-disconnected/?comment=111#comment-111</link><description>Done. -&gt; http://bugs.i3wm.org/report/ticket/726</description><pubDate>Sun, 10 Jun 2012 10:16:45 +0000</pubDate><guid>https://faq.i3wm.org/question/65/i3bar-wifi-disconnected/?comment=111#comment-111</guid></item></channel></rss>

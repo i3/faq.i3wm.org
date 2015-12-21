@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2277/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 27 Jul 2013 15:29:51 +0000</lastBuildDate><item><title>dynamic change of status bar setup</title><link>https://faq.i3wm.org/question/2277/dynamic-change-of-status-bar-setup/</link><description>Hi, I've configured two different setups, which I would be able to switch depending on how many monitors are active. Here is the relevant part of my config:
+
+    bar {
+        output LVDS1
+        output LVDS2
+        tray_output primary
+        status_command i3status
+    }
+
+    bar {
+        output VGA1
+        output VGA2
+    }
+
+If I switch off the LVDS output I'd like to see my status bar and tray icons (nm-applet) on VGA and switch them back if both monitors are active again. I tried i3-msg "bar { status_command i3status }", but did not succeed. Can this be achieved (4.5.1)?
+
+Regards,</description><pubDate>Fri, 26 Jul 2013 05:04:07 +0000</pubDate><guid>https://faq.i3wm.org/question/2277/dynamic-change-of-status-bar-setup/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi, I've configured two different setups, which I would be able to switch depending on how many monitors are active. Here is the relevant part of my config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output LVDS1
+    output LVDS2
+    tray_output primary
+    status_command i3status
+}
+
+bar {
+    output VGA1
+    output VGA2
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I switch off the LVDS output I'd like to see my status bar and tray icons (nm-applet) on VGA and switch them back if both monitors are active again. I tried i3-msg "bar { status_command i3status }", but did not succeed. Can this be achieved (4.5.1)?&lt;/p&gt;
+
+&lt;p&gt;Regards,&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2277/dynamic-change-of-status-bar-setup/?answer=2279#post-id-2279</link><description>The only way to achieve this is to have a little script which will write an i3 config file (depending on your currently connected monitors) and then use the reload command.</description><pubDate>Sat, 27 Jul 2013 15:29:51 +0000</pubDate><guid>https://faq.i3wm.org/question/2277/dynamic-change-of-status-bar-setup/?answer=2279#post-id-2279</guid></item></channel></rss>

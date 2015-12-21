@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3769/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 21 May 2014 12:40:56 +0000</lastBuildDate><item><title>Display i3bar tray on all outputs/screens</title><link>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/</link><description>Hi,
+
+Is it possible to display the tray in i3bar on all screens? If not, what are the alternatives to get a tray on all screens?
+
+Thank you.
+
+
+----------
+**Edit**
+
+Ok, I tried (as suggested by sycamorex)
+
+**.i3/config**
+
+    bar {
+        output eDP1
+        status_command i3status
+    }
+    
+    bar {
+        output HDMI1
+        status_command i3status
+    }
+    
+    bar {
+        output DP2 
+        status_command i3status
+    }
+
+as well as (specifying tray_output for every bar)
+
+**.i3/config**
+
+    bar {
+        output eDP1
+        status_command i3status
+        tray_output eDP1
+    }
+    
+    bar {
+        output HDMI1
+        status_command i3status
+        tray_output HDMI1
+    }
+    
+    bar {
+        output DP2 
+        status_command i3status
+        tray_output DP2 
+    }
+
+But I get the tray only on the very right screen (HDMI1)
+
+My xrandr output looks as follows:
+
+    $ xrandr | grep \ connected
+    eDP1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 309mm x 175mm
+    HDMI1 connected 1920x1200+3840+0 (normal left inverted right x axis y axis) 518mm x 324mm
+    DP2 connected primary 1920x1200+1920+0 (normal left inverted right x axis y axis) 518mm x 324mm
+
+Any other idea to get the tray on all screens? I didn't find anything until now but it is very bad if I miss important IM notifications at work :D
+
+Thank you</description><pubDate>Mon, 05 May 2014 10:35:58 +0000</pubDate><guid>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Is it possible to display the tray in i3bar on all screens? If not, what are the alternatives to get a tray on all screens?&lt;/p&gt;
+
+&lt;p&gt;Thank you.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Edit&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, I tried (as suggested by sycamorex)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output eDP1
+    status_command i3status
+}
+
+bar {
+    output HDMI1
+    status_command i3status
+}
+
+bar {
+    output DP2 
+    status_command i3status
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as well as (specifying tray_output for every bar)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output eDP1
+    status_command i3status
+    tray_output eDP1
+}
+
+bar {
+    output HDMI1
+    status_command i3status
+    tray_output HDMI1
+}
+
+bar {
+    output DP2 
+    status_command i3status
+    tray_output DP2 
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But I get the tray only on the very right screen (HDMI1)&lt;/p&gt;
+
+&lt;p&gt;My xrandr output looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xrandr | grep \ connected
+eDP1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 309mm x 175mm
+HDMI1 connected 1920x1200+3840+0 (normal left inverted right x axis y axis) 518mm x 324mm
+DP2 connected primary 1920x1200+1920+0 (normal left inverted right x axis y axis) 518mm x 324mm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any other idea to get the tray on all screens? I didn't find anything until now but it is very bad if I miss important IM notifications at work :D&lt;/p&gt;
+
+&lt;p&gt;Thank you&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?answer=3861#post-id-3861</link><description>At the moment there is no way to have a tray and the applications therein on every monitor in i3 (are there even WMs that have that have this feature?). 
+
+Although you can define `tray_output` for every bar in the way you described, icons will in most cases appear only in one of the configured tray. (For me the *Clementine* icon stays on the left display while all others and new ones move to the right display, when I restart i3 with multiple configured trays)
+</description><pubDate>Wed, 21 May 2014 12:40:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?answer=3861#post-id-3861</guid></item><item><title>Answer by snd for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Is it possible to display the tray in i3bar on all screens? If not, what are the alternatives to get a tray on all screens?&lt;/p&gt;
+
+&lt;p&gt;Thank you.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Edit&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, I tried (as suggested by sycamorex)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output eDP1
+    status_command i3status
+}
+
+bar {
+    output HDMI1
+    status_command i3status
+}
+
+bar {
+    output DP2 
+    status_command i3status
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as well as (specifying tray_output for every bar)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output eDP1
+    status_command i3status
+    tray_output eDP1
+}
+
+bar {
+    output HDMI1
+    status_command i3status
+    tray_output HDMI1
+}
+
+bar {
+    output DP2 
+    status_command i3status
+    tray_output DP2 
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But I get the tray only on the very right screen (HDMI1)&lt;/p&gt;
+
+&lt;p&gt;My xrandr output looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xrandr | grep \ connected
+eDP1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 309mm x 175mm
+HDMI1 connected 1920x1200+3840+0 (normal left inverted right x axis y axis) 518mm x 324mm
+DP2 connected primary 1920x1200+1920+0 (normal left inverted right x axis y axis) 518mm x 324mm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any other idea to get the tray on all screens? I didn't find anything until now but it is very bad if I miss important IM notifications at work :D&lt;/p&gt;
+
+&lt;p&gt;Thank you&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?answer=3853#post-id-3853</link><description>Ok, I tried 
+
+**.i3/config**
+
+    bar {
+        output eDP1
+        status_command i3status
+    }
+    
+    bar {
+        output HDMI1
+        status_command i3status
+    }
+    
+    bar {
+        output DP2 
+        status_command i3status
+    }
+
+as well as (specifying tray_output for every bar)
+
+**.i3/config**
+
+    bar {
+        output eDP1
+        status_command i3status
+        tray_output eDP1
+    }
+    
+    bar {
+        output HDMI1
+        status_command i3status
+        tray_output HDMI1
+    }
+    
+    bar {
+        output DP2 
+        status_command i3status
+        tray_output DP2 
+    }
+
+But I get the tray only on the very right screen (HDMI1)
+
+My xrandr output looks as follows:
+
+    $ xrandr | grep \ connected
+    eDP1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 309mm x 175mm
+    HDMI1 connected 1920x1200+3840+0 (normal left inverted right x axis y axis) 518mm x 324mm
+    DP2 connected primary 1920x1200+1920+0 (normal left inverted right x axis y axis) 518mm x 324mm
+
+Any other idea to get the tray on all screens? I didn't find anything until now but it is very bad if I miss important IM notifications at work :D
+
+Thank you</description><pubDate>Tue, 20 May 2014 07:43:33 +0000</pubDate><guid>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?answer=3853#post-id-3853</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Ok, I tried &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output eDP1
+    status_command i3status
+}
+
+bar {
+    output HDMI1
+    status_command i3status
+}
+
+bar {
+    output DP2 
+    status_command i3status
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as well as (specifying tray_output for every bar)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output eDP1
+    status_command i3status
+    tray_output eDP1
+}
+
+bar {
+    output HDMI1
+    status_command i3status
+    tray_output HDMI1
+}
+
+bar {
+    output DP2 
+    status_command i3status
+    tray_output DP2 
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But I get the tray only on the very right screen (HDMI1)&lt;/p&gt;
+
+&lt;p&gt;My xrandr output looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xrandr | grep \ connected
+eDP1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 309mm x 175mm
+HDMI1 connected 1920x1200+3840+0 (normal left inverted right x axis y axis) 518mm x 324mm
+DP2 connected primary 1920x1200+1920+0 (normal left inverted right x axis y axis) 518mm x 324mm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any other idea to get the tray on all screens? I didn't find anything until now but it is very bad if I miss important IM notifications at work :D&lt;/p&gt;
+
+&lt;p&gt;Thank you&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?comment=3855#comment-3855</link><description>Could you please add this as an edit to your question? I doesn't look like you have already found an answer.</description><pubDate>Tue, 20 May 2014 12:33:11 +0000</pubDate><guid>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?comment=3855#comment-3855</guid></item><item><title>Answer by morgan_greywolf for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Is it possible to display the tray in i3bar on all screens? If not, what are the alternatives to get a tray on all screens?&lt;/p&gt;
+
+&lt;p&gt;Thank you.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Edit&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, I tried (as suggested by sycamorex)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output eDP1
+    status_command i3status
+}
+
+bar {
+    output HDMI1
+    status_command i3status
+}
+
+bar {
+    output DP2 
+    status_command i3status
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as well as (specifying tray_output for every bar)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output eDP1
+    status_command i3status
+    tray_output eDP1
+}
+
+bar {
+    output HDMI1
+    status_command i3status
+    tray_output HDMI1
+}
+
+bar {
+    output DP2 
+    status_command i3status
+    tray_output DP2 
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But I get the tray only on the very right screen (HDMI1)&lt;/p&gt;
+
+&lt;p&gt;My xrandr output looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xrandr | grep \ connected
+eDP1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 309mm x 175mm
+HDMI1 connected 1920x1200+3840+0 (normal left inverted right x axis y axis) 518mm x 324mm
+DP2 connected primary 1920x1200+1920+0 (normal left inverted right x axis y axis) 518mm x 324mm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any other idea to get the tray on all screens? I didn't find anything until now but it is very bad if I miss important IM notifications at work :D&lt;/p&gt;
+
+&lt;p&gt;Thank you&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?answer=3860#post-id-3860</link><description>I think that sycamore is conflating "tray" and "bar".  These are not the same thing.  AFAIK, there is no way to put a tray on every monitor.  You can have multiple bars and multiple tray_output statements, but there will only ever be one tray.
+</description><pubDate>Wed, 21 May 2014 12:27:03 +0000</pubDate><guid>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?answer=3860#post-id-3860</guid></item><item><title>Answer by sycamorex for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Is it possible to display the tray in i3bar on all screens? If not, what are the alternatives to get a tray on all screens?&lt;/p&gt;
+
+&lt;p&gt;Thank you.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Edit&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, I tried (as suggested by sycamorex)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output eDP1
+    status_command i3status
+}
+
+bar {
+    output HDMI1
+    status_command i3status
+}
+
+bar {
+    output DP2 
+    status_command i3status
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;as well as (specifying tray_output for every bar)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.i3/config&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+    output eDP1
+    status_command i3status
+    tray_output eDP1
+}
+
+bar {
+    output HDMI1
+    status_command i3status
+    tray_output HDMI1
+}
+
+bar {
+    output DP2 
+    status_command i3status
+    tray_output DP2 
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But I get the tray only on the very right screen (HDMI1)&lt;/p&gt;
+
+&lt;p&gt;My xrandr output looks as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xrandr | grep \ connected
+eDP1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 309mm x 175mm
+HDMI1 connected 1920x1200+3840+0 (normal left inverted right x axis y axis) 518mm x 324mm
+DP2 connected primary 1920x1200+1920+0 (normal left inverted right x axis y axis) 518mm x 324mm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any other idea to get the tray on all screens? I didn't find anything until now but it is very bad if I miss important IM notifications at work :D&lt;/p&gt;
+
+&lt;p&gt;Thank you&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?answer=3851#post-id-3851</link><description>Edit: As pointed out I was referring to a status bar, not a tray. That obviously does not answer your question. For reasons of consistency with the question that has been edited, I'll keep my answer below intact.
+
+If you're talking about a multimonitor setup, you can specify it for both displays in your ~/.i3/config:
+
+    bar {
+            output DVI-I-1
+            status_command i3status
+    }
+    
+    bar {
+            output HDMI-0
+            status_command i3status
+    }
+
+To identify each monitor (in my case DVI-I-1 and HDMI-0) you can use 'xrandr'</description><pubDate>Mon, 19 May 2014 18:53:21 +0000</pubDate><guid>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?answer=3851#post-id-3851</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Edit: As pointed out I was referring to a status bar, not a tray. That obviously does not answer your question. For reasons of consistency with the question that has been edited, I'll keep my answer below intact.&lt;/p&gt;
+
+&lt;p&gt;If you're talking about a multimonitor setup, you can specify it for both displays in your ~/.i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+        output DVI-I-1
+        status_command i3status
+}
+
+bar {
+        output HDMI-0
+        status_command i3status
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To identify each monitor (in my case DVI-I-1 and HDMI-0) you can use 'xrandr'&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?comment=3856#comment-3856</link><description>The problem with that - at least for me - is, that any tray icon will only appear in either one of the bars, but not both. While strictly speaking there is a bar on every screen, it is probably not what the questioner wanted.</description><pubDate>Tue, 20 May 2014 12:35:32 +0000</pubDate><guid>https://faq.i3wm.org/question/3769/display-i3bar-tray-on-all-outputsscreens/?comment=3856#comment-3856</guid></item></channel></rss>

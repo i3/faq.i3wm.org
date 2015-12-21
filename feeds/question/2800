@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2800/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 31 Oct 2013 21:20:15 +0000</lastBuildDate><item><title>Don't show specific workspace buttons on i3bar</title><link>https://faq.i3wm.org/question/2800/dont-show-specific-workspace-buttons-on-i3bar/</link><description>I have web browser on workspace _www_ and music player on workspace _music_. And, of course various programs on workspaces 1, 2, 3...
+
+`i3bar` shows buttons for all workspaces present. It is great, it gives an easy information of which workspaces contain something. But a web browser is always running and I know about it, so the button of _www_ unnecessarily fills space on the bar. Same for _music_.
+
+How to tell `i3bar` to never show buttons for workspaces _www_ and _music_?</description><pubDate>Thu, 31 Oct 2013 12:20:29 +0000</pubDate><guid>https://faq.i3wm.org/question/2800/dont-show-specific-workspace-buttons-on-i3bar/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I have web browser on workspace &lt;em&gt;www&lt;/em&gt; and music player on workspace &lt;em&gt;music&lt;/em&gt;. And, of course various programs on workspaces 1, 2, 3...&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3bar&lt;/code&gt; shows buttons for all workspaces present. It is great, it gives an easy information of which workspaces contain something. But a web browser is always running and I know about it, so the button of &lt;em&gt;www&lt;/em&gt; unnecessarily fills space on the bar. Same for &lt;em&gt;music&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;How to tell &lt;code&gt;i3bar&lt;/code&gt; to never show buttons for workspaces &lt;em&gt;www&lt;/em&gt; and &lt;em&gt;music&lt;/em&gt;?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2800/dont-show-specific-workspace-buttons-on-i3bar/?answer=2801#post-id-2801</link><description>It is not possible to configure `i3bar` to not show specific workspaces. You could hide all workspace buttons with `workspace_buttons no` in the bar configuration, but that's in all likelihood not what you want.
+
+
+----------
+
+
+You could move your browser and music player to scratchpad windows. Perhaps like this:
+
+    for_window [class="^BrowserName$"] move scratchpad
+    bindsym $mod+b [class="^BrowserName$"] scratchpad show
+
+This moves any browser window with class "BrowserName" to a scratchpad window and with $mod+b you can switch it on and off.
+Obviously this depends on the browser used, for Firefox it would be "Firefox". You can use xprop to get the class name. It is one of the values of WM_CLASS (for me, only the second one, with upper case characters, works)
+
+If you don't want to move every browser window to a scratchpad you could bind an extra key for moving a specific window there:
+
+    bindsym $mod+Shift+b mark browser; [con_mark="^browser$"] move scratchpad
+    bindsym $mod+b [con_mark="^browser$"] scratchpad show
+
+This marks the current window and moves it to a scratchpad. The mark is also used to toggle the visible state. (Note: only one window may have a specific mark. If a already present mark is set on a window it is unset from the other window)
+
+Using scratchpad has some drawbacks: 
+
+  - On the initial move to scratchpad the window is resized to 50% of the screen width and 75% of the height, but resizing is possible and the new size is remembered during visibility toggles.
+  - It is a floating window (after all, we do use i3 for a reason, don't we)
+  - When having several scratchpad windows matching the same criteria (class, title) each window is toggled at the same time. Cycling through all windows seems only possible with the *vanilla* `scratchpad show` (Without criteria. It shows one scratchpad on the first call, then hides it on the next. If called once again it shows the next scratchpad.)
+
+On the plus side:
+
+  - Does not take up space on the i3bar.
+  - You have access to your browser window on every workspace.
+
+
+----------
+
+
+If scratchpad is not for you and you only want to save space on the i3bar, I'd suggest using a single character for the workspace names. If you don't like names like 'B' you could always use " " or any other character with low visual impact (Unicode provides ;) ) so that the buttons are not that visible.
+</description><pubDate>Thu, 31 Oct 2013 14:28:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2800/dont-show-specific-workspace-buttons-on-i3bar/?answer=2801#post-id-2801</guid></item><item><title>Comment by smiszym for &lt;p&gt;It is not possible to configure &lt;code&gt;i3bar&lt;/code&gt; to not show specific workspaces. You could hide all workspace buttons with &lt;code&gt;workspace_buttons no&lt;/code&gt; in the bar configuration, but that's in all likelihood not what you want.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;You could move your browser and music player to scratchpad windows. Perhaps like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="^BrowserName$"] move scratchpad
+bindsym $mod+b [class="^BrowserName$"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This moves any browser window with class "BrowserName" to a scratchpad window and with $mod+b you can switch it on and off.
+Obviously this depends on the browser used, for Firefox it would be "Firefox". You can use xprop to get the class name. It is one of the values of WM_CLASS (for me, only the second one, with upper case characters, works)&lt;/p&gt;
+
+&lt;p&gt;If you don't want to move every browser window to a scratchpad you could bind an extra key for moving a specific window there:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+b mark browser; [con_mark="^browser$"] move scratchpad
+bindsym $mod+b [con_mark="^browser$"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This marks the current window and moves it to a scratchpad. The mark is also used to toggle the visible state. (Note: only one window may have a specific mark. If a already present mark is set on a window it is unset from the other window)&lt;/p&gt;
+
+&lt;p&gt;Using scratchpad has some drawbacks: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;On the initial move to scratchpad the window is resized to 50% of the screen width and 75% of the height, but resizing is possible and the new size is remembered during visibility toggles.&lt;/li&gt;
+&lt;li&gt;It is a floating window (after all, we do use i3 for a reason, don't we)&lt;/li&gt;
+&lt;li&gt;When having several scratchpad windows matching the same criteria (class, title) each window is toggled at the same time. Cycling through all windows seems only possible with the &lt;em&gt;vanilla&lt;/em&gt; &lt;code&gt;scratchpad show&lt;/code&gt; (Without criteria. It shows one scratchpad on the first call, then hides it on the next. If called once again it shows the next scratchpad.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;On the plus side:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Does not take up space on the i3bar.&lt;/li&gt;
+&lt;li&gt;You have access to your browser window on every workspace.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;If scratchpad is not for you and you only want to save space on the i3bar, I'd suggest using a single character for the workspace names. If you don't like names like 'B' you could always use " " or any other character with low visual impact (Unicode provides ;) ) so that the buttons are not that visible.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2800/dont-show-specific-workspace-buttons-on-i3bar/?comment=2802#comment-2802</link><description>I've never used scratchpad, but it sounds good, so I'll try it. And because hiding buttons, as I expected, is all or none, an invisible/small workspace name is my favourite solution :) Thanks!</description><pubDate>Thu, 31 Oct 2013 21:20:15 +0000</pubDate><guid>https://faq.i3wm.org/question/2800/dont-show-specific-workspace-buttons-on-i3bar/?comment=2802#comment-2802</guid></item></channel></rss>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5155/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 13 Dec 2014 21:31:33 +0000</lastBuildDate><item><title>Why does i3status need to listen for udp connections?</title><link>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/</link><description>I have used sockstat to check my opened ports and services which were using them and I have noticed i3status is listening for udp connections. Could the reason for doing that be explained?</description><pubDate>Wed, 10 Dec 2014 14:49:44 +0000</pubDate><guid>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/</guid></item><item><title>Comment by jefecomp for &lt;p&gt;I have used sockstat to check my opened ports and services which were using them and I have noticed i3status is listening for udp connections. Could the reason for doing that be explained?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/?comment=5158#comment-5158</link><description> % sockstat -4
+USER     COMMAND    PID   FD PROTO  LOCAL ADDRESS         FOREIGN ADDRESS
+user     thunderbir 983   35 tcp4   192.168.0.34:21445    xxx.xxx.xx.xx:993
+user     thunderbir 983   40 tcp4   192.168.0.34:21453    xxx.xxx.xx.xx:993
+user     firefox    979   65 tcp4   192.168.0.34:</description><pubDate>Wed, 10 Dec 2014 19:22:10 +0000</pubDate><guid>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/?comment=5158#comment-5158</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I have used sockstat to check my opened ports and services which were using them and I have noticed i3status is listening for udp connections. Could the reason for doing that be explained?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/?comment=5157#comment-5157</link><description>I does not do so on my machine, at least `sockstat` does not show anything. Could you please add the relevant output of `sockstat`? Also, a bit of information about your system could help: which distribution, version of *i3* and where from did you get it?</description><pubDate>Wed, 10 Dec 2014 19:04:26 +0000</pubDate><guid>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/?comment=5157#comment-5157</guid></item><item><title>Comment by Michael for &lt;p&gt;I have used sockstat to check my opened ports and services which were using them and I have noticed i3status is listening for udp connections. Could the reason for doing that be explained?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/?comment=5173#comment-5173</link><description>try sockstat -4 -l</description><pubDate>Sat, 13 Dec 2014 21:31:33 +0000</pubDate><guid>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/?comment=5173#comment-5173</guid></item><item><title>Answer by jefecomp for &lt;p&gt;I have used sockstat to check my opened ports and services which were using them and I have noticed i3status is listening for udp connections. Could the reason for doing that be explained?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/?answer=5161#post-id-5161</link><description>Hi, 
+
+In my machine (FreeBSD 10.1-RELEASE amd64) there is a listening socket:
+
+Output of sockstat:
+
+&lt;pre&gt;
+  $ sockstat -4 | grep i3status
+
+    user i3status   966   3  udp4   *:*                   *:*
+
+&lt;/pre&gt;
+
+
+and the output of fstat (lsof equivalent):
+
+&lt;pre&gt;
+  
+ $ fstat -n -p 966 | grep internet
+
+   user i3status     966    3* internet dgram udp xxxxxxxxxxxxxxxxx
+&lt;/pre&gt;
+
+
+PS: The **xxxxxxxxxxxxxxxxx** represents the HW address of the network card.</description><pubDate>Thu, 11 Dec 2014 14:16:43 +0000</pubDate><guid>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/?answer=5161#post-id-5161</guid></item><item><title>Answer by Michael for &lt;p&gt;I have used sockstat to check my opened ports and services which were using them and I have noticed i3status is listening for udp connections. Could the reason for doing that be explained?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/?answer=5159#post-id-5159</link><description>i3status does not open a listening socket:
+
+    sudo netstat -np | grep i3status | wc -l
+    0
+
+However, it indeed creates a UDP socket:
+
+    $ sudo lsof -n -p $(pidof i3status) | grep sock
+    i3status 26396 michael    3u  sock    0,7       0t0   268864 protocol: UDP
+
+The places in the code where sockets are created are
+
+http://code.stapelberg.de/git/i3status/tree/src/print_ipv6_addr.c?id=3818dabcebea7f98e3dfdfbe5be42374bb60cf88#n24
+
+and
+
+http://code.stapelberg.de/git/i3status/tree/i3status.c?id=3818dabcebea7f98e3dfdfbe5be42374bb60cf88#n542 (which is used in http://code.stapelberg.de/git/i3status/tree/src/print_eth_info.c?id=3818dabcebea7f98e3dfdfbe5be42374bb60cf88#n35)
+
+But as I said, those are not listening sockets, so it shouldn’t pose a security problem.</description><pubDate>Wed, 10 Dec 2014 19:33:34 +0000</pubDate><guid>https://faq.i3wm.org/question/5155/why-does-i3status-need-to-listen-for-udp-connections/?answer=5159#post-id-5159</guid></item></channel></rss>

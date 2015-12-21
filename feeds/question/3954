@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3954/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 12 Jun 2014 06:53:50 +0000</lastBuildDate><item><title>less agressive for "move up|down" command</title><link>https://faq.i3wm.org/question/3954/less-agressive-for-move-updown-command/</link><description>I am a big fan of i3 window manager and I use i3 for everyday tasks, however
+I do not know much about programming and internal stuffs of i3. I would like
+to as for features as follows:
+
+(1) An option to make all new windows as "floating". Not using the condition
+"for_window [class=".*"] ..." which unexpectedly turn a "tiled window" into
+floating.
+
+(2) Make command "move up|down" less "agressive", which is as follows.
+
+Example, all three windows are "tabbed" in a workplace:
+
+    .------------------------------------------+
+    |      1       |      2      |      3      |
+    |------------------------------------------|
+    |                                          |
+    |                                          |
+    |           window 3 contents              |
+    |                                          |
+    |                                          |
+    +------------------------------------------'
+
+fig.1
+
+Then after "move right", "focus left", it becomes
+
+    .--------------------+---------------------+
+    |    1     |    2    |          3          |
+    |--------------------+---------------------|
+    |                    |                     |
+    |                    |                     |
+    |    window 2        |     window 3        |
+    |    contents        |     contents        |
+    |    (current)       |                     |
+    |                    |                     |
+    +--------------------+---------------------'
+
+fig.2
+
+Now, currently, after "move down", it would becomes as
+follows, which is "too agressive":
+
+    .--------------------+---------------------+
+    |           1        |          3          |
+    |--------------------+---------------------|
+    |                    |                     |
+    |                    |                     |
+    +--------------------+---------------------+
+    |                    2                     |
+    |--------------------+---------------------|
+    |                                          |
+    |                                          |
+    +--------------------+---------------------'
+
+fig.3
+
+I'd suggest that, it should be as follow, which is
+"less agressive"
+
+    .--------------------+---------------------+
+    |           1        |          3          |
+    |--------------------+---------------------|
+    |                    |                     |
+    |                    |                     |
+    +--------------------|                     |
+    |         2          |                     |
+    |--------------------|                     |
+    |                    |                     |
+    |                    |                     |
+    +--------------------+---------------------'
+
+fig.4
+
+The reason is that it would be much easier to "rearrange" windows.
+In "less agressive" way, it is easy to transform from fig.4 to fig.3
+just by pressing "move down" again (on window 2). But current "too
+agressive" way, there is no way to transform from fig.3 or fig.2 to
+fig.4
+</description><pubDate>Thu, 12 Jun 2014 01:21:33 +0000</pubDate><guid>https://faq.i3wm.org/question/3954/less-agressive-for-move-updown-command/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I am a big fan of i3 window manager and I use i3 for everyday tasks, however
+I do not know much about programming and internal stuffs of i3. I would like
+to as for features as follows:&lt;/p&gt;
+
+&lt;p&gt;(1) An option to make all new windows as "floating". Not using the condition
+"for_window [class=".*"] ..." which unexpectedly turn a "tiled window" into
+floating.&lt;/p&gt;
+
+&lt;p&gt;(2) Make command "move up|down" less "agressive", which is as follows.&lt;/p&gt;
+
+&lt;p&gt;Example, all three windows are "tabbed" in a workplace:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.------------------------------------------+
+|      1       |      2      |      3      |
+|------------------------------------------|
+|                                          |
+|                                          |
+|           window 3 contents              |
+|                                          |
+|                                          |
++------------------------------------------'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;fig.1&lt;/p&gt;
+
+&lt;p&gt;Then after "move right", "focus left", it becomes&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.--------------------+---------------------+
+|    1     |    2    |          3          |
+|--------------------+---------------------|
+|                    |                     |
+|                    |                     |
+|    window 2        |     window 3        |
+|    contents        |     contents        |
+|    (current)       |                     |
+|                    |                     |
++--------------------+---------------------'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;fig.2&lt;/p&gt;
+
+&lt;p&gt;Now, currently, after "move down", it would becomes as
+follows, which is "too agressive":&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.--------------------+---------------------+
+|           1        |          3          |
+|--------------------+---------------------|
+|                    |                     |
+|                    |                     |
++--------------------+---------------------+
+|                    2                     |
+|--------------------+---------------------|
+|                                          |
+|                                          |
++--------------------+---------------------'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;fig.3&lt;/p&gt;
+
+&lt;p&gt;I'd suggest that, it should be as follow, which is
+"less agressive"&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.--------------------+---------------------+
+|           1        |          3          |
+|--------------------+---------------------|
+|                    |                     |
+|                    |                     |
++--------------------|                     |
+|         2          |                     |
+|--------------------|                     |
+|                    |                     |
+|                    |                     |
++--------------------+---------------------'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;fig.4&lt;/p&gt;
+
+&lt;p&gt;The reason is that it would be much easier to "rearrange" windows.
+In "less agressive" way, it is easy to transform from fig.4 to fig.3
+just by pressing "move down" again (on window 2). But current "too
+agressive" way, there is no way to transform from fig.3 or fig.2 to
+fig.4&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3954/less-agressive-for-move-updown-command/?answer=3957#post-id-3957</link><description>It is possible:
+
+To get from *fig.2* to *fig.4* use
+
+    layout splitv
+
+To get from *fig.2* to *fig.4*, assuming focus is on *window 3* use
+
+    move right
+    move right
+
+or
+ 
+    move up
+    move right
+
+or 
+
+    move down
+    move right
+
+
+----
+
+That being said, I agree that the behaviour is at times not very obvious. For example, the reason why you have to move *window 3* twice in *fig.3* is, because it is (alone) inside a container that is in turn in a container together with the container with *window 1*. 
+
+    [[[ window1 ], [ window3 ]], [ window2 ]]
+
+The first `move` moves it out of its own container and either in the same one as *window 1*'s parent container (`move right`), 
+
+    [[[ window1 ], window3 ], [ window2 ]]
+
+in in the same container surrounding *window 1*'s parent container and *window 2*'s parent container (`move up`)
+    
+    [ window3, [ window1 ], [ window2 ]]
+
+or in the same container as *window 2* (`move down`)
+
+    [[ window1 ], [ window2, window3 ]] 
+
+
+
+    </description><pubDate>Thu, 12 Jun 2014 06:22:50 +0000</pubDate><guid>https://faq.i3wm.org/question/3954/less-agressive-for-move-updown-command/?answer=3957#post-id-3957</guid></item><item><title>Comment by triplc for &lt;p&gt;It is possible:&lt;/p&gt;
+
+&lt;p&gt;To get from &lt;em&gt;fig.2&lt;/em&gt; to &lt;em&gt;fig.4&lt;/em&gt; use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;layout splitv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To get from &lt;em&gt;fig.2&lt;/em&gt; to &lt;em&gt;fig.4&lt;/em&gt;, assuming focus is on &lt;em&gt;window 3&lt;/em&gt; use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;move right
+move right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;move up
+move right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;move down
+move right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;That being said, I agree that the behaviour is at times not very obvious. For example, the reason why you have to move &lt;em&gt;window 3&lt;/em&gt; twice in &lt;em&gt;fig.3&lt;/em&gt; is, because it is (alone) inside a container that is in turn in a container together with the container with &lt;em&gt;window 1&lt;/em&gt;. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[[[ window1 ], [ window3 ]], [ window2 ]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first &lt;code&gt;move&lt;/code&gt; moves it out of its own container and either in the same one as &lt;em&gt;window 1&lt;/em&gt;'s parent container (&lt;code&gt;move right&lt;/code&gt;), &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[[[ window1 ], window3 ], [ window2 ]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in in the same container surrounding &lt;em&gt;window 1&lt;/em&gt;'s parent container and &lt;em&gt;window 2&lt;/em&gt;'s parent container (&lt;code&gt;move up&lt;/code&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ window3, [ window1 ], [ window2 ]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or in the same container as &lt;em&gt;window 2&lt;/em&gt; (&lt;code&gt;move down&lt;/code&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[[ window1 ], [ window2, window3 ]]
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3954/less-agressive-for-move-updown-command/?comment=3959#comment-3959</link><description>Actually, I use the tiling wm is to treat the workspace as an IDE (like Eclips) where desktops are devided in contanters, which contains tabbed windows. I start "tabbed" as default layout. Then move windows across the cells. That's the idea. Breaking in|out + split would destroy the sizes. </description><pubDate>Thu, 12 Jun 2014 06:53:50 +0000</pubDate><guid>https://faq.i3wm.org/question/3954/less-agressive-for-move-updown-command/?comment=3959#comment-3959</guid></item><item><title>Comment by triplc for &lt;p&gt;It is possible:&lt;/p&gt;
+
+&lt;p&gt;To get from &lt;em&gt;fig.2&lt;/em&gt; to &lt;em&gt;fig.4&lt;/em&gt; use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;layout splitv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To get from &lt;em&gt;fig.2&lt;/em&gt; to &lt;em&gt;fig.4&lt;/em&gt;, assuming focus is on &lt;em&gt;window 3&lt;/em&gt; use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;move right
+move right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;move up
+move right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;move down
+move right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;That being said, I agree that the behaviour is at times not very obvious. For example, the reason why you have to move &lt;em&gt;window 3&lt;/em&gt; twice in &lt;em&gt;fig.3&lt;/em&gt; is, because it is (alone) inside a container that is in turn in a container together with the container with &lt;em&gt;window 1&lt;/em&gt;. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[[[ window1 ], [ window3 ]], [ window2 ]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first &lt;code&gt;move&lt;/code&gt; moves it out of its own container and either in the same one as &lt;em&gt;window 1&lt;/em&gt;'s parent container (&lt;code&gt;move right&lt;/code&gt;), &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[[[ window1 ], window3 ], [ window2 ]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in in the same container surrounding &lt;em&gt;window 1&lt;/em&gt;'s parent container and &lt;em&gt;window 2&lt;/em&gt;'s parent container (&lt;code&gt;move up&lt;/code&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ window3, [ window1 ], [ window2 ]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or in the same container as &lt;em&gt;window 2&lt;/em&gt; (&lt;code&gt;move down&lt;/code&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[[ window1 ], [ window2, window3 ]]
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3954/less-agressive-for-move-updown-command/?comment=3958#comment-3958</link><description>Thanks for clear explaination. I am sorry having said "not possible". What I mean is to rearrange windows using "move left|right|up|down" easier.</description><pubDate>Thu, 12 Jun 2014 06:49:51 +0000</pubDate><guid>https://faq.i3wm.org/question/3954/less-agressive-for-move-updown-command/?comment=3958#comment-3958</guid></item></channel></rss>

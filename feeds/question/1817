@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1817/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 12 Oct 2015 07:34:31 +0000</lastBuildDate><item><title>How to floating a window in front of all the workspaces</title><link>https://faq.i3wm.org/question/1817/how-to-floating-a-window-in-front-of-all-the-workspaces/</link><description>Is this possible and how?</description><pubDate>Wed, 15 May 2013 17:05:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1817/how-to-floating-a-window-in-front-of-all-the-workspaces/</guid></item><item><title>Answer by xpixelz for &lt;p&gt;Is this possible and how?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1817/how-to-floating-a-window-in-front-of-all-the-workspaces/?answer=6903#post-id-6903</link><description>Now it's possible to have a window on all workspaces much easier with **i3 v4.11**, just set the sticky modifier on the selected window and you get it on all your workspaces:
+
+    bindsym $mod+w sticky toggle
+</description><pubDate>Mon, 12 Oct 2015 07:34:31 +0000</pubDate><guid>https://faq.i3wm.org/question/1817/how-to-floating-a-window-in-front-of-all-the-workspaces/?answer=6903#post-id-6903</guid></item><item><title>Answer by mschaefer for &lt;p&gt;Is this possible and how?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1817/how-to-floating-a-window-in-front-of-all-the-workspaces/?answer=1819#post-id-1819</link><description>I can just guess what you mean, but I think you search for a way to have a certain window inside of a floating container that is independent of a specific workspace. In that case, the [scratchpad](http://i3wm.org/docs/userguide.html#_scratchpad) may be just the solution you are looking for.</description><pubDate>Wed, 15 May 2013 22:21:18 +0000</pubDate><guid>https://faq.i3wm.org/question/1817/how-to-floating-a-window-in-front-of-all-the-workspaces/?answer=1819#post-id-1819</guid></item><item><title>Answer by brimstone for &lt;p&gt;Is this possible and how?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1817/how-to-floating-a-window-in-front-of-all-the-workspaces/?answer=1936#post-id-1936</link><description>Using the previous answer about a scratchpad, I've modified my config to the following:
+
+    #switch to workspace
+    bindsym $mod+1 exec "i3-msg workspace 1; i3-msg scratchpad show"
+    bindsym $mod+2 exec "i3-msg workspace 2; i3-msg scratchpad show"
+    bindsym $mod+3 exec "i3-msg workspace 3; i3-msg scratchpad show"
+    bindsym $mod+4 exec "i3-msg workspace 4; i3-msg scratchpad show"
+    bindsym $mod+5 exec "i3-msg workspace 5; i3-msg scratchpad show"
+    bindsym $mod+6 exec "i3-msg workspace 6; i3-msg scratchpad show"
+    bindsym $mod+7 exec "i3-msg workspace 7; i3-msg scratchpad show"
+    bindsym $mod+8 exec "i3-msg workspace 8; i3-msg scratchpad show"
+    bindsym $mod+9 exec "i3-msg workspace 9; i3-msg scratchpad show"
+    bindsym $mod+0 exec "i3-msg workspace 10; i3-msg scratchpad show"
+    bindsym $mod+minus scratchpad show
+
+    bindsym $mod+Shift+minus move scratchpad
+
+This way, I simply send a floating window to the scratchpad with $mod+- and it's always visible when I switch workspaces.</description><pubDate>Sun, 02 Jun 2013 13:54:52 +0000</pubDate><guid>https://faq.i3wm.org/question/1817/how-to-floating-a-window-in-front-of-all-the-workspaces/?answer=1936#post-id-1936</guid></item></channel></rss>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/18/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 05 Jul 2014 03:19:35 +0000</lastBuildDate><item><title>How do xsession, xinitrc and .i3/config play together?</title><link>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/</link><description>There are three different ways of starting programs after logging in: `~/.xsession`, `~/.xinitrc` and `~/.i3/config` (or the path to your i3 config file). What’s the difference?</description><pubDate>Mon, 04 Jun 2012 15:56:48 +0000</pubDate><guid>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;There are three different ways of starting programs after logging in: &lt;code&gt;~/.xsession&lt;/code&gt;, &lt;code&gt;~/.xinitrc&lt;/code&gt; and &lt;code&gt;~/.i3/config&lt;/code&gt; (or the path to your i3 config file). What’s the difference?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/?comment=4131#comment-4131</link><description>Also see this related question: [Session's environment variables](https://faq.i3wm.org/question/4126/sessions-environment-variables/).</description><pubDate>Sat, 05 Jul 2014 03:19:35 +0000</pubDate><guid>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/?comment=4131#comment-4131</guid></item><item><title>Answer by mloskot for &lt;p&gt;There are three different ways of starting programs after logging in: &lt;code&gt;~/.xsession&lt;/code&gt;, &lt;code&gt;~/.xinitrc&lt;/code&gt; and &lt;code&gt;~/.i3/config&lt;/code&gt; (or the path to your i3 config file). What’s the difference?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/?answer=86#post-id-86</link><description>Michael has already explained the difference, but I'd like to add a few notes of background (IMHO, it's good to understand how things work step by step):
+
+Based on [The X Window User HOWTO](http://tldp.org/HOWTO/XWindow-User-HOWTO/runningx.html):
+
+ 1. **startx** will start X by first invoking xinit.
+ 2. **xinit** will look for a **~/.xinitrc** file in the user's home directory, to run as a shell script.
+ 3. **xinitrc** is used to set up a suitable X environment, and to launch other programs, a.k.a "clients" that we may want available as soon as X is started.
+ 4. The Window Manager, or desktop environment, is typically the last application started.
+ 5. The other, more common, approach is the "GUI log-in", where X is running before log-in. X includes **xdm** (X Display Manager) for this purpose.
+ 6. Now, **~/.xsession** for **xdm** is the rough equivalent of **~/.xinitrc** for **startx**.
+ 7. Depending on how you start X, either the **~/.xinitrc** or the **~/.xsession** file will be executed by the server.
+ 8. Finally, if you execute **i3wm** from **~/.xinitrc** or **~/.xsession**, then i3wm will read its initial configuration from **~/.i3/config**.
+ 9. Done.
+
+Given that, you may like to [maintain single version](http://www.acm.uiuc.edu/workshops/cool_unix/xinitrc.html) of your personal startup script for X:
+
+* Create the script **~/.xinitrc** with your initial settings.
+* Make symbolic link for xdm equivalent:
+
+    $ ln -s $HOME/.xinitrc $HOME/.xsession
+
+Also, [Fluxbox manual](http://fluxbox.sourceforge.net/docbook/en/html/app-setup.html) includes an important explanation too:
+
+&gt; When X11 is started, your .xinitrc or .xsession script is run, and
+&gt; when the script is done, X11 comes down. Let me repeat that,
+&gt; its important: when .xinitrc is finished, that is when X ends.
+&gt; It isn't when your window manager exits.*</description><pubDate>Thu, 07 Jun 2012 15:06:11 +0000</pubDate><guid>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/?answer=86#post-id-86</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;Michael has already explained the difference, but I'd like to add a few notes of background (IMHO, it's good to understand how things work step by step):&lt;/p&gt;
+
+&lt;p&gt;Based on &lt;a href="http://tldp.org/HOWTO/XWindow-User-HOWTO/runningx.html"&gt;The X Window User HOWTO&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;startx&lt;/strong&gt; will start X by first invoking xinit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;xinit&lt;/strong&gt; will look for a &lt;strong&gt;~/.xinitrc&lt;/strong&gt; file in the user's home directory, to run as a shell script.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;xinitrc&lt;/strong&gt; is used to set up a suitable X environment, and to launch other programs, a.k.a "clients" that we may want available as soon as X is started.&lt;/li&gt;
+&lt;li&gt;The Window Manager, or desktop environment, is typically the last application started.&lt;/li&gt;
+&lt;li&gt;The other, more common, approach is the "GUI log-in", where X is running before log-in. X includes &lt;strong&gt;xdm&lt;/strong&gt; (X Display Manager) for this purpose.&lt;/li&gt;
+&lt;li&gt;Now, &lt;strong&gt;~/.xsession&lt;/strong&gt; for &lt;strong&gt;xdm&lt;/strong&gt; is the rough equivalent of &lt;strong&gt;~/.xinitrc&lt;/strong&gt; for &lt;strong&gt;startx&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Depending on how you start X, either the &lt;strong&gt;~/.xinitrc&lt;/strong&gt; or the &lt;strong&gt;~/.xsession&lt;/strong&gt; file will be executed by the server.&lt;/li&gt;
+&lt;li&gt;Finally, if you execute &lt;strong&gt;i3wm&lt;/strong&gt; from &lt;strong&gt;~/.xinitrc&lt;/strong&gt; or &lt;strong&gt;~/.xsession&lt;/strong&gt;, then i3wm will read its initial configuration from &lt;strong&gt;~/.i3/config&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Done.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Given that, you may like to &lt;a href="http://www.acm.uiuc.edu/workshops/cool_unix/xinitrc.html"&gt;maintain single version&lt;/a&gt; of your personal startup script for X:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create the script &lt;strong&gt;~/.xinitrc&lt;/strong&gt; with your initial settings.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Make symbolic link for xdm equivalent:&lt;/p&gt;
+
+&lt;p&gt;$ ln -s $HOME/.xinitrc $HOME/.xsession&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also, &lt;a href="http://fluxbox.sourceforge.net/docbook/en/html/app-setup.html"&gt;Fluxbox manual&lt;/a&gt; includes an important explanation too:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;When X11 is started, your .xinitrc or .xsession script is run, and
+  when the script is done, X11 comes down. Let me repeat that,
+  its important: when .xinitrc is finished, that is when X ends.
+  It isn't when your window manager exits.*&lt;/p&gt;
+&lt;/blockquote&gt;
+</title><link>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/?comment=4128#comment-4128</link><description>Actually, `~/.xsession` seems to be ignored with a GDM login, so that does not make it an option for Ubuntu users.</description><pubDate>Sat, 05 Jul 2014 02:12:38 +0000</pubDate><guid>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/?comment=4128#comment-4128</guid></item><item><title>Answer by Michael for &lt;p&gt;There are three different ways of starting programs after logging in: &lt;code&gt;~/.xsession&lt;/code&gt;, &lt;code&gt;~/.xinitrc&lt;/code&gt; and &lt;code&gt;~/.i3/config&lt;/code&gt; (or the path to your i3 config file). What’s the difference?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/?answer=20#post-id-20</link><description>You have to differentiate between what gets started after you log in but before you start i3:
+
+ * `~/.xsession` is the way to go when using a login manager (like gdm, kdm, xdm).
+ * `~/.xinitrc` will be used when you use startx
+
+The i3 configuration (usually `~/.i3/config`) will of course be used in either case, additionally.
+
+So, where should you put your auto-start entries?
+
+* If you are setting a background image, you can do that in any place (either before i3 starts or afterwards).
+* If you are launching a program, you should do that in your i3 configuration so that it will be launched with startup notification support.</description><pubDate>Mon, 04 Jun 2012 16:00:08 +0000</pubDate><guid>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/?answer=20#post-id-20</guid></item><item><title>Comment by Hibou57 for &lt;p&gt;You have to differentiate between what gets started after you log in but before you start i3:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;~/.xsession&lt;/code&gt; is the way to go when using a login manager (like gdm, kdm, xdm).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~/.xinitrc&lt;/code&gt; will be used when you use startx&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The i3 configuration (usually &lt;code&gt;~/.i3/config&lt;/code&gt;) will of course be used in either case, additionally.&lt;/p&gt;
+
+&lt;p&gt;So, where should you put your auto-start entries?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you are setting a background image, you can do that in any place (either before i3 starts or afterwards).&lt;/li&gt;
+&lt;li&gt;If you are launching a program, you should do that in your i3 configuration so that it will be launched with startup notification support.&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/?comment=4129#comment-4129</link><description>`~/.xession` seems to be ignored with GDM on Ubuntu 12.04. I tried to define an environment variable with `export FOO=bar` in a newly created `.xession` (there was none), and `echo $FOO` from a terminal displays nothing, which suggests this file is not sourced.</description><pubDate>Sat, 05 Jul 2014 02:14:46 +0000</pubDate><guid>https://faq.i3wm.org/question/18/how-do-xsession-xinitrc-and-i3config-play-together/?comment=4129#comment-4129</guid></item></channel></rss>

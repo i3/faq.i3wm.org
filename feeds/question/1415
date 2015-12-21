@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1415/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 23 Mar 2013 22:09:52 +0000</lastBuildDate><item><title>mod+shift+4 doesn't work</title><link>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/</link><description>I can't seem to move any windows to workspace #4.
+
+`mod+4` works and all the other `mod+shift` binds work.
+
+Is there any way to figure out what application is stealing this keybind?
+
+EDIT: some relevant pieces of my config
+
+    set $mod Mod4
+    bindsym $mod+4 workspace 4
+    bindsym $mod+Shift+4 move container to workspace 4
+</description><pubDate>Fri, 15 Mar 2013 17:10:05 +0000</pubDate><guid>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/</guid></item><item><title>Comment by Michael for &lt;p&gt;I can't seem to move any windows to workspace #4.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;mod+4&lt;/code&gt; works and all the other &lt;code&gt;mod+shift&lt;/code&gt; binds work.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to figure out what application is stealing this keybind?&lt;/p&gt;
+
+&lt;p&gt;EDIT: some relevant pieces of my config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mod Mod4
+bindsym $mod+4 workspace 4
+bindsym $mod+Shift+4 move container to workspace 4
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?comment=1437#comment-1437</link><description>Please provide your entire config to rule out any human mistakes. I don’t know a way to find the culprit application aside of killing processes until nothing is left.</description><pubDate>Mon, 18 Mar 2013 07:26:25 +0000</pubDate><guid>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?comment=1437#comment-1437</guid></item><item><title>Comment by mschaefer for &lt;p&gt;I can't seem to move any windows to workspace #4.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;mod+4&lt;/code&gt; works and all the other &lt;code&gt;mod+shift&lt;/code&gt; binds work.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to figure out what application is stealing this keybind?&lt;/p&gt;
+
+&lt;p&gt;EDIT: some relevant pieces of my config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mod Mod4
+bindsym $mod+4 workspace 4
+bindsym $mod+Shift+4 move container to workspace 4
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?comment=1427#comment-1427</link><description>Do you really have $mod+Shift+4 in your config? I think this cannot work because by pressing Shift, the 4 is exchanged by the special character lying on that key ($ on US layout keyboard). Maybe you try $mod+Shift+dollar (use xev to find out the symbolic names of keys).</description><pubDate>Sun, 17 Mar 2013 12:27:46 +0000</pubDate><guid>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?comment=1427#comment-1427</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;I can't seem to move any windows to workspace #4.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;mod+4&lt;/code&gt; works and all the other &lt;code&gt;mod+shift&lt;/code&gt; binds work.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to figure out what application is stealing this keybind?&lt;/p&gt;
+
+&lt;p&gt;EDIT: some relevant pieces of my config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mod Mod4
+bindsym $mod+4 workspace 4
+bindsym $mod+Shift+4 move container to workspace 4
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?comment=1433#comment-1433</link><description>Which version of i3 are you using? I remember that 3.* did not work for me either.</description><pubDate>Mon, 18 Mar 2013 06:51:33 +0000</pubDate><guid>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?comment=1433#comment-1433</guid></item><item><title>Comment by ppeev for &lt;p&gt;I can't seem to move any windows to workspace #4.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;mod+4&lt;/code&gt; works and all the other &lt;code&gt;mod+shift&lt;/code&gt; binds work.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to figure out what application is stealing this keybind?&lt;/p&gt;
+
+&lt;p&gt;EDIT: some relevant pieces of my config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mod Mod4
+bindsym $mod+4 workspace 4
+bindsym $mod+Shift+4 move container to workspace 4
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?comment=1475#comment-1475</link><description>@mschaefer: If this was the case moving containers to all workspaces would have been inpossible, because Shift+1234 = !@#$, and he said that only 4 does not work, which means that probably some other program is stealing the keypress.</description><pubDate>Sat, 23 Mar 2013 22:07:03 +0000</pubDate><guid>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?comment=1475#comment-1475</guid></item><item><title>Answer by Rasi for &lt;p&gt;I can't seem to move any windows to workspace #4.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;mod+4&lt;/code&gt; works and all the other &lt;code&gt;mod+shift&lt;/code&gt; binds work.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to figure out what application is stealing this keybind?&lt;/p&gt;
+
+&lt;p&gt;EDIT: some relevant pieces of my config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mod Mod4
+bindsym $mod+4 workspace 4
+bindsym $mod+Shift+4 move container to workspace 4
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?answer=1419#post-id-1419</link><description>it would be helpful to see your config :)</description><pubDate>Fri, 15 Mar 2013 18:28:54 +0000</pubDate><guid>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?answer=1419#post-id-1419</guid></item><item><title>Comment by joehillen for &lt;p&gt;it would be helpful to see your config :)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?comment=1420#comment-1420</link><description>What specifically would you like to see? It's not very far from the default. </description><pubDate>Fri, 15 Mar 2013 18:30:34 +0000</pubDate><guid>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?comment=1420#comment-1420</guid></item><item><title>Answer by ppeev for &lt;p&gt;I can't seem to move any windows to workspace #4.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;mod+4&lt;/code&gt; works and all the other &lt;code&gt;mod+shift&lt;/code&gt; binds work.&lt;/p&gt;
+
+&lt;p&gt;Is there any way to figure out what application is stealing this keybind?&lt;/p&gt;
+
+&lt;p&gt;EDIT: some relevant pieces of my config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mod Mod4
+bindsym $mod+4 workspace 4
+bindsym $mod+Shift+4 move container to workspace 4
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?answer=1476#post-id-1476</link><description>Try running xev in a terminal, see what keycode does 4 produce(it should be 13 on standard us keyboard) and put this line in your config:
+
+bindcode $mod+Shift+13 move container to workspace 4</description><pubDate>Sat, 23 Mar 2013 22:09:52 +0000</pubDate><guid>https://faq.i3wm.org/question/1415/modshift4-doesnt-work/?answer=1476#post-id-1476</guid></item></channel></rss>

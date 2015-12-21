@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6600/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 18 Sep 2015 19:31:47 +0000</lastBuildDate><item><title>Make error (missing header file)</title><link>https://faq.i3wm.org/question/6600/make-error-missing-header-file/</link><description>Since I am using CentOS 7, I don't believe I can `yum install i3` from the repository. So I am trying to build from source. I grabbed the `i3-4.10.4` tar ball. However when I run make, I am told there is no such header file even though I can see it.
+
+    [fervor@localhost i3-4.10.4]$ pwd
+    /home/fervor/Downloads/i3-4.10.4
+
+    [fervor@localhost i3-4.10.4]$ make
+
+    [libi3] CC libi3/get_process_filename.c
+    In file included from libi3/get_process_filename.c:20:0: 
+    include/libi3.h:16:21: fatal error: xcb/xcb.h: No such file or directory
+    #include &lt;xcb/xcb.h&gt;
+                     ^
+    compilation terminated.
+    make: *** [libi3/get_process_filename.o] Error 1
+
+    [fervor@localhost i3-4.10.4]$ ls include/ | grep xcb.h
+    xcb.h
+
+Any thoughts? Am I just ignorant?
+
+EDIT: Formatting</description><pubDate>Thu, 17 Sep 2015 16:33:34 +0000</pubDate><guid>https://faq.i3wm.org/question/6600/make-error-missing-header-file/</guid></item><item><title>Answer by Airblader for &lt;p&gt;Since I am using CentOS 7, I don't believe I can &lt;code&gt;yum install i3&lt;/code&gt; from the repository. So I am trying to build from source. I grabbed the &lt;code&gt;i3-4.10.4&lt;/code&gt; tar ball. However when I run make, I am told there is no such header file even though I can see it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[fervor@localhost i3-4.10.4]$ pwd
+/home/fervor/Downloads/i3-4.10.4
+
+[fervor@localhost i3-4.10.4]$ make
+
+[libi3] CC libi3/get_process_filename.c
+In file included from libi3/get_process_filename.c:20:0: 
+include/libi3.h:16:21: fatal error: xcb/xcb.h: No such file or directory
+#include &amp;lt;xcb/xcb.h&amp;gt;
+                 ^
+compilation terminated.
+make: *** [libi3/get_process_filename.o] Error 1
+
+[fervor@localhost i3-4.10.4]$ ls include/ | grep xcb.h
+xcb.h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any thoughts? Am I just ignorant?&lt;/p&gt;
+
+&lt;p&gt;EDIT: Formatting&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6600/make-error-missing-header-file/?answer=6601#post-id-6601</link><description> The `xcb.h` the compiler is looking for is not the `xcb.h` shipped by i3 (that's just unfortunate naming), but rather the XCB library. You need to find out what that package is called in your system and install it. You might have to repeat this process for other header files.
+
+Since CentOS seems to be based on Fedora, it may be these:
+
+    libxcb-devel xcb-util-keysyms-devel xcb-util-devel xcb-util-wm-devel yajl-devel libXrandr-devel startup-notification-devel libev-devel xcb-util-cursor-devel libXinerama-devel libxkbcommon-devel libxkbcommon-x11-devel pcre-devel pango-devel git gcc
+
+I also googled and found this: https://copr.fedoraproject.org/coprs/admiralnemo/i3wm-el7/</description><pubDate>Thu, 17 Sep 2015 16:49:40 +0000</pubDate><guid>https://faq.i3wm.org/question/6600/make-error-missing-header-file/?answer=6601#post-id-6601</guid></item><item><title>Comment by quantim for &lt;p&gt;The &lt;code&gt;xcb.h&lt;/code&gt; the compiler is looking for is not the &lt;code&gt;xcb.h&lt;/code&gt; shipped by i3 (that's just unfortunate naming), but rather the XCB library. You need to find out what that package is called in your system and install it. You might have to repeat this process for other header files.&lt;/p&gt;
+
+&lt;p&gt;Since CentOS seems to be based on Fedora, it may be these:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;libxcb-devel xcb-util-keysyms-devel xcb-util-devel xcb-util-wm-devel yajl-devel libXrandr-devel startup-notification-devel libev-devel xcb-util-cursor-devel libXinerama-devel libxkbcommon-devel libxkbcommon-x11-devel pcre-devel pango-devel git gcc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I also googled and found this: &lt;a href="https://copr.fedoraproject.org/coprs/admiralnemo/i3wm-el7/"&gt;https://copr.fedoraproject.org/coprs/...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6600/make-error-missing-header-file/?comment=6622#comment-6622</link><description>Thanks for your timely answer stranger.</description><pubDate>Fri, 18 Sep 2015 19:31:47 +0000</pubDate><guid>https://faq.i3wm.org/question/6600/make-error-missing-header-file/?comment=6622#comment-6622</guid></item></channel></rss>

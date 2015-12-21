@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4266/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 19 Jul 2014 22:35:33 +0000</lastBuildDate><item><title>assign steamchat to workspace</title><link>https://faq.i3wm.org/question/4266/assign-steamchat-to-workspace/</link><description>hello it's me again ;),
+
+i try to assign the steamchat window to my web workspace. If u open a steam chat the titel is something like `Username - Chat`, i tryed 
+
+    assign [instance="^Steam$"] [title="Chat$"] 2
+
+but it wont work.</description><pubDate>Wed, 16 Jul 2014 13:04:51 +0000</pubDate><guid>https://faq.i3wm.org/question/4266/assign-steamchat-to-workspace/</guid></item><item><title>Answer by tigrezno for &lt;p&gt;hello it's me again ;),&lt;/p&gt;
+
+&lt;p&gt;i try to assign the steamchat window to my web workspace. If u open a steam chat the titel is something like &lt;code&gt;Username - Chat&lt;/code&gt;, i tryed &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [instance="^Steam$"] [title="Chat$"] 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but it wont work.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4266/assign-steamchat-to-workspace/?answer=4289#post-id-4289</link><description>blendi, I deleted my previous answer because it didn't work. I've tried with **for_window** and it works:
+
+&lt;code&gt;for_window [title="(?i)chat$"] move to workspace 2&lt;/code&gt;
+
+</description><pubDate>Fri, 18 Jul 2014 17:18:30 +0000</pubDate><guid>https://faq.i3wm.org/question/4266/assign-steamchat-to-workspace/?answer=4289#post-id-4289</guid></item><item><title>Comment by blendi for &lt;p&gt;blendi, I deleted my previous answer because it didn't work. I've tried with &lt;strong&gt;for_window&lt;/strong&gt; and it works:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;for_window [title="(?i)chat$"] move to workspace 2&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4266/assign-steamchat-to-workspace/?comment=4303#comment-4303</link><description>thx and sry for late reaction.</description><pubDate>Sat, 19 Jul 2014 22:35:33 +0000</pubDate><guid>https://faq.i3wm.org/question/4266/assign-steamchat-to-workspace/?comment=4303#comment-4303</guid></item><item><title>Answer by tigrezno for &lt;p&gt;hello it's me again ;),&lt;/p&gt;
+
+&lt;p&gt;i try to assign the steamchat window to my web workspace. If u open a steam chat the titel is something like &lt;code&gt;Username - Chat&lt;/code&gt;, i tryed &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [instance="^Steam$"] [title="Chat$"] 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but it wont work.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4266/assign-steamchat-to-workspace/?answer=4270#post-id-4270</link><description>I put all my steam windows in the "steam" workspace with:
+
+&lt;code&gt;assign [class="(?i)steam"] steam&lt;/code&gt;
+
+I think that if you only want to move chat windows, this should work:
+
+&lt;code&gt;assign [title="(?i)- Chat"] 2&lt;/code&gt;
+
+And remember to restart steam.</description><pubDate>Wed, 16 Jul 2014 22:42:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4266/assign-steamchat-to-workspace/?answer=4270#post-id-4270</guid></item></channel></rss>

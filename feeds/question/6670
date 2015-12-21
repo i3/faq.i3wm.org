@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6670/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 01 Oct 2015 08:19:59 +0000</lastBuildDate><item><title>complex command with exec</title><link>https://faq.i3wm.org/question/6670/complex-command-with-exec/</link><description> I'm trying to understand why the following command does not work with i3: 
+
+    bindsym plus           exec xrandr --output LVDS1 --brightness "$(xrandr --current --verbose | grep brightness | awk -F: '{if($2&gt;0.9){print(1.0)}else{print($2+0.1)}}')"
+
+My i3 version is latest: 4.10.4
+
+I've also tried
+
+    bindsym plus exec "xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep brightness | awk -F: '{if($2&gt;0.9){print(1.0)}else{print($2+0.1)}}')"
+
+As per @Airblader's suggestion, I also extracted the command into a separate script: /home/me/.i3/bi.sh
+
+    #!/bin/bash
+    xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep brightness | awk -F: '{if($2&gt;0.9){print(1.0)}else{print($2+0.1)}}')
+
+and have the following line in my .i3/config:
+
+    bindsym plus           exec /home/me/.i3/bi.sh 
+
+but no luck still. Can anyone tell me what I'm doing wrong? 
+</description><pubDate>Wed, 23 Sep 2015 17:11:19 +0000</pubDate><guid>https://faq.i3wm.org/question/6670/complex-command-with-exec/</guid></item><item><title>Comment by YetAnotherAccount for &lt;p&gt;I'm trying to understand why the following command does not work with i3: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus           exec xrandr --output LVDS1 --brightness "$(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My i3 version is latest: 4.10.4&lt;/p&gt;
+
+&lt;p&gt;I've also tried&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus exec "xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As per &lt;a href="/users/24653/airblader/"&gt;@airblader&lt;/a&gt;'s suggestion, I also extracted the command into a separate script: /home/me/.i3/bi.sh&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and have the following line in my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus           exec /home/me/.i3/bi.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but no luck still. Can anyone tell me what I'm doing wrong? &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6670/complex-command-with-exec/?comment=6760#comment-6760</link><description>ah I see. Well I'm beginning to think that I'm not my brightness is not as much as I used to think..</description><pubDate>Thu, 01 Oct 2015 08:19:59 +0000</pubDate><guid>https://faq.i3wm.org/question/6670/complex-command-with-exec/?comment=6760#comment-6760</guid></item><item><title>Comment by Airblader for &lt;p&gt;I'm trying to understand why the following command does not work with i3: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus           exec xrandr --output LVDS1 --brightness "$(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My i3 version is latest: 4.10.4&lt;/p&gt;
+
+&lt;p&gt;I've also tried&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus exec "xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As per &lt;a href="/users/24653/airblader/"&gt;@airblader&lt;/a&gt;'s suggestion, I also extracted the command into a separate script: /home/me/.i3/bi.sh&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and have the following line in my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus           exec /home/me/.i3/bi.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but no luck still. Can anyone tell me what I'm doing wrong? &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6670/complex-command-with-exec/?comment=6673#comment-6673</link><description>Good to hear you figured it out. exec just passes the command to /bin/sh, by the way. :)</description><pubDate>Thu, 24 Sep 2015 09:05:35 +0000</pubDate><guid>https://faq.i3wm.org/question/6670/complex-command-with-exec/?comment=6673#comment-6673</guid></item><item><title>Comment by YetAnotherAccount for &lt;p&gt;I'm trying to understand why the following command does not work with i3: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus           exec xrandr --output LVDS1 --brightness "$(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My i3 version is latest: 4.10.4&lt;/p&gt;
+
+&lt;p&gt;I've also tried&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus exec "xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As per &lt;a href="/users/24653/airblader/"&gt;@airblader&lt;/a&gt;'s suggestion, I also extracted the command into a separate script: /home/me/.i3/bi.sh&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and have the following line in my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus           exec /home/me/.i3/bi.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but no luck still. Can anyone tell me what I'm doing wrong? &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6670/complex-command-with-exec/?comment=6672#comment-6672</link><description>I feel stupid but it appears that i3 runs exec in bash -c, where aliases don't work. (I had `alias grep=grep -i`). `exec xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep Brightness | awk -F: '{if($2&gt;0.9){print(1.0)}else{print($2+0.1)}}')` works fine (brigthness-&gt;Brigthness).</description><pubDate>Thu, 24 Sep 2015 03:52:24 +0000</pubDate><guid>https://faq.i3wm.org/question/6670/complex-command-with-exec/?comment=6672#comment-6672</guid></item><item><title>Comment by Airblader for &lt;p&gt;I'm trying to understand why the following command does not work with i3: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus           exec xrandr --output LVDS1 --brightness "$(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My i3 version is latest: 4.10.4&lt;/p&gt;
+
+&lt;p&gt;I've also tried&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus exec "xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As per &lt;a href="/users/24653/airblader/"&gt;@airblader&lt;/a&gt;'s suggestion, I also extracted the command into a separate script: /home/me/.i3/bi.sh&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+xrandr --output LVDS1 --brightness $(xrandr --current --verbose | grep brightness | awk -F: '{if($2&amp;gt;0.9){print(1.0)}else{print($2+0.1)}}')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and have the following line in my .i3/config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym plus           exec /home/me/.i3/bi.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but no luck still. Can anyone tell me what I'm doing wrong? &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6670/complex-command-with-exec/?comment=6671#comment-6671</link><description>a) Does binding another command ("exec i3-nagbar") work for "bindsym plus"? b) Does the script work if you call it from the command line?</description><pubDate>Wed, 23 Sep 2015 19:26:52 +0000</pubDate><guid>https://faq.i3wm.org/question/6670/complex-command-with-exec/?comment=6671#comment-6671</guid></item></channel></rss>

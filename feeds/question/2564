@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2564/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 04 May 2014 13:56:11 +0000</lastBuildDate><item><title>Can't open matlab from dmenu</title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/</link><description>Hi
+I'm pretty new to i3, but danm i have to say i love it! 
+
+But i've faced a problem, i can't open matlab through the dmenu, but if i open the terminal and type in matlab i works like a charm. 
+
+Is it possible to open it from dmenu or do i have to open it through terminal ?
+
+Thanks in advance! </description><pubDate>Sun, 22 Sep 2013 14:43:20 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/</guid></item><item><title>Answer by joepd for &lt;p&gt;Hi
+I'm pretty new to i3, but danm i have to say i love it! &lt;/p&gt;
+
+&lt;p&gt;But i've faced a problem, i can't open matlab through the dmenu, but if i open the terminal and type in matlab i works like a charm. &lt;/p&gt;
+
+&lt;p&gt;Is it possible to open it from dmenu or do i have to open it through terminal ?&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance! &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?answer=2565#post-id-2565</link><description>You mean ``dmenu_run``, I suppose? Start ``dmenu_run`` from the command line, and see if there is some error. 
+
+One possibility is that the cache file that ``dmenu_run`` uses internally, somehow has not updated itself to include this application. If so, deleting the cache file will cause it to be regenerated. Look at ``less $(which dmenu_run)`` to find the location of this cache file. 
+
+If not, check if the binary is in $PATH as dmenu_run sees it. 
+
+Good luck! </description><pubDate>Sun, 22 Sep 2013 18:27:07 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?answer=2565#post-id-2565</guid></item><item><title>Comment by adder for &lt;p&gt;You mean &lt;code&gt;dmenu_run&lt;/code&gt;, I suppose? Start &lt;code&gt;dmenu_run&lt;/code&gt; from the command line, and see if there is some error. &lt;/p&gt;
+
+&lt;p&gt;One possibility is that the cache file that &lt;code&gt;dmenu_run&lt;/code&gt; uses internally, somehow has not updated itself to include this application. If so, deleting the cache file will cause it to be regenerated. Look at &lt;code&gt;less $(which dmenu_run)&lt;/code&gt; to find the location of this cache file. &lt;/p&gt;
+
+&lt;p&gt;If not, check if the binary is in $PATH as dmenu_run sees it. &lt;/p&gt;
+
+&lt;p&gt;Good luck! &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=3145#comment-3145</link><description>The underscores are not showing for some reason in the comments. There are underscores between JAVA and AWT and WM and NONREPARENTING and also between MATLAB and JAVA (in my comment above)</description><pubDate>Wed, 01 Jan 2014 18:13:26 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=3145#comment-3145</guid></item><item><title>Comment by joepd for &lt;p&gt;You mean &lt;code&gt;dmenu_run&lt;/code&gt;, I suppose? Start &lt;code&gt;dmenu_run&lt;/code&gt; from the command line, and see if there is some error. &lt;/p&gt;
+
+&lt;p&gt;One possibility is that the cache file that &lt;code&gt;dmenu_run&lt;/code&gt; uses internally, somehow has not updated itself to include this application. If so, deleting the cache file will cause it to be regenerated. Look at &lt;code&gt;less $(which dmenu_run)&lt;/code&gt; to find the location of this cache file. &lt;/p&gt;
+
+&lt;p&gt;If not, check if the binary is in $PATH as dmenu_run sees it. &lt;/p&gt;
+
+&lt;p&gt;Good luck! &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=2630#comment-2630</link><description>To find out what happens, make `dmenu_run` do some logging. In my version that would be `| ${SHELL:-/bin/sh} &gt;tmp/dmenu_log 2&gt;&amp;1 &amp;`. Maybe write a line in dmenu_run to the effect of `env &gt;&gt; tmp/dmenu_env`, as I suspect the error to be in the environment not completely set. </description><pubDate>Sun, 29 Sep 2013 19:43:30 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=2630#comment-2630</guid></item><item><title>Comment by joepd for &lt;p&gt;You mean &lt;code&gt;dmenu_run&lt;/code&gt;, I suppose? Start &lt;code&gt;dmenu_run&lt;/code&gt; from the command line, and see if there is some error. &lt;/p&gt;
+
+&lt;p&gt;One possibility is that the cache file that &lt;code&gt;dmenu_run&lt;/code&gt; uses internally, somehow has not updated itself to include this application. If so, deleting the cache file will cause it to be regenerated. Look at &lt;code&gt;less $(which dmenu_run)&lt;/code&gt; to find the location of this cache file. &lt;/p&gt;
+
+&lt;p&gt;If not, check if the binary is in $PATH as dmenu_run sees it. &lt;/p&gt;
+
+&lt;p&gt;Good luck! &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=2631#comment-2631</link><description>BTW: What symbolic link? </description><pubDate>Sun, 29 Sep 2013 19:46:48 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=2631#comment-2631</guid></item><item><title>Comment by nicvan for &lt;p&gt;You mean &lt;code&gt;dmenu_run&lt;/code&gt;, I suppose? Start &lt;code&gt;dmenu_run&lt;/code&gt; from the command line, and see if there is some error. &lt;/p&gt;
+
+&lt;p&gt;One possibility is that the cache file that &lt;code&gt;dmenu_run&lt;/code&gt; uses internally, somehow has not updated itself to include this application. If so, deleting the cache file will cause it to be regenerated. Look at &lt;code&gt;less $(which dmenu_run)&lt;/code&gt; to find the location of this cache file. &lt;/p&gt;
+
+&lt;p&gt;If not, check if the binary is in $PATH as dmenu_run sees it. &lt;/p&gt;
+
+&lt;p&gt;Good luck! &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=2625#comment-2625</link><description>Sorry for the late answer. 
+Deleting the cahce doesn't help anything. But if i run the dmenu_run from terminal and then tries to open matlab from the dmenu_run it works like a charm. 
+
+Does change anything that I had to create a symbolic link for maltab?</description><pubDate>Sat, 28 Sep 2013 12:24:45 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=2625#comment-2625</guid></item><item><title>Comment by joepd for &lt;p&gt;You mean &lt;code&gt;dmenu_run&lt;/code&gt;, I suppose? Start &lt;code&gt;dmenu_run&lt;/code&gt; from the command line, and see if there is some error. &lt;/p&gt;
+
+&lt;p&gt;One possibility is that the cache file that &lt;code&gt;dmenu_run&lt;/code&gt; uses internally, somehow has not updated itself to include this application. If so, deleting the cache file will cause it to be regenerated. Look at &lt;code&gt;less $(which dmenu_run)&lt;/code&gt; to find the location of this cache file. &lt;/p&gt;
+
+&lt;p&gt;If not, check if the binary is in $PATH as dmenu_run sees it. &lt;/p&gt;
+
+&lt;p&gt;Good luck! &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=2639#comment-2639</link><description>Aight... my Bigger Than signs got eaten by this site. For a solution: Add the directory where the executable of matlab lives to your PATH. </description><pubDate>Wed, 02 Oct 2013 18:54:46 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=2639#comment-2639</guid></item><item><title>Comment by adder for &lt;p&gt;You mean &lt;code&gt;dmenu_run&lt;/code&gt;, I suppose? Start &lt;code&gt;dmenu_run&lt;/code&gt; from the command line, and see if there is some error. &lt;/p&gt;
+
+&lt;p&gt;One possibility is that the cache file that &lt;code&gt;dmenu_run&lt;/code&gt; uses internally, somehow has not updated itself to include this application. If so, deleting the cache file will cause it to be regenerated. Look at &lt;code&gt;less $(which dmenu_run)&lt;/code&gt; to find the location of this cache file. &lt;/p&gt;
+
+&lt;p&gt;If not, check if the binary is in $PATH as dmenu_run sees it. &lt;/p&gt;
+
+&lt;p&gt;Good luck! &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=3144#comment-3144</link><description>I have found the solution I added export MATLAB_JAVA=/path/to/javaroot/jre and export JAVA_AWT_WM_NONREPARENTING=1, before the line that executes the actual matlab executable</description><pubDate>Wed, 01 Jan 2014 18:10:33 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=3144#comment-3144</guid></item><item><title>Comment by nicvan for &lt;p&gt;You mean &lt;code&gt;dmenu_run&lt;/code&gt;, I suppose? Start &lt;code&gt;dmenu_run&lt;/code&gt; from the command line, and see if there is some error. &lt;/p&gt;
+
+&lt;p&gt;One possibility is that the cache file that &lt;code&gt;dmenu_run&lt;/code&gt; uses internally, somehow has not updated itself to include this application. If so, deleting the cache file will cause it to be regenerated. Look at &lt;code&gt;less $(which dmenu_run)&lt;/code&gt; to find the location of this cache file. &lt;/p&gt;
+
+&lt;p&gt;If not, check if the binary is in $PATH as dmenu_run sees it. &lt;/p&gt;
+
+&lt;p&gt;Good luck! &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=2638#comment-2638</link><description>could not make the command working, it just says: bash: syntax error near unexpected token ';&amp;'
+
+When i installed matlab i had to go to the path where it's installed and open the file there, so i had to make a symbolic link so i just should type matlab in the terminal to open it.</description><pubDate>Tue, 01 Oct 2013 19:16:59 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?comment=2638#comment-2638</guid></item><item><title>Answer by nicvan for &lt;p&gt;Hi
+I'm pretty new to i3, but danm i have to say i love it! &lt;/p&gt;
+
+&lt;p&gt;But i've faced a problem, i can't open matlab through the dmenu, but if i open the terminal and type in matlab i works like a charm. &lt;/p&gt;
+
+&lt;p&gt;Is it possible to open it from dmenu or do i have to open it through terminal ?&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance! &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?answer=2624#post-id-2624</link><description>Sorry for the late answer. 
+Deleting the cahce doesn't help anything. But if i run the dmenu_run from terminal and then tries to open matlab from the dmenu_run it works like a charm. 
+
+Does change anything that I had to create a symbolic link for maltab?</description><pubDate>Sat, 28 Sep 2013 12:22:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?answer=2624#post-id-2624</guid></item><item><title>Answer by nicvan for &lt;p&gt;Hi
+I'm pretty new to i3, but danm i have to say i love it! &lt;/p&gt;
+
+&lt;p&gt;But i've faced a problem, i can't open matlab through the dmenu, but if i open the terminal and type in matlab i works like a charm. &lt;/p&gt;
+
+&lt;p&gt;Is it possible to open it from dmenu or do i have to open it through terminal ?&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance! &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?answer=3765#post-id-3765</link><description>I kinda forgot about this thread
+But i found a solution for the problem.
+In /usr/bin make a script named matlab that contains this:
+
+    !#/bin/bash
+    /usr/local/MATLAB/R2014a/bin/matlab -desktop`
+
+make it executables:
+    `chmod a+x matlab`
+
+not you should be able to run matlab from dmenu</description><pubDate>Sun, 04 May 2014 13:56:11 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?answer=3765#post-id-3765</guid></item><item><title>Answer by adder for &lt;p&gt;Hi
+I'm pretty new to i3, but danm i have to say i love it! &lt;/p&gt;
+
+&lt;p&gt;But i've faced a problem, i can't open matlab through the dmenu, but if i open the terminal and type in matlab i works like a charm. &lt;/p&gt;
+
+&lt;p&gt;Is it possible to open it from dmenu or do i have to open it through terminal ?&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance! &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?answer=3143#post-id-3143</link><description>I have issues with matlab and dmenu too. I could not launch matlab from dmenu. I partially solved the issue by putting an one-line shell script in my PATH with the line: /path/to/matlab -desktop.
+Now, the strange thing:
+If I have a window open (like an xterm) in the current workspace, then launching the above script with dmenu starts up matlab fine (albeit, in half the screen). Then I can move the matlab to a new workspace on its own.
+But, if I launch the above script on an empty workspace, matlab doesn't start properly and I only get a grey window.</description><pubDate>Wed, 01 Jan 2014 17:40:59 +0000</pubDate><guid>https://faq.i3wm.org/question/2564/cant-open-matlab-from-dmenu/?answer=3143#post-id-3143</guid></item></channel></rss>

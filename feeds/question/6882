@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6882/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 10 Oct 2015 16:00:13 +0000</lastBuildDate><item><title>i3-sensible-terminal; execution result differs from shortcut to terminal</title><link>https://faq.i3wm.org/question/6882/i3-sensible-terminal-execution-result-differs-from-shortcut-to-terminal/</link><description> Hello.
+
+in my i3 config, i have the line
+
+    bindsym $win+Return exec i3-sensible-terminal
+
+when i execute that shortcut, it executes xfce4-terminal (my former default terminal, which i want no longer to be default)
+
+when i execute `i3-sensible-terminal` in my terminal, it launches konsole, which is expected.
+
+the Terminal environment variable seems also properly set.
+
+    % env | grep TERMINAL
+    TERMINAL=konsole
+
+$TERMINAL is set by zshenv:
+
+    export TERMINAL=konsole
+
+
+any ideas?
+
+
+
+</description><pubDate>Sat, 10 Oct 2015 11:02:41 +0000</pubDate><guid>https://faq.i3wm.org/question/6882/i3-sensible-terminal-execution-result-differs-from-shortcut-to-terminal/</guid></item><item><title>Comment by toogley for &lt;p&gt;Hello.&lt;/p&gt;
+
+&lt;p&gt;in my i3 config, i have the line&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $win+Return exec i3-sensible-terminal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;when i execute that shortcut, it executes xfce4-terminal (my former default terminal, which i want no longer to be default)&lt;/p&gt;
+
+&lt;p&gt;when i execute &lt;code&gt;i3-sensible-terminal&lt;/code&gt; in my terminal, it launches konsole, which is expected.&lt;/p&gt;
+
+&lt;p&gt;the Terminal environment variable seems also properly set.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% env | grep TERMINAL
+TERMINAL=konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$TERMINAL is set by zshenv:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export TERMINAL=konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;any ideas?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6882/i3-sensible-terminal-execution-result-differs-from-shortcut-to-terminal/?comment=6888#comment-6888</link><description>Thanks, i added the export variable to .xsession and now it starts correctly. But, now i have two separate TERMINAL definitions, in .xsession and /etc/zshenv. is there a global file i can use for my environment variables that will recognized by all programs, including i3?</description><pubDate>Sat, 10 Oct 2015 16:00:13 +0000</pubDate><guid>https://faq.i3wm.org/question/6882/i3-sensible-terminal-execution-result-differs-from-shortcut-to-terminal/?comment=6888#comment-6888</guid></item><item><title>Comment by tigrezno for &lt;p&gt;Hello.&lt;/p&gt;
+
+&lt;p&gt;in my i3 config, i have the line&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $win+Return exec i3-sensible-terminal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;when i execute that shortcut, it executes xfce4-terminal (my former default terminal, which i want no longer to be default)&lt;/p&gt;
+
+&lt;p&gt;when i execute &lt;code&gt;i3-sensible-terminal&lt;/code&gt; in my terminal, it launches konsole, which is expected.&lt;/p&gt;
+
+&lt;p&gt;the Terminal environment variable seems also properly set.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% env | grep TERMINAL
+TERMINAL=konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$TERMINAL is set by zshenv:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export TERMINAL=konsole
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;any ideas?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6882/i3-sensible-terminal-execution-result-differs-from-shortcut-to-terminal/?comment=6885#comment-6885</link><description>have you restarted your X session? The environment i3 see when it was launched is different than your current modified environment.</description><pubDate>Sat, 10 Oct 2015 12:54:18 +0000</pubDate><guid>https://faq.i3wm.org/question/6882/i3-sensible-terminal-execution-result-differs-from-shortcut-to-terminal/?comment=6885#comment-6885</guid></item></channel></rss>

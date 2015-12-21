@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5447/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 07 Mar 2015 00:07:40 +0000</lastBuildDate><item><title>How to match ipython window</title><link>https://faq.i3wm.org/question/5447/how-to-match-ipython-window/</link><description>Hello,
+
+I'm trying to load an i3 layout that includes an ipython3 qtconsole window. The relevant part of the layout definition is:
+
+    {
+        "border": "normal",
+        "floating": "auto_off",
+        "geometry": {
+           "height": 510,
+           "width": 761,
+           "x": 0,
+           "y": 0
+        },
+        "name": "IPython",
+        "percent": 0.391100702576112,
+        "swallows": [
+           {
+            "title": "^IPython$"
+           }
+        ],
+        "type": "con"
+    }
+
+I'm starting the application like this:
+
+    i3-msg "workspace 1; append_layout ${HOME}/.i3/workspace-1.json"
+    emacs &amp;
+    icedove &amp;
+    iceweasel &amp;
+    ipython3 qtconsole &amp;
+
+..and xprop says about the Ipython window:
+
+    $ xprop
+    [...]
+    WM_NAME(STRING) = "IPython"
+    WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+    WM_CLASS(STRING) = "", ""
+    WM_HINTS(WM_HINTS):
+    		Client accepts input or input focus: True
+    		Initial state is Normal State.
+    		bitmap id # to use for icon: 0x260000d
+    		window id # of group leader: 0x2600007
+    WM_NORMAL_HINTS(WM_SIZE_HINTS):
+    		program specified minimum size: 125 by 109
+    		window gravity: NorthWest
+    WM_CLIENT_MACHINE(STRING) = "nelarikon"
+    WM_COMMAND(STRING) = {  }
+
+but the window never seems to get placed into its designated position.
+
+What am I doing wrong?</description><pubDate>Fri, 13 Feb 2015 00:30:14 +0000</pubDate><guid>https://faq.i3wm.org/question/5447/how-to-match-ipython-window/</guid></item><item><title>Answer by Nikolaus Rath for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I'm trying to load an i3 layout that includes an ipython3 qtconsole window. The relevant part of the layout definition is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    "border": "normal",
+    "floating": "auto_off",
+    "geometry": {
+       "height": 510,
+       "width": 761,
+       "x": 0,
+       "y": 0
+    },
+    "name": "IPython",
+    "percent": 0.391100702576112,
+    "swallows": [
+       {
+        "title": "^IPython$"
+       }
+    ],
+    "type": "con"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm starting the application like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg "workspace 1; append_layout ${HOME}/.i3/workspace-1.json"
+emacs &amp;amp;
+icedove &amp;amp;
+iceweasel &amp;amp;
+ipython3 qtconsole &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;..and xprop says about the Ipython window:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xprop
+[...]
+WM_NAME(STRING) = "IPython"
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLASS(STRING) = "", ""
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: True
+        Initial state is Normal State.
+        bitmap id # to use for icon: 0x260000d
+        window id # of group leader: 0x2600007
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        program specified minimum size: 125 by 109
+        window gravity: NorthWest
+WM_CLIENT_MACHINE(STRING) = "nelarikon"
+WM_COMMAND(STRING) = {  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but the window never seems to get placed into its designated position.&lt;/p&gt;
+
+&lt;p&gt;What am I doing wrong?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5447/how-to-match-ipython-window/?answer=5580#post-id-5580</link><description>I've reported this as [issue 1526](https://github.com/i3/i3/issues/1526), and it seems that a workaround is to use something other than `IPython` for the `name` entry. Very odd.</description><pubDate>Sat, 07 Mar 2015 00:07:40 +0000</pubDate><guid>https://faq.i3wm.org/question/5447/how-to-match-ipython-window/?answer=5580#post-id-5580</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I'm trying to load an i3 layout that includes an ipython3 qtconsole window. The relevant part of the layout definition is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    "border": "normal",
+    "floating": "auto_off",
+    "geometry": {
+       "height": 510,
+       "width": 761,
+       "x": 0,
+       "y": 0
+    },
+    "name": "IPython",
+    "percent": 0.391100702576112,
+    "swallows": [
+       {
+        "title": "^IPython$"
+       }
+    ],
+    "type": "con"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm starting the application like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg "workspace 1; append_layout ${HOME}/.i3/workspace-1.json"
+emacs &amp;amp;
+icedove &amp;amp;
+iceweasel &amp;amp;
+ipython3 qtconsole &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;..and xprop says about the Ipython window:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xprop
+[...]
+WM_NAME(STRING) = "IPython"
+WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+WM_CLASS(STRING) = "", ""
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: True
+        Initial state is Normal State.
+        bitmap id # to use for icon: 0x260000d
+        window id # of group leader: 0x2600007
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        program specified minimum size: 125 by 109
+        window gravity: NorthWest
+WM_CLIENT_MACHINE(STRING) = "nelarikon"
+WM_COMMAND(STRING) = {  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but the window never seems to get placed into its designated position.&lt;/p&gt;
+
+&lt;p&gt;What am I doing wrong?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5447/how-to-match-ipython-window/?answer=5448#post-id-5448</link><description>Have you tried "class": "^Qtconsoleapp\\.py$"</description><pubDate>Fri, 13 Feb 2015 00:47:04 +0000</pubDate><guid>https://faq.i3wm.org/question/5447/how-to-match-ipython-window/?answer=5448#post-id-5448</guid></item><item><title>Comment by Nikolaus Rath for &lt;p&gt;Have you tried "class": "^Qtconsoleapp\.py$"&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5447/how-to-match-ipython-window/?comment=5456#comment-5456</link><description>That just gives "lexical error: inside a string, '\' occurs before a character which it may not." If I replace \. with just ., it still does not work.</description><pubDate>Fri, 13 Feb 2015 17:17:54 +0000</pubDate><guid>https://faq.i3wm.org/question/5447/how-to-match-ipython-window/?comment=5456#comment-5456</guid></item><item><title>Comment by Gamonics for &lt;p&gt;Have you tried "class": "^Qtconsoleapp\.py$"&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5447/how-to-match-ipython-window/?comment=5468#comment-5468</link><description>Where should the "class": "^Qtconsoleapp\.py$" be placed? In the json file?</description><pubDate>Sat, 14 Feb 2015 23:45:40 +0000</pubDate><guid>https://faq.i3wm.org/question/5447/how-to-match-ipython-window/?comment=5468#comment-5468</guid></item></channel></rss>

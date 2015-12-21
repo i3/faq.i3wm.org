@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/490/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 21 Oct 2012 22:28:44 +0000</lastBuildDate><item><title>Using Caps Lock as mod key</title><link>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/</link><description>I would like to use Caps Lock as my mod key. The only reference to Caps Lock I can find is in the User Guide:
+
+*Unlike other window managers, i3 can use Mode_switch as a modifier. This allows you to remap capslock (for example) to Mode_switch and use it for both: typing umlauts or special characters and having some comfortably reachable key bindings. For example, when typing, capslock+1 or capslock+2 for switching workspaces is totally convenient. Try it :-).*
+
+But I still don't understand how it can be accomplished. So how can I do it?</description><pubDate>Thu, 13 Sep 2012 23:41:32 +0000</pubDate><guid>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/</guid></item><item><title>Answer by Licaon_Kter for &lt;p&gt;I would like to use Caps Lock as my mod key. The only reference to Caps Lock I can find is in the User Guide:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Unlike other window managers, i3 can use Mode_switch as a modifier. This allows you to remap capslock (for example) to Mode_switch and use it for both: typing umlauts or special characters and having some comfortably reachable key bindings. For example, when typing, capslock+1 or capslock+2 for switching workspaces is totally convenient. Try it :-).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;But I still don't understand how it can be accomplished. So how can I do it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?answer=670#post-id-670</link><description>I have an issue regarding the use of CapsLock as a $mod4 modifier.  
+
+**~/.i3/config**: http://pastebin.com/q0nB4Vn0
+
+**~/.Xmodmap**:
+
+    clear Lock
+    keycode 66 = Hyper_L
+    add mod4 = Hyper_L
+
+**xmodmap -pm**:
+
+    xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+    
+    shift       Shift_L (0x32),  Shift_R (0x3e)
+    lock      
+    control     Control_L (0x25),  Control_R (0x69)
+    mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+    mod2        Num_Lock (0x4d)
+    mod3      
+    mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+    mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+
+And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):
+
+    caps+2 - switch to workspace 2
+    caps+1 - switch to workspace 1
+    caps+shift+2 - nothing happens
+    win+shift+2 - window is moved to workspace 2
+    caps+2 - switch to workspace 2
+    caps+shift+1 - window is moved to workspace 1
+    caps+1 - switch to workspace 1
+    caps+shift+2 - nothing happens
+    win+shift+2 - window is moved to workspace 2
+    ...
+
+Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.
+
+Any idea?</description><pubDate>Sun, 21 Oct 2012 13:33:46 +0000</pubDate><guid>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?answer=670#post-id-670</guid></item><item><title>Comment by Michael for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod4 modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?comment=672#comment-672</link><description>Please post this as a separate question (otherwise people won’t read it). I will delete it afterwards.</description><pubDate>Sun, 21 Oct 2012 15:41:44 +0000</pubDate><guid>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?comment=672#comment-672</guid></item><item><title>Comment by Licaon_Kter for &lt;p&gt;I have an issue regarding the use of CapsLock as a $mod4 modifier.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.i3/config&lt;/strong&gt;: &lt;a href="http://pastebin.com/q0nB4Vn0"&gt;http://pastebin.com/q0nB4Vn0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;~/.Xmodmap&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;xmodmap -pm&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock      
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Hyper_L (0x42),  Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this works OK most of the time, unless I want to move a window ( like the only window in this workspace ) to a different workspace. It goes like this ( workspace 1 has only one window say Opera, workspace 2 empty/not existent ):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;caps+2 - switch to workspace 2
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+caps+2 - switch to workspace 2
+caps+shift+1 - window is moved to workspace 1
+caps+1 - switch to workspace 1
+caps+shift+2 - nothing happens
+win+shift+2 - window is moved to workspace 2
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically Winkey always works, but CapsLock works only if the last move was done with Winkey. Workspace number or move order does not matter afaics.&lt;/p&gt;
+
+&lt;p&gt;Any idea?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?comment=677#comment-677</link><description>done: http://faq.i3wm.org/question/676/using-capslock-as-a-mod-modifier-issue/</description><pubDate>Sun, 21 Oct 2012 22:28:44 +0000</pubDate><guid>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?comment=677#comment-677</guid></item><item><title>Answer by moemoe for &lt;p&gt;I would like to use Caps Lock as my mod key. The only reference to Caps Lock I can find is in the User Guide:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Unlike other window managers, i3 can use Mode_switch as a modifier. This allows you to remap capslock (for example) to Mode_switch and use it for both: typing umlauts or special characters and having some comfortably reachable key bindings. For example, when typing, capslock+1 or capslock+2 for switching workspaces is totally convenient. Try it :-).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;But I still don't understand how it can be accomplished. So how can I do it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?answer=491#post-id-491</link><description>    &gt; cat .Xmodmap
+    clear Lock 
+    keycode 66 = Hyper_L
+    add mod4 = Hyper_L
+
+then run
+
+     xmodmap ~/.Xmodmap
+
+and use mod4 in your config</description><pubDate>Thu, 13 Sep 2012 23:49:48 +0000</pubDate><guid>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?answer=491#post-id-491</guid></item><item><title>Comment by SuprDewd for &lt;pre&gt;&lt;code&gt;&amp;gt; cat .Xmodmap
+clear Lock 
+keycode 66 = Hyper_L
+add mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;then run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; xmodmap ~/.Xmodmap
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and use mod4 in your config&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?comment=492#comment-492</link><description>Thanks! Works perfectly.</description><pubDate>Thu, 13 Sep 2012 23:54:02 +0000</pubDate><guid>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?comment=492#comment-492</guid></item><item><title>Answer by jney for &lt;p&gt;I would like to use Caps Lock as my mod key. The only reference to Caps Lock I can find is in the User Guide:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Unlike other window managers, i3 can use Mode_switch as a modifier. This allows you to remap capslock (for example) to Mode_switch and use it for both: typing umlauts or special characters and having some comfortably reachable key bindings. For example, when typing, capslock+1 or capslock+2 for switching workspaces is totally convenient. Try it :-).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;But I still don't understand how it can be accomplished. So how can I do it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?answer=557#post-id-557</link><description>I just need some more precision.
+I'd like `Cap Locks` key to be the _only_ one modifier.
+I set `Cap Locks` as `Alt_R` (i don't have any right ALT on my laptop).
+Here is `~/.Xmodmap` file :
+
+    clear Lock
+    clear Mod4
+    keycode 66 = Alt_R
+    add Mod4 = Alt_R
+
+the `xmodmap` config is :
+
+    # xmodmap -pm
+    xmodmap:  up to 2 keys per modifier, (keycodes in parentheses):
+    
+    shift       Shift_L (0x32),  Shift_R (0x3e)
+    lock      
+    control     Control_L (0x25),  Control_R (0x69)
+    mod1        Alt_L (0x40),  Meta_L (0xcd)
+    mod2        Num_Lock (0x4d)
+    mod3      
+    mod4        Alt_R (0x42)
+    mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+
+Now, `Cap Locks` works, but `Win` keys still works too..
+
+Is there a way to accomplish it ? </description><pubDate>Wed, 26 Sep 2012 19:06:35 +0000</pubDate><guid>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?answer=557#post-id-557</guid></item><item><title>Answer by loblik for &lt;p&gt;I would like to use Caps Lock as my mod key. The only reference to Caps Lock I can find is in the User Guide:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Unlike other window managers, i3 can use Mode_switch as a modifier. This allows you to remap capslock (for example) to Mode_switch and use it for both: typing umlauts or special characters and having some comfortably reachable key bindings. For example, when typing, capslock+1 or capslock+2 for switching workspaces is totally convenient. Try it :-).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;But I still don't understand how it can be accomplished. So how can I do it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?answer=493#post-id-493</link><description>It has been already answered but just to be more clear. There is a table in Xorg which contains mappings between keycodes (what keyboard generates) and keysyms (what you see on screen). And this table can be edited by utility called xmodmap.
+
+For example  i have switched Escape and CapsLock to make life easier in vim and other vim-like apps. 
+
+
+At first write desired keymap changes to a file.
+
+~/.xmodmap
+
+    remove Lock = Caps_Lock
+    keysym Escape = Caps_Lock
+    keysym Caps_Lock = Escape
+    add Lock = Caps_Lock
+
+
+And load that file via xmodmap every time you start X.
+
+~/.xinitrc
+
+    # load custom map
+    xmodmap ~/.xmodmap
+</description><pubDate>Fri, 14 Sep 2012 00:34:52 +0000</pubDate><guid>https://faq.i3wm.org/question/490/using-caps-lock-as-mod-key/?answer=493#post-id-493</guid></item></channel></rss>

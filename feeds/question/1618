@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1618/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 12 Dec 2013 11:41:21 +0000</lastBuildDate><item><title>Add user name to status bar</title><link>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/</link><description>I use more than one user accounts (5, to be precise) on my laptop, and I want to see who I am in the i3 status bar.
+For now, and I am sorry for the ugliness of that, I have put the user name somewhere in the .i3status.conf "time" string, since that produces at least some output.
+I have been trying almost everything imaginable with (what I assumed to work) "order += "user" but with no result whatsoever. I also tried just to put the name hard coded in the .i3/config file with, again, no show. 
+All I need is just a user name in the status bar. How do I do that?</description><pubDate>Fri, 12 Apr 2013 13:09:10 +0000</pubDate><guid>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/</guid></item><item><title>Answer by mschaefer for &lt;p&gt;I use more than one user accounts (5, to be precise) on my laptop, and I want to see who I am in the i3 status bar.
+For now, and I am sorry for the ugliness of that, I have put the user name somewhere in the .i3status.conf "time" string, since that produces at least some output.
+I have been trying almost everything imaginable with (what I assumed to work) "order += "user" but with no result whatsoever. I also tried just to put the name hard coded in the .i3/config file with, again, no show. 
+All I need is just a user name in the status bar. How do I do that?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?answer=1620#post-id-1620</link><description>As in my answer here: https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/ (sorry, not enough karma for links) you could try an external script. In your case you should create a script like this:
+&lt;pre&gt;
+#!/bin/bash
+i3status | while :
+do
+    read line
+    user=`whoami`
+    echo "whoami: $user | $line" || exit 1
+done
+&lt;/pre&gt;
+Make the script executable and run it instead of i3status in your i3 config file.</description><pubDate>Fri, 12 Apr 2013 17:20:25 +0000</pubDate><guid>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?answer=1620#post-id-1620</guid></item><item><title>Comment by Maestraccio for &lt;p&gt;As in my answer here: &lt;a href="https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/"&gt;https://faq.i3wm.org/question/1537/sh...&lt;/a&gt; (sorry, not enough karma for links) you could try an external script. In your case you should create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/bash
+i3status | while :
+do
+    read line
+    user=`whoami`
+    echo "whoami: $user | $line" || exit 1
+done
+&lt;/pre&gt;
+
+&lt;p&gt;Make the script executable and run it instead of i3status in your i3 config file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1632#comment-1632</link><description>I've been trying to clone the py3status from github.com, but get non stop error messages. That is an other issue and off topic from here. Let's say that I'll stick to the first script solution and forget about he colours fttb. Vielen Dank and thank you, again.</description><pubDate>Sat, 13 Apr 2013 13:59:06 +0000</pubDate><guid>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1632#comment-1632</guid></item><item><title>Comment by Maestraccio for &lt;p&gt;As in my answer here: &lt;a href="https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/"&gt;https://faq.i3wm.org/question/1537/sh...&lt;/a&gt; (sorry, not enough karma for links) you could try an external script. In your case you should create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/bash
+i3status | while :
+do
+    read line
+    user=`whoami`
+    echo "whoami: $user | $line" || exit 1
+done
+&lt;/pre&gt;
+
+&lt;p&gt;Make the script executable and run it instead of i3status in your i3 config file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1626#comment-1626</link><description>Moving to the other side was as easy as 1-2-3; just changing the order of "$user | $line" to "$line | $user" (I took out the "whoami:" tag for space's sake). I guess that the colors issue is due to the fact that the line is wrapped in a script. Well, there are worse things in life...</description><pubDate>Fri, 12 Apr 2013 21:38:34 +0000</pubDate><guid>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1626#comment-1626</guid></item><item><title>Comment by mschaefer for &lt;p&gt;As in my answer here: &lt;a href="https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/"&gt;https://faq.i3wm.org/question/1537/sh...&lt;/a&gt; (sorry, not enough karma for links) you could try an external script. In your case you should create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/bash
+i3status | while :
+do
+    read line
+    user=`whoami`
+    echo "whoami: $user | $line" || exit 1
+done
+&lt;/pre&gt;
+
+&lt;p&gt;Make the script executable and run it instead of i3status in your i3 config file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1630#comment-1630</link><description>@joepd: thanks for karma :-) Indeed, py3status would be a good alternative, I am using that myself, too.</description><pubDate>Sat, 13 Apr 2013 10:09:25 +0000</pubDate><guid>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1630#comment-1630</guid></item><item><title>Comment by joepd for &lt;p&gt;As in my answer here: &lt;a href="https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/"&gt;https://faq.i3wm.org/question/1537/sh...&lt;/a&gt; (sorry, not enough karma for links) you could try an external script. In your case you should create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/bash
+i3status | while :
+do
+    read line
+    user=`whoami`
+    echo "whoami: $user | $line" || exit 1
+done
+&lt;/pre&gt;
+
+&lt;p&gt;Make the script executable and run it instead of i3status in your i3 config file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1629#comment-1629</link><description>To keep the colors, you could also replace i3status with [py3status](http://i3wm.org/docs/user-contributed/py3status.html) or [conky](http://i3wm.org/docs/user-contributed/conky-i3bar.html). </description><pubDate>Sat, 13 Apr 2013 08:36:39 +0000</pubDate><guid>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1629#comment-1629</guid></item><item><title>Comment by joepd for &lt;p&gt;As in my answer here: &lt;a href="https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/"&gt;https://faq.i3wm.org/question/1537/sh...&lt;/a&gt; (sorry, not enough karma for links) you could try an external script. In your case you should create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/bash
+i3status | while :
+do
+    read line
+    user=`whoami`
+    echo "whoami: $user | $line" || exit 1
+done
+&lt;/pre&gt;
+
+&lt;p&gt;Make the script executable and run it instead of i3status in your i3 config file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1622#comment-1622</link><description>+1 for karma!</description><pubDate>Fri, 12 Apr 2013 21:19:38 +0000</pubDate><guid>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1622#comment-1622</guid></item><item><title>Comment by Maestraccio for &lt;p&gt;As in my answer here: &lt;a href="https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/"&gt;https://faq.i3wm.org/question/1537/sh...&lt;/a&gt; (sorry, not enough karma for links) you could try an external script. In your case you should create a script like this:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/bash
+i3status | while :
+do
+    read line
+    user=`whoami`
+    echo "whoami: $user | $line" || exit 1
+done
+&lt;/pre&gt;
+
+&lt;p&gt;Make the script executable and run it instead of i3status in your i3 config file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1621#comment-1621</link><description>Thank you very much mschaefer, that works.
+But now it appears at the left of the status bar, where it is covered by the workspace tabs, and the colors are gone!
+For now I am happy with the result, but I will certainly try to find out how I can get it on the other side and recover the colors.
+Thx</description><pubDate>Fri, 12 Apr 2013 18:44:25 +0000</pubDate><guid>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?comment=1621#comment-1621</guid></item><item><title>Answer by Ultrabug for &lt;p&gt;I use more than one user accounts (5, to be precise) on my laptop, and I want to see who I am in the i3 status bar.
+For now, and I am sorry for the ugliness of that, I have put the user name somewhere in the .i3status.conf "time" string, since that produces at least some output.
+I have been trying almost everything imaginable with (what I assumed to work) "order += "user" but with no result whatsoever. I also tried just to put the name hard coded in the .i3/config file with, again, no show. 
+All I need is just a user name in the status bar. How do I do that?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?answer=3039#post-id-3039</link><description>Hi,
+
+As @joepd and @mschaefer suggested, you can do it easily using py3status while keeping the colors and having the possibility to order your modules' output on your i3bar. 
+
+I've created a module named whoami.py in the examples directory of py3status sources which does the work :)
+
+I hope this helps !</description><pubDate>Thu, 12 Dec 2013 11:41:21 +0000</pubDate><guid>https://faq.i3wm.org/question/1618/add-user-name-to-status-bar/?answer=3039#post-id-3039</guid></item></channel></rss>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2410/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 11 Sep 2014 07:08:36 +0000</lastBuildDate><item><title>How do I automatically send SIGSTOP to workspace apps when switching away from a workspace?</title><link>https://faq.i3wm.org/question/2410/how-do-i-automatically-send-sigstop-to-workspace-apps-when-switching-away-from-a-workspace/</link><description>I read somewhere in i3bar documentation or code or whatnot that it automatically sends SIGSTOP to i3status when in hidden mode. I think that's wonderful and would like to have the same thing for some background Wine apps that hammer the CPU when I don't need them to (hello Picasa 3).
+
+So when I switch away from workspace 4, SIGSTOP should be sent to x+1 processes.
+When I switch back to workspace 4, SIGCONT is sent sent to x+1 processes.
+
+Any suggestions?</description><pubDate>Thu, 22 Aug 2013 09:12:31 +0000</pubDate><guid>https://faq.i3wm.org/question/2410/how-do-i-automatically-send-sigstop-to-workspace-apps-when-switching-away-from-a-workspace/</guid></item><item><title>Comment by Michael for &lt;p&gt;I read somewhere in i3bar documentation or code or whatnot that it automatically sends SIGSTOP to i3status when in hidden mode. I think that's wonderful and would like to have the same thing for some background Wine apps that hammer the CPU when I don't need them to (hello Picasa 3).&lt;/p&gt;
+
+&lt;p&gt;So when I switch away from workspace 4, SIGSTOP should be sent to x+1 processes.
+When I switch back to workspace 4, SIGCONT is sent sent to x+1 processes.&lt;/p&gt;
+
+&lt;p&gt;Any suggestions?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2410/how-do-i-automatically-send-sigstop-to-workspace-apps-when-switching-away-from-a-workspace/?comment=2434#comment-2434</link><description>I know that endre and Merovius from #i3 have scripts to do this for firefox.</description><pubDate>Tue, 27 Aug 2013 06:53:57 +0000</pubDate><guid>https://faq.i3wm.org/question/2410/how-do-i-automatically-send-sigstop-to-workspace-apps-when-switching-away-from-a-workspace/?comment=2434#comment-2434</guid></item><item><title>Answer by f8l for &lt;p&gt;I read somewhere in i3bar documentation or code or whatnot that it automatically sends SIGSTOP to i3status when in hidden mode. I think that's wonderful and would like to have the same thing for some background Wine apps that hammer the CPU when I don't need them to (hello Picasa 3).&lt;/p&gt;
+
+&lt;p&gt;So when I switch away from workspace 4, SIGSTOP should be sent to x+1 processes.
+When I switch back to workspace 4, SIGCONT is sent sent to x+1 processes.&lt;/p&gt;
+
+&lt;p&gt;Any suggestions?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2410/how-do-i-automatically-send-sigstop-to-workspace-apps-when-switching-away-from-a-workspace/?answer=4620#post-id-4620</link><description>You can subscribe to `workspace` event with
+[IPC](http://i3wm.org/docs/ipc.html#_workspace_event).
+Whenever you catch the `workspace focus` event do the following:
+
+ 1. Remember the `id` of old workspace.
+ 2. Send [GET_TREE](http://i3wm.org/docs/ipc.html#_sending_messages_to_i3).
+ 3. For each container in old workspace:
+  1. Get the container's client X11 window ID (`window` in the [TREE](http://i3wm.org/docs/ipc.html#_tree_reply) reply).
+  2. Query the `_NET_WM_PID` with `xprop`.
+  3. Send SIGSTOP to that pid.
+
+This is a simplified algorithm which doesn't take setups with multiple monitors into account,
+but I think an additional check against [WORKSPACES reply](http://i3wm.org/docs/ipc.html#_workspaces_reply) will do the trick.
+
+Of course you'll have to send SIGCONT to windows on current workspace analogously.</description><pubDate>Wed, 10 Sep 2014 22:12:54 +0000</pubDate><guid>https://faq.i3wm.org/question/2410/how-do-i-automatically-send-sigstop-to-workspace-apps-when-switching-away-from-a-workspace/?answer=4620#post-id-4620</guid></item><item><title>Comment by lkraav for &lt;p&gt;You can subscribe to &lt;code&gt;workspace&lt;/code&gt; event with
+&lt;a href="http://i3wm.org/docs/ipc.html#_workspace_event"&gt;IPC&lt;/a&gt;.
+Whenever you catch the &lt;code&gt;workspace focus&lt;/code&gt; event do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Remember the &lt;code&gt;id&lt;/code&gt; of old workspace.&lt;/li&gt;
+&lt;li&gt;Send &lt;a href="http://i3wm.org/docs/ipc.html#_sending_messages_to_i3"&gt;GET_TREE&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;For each container in old workspace:
+&lt;ol&gt;
+&lt;li&gt;Get the container's client X11 window ID (&lt;code&gt;window&lt;/code&gt; in the &lt;a href="http://i3wm.org/docs/ipc.html#_tree_reply"&gt;TREE&lt;/a&gt; reply).&lt;/li&gt;
+&lt;li&gt;Query the &lt;code&gt;_NET_WM_PID&lt;/code&gt; with &lt;code&gt;xprop&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Send SIGSTOP to that pid.&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This is a simplified algorithm which doesn't take setups with multiple monitors into account,
+but I think an additional check against &lt;a href="http://i3wm.org/docs/ipc.html#_workspaces_reply"&gt;WORKSPACES reply&lt;/a&gt; will do the trick.&lt;/p&gt;
+
+&lt;p&gt;Of course you'll have to send SIGCONT to windows on current workspace analogously.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2410/how-do-i-automatically-send-sigstop-to-workspace-apps-when-switching-away-from-a-workspace/?comment=4623#comment-4623</link><description>Looks plausible, thanks!</description><pubDate>Thu, 11 Sep 2014 07:08:36 +0000</pubDate><guid>https://faq.i3wm.org/question/2410/how-do-i-automatically-send-sigstop-to-workspace-apps-when-switching-away-from-a-workspace/?comment=4623#comment-4623</guid></item></channel></rss>

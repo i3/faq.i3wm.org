@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5773/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 17 Apr 2015 09:36:47 +0000</lastBuildDate><item><title>Can i prevent programs from resizing windows ?f</title><link>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/</link><description>I would like to prevent any programs from resizing windows in which they are opened. For instance, if i click fullscreen buttion in vlc media player, it indeed plays in fullscreen, but i want it to only fill its window, and let ME set the window to fullscreen using apropriate shortcut.
+
+Same thing happens if i click fullscreen in flash player (youtube for instance)
+
+This is especially anoying when i put some program in scratch pad, and set its dimensions using shortcut keys, only to find out later that it resized itself somehow. For instance, put vlc in scratch pad, and set the small window size and put it in the corner of your screen. Now click the fullscreen button inside vlc, as if you wanted to see something in fullscreen temporary. When you exit the fullscreen size and position of scratchpad you set are completely messed up.
+
+So i would like to be the only one around who can change existing window dimensions ;)
+
+Thanks in advance</description><pubDate>Sat, 11 Apr 2015 20:37:41 +0000</pubDate><guid>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/</guid></item><item><title>Comment by kevin for &lt;p&gt;I would like to prevent any programs from resizing windows in which they are opened. For instance, if i click fullscreen buttion in vlc media player, it indeed plays in fullscreen, but i want it to only fill its window, and let ME set the window to fullscreen using apropriate shortcut.&lt;/p&gt;
+
+&lt;p&gt;Same thing happens if i click fullscreen in flash player (youtube for instance)&lt;/p&gt;
+
+&lt;p&gt;This is especially anoying when i put some program in scratch pad, and set its dimensions using shortcut keys, only to find out later that it resized itself somehow. For instance, put vlc in scratch pad, and set the small window size and put it in the corner of your screen. Now click the fullscreen button inside vlc, as if you wanted to see something in fullscreen temporary. When you exit the fullscreen size and position of scratchpad you set are completely messed up.&lt;/p&gt;
+
+&lt;p&gt;So i would like to be the only one around who can change existing window dimensions ;)&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5819#comment-5819</link><description>I've got the same problem, for instance with Firefox that can't be "fullscreen" inside its i3 window box (to get rid of the toolbar for instance). Likewise, flash is bad at getting the full size of the screen. With multiple screen, it's often messed up. </description><pubDate>Fri, 17 Apr 2015 09:36:47 +0000</pubDate><guid>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5819#comment-5819</guid></item><item><title>Answer by airblader for &lt;p&gt;I would like to prevent any programs from resizing windows in which they are opened. For instance, if i click fullscreen buttion in vlc media player, it indeed plays in fullscreen, but i want it to only fill its window, and let ME set the window to fullscreen using apropriate shortcut.&lt;/p&gt;
+
+&lt;p&gt;Same thing happens if i click fullscreen in flash player (youtube for instance)&lt;/p&gt;
+
+&lt;p&gt;This is especially anoying when i put some program in scratch pad, and set its dimensions using shortcut keys, only to find out later that it resized itself somehow. For instance, put vlc in scratch pad, and set the small window size and put it in the corner of your screen. Now click the fullscreen button inside vlc, as if you wanted to see something in fullscreen temporary. When you exit the fullscreen size and position of scratchpad you set are completely messed up.&lt;/p&gt;
+
+&lt;p&gt;So i would like to be the only one around who can change existing window dimensions ;)&lt;/p&gt;
+
+&lt;p&gt;Thanks in advance&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?answer=5774#post-id-5774</link><description>No, this is not possible. And it would not be compliant with the specification:
+
+http://standards.freedesktop.org/wm-spec/1.3/ar01s05.html: 
+&gt; \_NET\_WM\_STATE\_FULLSCREEN indicates that the window should fill the entire screen and have no window decorations.
+
+Although I totally get why you'd want it. I found myself thinking about this before, especially for the Youtube scenario.
+
+As for your VLC example, I frankly don't understand it at all. How do you click buttons on a window that is in the scratchpad? Can you elaborate more what exactly you do and how it is messed up? The above specification goes on with
+
+&gt; Additionally the Window Manager is responsible for restoring the original geometry after a switch from fullscreen back to normal window. For example, a presentation program would use this hint.
+
+… so if the geometry is messed up when leaving fullscreen, it could be a bug.</description><pubDate>Sat, 11 Apr 2015 21:04:01 +0000</pubDate><guid>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?answer=5774#post-id-5774</guid></item><item><title>Comment by airblader for &lt;p&gt;No, this is not possible. And it would not be compliant with the specification:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://standards.freedesktop.org/wm-spec/1.3/ar01s05.html"&gt;http://standards.freedesktop.org/wm-s...&lt;/a&gt;: &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;_NET_WM_STATE_FULLSCREEN indicates that the window should fill the entire screen and have no window decorations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Although I totally get why you'd want it. I found myself thinking about this before, especially for the Youtube scenario.&lt;/p&gt;
+
+&lt;p&gt;As for your VLC example, I frankly don't understand it at all. How do you click buttons on a window that is in the scratchpad? Can you elaborate more what exactly you do and how it is messed up? The above specification goes on with&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Additionally the Window Manager is responsible for restoring the original geometry after a switch from fullscreen back to normal window. For example, a presentation program would use this hint.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… so if the geometry is messed up when leaving fullscreen, it could be a bug.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5782#comment-5782</link><description>LOL for the video. Thanks for the details and screenshots. That's what I did, but it seems to work fine for me except for the misplaced control bar before un-fullscreening it (which really isn't an issue, though). What version is your VLC? Mine is revision 2.2.0-0-g1349ef2</description><pubDate>Sun, 12 Apr 2015 21:13:01 +0000</pubDate><guid>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5782#comment-5782</guid></item><item><title>Comment by airblader for &lt;p&gt;No, this is not possible. And it would not be compliant with the specification:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://standards.freedesktop.org/wm-spec/1.3/ar01s05.html"&gt;http://standards.freedesktop.org/wm-s...&lt;/a&gt;: &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;_NET_WM_STATE_FULLSCREEN indicates that the window should fill the entire screen and have no window decorations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Although I totally get why you'd want it. I found myself thinking about this before, especially for the Youtube scenario.&lt;/p&gt;
+
+&lt;p&gt;As for your VLC example, I frankly don't understand it at all. How do you click buttons on a window that is in the scratchpad? Can you elaborate more what exactly you do and how it is messed up? The above specification goes on with&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Additionally the Window Manager is responsible for restoring the original geometry after a switch from fullscreen back to normal window. For example, a presentation program would use this hint.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… so if the geometry is messed up when leaving fullscreen, it could be a bug.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5777#comment-5777</link><description>I guess this has to do with the fact that i3 floats all windows in the scratchpad. Since VLC is doing the fullscreen resize, it will stay "fullscreen" even after disabling it because that's now just the size of the container. I think both i3 and VLC behave as expected here.</description><pubDate>Sat, 11 Apr 2015 22:55:37 +0000</pubDate><guid>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5777#comment-5777</guid></item><item><title>Comment by airblader for &lt;p&gt;No, this is not possible. And it would not be compliant with the specification:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://standards.freedesktop.org/wm-spec/1.3/ar01s05.html"&gt;http://standards.freedesktop.org/wm-s...&lt;/a&gt;: &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;_NET_WM_STATE_FULLSCREEN indicates that the window should fill the entire screen and have no window decorations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Although I totally get why you'd want it. I found myself thinking about this before, especially for the Youtube scenario.&lt;/p&gt;
+
+&lt;p&gt;As for your VLC example, I frankly don't understand it at all. How do you click buttons on a window that is in the scratchpad? Can you elaborate more what exactly you do and how it is messed up? The above specification goes on with&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Additionally the Window Manager is responsible for restoring the original geometry after a switch from fullscreen back to normal window. For example, a presentation program would use this hint.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… so if the geometry is messed up when leaving fullscreen, it could be a bug.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5780#comment-5780</link><description>So I tried to reproduce this with the given steps, but the only thing that happens to me is that when I exit fullscreen, the controls bar is at the bottom of the screen rather than at the bottom of the main VLC window. Can you maybe make a screenshot of what it looks like for you?</description><pubDate>Sun, 12 Apr 2015 15:10:23 +0000</pubDate><guid>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5780#comment-5780</guid></item><item><title>Comment by cancarne for &lt;p&gt;No, this is not possible. And it would not be compliant with the specification:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://standards.freedesktop.org/wm-spec/1.3/ar01s05.html"&gt;http://standards.freedesktop.org/wm-s...&lt;/a&gt;: &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;_NET_WM_STATE_FULLSCREEN indicates that the window should fill the entire screen and have no window decorations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Although I totally get why you'd want it. I found myself thinking about this before, especially for the Youtube scenario.&lt;/p&gt;
+
+&lt;p&gt;As for your VLC example, I frankly don't understand it at all. How do you click buttons on a window that is in the scratchpad? Can you elaborate more what exactly you do and how it is messed up? The above specification goes on with&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Additionally the Window Manager is responsible for restoring the original geometry after a switch from fullscreen back to normal window. For example, a presentation program would use this hint.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… so if the geometry is messed up when leaving fullscreen, it could be a bug.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5781#comment-5781</link><description>http://imgur.com/a/617W1
+
+I think there have been some misunderstanding, because we are mixing 2 different scenarios : when VLC enters fullscreen itself, or when i3 fullscreen-s some container. Anyway, here are the explainations :
+
+1. image - i opened blank empty workspace
+
+2. image - i start vlc and play some media in it (notice it is not i3 fullscreened, i removed the header and have green 1 pixel bounds)
+
+3. image - i either doubleclick the vlc, or press my 'u' shortcut, or click the fullscreen button inside the VLC (note: this is VLC fullscreen-ing, not i3 when you use i3 shortcut). Now while VLC is fullscreen, i move it to scratchpad.
+
+4. image - VLC is moved to scratchpad and empty workspace is shown again. Now i show the scratchpad using aprotiate i3 shortcut
+
+5. image - Scratchpad is shown, with VLC filling it. Now i want to see media name in vlc title bar, and therefor i want to exit VLC's fullscreen. I doubleclick VLC window or use 'u' shortcut.
+
+6. image - VLC exited it's fulscreen mode, but restored window size to what it was before it entered fullscreen.
+</description><pubDate>Sun, 12 Apr 2015 19:18:53 +0000</pubDate><guid>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5781#comment-5781</guid></item><item><title>Comment by cancarne for &lt;p&gt;No, this is not possible. And it would not be compliant with the specification:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://standards.freedesktop.org/wm-spec/1.3/ar01s05.html"&gt;http://standards.freedesktop.org/wm-s...&lt;/a&gt;: &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;_NET_WM_STATE_FULLSCREEN indicates that the window should fill the entire screen and have no window decorations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Although I totally get why you'd want it. I found myself thinking about this before, especially for the Youtube scenario.&lt;/p&gt;
+
+&lt;p&gt;As for your VLC example, I frankly don't understand it at all. How do you click buttons on a window that is in the scratchpad? Can you elaborate more what exactly you do and how it is messed up? The above specification goes on with&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Additionally the Window Manager is responsible for restoring the original geometry after a switch from fullscreen back to normal window. For example, a presentation program would use this hint.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… so if the geometry is messed up when leaving fullscreen, it could be a bug.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5778#comment-5778</link><description>Ok, but when you exit "fullscreen" in VLC itself (not i3), then vlc resizes the container back to the size it was, just before it entered fullscreen mode, instead of just filling the current container size. That's what this is all about.
+
+And in the steps i described above, it resizes the floating container almost to the size of the entire screen, which makes no sense to me
+</description><pubDate>Sat, 11 Apr 2015 23:54:44 +0000</pubDate><guid>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5778#comment-5778</guid></item><item><title>Comment by cancarne for &lt;p&gt;No, this is not possible. And it would not be compliant with the specification:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://standards.freedesktop.org/wm-spec/1.3/ar01s05.html"&gt;http://standards.freedesktop.org/wm-s...&lt;/a&gt;: &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;_NET_WM_STATE_FULLSCREEN indicates that the window should fill the entire screen and have no window decorations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Although I totally get why you'd want it. I found myself thinking about this before, especially for the Youtube scenario.&lt;/p&gt;
+
+&lt;p&gt;As for your VLC example, I frankly don't understand it at all. How do you click buttons on a window that is in the scratchpad? Can you elaborate more what exactly you do and how it is messed up? The above specification goes on with&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Additionally the Window Manager is responsible for restoring the original geometry after a switch from fullscreen back to normal window. For example, a presentation program would use this hint.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… so if the geometry is messed up when leaving fullscreen, it could be a bug.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5776#comment-5776</link><description>Ok, i mentioned clicking a button in vlc. I actualy set up a vlc shortcut keyboard 'u' to toggle fullscreen, but mentioned the button not to be confused with i3 shortcuts. So again, 'u' is only binded in vlc and only works when vlc is active window, and has nothing to do with i3 configuration.
+
+Here is how to recreate the "mess up" :
+
+1) open a blank desktop
+
+2) open vlc, so that it is the only program on the screen and fills it up
+
+3) now toggle vlc fullscreen (i press 'u', or someone clicks button)
+
+4) now while vlc is fullscreen, move it to scratchpad
+
+5) now vlc is in scratchpad, and it can be shown/hidden perfectly. since it is fullscreen in scratchpad, it fills it very nicely.
+
+6) but if i press 'u' again while scratchpad is focused, to exit the fullscreen mode so that i can see media title, vlc somehow remembered the window size when it was first fullscreened (when it took the entire desktop) and resizes the scratchpad window to the entire desktop size
+
+i dont feel this is i3 bug, but rather vlc doing what it should not do in this situation (resizing window as it thinks it should) and i3 allowing it to do so
+</description><pubDate>Sat, 11 Apr 2015 22:13:04 +0000</pubDate><guid>https://faq.i3wm.org/question/5773/can-i-prevent-programs-from-resizing-windows-f/?comment=5776#comment-5776</guid></item></channel></rss>

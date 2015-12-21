@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2570/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 26 Sep 2013 08:52:38 +0000</lastBuildDate><item><title>Different layout an a specified workspace</title><link>https://faq.i3wm.org/question/2570/different-layout-an-a-specified-workspace/</link><description>I'm using `workspace_layout tabbed` and it's good in most cases. But on workspace `dox` I would need `splith` (I'm run a specified *urxvt* with *vim* and edit LaTeX documents and I need *zathura* on right to view my document).
+
+I thought I can do with the following code:
+
+    mode "terminal" {
+        bindsym d exec urxvt-config dox; workspace dox;layout splith; mode default
+        ... other specified terminals ... 
+    }
+    bindsym $winkey+x mode terminal
+
+I thought it runs urxvt with correct config (it's OK, *urxvt-config* is an own script, works well), change current workspace to *dox* (it's OK), set its layout to *splith* (it's NOT OK).
+
+Is there any workaround or what do I wrong? </description><pubDate>Tue, 24 Sep 2013 16:01:07 +0000</pubDate><guid>https://faq.i3wm.org/question/2570/different-layout-an-a-specified-workspace/</guid></item><item><title>Answer by Michael for &lt;p&gt;I'm using &lt;code&gt;workspace_layout tabbed&lt;/code&gt; and it's good in most cases. But on workspace &lt;code&gt;dox&lt;/code&gt; I would need &lt;code&gt;splith&lt;/code&gt; (I'm run a specified &lt;em&gt;urxvt&lt;/em&gt; with &lt;em&gt;vim&lt;/em&gt; and edit LaTeX documents and I need &lt;em&gt;zathura&lt;/em&gt; on right to view my document).&lt;/p&gt;
+
+&lt;p&gt;I thought I can do with the following code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "terminal" {
+    bindsym d exec urxvt-config dox; workspace dox;layout splith; mode default
+    ... other specified terminals ... 
+}
+bindsym $winkey+x mode terminal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I thought it runs urxvt with correct config (it's OK, &lt;em&gt;urxvt-config&lt;/em&gt; is an own script, works well), change current workspace to &lt;em&gt;dox&lt;/em&gt; (it's OK), set its layout to &lt;em&gt;splith&lt;/em&gt; (it's NOT OK).&lt;/p&gt;
+
+&lt;p&gt;Is there any workaround or what do I wrong? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2570/different-layout-an-a-specified-workspace/?answer=2577#post-id-2577</link><description>You don’t do anything wrong, but unfortunately you are hitting an implementation detail here: `workspace_layout` triggers whenever a new window gets opened _at workspace level_. That means, after your `layout splith`, the new window is opened and afterwards, the `workspace_layout` kicks in.
+
+As a workaround, you could use i3-exec-wait (search the FAQ) and send your layout command(s) after the window was opened.</description><pubDate>Wed, 25 Sep 2013 16:18:52 +0000</pubDate><guid>https://faq.i3wm.org/question/2570/different-layout-an-a-specified-workspace/?answer=2577#post-id-2577</guid></item><item><title>Comment by uzsolt for &lt;p&gt;You don’t do anything wrong, but unfortunately you are hitting an implementation detail here: &lt;code&gt;workspace_layout&lt;/code&gt; triggers whenever a new window gets opened &lt;em&gt;at workspace level&lt;/em&gt;. That means, after your &lt;code&gt;layout splith&lt;/code&gt;, the new window is opened and afterwards, the &lt;code&gt;workspace_layout&lt;/code&gt; kicks in.&lt;/p&gt;
+
+&lt;p&gt;As a workaround, you could use i3-exec-wait (search the FAQ) and send your layout command(s) after the window was opened.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2570/different-layout-an-a-specified-workspace/?comment=2594#comment-2594</link><description>Oh, understand. But I've a simplier workaround: a small script with a 1-2 seconds delay, call i3-msg and that's all. And in my config `bindsym d exec urxvt-config dox; workspace dox;layout splith; mode default` will `bindsym d exec urxvt-config dox; workspace dox;i3-wait layout splith; mode default`</description><pubDate>Thu, 26 Sep 2013 08:49:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2570/different-layout-an-a-specified-workspace/?comment=2594#comment-2594</guid></item><item><title>Comment by uzsolt for &lt;p&gt;You don’t do anything wrong, but unfortunately you are hitting an implementation detail here: &lt;code&gt;workspace_layout&lt;/code&gt; triggers whenever a new window gets opened &lt;em&gt;at workspace level&lt;/em&gt;. That means, after your &lt;code&gt;layout splith&lt;/code&gt;, the new window is opened and afterwards, the &lt;code&gt;workspace_layout&lt;/code&gt; kicks in.&lt;/p&gt;
+
+&lt;p&gt;As a workaround, you could use i3-exec-wait (search the FAQ) and send your layout command(s) after the window was opened.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2570/different-layout-an-a-specified-workspace/?comment=2595#comment-2595</link><description>Sorry, `exec i3-wait layout splith` (I can't edit my comment).</description><pubDate>Thu, 26 Sep 2013 08:52:38 +0000</pubDate><guid>https://faq.i3wm.org/question/2570/different-layout-an-a-specified-workspace/?comment=2595#comment-2595</guid></item></channel></rss>

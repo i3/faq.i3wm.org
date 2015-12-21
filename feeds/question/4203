@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4203/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 11 Jul 2014 18:50:36 +0000</lastBuildDate><item><title>exec with "scrot -e "mv ; feh" gives an error</title><link>https://faq.i3wm.org/question/4203/exec-with-scrot-e-mv-feh-gives-an-error/</link><description>I think this might be a problem with scrot, but I really have no idea :)
+
+I have the following bindings:
+
+```
+bindsym Print exec --no-startup-id scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/Screenshots/'
+```
+
+```
+bindsym Shift+Print exec scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/Screenshots/ ; feh ~/Screenshots/%Y-%m-%d-%T.png'
+```
+
+The first one works fine, but the one that should execute feh after taking the screenshot doesn't work as expected. I get the following error:
+
+```
+ERROR: Expected one of these tokens: &lt;end&gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'shmlog', 'debuglog', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'unmark', 'resize', 'rename', 'nop', 'scratchpad', 'mode', 'bar'
+ERROR: Your command: exec scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/Screenshots/ ; feh ~/Screenshots/%Y-%m-%d-%T.png'
+ERROR:                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+```</description><pubDate>Fri, 11 Jul 2014 17:38:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4203/exec-with-scrot-e-mv-feh-gives-an-error/</guid></item><item><title>Answer by Michael for &lt;p&gt;I think this might be a problem with scrot, but I really have no idea :)&lt;/p&gt;
+
+&lt;p&gt;I have the following bindings:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+bindsym Print exec --no-startup-id scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/Screenshots/'
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+bindsym Shift+Print exec scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/Screenshots/ ; feh ~/Screenshots/%Y-%m-%d-%T.png'
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The first one works fine, but the one that should execute feh after taking the screenshot doesn't work as expected. I get the following error:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+ERROR: Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'shmlog', 'debuglog', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'unmark', 'resize', 'rename', 'nop', 'scratchpad', 'mode', 'bar'
+ERROR: Your command: exec scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/Screenshots/ ; feh ~/Screenshots/%Y-%m-%d-%T.png'
+ERROR:                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;/code&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4203/exec-with-scrot-e-mv-feh-gives-an-error/?answer=4204#post-id-4204</link><description>You need to quote the command since it contains a semicolon, which is used in i3 to separate commands:
+
+    bindsym Shift+Print exec "scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/Screenshots/ ; feh ~/Screenshots/%Y-%m-%d-%T.png'"
+</description><pubDate>Fri, 11 Jul 2014 17:50:05 +0000</pubDate><guid>https://faq.i3wm.org/question/4203/exec-with-scrot-e-mv-feh-gives-an-error/?answer=4204#post-id-4204</guid></item><item><title>Comment by simendsjo for &lt;p&gt;You need to quote the command since it contains a semicolon, which is used in i3 to separate commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Shift+Print exec "scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/Screenshots/ ; feh ~/Screenshots/%Y-%m-%d-%T.png'"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4203/exec-with-scrot-e-mv-feh-gives-an-error/?comment=4206#comment-4206</link><description>Of course! Thanks!</description><pubDate>Fri, 11 Jul 2014 18:50:36 +0000</pubDate><guid>https://faq.i3wm.org/question/4203/exec-with-scrot-e-mv-feh-gives-an-error/?comment=4206#comment-4206</guid></item></channel></rss>

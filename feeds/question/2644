@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2644/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 06 Oct 2013 19:04:18 +0000</lastBuildDate><item><title>Failed test urgent</title><link>https://faq.i3wm.org/question/2644/failed-test-urgent/</link><description>Hi,
+
+Thanks a lot for i3!
+I just cloned the sources. I've got revision: 4.6-41-g04847ee. I've built it from sources; and am using this as my i3 on Ubuntu 13.10.
+I wanted to begin my exploration by running tests.
+
+some tests fail for me:
+
+
+    :)~/sandbox/i3/testcases$ ./complete-run.pl 
+    Starting 8 Xdummy instances, starting at :1...
+    Writing logfile to 'testsuite-2013-10-06-15-30-32-4.6-41-g04847ee/complete-run.log'...
+    [:1] t/513-move-workspace.t: finished
+    [:2] t/201-config-parser.t: finished
+    [:3] t/506-focus-right.t: finished
+    [:4] t/512-move-wraps.t: finished
+    [:5] t/175-startup-notification.t: finished
+    [:6] t/510-focus-across-outputs.t: finished
+    [:7] t/514-ipc-workspace-multi-monitor.t: finished
+    [:8] t/505-scratchpad-resolution.t: finished
+    completed 123 of 124 tests
+    
+    #   Failed test 'urgent flag set on workspace'
+    #   at ./t/113-urgent.t line 111.
+    
+    #   Failed test 'window 1 marked as urgent'
+    #   at ./t/200-urgency-timer.t line 93.
+    #          got: '0'
+    #     expected: '1'
+
+    #   Failed test 'window 1 still marked as urgent'
+    #   at ./t/200-urgency-timer.t line 101.
+    #          got: '0'
+    #     expected: '1'
+    
+    #   Failed test 'Workspace "focus" event received'
+    #   at ./t/514-ipc-workspace-multi-monitor.t line 68.
+    
+    
+    Test Summary Report
+    -------------------
+    t/113-urgent.t (Wstat: 0 Tests: 50 Failed: 1)
+      Failed test:  8
+    t/200-urgency-timer.t (Wstat: 0 Tests: 12 Failed: 2)
+      Failed tests:  6, 8
+    t/514-ipc-workspace-multi-monitor.t (Wstat: 0 Tests: 1 Failed: 1)
+      Failed test:  1
+    Files=124, Tests=1744,  7 wallclock secs ( 0.80 usr +  0.09 sys =  0.89 CPU)
+    Result: FAIL
+    
+    The slowest tests are:
+    	t/175-startup-notification.t with 3.56 seconds
+    	t/171-config-migrate.t with 2.97 seconds
+    	t/113-urgent.t with 2.18 seconds
+    	t/165-for_window.t with 1.97 seconds
+    	t/132-move-workspace.t with 1.80 seconds
+
+is this normal for the current master?
+</description><pubDate>Sun, 06 Oct 2013 13:43:45 +0000</pubDate><guid>https://faq.i3wm.org/question/2644/failed-test-urgent/</guid></item><item><title>Comment by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Thanks a lot for i3!
+I just cloned the sources. I've got revision: 4.6-41-g04847ee. I've built it from sources; and am using this as my i3 on Ubuntu 13.10.
+I wanted to begin my exploration by running tests.&lt;/p&gt;
+
+&lt;p&gt;some tests fail for me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;:)~/sandbox/i3/testcases$ ./complete-run.pl 
+Starting 8 Xdummy instances, starting at :1...
+Writing logfile to 'testsuite-2013-10-06-15-30-32-4.6-41-g04847ee/complete-run.log'...
+[:1] t/513-move-workspace.t: finished
+[:2] t/201-config-parser.t: finished
+[:3] t/506-focus-right.t: finished
+[:4] t/512-move-wraps.t: finished
+[:5] t/175-startup-notification.t: finished
+[:6] t/510-focus-across-outputs.t: finished
+[:7] t/514-ipc-workspace-multi-monitor.t: finished
+[:8] t/505-scratchpad-resolution.t: finished
+completed 123 of 124 tests
+
+#   Failed test 'urgent flag set on workspace'
+#   at ./t/113-urgent.t line 111.
+
+#   Failed test 'window 1 marked as urgent'
+#   at ./t/200-urgency-timer.t line 93.
+#          got: '0'
+#     expected: '1'
+
+#   Failed test 'window 1 still marked as urgent'
+#   at ./t/200-urgency-timer.t line 101.
+#          got: '0'
+#     expected: '1'
+
+#   Failed test 'Workspace "focus" event received'
+#   at ./t/514-ipc-workspace-multi-monitor.t line 68.
+
+
+Test Summary Report
+-------------------
+t/113-urgent.t (Wstat: 0 Tests: 50 Failed: 1)
+  Failed test:  8
+t/200-urgency-timer.t (Wstat: 0 Tests: 12 Failed: 2)
+  Failed tests:  6, 8
+t/514-ipc-workspace-multi-monitor.t (Wstat: 0 Tests: 1 Failed: 1)
+  Failed test:  1
+Files=124, Tests=1744,  7 wallclock secs ( 0.80 usr +  0.09 sys =  0.89 CPU)
+Result: FAIL
+
+The slowest tests are:
+    t/175-startup-notification.t with 3.56 seconds
+    t/171-config-migrate.t with 2.97 seconds
+    t/113-urgent.t with 2.18 seconds
+    t/165-for_window.t with 1.97 seconds
+    t/132-move-workspace.t with 1.80 seconds
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;is this normal for the current master?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2644/failed-test-urgent/?comment=2646#comment-2646</link><description>Failing tests are of course not normal. Use “next” instead of “master” for development. Ask on IRC or report a bug for help with problems, the FAQ is not suitable for that.</description><pubDate>Sun, 06 Oct 2013 19:04:18 +0000</pubDate><guid>https://faq.i3wm.org/question/2644/failed-test-urgent/?comment=2646#comment-2646</guid></item></channel></rss>

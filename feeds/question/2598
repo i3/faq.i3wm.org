@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2598/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 28 Sep 2013 08:06:26 +0000</lastBuildDate><item><title>can't auto move float scratchpad windows</title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/</link><description>I try to  use scratchpad feature to fast access some apps. But i can't figure out how to auto move and resize those apps.
+
+If i put
+
+    exec --no-startup-id deadbeef
+    for_window [class="Deadbeef"] floating enable
+    for_window [class="Deadbeef"] move absolute position 200px 200px; 
+    for_window [class="Deadbeef"] move scratchpad
+
+in my config then DeadBeef gets executed and moved to scratchpad but the **position is not changed**.
+
+If i exclude 
+
+    for_window [class="Deadbeef"] move scratchpad
+
+from config then DeadBeef gets executed and the **position is changed**. But now i have to move DeadBeef to scratchpad manually. Is it a bug or a feature? Or am i missing something?</description><pubDate>Thu, 26 Sep 2013 10:30:53 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/</guid></item><item><title>Answer by vandannen for &lt;p&gt;I try to  use scratchpad feature to fast access some apps. But i can't figure out how to auto move and resize those apps.&lt;/p&gt;
+
+&lt;p&gt;If i put&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id deadbeef
+for_window [class="Deadbeef"] floating enable
+for_window [class="Deadbeef"] move absolute position 200px 200px; 
+for_window [class="Deadbeef"] move scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in my config then DeadBeef gets executed and moved to scratchpad but the &lt;strong&gt;position is not changed&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;If i exclude &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="Deadbeef"] move scratchpad
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;from config then DeadBeef gets executed and the &lt;strong&gt;position is changed&lt;/strong&gt;. But now i have to move DeadBeef to scratchpad manually. Is it a bug or a feature? Or am i missing something?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?answer=2600#post-id-2600</link><description>When a container is moved to the scratchpad for the first time it automatically gets resized and respositioned. So, a workaround would be to move the container to scratchpad, show it again, make the move, and move it back to scratchpad:
+
+`for_window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad` (thanks to Flugsio)
+</description><pubDate>Thu, 26 Sep 2013 16:12:52 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?answer=2600#post-id-2600</guid></item><item><title>Comment by Michael for &lt;p&gt;When a container is moved to the scratchpad for the first time it automatically gets resized and respositioned. So, a workaround would be to move the container to scratchpad, show it again, make the move, and move it back to scratchpad:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;for_window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad&lt;/code&gt; (thanks to Flugsio)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2601#comment-2601</link><description>Note that a patch to make “move scratchpad” not resize floating windows will be accepted, but for some reason, nobody has ever pushed it through. Submit yours at http://cr.i3wm.org :)</description><pubDate>Thu, 26 Sep 2013 16:17:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2601#comment-2601</guid></item><item><title>Comment by lompy for &lt;p&gt;When a container is moved to the scratchpad for the first time it automatically gets resized and respositioned. So, a workaround would be to move the container to scratchpad, show it again, make the move, and move it back to scratchpad:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;for_window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad&lt;/code&gt; (thanks to Flugsio)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2611#comment-2611</link><description>Remark for 4) when click on deadbeef tray icon vim-notes and urxvt a triggered one after another. If i remove those two apps from config deadbeef is positioned correctly but shortcut still does not work. </description><pubDate>Thu, 26 Sep 2013 17:06:38 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2611#comment-2611</guid></item><item><title>Comment by Flugsio for &lt;p&gt;When a container is moved to the scratchpad for the first time it automatically gets resized and respositioned. So, a workaround would be to move the container to scratchpad, show it again, make the move, and move it back to scratchpad:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;for_window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad&lt;/code&gt; (thanks to Flugsio)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2612#comment-2612</link><description>@lompy, try changing the ; to ,</description><pubDate>Thu, 26 Sep 2013 17:20:42 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2612#comment-2612</guid></item><item><title>Comment by lompy for &lt;p&gt;When a container is moved to the scratchpad for the first time it automatically gets resized and respositioned. So, a workaround would be to move the container to scratchpad, show it again, make the move, and move it back to scratchpad:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;for_window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad&lt;/code&gt; (thanks to Flugsio)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2614#comment-2614</link><description>thanks, that soleved the sic behavior but deadbeef is steel not positioned properly</description><pubDate>Thu, 26 Sep 2013 18:28:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2614#comment-2614</guid></item><item><title>Comment by vandannen for &lt;p&gt;When a container is moved to the scratchpad for the first time it automatically gets resized and respositioned. So, a workaround would be to move the container to scratchpad, show it again, make the move, and move it back to scratchpad:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;for_window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad&lt;/code&gt; (thanks to Flugsio)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2620#comment-2620</link><description>Just uploaded a patch for not resizing floating cons with "move scratchpad": http://cr.i3wm.org/patch/240</description><pubDate>Fri, 27 Sep 2013 09:10:09 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2620#comment-2620</guid></item><item><title>Comment by lompy for &lt;p&gt;When a container is moved to the scratchpad for the first time it automatically gets resized and respositioned. So, a workaround would be to move the container to scratchpad, show it again, make the move, and move it back to scratchpad:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;for_window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad&lt;/code&gt; (thanks to Flugsio)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2608#comment-2608</link><description>I have also auto move to scratchpad (like deadbeef) one terminal and one vim-notes. with your line something really cool starts to happen: 1) shortcut for moving deadbeef to skratchpad doesn't work. 2) deadbeef is not positioned. 3) vim-notes positioned instead.</description><pubDate>Thu, 26 Sep 2013 16:53:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2608#comment-2608</guid></item><item><title>Comment by lompy for &lt;p&gt;When a container is moved to the scratchpad for the first time it automatically gets resized and respositioned. So, a workaround would be to move the container to scratchpad, show it again, make the move, and move it back to scratchpad:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;for_window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad&lt;/code&gt; (thanks to Flugsio)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2623#comment-2623</link><description>@Flugsio, thanks. That did the trick. @vandannen, please correct your answer according to last Flugsio comment and i'll mark it as correnct. As for your patch, thanks for that too, but i'm not so cool yet to build it from source.</description><pubDate>Sat, 28 Sep 2013 08:06:26 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2623#comment-2623</guid></item><item><title>Comment by Flugsio for &lt;p&gt;When a container is moved to the scratchpad for the first time it automatically gets resized and respositioned. So, a workaround would be to move the container to scratchpad, show it again, make the move, and move it back to scratchpad:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;for_window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad&lt;/code&gt; (thanks to Flugsio)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2617#comment-2617</link><description>It seems "scratchpad show" doesn't grab the latest scratchpad or use the "for_window" selector. I don't know the difference of using ; or , as both seems to work with this:
+for__window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad</description><pubDate>Fri, 27 Sep 2013 05:05:54 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2617#comment-2617</guid></item><item><title>Comment by lompy for &lt;p&gt;When a container is moved to the scratchpad for the first time it automatically gets resized and respositioned. So, a workaround would be to move the container to scratchpad, show it again, make the move, and move it back to scratchpad:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;for_window [class="Deadbeef"] move scratchpad; [class="Deadbeef"] scratchpad show; move position 200px 200px; move scratchpad&lt;/code&gt; (thanks to Flugsio)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2609#comment-2609</link><description>And sic fourth feature: 4) when i click on deadbeef tray icon vim-notes window is triggered show/hide instead of deadbeef. How cool is that?</description><pubDate>Thu, 26 Sep 2013 16:54:45 +0000</pubDate><guid>https://faq.i3wm.org/question/2598/cant-auto-move-float-scratchpad-windows/?comment=2609#comment-2609</guid></item></channel></rss>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4736/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 13 Oct 2014 23:08:30 +0000</lastBuildDate><item><title>i3 doesn't seem to understand my monitor ordering</title><link>https://faq.i3wm.org/question/4736/i3-doesnt-seem-to-understand-my-monitor-ordering/</link><description>I have three monitors (laptop + two external displays). I'm using i3 in a Virtualbox Linux guest on a Windows host.
+
+Now the monitors are working almost perfectly. They're all displaying in their correct resolutions and the ordering is correct when I move my mouse across them, ie. if I move the mouse from the left-most monitor to the right-most monitor, everything behaves as expected.
+
+The problem is that i3's version of the ordering of the monitors doesn't match the physical ordering, or the ordering that the mouse sees.
+
+Instead of the monitors being left to right "1 2 3", they're "3 1 2" or "3 2 1". The `focus right` and `focus left` commands reflect the wrong ordering and so I can't use the keyboard shortcuts to horizontally switch between windows in a logical manner.
+
+Any ideas how I can fix this?
+
+**EDIT**
+
+Here is my `xrandr` output. I had assumed it was an i3 issue (or at least fixable via i3) mainly because the behaviour is correct and keyboard shortcuts contradict what I see when I move the mouse, but I could easily be wrong about that.
+
+    Screen 0: minimum 64 x 64, current 5120 x 1080, maximum 16384 x 16384
+    VBOX0 connected primary 1920x1080+0+0 0mm x 0mm
+       1920x1080      60.0*+
+       1440x1050      60.0  
+       1280x960       60.0  
+       1024x768       60.0  
+       800x600        60.0  
+       640x480        60.0  
+    VBOX1 connected 1600x900+1600+0 0mm x 0mm
+       1600x900       60.0*+
+       1440x1050      60.0  
+       1280x960       60.0  
+       1024x768       60.0  
+       800x600        60.0  
+       640x480        60.0  
+    VBOX2 connected 1920x1080+3200+0 0mm x 0mm
+       1920x1080      60.0*+
+       1440x1050      60.0  
+       1280x960       60.0  
+       1024x768       60.0  
+       800x600        60.0  
+       640x480        60.0  
+
+</description><pubDate>Mon, 13 Oct 2014 05:49:46 +0000</pubDate><guid>https://faq.i3wm.org/question/4736/i3-doesnt-seem-to-understand-my-monitor-ordering/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;I have three monitors (laptop + two external displays). I'm using i3 in a Virtualbox Linux guest on a Windows host.&lt;/p&gt;
+
+&lt;p&gt;Now the monitors are working almost perfectly. They're all displaying in their correct resolutions and the ordering is correct when I move my mouse across them, ie. if I move the mouse from the left-most monitor to the right-most monitor, everything behaves as expected.&lt;/p&gt;
+
+&lt;p&gt;The problem is that i3's version of the ordering of the monitors doesn't match the physical ordering, or the ordering that the mouse sees.&lt;/p&gt;
+
+&lt;p&gt;Instead of the monitors being left to right "1 2 3", they're "3 1 2" or "3 2 1". The &lt;code&gt;focus right&lt;/code&gt; and &lt;code&gt;focus left&lt;/code&gt; commands reflect the wrong ordering and so I can't use the keyboard shortcuts to horizontally switch between windows in a logical manner.&lt;/p&gt;
+
+&lt;p&gt;Any ideas how I can fix this?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is my &lt;code&gt;xrandr&lt;/code&gt; output. I had assumed it was an i3 issue (or at least fixable via i3) mainly because the behaviour is correct and keyboard shortcuts contradict what I see when I move the mouse, but I could easily be wrong about that.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Screen 0: minimum 64 x 64, current 5120 x 1080, maximum 16384 x 16384
+VBOX0 connected primary 1920x1080+0+0 0mm x 0mm
+   1920x1080      60.0*+
+   1440x1050      60.0  
+   1280x960       60.0  
+   1024x768       60.0  
+   800x600        60.0  
+   640x480        60.0  
+VBOX1 connected 1600x900+1600+0 0mm x 0mm
+   1600x900       60.0*+
+   1440x1050      60.0  
+   1280x960       60.0  
+   1024x768       60.0  
+   800x600        60.0  
+   640x480        60.0  
+VBOX2 connected 1920x1080+3200+0 0mm x 0mm
+   1920x1080      60.0*+
+   1440x1050      60.0  
+   1280x960       60.0  
+   1024x768       60.0  
+   800x600        60.0  
+   640x480        60.0
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4736/i3-doesnt-seem-to-understand-my-monitor-ordering/?comment=4744#comment-4744</link><description>Can you add the output of `xrandr` and if possible annotate which display is which, please? It is probably no really an i3 issue as i3 just gets the display list from the RandR extension which may get confused by VirtualBox.</description><pubDate>Mon, 13 Oct 2014 07:48:16 +0000</pubDate><guid>https://faq.i3wm.org/question/4736/i3-doesnt-seem-to-understand-my-monitor-ordering/?comment=4744#comment-4744</guid></item><item><title>Comment by amagee for &lt;p&gt;I have three monitors (laptop + two external displays). I'm using i3 in a Virtualbox Linux guest on a Windows host.&lt;/p&gt;
+
+&lt;p&gt;Now the monitors are working almost perfectly. They're all displaying in their correct resolutions and the ordering is correct when I move my mouse across them, ie. if I move the mouse from the left-most monitor to the right-most monitor, everything behaves as expected.&lt;/p&gt;
+
+&lt;p&gt;The problem is that i3's version of the ordering of the monitors doesn't match the physical ordering, or the ordering that the mouse sees.&lt;/p&gt;
+
+&lt;p&gt;Instead of the monitors being left to right "1 2 3", they're "3 1 2" or "3 2 1". The &lt;code&gt;focus right&lt;/code&gt; and &lt;code&gt;focus left&lt;/code&gt; commands reflect the wrong ordering and so I can't use the keyboard shortcuts to horizontally switch between windows in a logical manner.&lt;/p&gt;
+
+&lt;p&gt;Any ideas how I can fix this?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is my &lt;code&gt;xrandr&lt;/code&gt; output. I had assumed it was an i3 issue (or at least fixable via i3) mainly because the behaviour is correct and keyboard shortcuts contradict what I see when I move the mouse, but I could easily be wrong about that.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Screen 0: minimum 64 x 64, current 5120 x 1080, maximum 16384 x 16384
+VBOX0 connected primary 1920x1080+0+0 0mm x 0mm
+   1920x1080      60.0*+
+   1440x1050      60.0  
+   1280x960       60.0  
+   1024x768       60.0  
+   800x600        60.0  
+   640x480        60.0  
+VBOX1 connected 1600x900+1600+0 0mm x 0mm
+   1600x900       60.0*+
+   1440x1050      60.0  
+   1280x960       60.0  
+   1024x768       60.0  
+   800x600        60.0  
+   640x480        60.0  
+VBOX2 connected 1920x1080+3200+0 0mm x 0mm
+   1920x1080      60.0*+
+   1440x1050      60.0  
+   1280x960       60.0  
+   1024x768       60.0  
+   800x600        60.0  
+   640x480        60.0
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4736/i3-doesnt-seem-to-understand-my-monitor-ordering/?comment=4750#comment-4750</link><description>Ok thanks, I've added `xrandr` output to the question.</description><pubDate>Mon, 13 Oct 2014 23:08:30 +0000</pubDate><guid>https://faq.i3wm.org/question/4736/i3-doesnt-seem-to-understand-my-monitor-ordering/?comment=4750#comment-4750</guid></item><item><title>Comment by Michael for &lt;p&gt;I have three monitors (laptop + two external displays). I'm using i3 in a Virtualbox Linux guest on a Windows host.&lt;/p&gt;
+
+&lt;p&gt;Now the monitors are working almost perfectly. They're all displaying in their correct resolutions and the ordering is correct when I move my mouse across them, ie. if I move the mouse from the left-most monitor to the right-most monitor, everything behaves as expected.&lt;/p&gt;
+
+&lt;p&gt;The problem is that i3's version of the ordering of the monitors doesn't match the physical ordering, or the ordering that the mouse sees.&lt;/p&gt;
+
+&lt;p&gt;Instead of the monitors being left to right "1 2 3", they're "3 1 2" or "3 2 1". The &lt;code&gt;focus right&lt;/code&gt; and &lt;code&gt;focus left&lt;/code&gt; commands reflect the wrong ordering and so I can't use the keyboard shortcuts to horizontally switch between windows in a logical manner.&lt;/p&gt;
+
+&lt;p&gt;Any ideas how I can fix this?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is my &lt;code&gt;xrandr&lt;/code&gt; output. I had assumed it was an i3 issue (or at least fixable via i3) mainly because the behaviour is correct and keyboard shortcuts contradict what I see when I move the mouse, but I could easily be wrong about that.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Screen 0: minimum 64 x 64, current 5120 x 1080, maximum 16384 x 16384
+VBOX0 connected primary 1920x1080+0+0 0mm x 0mm
+   1920x1080      60.0*+
+   1440x1050      60.0  
+   1280x960       60.0  
+   1024x768       60.0  
+   800x600        60.0  
+   640x480        60.0  
+VBOX1 connected 1600x900+1600+0 0mm x 0mm
+   1600x900       60.0*+
+   1440x1050      60.0  
+   1280x960       60.0  
+   1024x768       60.0  
+   800x600        60.0  
+   640x480        60.0  
+VBOX2 connected 1920x1080+3200+0 0mm x 0mm
+   1920x1080      60.0*+
+   1440x1050      60.0  
+   1280x960       60.0  
+   1024x768       60.0  
+   800x600        60.0  
+   640x480        60.0
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4736/i3-doesnt-seem-to-understand-my-monitor-ordering/?comment=4737#comment-4737</link><description>You need to provide the output of `xrandr -q` before anyone can really help :). (edit your question)</description><pubDate>Mon, 13 Oct 2014 07:37:51 +0000</pubDate><guid>https://faq.i3wm.org/question/4736/i3-doesnt-seem-to-understand-my-monitor-ordering/?comment=4737#comment-4737</guid></item></channel></rss>

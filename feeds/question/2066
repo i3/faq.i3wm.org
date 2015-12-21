@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2066/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 23 Jun 2013 13:22:20 +0000</lastBuildDate><item><title>How to find out which windows are currently visible? or which workspace they belong to</title><link>https://faq.i3wm.org/question/2066/how-to-find-out-which-windows-are-currently-visible-or-which-workspace-they-belong-to/</link><description>Is there any method of accomplishing this?
+
+I'm building a script that pipes the workspace information into bar (bar ain't recursive), with an i3 config and tmux setup that works similarly to tagging. the status bar works well currently, but I'd really like to sex things up and streamline keybinds with scripts. However, the only way I see this is possible is by identifying which windows belong to a workspace, or at least by seeing which windows are visible.</description><pubDate>Sat, 22 Jun 2013 16:49:30 +0000</pubDate><guid>https://faq.i3wm.org/question/2066/how-to-find-out-which-windows-are-currently-visible-or-which-workspace-they-belong-to/</guid></item><item><title>Answer by V0id for &lt;p&gt;Is there any method of accomplishing this?&lt;/p&gt;
+
+&lt;p&gt;I'm building a script that pipes the workspace information into bar (bar ain't recursive), with an i3 config and tmux setup that works similarly to tagging. the status bar works well currently, but I'd really like to sex things up and streamline keybinds with scripts. However, the only way I see this is possible is by identifying which windows belong to a workspace, or at least by seeing which windows are visible.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2066/how-to-find-out-which-windows-are-currently-visible-or-which-workspace-they-belong-to/?answer=2070#post-id-2070</link><description>You can use `i3-msg -t get_tree` to dump the JSON whole tree of your existing workspaces / windows. The amount of data is quite big so you'll need to parse it to extract the data you want.
+
+Either implement your own or use a binding that simplifies the job, e.g in Python, github.com/ziberna/i3-py.
+Example:
+
+    import i3
+    # get a list of workspaces
+    for workspace in i3.get_workspaces():
+        # get the workspace tree data
+        workspace_tree = i3.filter(num=workspace.get('num'))
+        # get a list of existing leaf windows in that workspace
+        for window in i3.filter(workspace_tree, nodes=[]):
+            # do something useful here
+            print 'workspace %d' % workspace.get('num'), 'window:', window.get('name')
+
+This would output such thing:
+
+    workspace 1 window: duplicity-backup - Runs duplicity for backups to FTP
+    workspace 1 window: man duplicity
+    workspace 3 window: How to find out which windows are currently visible? or which workspace they belong to - i3 FAQ - Mozilla Firefox
+    workspace 3 window: ipython
+    workspace 9 window: Quassel IRC
+    workspace 10 window: newsbeuter
+    workspace 10 window: ncmpcpp
+    workspace 10 window: htop
+
+The `window` dictionary in the python snippet contains useful stuff like that:
+
+    fullscreen_mode, orientation, focus, urgent, last_split_layout, floating, border, id, current_border_width, layout, percent, workspace_layout, window, nodes, type, swallows, focused, scratchpad_state, rect, window_rect, name, geometry, floating_nodes</description><pubDate>Sun, 23 Jun 2013 13:22:20 +0000</pubDate><guid>https://faq.i3wm.org/question/2066/how-to-find-out-which-windows-are-currently-visible-or-which-workspace-they-belong-to/?answer=2070#post-id-2070</guid></item></channel></rss>

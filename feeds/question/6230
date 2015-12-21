@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6230/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 07 Aug 2015 16:28:45 +0000</lastBuildDate><item><title>how to add weather and network monitor applet to i3bar?</title><link>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/</link><description> Hi.
+I want add my location's weather to my i3bar.
+And also add network monitor to see download and upload speed.
+How can i do that?
+Thanks and sorry for my bad english...!</description><pubDate>Wed, 01 Jul 2015 13:20:25 +0000</pubDate><guid>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/</guid></item><item><title>Answer by SpicyCat for &lt;p&gt;Hi.
+I want add my location's weather to my i3bar.
+And also add network monitor to see download and upload speed.
+How can i do that?
+Thanks and sorry for my bad english...!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?answer=6398#post-id-6398</link><description>I like [i3pystatus](https://github.com/enkore/i3pystatus) 
+
+Or if you don't like python, try [i3blocks](https://github.com/vivien/i3blocks), and 2 useful i3blocks plugins:
+
+ 1. [usb](https://github.com/kb100/i3blocks-usb)
+ 2. [battery](https://github.com/kb100/i3blocks-battery)</description><pubDate>Fri, 07 Aug 2015 07:54:26 +0000</pubDate><guid>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?answer=6398#post-id-6398</guid></item><item><title>Comment by i3convert for &lt;p&gt;I like &lt;a href="https://github.com/enkore/i3pystatus"&gt;i3pystatus&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;Or if you don't like python, try &lt;a href="https://github.com/vivien/i3blocks"&gt;i3blocks&lt;/a&gt;, and 2 useful i3blocks plugins:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/kb100/i3blocks-usb"&gt;usb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/kb100/i3blocks-battery"&gt;battery&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?comment=6405#comment-6405</link><description>Please note that the question was specifically about monitoring the network usage and weather. Do i3pystatus or i3blocks provide means for monitoring those things?</description><pubDate>Fri, 07 Aug 2015 16:28:45 +0000</pubDate><guid>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?comment=6405#comment-6405</guid></item><item><title>Answer by i3convert for &lt;p&gt;Hi.
+I want add my location's weather to my i3bar.
+And also add network monitor to see download and upload speed.
+How can i do that?
+Thanks and sorry for my bad english...!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?answer=6233#post-id-6233</link><description>I've been using conky for these two things. See [here](http://i3wm.org/docs/user-contributed/conky-i3bar.html) for more details on how to employ conky.
+
+Conky networking objects you were asking for (replace `eth0` with your networking interface name):
+
+ - Upload speed: `${upspeed eth0}`
+ - Download speed: `${downspeed eth0}`
+
+Weather is more complicated. I don't know how to make it work outside of the US, but for the US you can use the following objects (`KSFO` corresponds to San Francisco, `KNYC` to New York City):
+
+ - Temperature: `${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO temperature}`
+ - Clouds: `"${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO cloud_cover}`
+ - Description: `${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO weather}`
+
+ 
+
+</description><pubDate>Thu, 02 Jul 2015 05:20:53 +0000</pubDate><guid>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?answer=6233#post-id-6233</guid></item><item><title>Comment by HDArtworks for &lt;p&gt;I've been using conky for these two things. See &lt;a href="http://i3wm.org/docs/user-contributed/conky-i3bar.html"&gt;here&lt;/a&gt; for more details on how to employ conky.&lt;/p&gt;
+
+&lt;p&gt;Conky networking objects you were asking for (replace &lt;code&gt;eth0&lt;/code&gt; with your networking interface name):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Upload speed: &lt;code&gt;${upspeed eth0}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Download speed: &lt;code&gt;${downspeed eth0}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Weather is more complicated. I don't know how to make it work outside of the US, but for the US you can use the following objects (&lt;code&gt;KSFO&lt;/code&gt; corresponds to San Francisco, &lt;code&gt;KNYC&lt;/code&gt; to New York City):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Temperature: &lt;code&gt;${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO temperature}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Clouds: &lt;code&gt;"${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO cloud_cover}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Description: &lt;code&gt;${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO weather}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?comment=6251#comment-6251</link><description>@i3convert I get error before adding your objects. I just follow tutorials with the link you say to me!
+Sorry for my bad english.</description><pubDate>Sat, 04 Jul 2015 18:22:13 +0000</pubDate><guid>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?comment=6251#comment-6251</guid></item><item><title>Comment by i3convert for &lt;p&gt;I've been using conky for these two things. See &lt;a href="http://i3wm.org/docs/user-contributed/conky-i3bar.html"&gt;here&lt;/a&gt; for more details on how to employ conky.&lt;/p&gt;
+
+&lt;p&gt;Conky networking objects you were asking for (replace &lt;code&gt;eth0&lt;/code&gt; with your networking interface name):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Upload speed: &lt;code&gt;${upspeed eth0}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Download speed: &lt;code&gt;${downspeed eth0}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Weather is more complicated. I don't know how to make it work outside of the US, but for the US you can use the following objects (&lt;code&gt;KSFO&lt;/code&gt; corresponds to San Francisco, &lt;code&gt;KNYC&lt;/code&gt; to New York City):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Temperature: &lt;code&gt;${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO temperature}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Clouds: &lt;code&gt;"${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO cloud_cover}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Description: &lt;code&gt;${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO weather}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?comment=6250#comment-6250</link><description>@HDArtworks: It's too little information, for me, to be able to tell you what went wrong. Do you get this message before adding the objects I listed above? Did you follow the conky/i3 tutorial? Do their examples give you the same error? Maybe run only conky and see if its text output makes sense.</description><pubDate>Fri, 03 Jul 2015 16:37:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?comment=6250#comment-6250</guid></item><item><title>Comment by HDArtworks for &lt;p&gt;I've been using conky for these two things. See &lt;a href="http://i3wm.org/docs/user-contributed/conky-i3bar.html"&gt;here&lt;/a&gt; for more details on how to employ conky.&lt;/p&gt;
+
+&lt;p&gt;Conky networking objects you were asking for (replace &lt;code&gt;eth0&lt;/code&gt; with your networking interface name):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Upload speed: &lt;code&gt;${upspeed eth0}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Download speed: &lt;code&gt;${downspeed eth0}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Weather is more complicated. I don't know how to make it work outside of the US, but for the US you can use the following objects (&lt;code&gt;KSFO&lt;/code&gt; corresponds to San Francisco, &lt;code&gt;KNYC&lt;/code&gt; to New York City):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Temperature: &lt;code&gt;${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO temperature}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Clouds: &lt;code&gt;"${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO cloud_cover}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Description: &lt;code&gt;${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KSFO weather}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?comment=6246#comment-6246</link><description>Error: status_command not found or is missing a library dependency (exit 127)...
+When i try to create a conky with that link this error shown to me in i3bar.</description><pubDate>Fri, 03 Jul 2015 11:02:53 +0000</pubDate><guid>https://faq.i3wm.org/question/6230/how-to-add-weather-and-network-monitor-applet-to-i3bar/?comment=6246#comment-6246</guid></item></channel></rss>

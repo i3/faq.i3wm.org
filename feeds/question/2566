@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2566/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 25 Sep 2013 20:12:03 +0000</lastBuildDate><item><title>Is there a way to read the i3 configuration from stdin?</title><link>https://faq.i3wm.org/question/2566/is-there-a-way-to-read-the-i3-configuration-from-stdin/</link><description>As I generate my configuration file for i3 on every startup, it would be very convenient to read it directly from stdin instead of writing into a temporary file and passing it as a parameter to i3.
+
+So far i tried
+
+- *command* | i3 ; Reads the default configuration file (as expected).
+
+- *command* | i3 - ; Passes the content of the file as additional arguments.
+
+- *command* | i3 -c - ; Interprets "-" as a path, which obviously fails.
+
+- i3 -c &lt;(*command*) ; Produces error message "i3: Could not lseek: Illegal seek".
+
+I found nothing on google and on this page, so I wonder if there is a way to read the configuration from stdin. Did i overlook anything obvious?</description><pubDate>Sun, 22 Sep 2013 22:58:49 +0000</pubDate><guid>https://faq.i3wm.org/question/2566/is-there-a-way-to-read-the-i3-configuration-from-stdin/</guid></item><item><title>Comment by uzsolt for &lt;p&gt;As I generate my configuration file for i3 on every startup, it would be very convenient to read it directly from stdin instead of writing into a temporary file and passing it as a parameter to i3.&lt;/p&gt;
+
+&lt;p&gt;So far i tried&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;command&lt;/em&gt; | i3 ; Reads the default configuration file (as expected).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;command&lt;/em&gt; | i3 - ; Passes the content of the file as additional arguments.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;command&lt;/em&gt; | i3 -c - ; Interprets "-" as a path, which obviously fails.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;i3 -c &amp;lt;(&lt;em&gt;command&lt;/em&gt;) ; Produces error message "i3: Could not lseek: Illegal seek".&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I found nothing on google and on this page, so I wonder if there is a way to read the configuration from stdin. Did i overlook anything obvious?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2566/is-there-a-way-to-read-the-i3-configuration-from-stdin/?comment=2572#comment-2572</link><description>Did you try `i3 $(yourcommand)`?</description><pubDate>Wed, 25 Sep 2013 07:25:42 +0000</pubDate><guid>https://faq.i3wm.org/question/2566/is-there-a-way-to-read-the-i3-configuration-from-stdin/?comment=2572#comment-2572</guid></item><item><title>Comment by whatevsz for &lt;p&gt;As I generate my configuration file for i3 on every startup, it would be very convenient to read it directly from stdin instead of writing into a temporary file and passing it as a parameter to i3.&lt;/p&gt;
+
+&lt;p&gt;So far i tried&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;command&lt;/em&gt; | i3 ; Reads the default configuration file (as expected).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;command&lt;/em&gt; | i3 - ; Passes the content of the file as additional arguments.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;command&lt;/em&gt; | i3 -c - ; Interprets "-" as a path, which obviously fails.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;i3 -c &amp;lt;(&lt;em&gt;command&lt;/em&gt;) ; Produces error message "i3: Could not lseek: Illegal seek".&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I found nothing on google and on this page, so I wonder if there is a way to read the configuration from stdin. Did i overlook anything obvious?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2566/is-there-a-way-to-read-the-i3-configuration-from-stdin/?comment=2585#comment-2585</link><description>Well, this would just send the output of `yourcommand` as parameters to i3 as far as I know.</description><pubDate>Wed, 25 Sep 2013 20:09:51 +0000</pubDate><guid>https://faq.i3wm.org/question/2566/is-there-a-way-to-read-the-i3-configuration-from-stdin/?comment=2585#comment-2585</guid></item><item><title>Answer by Michael for &lt;p&gt;As I generate my configuration file for i3 on every startup, it would be very convenient to read it directly from stdin instead of writing into a temporary file and passing it as a parameter to i3.&lt;/p&gt;
+
+&lt;p&gt;So far i tried&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;command&lt;/em&gt; | i3 ; Reads the default configuration file (as expected).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;command&lt;/em&gt; | i3 - ; Passes the content of the file as additional arguments.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;command&lt;/em&gt; | i3 -c - ; Interprets "-" as a path, which obviously fails.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;i3 -c &amp;lt;(&lt;em&gt;command&lt;/em&gt;) ; Produces error message "i3: Could not lseek: Illegal seek".&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I found nothing on google and on this page, so I wonder if there is a way to read the configuration from stdin. Did i overlook anything obvious?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2566/is-there-a-way-to-read-the-i3-configuration-from-stdin/?answer=2576#post-id-2576</link><description>No (as of v4.6), since i3 does a two-pass read of the configuration file to replace variables. That is where the lseek error message is coming from. In case you want to contribute patches to make it work (without making everything overly complex), feel free to submit them at http://cr.i3wm.org/</description><pubDate>Wed, 25 Sep 2013 16:11:17 +0000</pubDate><guid>https://faq.i3wm.org/question/2566/is-there-a-way-to-read-the-i3-configuration-from-stdin/?answer=2576#post-id-2576</guid></item><item><title>Comment by whatevsz for &lt;p&gt;No (as of v4.6), since i3 does a two-pass read of the configuration file to replace variables. That is where the lseek error message is coming from. In case you want to contribute patches to make it work (without making everything overly complex), feel free to submit them at &lt;a href="http://cr.i3wm.org/"&gt;http://cr.i3wm.org/&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2566/is-there-a-way-to-read-the-i3-configuration-from-stdin/?comment=2587#comment-2587</link><description>Ok, thank you for your answer. I might look into the codebase once I got a bit more time.</description><pubDate>Wed, 25 Sep 2013 20:12:03 +0000</pubDate><guid>https://faq.i3wm.org/question/2566/is-there-a-way-to-read-the-i3-configuration-from-stdin/?comment=2587#comment-2587</guid></item></channel></rss>

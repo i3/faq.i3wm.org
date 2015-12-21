@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6499/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 24 Aug 2015 20:47:42 +0000</lastBuildDate><item><title>"No battery" in status bar</title><link>https://faq.i3wm.org/question/6499/no-battery-in-status-bar/</link><description>I receive a "No battery" in my status bar, while I suppose I shouldn't. What am I doing wrong?
+
+The `i3status.conf` includes:
+
+    order += "battery 1"
+    battery 1 {
+        format = "%status %percentage %remaining"
+        path = "/sys/class/power_supply/BAT1/uevent"
+     }
+
+and my `/sys/class/power_supply/BAT1/uevent` is:
+
+    POWER_SUPPLY_NAME=BAT1
+    POWER_SUPPLY_STATUS=Unknown
+    POWER_SUPPLY_PRESENT=1
+    POWER_SUPPLY_TECHNOLOGY=Li-ion
+    POWER_SUPPLY_CYCLE_COUNT=0
+    POWER_SUPPLY_VOLTAGE_MIN_DESIGN=14800000
+    POWER_SUPPLY_VOLTAGE_NOW=14800000
+    POWER_SUPPLY_CURRENT_NOW=0
+    POWER_SUPPLY_CHARGE_FULL_DESIGN=4400000
+    POWER_SUPPLY_CHARGE_FULL=4400000
+    POWER_SUPPLY_CHARGE_NOW=4400000
+    POWER_SUPPLY_CAPACITY=100
+    POWER_SUPPLY_CAPACITY_LEVEL=Normal
+    POWER_SUPPLY_MODEL_NAME=&lt;censored&gt;
+    POWER_SUPPLY_MANUFACTURER=&lt;censored&gt;
+    POWER_SUPPLY_SERIAL_NUMBER=3658Q
+
+I tried with "battery 0", too.
+
+PS: This is related to https://faq.i3wm.org/question/1071/battery-status-indicator/ and https://faq.i3wm.org/question/4625/i3-status-bar-not-showing-my-battery/
+</description><pubDate>Mon, 24 Aug 2015 11:29:22 +0000</pubDate><guid>https://faq.i3wm.org/question/6499/no-battery-in-status-bar/</guid></item><item><title>Answer by constantine for &lt;p&gt;I receive a "No battery" in my status bar, while I suppose I shouldn't. What am I doing wrong?&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;i3status.conf&lt;/code&gt; includes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;order += "battery 1"
+battery 1 {
+    format = "%status %percentage %remaining"
+    path = "/sys/class/power_supply/BAT1/uevent"
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and my &lt;code&gt;/sys/class/power_supply/BAT1/uevent&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;POWER_SUPPLY_NAME=BAT1
+POWER_SUPPLY_STATUS=Unknown
+POWER_SUPPLY_PRESENT=1
+POWER_SUPPLY_TECHNOLOGY=Li-ion
+POWER_SUPPLY_CYCLE_COUNT=0
+POWER_SUPPLY_VOLTAGE_MIN_DESIGN=14800000
+POWER_SUPPLY_VOLTAGE_NOW=14800000
+POWER_SUPPLY_CURRENT_NOW=0
+POWER_SUPPLY_CHARGE_FULL_DESIGN=4400000
+POWER_SUPPLY_CHARGE_FULL=4400000
+POWER_SUPPLY_CHARGE_NOW=4400000
+POWER_SUPPLY_CAPACITY=100
+POWER_SUPPLY_CAPACITY_LEVEL=Normal
+POWER_SUPPLY_MODEL_NAME=&amp;lt;censored&amp;gt;
+POWER_SUPPLY_MANUFACTURER=&amp;lt;censored&amp;gt;
+POWER_SUPPLY_SERIAL_NUMBER=3658Q
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried with "battery 0", too.&lt;/p&gt;
+
+&lt;p&gt;PS: This is related to &lt;a href="https://faq.i3wm.org/question/1071/battery-status-indicator/"&gt;https://faq.i3wm.org/question/1071/ba...&lt;/a&gt; and &lt;a href="https://faq.i3wm.org/question/4625/i3-status-bar-not-showing-my-battery/"&gt;https://faq.i3wm.org/question/4625/i3...&lt;/a&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6499/no-battery-in-status-bar/?answer=6500#post-id-6500</link><description>Facepalm:
+
+
+I was editing the wrong file: `~/.i3/i3status.conf` while I should edit `/etc/i3status.conf`. I also did not have to set a `path =` line.</description><pubDate>Mon, 24 Aug 2015 12:10:46 +0000</pubDate><guid>https://faq.i3wm.org/question/6499/no-battery-in-status-bar/?answer=6500#post-id-6500</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Facepalm:&lt;/p&gt;
+
+&lt;p&gt;I was editing the wrong file: &lt;code&gt;~/.i3/i3status.conf&lt;/code&gt; while I should edit &lt;code&gt;/etc/i3status.conf&lt;/code&gt;. I also did not have to set a &lt;code&gt;path =&lt;/code&gt; line.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6499/no-battery-in-status-bar/?comment=6504#comment-6504</link><description>Actually, you should edit `~/.i3status.conf` (directly in your home directory). But you can also pass the configuration file as command line parameter to `i3status` in the `bar` block of your i3 configuration: `status_command i3status -c ~/.i3/i3status.conf`</description><pubDate>Mon, 24 Aug 2015 20:47:42 +0000</pubDate><guid>https://faq.i3wm.org/question/6499/no-battery-in-status-bar/?comment=6504#comment-6504</guid></item></channel></rss>

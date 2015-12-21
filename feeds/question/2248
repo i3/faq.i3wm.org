@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2248/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 21 Jul 2013 07:08:35 +0000</lastBuildDate><item><title>Workspaces don't appear/refresh in the first session after boot</title><link>https://faq.i3wm.org/question/2248/workspaces-dont-appearrefresh-in-the-first-session-after-boot/</link><description>I am using i3 4.5.1 on ubuntu rarity 13.04.
+When I turn on my computer and log on i3 mode, I never see the black background of my workspace.
+After logging in, I still see the login screen, when firefox opens, it doesn't have any problem, but if I change to an empty workspace, I still see the same screen as before(in this case, firefox), if I close the program, I keep seeing the same screen of the program.
+In summary, I keep seeing the last screen before I moved my focus to this empty workspace. Same problem with all workspaces.
+
+However, the problem gets solved if I simply log out of my session and log back in.
+
+I installed i3 1-2 days ago, so I can't say for sure if it was happening before.
+Here is what I added to my .i3/config file(besides some modified keybindings)
+
+    #My configuration
+    focus_follows_mouse no
+    exec firefox
+    exec fluxgui
+    exec dropbox start
+    exec bluetooth-applet
+    exec gnome-do --no-startup-id # application launcher
+    exec nm-applet --no-startup-id # wireless access icon on tray
+    bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+    bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+    # BUG: does not unmute # bindsym XF86AudioMute exec amixer -q set Master toggle
+
+I also changed some things in the i3-bar, however I don't think it would affect this.
+
+$mod+Shift+R didn't help
+
+EDIT: It seems like even the default window manager is having a similar problem. With this, I can confirm it is a new problem.
+The difference is that in the default windows manager, it's like the login screen is set as the background image, and in following sessions (after logging out and in without shutting down), the background is set to black).</description><pubDate>Sat, 20 Jul 2013 17:07:20 +0000</pubDate><guid>https://faq.i3wm.org/question/2248/workspaces-dont-appearrefresh-in-the-first-session-after-boot/</guid></item><item><title>Comment by Michael for &lt;p&gt;I am using i3 4.5.1 on ubuntu rarity 13.04.
+When I turn on my computer and log on i3 mode, I never see the black background of my workspace.
+After logging in, I still see the login screen, when firefox opens, it doesn't have any problem, but if I change to an empty workspace, I still see the same screen as before(in this case, firefox), if I close the program, I keep seeing the same screen of the program.
+In summary, I keep seeing the last screen before I moved my focus to this empty workspace. Same problem with all workspaces.&lt;/p&gt;
+
+&lt;p&gt;However, the problem gets solved if I simply log out of my session and log back in.&lt;/p&gt;
+
+&lt;p&gt;I installed i3 1-2 days ago, so I can't say for sure if it was happening before.
+Here is what I added to my .i3/config file(besides some modified keybindings)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#My configuration
+focus_follows_mouse no
+exec firefox
+exec fluxgui
+exec dropbox start
+exec bluetooth-applet
+exec gnome-do --no-startup-id # application launcher
+exec nm-applet --no-startup-id # wireless access icon on tray
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+# BUG: does not unmute # bindsym XF86AudioMute exec amixer -q set Master toggle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I also changed some things in the i3-bar, however I don't think it would affect this.&lt;/p&gt;
+
+&lt;p&gt;$mod+Shift+R didn't help&lt;/p&gt;
+
+&lt;p&gt;EDIT: It seems like even the default window manager is having a similar problem. With this, I can confirm it is a new problem.
+The difference is that in the default windows manager, it's like the login screen is set as the background image, and in following sessions (after logging out and in without shutting down), the background is set to black).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2248/workspaces-dont-appearrefresh-in-the-first-session-after-boot/?comment=2252#comment-2252</link><description>This seems to be https://github.com/i3/i3/issues/1036 or at least closely related. In case it’s not, feel free to open a new bug report. The FAQ is not a place to report bugs.</description><pubDate>Sun, 21 Jul 2013 07:08:35 +0000</pubDate><guid>https://faq.i3wm.org/question/2248/workspaces-dont-appearrefresh-in-the-first-session-after-boot/?comment=2252#comment-2252</guid></item></channel></rss>

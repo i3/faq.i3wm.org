@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4609/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 08 Sep 2014 16:06:14 +0000</lastBuildDate><item><title>how to move workspace to monitor?</title><link>https://faq.i3wm.org/question/4609/how-to-move-workspace-to-monitor/</link><description>Hi everyone,
+
+I'm trying out i3 (deciding whether to leave Xmonad). I'm on ubuntu 12.04, and I'm using i3-wm 4.1.2-2.
+
+This is probably a silly question, but I can't figure out what I am doing wrong. I just want to move workspaces to different screens.
+
+I've read the documentation about "Moving containers/workspaces to RandR outputs" and also an old question on this topic (can't post link because "my karma is insufficient to publish links". I've tried what is suggested, but it doesn't work for me. By the way, what is the difference between "moving a container" and "moving a workspace"
+
+I put the following
+
+    bindsym $mod+x move workspace to output right
+
+in my .i3/config
+
+Now assume I have workspace 1 on the laptop monitor (LVDS1) with a terminal, and workspace 2 on the external monitor (VGA1) with firefox. If firefox is focused, and I press $mod+x, what happens is that firefox disappears (don't know where), and besides workspace 2, I get an new workspace names "to output right" on VGA1 ... not exactly what I was expecting, i.e. firefox moving to workspace 1 on LVDS1, and the terminal becoming focused on workspace 2 on VGA1 ... :(
+
+What am I doing wrong?
+
+Thanks,
+Marco</description><pubDate>Mon, 08 Sep 2014 10:16:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4609/how-to-move-workspace-to-monitor/</guid></item><item><title>Answer by lasers for &lt;p&gt;Hi everyone,&lt;/p&gt;
+
+&lt;p&gt;I'm trying out i3 (deciding whether to leave Xmonad). I'm on ubuntu 12.04, and I'm using i3-wm 4.1.2-2.&lt;/p&gt;
+
+&lt;p&gt;This is probably a silly question, but I can't figure out what I am doing wrong. I just want to move workspaces to different screens.&lt;/p&gt;
+
+&lt;p&gt;I've read the documentation about "Moving containers/workspaces to RandR outputs" and also an old question on this topic (can't post link because "my karma is insufficient to publish links". I've tried what is suggested, but it doesn't work for me. By the way, what is the difference between "moving a container" and "moving a workspace"&lt;/p&gt;
+
+&lt;p&gt;I put the following&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+x move workspace to output right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in my .i3/config&lt;/p&gt;
+
+&lt;p&gt;Now assume I have workspace 1 on the laptop monitor (LVDS1) with a terminal, and workspace 2 on the external monitor (VGA1) with firefox. If firefox is focused, and I press $mod+x, what happens is that firefox disappears (don't know where), and besides workspace 2, I get an new workspace names "to output right" on VGA1 ... not exactly what I was expecting, i.e. firefox moving to workspace 1 on LVDS1, and the terminal becoming focused on workspace 2 on VGA1 ... :(&lt;/p&gt;
+
+&lt;p&gt;What am I doing wrong?&lt;/p&gt;
+
+&lt;p&gt;Thanks,
+Marco&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4609/how-to-move-workspace-to-monitor/?answer=4610#post-id-4610</link><description>I don't see anything wrong with your bindsym. However, i3 v4.1~ is too old and it is possible that it does not have this option. Upgrade to i3 v4.8~ first and see if that work. For Debian or Ubuntu, see http://i3wm.org/docs/repositories.html 
+
+A container can host a window (meaning an X11 window, one that you can actually see and use, like a browser or a terminal emulator). It can contain one or more containers by invoking `focus parent` ($mod+a).
+
+By moving containers instead of workspaces, you can keep your named/numbered workspace in the same place/output. Some people prefer having this. I keep 1,2,3,4,5 on the left monitor and 6,7,8,9,10 on the right monitor.
+
+    bindsym $mod+Shift+greater move container to output right
+    bindsym $mod+Shift+less move container to output left</description><pubDate>Mon, 08 Sep 2014 13:03:59 +0000</pubDate><guid>https://faq.i3wm.org/question/4609/how-to-move-workspace-to-monitor/?answer=4610#post-id-4610</guid></item><item><title>Comment by marcos for &lt;p&gt;I don't see anything wrong with your bindsym. However, i3 v4.1~ is too old and it is possible that it does not have this option. Upgrade to i3 v4.8~ first and see if that work. For Debian or Ubuntu, see &lt;a href="http://i3wm.org/docs/repositories.html"&gt;http://i3wm.org/docs/repositories.html&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;A container can host a window (meaning an X11 window, one that you can actually see and use, like a browser or a terminal emulator). It can contain one or more containers by invoking &lt;code&gt;focus parent&lt;/code&gt; ($mod+a).&lt;/p&gt;
+
+&lt;p&gt;By moving containers instead of workspaces, you can keep your named/numbered workspace in the same place/output. Some people prefer having this. I keep 1,2,3,4,5 on the left monitor and 6,7,8,9,10 on the right monitor.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+greater move container to output right
+bindsym $mod+Shift+less move container to output left
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4609/how-to-move-workspace-to-monitor/?comment=4611#comment-4611</link><description>Thank you! updating to i3 version 4.8-1precise1 made the difference!</description><pubDate>Mon, 08 Sep 2014 16:06:14 +0000</pubDate><guid>https://faq.i3wm.org/question/4609/how-to-move-workspace-to-monitor/?comment=4611#comment-4611</guid></item></channel></rss>

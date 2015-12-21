@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Latest question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/rss/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 19 Dec 2015 21:35:11 +0000</lastBuildDate><item><title>How can I move a container by its class?</title><link>https://faq.i3wm.org/question/7756/how-can-i-move-a-container-by-its-class/</link><description>I want to move a specific container to the workspace that is being switched to.
+The container already exists.
+I had something like this in mind:
+
+    bindsym $mod+1 move "specific_container" to workspace 1; workspace 1;
+
+
+thanks.</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">i3noobonline</dc:creator><pubDate>Sat, 19 Dec 2015 21:35:11 +0000</pubDate><guid>https://faq.i3wm.org/question/7756/</guid></item><item><title>Disable Windows locking</title><link>https://faq.i3wm.org/question/7753/disable-windows-locking/</link><description>Hi, 
+
+Just playing around with i3, on Ubuntu running in VMWare on Win 10. 
+
+I appears that most people recommend using the win key as the mod key. That seems to work for me because it frees up alt for application menus. 
+
+Alas, mod-l (for moving focus up) now locks my windows session. 
+
+Any tips to work around this?
+
+Cheers :-)</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">damien</dc:creator><pubDate>Sat, 19 Dec 2015 03:42:43 +0000</pubDate><guid>https://faq.i3wm.org/question/7753/</guid></item><item><title>Friendly names to workspaces don't work with "move container"</title><link>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/</link><description>Note: there is a relevant question ("1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts") whose link I cannot post since I don't have enough karma. However, that question seems to address only the part about directly switching to a workspace, not moving a container to a workspace.
+
+I frequently rename my workspaces in an ad-hoc manner to easily see the names of the programs running in each workspace (and know where to switch). E.g. I have names like: "1: web, 2: code, 3: dbvis, 4: email" etc. These friendly names are prefixed with a number so that bindings like the following: 
+
+    # switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+
+... do in fact work. What doesn't work however is bindings for the `move container to workspace` commands. E.g. the following don't work:
+
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+
+Instead, when I press `$mod+Shift+1` a new workspace named "1" is created (alongside the already existing workspace 
+"1: web") and the window is moved there.
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">MarcusJuniusBrutus</dc:creator><pubDate>Thu, 17 Dec 2015 13:08:22 +0000</pubDate><guid>https://faq.i3wm.org/question/7740/</guid></item><item><title>auto-starting apps on specific outputs in multi-monitor environment</title><link>https://faq.i3wm.org/question/7694/auto-starting-apps-on-specific-outputs-in-multi-monitor-environment/</link><description>Hallo,
+I'm working with a multi-headed environment (four outputs) and successfully configured my primary head for workspaces 1-4, each other head for two workspaces via the i3 config file (workspace &lt;x&gt; output &lt;y&gt;).
+As soon as I try to auto-start an application via exec (e.g., firefox or thunderbird) and try to move it to another than the primary output, the respective workspace will end up on the primary output instead of the output configured for this workspace in i3 config.
+To further illustrate my problem, I will give you a short example. DFP1 is the primary device, DFP5, 9 and 10 are secondary heads.
+Example:
+workspace 1 output DFP1
+.
+.
+.
+workspace 7 output DFP9
+
+assign [class="(?i)thunderbird"] 7
+exec thunderbird
+
+Expected behaviour would be, that thunderbird appears on workspace 7, which is placed on output DFP9. Actual behaviour is, that thunderbird appears on workspace 7, which is now placed on output DFP1. Without the exec-statement, workspace 7 is placed on output DFP9 as configured. Same goes for the iceweasel-example from the user guide:
+exec --no-startup-id i3-msg "workspace 7; exec thunderbird; workspace 1"
+yields the same results as the abovementioned configuration - workspace 7 is placed on output DFP1 instead of DFP9.
+
+Am I just misconfiguring something here or is it a bug I'm expecting?
+
+Thanks for your help!
+Julian</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">crispinus</dc:creator><pubDate>Tue, 15 Dec 2015 17:49:56 +0000</pubDate><guid>https://faq.i3wm.org/question/7694/</guid></item><item><title>limited options in gnome-control-center</title><link>https://faq.i3wm.org/question/4874/limited-options-in-gnome-control-center/</link><description>Hello,
+
+When using i3 I get only a few icons in `gnome-control-center`, like this:
+
+![image description](/upfiles/1414505642279517.png)
+
+I am starting `gnome-settings-daemon` after I start i3, should I start any other daemons? 
+
+Thank you</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">simao</dc:creator><pubDate>Tue, 28 Oct 2014 14:14:37 +0000</pubDate><guid>https://faq.i3wm.org/question/4874/</guid></item><item><title>Reverse perl matches in 'criteria' in i3 config</title><link>https://faq.i3wm.org/question/7662/reverse-perl-matches-in-criteria-in-i3-config/</link><description>Hello,
+
+I switched to i3 recently (from pekwm), to see if I could persuade myself to start to use tiling WM. So far, so good, I find i3 very configurable and maleable. If not directly, then by simple scripting and a bit of hacking. 
+
+However, one thing is bothering me ... let me explain: I regularly use VirtualBox; very often I want to close certain window inside particular virtual machine, and instinctively press the i3 'kill' keyboard shortcut $mod+Shift+q. Of course, it closes entire virtual machine ... which makes me cry and mad :)
+
+What I need is to disable 'kill' action on windows with [instance="VirtualBox"]. I tried:
+
+    bindsym $mod+Shift+q [instance="(?!VirtualBox)"] kill
+However, it doesn't do what I need ... instead, to my horror, it closes all other windows!
+
+Is there a simple solution to this, or I must resort to the IPC (this would be overkill for such a simple operation, wouldn't it)?
+
+Unfortunately, programming in C/C++ is over my head, but if there is a chance, I would vouch for adding such config option: 'do something to focused widow, unless window satisfies such-and-such criteria".
+
+(Note: my question is connected to this one [How do I use an exclude regex in i3 config] here in this FAQ, so I'm not the only one in a need for such thing.)
+
+Thanks a lot for all your answers.</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">basletic</dc:creator><pubDate>Sun, 13 Dec 2015 22:24:09 +0000</pubDate><guid>https://faq.i3wm.org/question/7662/</guid></item><item><title>Scrolling trough workspaces</title><link>https://faq.i3wm.org/question/7528/scrolling-trough-workspaces/</link><description> I want to scroll through my open workspaces.
+
+This is possible when hovering over the i3-bar
+
+I want to enable this feature when i press Ctrl+ScrollUp or ScrollDown.
+Is it possible to add something like this in my i3 config file.</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">luytsm</dc:creator><pubDate>Wed, 02 Dec 2015 14:28:21 +0000</pubDate><guid>https://faq.i3wm.org/question/7528/</guid></item><item><title>How to use Icedove with gnome-keyring</title><link>https://faq.i3wm.org/question/7677/how-to-use-icedove-with-gnome-keyring/</link><description>How can I use Icedove with --password-store=gnome, in order to make use
+of the gnome-keyring-daemon to store the passwords. it is for GPG</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">mt</dc:creator><pubDate>Tue, 15 Dec 2015 06:27:45 +0000</pubDate><guid>https://faq.i3wm.org/question/7677/</guid></item><item><title>Manage 'global theme'</title><link>https://faq.i3wm.org/question/7659/manage-global-theme/</link><description> Hello,
+
+Customizing i3 and all the applications is a deep art it involves managing a lot of configuration files and you need to have a good overview of the settings you want if you don't wan't to be always editing them, like me.
+So I decided to write a little script (in bash) to set a 'global theme'.
+The theme contains all the config files (wallpaper, gtk, termite, ncmpcpp...) and the script is supposed to link the files into the location where applications need them.
+
+But feh can't open a symlink... 
+`feh WARNING: .wallpaper.f does not exist - skipping
+feh: No loadable images specified.`
+I haven't tried for other applications but it may happens again.
+
+Instead of linking I can always copy...
+Now I wonder, is there any application to manage config files as themes ?
+
+Thank you</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">nscott32</dc:creator><pubDate>Sun, 13 Dec 2015 20:05:28 +0000</pubDate><guid>https://faq.i3wm.org/question/7659/</guid></item><item><title>I3 config variables</title><link>https://faq.i3wm.org/question/7637/i3-config-variables/</link><description>Hi there,
+
+How does the i3 variables works in config files ?
+On my computer `set $emacs_default "emacsclient -c --server-file=default"` doesn't work when I try to bindsym it with an exec :
+`binsym $mod+e  exec $emacs_default`, it doesn't run anything.
+
+Also I was wondering if it possible to parametrate a mode with a variable which would be used to run some applications, for instance using same keyinding with different emacs server.
+
+Tell me if it's not clear</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">nscott32</dc:creator><pubDate>Sat, 12 Dec 2015 14:09:47 +0000</pubDate><guid>https://faq.i3wm.org/question/7637/</guid></item><item><title>Open an application in a certain position</title><link>https://faq.i3wm.org/question/7631/open-an-application-in-a-certain-position/</link><description>Is it possible keybind an application for opening horizontally/vertically without modifying the current splitting mode?
+Or a floating window to open in a corner ?
+
+I would like to replace use i3 to manage emacs directly so If I have shortcut to open new emacs horizontally or vertically it would be cool.
+
+ Also I like to have a floating terminal on bottom right corner when I am coding so opening it directly into that corner would be great. I still could add `move right XXXpx; move down YYYpx` after the command, but I sometimes plug a dual screen with another resolution so values may changed.
+ </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">nscott32</dc:creator><pubDate>Fri, 11 Dec 2015 20:52:27 +0000</pubDate><guid>https://faq.i3wm.org/question/7631/</guid></item><item><title>keybinding</title><link>https://faq.i3wm.org/question/7588/keybinding/</link><description>This may sound odd but here we go.
+I'm a heavy keyboard user and I notice that a lot of tools (emacs, vim, ratpoison) seem to cope well with me making a LOT of mistakes. By mistakes I mean: typing (as in code or e-mails etc) while in the wrong mode, or sending key combinations for which there is no binding in my *rc.
+
+I'll give a couple of examples so that it make more sense:
+
+ - emacs - I type `C-x C-nonsense` and get a friendly error
+ - emacs - I type `C-x blah` accidently and spam `C-g` until any random command or mode I just oppened goes away.
+ - ratpoison - I type `C-r` (or whatevere the ratpoison prefix is) and instantly all further keypresses are interpreted as ratpoison commands.
+ - tmux - same as ratpoison.
+
+So my problem is that with i3 - there isn't really a 'prefix' key like in tmux and ratpoison and emacs (I don't use vim very often). I simulated the idea of a prefix by creating a 'wm' mode in i3.
+However, while in this mode, any keypresses are passed on to the window in focus unless they are overridden with `bindsym`. So my question:
+
+**Is there a way to prevent ALL keypresses EXCEPT those overridden with `bindsym` from being passed to the window in focus? At least just for a particular mode? How can I acheieve this?**
+
+That way I can have a prefix style operation rather than a vim-like operation (nothing wrong with vim - but since I'm so used to emacs I keep hitting `C-x` by accident and end up in some crazy mode).
+
+I guess my real problem is that I need to think before I type - but that ain't gonna happen any time soon.</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">d.j.yotta</dc:creator><pubDate>Mon, 07 Dec 2015 20:13:20 +0000</pubDate><guid>https://faq.i3wm.org/question/7588/</guid></item><item><title>i3bar (py3status) applet position</title><link>https://faq.i3wm.org/question/7572/i3bar-py3status-applet-position/</link><description> I'm trying to figure out if there is a way to force i3bar's applets to be on a particular monitor.  does anyone know if this is possible?  all my applets (dropbox, redshift, etc.) show up on my left monitor, but I'd like them to be on my center monitor with py3status.</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">drak3</dc:creator><pubDate>Sun, 06 Dec 2015 02:46:50 +0000</pubDate><guid>https://faq.i3wm.org/question/7572/</guid></item><item><title>Is i3 a non-reparenting wm</title><link>https://faq.i3wm.org/question/7560/is-i3-a-non-reparenting-wm/</link><description> Hi, I wonder whether i3 is a non-reparenting wm or not, so that I can set the ```_JAVA_AWT_WM_NONREPARENTING``` option properly for jvm.</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zyguan</dc:creator><pubDate>Fri, 04 Dec 2015 12:59:28 +0000</pubDate><guid>https://faq.i3wm.org/question/7560/</guid></item><item><title>Keyboard combination to override mod key?</title><link>https://faq.i3wm.org/question/7553/keyboard-combination-to-override-mod-key/</link><description> I am using the alt key as my mod key. 
+
+Is it possible to create a keyboard shortcut that will act as 'alt' without i3 parsing it as mod key? 
+
+The reason I'm asking for this is that I just realized that in gtk programs you can use alt+ a letter as hotkey for buttons, menus, etc, and I would like to take advantage of this functionality.
+
+
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">geo909</dc:creator><pubDate>Fri, 04 Dec 2015 00:04:56 +0000</pubDate><guid>https://faq.i3wm.org/question/7553/</guid></item><item><title>Fullscreen to hide i3bar and border only</title><link>https://faq.i3wm.org/question/7447/fullscreen-to-hide-i3bar-and-border-only/</link><description>Fullscreen mode of  some applications with i3wm is the same as application's internal fullscrenn mode, for example, in Firefox, what I get with F11 and Mod+f are the same, but what I expect when pressing Mod+f is just maximizing current window and hiding  i3bar and border, without hiding any firefox component. Is it possible to make i3wm's fullscreen mode behaving like this?</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Loong</dc:creator><pubDate>Wed, 25 Nov 2015 15:52:06 +0000</pubDate><guid>https://faq.i3wm.org/question/7447/</guid></item><item><title>i3bar multiple instances of script.</title><link>https://faq.i3wm.org/question/7500/i3bar-multiple-instances-of-script/</link><description>Hey all,
+
+First of all, my English isn't good so I apologize if something is misspelled. :( 
+
+So, I wrote a small script to pipe some informations to i3status/i3bar. The script is below. 
+My question is, if I do "ps aux | grep /bin/sh" I get 4 instances of my script (I believe 2 for each bar - cuz I have two monitors). There is a reason why 4 instances?Shouldn't it be just two of them? 
+
+    #!/bin/sh 
+    
+    # Global variables
+    show_caps=NULL
+    show_num=NULL
+    show_aur=NULL
+    show_pacman=NULL
+    show_public=NULL
+    
+    # Functions
+    get_caps() {
+    	if [ "$(xset -q | grep Caps | awk '{print $4}')" = "on" ]; then
+    		show_caps="{\"color\": \"#cd626d\", \"full_text\": \"Caps: On\"}"
+    	else
+    		show_caps="{\"full_text\": \"Caps: Off\"}"
+    	fi
+    }
+    
+    get_num() {
+    	if [ "$(xset -q | grep Num | awk '{print $8}')" = "on" ]; then
+    		show_num="{\"color\": \"#cd626d\", \"full_text\": \"Num: On\"}"
+    	else
+    		show_num="{\"full_text\": \"Num: Off\"}"
+    	fi
+    }
+    
+    get_updates() {	
+    	if [ "$(cat ~/.config/hasupdatecower)" = "1" ]; then
+    		show_aur="{\"color\": \"#cd626d\", \"full_text\": \"AUR: Yes\"}"
+    	else
+    		show_aur="{\"full_text\": \"AUR: No\"}"
+    	fi
+    	
+    	if [ "$(cat ~/.config/hasupdatepacman)" = "1" ]; then
+    		show_pacman="{\"color\": \"#cd626d\", \"full_text\": \"Pacman: Yes\"}"
+    	else
+    		show_pacman="{\"full_text\": \"Pacman: No\"}"
+    	fi
+    	
+    }
+    
+    get_publicip() {
+    	gets_ip=$(cat ~/Drive/System/my_ip | awk '{print "IP: "$8}')
+    	show_public="{\"full_text\": \"${gets_ip}\"}"
+    }
+    
+    #echo '{"version":1}'
+    #echo '['
+    #echo '[]'
+    
+    # i3status output (JSON)
+    i3status | while :
+    do
+    	read line 
+    	get_caps
+    	#get_num
+    	get_updates
+    	#get_publicip
+    	show_status="[$show_pacman,$show_aur,$show_caps,"
+    	#echo ",[$show_public,$show_pacman,$show_cower,$show_caps,$show_num]" || exit 1
+    	echo "${line/[/$show_status}" || exit 1
+    done
+    
+    # END
+
+My i3's configuration file has: `status_command ~/Programming/Shell/i3more.sh`
+
+Output of "ps aux | grep /bin/sh": 
+
+    pedrofr+  5430  0.0  0.0  13616  3004 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+    pedrofr+  5431  0.0  0.0  13616  3132 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+    pedrofr+  5433  0.0  0.0  13620  2728 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+    pedrofr+  5435  0.0  0.0  13620  2820 ?        S    15:27   0:00 /bin/sh /home/pedrofreitas/Programming/Shell/i3more.sh
+
+Unfortunately I can't post link, so the output isn't formatted.
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">psf</dc:creator><pubDate>Sun, 29 Nov 2015 17:27:13 +0000</pubDate><guid>https://faq.i3wm.org/question/7500/</guid></item><item><title>How to display content of ~/Desktop on desktop</title><link>https://faq.i3wm.org/question/7240/how-to-display-content-of-desktop-on-desktop/</link><description> Hello everyone,
+
+there's one feature I really miss in i3: The big desktop-environments give you the possibility to let the filemanager display the content of your XDG_DESKTOP_DIR on the desktop. Of course while using a tiling window manager you can't see your desktop most of the time anyway, but it would be great for me to see the outstanding work right after login.
+Anyways: I tried to use various filemanagers for this purpose, but i3 treats the "desktop-window" as a normal floating window and that's of course not what I want.
+
+Is there anybody who can tell me how to do this in i3 or whether this is even possible?
+
+Thanks for your solutions and ideas!
+
+Greetings
+Fabian
+
+edit: My distribution is Arch Linux if it matters.</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">fabian</dc:creator><pubDate>Mon, 09 Nov 2015 18:34:12 +0000</pubDate><guid>https://faq.i3wm.org/question/7240/</guid></item><item><title>Lemonbar with I3 - original i3 bar pops up on the bottom - hide?</title><link>https://faq.i3wm.org/question/7497/lemonbar-with-i3-original-i3-bar-pops-up-on-the-bottom-hide/</link><description>I have just set up Lemonbar with my i3 setup, replacing the original i3bar. However, the I3bar pops up at the bottom of my screen - opposite the Lemonbar - but with no content except workspaces. 
+
+ My status command is just 
+
+    bar {
+           status_command ~/.i3/lemonbar/i3_lemonbar.sh
+       }
+
+Shouldn't I only have the Lemonbar, or am I doing something wrong? How do I get rid of i3bar?
+
+Thanks
+
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Unknownentity</dc:creator><pubDate>Sun, 29 Nov 2015 02:21:33 +0000</pubDate><guid>https://faq.i3wm.org/question/7497/</guid></item><item><title>Is it possible to change colors of i3-input?</title><link>https://faq.i3wm.org/question/7422/is-it-possible-to-change-colors-of-i3-input/</link><description>I already read in another question that unfortunately it is not possible to change the position of i3-input because it is hardcoded. Although, I could not find any information in the docs about it and thus the answer is probably the same,
+
+**I would very much like to know if it is possible to change colors of borders and background of i3-input.**</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">cutuchiqueno</dc:creator><pubDate>Tue, 24 Nov 2015 16:05:07 +0000</pubDate><guid>https://faq.i3wm.org/question/7422/</guid></item><item><title>switch keyboard layout with Caps Lock</title><link>https://faq.i3wm.org/question/7415/switch-keyboard-layout-with-caps-lock/</link><description> I would love to be able to switch keyboard layout with Caps Lock, how can I do it?
+
+I tried to put **Caps_Lock** in the *Ibus Preferences =&gt; Keyboard Shortcuts =&gt; Next Input Method*
+
+and when I use capslock language indicator in the tray changes, but when I am trying to type, it is still capital versus non capital letters.</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">forseti</dc:creator><pubDate>Mon, 23 Nov 2015 15:43:24 +0000</pubDate><guid>https://faq.i3wm.org/question/7415/</guid></item><item><title>Sessions in i3 + Lightdm</title><link>https://faq.i3wm.org/question/7372/sessions-in-i3-lightdm/</link><description> Hi,
+when I log out from i3 (```i3-msg exit```) and log in using Lightdm new user session is created, but the old one is still running.
+
+1. Is it possible to not create new session but rather "reuse" the old session? 
+2. Would it be better to terminate the session when exiting i3? (something like ```i3-msg exit &amp;&amp; loginctl terminate-session```)
+
+I am running Fedora 22.
+
+---
+Why am I asking: I cant use `systemctl reboot` without root (sudo) privileges in the newly created session. 
+
+
+UPDATE:
+
+I think i found the reason - The two daemons from the output below keep the session from closing. The session exits correctly if the remaining processes are killed also `systemctl reboot` does not require root privileges (Don't know why though).
+
+    $ loginctl session-status 1                                                                                                                                                                    
+    1 - bean (1000)
+           Since: Mon 2015-11-23 12:43:06 CET; 3min 21s ago
+          Leader: 2519
+            Seat: seat0; vc1
+         Display: :0
+         Service: lightdm; type x11; class user
+           State: closing
+            Unit: session-1.scope
+                  ├─2899 /usr/bin/pulseaudio --start --log-target=syslog
+                  └─3058 redshift</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">LordFazole</dc:creator><pubDate>Thu, 19 Nov 2015 18:41:28 +0000</pubDate><guid>https://faq.i3wm.org/question/7372/</guid></item><item><title>The configured command for this shortcut could not run successfully error?</title><link>https://faq.i3wm.org/question/7370/the-configured-command-for-this-shortcut-could-not-run-successfully-error/</link><description>I get the following error messages when trying to move windows to either of the workspaces "Web" and "Code":
+
+    ERROR: Expected one of these tokens: 'window', 'container', 'to', 'workspace', 'output', 'mark', 'scratchpad', 'left', 'right', 'up', 'down', 'position', 'absolute'
+    ERROR: Your command: move container to Web
+    ERROR:                                 ^^^
+    ERROR: Expected one of these tokens: 'window', 'container', 'to', 'workspace', 'output', 'mark', 'scratchpad', 'left', 'right', 'up', 'down', 'position', 'absolute'
+    ERROR: Your command: move container to Code 
+    ERROR:                                 ^^^^
+
+Here is the part of my configuration where I configured these workspaces:
+
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to Web
+    bindsym $mod+Shift+2 move container to Code
+
+    bindsym $mod+1 workspace Web
+    bindsym $mod+2 workspace Code
+
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kaladin</dc:creator><pubDate>Thu, 19 Nov 2015 13:59:20 +0000</pubDate><guid>https://faq.i3wm.org/question/7370/</guid></item><item><title>i3-py executing commands out of order</title><link>https://faq.i3wm.org/question/4255/i3-py-executing-commands-out-of-order/</link><description>I working on a script to switch the workspaces on my displays (similar to: http://i3wm.org/docs/user-contributed/swapping-workspaces.html). Approximately one time in five that I run the script, it executes my commands out of order causing some workspaces to be moved twice and others not at all. I was able to fix this by sleeping for 0.1s on each loop, but this is obviously not the ideal way to solve this bug.
+
+How should I be ensuring that each line succeeds before the next is run?
+
+    #!/usr/bin/python2.7
+    from time import sleep
+    import i3
+
+    # save focused workspace
+    def find_active_workspace():
+        workspaces = i3.get_workspaces()
+        for workspace in workspaces:
+            if workspace['focused'] == True:
+                return workspace['name']
+        else:
+            return False
+    active_workspace = find_active_workspace()
+
+    # move everything
+    outputs = i3.get_outputs()
+    for output in range(0, 4):
+        i3.workspace(outputs[output]['current_workspace'])
+        i3.command('move', 'workspace to output up')
+        sleep(0.1)
+
+    # restore focus to previously focused
+    sleep(0.1)
+    if active_workspace:
+        i3.command("workspace", active_workspace)
+
+I'm new to scripting so any other comments on the code would also be appreciated.
+
+Thanks!</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">hbaughman</dc:creator><pubDate>Tue, 15 Jul 2014 15:31:13 +0000</pubDate><guid>https://faq.i3wm.org/question/4255/</guid></item><item><title>How to increase font size default terminal?</title><link>https://faq.i3wm.org/question/7044/how-to-increase-font-size-default-terminal/</link><description> Hello!
+
+I had installed i3 recently, at first sight it looks great.
+
+Can you help to increase font size in default terminal?</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">a93ushakov</dc:creator><pubDate>Sun, 25 Oct 2015 15:44:23 +0000</pubDate><guid>https://faq.i3wm.org/question/7044/</guid></item><item><title>i3bar covers Photoshop menu</title><link>https://faq.i3wm.org/question/7311/i3bar-covers-photoshop-menu/</link><description>I run the i3wm with the i3bar. I installed Photoshop CS6 through Wine.
+
+I have found a few quirks:
+
+ - the i3bar is overlapping the Photoshop's Menu bar (File, etc): i3wm and Photoshop
+ - resizing the Photoshop window (i.e. by placing it into floating mode or opening another application side by side) does not re-scale photoshop, instead the app just covers half of the Photoshop window.
+
+I assume these issues are related; yet the first one is more important. What would fix this issue?
+
+
+EDIT: The output of `xprop` is:
+
+    WM_STATE(WM_STATE):
+    		window state: Normal
+    		icon window: 0x0
+    _NET_WM_STATE(ATOM) = _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_STATE_MAXIMIZED_HORZ
+    _NET_WM_ICON(CARDINAL) = 
+    _NET_WM_NAME(UTF8_STRING) = "Adobe Photoshop CS6 Extended"
+    WM_ICON_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+    WM_NAME(STRING) = "Adobe Photoshop CS6 Extended"
+    WM_HINTS(WM_HINTS):
+    		Client accepts input or input focus: False
+    		Initial state is Normal State.
+    		bitmap id # to use for icon: 0x3e01171
+    		bitmap id # of mask for icon: 0x3e01173
+    		window id # of group leader: 0x4600003
+    _NET_WM_WINDOW_TYPE(ATOM) = _NET_WM_WINDOW_TYPE_NORMAL
+    _MOTIF_WM_HINTS(_MOTIF_WM_HINTS) = 0x3, 0x3e, 0x0, 0x97cf0000, 0x7d7afd80
+    WM_NORMAL_HINTS(WM_SIZE_HINTS):
+    		window gravity: Static
+    _NET_WM_USER_TIME_WINDOW(WINDOW): window id # 0x3e0000f
+    XdndAware(ATOM) = ATOM
+    _NET_WM_PID(CARDINAL) = 19848
+    WM_LOCALE_NAME(STRING) = "en_US.UTF-8"
+    WM_CLIENT_MACHINE(STRING) = "alonso"
+    WM_CLASS(STRING) = "Photoshop.exe", "Wine"
+    WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING, WM_TAKE_FOCUS
+
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">alonsodon</dc:creator><pubDate>Sat, 14 Nov 2015 12:31:27 +0000</pubDate><guid>https://faq.i3wm.org/question/7311/</guid></item><item><title>i3 on ubuntu 15.04 does not start</title><link>https://faq.i3wm.org/question/7344/i3-on-ubuntu-1504-does-not-start/</link><description> I installed i3 on a fresh ubuntu 15.04 install through the software center. It installed version i3-wm 4.10.3-1build1.
+
+When I hit alt-enter or even super-enter, nothing happens.
+
+What did i do wrong?
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">skypickle</dc:creator><pubDate>Mon, 16 Nov 2015 22:08:40 +0000</pubDate><guid>https://faq.i3wm.org/question/7344/</guid></item><item><title>Obtain info on current workspace etc.</title><link>https://faq.i3wm.org/question/6200/obtain-info-on-current-workspace-etc/</link><description>How do I just get info about current settings like current workspace?
+
+For example, from a script I want to decide based on name of the current desktop,
+
+The background is that I have $mod+b for web browser, but I have 2 profiles: home and work.  I also have a dedicated set of home and work worplaces. So I want to use a browser launcher that will choose the browser profile based on which workspace I am on. (I'm OK with the fact that the window may get moved later).
+
+So is there a generic way (ie a i3-msg command) for getting info?</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Alois Mahdal</dc:creator><pubDate>Thu, 25 Jun 2015 12:37:43 +0000</pubDate><guid>https://faq.i3wm.org/question/6200/</guid></item><item><title>Why can't I use Alt/Mod1 for bindings?</title><link>https://faq.i3wm.org/question/7103/why-cant-i-use-altmod1-for-bindings/</link><description> I would like the following functionality:
+
+    bindsym --release Print exec --no-startup-id scrot -z
+    bindsym --release Mod1+Print exec --no-startup-id scrot -zu
+    bindsym --release Shift+Print exec --no-startup-id scrot -zs
+
+Lines 1 and 3 work as expected. 
+
+Line 2 does nothing. 
+
+I have tried using bindcodes instead. I have also double-checked checked xev and xmodmap outputs.
+
+Am I doing something wrong?</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">beanaroo</dc:creator><pubDate>Fri, 30 Oct 2015 03:50:19 +0000</pubDate><guid>https://faq.i3wm.org/question/7103/</guid></item><item><title>Can't install i3 4.11 on Ubuntu 14.04</title><link>https://faq.i3wm.org/question/7125/cant-install-i3-411-on-ubuntu-1404/</link><description>Hi guys,
+
+I get the following error-message when trying installing i3 through provided repositories for Debian and Ubuntu on i3wm.org
+
+    The following packages have unmet dependencies:
+    i3 : Depends: i3-wm (= 4.11-1~~trusty1) but it is not going to be installed
+    Recommends: i3lock (&gt;= 2.2) but it is not going to be installed
+    E: Unable to correct problems, you have held broken packages.
+
+I hope someone can help me solve this problem.</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">fahs23</dc:creator><pubDate>Sun, 01 Nov 2015 23:23:03 +0000</pubDate><guid>https://faq.i3wm.org/question/7125/</guid></item></channel></rss>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/316/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 11 Nov 2013 11:11:26 +0000</lastBuildDate><item><title>Move all workspaces to one monitror and back</title><link>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/</link><description>Sometimes I have to unplug my external monitor.  I'd like to be able to move all the workspaces that were on the external onto the laptop automatically.  Ideally, I'd like them to move back when I plug the monitor in again.
+
+More generally, I'd like a way to have all workspaces listed and available on each monitor, so that when I switch workspaces the target pops up on which ever monitor is currently active.
+
+Are these things possible?</description><pubDate>Mon, 06 Aug 2012 22:44:54 +0000</pubDate><guid>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/</guid></item><item><title>Comment by lkraav for &lt;p&gt;Sometimes I have to unplug my external monitor.  I'd like to be able to move all the workspaces that were on the external onto the laptop automatically.  Ideally, I'd like them to move back when I plug the monitor in again.&lt;/p&gt;
+
+&lt;p&gt;More generally, I'd like a way to have all workspaces listed and available on each monitor, so that when I switch workspaces the target pops up on which ever monitor is currently active.&lt;/p&gt;
+
+&lt;p&gt;Are these things possible?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?comment=317#comment-317</link><description>With a udev hotplug script + i3-msg, I'm pretty sure it is.</description><pubDate>Tue, 07 Aug 2012 05:32:43 +0000</pubDate><guid>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?comment=317#comment-317</guid></item><item><title>Answer by Quelltextfabrik for &lt;p&gt;Sometimes I have to unplug my external monitor.  I'd like to be able to move all the workspaces that were on the external onto the laptop automatically.  Ideally, I'd like them to move back when I plug the monitor in again.&lt;/p&gt;
+
+&lt;p&gt;More generally, I'd like a way to have all workspaces listed and available on each monitor, so that when I switch workspaces the target pops up on which ever monitor is currently active.&lt;/p&gt;
+
+&lt;p&gt;Are these things possible?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?answer=2354#post-id-2354</link><description>I hope this helps you. The following will turn off your monitors when unplugging and turn them on again when you plug it in. Turning the monitor off will force i3 to put all workspaces on the remaining monitor. Turning it on again will simply create a new blank workspace, I'm working on a restore-script but wanted to share the progress so far.
+
+Following Ikraav's comment, we will be using udev for this.
+
+First check if unplugging your monitor actually results in an event. Look for (drm) in the  output of the following command:
+
+      #: udevadm monitor --property
+
+Then create a new udev rule, on Ubuntu e.g. in _/etc/udev/rules.d/80-monitor-hotplug.rules_
+
+      ACTION=="change", SUBSYSTEM=="drm", RUN+="/root/monitor-hotplug.sh"
+
+Then create your script in _/root/monitor-hotplug.sh_. You will have to replace the adapters with the ones relevant to you, and of course your username.
+
+      #!/bin/sh
+      # Read the status of the relevant graphics adapter
+      read STATUS &lt; /sys/class/drm/card0-DVI-D-1/status
+      export DISPLAY=:0
+      export XAUTHORITY=/home/vk/.Xauthority
+      if [ "$STATUS" = "connected" ]; then
+        xrandr --output DVI-D-1 --above LVDS-1 --auto --screen 0
+      else
+        xrandr --output DVI-D-1 --off --screen 0
+      fi
+
+And that is it. Still todo:
+
+* Not sure yet how to handle XAUTHORITY for multiple users
+* Restore workspaces when plugging back in. The workspace setup could e.g. be cached in a file in the homedir and then restored.</description><pubDate>Thu, 15 Aug 2013 09:11:11 +0000</pubDate><guid>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?answer=2354#post-id-2354</guid></item><item><title>Answer by matburt for &lt;p&gt;Sometimes I have to unplug my external monitor.  I'd like to be able to move all the workspaces that were on the external onto the laptop automatically.  Ideally, I'd like them to move back when I plug the monitor in again.&lt;/p&gt;
+
+&lt;p&gt;More generally, I'd like a way to have all workspaces listed and available on each monitor, so that when I switch workspaces the target pops up on which ever monitor is currently active.&lt;/p&gt;
+
+&lt;p&gt;Are these things possible?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?answer=324#post-id-324</link><description>Sounds like the original poster wants xmonad behavior where whichever monitor is focused, by pressing mod-# that workspace would jump to the focused monitor (if not there already).  The current behavior is to put the focus on the monitor to which the workspace is assigned and jump to it there.
+
+I didn't have any luck unplugging my monitor, disabling the external display then re-enabling it.  Once a monitor is unplugged it seems all existing workspaces just get moved to whichever one is left (the laptop display).
+
+The documentation, though mentions, a command (that could likely be bound to a key) which will move the workspace to another monitor, that works like this:
+
+$ i3-msg move workspace to output [xrandr output name]
+
+or
+
+$ i3-msg move workspace to output [left|right|up|down]
+
+so if you have two monitors... bind a key to left and bind a key to right and you can just toggle a display between them:
+
+bindsym $mod+v exec i3-msg move workspace to output left
+
+bindsym $mod+b exec i3-msg move workspace to output right
+
+I created a script that I run before I unplug my monitor that allows me to 'save' the workspace states... I can then run it again with 'restore' when I plug the monitor back in and it will restore the workspaces to where they were before: [i3plug.py](https://gist.github.com/3310561)</description><pubDate>Thu, 09 Aug 2012 05:42:47 +0000</pubDate><guid>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?answer=324#post-id-324</guid></item><item><title>Answer by Michael for &lt;p&gt;Sometimes I have to unplug my external monitor.  I'd like to be able to move all the workspaces that were on the external onto the laptop automatically.  Ideally, I'd like them to move back when I plug the monitor in again.&lt;/p&gt;
+
+&lt;p&gt;More generally, I'd like a way to have all workspaces listed and available on each monitor, so that when I switch workspaces the target pops up on which ever monitor is currently active.&lt;/p&gt;
+
+&lt;p&gt;Are these things possible?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?answer=318#post-id-318</link><description>It sounds to me like you want to assign a number of workspaces to your external monitor. See http://i3wm.org/docs/userguide.html#workspace_screen. When the output is unavailable, workspaces will be moved to the first available monitor (your laptop monitor) and when it becomes available again, workspaces will be moved there again.</description><pubDate>Tue, 07 Aug 2012 06:26:01 +0000</pubDate><guid>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?answer=318#post-id-318</guid></item><item><title>Comment by Quelltextfabrik for &lt;p&gt;It sounds to me like you want to assign a number of workspaces to your external monitor. See &lt;a href="http://i3wm.org/docs/userguide.html#workspace_screen"&gt;http://i3wm.org/docs/userguide.html#w...&lt;/a&gt;. When the output is unavailable, workspaces will be moved to the first available monitor (your laptop monitor) and when it becomes available again, workspaces will be moved there again.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?comment=2353#comment-2353</link><description>The trouble is when you unplug a monitor while a laptop is running, the workspaces are still on the monitor that is not available anymore. How can we those now invisible workspaces automatically to the still active (primary) monitor?</description><pubDate>Thu, 15 Aug 2013 08:18:46 +0000</pubDate><guid>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?comment=2353#comment-2353</guid></item><item><title>Comment by Flimm for &lt;p&gt;It sounds to me like you want to assign a number of workspaces to your external monitor. See &lt;a href="http://i3wm.org/docs/userguide.html#workspace_screen"&gt;http://i3wm.org/docs/userguide.html#w...&lt;/a&gt;. When the output is unavailable, workspaces will be moved to the first available monitor (your laptop monitor) and when it becomes available again, workspaces will be moved there again.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?comment=2866#comment-2866</link><description>I don't have enough karma to edit this answer, but the link is broken.</description><pubDate>Mon, 11 Nov 2013 11:11:26 +0000</pubDate><guid>https://faq.i3wm.org/question/316/move-all-workspaces-to-one-monitror-and-back/?comment=2866#comment-2866</guid></item></channel></rss>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5312/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 09 Jan 2015 10:36:16 +0000</lastBuildDate><item><title>how to toggle on/off external and internal monitors</title><link>https://faq.i3wm.org/question/5312/how-to-toggle-onoff-external-and-internal-monitors/</link><description>I have a laptop and a external TV plugged in HDMI.
+
+I have troubles when plugin in the TV on hdmi port after i3 had started. 
+I have to log off so lightdm recognizes the tv and then log in again. 
+
+after that, once logged in, and both screens are working, I would like to disable the internal screen leaving only the TV as active screen.</description><pubDate>Fri, 09 Jan 2015 10:29:17 +0000</pubDate><guid>https://faq.i3wm.org/question/5312/how-to-toggle-onoff-external-and-internal-monitors/</guid></item><item><title>Answer by Sam73 for &lt;p&gt;I have a laptop and a external TV plugged in HDMI.&lt;/p&gt;
+
+&lt;p&gt;I have troubles when plugin in the TV on hdmi port after i3 had started. 
+I have to log off so lightdm recognizes the tv and then log in again. &lt;/p&gt;
+
+&lt;p&gt;after that, once logged in, and both screens are working, I would like to disable the internal screen leaving only the TV as active screen.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5312/how-to-toggle-onoff-external-and-internal-monitors/?answer=5313#post-id-5313</link><description>Here is a method that will swap between mode :
+
+ - both monitors in best resolution
+ - external only
+ - internal only
+ - both in clone mode
+
+First execute the command 
+
+    xrandr
+in a shell to check the names of your plugged in monitors. In my case they are LVDS1 for the internal and HDMI1 for the TV.
+
+Create a script like this updating accordingly external and internal outputs variables :
+
+    #!/bin/bash
+    EXTERNAL_OUTPUT="HDMI1"
+    INTERNAL_OUTPUT="LVDS1"
+    
+    # if we don't have a file, start at zero
+    if [ ! -f "/tmp/monitor_mode.dat" ] ; then
+      monitor_mode="all"
+    
+    # otherwise read the value from the file
+    else
+      monitor_mode=`cat /tmp/monitor_mode.dat`
+    fi
+    
+    if [ $monitor_mode = "all" ]; then
+            monitor_mode="EXTERNAL"
+            xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --auto
+    elif [ $monitor_mode = "EXTERNAL" ]; then
+            monitor_mode="INTERNAL"
+            xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --off
+    elif [ $monitor_mode = "INTERNAL" ]; then
+            monitor_mode="CLONES"
+            xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --auto --same-as $INTERNAL_OUTPUT
+    else
+            monitor_mode="all"
+            xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --auto --left-of $INTERNAL_OUTPUT
+    fi
+    echo "${monitor_mode}" &gt; /tmp/monitor_mode.dat
+
+then add this command to i3 to bind the toggle
+
+    bindsym $mod+Shift+s exec --no-startup-id /home/mylogin/bin/monitor
+
+ 
+
+</description><pubDate>Fri, 09 Jan 2015 10:36:16 +0000</pubDate><guid>https://faq.i3wm.org/question/5312/how-to-toggle-onoff-external-and-internal-monitors/?answer=5313#post-id-5313</guid></item></channel></rss>

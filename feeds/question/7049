@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7049/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 28 Oct 2015 10:19:11 +0000</lastBuildDate><item><title>How to check which workspace is currently focused from skript</title><link>https://faq.i3wm.org/question/7049/how-to-check-which-workspace-is-currently-focused-from-skript/</link><description>Is it possible to check which workspace is currently focused and using this information in a bash script?
+I did some google research but didn't come up with anything useful .. </description><pubDate>Sun, 25 Oct 2015 19:20:49 +0000</pubDate><guid>https://faq.i3wm.org/question/7049/how-to-check-which-workspace-is-currently-focused-from-skript/</guid></item><item><title>Comment by Airblader for &lt;p&gt;Is it possible to check which workspace is currently focused and using this information in a bash script?
+I did some google research but didn't come up with anything useful .. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7049/how-to-check-which-workspace-is-currently-focused-from-skript/?comment=7052#comment-7052</link><description>You may wanna read this: http://i3wm.org/docs/ipc.html</description><pubDate>Sun, 25 Oct 2015 20:53:21 +0000</pubDate><guid>https://faq.i3wm.org/question/7049/how-to-check-which-workspace-is-currently-focused-from-skript/?comment=7052#comment-7052</guid></item><item><title>Answer by Anon1234 for &lt;p&gt;Is it possible to check which workspace is currently focused and using this information in a bash script?
+I did some google research but didn't come up with anything useful .. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7049/how-to-check-which-workspace-is-currently-focused-from-skript/?answer=7050#post-id-7050</link><description>Depends on what tool you can use for parsing json. With python you can do this oneliner:
+
+    $ focused_ws=$(i3-msg -t get_workspaces | python -c 'import json,sys;ws=json.load(sys.stdin);print(list(filter(lambda x: x["focused"], ws))[0]["name"])')
+    $ echo $focused_ws 
+    1: main
+
+
+</description><pubDate>Sun, 25 Oct 2015 19:39:54 +0000</pubDate><guid>https://faq.i3wm.org/question/7049/how-to-check-which-workspace-is-currently-focused-from-skript/?answer=7050#post-id-7050</guid></item><item><title>Comment by kyra for &lt;p&gt;Depends on what tool you can use for parsing json. With python you can do this oneliner:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ focused_ws=$(i3-msg -t get_workspaces | python -c 'import json,sys;ws=json.load(sys.stdin);print(list(filter(lambda x: x["focused"], ws))[0]["name"])')
+$ echo $focused_ws 
+1: main
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7049/how-to-check-which-workspace-is-currently-focused-from-skript/?comment=7079#comment-7079</link><description>exactly what I was looking for works like a charm! Thanks!</description><pubDate>Wed, 28 Oct 2015 10:19:11 +0000</pubDate><guid>https://faq.i3wm.org/question/7049/how-to-check-which-workspace-is-currently-focused-from-skript/?comment=7079#comment-7079</guid></item></channel></rss>

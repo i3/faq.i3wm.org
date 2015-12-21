@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4806/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 21 Oct 2014 19:37:01 +0000</lastBuildDate><item><title>how to set window width by window</title><link>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/</link><description>for example:
+
+rxvt -g 80:25
+
+I understand that tile manager resizes windows by its rules, but I want have 80-column (exactly) terminal(s). So I want have windows 'class=URxvt' that have always width 80 **symbols** (at start).
+
+If there is a way to set window (frame) width by window?
+
+
+As I understand:
+
+These windows (like terminals) count its width (and height) and do request to WM to set the size as window size.
+
+i3wm could store these sizes and use width if a user uses horisontal splitting and use height if a uses uses vertical splitting.
+
+Sorry for my bad English :)</description><pubDate>Mon, 20 Oct 2014 15:04:44 +0000</pubDate><guid>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/</guid></item><item><title>Answer by UNera for &lt;p&gt;for example:&lt;/p&gt;
+
+&lt;p&gt;rxvt -g 80:25&lt;/p&gt;
+
+&lt;p&gt;I understand that tile manager resizes windows by its rules, but I want have 80-column (exactly) terminal(s). So I want have windows 'class=URxvt' that have always width 80 &lt;strong&gt;symbols&lt;/strong&gt; (at start).&lt;/p&gt;
+
+&lt;p&gt;If there is a way to set window (frame) width by window?&lt;/p&gt;
+
+&lt;p&gt;As I understand:&lt;/p&gt;
+
+&lt;p&gt;These windows (like terminals) count its width (and height) and do request to WM to set the size as window size.&lt;/p&gt;
+
+&lt;p&gt;i3wm could store these sizes and use width if a user uses horisontal splitting and use height if a uses uses vertical splitting.&lt;/p&gt;
+
+&lt;p&gt;Sorry for my bad English :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?answer=4811#post-id-4811</link><description>ok, I understand it.
+
+But (for example fluxbox) is able to detect window size in its dimensions (for terminal in symbols).
+
+So if there is a way to resize window by it width/height step?
+
+if Yu resize window in fluxbox it showes real window width (or height) divided by `WM_SIZE_HINTS`
+
+for example xprop on my rxvt showes:
+
+
+    apache:[~]$ xprop 
+    WM_STATE(WM_STATE):
+    		window state: Normal
+    		icon window: 0x0
+    _NET_STARTUP_ID(UTF8_STRING) = "i3/rxvt/6026-9-apache_TIME391675894"
+    _NET_WM_PID(CARDINAL) = 27165
+    WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING
+    WM_LOCALE_NAME(STRING) = "ru_RU.UTF-8"
+    WM_CLASS(STRING) = "rxvt", "URxvt"
+    WM_HINTS(WM_HINTS):
+    		Client accepts input or input focus: True
+    		Initial state is Normal State.
+    		window id # of group leader: 0x260000a
+    WM_NORMAL_HINTS(WM_SIZE_HINTS):
+    		program specified minimum size: 13 by 19
+    		program specified resize increment: 9 by 15
+    		program specified base size: 4 by 4
+    		window gravity: NorthWest
+    WM_CLIENT_MACHINE(STRING) = "apache"
+    WM_COMMAND(STRING) = { "rxvt" }
+    _NET_WM_ICON_NAME(UTF8_STRING) = " xprop [/home/unera]"
+    WM_ICON_NAME(STRING) = " xprop [/home/unera]"
+    _NET_WM_NAME(UTF8_STRING) = " xprop [/home/unera]"
+    WM_NAME(STRING) = " xprop [/home/unera]"
+
+
+
+So it would be nice to have 'resize' command in i3 that will resize by `WM_NORMAL_HINTS`.
+
+</description><pubDate>Tue, 21 Oct 2014 11:19:48 +0000</pubDate><guid>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?answer=4811#post-id-4811</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;ok, I understand it.&lt;/p&gt;
+
+&lt;p&gt;But (for example fluxbox) is able to detect window size in its dimensions (for terminal in symbols).&lt;/p&gt;
+
+&lt;p&gt;So if there is a way to resize window by it width/height step?&lt;/p&gt;
+
+&lt;p&gt;if Yu resize window in fluxbox it showes real window width (or height) divided by &lt;code&gt;WM_SIZE_HINTS&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;for example xprop on my rxvt showes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apache:[~]$ xprop 
+WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_STARTUP_ID(UTF8_STRING) = "i3/rxvt/6026-9-apache_TIME391675894"
+_NET_WM_PID(CARDINAL) = 27165
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING
+WM_LOCALE_NAME(STRING) = "ru_RU.UTF-8"
+WM_CLASS(STRING) = "rxvt", "URxvt"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: True
+        Initial state is Normal State.
+        window id # of group leader: 0x260000a
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        program specified minimum size: 13 by 19
+        program specified resize increment: 9 by 15
+        program specified base size: 4 by 4
+        window gravity: NorthWest
+WM_CLIENT_MACHINE(STRING) = "apache"
+WM_COMMAND(STRING) = { "rxvt" }
+_NET_WM_ICON_NAME(UTF8_STRING) = " xprop [/home/unera]"
+WM_ICON_NAME(STRING) = " xprop [/home/unera]"
+_NET_WM_NAME(UTF8_STRING) = " xprop [/home/unera]"
+WM_NAME(STRING) = " xprop [/home/unera]"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So it would be nice to have 'resize' command in i3 that will resize by &lt;code&gt;WM_NORMAL_HINTS&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?comment=4820#comment-4820</link><description>Fluxbox is not i3, nor is i3 Fluxbox. Different WMs exist because they are different. Q.E.D. Again, what you're asking for is for i3 to work in a manner opposite that which it was designed for. If what Fluxbox does is important to you, use Fluxbox.</description><pubDate>Tue, 21 Oct 2014 19:37:01 +0000</pubDate><guid>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?comment=4820#comment-4820</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;ok, I understand it.&lt;/p&gt;
+
+&lt;p&gt;But (for example fluxbox) is able to detect window size in its dimensions (for terminal in symbols).&lt;/p&gt;
+
+&lt;p&gt;So if there is a way to resize window by it width/height step?&lt;/p&gt;
+
+&lt;p&gt;if Yu resize window in fluxbox it showes real window width (or height) divided by &lt;code&gt;WM_SIZE_HINTS&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;for example xprop on my rxvt showes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apache:[~]$ xprop 
+WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_STARTUP_ID(UTF8_STRING) = "i3/rxvt/6026-9-apache_TIME391675894"
+_NET_WM_PID(CARDINAL) = 27165
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING
+WM_LOCALE_NAME(STRING) = "ru_RU.UTF-8"
+WM_CLASS(STRING) = "rxvt", "URxvt"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: True
+        Initial state is Normal State.
+        window id # of group leader: 0x260000a
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        program specified minimum size: 13 by 19
+        program specified resize increment: 9 by 15
+        program specified base size: 4 by 4
+        window gravity: NorthWest
+WM_CLIENT_MACHINE(STRING) = "apache"
+WM_COMMAND(STRING) = { "rxvt" }
+_NET_WM_ICON_NAME(UTF8_STRING) = " xprop [/home/unera]"
+WM_ICON_NAME(STRING) = " xprop [/home/unera]"
+_NET_WM_NAME(UTF8_STRING) = " xprop [/home/unera]"
+WM_NAME(STRING) = " xprop [/home/unera]"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So it would be nice to have 'resize' command in i3 that will resize by &lt;code&gt;WM_NORMAL_HINTS&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?comment=4816#comment-4816</link><description>i3 is a tiling window manager. Fluxbox is a floating window manager. What you're asking is for a tiling window manager not to tile windows. Not gonna happen. </description><pubDate>Tue, 21 Oct 2014 13:41:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?comment=4816#comment-4816</guid></item><item><title>Comment by UNera for &lt;p&gt;ok, I understand it.&lt;/p&gt;
+
+&lt;p&gt;But (for example fluxbox) is able to detect window size in its dimensions (for terminal in symbols).&lt;/p&gt;
+
+&lt;p&gt;So if there is a way to resize window by it width/height step?&lt;/p&gt;
+
+&lt;p&gt;if Yu resize window in fluxbox it showes real window width (or height) divided by &lt;code&gt;WM_SIZE_HINTS&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;for example xprop on my rxvt showes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apache:[~]$ xprop 
+WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_STARTUP_ID(UTF8_STRING) = "i3/rxvt/6026-9-apache_TIME391675894"
+_NET_WM_PID(CARDINAL) = 27165
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING
+WM_LOCALE_NAME(STRING) = "ru_RU.UTF-8"
+WM_CLASS(STRING) = "rxvt", "URxvt"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: True
+        Initial state is Normal State.
+        window id # of group leader: 0x260000a
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        program specified minimum size: 13 by 19
+        program specified resize increment: 9 by 15
+        program specified base size: 4 by 4
+        window gravity: NorthWest
+WM_CLIENT_MACHINE(STRING) = "apache"
+WM_COMMAND(STRING) = { "rxvt" }
+_NET_WM_ICON_NAME(UTF8_STRING) = " xprop [/home/unera]"
+WM_ICON_NAME(STRING) = " xprop [/home/unera]"
+_NET_WM_NAME(UTF8_STRING) = " xprop [/home/unera]"
+WM_NAME(STRING) = " xprop [/home/unera]"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So it would be nice to have 'resize' command in i3 that will resize by &lt;code&gt;WM_NORMAL_HINTS&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?comment=4819#comment-4819</link><description>&gt; i3 is a tiling window manager. Fluxbox is a floating window manager
+
+
+Right, but if fluxbox is able to, then the other WM could use these variables to change window size</description><pubDate>Tue, 21 Oct 2014 18:29:46 +0000</pubDate><guid>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?comment=4819#comment-4819</guid></item><item><title>Comment by Adaephon for &lt;p&gt;ok, I understand it.&lt;/p&gt;
+
+&lt;p&gt;But (for example fluxbox) is able to detect window size in its dimensions (for terminal in symbols).&lt;/p&gt;
+
+&lt;p&gt;So if there is a way to resize window by it width/height step?&lt;/p&gt;
+
+&lt;p&gt;if Yu resize window in fluxbox it showes real window width (or height) divided by &lt;code&gt;WM_SIZE_HINTS&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;for example xprop on my rxvt showes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apache:[~]$ xprop 
+WM_STATE(WM_STATE):
+        window state: Normal
+        icon window: 0x0
+_NET_STARTUP_ID(UTF8_STRING) = "i3/rxvt/6026-9-apache_TIME391675894"
+_NET_WM_PID(CARDINAL) = 27165
+WM_PROTOCOLS(ATOM): protocols  WM_DELETE_WINDOW, _NET_WM_PING
+WM_LOCALE_NAME(STRING) = "ru_RU.UTF-8"
+WM_CLASS(STRING) = "rxvt", "URxvt"
+WM_HINTS(WM_HINTS):
+        Client accepts input or input focus: True
+        Initial state is Normal State.
+        window id # of group leader: 0x260000a
+WM_NORMAL_HINTS(WM_SIZE_HINTS):
+        program specified minimum size: 13 by 19
+        program specified resize increment: 9 by 15
+        program specified base size: 4 by 4
+        window gravity: NorthWest
+WM_CLIENT_MACHINE(STRING) = "apache"
+WM_COMMAND(STRING) = { "rxvt" }
+_NET_WM_ICON_NAME(UTF8_STRING) = " xprop [/home/unera]"
+WM_ICON_NAME(STRING) = " xprop [/home/unera]"
+_NET_WM_NAME(UTF8_STRING) = " xprop [/home/unera]"
+WM_NAME(STRING) = " xprop [/home/unera]"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So it would be nice to have 'resize' command in i3 that will resize by &lt;code&gt;WM_NORMAL_HINTS&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?comment=4812#comment-4812</link><description>This should be a comment to my answer or an edit to your question (or both) and not an answer as it does not answer your original question. I added to my answer, explaining why *i3* probably never will follow `WM_NORMAL_HINTS`</description><pubDate>Tue, 21 Oct 2014 11:45:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?comment=4812#comment-4812</guid></item><item><title>Answer by Adaephon for &lt;p&gt;for example:&lt;/p&gt;
+
+&lt;p&gt;rxvt -g 80:25&lt;/p&gt;
+
+&lt;p&gt;I understand that tile manager resizes windows by its rules, but I want have 80-column (exactly) terminal(s). So I want have windows 'class=URxvt' that have always width 80 &lt;strong&gt;symbols&lt;/strong&gt; (at start).&lt;/p&gt;
+
+&lt;p&gt;If there is a way to set window (frame) width by window?&lt;/p&gt;
+
+&lt;p&gt;As I understand:&lt;/p&gt;
+
+&lt;p&gt;These windows (like terminals) count its width (and height) and do request to WM to set the size as window size.&lt;/p&gt;
+
+&lt;p&gt;i3wm could store these sizes and use width if a user uses horisontal splitting and use height if a uses uses vertical splitting.&lt;/p&gt;
+
+&lt;p&gt;Sorry for my bad English :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?answer=4809#post-id-4809</link><description>**Short answer:**
+
+This is not possible in *i3*.
+
+**Long answer:**
+
+*i3* does not allow programs to resize their tiled windows, so there is really no way for the terminal emulator to resize itself according to a desired column count.
+
+There is also no way using *i3* configuration to resize windows of `class=URxvt` automatically to the correct size. The sizes of tiled windows can not be predefined in any way; new tiled windows always take *1/(1+n)* of the space in a container, where *n* is the number of pre-existing windows in that container (That also means that a single window always covers 100% of the available space). And resizing (with the `resize` command) only happens relatively to the current window size and the size of the surrounding container. 
+
+----
+
+You could open a feature request ([here](http://newticket.i3wm.org)) for *i3* to honor `WM_NORMAL_HINTS`. But I think it unlikely to ever happen. 
+
+These hints are quite useful (and easy to implement) for floating window managers where windows are independend of each other and starting sizes are not well defined. But in *i3* (and most other tiling window managers) resizing one window automatically resizes at least one other and so there may be conflicting hints. What should happen if the container does not fit exactly or if there are multiple windows with conflicting hints? Of course you could resize the current window correctly, but in the process you would "break" the sizing of the other windows in the same container. So not bothering about these hints is the easier and probably the only way to do this.
+</description><pubDate>Tue, 21 Oct 2014 09:46:38 +0000</pubDate><guid>https://faq.i3wm.org/question/4806/how-to-set-window-width-by-window/?answer=4809#post-id-4809</guid></item></channel></rss>

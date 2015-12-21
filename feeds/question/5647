@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5647/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 23 Mar 2015 18:47:21 +0000</lastBuildDate><item><title>Trying to fix a bind key</title><link>https://faq.i3wm.org/question/5647/trying-to-fix-a-bind-key/</link><description>Hello everyone,
+ I am having an issue with setting up a bind key for brightness control keys. While I can do it, I am getting some errors. This is what I have:
+
+    bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 &amp;&amp; notify-send " $(xbacklight -get | awk '{printf "%.0f\n", $1}')%"
+
+I am getting this error:
+
+    ERROR: Expected one of these tokens: &lt;end&gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'shmlog', 'debuglog', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'unmark', 'resize', 'rename', 'nop', 'scratchpad', 'mode', 'bar'
+    ERROR: Your command: exec --no-startup-id xbacklight -inc 10 &amp;&amp; notify-send " $(xbacklight -get | awk '{printf "%.0f\n", $1}')%"
+    ERROR:                             </description><pubDate>Mon, 23 Mar 2015 15:20:54 +0000</pubDate><guid>https://faq.i3wm.org/question/5647/trying-to-fix-a-bind-key/</guid></item><item><title>Comment by BaNkS for &lt;p&gt;Hello everyone,
+ I am having an issue with setting up a bind key for brightness control keys. While I can do it, I am getting some errors. This is what I have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 &amp;amp;&amp;amp; notify-send " $(xbacklight -get | awk '{printf "%.0f\n", $1}')%"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I am getting this error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'shmlog', 'debuglog', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'unmark', 'resize', 'rename', 'nop', 'scratchpad', 'mode', 'bar'
+ERROR: Your command: exec --no-startup-id xbacklight -inc 10 &amp;amp;&amp;amp; notify-send " $(xbacklight -get | awk '{printf "%.0f\n", $1}')%"
+ERROR:
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5647/trying-to-fix-a-bind-key/?comment=5651#comment-5651</link><description>Thanks :). That was actually a good idea. I made a helper script with all my notify-send commands and just made them into functions. Then use the key bind to call each specific function per keybinding. A notify-send helper script if you want to call it that. :)</description><pubDate>Mon, 23 Mar 2015 18:47:21 +0000</pubDate><guid>https://faq.i3wm.org/question/5647/trying-to-fix-a-bind-key/?comment=5651#comment-5651</guid></item><item><title>Answer by i3convert for &lt;p&gt;Hello everyone,
+ I am having an issue with setting up a bind key for brightness control keys. While I can do it, I am getting some errors. This is what I have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 &amp;amp;&amp;amp; notify-send " $(xbacklight -get | awk '{printf "%.0f\n", $1}')%"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I am getting this error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'shmlog', 'debuglog', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'unmark', 'resize', 'rename', 'nop', 'scratchpad', 'mode', 'bar'
+ERROR: Your command: exec --no-startup-id xbacklight -inc 10 &amp;amp;&amp;amp; notify-send " $(xbacklight -get | awk '{printf "%.0f\n", $1}')%"
+ERROR:
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/5647/trying-to-fix-a-bind-key/?answer=5650#post-id-5650</link><description>Probably either all the nested quotes are too much for the i3 config parser or more character escaping is needed. One workaround would be to create a bash script that has those commands and just run the script.</description><pubDate>Mon, 23 Mar 2015 17:25:48 +0000</pubDate><guid>https://faq.i3wm.org/question/5647/trying-to-fix-a-bind-key/?answer=5650#post-id-5650</guid></item><item><title>Answer by i3convert for &lt;p&gt;Hello everyone,
+ I am having an issue with setting up a bind key for brightness control keys. While I can do it, I am getting some errors. This is what I have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 &amp;amp;&amp;amp; notify-send " $(xbacklight -get | awk '{printf "%.0f\n", $1}')%"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I am getting this error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'shmlog', 'debuglog', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'unmark', 'resize', 'rename', 'nop', 'scratchpad', 'mode', 'bar'
+ERROR: Your command: exec --no-startup-id xbacklight -inc 10 &amp;amp;&amp;amp; notify-send " $(xbacklight -get | awk '{printf "%.0f\n", $1}')%"
+ERROR:
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/5647/trying-to-fix-a-bind-key/?answer=5649#post-id-5649</link><description>I don't think i3 knows anything about the `&amp;&amp;` operator. You have to either create a bash script the does the above and run it or do something like  `bindsym XF86MonBrightnessUp exec --no-startup-id bash -c "CommandA &amp;&amp; Command B"` where `CommandA` and `CommandB` are your commands.</description><pubDate>Mon, 23 Mar 2015 17:15:12 +0000</pubDate><guid>https://faq.i3wm.org/question/5647/trying-to-fix-a-bind-key/?answer=5649#post-id-5649</guid></item></channel></rss>

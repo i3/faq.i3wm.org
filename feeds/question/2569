@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2569/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 26 Sep 2013 01:52:55 +0000</lastBuildDate><item><title>set mod key only as left mod key</title><link>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/</link><description>hi there, I wish if we can set mod key to left windows key only. it is known that if we put
+
+      set $mod mod4
+
+both of the window key will be working.
+
+but this way inhibit another application using win key. (e.g., windows hotkeys in virtualbox similarly, if we put mod key as alt, it causes trouble using emacs). any solution for this issue?
+
+thanks in advance</description><pubDate>Tue, 24 Sep 2013 02:01:20 +0000</pubDate><guid>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/</guid></item><item><title>Answer by Max for &lt;p&gt;hi there, I wish if we can set mod key to left windows key only. it is known that if we put&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  set $mod mod4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;both of the window key will be working.&lt;/p&gt;
+
+&lt;p&gt;but this way inhibit another application using win key. (e.g., windows hotkeys in virtualbox similarly, if we put mod key as alt, it causes trouble using emacs). any solution for this issue?&lt;/p&gt;
+
+&lt;p&gt;thanks in advance&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/?answer=2580#post-id-2580</link><description>You have to use xmodmap to remap the modifiers. If run without arguments it will show the current modifier mapping:
+
+    $ xmodmap 
+    xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+    
+    shift       Shift_L (0x32),  Shift_R (0x3e)
+    lock        Caps_Lock (0x42)
+    control     Control_L (0x25),  Control_R (0x69)
+    mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+    mod2        Num_Lock (0x4d)
+    mod3      
+    mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+    mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+
+In my case you might note that `mod3` is unused, and `Super_R` and `Super_L` are both assigned to mod4.
+You can now remove the assignment of `Super_R` to `mod4` by
+
+    $ xmodmap -e 'remove Mod4 = Super_R'
+
+and then redefine
+
+    $ xmodmap -e 'add Mod3 = Super_R'
+
+This will give you
+
+    $ xmodmap 
+    xmodmap:  up to 3 keys per modifier, (keycodes in parentheses):
+    
+    shift       Shift_L (0x32),  Shift_R (0x3e)
+    lock        Caps_Lock (0x42)
+    control     Control_L (0x25),  Control_R (0x69)
+    mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+    mod2        Num_Lock (0x4d)
+    mod3        Super_R (0x86)
+    mod4        Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+    mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+
+
+Then you should be able to use `set $mod mod3` in your i3 config to only mean the right super key while preserving the regular function of the left super key for other applications. Of course once you've got it right you might want to add those commands to your ~/.xsession (or create one as outlined in the manpage of i3).
+</description><pubDate>Wed, 25 Sep 2013 16:46:50 +0000</pubDate><guid>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/?answer=2580#post-id-2580</guid></item><item><title>Comment by diablo465 for &lt;p&gt;You have to use xmodmap to remap the modifiers. If run without arguments it will show the current modifier mapping:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xmodmap 
+xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock        Caps_Lock (0x42)
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3      
+mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In my case you might note that &lt;code&gt;mod3&lt;/code&gt; is unused, and &lt;code&gt;Super_R&lt;/code&gt; and &lt;code&gt;Super_L&lt;/code&gt; are both assigned to mod4.
+You can now remove the assignment of &lt;code&gt;Super_R&lt;/code&gt; to &lt;code&gt;mod4&lt;/code&gt; by&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xmodmap -e 'remove Mod4 = Super_R'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and then redefine&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xmodmap -e 'add Mod3 = Super_R'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will give you&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xmodmap 
+xmodmap:  up to 3 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock        Caps_Lock (0x42)
+control     Control_L (0x25),  Control_R (0x69)
+mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+mod2        Num_Lock (0x4d)
+mod3        Super_R (0x86)
+mod4        Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)
+mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then you should be able to use &lt;code&gt;set $mod mod3&lt;/code&gt; in your i3 config to only mean the right super key while preserving the regular function of the left super key for other applications. Of course once you've got it right you might want to add those commands to your ~/.xsession (or create one as outlined in the manpage of i3).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/?comment=2592#comment-2592</link><description>Thanks, it works like a charm, but I prefer using left super key as i3 mod key and right one as windows logo key (most of my work is done in linux), so i didn't change set $mod mod3.</description><pubDate>Thu, 26 Sep 2013 01:52:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/?comment=2592#comment-2592</guid></item><item><title>Answer by Michael for &lt;p&gt;hi there, I wish if we can set mod key to left windows key only. it is known that if we put&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  set $mod mod4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;both of the window key will be working.&lt;/p&gt;
+
+&lt;p&gt;but this way inhibit another application using win key. (e.g., windows hotkeys in virtualbox similarly, if we put mod key as alt, it causes trouble using emacs). any solution for this issue?&lt;/p&gt;
+
+&lt;p&gt;thanks in advance&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/?answer=2579#post-id-2579</link><description>I am not entirely sure how virtualbox treats the keys, but if it does _not_ interpret the X11 keymapping, then just remove the right windows key from Mod4 using `xmodmap`. 
+
+Untested, but `xmodmap -e "remove mod4 = Super_R"` could work.</description><pubDate>Wed, 25 Sep 2013 16:38:04 +0000</pubDate><guid>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/?answer=2579#post-id-2579</guid></item><item><title>Comment by diablo465 for &lt;p&gt;I am not entirely sure how virtualbox treats the keys, but if it does &lt;em&gt;not&lt;/em&gt; interpret the X11 keymapping, then just remove the right windows key from Mod4 using &lt;code&gt;xmodmap&lt;/code&gt;. &lt;/p&gt;
+
+&lt;p&gt;Untested, but &lt;code&gt;xmodmap -e "remove mod4 = Super_R"&lt;/code&gt; could work.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/?comment=2591#comment-2591</link><description>I got it, you have to assign super_R to some where else before making it working. just like $ xmodmap -e "add mod3 = Super_R"</description><pubDate>Thu, 26 Sep 2013 01:47:31 +0000</pubDate><guid>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/?comment=2591#comment-2591</guid></item><item><title>Comment by diablo465 for &lt;p&gt;I am not entirely sure how virtualbox treats the keys, but if it does &lt;em&gt;not&lt;/em&gt; interpret the X11 keymapping, then just remove the right windows key from Mod4 using &lt;code&gt;xmodmap&lt;/code&gt;. &lt;/p&gt;
+
+&lt;p&gt;Untested, but &lt;code&gt;xmodmap -e "remove mod4 = Super_R"&lt;/code&gt; could work.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/?comment=2590#comment-2590</link><description>i tried that, but it does not work (both super key are still working as $mod key in i3), even if $xmodmap gives  mod4        Super_L (0x85),  Super_L (0xce),  Hyper_L (0xcf)  </description><pubDate>Thu, 26 Sep 2013 01:39:48 +0000</pubDate><guid>https://faq.i3wm.org/question/2569/set-mod-key-only-as-left-mod-key/?comment=2590#comment-2590</guid></item></channel></rss>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3839/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 26 May 2014 10:18:29 +0000</lastBuildDate><item><title>changing workspaces on two outputs at once?</title><link>https://faq.i3wm.org/question/3839/changing-workspaces-on-two-outputs-at-once/</link><description>I'd like to replicate gnome's functionality of being able to change the workspace on both screens in a dual monitor setup at once (e.g.: control+alt + left/right)
+
+i've concocted the below two bindsym's but they don't seem to work:
+
+bindsym $mod+$alt+Left focus output $monitor_left; workspace prev; focus output $monitor_right; workspace prev
+
+bindsym $mod+$alt+Right focus output $monitor_left; workspace next; focus output 
+$monitor_right; workspace next
+
+it just seems that each workspace numerically is iterated through as opposed to changing both on each input.
+
+any ideas what i'm missing here?
+</description><pubDate>Sun, 18 May 2014 02:25:59 +0000</pubDate><guid>https://faq.i3wm.org/question/3839/changing-workspaces-on-two-outputs-at-once/</guid></item><item><title>Comment by Michael for &lt;p&gt;I'd like to replicate gnome's functionality of being able to change the workspace on both screens in a dual monitor setup at once (e.g.: control+alt + left/right)&lt;/p&gt;
+
+&lt;p&gt;i've concocted the below two bindsym's but they don't seem to work:&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+$alt+Left focus output $monitor&lt;em&gt;left; workspace prev; focus output $monitor&lt;/em&gt;right; workspace prev&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+$alt+Right focus output $monitor&lt;em&gt;left; workspace next; focus output 
+$monitor&lt;/em&gt;right; workspace next&lt;/p&gt;
+
+&lt;p&gt;it just seems that each workspace numerically is iterated through as opposed to changing both on each input.&lt;/p&gt;
+
+&lt;p&gt;any ideas what i'm missing here?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3839/changing-workspaces-on-two-outputs-at-once/?comment=3879#comment-3879</link><description>I think you want to use `workspace prev_on_output` instead of `workspace prev`.</description><pubDate>Sun, 25 May 2014 18:21:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3839/changing-workspaces-on-two-outputs-at-once/?comment=3879#comment-3879</guid></item><item><title>Answer by orangeotto for &lt;p&gt;I'd like to replicate gnome's functionality of being able to change the workspace on both screens in a dual monitor setup at once (e.g.: control+alt + left/right)&lt;/p&gt;
+
+&lt;p&gt;i've concocted the below two bindsym's but they don't seem to work:&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+$alt+Left focus output $monitor&lt;em&gt;left; workspace prev; focus output $monitor&lt;/em&gt;right; workspace prev&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+$alt+Right focus output $monitor&lt;em&gt;left; workspace next; focus output 
+$monitor&lt;/em&gt;right; workspace next&lt;/p&gt;
+
+&lt;p&gt;it just seems that each workspace numerically is iterated through as opposed to changing both on each input.&lt;/p&gt;
+
+&lt;p&gt;any ideas what i'm missing here?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3839/changing-workspaces-on-two-outputs-at-once/?answer=3884#post-id-3884</link><description>That was exactly it! This bit of config works.
+
+    bindsym $mod+$alt+Left focus output left; workspace prev_on_output; focus output right; workspace prev_on_output
+    bindsym $mod+$alt+Right focus output left; workspace next_on_output; focus output right; workspace next_on_output
+
+Thanks!</description><pubDate>Mon, 26 May 2014 10:18:29 +0000</pubDate><guid>https://faq.i3wm.org/question/3839/changing-workspaces-on-two-outputs-at-once/?answer=3884#post-id-3884</guid></item></channel></rss>

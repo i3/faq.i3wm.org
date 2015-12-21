@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4589/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 31 Aug 2014 13:44:25 +0000</lastBuildDate><item><title>"un-bindsym" or "bindsym" for mode "default"</title><link>https://faq.i3wm.org/question/4589/un-bindsym-or-bindsym-for-mode-default/</link><description>I was trying to use the function keys as application launchers, but then realized some of the software I use (`htop`, `alsamixer`) require them.
+
+After realizing that there isn't an un-bindsym command, I tried using bindsym in mode default like so:
+
+&gt;     mode "default" {                      
+&gt; 
+&gt;       bindsym F1 exec my-browser                                                  
+&gt;       bindsym F2 exec i3-sensible-terminal                  
+&gt; 
+&gt;       bindsym F3 mode "curses"                                                     
+&gt;       bindsym F12 exec my-backlight-menu
+&gt;     }
+
+This cause i3 to exit. Looking through the source, there was a specific check for this, that after removing let my configuration work fine without any problems.
+
+---
+
+I'm wondering if this check is necessary? Or is there another way of implementing my configuration without modifying i3?
+
+##### Patch
+
+    diff --git a/src/config_directives.c b/src/config_directives.c
+    index e45db0e..8191fb5 100644
+    --- a/src/config_directives.c
+    +++ b/src/config_directives.c
+    @@ -186,10 +186,6 @@ CFGFUN(mode_binding, const char *bindtype, const char *modifiers, const char *ke
+     }
+     
+     CFGFUN(enter_mode, const char *modename) {
+    -    if (strcasecmp(modename, DEFAULT_BINDING_MODE) == 0) {
+    -        ELOG("You cannot use the name %s for your mode\n", DEFAULT_BINDING_MODE);
+    -        exit(1);
+    -    }
+         DLOG("\t now in mode %s\n", modename);
+         FREE(current_mode);
+         current_mode = sstrdup(modename);</description><pubDate>Sun, 31 Aug 2014 12:06:14 +0000</pubDate><guid>https://faq.i3wm.org/question/4589/un-bindsym-or-bindsym-for-mode-default/</guid></item><item><title>Answer by nishantjr for &lt;p&gt;I was trying to use the function keys as application launchers, but then realized some of the software I use (&lt;code&gt;htop&lt;/code&gt;, &lt;code&gt;alsamixer&lt;/code&gt;) require them.&lt;/p&gt;
+
+&lt;p&gt;After realizing that there isn't an un-bindsym command, I tried using bindsym in mode default like so:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;mode "default" {                      
+
+  bindsym F1 exec my-browser                                                  
+  bindsym F2 exec i3-sensible-terminal                  
+
+  bindsym F3 mode "curses"                                                     
+  bindsym F12 exec my-backlight-menu
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This cause i3 to exit. Looking through the source, there was a specific check for this, that after removing let my configuration work fine without any problems.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;I'm wondering if this check is necessary? Or is there another way of implementing my configuration without modifying i3?&lt;/p&gt;
+
+&lt;h5&gt;Patch&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;diff --git a/src/config_directives.c b/src/config_directives.c
+index e45db0e..8191fb5 100644
+--- a/src/config_directives.c
++++ b/src/config_directives.c
+@@ -186,10 +186,6 @@ CFGFUN(mode_binding, const char *bindtype, const char *modifiers, const char *ke
+ }
+
+ CFGFUN(enter_mode, const char *modename) {
+-    if (strcasecmp(modename, DEFAULT_BINDING_MODE) == 0) {
+-        ELOG("You cannot use the name %s for your mode\n", DEFAULT_BINDING_MODE);
+-        exit(1);
+-    }
+     DLOG("\t now in mode %s\n", modename);
+     FREE(current_mode);
+     current_mode = sstrdup(modename);
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/4589/un-bindsym-or-bindsym-for-mode-default/?answer=4590#post-id-4590</link><description>I misunderstood how modes worked: When switching from one mode to another, **all bindsyms are removed**.
+
+This means that none of the bindings from the `default` mode are carried over to other modes. So, bindsyms in the `default` mode behave identically to those at the top-level and are thus nonsensical.
+
+</description><pubDate>Sun, 31 Aug 2014 13:44:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4589/un-bindsym-or-bindsym-for-mode-default/?answer=4590#post-id-4590</guid></item></channel></rss>

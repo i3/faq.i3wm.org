@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/719/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 03 Nov 2012 04:01:53 +0000</lastBuildDate><item><title>Using xev to check the keysym...</title><link>https://faq.i3wm.org/question/719/using-xev-to-check-the-keysym/</link><description>Hi there.
+
+My laptop is a Thinkpad.  I tried to map the bindsym to the function keys so I can easily call some applications.
+
+Since the Thinkpad is using the function keys to map the other functions, users need to press Fn + functionkey at the same time.  What I meant is, if I want to press F1, I need to press Fn+F1; otherwise pressing F1 in my laptop will mute my speaker instead.
+
+So I use xev to check the keysym.  F1 key is "XF86AudioMute".  F2 key is "XF86AudioLowerVolume" and etc.  
+
+But F4 doesn't return a keysym.  So, does that mean F4 can't be used?</description><pubDate>Sat, 03 Nov 2012 02:06:31 +0000</pubDate><guid>https://faq.i3wm.org/question/719/using-xev-to-check-the-keysym/</guid></item><item><title>Answer by Else for &lt;p&gt;Hi there.&lt;/p&gt;
+
+&lt;p&gt;My laptop is a Thinkpad.  I tried to map the bindsym to the function keys so I can easily call some applications.&lt;/p&gt;
+
+&lt;p&gt;Since the Thinkpad is using the function keys to map the other functions, users need to press Fn + functionkey at the same time.  What I meant is, if I want to press F1, I need to press Fn+F1; otherwise pressing F1 in my laptop will mute my speaker instead.&lt;/p&gt;
+
+&lt;p&gt;So I use xev to check the keysym.  F1 key is "XF86AudioMute".  F2 key is "XF86AudioLowerVolume" and etc.  &lt;/p&gt;
+
+&lt;p&gt;But F4 doesn't return a keysym.  So, does that mean F4 can't be used?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/719/using-xev-to-check-the-keysym/?answer=723#post-id-723</link><description>This is what `xev` returns on my X220:
+
+&gt; KeyPress event, serial 32, synthetic NO, window 0x2000001,
+    root 0xb2, subw 0x0, time 10473642, (96,319), root:(99,411),
+    state 0x0, keycode 70 (keysym 0xffc1, F4), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XmbLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+&gt; KeyRelease event, serial 32, synthetic NO, window 0x2000001,
+    root 0xb2, subw 0x0, time 10473737, (96,319), root:(99,411),
+    state 0x0, keycode 70 (keysym 0xffc1, F4), same_screen YES,
+    XLookupString gives 0 bytes: 
+    XFilterEvent returns: False
+
+Maybe the key is being grabbed by another application?</description><pubDate>Sat, 03 Nov 2012 04:01:53 +0000</pubDate><guid>https://faq.i3wm.org/question/719/using-xev-to-check-the-keysym/?answer=723#post-id-723</guid></item></channel></rss>

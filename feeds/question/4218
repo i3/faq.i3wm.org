@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4218/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 13 Jul 2014 08:42:31 +0000</lastBuildDate><item><title>XEmbed issue when plug created before socket</title><link>https://faq.i3wm.org/question/4218/xembed-issue-when-plug-created-before-socket/</link><description>I don't know who is wrong of me or i3‑wm.
+
+From a regular Ubuntu desktop session:
+
+  * I can run a socket then start a plug which embeds it‑self in the socket.
+  * I can start a plug, then a socket embedding the plug.
+
+From an i3‑wm session:
+
+  * I can run a socket then start a plug which embed it‑self in the socket.
+  * I can start a plug, then a socket, but which (seemingly) cannot embed the plug.
+
+In short, within an i3‑wm session, starting a plug then starting a socket to embed the plug, does not work, while it works from an Ubuntu session.
+
+## A sample case
+
+To run this sample case, you will need to have `surf` installed (available in Ubuntu packages repository, or else, see there: [surf.suckless.org](http://surf.suckless.org/)).
+
+The plug is `surf`, a browser from Suckless, which is a wrapper around WebKit. The socket application is this sample Python script:
+
+    #!/usr/bin/python
+
+    import gtk
+    import sys
+
+
+    def plugged_event(widget):
+
+        print(
+            "I (" +
+            str(widget) +
+            ") have just had a plug inserted!")
+
+
+    def main():
+
+        window = gtk.Window()
+        socket = gtk.Socket()
+
+        window.show()
+        socket.show()
+        window.add(socket)
+        window.connect("destroy", lambda w: gtk.main_quit())
+        socket.connect("plug-added", plugged_event)
+
+        print socket.get_id()
+
+        if len(sys.argv) == 2:
+            socket.add_id(long(sys.argv[1]))
+
+        gtk.main()
+
+
+    main()
+
+Doing so will be OK:
+
+    ./socket.py &amp;
+    # Copy the window ID which is echoed (not the PID!).
+    surf -e &lt;past-socket-window-id-here&gt; "http://localhost" &amp;
+    # The `-e XWINDOW_ID` option tells `surf` to embed it‑self there.
+
+Doing so will fail in i3‑wm (OK from a regular Ubuntu desktop cession):
+
+    surf -x "http://localhost" &amp;
+    # Copy the window ID which is echoed (not the PID!).
+    # The `-x` option tells `surf` to display its XWindow ID.
+    ./socket.py &lt;past-plug-window-id-here&gt; &amp;
+
+I just get a blank window, with no content at all, while `surf` properly displays itself in the socket, when I do the same from an Ubuntu desktop session.
+
+## Question
+
+Is this me or i3 which is bugging?
+</description><pubDate>Sun, 13 Jul 2014 08:42:31 +0000</pubDate><guid>https://faq.i3wm.org/question/4218/xembed-issue-when-plug-created-before-socket/</guid></item></channel></rss>

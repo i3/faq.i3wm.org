@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2824/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 05 Nov 2013 13:04:33 +0000</lastBuildDate><item><title>i3exit script doesn't work</title><link>https://faq.i3wm.org/question/2824/i3exit-script-doesnt-work/</link><description>First of all, thank you for i3. I am really enjoying it.
+
+To shutdown/lock/suspend, I have this script:
+
+    #!/bin/sh
+    
+    case "$1" in
+        lock)
+            i3lock -c 000000
+            ;;
+        logout)
+            i3-msg exit
+            ;;
+        suspend)
+            sudo pm-suspend | i3lock -c 000000
+            ;;
+        hibernate)
+            sudo pm-hibernate
+            ;;
+        reboot)
+            sudo reboot
+            ;;
+        shutdown)
+            sudo poweroff
+            ;;
+        *)
+            echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+            exit 2
+    esac
+    
+    exit 0
+
+Then in my `.i3/config`, I added these lines:
+
+    set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+    mode "$mode_system" {
+        bindsym l exec --no-startup-id i3exit lock, mode "default"
+        bindsym e exec --no-startup-id i3exit logout, mode "default"
+        bindsym s exec --no-startup-id i3exit suspend, mode "default"
+        bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+        bindsym r exec --no-startup-id i3exit reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+    bindsym $mod+End mode "$mode_system"
+
+Here is the issue: if I just call `i3exit lock`, it will lock the screen. If I press the combination above to call `$mode`, I am shown the menu but when I choose any of the options (lock, suspend), nothing happens. The menu goes away but nothing else happens.
+
+`i3exit` is executable and in `$PATH`. How do I debug this issue? Also note that it was working fine before but wierdly it stopped working. I don't recall having done anything special.</description><pubDate>Tue, 05 Nov 2013 06:20:40 +0000</pubDate><guid>https://faq.i3wm.org/question/2824/i3exit-script-doesnt-work/</guid></item><item><title>Comment by mneywn for &lt;p&gt;First of all, thank you for i3. I am really enjoying it.&lt;/p&gt;
+
+&lt;p&gt;To shutdown/lock/suspend, I have this script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+
+case "$1" in
+    lock)
+        i3lock -c 000000
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        sudo pm-suspend | i3lock -c 000000
+        ;;
+    hibernate)
+        sudo pm-hibernate
+        ;;
+    reboot)
+        sudo reboot
+        ;;
+    shutdown)
+        sudo poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+
+exit 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then in my &lt;code&gt;.i3/config&lt;/code&gt;, I added these lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+End mode "$mode_system"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the issue: if I just call &lt;code&gt;i3exit lock&lt;/code&gt;, it will lock the screen. If I press the combination above to call &lt;code&gt;$mode&lt;/code&gt;, I am shown the menu but when I choose any of the options (lock, suspend), nothing happens. The menu goes away but nothing else happens.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3exit&lt;/code&gt; is executable and in &lt;code&gt;$PATH&lt;/code&gt;. How do I debug this issue? Also note that it was working fine before but wierdly it stopped working. I don't recall having done anything special.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2824/i3exit-script-doesnt-work/?comment=2825#comment-2825</link><description>Tried diagnosing it. The error that is thrown up is: `/bin/bash: i3exit: command not found`. But on running `i3exit` from anywhere, it is found.</description><pubDate>Tue, 05 Nov 2013 06:41:58 +0000</pubDate><guid>https://faq.i3wm.org/question/2824/i3exit-script-doesnt-work/?comment=2825#comment-2825</guid></item><item><title>Answer by Flugsio for &lt;p&gt;First of all, thank you for i3. I am really enjoying it.&lt;/p&gt;
+
+&lt;p&gt;To shutdown/lock/suspend, I have this script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+
+case "$1" in
+    lock)
+        i3lock -c 000000
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        sudo pm-suspend | i3lock -c 000000
+        ;;
+    hibernate)
+        sudo pm-hibernate
+        ;;
+    reboot)
+        sudo reboot
+        ;;
+    shutdown)
+        sudo poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+
+exit 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then in my &lt;code&gt;.i3/config&lt;/code&gt;, I added these lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+End mode "$mode_system"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the issue: if I just call &lt;code&gt;i3exit lock&lt;/code&gt;, it will lock the screen. If I press the combination above to call &lt;code&gt;$mode&lt;/code&gt;, I am shown the menu but when I choose any of the options (lock, suspend), nothing happens. The menu goes away but nothing else happens.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3exit&lt;/code&gt; is executable and in &lt;code&gt;$PATH&lt;/code&gt;. How do I debug this issue? Also note that it was working fine before but wierdly it stopped working. I don't recall having done anything special.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2824/i3exit-script-doesnt-work/?answer=2826#post-id-2826</link><description>I suspect your path is not set for i3. Easy solution is to change i3exit with its full path.
+
+Setting path depends on how you start i3, debug with this:
+
+    bindsym $mod+Shift+i exec --no-startup-id echo $PATH &gt;&gt; .i3_debug
+
+This post have a solution for lightdm and a fancier way to debug the path, https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/</description><pubDate>Tue, 05 Nov 2013 06:51:27 +0000</pubDate><guid>https://faq.i3wm.org/question/2824/i3exit-script-doesnt-work/?answer=2826#post-id-2826</guid></item><item><title>Comment by mneywn for &lt;p&gt;I suspect your path is not set for i3. Easy solution is to change i3exit with its full path.&lt;/p&gt;
+
+&lt;p&gt;Setting path depends on how you start i3, debug with this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+Shift+i exec --no-startup-id echo $PATH &amp;gt;&amp;gt; .i3_debug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This post have a solution for lightdm and a fancier way to debug the path, &lt;a href="https://faq.i3wm.org/question/2483/howto-debian-wheezy-lightdm-i3/"&gt;https://faq.i3wm.org/question/2483/ho...&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2824/i3exit-script-doesnt-work/?comment=2834#comment-2834</link><description>Thanks, giving the full path worked.</description><pubDate>Tue, 05 Nov 2013 13:04:33 +0000</pubDate><guid>https://faq.i3wm.org/question/2824/i3exit-script-doesnt-work/?comment=2834#comment-2834</guid></item></channel></rss>

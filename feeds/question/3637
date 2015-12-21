@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3637/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 17 Apr 2014 12:45:57 +0000</lastBuildDate><item><title>i3bar power conumption</title><link>https://faq.i3wm.org/question/3637/i3bar-power-conumption/</link><description>Hi,
+first thanks for the great window manager!!!
+I currently use Archlinux
+
+    core/linux 3.13.8-1 (base)
+
+with
+
+    community/i3-wm 4.7.2-1 (i3)
+    community/i3lock 2.5-2 (i3)
+    community/i3status 2.8-2 (i3)
+
+and
+
+    community/powertop 2.5-1
+
+Running powertop, I noticed that i3bar consumes a lot of power
+
+    Power est.              Usage       Events/s    Category       Description
+     2.68 W    120.2 µs/s      40.0        Process        i3bar --bar_id=bar-0 --socket=/run/user/1000/i3/ipc-socket.1029
+
+This is even more than chromium does most of the time.
+Is that just a bug in powertop, or does i3bar really consume that much power, and if that's the case: how can I lower the power consumption.
+Currently my i3status intervall is 1 sec.
+
+Here is my ~/i3status.conf
+
+    # i3status configuration file.
+    # see "man i3status" for documentation.
+    
+    # It is important that this file is edited as UTF-8.
+    # The following line should contain a sharp s:
+    # ß
+    # If the above line is not correctly displayed, fix your editor first!
+    
+    general {
+    	colors = true
+    		interval = 1
+    }
+    
+    order += "ipv6"
+    order += "disk /"
+    order += "disk /boot"
+    order += "wireless wlp3s0"
+    order += "ethernet ens9"
+    order += "battery 0"
+    order += "load"
+    order += "volume master"
+    order += "tztime berlin"
+    order += "tztime local"
+    order += "tztime date_local"
+    
+    volume master {
+    	format = "♪: %volume"
+    		device = "hw:PCH"
+    }
+    
+    wireless wlp3s0 {
+    	format_up = "W: (%quality at %essid) %ip"
+    		format_down = "W: down"
+    }
+    
+    ethernet ens9 {
+    # if you use %speed, i3status requires root privileges
+    	format_up = "E: %ip (%speed)"
+    		format_down = "E: down"
+    }
+    
+    battery 0 {
+    	format = "%status %percentage %remaining"
+    }
+    
+    run_watch DHCP {
+    	pidfile = "/var/run/dhclient*.pid"
+    }
+    
+    run_watch VPN {
+    	pidfile = "/var/run/vpnc/pid"
+    }
+    
+    tztime berlin {
+    	format = "%H:%M %Z"
+    	timezone = "Europe/Berlin"
+    }
+    
+    tztime local {
+    	format = "%H:%M:%S %Z"
+    }
+    
+    tztime date_local {
+    	format = "%Y-%m-%d"
+    }
+    
+    load {
+    	format = "%1min"
+    }
+    
+    disk "/" {
+    	format = "%avail"
+    }
+    
+    disk "/boot" {
+    	format = "%avail"
+    }
+I run i3 on a laptop and power consumption is an issue for me.
+Just let me know if you need any additional information.
+Thanks for any advice.
+Maximilian</description><pubDate>Wed, 09 Apr 2014 16:21:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3637/i3bar-power-conumption/</guid></item><item><title>Comment by Michael for &lt;p&gt;Hi,
+first thanks for the great window manager!!!
+I currently use Archlinux&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;core/linux 3.13.8-1 (base)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;community/i3-wm 4.7.2-1 (i3)
+community/i3lock 2.5-2 (i3)
+community/i3status 2.8-2 (i3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;community/powertop 2.5-1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Running powertop, I noticed that i3bar consumes a lot of power&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Power est.              Usage       Events/s    Category       Description
+ 2.68 W    120.2 µs/s      40.0        Process        i3bar --bar_id=bar-0 --socket=/run/user/1000/i3/ipc-socket.1029
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is even more than chromium does most of the time.
+Is that just a bug in powertop, or does i3bar really consume that much power, and if that's the case: how can I lower the power consumption.
+Currently my i3status intervall is 1 sec.&lt;/p&gt;
+
+&lt;p&gt;Here is my ~/i3status.conf&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+    colors = true
+        interval = 1
+}
+
+order += "ipv6"
+order += "disk /"
+order += "disk /boot"
+order += "wireless wlp3s0"
+order += "ethernet ens9"
+order += "battery 0"
+order += "load"
+order += "volume master"
+order += "tztime berlin"
+order += "tztime local"
+order += "tztime date_local"
+
+volume master {
+    format = "♪: %volume"
+        device = "hw:PCH"
+}
+
+wireless wlp3s0 {
+    format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
+}
+
+ethernet ens9 {
+# if you use %speed, i3status requires root privileges
+    format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
+battery 0 {
+    format = "%status %percentage %remaining"
+}
+
+run_watch DHCP {
+    pidfile = "/var/run/dhclient*.pid"
+}
+
+run_watch VPN {
+    pidfile = "/var/run/vpnc/pid"
+}
+
+tztime berlin {
+    format = "%H:%M %Z"
+    timezone = "Europe/Berlin"
+}
+
+tztime local {
+    format = "%H:%M:%S %Z"
+}
+
+tztime date_local {
+    format = "%Y-%m-%d"
+}
+
+load {
+    format = "%1min"
+}
+
+disk "/" {
+    format = "%avail"
+}
+
+disk "/boot" {
+    format = "%avail"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I run i3 on a laptop and power consumption is an issue for me.
+Just let me know if you need any additional information.
+Thanks for any advice.
+Maximilian&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3637/i3bar-power-conumption/?comment=3671#comment-3671</link><description>i3bar should not take a lot of power under normal circumstances. Please try and see if you can reproduce it with a new user on your machine (to rule out any local configuration issues) and file a bug at http://bugs.i3wm.org with an strace of i3bar (e.g. strace -tt -s 2048 -p $(pidof i3bar))</description><pubDate>Thu, 17 Apr 2014 12:45:57 +0000</pubDate><guid>https://faq.i3wm.org/question/3637/i3bar-power-conumption/?comment=3671#comment-3671</guid></item><item><title>Answer by moemoe for &lt;p&gt;Hi,
+first thanks for the great window manager!!!
+I currently use Archlinux&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;core/linux 3.13.8-1 (base)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;community/i3-wm 4.7.2-1 (i3)
+community/i3lock 2.5-2 (i3)
+community/i3status 2.8-2 (i3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;community/powertop 2.5-1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Running powertop, I noticed that i3bar consumes a lot of power&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Power est.              Usage       Events/s    Category       Description
+ 2.68 W    120.2 µs/s      40.0        Process        i3bar --bar_id=bar-0 --socket=/run/user/1000/i3/ipc-socket.1029
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is even more than chromium does most of the time.
+Is that just a bug in powertop, or does i3bar really consume that much power, and if that's the case: how can I lower the power consumption.
+Currently my i3status intervall is 1 sec.&lt;/p&gt;
+
+&lt;p&gt;Here is my ~/i3status.conf&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+    colors = true
+        interval = 1
+}
+
+order += "ipv6"
+order += "disk /"
+order += "disk /boot"
+order += "wireless wlp3s0"
+order += "ethernet ens9"
+order += "battery 0"
+order += "load"
+order += "volume master"
+order += "tztime berlin"
+order += "tztime local"
+order += "tztime date_local"
+
+volume master {
+    format = "♪: %volume"
+        device = "hw:PCH"
+}
+
+wireless wlp3s0 {
+    format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
+}
+
+ethernet ens9 {
+# if you use %speed, i3status requires root privileges
+    format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
+battery 0 {
+    format = "%status %percentage %remaining"
+}
+
+run_watch DHCP {
+    pidfile = "/var/run/dhclient*.pid"
+}
+
+run_watch VPN {
+    pidfile = "/var/run/vpnc/pid"
+}
+
+tztime berlin {
+    format = "%H:%M %Z"
+    timezone = "Europe/Berlin"
+}
+
+tztime local {
+    format = "%H:%M:%S %Z"
+}
+
+tztime date_local {
+    format = "%Y-%m-%d"
+}
+
+load {
+    format = "%1min"
+}
+
+disk "/" {
+    format = "%avail"
+}
+
+disk "/boot" {
+    format = "%avail"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I run i3 on a laptop and power consumption is an issue for me.
+Just let me know if you need any additional information.
+Thanks for any advice.
+Maximilian&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3637/i3bar-power-conumption/?answer=3638#post-id-3638</link><description>I can't figure out the exact problem, but to provide a reference, with
+
+    interval = 5
+
+and similar config, I'm at
+
+     12.8 mW    272,4 µs/s       4,4        Process        i3status --config /home/mo/.i3/i3status-big.conf
+     2.24 mW      6,0 µs/s       0,8        Process        i3bar --bar_id=bar-0 --socket=/run/user/1000/i3/ipc-socket.4776
+
+</description><pubDate>Wed, 09 Apr 2014 16:28:18 +0000</pubDate><guid>https://faq.i3wm.org/question/3637/i3bar-power-conumption/?answer=3638#post-id-3638</guid></item><item><title>Comment by maximilian for &lt;p&gt;I can't figure out the exact problem, but to provide a reference, with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;interval = 5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and similar config, I'm at&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; 12.8 mW    272,4 µs/s       4,4        Process        i3status --config /home/mo/.i3/i3status-big.conf
+ 2.24 mW      6,0 µs/s       0,8        Process        i3bar --bar_id=bar-0 --socket=/run/user/1000/i3/ipc-socket.4776
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3637/i3bar-power-conumption/?comment=3639#comment-3639</link><description>Changed intervall to 5:
+  261 mW     13.9 µs/s       5.1        Process        i3bar --bar_id=bar-0 --socket=/run/user/1000/i3/ipc-socket.1029
+Still high, but a lot better.</description><pubDate>Wed, 09 Apr 2014 16:33:59 +0000</pubDate><guid>https://faq.i3wm.org/question/3637/i3bar-power-conumption/?comment=3639#comment-3639</guid></item></channel></rss>

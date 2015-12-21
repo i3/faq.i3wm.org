@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/753/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 31 Jan 2013 07:37:38 +0000</lastBuildDate><item><title>i3lock: Error opening /var/log/faillog for update/read</title><link>https://faq.i3wm.org/question/753/i3lock-error-opening-varlogfaillog-for-updateread/</link><description>This is on an Arch with systemd; when _successfully_ unlocking the screen from i3lock, two error lines get added to the systemd journal:
+&lt;code&gt;&lt;br&gt;
+... pam\_tally(i3lock:auth): Error opening /var/log/faillog for update&lt;br&gt;
+... pam\_tally(i3lock:auth): Error opening /var/log/faillog for read&lt;br&gt;
+&lt;/code&gt;
+(no other harmful effects as far as I can tell)&lt;br&gt;&lt;br&gt;
+A bit surprising, for a _failed unlock_ attempt (e.g. wrong password), the correct and expected log entry is added:
+&lt;code&gt;&lt;br&gt;
+... pam\_unix(i3lock:auth): authentication failure; logname= uid=xxx euid=yyy tty= ruser= rhost=  user=name _...etc.etc._&lt;br&gt;
+&lt;/code&gt;
+... and there are no other errors.
+
+Is this a pam config related issue or something with i3lock ?&lt;br&gt;
+Thanks.</description><pubDate>Thu, 15 Nov 2012 11:05:32 +0000</pubDate><guid>https://faq.i3wm.org/question/753/i3lock-error-opening-varlogfaillog-for-updateread/</guid></item><item><title>Comment by Chris for &lt;p&gt;This is on an Arch with systemd; when &lt;em&gt;successfully&lt;/em&gt; unlocking the screen from i3lock, two error lines get added to the systemd journal:
+&lt;code&gt;&lt;br/&gt;
+... pam_tally(i3lock:auth): Error opening /var/log/faillog for update&lt;br/&gt;
+... pam_tally(i3lock:auth): Error opening /var/log/faillog for read&lt;br/&gt;
+&lt;/code&gt;
+(no other harmful effects as far as I can tell)&lt;br/&gt;&lt;br/&gt;
+A bit surprising, for a &lt;em&gt;failed unlock&lt;/em&gt; attempt (e.g. wrong password), the correct and expected log entry is added:
+&lt;code&gt;&lt;br/&gt;
+... pam_unix(i3lock:auth): authentication failure; logname= uid=xxx euid=yyy tty= ruser= rhost=  user=name &lt;em&gt;...etc.etc.&lt;/em&gt;&lt;br/&gt;
+&lt;/code&gt;
+... and there are no other errors.&lt;/p&gt;
+
+&lt;p&gt;Is this a pam config related issue or something with i3lock ?&lt;br/&gt;
+Thanks.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/753/i3lock-error-opening-varlogfaillog-for-updateread/?comment=1173#comment-1173</link><description>For whoever finds this, it is now fixed: "FS#31544 - [i3lock] can't write to /var/log/faillog" ( https://bugs.archlinux.org/task/31544 ). It was an Arch/Pam config issue.</description><pubDate>Thu, 31 Jan 2013 07:37:38 +0000</pubDate><guid>https://faq.i3wm.org/question/753/i3lock-error-opening-varlogfaillog-for-updateread/?comment=1173#comment-1173</guid></item><item><title>Comment by Michael for &lt;p&gt;This is on an Arch with systemd; when &lt;em&gt;successfully&lt;/em&gt; unlocking the screen from i3lock, two error lines get added to the systemd journal:
+&lt;code&gt;&lt;br/&gt;
+... pam_tally(i3lock:auth): Error opening /var/log/faillog for update&lt;br/&gt;
+... pam_tally(i3lock:auth): Error opening /var/log/faillog for read&lt;br/&gt;
+&lt;/code&gt;
+(no other harmful effects as far as I can tell)&lt;br/&gt;&lt;br/&gt;
+A bit surprising, for a &lt;em&gt;failed unlock&lt;/em&gt; attempt (e.g. wrong password), the correct and expected log entry is added:
+&lt;code&gt;&lt;br/&gt;
+... pam_unix(i3lock:auth): authentication failure; logname= uid=xxx euid=yyy tty= ruser= rhost=  user=name &lt;em&gt;...etc.etc.&lt;/em&gt;&lt;br/&gt;
+&lt;/code&gt;
+... and there are no other errors.&lt;/p&gt;
+
+&lt;p&gt;Is this a pam config related issue or something with i3lock ?&lt;br/&gt;
+Thanks.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/753/i3lock-error-opening-varlogfaillog-for-updateread/?comment=754#comment-754</link><description>The FAQ is not a bugtracker, for that use bugs.i3wm.org. Also, the error is from pam_tally, which has nothing to do with i3lock itself. Please ask at the arch forums/community.</description><pubDate>Thu, 15 Nov 2012 11:10:37 +0000</pubDate><guid>https://faq.i3wm.org/question/753/i3lock-error-opening-varlogfaillog-for-updateread/?comment=754#comment-754</guid></item></channel></rss>

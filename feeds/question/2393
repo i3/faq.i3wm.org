@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2393/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 21 Aug 2013 14:28:55 +0000</lastBuildDate><item><title>Scratchpad indicator in the status bar?</title><link>https://faq.i3wm.org/question/2393/scratchpad-indicator-in-the-status-bar/</link><description>Hi. Is it possible to add an indicator in the status bar that shows up when there is a window in the scratchpad, similar to the workspace indicators? It would sometimes be useful to see whether there still is a window open "in the background" without opening the scratchpad. Thanks!</description><pubDate>Wed, 21 Aug 2013 09:50:50 +0000</pubDate><guid>https://faq.i3wm.org/question/2393/scratchpad-indicator-in-the-status-bar/</guid></item><item><title>Comment by cee for &lt;p&gt;Hi. Is it possible to add an indicator in the status bar that shows up when there is a window in the scratchpad, similar to the workspace indicators? It would sometimes be useful to see whether there still is a window open "in the background" without opening the scratchpad. Thanks!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2393/scratchpad-indicator-in-the-status-bar/?comment=2394#comment-2394</link><description>Good idea. I would like to see something like that.</description><pubDate>Wed, 21 Aug 2013 11:55:28 +0000</pubDate><guid>https://faq.i3wm.org/question/2393/scratchpad-indicator-in-the-status-bar/?comment=2394#comment-2394</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;Hi. Is it possible to add an indicator in the status bar that shows up when there is a window in the scratchpad, similar to the workspace indicators? It would sometimes be useful to see whether there still is a window open "in the background" without opening the scratchpad. Thanks!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2393/scratchpad-indicator-in-the-status-bar/?answer=2396#post-id-2396</link><description>A bit dirty solution that works could be a simple script that you append to the i3status output (see man for details):
+
+    #!/usr/bin/python
+
+    import subprocess
+    import simplejson
+
+    def getNodes(data):
+        result = 0
+        if data['scratchpad_state'] != 'none': 
+            result += 1    
+        if (len(data['nodes']) &gt; 0) or (len(data['floating_nodes']) &gt; 0):
+            for node in (data['nodes'] + data['floating_nodes']):
+                result += getNodes(node)
+        return result
+
+    r = subprocess.check_output(["i3-msg", "-t", "get_tree"])
+    j = simplejson.loads(r)
+    c = getNodes(j)
+
+    if c &gt; 0:
+        print "S:%d" % c
+    else:
+        print ''
+
+You can save this simple script and call it with i3status, which should give similar result to what you are after. </description><pubDate>Wed, 21 Aug 2013 13:13:53 +0000</pubDate><guid>https://faq.i3wm.org/question/2393/scratchpad-indicator-in-the-status-bar/?answer=2396#post-id-2396</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;A bit dirty solution that works could be a simple script that you append to the i3status output (see man for details):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/python
+
+import subprocess
+import simplejson
+
+def getNodes(data):
+    result = 0
+    if data['scratchpad_state'] != 'none': 
+        result += 1    
+    if (len(data['nodes']) &amp;gt; 0) or (len(data['floating_nodes']) &amp;gt; 0):
+        for node in (data['nodes'] + data['floating_nodes']):
+            result += getNodes(node)
+    return result
+
+r = subprocess.check_output(["i3-msg", "-t", "get_tree"])
+j = simplejson.loads(r)
+c = getNodes(j)
+
+if c &amp;gt; 0:
+    print "S:%d" % c
+else:
+    print ''
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can save this simple script and call it with i3status, which should give similar result to what you are after. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2393/scratchpad-indicator-in-the-status-bar/?comment=2401#comment-2401</link><description>If you need to output to i3bar in colors, here is a solution that works nicely: https://gist.github.com/brunobraga/6076658 (see the comments)</description><pubDate>Wed, 21 Aug 2013 14:28:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2393/scratchpad-indicator-in-the-status-bar/?comment=2401#comment-2401</guid></item></channel></rss>

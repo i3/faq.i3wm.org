@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3635/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 17 Apr 2014 12:33:24 +0000</lastBuildDate><item><title>Bindsym workspace and command</title><link>https://faq.i3wm.org/question/3635/bindsym-workspace-and-command/</link><description>Hi,
+
+I'm trying to bind a key to switching to a workspace as well as a command. My config looks like:
+
+    …
+    bindsym $mod+w workspace www, exec hamster stop
+    …
+
+which works nicely by itself. This is neccessary, since a feature of hamster which tracks activities based on the currently active desktop depend on features which aren't supported by i3 (Unfortunately I can't link the question and the answer so I'll quote the relevant part): 
+
+&gt; The workspace stuff hamster uses are probably some Extended Window Manager Hints (\_NET\_NUMBER\_OF\_DESKTOPS comes to mind), which i3 doesn't support (yet).
+&gt;
+&gt; EDIT: Just checked the source for hamster and indeed, it depends on libwnck, which in turn relies on EWMH and ICCCM. This means that currently, it's not possible to make i3 and hamster play nice together automatically.
+
+This is a quote from 2012. But it still doesn't seem to be supported.
+
+I can use mod+w to move windows to the workspace called "www" and hamster is executed as I wish.
+
+But if I connect another monitor and enable it like
+
+    xrandr --output VGA1 --auto --above LVDS1
+
+I'll end up with a new workspace (on that monitor) called "www, exec hamster stop" (or whichever comes first).
+
+Is there a way to indicate the end of the workspace name here? It looks like it takes all the rest of the line if i3 creates a new workspace on it's own.
+
+Replacing the comma with a semi-colon or prefixing those with a backslash didn't fix the problem. Surrounding the workspace names with curly brackets or quotation marks didn't work either. This just changes the name of the created workspace.
+
+I haven't tried replacing all these bindsyms by something like 
+
+    bindsym $mod+w exec "i3-msg workspace www; exec hamster stop"
+
+because I would like to avoid this situation.</description><pubDate>Wed, 09 Apr 2014 12:03:16 +0000</pubDate><guid>https://faq.i3wm.org/question/3635/bindsym-workspace-and-command/</guid></item><item><title>Comment by TonyC for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm trying to bind a key to switching to a workspace as well as a command. My config looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;…
+bindsym $mod+w workspace www, exec hamster stop
+…
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which works nicely by itself. This is neccessary, since a feature of hamster which tracks activities based on the currently active desktop depend on features which aren't supported by i3 (Unfortunately I can't link the question and the answer so I'll quote the relevant part): &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The workspace stuff hamster uses are probably some Extended Window Manager Hints (_NET_NUMBER_OF_DESKTOPS comes to mind), which i3 doesn't support (yet).&lt;/p&gt;
+  
+  &lt;p&gt;EDIT: Just checked the source for hamster and indeed, it depends on libwnck, which in turn relies on EWMH and ICCCM. This means that currently, it's not possible to make i3 and hamster play nice together automatically.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is a quote from 2012. But it still doesn't seem to be supported.&lt;/p&gt;
+
+&lt;p&gt;I can use mod+w to move windows to the workspace called "www" and hamster is executed as I wish.&lt;/p&gt;
+
+&lt;p&gt;But if I connect another monitor and enable it like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output VGA1 --auto --above LVDS1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'll end up with a new workspace (on that monitor) called "www, exec hamster stop" (or whichever comes first).&lt;/p&gt;
+
+&lt;p&gt;Is there a way to indicate the end of the workspace name here? It looks like it takes all the rest of the line if i3 creates a new workspace on it's own.&lt;/p&gt;
+
+&lt;p&gt;Replacing the comma with a semi-colon or prefixing those with a backslash didn't fix the problem. Surrounding the workspace names with curly brackets or quotation marks didn't work either. This just changes the name of the created workspace.&lt;/p&gt;
+
+&lt;p&gt;I haven't tried replacing all these bindsyms by something like &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+w exec "i3-msg workspace www; exec hamster stop"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;because I would like to avoid this situation.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3635/bindsym-workspace-and-command/?comment=3636#comment-3636</link><description>I think you should do a formal bug report at http://bugs.i3wm.org for both your command parsing issue and the ewmh stuff you want.</description><pubDate>Wed, 09 Apr 2014 14:17:17 +0000</pubDate><guid>https://faq.i3wm.org/question/3635/bindsym-workspace-and-command/?comment=3636#comment-3636</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm trying to bind a key to switching to a workspace as well as a command. My config looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;…
+bindsym $mod+w workspace www, exec hamster stop
+…
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which works nicely by itself. This is neccessary, since a feature of hamster which tracks activities based on the currently active desktop depend on features which aren't supported by i3 (Unfortunately I can't link the question and the answer so I'll quote the relevant part): &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The workspace stuff hamster uses are probably some Extended Window Manager Hints (_NET_NUMBER_OF_DESKTOPS comes to mind), which i3 doesn't support (yet).&lt;/p&gt;
+  
+  &lt;p&gt;EDIT: Just checked the source for hamster and indeed, it depends on libwnck, which in turn relies on EWMH and ICCCM. This means that currently, it's not possible to make i3 and hamster play nice together automatically.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is a quote from 2012. But it still doesn't seem to be supported.&lt;/p&gt;
+
+&lt;p&gt;I can use mod+w to move windows to the workspace called "www" and hamster is executed as I wish.&lt;/p&gt;
+
+&lt;p&gt;But if I connect another monitor and enable it like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrandr --output VGA1 --auto --above LVDS1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'll end up with a new workspace (on that monitor) called "www, exec hamster stop" (or whichever comes first).&lt;/p&gt;
+
+&lt;p&gt;Is there a way to indicate the end of the workspace name here? It looks like it takes all the rest of the line if i3 creates a new workspace on it's own.&lt;/p&gt;
+
+&lt;p&gt;Replacing the comma with a semi-colon or prefixing those with a backslash didn't fix the problem. Surrounding the workspace names with curly brackets or quotation marks didn't work either. This just changes the name of the created workspace.&lt;/p&gt;
+
+&lt;p&gt;I haven't tried replacing all these bindsyms by something like &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+w exec "i3-msg workspace www; exec hamster stop"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;because I would like to avoid this situation.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3635/bindsym-workspace-and-command/?answer=3664#post-id-3664</link><description>The correct way to specify what you want is:
+
+    bindsym Mod4+x workspace "5: blah", exec urxvt
+
+Which works fine for me in the latest git version (presumably also in 4.7.2). If it doesn’t work for you, please file a bug report at http://bugs.i3wm.org/ as TonyC suggested.</description><pubDate>Thu, 17 Apr 2014 12:33:24 +0000</pubDate><guid>https://faq.i3wm.org/question/3635/bindsym-workspace-and-command/?answer=3664#post-id-3664</guid></item></channel></rss>

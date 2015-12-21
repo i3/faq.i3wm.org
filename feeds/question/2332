@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2332/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 26 Mar 2014 17:49:33 +0000</lastBuildDate><item><title>flexible monitor setup</title><link>https://faq.i3wm.org/question/2332/flexible-monitor-setup/</link><description>Hi,
+
+i want to use a felexible monitor setup:
+
+case "on the road")
+i use only the display on my laptop (LVDS1)
+
+case office)
+is use HDMI1 as my default display and LVDS1 as secondary
+
+Is there a way to configure this?
+
+thanks in advance :)</description><pubDate>Fri, 09 Aug 2013 14:00:46 +0000</pubDate><guid>https://faq.i3wm.org/question/2332/flexible-monitor-setup/</guid></item><item><title>Answer by syl20bnr for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;i want to use a felexible monitor setup:&lt;/p&gt;
+
+&lt;p&gt;case "on the road")
+i use only the display on my laptop (LVDS1)&lt;/p&gt;
+
+&lt;p&gt;case office)
+is use HDMI1 as my default display and LVDS1 as secondary&lt;/p&gt;
+
+&lt;p&gt;Is there a way to configure this?&lt;/p&gt;
+
+&lt;p&gt;thanks in advance :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?answer=2333#post-id-2333</link><description>You can define key bindings to summon some `xrandr` processes as explained in the user guide: http://i3wm.org/docs/userguide.html#multi_monitor
+
+For instance:
+
+    bindsym $mod+m         exec xrandr --output HDMI1 --off
+    bindsym $mod+shift+m   exec xrandr --output HDMI1 --auto --right-of LVDS1
+
+---
+
+*Edit to add a better answer to the OP question*
+
+**You could try the `--primary` argument for `xrandr`**. I did not succeed in making it work with i3. Maybe there is a recipe to make it work.
+
+Another solution is to fake a swap of primary monitor by reassigning the workspaces outputs in your `config`.
+
+1) First assign the output for each monitor
+
+    workspace 1 output $mainoutput
+    workspace 2 output $secondoutput
+
+2) Then you define the variables:
+
+At home:
+
+    set $mainoutput   xinerama-0
+    set $secondoutput xinerama-0
+
+At work, edit the config file:
+
+    set $mainoutput   xinerama-1
+    set $secondoutput xinerama-0
+
+3) Reload your config
+
+It could be easily automated with a script which modify the `config` given a template and then call `i3-msg restart`.
+ </description><pubDate>Fri, 09 Aug 2013 19:31:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?answer=2333#post-id-2333</guid></item><item><title>Comment by lkraav for &lt;p&gt;You can define key bindings to summon some &lt;code&gt;xrandr&lt;/code&gt;processes as explained in the user guide: &lt;a href="http://i3wm.org/docs/userguide.html#multi_monitor"&gt;http://i3wm.org/docs/userguide.html#m...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m         exec xrandr --output HDMI1 --off
+bindsym $mod+shift+m   exec xrandr --output HDMI1 --auto --right-of LVDS1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;em&gt;Edit to add a better answer to the OP question&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;You could try the &lt;code&gt;--primary&lt;/code&gt; argument for &lt;code&gt;xrandr&lt;/code&gt;&lt;/strong&gt;. I did not succeed in making it work with i3. Maybe there is a recipe to make it work.&lt;/p&gt;
+
+&lt;p&gt;Another solution is to fake a swap of primary monitor by reassigning the workspaces outputs in your &lt;code&gt;config&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;1) First assign the output for each monitor&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 1 output $mainoutput
+workspace 2 output $secondoutput
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Then you define the variables:&lt;/p&gt;
+
+&lt;p&gt;At home:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mainoutput   xinerama-0
+set $secondoutput xinerama-0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At work, edit the config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mainoutput   xinerama-1
+set $secondoutput xinerama-0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Reload your config&lt;/p&gt;
+
+&lt;p&gt;It could be easily automated with a script which modify the &lt;code&gt;config&lt;/code&gt; given a template and then call &lt;code&gt;i3-msg restart&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?comment=2418#comment-2418</link><description>Hmmm, is it possible to redefine the variable with i3-msg? I also have variable outputs based on the monitor model - HDMI1 or DP2, but they are both above LVDS1 and share otherwise similar characteristics. EDIT you should use "move workspace to output up/down/left/right"</description><pubDate>Sat, 24 Aug 2013 14:57:52 +0000</pubDate><guid>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?comment=2418#comment-2418</guid></item><item><title>Comment by syl20bnr for &lt;p&gt;You can define key bindings to summon some &lt;code&gt;xrandr&lt;/code&gt;processes as explained in the user guide: &lt;a href="http://i3wm.org/docs/userguide.html#multi_monitor"&gt;http://i3wm.org/docs/userguide.html#m...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m         exec xrandr --output HDMI1 --off
+bindsym $mod+shift+m   exec xrandr --output HDMI1 --auto --right-of LVDS1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;em&gt;Edit to add a better answer to the OP question&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;You could try the &lt;code&gt;--primary&lt;/code&gt; argument for &lt;code&gt;xrandr&lt;/code&gt;&lt;/strong&gt;. I did not succeed in making it work with i3. Maybe there is a recipe to make it work.&lt;/p&gt;
+
+&lt;p&gt;Another solution is to fake a swap of primary monitor by reassigning the workspaces outputs in your &lt;code&gt;config&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;1) First assign the output for each monitor&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 1 output $mainoutput
+workspace 2 output $secondoutput
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Then you define the variables:&lt;/p&gt;
+
+&lt;p&gt;At home:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mainoutput   xinerama-0
+set $secondoutput xinerama-0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At work, edit the config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mainoutput   xinerama-1
+set $secondoutput xinerama-0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Reload your config&lt;/p&gt;
+
+&lt;p&gt;It could be easily automated with a script which modify the &lt;code&gt;config&lt;/code&gt; given a template and then call &lt;code&gt;i3-msg restart&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?comment=2337#comment-2337</link><description>I edited the answer with a possible solution to this.</description><pubDate>Sat, 10 Aug 2013 04:41:52 +0000</pubDate><guid>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?comment=2337#comment-2337</guid></item><item><title>Comment by rbox for &lt;p&gt;You can define key bindings to summon some &lt;code&gt;xrandr&lt;/code&gt;processes as explained in the user guide: &lt;a href="http://i3wm.org/docs/userguide.html#multi_monitor"&gt;http://i3wm.org/docs/userguide.html#m...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m         exec xrandr --output HDMI1 --off
+bindsym $mod+shift+m   exec xrandr --output HDMI1 --auto --right-of LVDS1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;em&gt;Edit to add a better answer to the OP question&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;You could try the &lt;code&gt;--primary&lt;/code&gt; argument for &lt;code&gt;xrandr&lt;/code&gt;&lt;/strong&gt;. I did not succeed in making it work with i3. Maybe there is a recipe to make it work.&lt;/p&gt;
+
+&lt;p&gt;Another solution is to fake a swap of primary monitor by reassigning the workspaces outputs in your &lt;code&gt;config&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;1) First assign the output for each monitor&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 1 output $mainoutput
+workspace 2 output $secondoutput
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Then you define the variables:&lt;/p&gt;
+
+&lt;p&gt;At home:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mainoutput   xinerama-0
+set $secondoutput xinerama-0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At work, edit the config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mainoutput   xinerama-1
+set $secondoutput xinerama-0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Reload your config&lt;/p&gt;
+
+&lt;p&gt;It could be easily automated with a script which modify the &lt;code&gt;config&lt;/code&gt; given a template and then call &lt;code&gt;i3-msg restart&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?comment=2343#comment-2343</link><description>love this :) i automated this now </description><pubDate>Mon, 12 Aug 2013 08:10:06 +0000</pubDate><guid>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?comment=2343#comment-2343</guid></item><item><title>Comment by rbox for &lt;p&gt;You can define key bindings to summon some &lt;code&gt;xrandr&lt;/code&gt;processes as explained in the user guide: &lt;a href="http://i3wm.org/docs/userguide.html#multi_monitor"&gt;http://i3wm.org/docs/userguide.html#m...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+m         exec xrandr --output HDMI1 --off
+bindsym $mod+shift+m   exec xrandr --output HDMI1 --auto --right-of LVDS1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;em&gt;Edit to add a better answer to the OP question&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;You could try the &lt;code&gt;--primary&lt;/code&gt; argument for &lt;code&gt;xrandr&lt;/code&gt;&lt;/strong&gt;. I did not succeed in making it work with i3. Maybe there is a recipe to make it work.&lt;/p&gt;
+
+&lt;p&gt;Another solution is to fake a swap of primary monitor by reassigning the workspaces outputs in your &lt;code&gt;config&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;1) First assign the output for each monitor&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 1 output $mainoutput
+workspace 2 output $secondoutput
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2) Then you define the variables:&lt;/p&gt;
+
+&lt;p&gt;At home:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mainoutput   xinerama-0
+set $secondoutput xinerama-0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At work, edit the config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mainoutput   xinerama-1
+set $secondoutput xinerama-0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3) Reload your config&lt;/p&gt;
+
+&lt;p&gt;It could be easily automated with a script which modify the &lt;code&gt;config&lt;/code&gt; given a template and then call &lt;code&gt;i3-msg restart&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?comment=2334#comment-2334</link><description>thanks, this looks like a pretty great solution (i'll use it right now :)), but my main problem is if i'm at the office to specify HDMI1 as my main display with Workspace 1 on it</description><pubDate>Fri, 09 Aug 2013 20:29:25 +0000</pubDate><guid>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?comment=2334#comment-2334</guid></item><item><title>Answer by MeanEYE for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;i want to use a felexible monitor setup:&lt;/p&gt;
+
+&lt;p&gt;case "on the road")
+i use only the display on my laptop (LVDS1)&lt;/p&gt;
+
+&lt;p&gt;case office)
+is use HDMI1 as my default display and LVDS1 as secondary&lt;/p&gt;
+
+&lt;p&gt;Is there a way to configure this?&lt;/p&gt;
+
+&lt;p&gt;thanks in advance :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?answer=2359#post-id-2359</link><description>i3 does that for you automatically. My current setup has configuration like this:
+
+    workspace "$ws_web" output HDMI1
+    assign [class="Google-chrome" window_role="browser"] $ws_web
+
+If I connect display to my laptop, workspace will get moved to external display. As soon as I disconnect it, workspace goes back to LVDS1 along with all the windows on that workspace.</description><pubDate>Fri, 16 Aug 2013 18:26:11 +0000</pubDate><guid>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?answer=2359#post-id-2359</guid></item><item><title>Answer by OliverUv for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;i want to use a felexible monitor setup:&lt;/p&gt;
+
+&lt;p&gt;case "on the road")
+i use only the display on my laptop (LVDS1)&lt;/p&gt;
+
+&lt;p&gt;case office)
+is use HDMI1 as my default display and LVDS1 as secondary&lt;/p&gt;
+
+&lt;p&gt;Is there a way to configure this?&lt;/p&gt;
+
+&lt;p&gt;thanks in advance :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?answer=3557#post-id-3557</link><description>Can't edit the above answer so here's how to use `--primary` with xrandr:
+
+`--primary` will set a display to be primary, which will not affect which workspaces are on it, but can change where your systray icons are displayed if you've configured i3 to that effect.
+
+I execute my xrandr commands in this way:
+
+    exec --no-startup-id xrandr --output HDMI-0 --off --output DVI-I-1 --mode 1280x1024 --pos 0x0 --rotate normal --output DVI-I-0 --primary --mode 1920x1200 --pos 1280x0 --rotate normal --output DVI-I-3 --off --output DVI-I-2 --off
+
+That is, I give it a complete specification of my screens. The easiest way to find out what this should look like is to set up your screens the way you want, then use `arandr` (a simple xrandr gui) to export the xrandr line (Layout-&gt;Save As). Note that arandr will *not* set `--primary` for you. Do this yourself, immediately after the display you want to make primary.
+
+You said you wanted `--primary` to ensure workspace 1 goes on your primary monitor. This won't happen, but you're going to want to move your workspaces between monitors dynamically and this will let you achieve what you want:
+
+    # move current workspace between monitors
+    bindsym $mod+Control+h move workspace to output left
+    bindsym $mod+Control+j move workspace to output down
+    bindsym $mod+Control+k move workspace to output up
+    bindsym $mod+Control+l move workspace to output right
+
+I also use these things to rename workspaces. I often do this to rename workspace 2 to 10, so that I can have workspaces on my second monitor go from 10 downwards.
+
+    # rename current workspace
+    bindsym $mod+Control+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
+If you give a workspace a name such as "5: ssh", you can still go to it *only* if you've changed your binds like this:
+
+    # switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10</description><pubDate>Mon, 24 Mar 2014 14:10:41 +0000</pubDate><guid>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?answer=3557#post-id-3557</guid></item><item><title>Answer by morgan_greywolf for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;i want to use a felexible monitor setup:&lt;/p&gt;
+
+&lt;p&gt;case "on the road")
+i use only the display on my laptop (LVDS1)&lt;/p&gt;
+
+&lt;p&gt;case office)
+is use HDMI1 as my default display and LVDS1 as secondary&lt;/p&gt;
+
+&lt;p&gt;Is there a way to configure this?&lt;/p&gt;
+
+&lt;p&gt;thanks in advance :)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?answer=3575#post-id-3575</link><description>Personally, I use a script to manage my multiple monitor screen configurations; this way I never have to worry about switching it, the script will just do the right thing when i3 starts. I have three configurations:  one at home (small monitor to the right of my LVDS), work (larger monitor to the right of my LVDS), and one on the road (just LVDS).  I always use the native resolution of the flat panel.  Other configurations will work, but you will have to alter the script.  
+    
+    #!/bin/bash
+    for output in $(xrandr | grep '\Wconnected' | awk '{ print $1 }'); do
+        if [[ $output =~ ^LVDS.*$ ]]; then
+                lvds=$output
+        fi
+    done
+    for output in $(xrandr | grep '\Wconnected' | awk '{ print $1 }'); do
+        if [[ ! $output =~ ^LVDS.*$ ]]; then
+           xrandr --output $lvds --auto --output $output --pos 0x0 --auto \
+                  --right-of $lvds --primary
+        fi
+    done
+
+I call this script "autoxrandr" and it's placed in my $HOME/bin directory.  I then call it from ~/.i3/config via a line like
+
+    exec --no-startup-id autoxrandr
+
+The script works like this:  it discovers which XRandR output is named LVDS-something and then assumes that all other monitors are to the right of the LVDS.  This works for me because I always place the larger monitors on the right, because due to problems with my vision, I see better out of my right eye. It also will assume that the monitor furthest to the right will be primary.  Obviously this is very simplistic and probably won't work for some other monitor setups. 
+
+If you want to have more monitors, say, one on the right and one the left, etc., to know which monitor is which you can get at the monitor's EDID via 'xrandr --verbose'; this will uniquely identify each monitor.  Then you could build some smarts in your script that places each monitor where you want it, sets up the resolution, determines which is primary, etc.   I'll leave that as an exercise to the reader. 
+
+</description><pubDate>Wed, 26 Mar 2014 17:49:33 +0000</pubDate><guid>https://faq.i3wm.org/question/2332/flexible-monitor-setup/?answer=3575#post-id-3575</guid></item></channel></rss>

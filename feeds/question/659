@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/659/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 30 Oct 2012 19:02:46 +0000</lastBuildDate><item><title>i3status and sound issues after kernel update</title><link>https://faq.i3wm.org/question/659/i3status-and-sound-issues-after-kernel-update/</link><description>Quick Specs:
+
+ - i3 version 4.3 (2012-09-19, branch "tags/4.3")
+ - i3status 2.6 (2012-10-03)
+ - Fedora release 17 (Beefy Miracle)
+ - Kernel 3.6.1-1.fc17.x86_64
+
+Issues started after an update from 3.5.6-1.fc17.x86_64 to 3.6.1-1.fc17.x86_64.  First issue was that i3status would fail to start normally. (It would start, but with a status of D in top)
+
+Logging into my backup gnome3 session and recompiling i3status under the new kernel resolved this issue.
+
+The other issue is now my system starts up with no audio output.  As it turns out, it starts up muted, but reports at 42% volume in i3status.  (Since using i3, it seems to always default back to 42% after a reboot as well)  Toggling mute a couple times seems to resolve the no sound issue until the next reboot.
+
+Has anyone else experienced these issues? (or the like)  I can't seem to find any bug reports related, or other similar questions asked here.</description><pubDate>Thu, 18 Oct 2012 13:47:17 +0000</pubDate><guid>https://faq.i3wm.org/question/659/i3status-and-sound-issues-after-kernel-update/</guid></item><item><title>Answer by Michael for &lt;p&gt;Quick Specs:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;i3 version 4.3 (2012-09-19, branch "tags/4.3")&lt;/li&gt;
+&lt;li&gt;i3status 2.6 (2012-10-03)&lt;/li&gt;
+&lt;li&gt;Fedora release 17 (Beefy Miracle)&lt;/li&gt;
+&lt;li&gt;Kernel 3.6.1-1.fc17.x86_64&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Issues started after an update from 3.5.6-1.fc17.x86&lt;em&gt;64 to 3.6.1-1.fc17.x86&lt;/em&gt;64.  First issue was that i3status would fail to start normally. (It would start, but with a status of D in top)&lt;/p&gt;
+
+&lt;p&gt;Logging into my backup gnome3 session and recompiling i3status under the new kernel resolved this issue.&lt;/p&gt;
+
+&lt;p&gt;The other issue is now my system starts up with no audio output.  As it turns out, it starts up muted, but reports at 42% volume in i3status.  (Since using i3, it seems to always default back to 42% after a reboot as well)  Toggling mute a couple times seems to resolve the no sound issue until the next reboot.&lt;/p&gt;
+
+&lt;p&gt;Has anyone else experienced these issues? (or the like)  I can't seem to find any bug reports related, or other similar questions asked here.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/659/i3status-and-sound-issues-after-kernel-update/?answer=660#post-id-660</link><description>Recompiling i3status to solve an issue which was introduced by a kernel upgrade sounds weird, the only thing that might be possible here is that we include a linux/ header which has changed incompatibly, but that sounds weird, too…
+
+As for your audio issue, usually when shutting down the volume level is stored in some state file, which is restored when booting up. Since I don’t use Fedora myself, I can’t tell precisely where that happens.</description><pubDate>Thu, 18 Oct 2012 17:42:39 +0000</pubDate><guid>https://faq.i3wm.org/question/659/i3status-and-sound-issues-after-kernel-update/?answer=660#post-id-660</guid></item><item><title>Comment by TheQueasle for &lt;p&gt;Recompiling i3status to solve an issue which was introduced by a kernel upgrade sounds weird, the only thing that might be possible here is that we include a linux/ header which has changed incompatibly, but that sounds weird, too…&lt;/p&gt;
+
+&lt;p&gt;As for your audio issue, usually when shutting down the volume level is stored in some state file, which is restored when booting up. Since I don’t use Fedora myself, I can’t tell precisely where that happens.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/659/i3status-and-sound-issues-after-kernel-update/?comment=701#comment-701</link><description>Just a quick update
+
+No issues after the last 2 kernel updates (3.6.1-1 -&gt; 3.6.1-2 and 3.6.1-2 -&gt; 3.6.1-3)
+
+I'll update again if a 3.7.* update breaks anything for me (when ever that is released) but I'm starting to think the original issue was a fluke...</description><pubDate>Tue, 30 Oct 2012 19:02:46 +0000</pubDate><guid>https://faq.i3wm.org/question/659/i3status-and-sound-issues-after-kernel-update/?comment=701#comment-701</guid></item></channel></rss>

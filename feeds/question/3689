@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3689/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 19 Apr 2014 23:01:34 +0000</lastBuildDate><item><title>i3status not showing network information</title><link>https://faq.i3wm.org/question/3689/i3status-not-showing-network-information/</link><description>Hi,
+
+I just installed i3 on a new laptop and I can get i3status to show the network status.
+
+Using the default configuration file, I see:
+
+`no IPv6 | 31,2 GiB | DHCP: no | VPN: no | W: down | E: down | FULL 101,56% | 0,60 | 2014-04-19 18:04:15`
+
+
+However, when running ifconfig, I see that my network cards are not known as wlan0 and eth0. Instead ifconfig gives me **wlp6s0** for the wifi card, and **enp5s0f2** for the ethernet card. So I modify i3status config file to have:
+
+    wireless wlp6s0 {
+        format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
+    }
+
+    ethernet enp5s0f2 {
+        # if you use %speed, i3status requires root privileges
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+    }
+
+However, when running i3status after that, no network information shows: 
+
+`no IPv6 | 31,2 GiB | DHCP: no | VPN: no |  |  | FULL 101,56% | 0,60 | 2014-04-19 18:09:32`
+
+I also tried running i3status as root, but that did not change anything. Did I miss something in the configuration?</description><pubDate>Sat, 19 Apr 2014 22:20:03 +0000</pubDate><guid>https://faq.i3wm.org/question/3689/i3status-not-showing-network-information/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I just installed i3 on a new laptop and I can get i3status to show the network status.&lt;/p&gt;
+
+&lt;p&gt;Using the default configuration file, I see:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;no IPv6 | 31,2 GiB | DHCP: no | VPN: no | W: down | E: down | FULL 101,56% | 0,60 | 2014-04-19 18:04:15&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;However, when running ifconfig, I see that my network cards are not known as wlan0 and eth0. Instead ifconfig gives me &lt;strong&gt;wlp6s0&lt;/strong&gt; for the wifi card, and &lt;strong&gt;enp5s0f2&lt;/strong&gt; for the ethernet card. So I modify i3status config file to have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wireless wlp6s0 {
+    format_up = "W: (%quality at %essid) %ip"
+    format_down = "W: down"
+}
+
+ethernet enp5s0f2 {
+    # if you use %speed, i3status requires root privileges
+    format_up = "E: %ip (%speed)"
+    format_down = "E: down"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, when running i3status after that, no network information shows: &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;no IPv6 | 31,2 GiB | DHCP: no | VPN: no |  |  | FULL 101,56% | 0,60 | 2014-04-19 18:09:32&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also tried running i3status as root, but that did not change anything. Did I miss something in the configuration?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3689/i3status-not-showing-network-information/?answer=3690#post-id-3690</link><description>Yes, you missed the “order” directives which also contain the network interface name. You need to replace eth0 by enp5s0f2 there, too. Just search for all occurences in the file.</description><pubDate>Sat, 19 Apr 2014 22:58:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3689/i3status-not-showing-network-information/?answer=3690#post-id-3690</guid></item><item><title>Comment by bobbyblues for &lt;p&gt;Yes, you missed the “order” directives which also contain the network interface name. You need to replace eth0 by enp5s0f2 there, too. Just search for all occurences in the file.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3689/i3status-not-showing-network-information/?comment=3691#comment-3691</link><description>Arf, I feel stupid.
+
+Thanks a lot, that solved it!</description><pubDate>Sat, 19 Apr 2014 23:01:34 +0000</pubDate><guid>https://faq.i3wm.org/question/3689/i3status-not-showing-network-information/?comment=3691#comment-3691</guid></item></channel></rss>

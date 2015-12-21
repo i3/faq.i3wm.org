@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1117/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 04 Sep 2013 19:50:41 +0000</lastBuildDate><item><title>conky status piped to i3bar using JSON causes text to flicker</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/</link><description>Once a couple of seconds (unrelated to update_interval from conky) the status is flickering in a very annoying way. Without using JSON and directly piping plain conky into i3bar, the text doesn't seem to flicker anymore. How can I solve this?
+
+/later edit: It seems this is also causing text pop-ups to flicker, when I hover the mouse pointer over a podcast episode in gpodder for example. Another thing I just realized, when I select a piece of text (or entire with ctrl+a) in a textchat, the flickering is causing my text to be deselected. This doesn't seem to happen continuously, only for a number of times. For example, I select the text, it deselects, then select it again, it deselects again. I select it again and after that it stays selected. Same with pop-ups. Only first time(s), after first hovered the pointer and the info was showed. This problem description might sound weird.</description><pubDate>Thu, 24 Jan 2013 16:33:30 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/</guid></item><item><title>Answer by dkeg for &lt;p&gt;Once a couple of seconds (unrelated to update_interval from conky) the status is flickering in a very annoying way. Without using JSON and directly piping plain conky into i3bar, the text doesn't seem to flicker anymore. How can I solve this?&lt;/p&gt;
+
+&lt;p&gt;/later edit: It seems this is also causing text pop-ups to flicker, when I hover the mouse pointer over a podcast episode in gpodder for example. Another thing I just realized, when I select a piece of text (or entire with ctrl+a) in a textchat, the flickering is causing my text to be deselected. This doesn't seem to happen continuously, only for a number of times. For example, I select the text, it deselects, then select it again, it deselects again. I select it again and after that it stays selected. Same with pop-ups. Only first time(s), after first hovered the pointer and the info was showed. This problem description might sound weird.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?answer=1139#post-id-1139</link><description>Update:  Get rid of double_buffer yes.  That will do it. 
+
+when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  
+
+The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. </description><pubDate>Mon, 28 Jan 2013 18:00:51 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?answer=1139#post-id-1139</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1162#comment-1162</link><description>I would gladly try your conky script but the page says "Could not decrypt data (Wrong key ?)".</description><pubDate>Tue, 29 Jan 2013 15:06:07 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1162#comment-1162</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1158#comment-1158</link><description>The other (now known to be unrelated) problem seem to have been solved though. With or without "double_buffer yes" in the conky script. I updated some xorg packages and i3-git and restarted X. One of these actions must have solved it. I can now select text without it being automatically deselected.</description><pubDate>Tue, 29 Jan 2013 12:58:36 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1158#comment-1158</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1157#comment-1157</link><description>dkeg, I wish it was. I already tried like I said, many settings and initially I didn't have "double_bufffer yes" in conky, I only added it afterwads, after I noticed the flickering. But thanks for replying.</description><pubDate>Tue, 29 Jan 2013 12:51:18 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1157#comment-1157</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1149#comment-1149</link><description>I got a little lost in the karma thing, didn't know if the comment was showing up or not.</description><pubDate>Tue, 29 Jan 2013 05:55:13 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1149#comment-1149</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1143#comment-1143</link><description>The other issue it may indeed not be related. At first I thought it is. I can kill i3bar and still have that problem with info text pop-ups flashing and selecting text problem. That doesn't happen in browser though.</description><pubDate>Tue, 29 Jan 2013 04:22:31 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1143#comment-1143</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1141#comment-1141</link><description>I tried setting differrent update intervals all in vain. I normally use 1 sec but lately I had 0.5. I tried from 1 to 5 and even higher, it makes no difference. I also found a thread on arch forums with the name "conky text flashing" (because I can't post links), and the OP had the same problem.</description><pubDate>Tue, 29 Jan 2013 04:19:15 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1141#comment-1141</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1167#comment-1167</link><description>It's ok. Thank you very much for taking the time to help and to assist me in trying to find the cause of this problem. If I find a solution I will updade this thread.</description><pubDate>Tue, 29 Jan 2013 15:47:45 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1167#comment-1167</guid></item><item><title>Comment by dkeg for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1154#comment-1154</link><description>Got it, get rid of double_buffer yes.  I had forgotten that is one of the things I got rid of for flickering, but when looking through yours a saw it, realized that was your problem.  I hope this works for you!</description><pubDate>Tue, 29 Jan 2013 12:45:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1154#comment-1154</guid></item><item><title>Comment by dkeg for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1161#comment-1161</link><description>okay, let's try this.  Can you copy my .conkyrc and try that.  Curious if using mine it will continue to flicker.  If not, then we know its something somewhere in your syntax.  Will help us to know where or where not to look.........http://sebsauvage.net/paste/?b4ab305be256f007#pxLc6g2EPX/DtrFtzOxSy</description><pubDate>Tue, 29 Jan 2013 14:53:33 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1161#comment-1161</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1164#comment-1164</link><description>Ok the link worked. So I tried your script and it does the same thing, unfortunately. I suspected it's not necessary conky's fault or only conky's fault. What can it be then?! I'm not the only one who had this problem so there has to be more than just my config.</description><pubDate>Tue, 29 Jan 2013 15:26:11 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1164#comment-1164</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1165#comment-1165</link><description>Also another thing. If I pipe conky into dzen2, it doesn't flicker, dzen2 updates it without any flashing. I probably should have mentioned this in the original post. But I would like to stick to i3bar.</description><pubDate>Tue, 29 Jan 2013 15:31:58 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1165#comment-1165</guid></item><item><title>Comment by dkeg for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1163#comment-1163</link><description>try this, I did not copy the whole URL ....http://sebsauvage.net/paste/?b4ab305be256f007#pxLc6g2EPX/DtrFtzOxSytLqSd93waiju58+Bl5PU9M=</description><pubDate>Tue, 29 Jan 2013 15:19:07 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1163#comment-1163</guid></item><item><title>Comment by dkeg for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1166#comment-1166</link><description>frustrating.  I'm sorry I could not be of more help.  I thought we were on to something.  It will be interesting to see the root cause.  </description><pubDate>Tue, 29 Jan 2013 15:41:43 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1166#comment-1166</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1142#comment-1142</link><description>Only that he says he solved it by using conky-cli from AUR. I tried that as well and still the flickering is happening.</description><pubDate>Tue, 29 Jan 2013 04:20:13 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1142#comment-1142</guid></item><item><title>Comment by dkeg for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1145#comment-1145</link><description>Curious to see your .conkyrc file.  Can you post up on pastebin or something similar</description><pubDate>Tue, 29 Jan 2013 05:15:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1145#comment-1145</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1144#comment-1144</link><description>One thing I forgot to add, yesterday I was compiling rust from AUR so the CPU was working hard. I was looking at i3bar at the usage per core, and surprisingly all that time, the i3bar text didn't flash. It was updating itselff normally and that at 0.5 update interval. I don't know why that is.</description><pubDate>Tue, 29 Jan 2013 04:42:37 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1144#comment-1144</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1148#comment-1148</link><description>here it is http://pastebin.com/vhi7BdKM Some settings you see in the script may not be necessary but are there because I tried all sorts of configurations. Nothing had success. Also there's the fact that if I pipe plain conky to i3bar, the text doesn't flicker.</description><pubDate>Tue, 29 Jan 2013 05:50:35 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1148#comment-1148</guid></item><item><title>Comment by dkeg for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1159#comment-1159</link><description>I also notice that in some places you include curly braces and others you do not, for instance $uptime".  Try to go through and tidy up the syntax, including curly braces where left out...${uptime}, ${kernel}, ${machine}, etc.  Let's see if that has any impact. </description><pubDate>Tue, 29 Jan 2013 14:35:37 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1159#comment-1159</guid></item><item><title>Comment by naq for &lt;p&gt;Update:  Get rid of double_buffer yes.  That will do it. &lt;/p&gt;
+
+&lt;p&gt;when I had update_interval set at 1, I also got flickering.  However, when I changed to 2 the flickering was gone.  What value are you using?  Can you confirm with a value of 2, possibly even higher, like 3, you are still having flickering problems.  &lt;/p&gt;
+
+&lt;p&gt;The other issue you describe, I am not sure.  A bit difficult to follow.  Doesn't sound related though. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1160#comment-1160</link><description>Yes, I did that too :P. The reason why I don't put curly braces in those cases, is because they are not needed. When I write $kernel that's enough, but when I want to use the cpu function for example, I use curly braces ${cpu cpu1} . The script works without any problem either way.</description><pubDate>Tue, 29 Jan 2013 14:41:15 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?comment=1160#comment-1160</guid></item><item><title>Answer by Quelltextfabrik for &lt;p&gt;Once a couple of seconds (unrelated to update_interval from conky) the status is flickering in a very annoying way. Without using JSON and directly piping plain conky into i3bar, the text doesn't seem to flicker anymore. How can I solve this?&lt;/p&gt;
+
+&lt;p&gt;/later edit: It seems this is also causing text pop-ups to flicker, when I hover the mouse pointer over a podcast episode in gpodder for example. Another thing I just realized, when I select a piece of text (or entire with ctrl+a) in a textchat, the flickering is causing my text to be deselected. This doesn't seem to happen continuously, only for a number of times. For example, I select the text, it deselects, then select it again, it deselects again. I select it again and after that it stays selected. Same with pop-ups. Only first time(s), after first hovered the pointer and the info was showed. This problem description might sound weird.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?answer=2126#post-id-2126</link><description>Hey there,
+
+for me, this thread on bbs.archlinux.org viewtopic.php?pid=1279931#p1279931 (can't post links, sorry) held the answer.
+
+Essentially, because of the way i3status parses JSON you need to make your JSON array one "physical" line.
+
+So your 99+ lines of this:
+
+    { "full_text" : "foo" },
+    { "full_text" : "bar" },
+    { "full_text" : "one more for good measure" }
+
+simply becomes this:
+
+    { "full_text" : "foo" },\
+    { "full_text" : "bar" },\
+    { "full_text" : "one more for good measure" }\
+
+Hope that helps someone!</description><pubDate>Mon, 01 Jul 2013 21:23:13 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?answer=2126#post-id-2126</guid></item><item><title>Answer by phairland for &lt;p&gt;Once a couple of seconds (unrelated to update_interval from conky) the status is flickering in a very annoying way. Without using JSON and directly piping plain conky into i3bar, the text doesn't seem to flicker anymore. How can I solve this?&lt;/p&gt;
+
+&lt;p&gt;/later edit: It seems this is also causing text pop-ups to flicker, when I hover the mouse pointer over a podcast episode in gpodder for example. Another thing I just realized, when I select a piece of text (or entire with ctrl+a) in a textchat, the flickering is causing my text to be deselected. This doesn't seem to happen continuously, only for a number of times. For example, I select the text, it deselects, then select it again, it deselects again. I select it again and after that it stays selected. Same with pop-ups. Only first time(s), after first hovered the pointer and the info was showed. This problem description might sound weird.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?answer=2480#post-id-2480</link><description>Try to put a comma to the last line. This stop the flickering in my case.
+
+Change this:
+
+    { "full_text" : "foo" },
+    { "full_text" : "bar" },
+    { "full_text" : "one more for good measure" }
+
+To this:
+
+    { "full_text" : "foo" },
+    { "full_text" : "bar" },
+    { "full_text" : "one more for good measure" },
+
+
+
+</description><pubDate>Wed, 04 Sep 2013 19:50:41 +0000</pubDate><guid>https://faq.i3wm.org/question/1117/conky-status-piped-to-i3bar-using-json-causes-text-to-flicker/?answer=2480#post-id-2480</guid></item></channel></rss>

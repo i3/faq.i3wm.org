@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/725/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 12 Mar 2013 15:25:24 +0000</lastBuildDate><item><title>Change i3status separator character</title><link>https://faq.i3wm.org/question/725/change-i3status-separator-character/</link><description>I've been looking to switch from `conky` to `i3status` but I can't seem to find in documentation if it is possible to change separator character or string.
+
+Is this at all possible?</description><pubDate>Sat, 03 Nov 2012 04:25:17 +0000</pubDate><guid>https://faq.i3wm.org/question/725/change-i3status-separator-character/</guid></item><item><title>Answer by virtualeyes for &lt;p&gt;I've been looking to switch from &lt;code&gt;conky&lt;/code&gt; to &lt;code&gt;i3status&lt;/code&gt; but I can't seem to find in documentation if it is possible to change separator character or string.&lt;/p&gt;
+
+&lt;p&gt;Is this at all possible?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/725/change-i3status-separator-character/?answer=1382#post-id-1382</link><description>If by switching to i3 status you mean pipe conky through i3status, then you can hide i3's default "|" separator by setting bar statusline color to the same as the background (i.e. make all bar text invisible).
+
+    bar {
+      status_command ~/.i3/conky.sh
+      colors {
+        statusline #000000 // hide all text
+      }
+    }
+
+Not very useful at this point ;-)
+
+Then, using i3 bar JSON protocol in your conkyrc, set default color for each line item (e.g. white for black bar background) or custom color, and provide whatever separator character (or no separator at all) you want along with cpu, loadavg, etc.
+
+    TEXT
+    [
+      {"full_text": "${loadavg 1} |", "color":"\#ffffff"},
+      {"full_text": "WIFI |", "color": ${if_up wlan0}"\#ff80ff"${else}"\#00ffff"${endif}},
+      {"full_text": "VPN", "color":	${if_up tun0}"\#ff00ff"${else}"\#00ffff"${endif}}
+    ],
+
+JSON protocol gives you full control regardless of service (conky, dzen, etc.) used.
+
+</description><pubDate>Tue, 12 Mar 2013 15:25:24 +0000</pubDate><guid>https://faq.i3wm.org/question/725/change-i3status-separator-character/?answer=1382#post-id-1382</guid></item><item><title>Answer by Michael for &lt;p&gt;I've been looking to switch from &lt;code&gt;conky&lt;/code&gt; to &lt;code&gt;i3status&lt;/code&gt; but I can't seem to find in documentation if it is possible to change separator character or string.&lt;/p&gt;
+
+&lt;p&gt;Is this at all possible?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/725/change-i3status-separator-character/?answer=728#post-id-728</link><description>No, this is not possible, see src/output.c:print_seperator()</description><pubDate>Sat, 03 Nov 2012 15:45:19 +0000</pubDate><guid>https://faq.i3wm.org/question/725/change-i3status-separator-character/?answer=728#post-id-728</guid></item><item><title>Comment by MeanEYE for &lt;p&gt;No, this is not possible, see src/output.c:print_seperator()&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/725/change-i3status-separator-character/?comment=729#comment-729</link><description>Would you accept patch for this?</description><pubDate>Sat, 03 Nov 2012 22:06:57 +0000</pubDate><guid>https://faq.i3wm.org/question/725/change-i3status-separator-character/?comment=729#comment-729</guid></item></channel></rss>

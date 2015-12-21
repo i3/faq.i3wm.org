@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2787/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 28 Oct 2013 11:54:19 +0000</lastBuildDate><item><title>Move floating window with arrows</title><link>https://faq.i3wm.org/question/2787/move-floating-window-with-arrows/</link><description>How to configure i3 to have mode for this, to move the floating window around with arrows or position it to the screen edge. </description><pubDate>Sun, 27 Oct 2013 07:35:37 +0000</pubDate><guid>https://faq.i3wm.org/question/2787/move-floating-window-with-arrows/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;How to configure i3 to have mode for this, to move the floating window around with arrows or position it to the screen edge. &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2787/move-floating-window-with-arrows/?answer=2790#post-id-2790</link><description>As for just moving windows around with arrow keys, it uses the same command as moving tiled windows around. So this would be the way:
+
+    mode "moveit" {
+        bindsym Up move up 20px
+        bindsym Left move left 20px
+        bindsym Down move down 20px
+        bindsym Right move right 20px
+        bindsym Mod4+m mode "default"
+    }
+    bindsym Mod4+m focus floating; mode "moveit"
+
+&lt;Super&gt;+m will focus the last active floating window and enter "moveit" mode. With the arrow keys you can move the window by 20 pixels. Giving a pixel value is optional with 10px as the default. 
+
+Moving windows to a specific screen border is a lot trickier as there are no readymade commands for this. You can move a window to the left upper corner with `move position 0px 0px`. Any other corner or edge is not that easy as it is dependent on window sizes and screen size. 
+One way to achieve this is with *xdotool*, some scripting and probably a lot of trial and error as xdotool does not take in account borders and title bars. For example: `xdootol getwindowfocus windowmove 0 0` moves the window to the upper left corner, but so far, that the title bar and left border are outside the screen.
+
+
+
+        </description><pubDate>Mon, 28 Oct 2013 10:00:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2787/move-floating-window-with-arrows/?answer=2790#post-id-2790</guid></item><item><title>Comment by majkinetor for &lt;p&gt;As for just moving windows around with arrow keys, it uses the same command as moving tiled windows around. So this would be the way:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "moveit" {
+    bindsym Up move up 20px
+    bindsym Left move left 20px
+    bindsym Down move down 20px
+    bindsym Right move right 20px
+    bindsym Mod4+m mode "default"
+}
+bindsym Mod4+m focus floating; mode "moveit"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;lt;super&amp;gt;+m will focus the last active floating window and enter "moveit" mode. With the arrow keys you can move the window by 20 pixels. Giving a pixel value is optional with 10px as the default. &lt;/p&gt;
+
+&lt;p&gt;Moving windows to a specific screen border is a lot trickier as there are no readymade commands for this. You can move a window to the left upper corner with &lt;code&gt;move position 0px 0px&lt;/code&gt;. Any other corner or edge is not that easy as it is dependent on window sizes and screen size. 
+One way to achieve this is with &lt;em&gt;xdotool&lt;/em&gt;, some scripting and probably a lot of trial and error as xdotool does not take in account borders and title bars. For example: &lt;code&gt;xdootol getwindowfocus windowmove 0 0&lt;/code&gt; moves the window to the upper left corner, but so far, that the title bar and left border are outside the screen.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2787/move-floating-window-with-arrows/?comment=2791#comment-2791</link><description>Thanks m8.</description><pubDate>Mon, 28 Oct 2013 11:54:19 +0000</pubDate><guid>https://faq.i3wm.org/question/2787/move-floating-window-with-arrows/?comment=2791#comment-2791</guid></item></channel></rss>

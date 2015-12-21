@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6020/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 26 May 2015 19:36:08 +0000</lastBuildDate><item><title>How to detect when a container is set to float</title><link>https://faq.i3wm.org/question/6020/how-to-detect-when-a-container-is-set-to-float/</link><description>Hi all,
+
+I would like to act upon any window that is set as floating so I can be able to set border as normal when in floating mode and 1pixel when in tabbed mode.
+
+As for now I am able to do this but only for selected applications via `for_window [...]`, however I would like to extend this behaviour for any and all applications.
+
+Regards.
+</description><pubDate>Tue, 26 May 2015 15:11:11 +0000</pubDate><guid>https://faq.i3wm.org/question/6020/how-to-detect-when-a-container-is-set-to-float/</guid></item><item><title>Answer by gurkensalat for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I would like to act upon any window that is set as floating so I can be able to set border as normal when in floating mode and 1pixel when in tabbed mode.&lt;/p&gt;
+
+&lt;p&gt;As for now I am able to do this but only for selected applications via &lt;code&gt;for_window [...]&lt;/code&gt;, however I would like to extend this behaviour for any and all applications.&lt;/p&gt;
+
+&lt;p&gt;Regards.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6020/how-to-detect-when-a-container-is-set-to-float/?answer=6022#post-id-6022</link><description> As Airblader mentioned already, you can do this as following using [i3subscribe](https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/?answer=5722#post-id-5722):
+
+    #!/bin/bash
+    i=0
+    i3subscribe window dump | grep --line-buffered -e "^window:floating" -e "floating' =&gt; 'user_" | sed -u 's/^\s*//' | \
+    while read -r line; do
+    	[ "$line" == "window:floating" ] &amp;&amp; i=1 &amp;&amp; continue
+    	[ "$i" == 1 -a "$line" == "'floating' =&gt; 'user_on'," ] &amp;&amp; i3-msg border normal
+    	[ "$i" == 1 -a "$line" == "'floating' =&gt; 'user_off'," ] &amp;&amp; i3-msg border 1pixel
+    	i=0
+    done</description><pubDate>Tue, 26 May 2015 19:36:08 +0000</pubDate><guid>https://faq.i3wm.org/question/6020/how-to-detect-when-a-container-is-set-to-float/?answer=6022#post-id-6022</guid></item><item><title>Answer by Airblader for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;I would like to act upon any window that is set as floating so I can be able to set border as normal when in floating mode and 1pixel when in tabbed mode.&lt;/p&gt;
+
+&lt;p&gt;As for now I am able to do this but only for selected applications via &lt;code&gt;for_window [...]&lt;/code&gt;, however I would like to extend this behaviour for any and all applications.&lt;/p&gt;
+
+&lt;p&gt;Regards.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6020/how-to-detect-when-a-container-is-set-to-float/?answer=6021#post-id-6021</link><description>Subscribe to the IPC window event: [i3 IPC #window](http://i3wm.org/docs/ipc.html#_window_event)</description><pubDate>Tue, 26 May 2015 15:55:10 +0000</pubDate><guid>https://faq.i3wm.org/question/6020/how-to-detect-when-a-container-is-set-to-float/?answer=6021#post-id-6021</guid></item></channel></rss>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5537/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 01 Mar 2015 00:34:30 +0000</lastBuildDate><item><title>colors from Xdefaults</title><link>https://faq.i3wm.org/question/5537/colors-from-xdefaults/</link><description>Hello,
+
+I would like to use the colors I defined in ~/.Xresources for my i3 config.
+
+For example, in ~/.Xresources I have
+
+&gt;  #define S_orange        #cb4b16
+
+&gt;  #define S_red           #dc322f
+
+&gt;  #define S_magenta       #d33682
+
+
+and now I would like to use S_blue in my i3 config like 
+
+&gt; client.focused          S_orange S_red S_magenta
+
+or similar. Is it possible to use the settings defined in ~/.Xresources (or .Xdefaults) in i3?</description><pubDate>Wed, 25 Feb 2015 13:27:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5537/colors-from-xdefaults/</guid></item><item><title>Comment by airblader for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I would like to use the colors I defined in ~/.Xresources for my i3 config.&lt;/p&gt;
+
+&lt;p&gt;For example, in ~/.Xresources I have&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;#define S_orange        #cb4b16&lt;/p&gt;
+  
+  &lt;p&gt;#define S_red           #dc322f&lt;/p&gt;
+  
+  &lt;p&gt;#define S_magenta       #d33682&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;and now I would like to use S_blue in my i3 config like &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;client.focused          S&lt;em&gt;orange S&lt;/em&gt;red S_magenta&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;or similar. Is it possible to use the settings defined in ~/.Xresources (or .Xdefaults) in i3?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5537/colors-from-xdefaults/?comment=5552#comment-5552</link><description>Small addition: There are tools such as themer that allow you to manage this with templates, if you like.</description><pubDate>Sun, 01 Mar 2015 00:34:30 +0000</pubDate><guid>https://faq.i3wm.org/question/5537/colors-from-xdefaults/?comment=5552#comment-5552</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I would like to use the colors I defined in ~/.Xresources for my i3 config.&lt;/p&gt;
+
+&lt;p&gt;For example, in ~/.Xresources I have&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;#define S_orange        #cb4b16&lt;/p&gt;
+  
+  &lt;p&gt;#define S_red           #dc322f&lt;/p&gt;
+  
+  &lt;p&gt;#define S_magenta       #d33682&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;and now I would like to use S_blue in my i3 config like &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;client.focused          S&lt;em&gt;orange S&lt;/em&gt;red S_magenta&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;or similar. Is it possible to use the settings defined in ~/.Xresources (or .Xdefaults) in i3?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5537/colors-from-xdefaults/?answer=5540#post-id-5540</link><description>This is not possible. The i3 text parser does not read any files other than the i3 configuration file, and the environment is not sourced when starting i3. Variables for values can only work if those variables are declared within the i3 configuration file itself, as mentioned in [section 4.11 of the User's Guide](http://i3wm.org/docs/userguide.html#_variables):
+
+&gt; Variables are directly replaced in the file when parsing. Variables expansion is not recursive so it is not possible to define a variable with a value containing another variable. There is no fancy handling and **there are absolutely no plans to change this**. If you need a more dynamic configuration you should create a little script which generates a configuration file and run it before starting i3 (for example in your ~/.xsession file).</description><pubDate>Thu, 26 Feb 2015 14:54:20 +0000</pubDate><guid>https://faq.i3wm.org/question/5537/colors-from-xdefaults/?answer=5540#post-id-5540</guid></item><item><title>Comment by Kaligule for &lt;p&gt;This is not possible. The i3 text parser does not read any files other than the i3 configuration file, and the environment is not sourced when starting i3. Variables for values can only work if those variables are declared within the i3 configuration file itself, as mentioned in &lt;a href="http://i3wm.org/docs/userguide.html#_variables"&gt;section 4.11 of the User's Guide&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Variables are directly replaced in the file when parsing. Variables expansion is not recursive so it is not possible to define a variable with a value containing another variable. There is no fancy handling and &lt;strong&gt;there are absolutely no plans to change this&lt;/strong&gt;. If you need a more dynamic configuration you should create a little script which generates a configuration file and run it before starting i3 (for example in your ~/.xsession file).&lt;/p&gt;
+&lt;/blockquote&gt;
+</title><link>https://faq.i3wm.org/question/5537/colors-from-xdefaults/?comment=5551#comment-5551</link><description>Thank you.</description><pubDate>Fri, 27 Feb 2015 10:58:00 +0000</pubDate><guid>https://faq.i3wm.org/question/5537/colors-from-xdefaults/?comment=5551#comment-5551</guid></item></channel></rss>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3655/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 18 Apr 2014 14:07:40 +0000</lastBuildDate><item><title>chrome windows to different workspaces (marks?)</title><link>https://faq.i3wm.org/question/3655/chrome-windows-to-different-workspaces-marks/</link><description>The flexibility of i3 allows me to manage windows effortlessly. However, I have a problem with chrome (both google-chrome and chromium).
+
+I have a personal gmail account (and related chrome user/profile) and work google apps account (under a different chrome user/profile).
+
+What I want is to find a config solution that would understand opening the first chrome profile in workspace X and the second profile in workspace Y. Problem is that both chrome windows (each profile opens a different window) have the same "class" and "instance" (according to xprop). Also, the "name" property is unreliable as it changes depending on the page currently displayed.
+
+Both chrome profiles are started at boot with an "exec" instruction in the config file. I tried the "--class" GTK flag but it only works with the first "exec" (first profile/chrome window opened) while the second one (second profile) retains the first class definition and ignores its own flag. Chrome runs all profiles in the same process tree apparently so the one "class" defined at first start sticks until quit.
+
+How would I instruct i3 to open each profile in a different workspace?
+
+Hope I've been clear. Thank you in advance for your help.</description><pubDate>Wed, 16 Apr 2014 08:45:43 +0000</pubDate><guid>https://faq.i3wm.org/question/3655/chrome-windows-to-different-workspaces-marks/</guid></item><item><title>Comment by KJ44 for &lt;p&gt;The flexibility of i3 allows me to manage windows effortlessly. However, I have a problem with chrome (both google-chrome and chromium).&lt;/p&gt;
+
+&lt;p&gt;I have a personal gmail account (and related chrome user/profile) and work google apps account (under a different chrome user/profile).&lt;/p&gt;
+
+&lt;p&gt;What I want is to find a config solution that would understand opening the first chrome profile in workspace X and the second profile in workspace Y. Problem is that both chrome windows (each profile opens a different window) have the same "class" and "instance" (according to xprop). Also, the "name" property is unreliable as it changes depending on the page currently displayed.&lt;/p&gt;
+
+&lt;p&gt;Both chrome profiles are started at boot with an "exec" instruction in the config file. I tried the "--class" GTK flag but it only works with the first "exec" (first profile/chrome window opened) while the second one (second profile) retains the first class definition and ignores its own flag. Chrome runs all profiles in the same process tree apparently so the one "class" defined at first start sticks until quit.&lt;/p&gt;
+
+&lt;p&gt;How would I instruct i3 to open each profile in a different workspace?&lt;/p&gt;
+
+&lt;p&gt;Hope I've been clear. Thank you in advance for your help.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3655/chrome-windows-to-different-workspaces-marks/?comment=3657#comment-3657</link><description>Mine is hardly an answer so I comment: would this help: http://i3wm.org/docs/userguide.html#_vim_like_marks_mark_goto</description><pubDate>Wed, 16 Apr 2014 18:52:43 +0000</pubDate><guid>https://faq.i3wm.org/question/3655/chrome-windows-to-different-workspaces-marks/?comment=3657#comment-3657</guid></item><item><title>Comment by mbs for &lt;p&gt;The flexibility of i3 allows me to manage windows effortlessly. However, I have a problem with chrome (both google-chrome and chromium).&lt;/p&gt;
+
+&lt;p&gt;I have a personal gmail account (and related chrome user/profile) and work google apps account (under a different chrome user/profile).&lt;/p&gt;
+
+&lt;p&gt;What I want is to find a config solution that would understand opening the first chrome profile in workspace X and the second profile in workspace Y. Problem is that both chrome windows (each profile opens a different window) have the same "class" and "instance" (according to xprop). Also, the "name" property is unreliable as it changes depending on the page currently displayed.&lt;/p&gt;
+
+&lt;p&gt;Both chrome profiles are started at boot with an "exec" instruction in the config file. I tried the "--class" GTK flag but it only works with the first "exec" (first profile/chrome window opened) while the second one (second profile) retains the first class definition and ignores its own flag. Chrome runs all profiles in the same process tree apparently so the one "class" defined at first start sticks until quit.&lt;/p&gt;
+
+&lt;p&gt;How would I instruct i3 to open each profile in a different workspace?&lt;/p&gt;
+
+&lt;p&gt;Hope I've been clear. Thank you in advance for your help.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3655/chrome-windows-to-different-workspaces-marks/?comment=3686#comment-3686</link><description>KJ44, I've looked into it before posting the question but it does not solve the problem as marking windows requires user intervention, which is not what I was looking for. Thank you very much anyway. I believe Michael answer is the solution.</description><pubDate>Fri, 18 Apr 2014 14:07:26 +0000</pubDate><guid>https://faq.i3wm.org/question/3655/chrome-windows-to-different-workspaces-marks/?comment=3686#comment-3686</guid></item><item><title>Answer by Michael for &lt;p&gt;The flexibility of i3 allows me to manage windows effortlessly. However, I have a problem with chrome (both google-chrome and chromium).&lt;/p&gt;
+
+&lt;p&gt;I have a personal gmail account (and related chrome user/profile) and work google apps account (under a different chrome user/profile).&lt;/p&gt;
+
+&lt;p&gt;What I want is to find a config solution that would understand opening the first chrome profile in workspace X and the second profile in workspace Y. Problem is that both chrome windows (each profile opens a different window) have the same "class" and "instance" (according to xprop). Also, the "name" property is unreliable as it changes depending on the page currently displayed.&lt;/p&gt;
+
+&lt;p&gt;Both chrome profiles are started at boot with an "exec" instruction in the config file. I tried the "--class" GTK flag but it only works with the first "exec" (first profile/chrome window opened) while the second one (second profile) retains the first class definition and ignores its own flag. Chrome runs all profiles in the same process tree apparently so the one "class" defined at first start sticks until quit.&lt;/p&gt;
+
+&lt;p&gt;How would I instruct i3 to open each profile in a different workspace?&lt;/p&gt;
+
+&lt;p&gt;Hope I've been clear. Thank you in advance for your help.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3655/chrome-windows-to-different-workspaces-marks/?answer=3663#post-id-3663</link><description>The trick is to use the --user-data-dir flag instead of the --profile flag. You can then use this in your i3 config file to make different chrome profiles appear on different workspaces:
+
+    exec --no-startup-id i3-msg 'workspace 2; exec google-chrome --user-data-dir=~/chrome-private'</description><pubDate>Thu, 17 Apr 2014 12:27:49 +0000</pubDate><guid>https://faq.i3wm.org/question/3655/chrome-windows-to-different-workspaces-marks/?answer=3663#post-id-3663</guid></item><item><title>Comment by mbs for &lt;p&gt;The trick is to use the --user-data-dir flag instead of the --profile flag. You can then use this in your i3 config file to make different chrome profiles appear on different workspaces:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec --no-startup-id i3-msg 'workspace 2; exec google-chrome --user-data-dir=~/chrome-private'
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3655/chrome-windows-to-different-workspaces-marks/?comment=3687#comment-3687</link><description>Thank you very much. It seems to have worked!</description><pubDate>Fri, 18 Apr 2014 14:07:40 +0000</pubDate><guid>https://faq.i3wm.org/question/3655/chrome-windows-to-different-workspaces-marks/?comment=3687#comment-3687</guid></item></channel></rss>

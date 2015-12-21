@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4863/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 28 Oct 2014 11:41:22 +0000</lastBuildDate><item><title>media control hotkeys don't work</title><link>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/</link><description>Hey guys!
+
+I'm struggeling with the hotkeys for volume up / down and mute. Other Hotkeys like wifi on/off, brightness do work (Lenovo E325) I checked xev and it tells me for the not working keys:
+&lt;pre&gt;
+FocusOut event, serial 29, synthetic NO, window 0x2400001,
+    mode NotifyGrab, detail NotifyAncestor
+
+FocusIn event, serial 29, synthetic NO, window 0x2400001,
+    mode NotifyUngrab, detail NotifyAncestor
+
+KeymapNotify event, serial 29, synthetic NO, window 0x0,
+    keys:  2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   
+           0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 
+&lt;/pre&gt;
+The grab/ungrab part tells me, that it is used by another process? But which?
+In Unity I have no problems using the keys. So I installed pa-applet and it tells me, that when i start it:
+&lt;pre&gt;
+Failed to grab XF86AudioRaiseVolume 
+
+Failed to grab XF86AudioLowerVolume
+&lt;/pre&gt;
+
+
+actually the keys are bind correctly when i start a xterm w/o a wm. So the problem seems to be with i3.Any ideas?
+Cheers
+</description><pubDate>Mon, 27 Oct 2014 13:54:30 +0000</pubDate><guid>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hey guys!&lt;/p&gt;
+
+&lt;p&gt;I'm struggeling with the hotkeys for volume up / down and mute. Other Hotkeys like wifi on/off, brightness do work (Lenovo E325) I checked xev and it tells me for the not working keys:&lt;/p&gt;
+
+&lt;pre&gt;FocusOut event, serial 29, synthetic NO, window 0x2400001,
+    mode NotifyGrab, detail NotifyAncestor
+
+FocusIn event, serial 29, synthetic NO, window 0x2400001,
+    mode NotifyUngrab, detail NotifyAncestor
+
+KeymapNotify event, serial 29, synthetic NO, window 0x0,
+    keys:  2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   
+           0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 
+&lt;/pre&gt;
+
+&lt;p&gt;The grab/ungrab part tells me, that it is used by another process? But which?
+In Unity I have no problems using the keys. So I installed pa-applet and it tells me, that when i start it:&lt;/p&gt;
+
+&lt;pre&gt;Failed to grab XF86AudioRaiseVolume 
+
+Failed to grab XF86AudioLowerVolume
+&lt;/pre&gt;
+
+&lt;p&gt;actually the keys are bind correctly when i start a xterm w/o a wm. So the problem seems to be with i3.Any ideas?
+Cheers&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?answer=4864#post-id-4864</link><description>It seems that *i3* or some other application is grabbing these keys. At hey are "swallowed" by the other program the only thing `xev` notices is that it lost the input focus for a very short time ("FocusOut", "FocusIn").
+
+Please check if you have any `bindsym` bindings to `XF86AudioRaiseVolume` or `XF86AudioLowerVolume` in your `~/.i3/config` and remove/comment them. It could also be `bindcode` bindings. (For me the codes are `122` and `123` but that may differ depending on keyboard, layout and driver)
+
+Also, if some other program already listens to those keys, they would also not be shown by `xev` and it could explain the error message you get from `pa-applet`. The most likely culprit would be another mixer or some media-player as many of them allow global keyboard shortcuts and would have reason to bind these keys.
+</description><pubDate>Mon, 27 Oct 2014 14:40:37 +0000</pubDate><guid>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?answer=4864#post-id-4864</guid></item><item><title>Comment by Adaephon for &lt;p&gt;It seems that &lt;em&gt;i3&lt;/em&gt; or some other application is grabbing these keys. At hey are "swallowed" by the other program the only thing &lt;code&gt;xev&lt;/code&gt; notices is that it lost the input focus for a very short time ("FocusOut", "FocusIn").&lt;/p&gt;
+
+&lt;p&gt;Please check if you have any &lt;code&gt;bindsym&lt;/code&gt; bindings to &lt;code&gt;XF86AudioRaiseVolume&lt;/code&gt; or &lt;code&gt;XF86AudioLowerVolume&lt;/code&gt; in your &lt;code&gt;~/.i3/config&lt;/code&gt; and remove/comment them. It could also be &lt;code&gt;bindcode&lt;/code&gt; bindings. (For me the codes are &lt;code&gt;122&lt;/code&gt; and &lt;code&gt;123&lt;/code&gt; but that may differ depending on keyboard, layout and driver)&lt;/p&gt;
+
+&lt;p&gt;Also, if some other program already listens to those keys, they would also not be shown by &lt;code&gt;xev&lt;/code&gt; and it could explain the error message you get from &lt;code&gt;pa-applet&lt;/code&gt;. The most likely culprit would be another mixer or some media-player as many of them allow global keyboard shortcuts and would have reason to bind these keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4873#comment-4873</link><description>Not really. I, too, have Ubuntu 14.04, but without this issue. Do you have a way to upload your `~/.i3/config`, `~/.xsession` and `~/.xsessionrc` (if they exists, that is)?  </description><pubDate>Tue, 28 Oct 2014 11:41:22 +0000</pubDate><guid>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4873#comment-4873</guid></item><item><title>Comment by tripe for &lt;p&gt;It seems that &lt;em&gt;i3&lt;/em&gt; or some other application is grabbing these keys. At hey are "swallowed" by the other program the only thing &lt;code&gt;xev&lt;/code&gt; notices is that it lost the input focus for a very short time ("FocusOut", "FocusIn").&lt;/p&gt;
+
+&lt;p&gt;Please check if you have any &lt;code&gt;bindsym&lt;/code&gt; bindings to &lt;code&gt;XF86AudioRaiseVolume&lt;/code&gt; or &lt;code&gt;XF86AudioLowerVolume&lt;/code&gt; in your &lt;code&gt;~/.i3/config&lt;/code&gt; and remove/comment them. It could also be &lt;code&gt;bindcode&lt;/code&gt; bindings. (For me the codes are &lt;code&gt;122&lt;/code&gt; and &lt;code&gt;123&lt;/code&gt; but that may differ depending on keyboard, layout and driver)&lt;/p&gt;
+
+&lt;p&gt;Also, if some other program already listens to those keys, they would also not be shown by &lt;code&gt;xev&lt;/code&gt; and it could explain the error message you get from &lt;code&gt;pa-applet&lt;/code&gt;. The most likely culprit would be another mixer or some media-player as many of them allow global keyboard shortcuts and would have reason to bind these keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4865#comment-4865</link><description>did so, problem is still there. (btw: ty for formatting my entry)</description><pubDate>Mon, 27 Oct 2014 15:14:19 +0000</pubDate><guid>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4865#comment-4865</guid></item><item><title>Comment by Adaephon for &lt;p&gt;It seems that &lt;em&gt;i3&lt;/em&gt; or some other application is grabbing these keys. At hey are "swallowed" by the other program the only thing &lt;code&gt;xev&lt;/code&gt; notices is that it lost the input focus for a very short time ("FocusOut", "FocusIn").&lt;/p&gt;
+
+&lt;p&gt;Please check if you have any &lt;code&gt;bindsym&lt;/code&gt; bindings to &lt;code&gt;XF86AudioRaiseVolume&lt;/code&gt; or &lt;code&gt;XF86AudioLowerVolume&lt;/code&gt; in your &lt;code&gt;~/.i3/config&lt;/code&gt; and remove/comment them. It could also be &lt;code&gt;bindcode&lt;/code&gt; bindings. (For me the codes are &lt;code&gt;122&lt;/code&gt; and &lt;code&gt;123&lt;/code&gt; but that may differ depending on keyboard, layout and driver)&lt;/p&gt;
+
+&lt;p&gt;Also, if some other program already listens to those keys, they would also not be shown by &lt;code&gt;xev&lt;/code&gt; and it could explain the error message you get from &lt;code&gt;pa-applet&lt;/code&gt;. The most likely culprit would be another mixer or some media-player as many of them allow global keyboard shortcuts and would have reason to bind these keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4871#comment-4871</link><description>Yes, it could be another process. I already updated my answer accordingly. Do you use some session manager, gnome, xfce, unity, etc.? </description><pubDate>Tue, 28 Oct 2014 10:21:57 +0000</pubDate><guid>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4871#comment-4871</guid></item><item><title>Comment by tripe for &lt;p&gt;It seems that &lt;em&gt;i3&lt;/em&gt; or some other application is grabbing these keys. At hey are "swallowed" by the other program the only thing &lt;code&gt;xev&lt;/code&gt; notices is that it lost the input focus for a very short time ("FocusOut", "FocusIn").&lt;/p&gt;
+
+&lt;p&gt;Please check if you have any &lt;code&gt;bindsym&lt;/code&gt; bindings to &lt;code&gt;XF86AudioRaiseVolume&lt;/code&gt; or &lt;code&gt;XF86AudioLowerVolume&lt;/code&gt; in your &lt;code&gt;~/.i3/config&lt;/code&gt; and remove/comment them. It could also be &lt;code&gt;bindcode&lt;/code&gt; bindings. (For me the codes are &lt;code&gt;122&lt;/code&gt; and &lt;code&gt;123&lt;/code&gt; but that may differ depending on keyboard, layout and driver)&lt;/p&gt;
+
+&lt;p&gt;Also, if some other program already listens to those keys, they would also not be shown by &lt;code&gt;xev&lt;/code&gt; and it could explain the error message you get from &lt;code&gt;pa-applet&lt;/code&gt;. The most likely culprit would be another mixer or some media-player as many of them allow global keyboard shortcuts and would have reason to bind these keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4872#comment-4872</link><description>Ive isntalled Ubuntu 14.04. Does that help?</description><pubDate>Tue, 28 Oct 2014 10:46:03 +0000</pubDate><guid>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4872#comment-4872</guid></item><item><title>Comment by tripe for &lt;p&gt;It seems that &lt;em&gt;i3&lt;/em&gt; or some other application is grabbing these keys. At hey are "swallowed" by the other program the only thing &lt;code&gt;xev&lt;/code&gt; notices is that it lost the input focus for a very short time ("FocusOut", "FocusIn").&lt;/p&gt;
+
+&lt;p&gt;Please check if you have any &lt;code&gt;bindsym&lt;/code&gt; bindings to &lt;code&gt;XF86AudioRaiseVolume&lt;/code&gt; or &lt;code&gt;XF86AudioLowerVolume&lt;/code&gt; in your &lt;code&gt;~/.i3/config&lt;/code&gt; and remove/comment them. It could also be &lt;code&gt;bindcode&lt;/code&gt; bindings. (For me the codes are &lt;code&gt;122&lt;/code&gt; and &lt;code&gt;123&lt;/code&gt; but that may differ depending on keyboard, layout and driver)&lt;/p&gt;
+
+&lt;p&gt;Also, if some other program already listens to those keys, they would also not be shown by &lt;code&gt;xev&lt;/code&gt; and it could explain the error message you get from &lt;code&gt;pa-applet&lt;/code&gt;. The most likely culprit would be another mixer or some media-player as many of them allow global keyboard shortcuts and would have reason to bind these keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4870#comment-4870</link><description>yes, there were. yes i did reload i3, but did not help. can it be another process than sth in the i3conf?</description><pubDate>Tue, 28 Oct 2014 08:37:53 +0000</pubDate><guid>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4870#comment-4870</guid></item><item><title>Comment by Adaephon for &lt;p&gt;It seems that &lt;em&gt;i3&lt;/em&gt; or some other application is grabbing these keys. At hey are "swallowed" by the other program the only thing &lt;code&gt;xev&lt;/code&gt; notices is that it lost the input focus for a very short time ("FocusOut", "FocusIn").&lt;/p&gt;
+
+&lt;p&gt;Please check if you have any &lt;code&gt;bindsym&lt;/code&gt; bindings to &lt;code&gt;XF86AudioRaiseVolume&lt;/code&gt; or &lt;code&gt;XF86AudioLowerVolume&lt;/code&gt; in your &lt;code&gt;~/.i3/config&lt;/code&gt; and remove/comment them. It could also be &lt;code&gt;bindcode&lt;/code&gt; bindings. (For me the codes are &lt;code&gt;122&lt;/code&gt; and &lt;code&gt;123&lt;/code&gt; but that may differ depending on keyboard, layout and driver)&lt;/p&gt;
+
+&lt;p&gt;Also, if some other program already listens to those keys, they would also not be shown by &lt;code&gt;xev&lt;/code&gt; and it could explain the error message you get from &lt;code&gt;pa-applet&lt;/code&gt;. The most likely culprit would be another mixer or some media-player as many of them allow global keyboard shortcuts and would have reason to bind these keys.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4869#comment-4869</link><description>Where there any bindings? If so did you reload/restart *i3*? </description><pubDate>Tue, 28 Oct 2014 05:45:45 +0000</pubDate><guid>https://faq.i3wm.org/question/4863/media-control-hotkeys-dont-work/?comment=4869#comment-4869</guid></item></channel></rss>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1090/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 14 Jul 2015 10:06:04 +0000</lastBuildDate><item><title>How to test NetworkManager/OpenVPN status with i3status.conf ?</title><link>https://faq.i3wm.org/question/1090/how-to-test-networkmanageropenvpn-status-with-i3statusconf/</link><description>With the original script, the VPN test is made on the pidfile of vpnc
+In my case, I'm using NetworkManager to connect my computer to my OpenVPN server and I don't have any pid file when the VPN connection is active
+
+Is there a way to test if the VPN connection, managed by NetworkManager is active ?
+
+I though to test the "not empty" result of the command :
+
+    ip addr | grep tun
+
+... but I don't know how to test it inside the i3status.conf file...</description><pubDate>Fri, 18 Jan 2013 18:44:22 +0000</pubDate><guid>https://faq.i3wm.org/question/1090/how-to-test-networkmanageropenvpn-status-with-i3statusconf/</guid></item><item><title>Answer by biocyberman for &lt;p&gt;With the original script, the VPN test is made on the pidfile of vpnc
+In my case, I'm using NetworkManager to connect my computer to my OpenVPN server and I don't have any pid file when the VPN connection is active&lt;/p&gt;
+
+&lt;p&gt;Is there a way to test if the VPN connection, managed by NetworkManager is active ?&lt;/p&gt;
+
+&lt;p&gt;I though to test the "not empty" result of the command :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ip addr | grep tun
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;... but I don't know how to test it inside the i3status.conf file...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1090/how-to-test-networkmanageropenvpn-status-with-i3statusconf/?answer=6289#post-id-6289</link><description>----------
+Yes this was tricky. I finally figured out that I can use /sys/class/net/tun0/dev_id for this.  </description><pubDate>Tue, 14 Jul 2015 10:06:04 +0000</pubDate><guid>https://faq.i3wm.org/question/1090/how-to-test-networkmanageropenvpn-status-with-i3statusconf/?answer=6289#post-id-6289</guid></item><item><title>Answer by tatpat for &lt;p&gt;With the original script, the VPN test is made on the pidfile of vpnc
+In my case, I'm using NetworkManager to connect my computer to my OpenVPN server and I don't have any pid file when the VPN connection is active&lt;/p&gt;
+
+&lt;p&gt;Is there a way to test if the VPN connection, managed by NetworkManager is active ?&lt;/p&gt;
+
+&lt;p&gt;I though to test the "not empty" result of the command :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ip addr | grep tun
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;... but I don't know how to test it inside the i3status.conf file...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1090/how-to-test-networkmanageropenvpn-status-with-i3statusconf/?answer=5498#post-id-5498</link><description>One could use the following settings (example from the `i3status` manpage) to determine the VPN status:
+
+    order += "path_exists VPN"
+    
+    path_exists VPN {
+         # path exists when a VPN tunnel launched by nmcli/nm-applet is active
+         path = "/proc/sys/net/ipv4/conf/tun0"
+    }
+
+</description><pubDate>Wed, 18 Feb 2015 09:26:35 +0000</pubDate><guid>https://faq.i3wm.org/question/1090/how-to-test-networkmanageropenvpn-status-with-i3statusconf/?answer=5498#post-id-5498</guid></item><item><title>Answer by Michael for &lt;p&gt;With the original script, the VPN test is made on the pidfile of vpnc
+In my case, I'm using NetworkManager to connect my computer to my OpenVPN server and I don't have any pid file when the VPN connection is active&lt;/p&gt;
+
+&lt;p&gt;Is there a way to test if the VPN connection, managed by NetworkManager is active ?&lt;/p&gt;
+
+&lt;p&gt;I though to test the "not empty" result of the command :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ip addr | grep tun
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;... but I don't know how to test it inside the i3status.conf file...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1090/how-to-test-networkmanageropenvpn-status-with-i3statusconf/?answer=1093#post-id-1093</link><description>Nope, you need to wrap i3status with an external script in order to achieve that. See http://i3wm.org/i3status/manpage.html#_external_scripts_programs_with_i3status</description><pubDate>Fri, 18 Jan 2013 19:07:50 +0000</pubDate><guid>https://faq.i3wm.org/question/1090/how-to-test-networkmanageropenvpn-status-with-i3statusconf/?answer=1093#post-id-1093</guid></item><item><title>Answer by sakateka for &lt;p&gt;With the original script, the VPN test is made on the pidfile of vpnc
+In my case, I'm using NetworkManager to connect my computer to my OpenVPN server and I don't have any pid file when the VPN connection is active&lt;/p&gt;
+
+&lt;p&gt;Is there a way to test if the VPN connection, managed by NetworkManager is active ?&lt;/p&gt;
+
+&lt;p&gt;I though to test the "not empty" result of the command :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ip addr | grep tun
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;... but I don't know how to test it inside the i3status.conf file...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1090/how-to-test-networkmanageropenvpn-status-with-i3statusconf/?answer=5823#post-id-5823</link><description>hi, try use /sys/class/net/tap0 as pidfile</description><pubDate>Sat, 18 Apr 2015 13:54:25 +0000</pubDate><guid>https://faq.i3wm.org/question/1090/how-to-test-networkmanageropenvpn-status-with-i3statusconf/?answer=5823#post-id-5823</guid></item></channel></rss>

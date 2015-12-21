@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1467/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 22 Mar 2013 18:07:51 +0000</lastBuildDate><item><title>OpenJDK7: Cannot find display (minecraft)</title><link>https://faq.i3wm.org/question/1467/openjdk7-cannot-find-display-minecraft/</link><description>There is a problem with Java finding the correct display on my dual monitor setup in i3. When I`m trying to launch Minecraft, I get a black window when the game starts and it puts out:
+
+    Exception in thread "Minecraft main thread" java.lang.ExceptionInInitializerError
+        at net.minecraft.client.Minecraft.a(SourceFile:208)
+        at avv.a(SourceFile:56)
+        at net.minecraft.client.Minecraft.run(SourceFile:507)
+        at java.lang.Thread.run(Thread.java:722)
+    Caused by: java.lang.ArrayIndexOutOfBoundsException: 0
+        at org.lwjgl.opengl.XRandR$Screen.&lt;init&gt;(XRandR.java:234)
+        at org.lwjgl.opengl.XRandR$Screen.&lt;init&gt;(XRandR.java:196)
+        at org.lwjgl.opengl.XRandR.populate(XRandR.java:87)
+        at org.lwjgl.opengl.XRandR.access$100(XRandR.java:52)
+        at org.lwjgl.opengl.XRandR$1.run(XRandR.java:110)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at org.lwjgl.opengl.XRandR.getConfiguration(XRandR.java:108)
+        at org.lwjgl.opengl.LinuxDisplay.init(LinuxDisplay.java:618)
+        at org.lwjgl.opengl.Display.&lt;clinit&gt;(Display.java:135)
+        ... 4 more
+I`m running i3 version 4.5.1.
+</description><pubDate>Fri, 22 Mar 2013 17:43:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1467/openjdk7-cannot-find-display-minecraft/</guid></item><item><title>Answer by wlhlm for &lt;p&gt;There is a problem with Java finding the correct display on my dual monitor setup in i3. When I`m trying to launch Minecraft, I get a black window when the game starts and it puts out:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Exception in thread "Minecraft main thread" java.lang.ExceptionInInitializerError
+    at net.minecraft.client.Minecraft.a(SourceFile:208)
+    at avv.a(SourceFile:56)
+    at net.minecraft.client.Minecraft.run(SourceFile:507)
+    at java.lang.Thread.run(Thread.java:722)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 0
+    at org.lwjgl.opengl.XRandR$Screen.&amp;lt;init&amp;gt;(XRandR.java:234)
+    at org.lwjgl.opengl.XRandR$Screen.&amp;lt;init&amp;gt;(XRandR.java:196)
+    at org.lwjgl.opengl.XRandR.populate(XRandR.java:87)
+    at org.lwjgl.opengl.XRandR.access$100(XRandR.java:52)
+    at org.lwjgl.opengl.XRandR$1.run(XRandR.java:110)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at org.lwjgl.opengl.XRandR.getConfiguration(XRandR.java:108)
+    at org.lwjgl.opengl.LinuxDisplay.init(LinuxDisplay.java:618)
+    at org.lwjgl.opengl.Display.&amp;lt;clinit&amp;gt;(Display.java:135)
+    ... 4 more
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I`m running i3 version 4.5.1.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1467/openjdk7-cannot-find-display-minecraft/?answer=1469#post-id-1469</link><description>It seems that it rather is a problem of lwjgl which is being distributed with Minecraft in an older version that has some bugs with multidisplay-setups. Replacing it with a newer version helped me.</description><pubDate>Fri, 22 Mar 2013 18:07:26 +0000</pubDate><guid>https://faq.i3wm.org/question/1467/openjdk7-cannot-find-display-minecraft/?answer=1469#post-id-1469</guid></item><item><title>Comment by wlhlm for &lt;p&gt;It seems that it rather is a problem of lwjgl which is being distributed with Minecraft in an older version that has some bugs with multidisplay-setups. Replacing it with a newer version helped me.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1467/openjdk7-cannot-find-display-minecraft/?comment=1470#comment-1470</link><description>See "http://blog.stevenocchipinti.com/2012/02/minecraft-exception-in-linux.html" for instructions.</description><pubDate>Fri, 22 Mar 2013 18:07:51 +0000</pubDate><guid>https://faq.i3wm.org/question/1467/openjdk7-cannot-find-display-minecraft/?comment=1470#comment-1470</guid></item><item><title>Answer by Michael for &lt;p&gt;There is a problem with Java finding the correct display on my dual monitor setup in i3. When I`m trying to launch Minecraft, I get a black window when the game starts and it puts out:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Exception in thread "Minecraft main thread" java.lang.ExceptionInInitializerError
+    at net.minecraft.client.Minecraft.a(SourceFile:208)
+    at avv.a(SourceFile:56)
+    at net.minecraft.client.Minecraft.run(SourceFile:507)
+    at java.lang.Thread.run(Thread.java:722)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 0
+    at org.lwjgl.opengl.XRandR$Screen.&amp;lt;init&amp;gt;(XRandR.java:234)
+    at org.lwjgl.opengl.XRandR$Screen.&amp;lt;init&amp;gt;(XRandR.java:196)
+    at org.lwjgl.opengl.XRandR.populate(XRandR.java:87)
+    at org.lwjgl.opengl.XRandR.access$100(XRandR.java:52)
+    at org.lwjgl.opengl.XRandR$1.run(XRandR.java:110)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at org.lwjgl.opengl.XRandR.getConfiguration(XRandR.java:108)
+    at org.lwjgl.opengl.LinuxDisplay.init(LinuxDisplay.java:618)
+    at org.lwjgl.opengl.Display.&amp;lt;clinit&amp;gt;(Display.java:135)
+    ... 4 more
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I`m running i3 version 4.5.1.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1467/openjdk7-cannot-find-display-minecraft/?answer=1468#post-id-1468</link><description>i3 doesn’t modify any RandR information, so this seems unrelated to i3 on the first glance. Unfortunately Minecraft isn’t open source, so we can’t look at what it does…</description><pubDate>Fri, 22 Mar 2013 17:52:00 +0000</pubDate><guid>https://faq.i3wm.org/question/1467/openjdk7-cannot-find-display-minecraft/?answer=1468#post-id-1468</guid></item></channel></rss>

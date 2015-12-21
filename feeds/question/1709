@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1709/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 07 Dec 2014 17:46:31 +0000</lastBuildDate><item><title>Multiple commands to a keybind</title><link>https://faq.i3wm.org/question/1709/multiple-commands-to-a-keybind/</link><description>I am wanting to have a seperate "stack" of workspaces for each monitor. To do this, I need to run two commands by the same keybind. Along the lines of this
+
+bindsym $mod+1 workspace 1
+bindsym $mod+1 move workspace to output right
+.
+...
+
+bindsym $mod2+1 workspace 11
+bindsym $mod2+1 move workspace to output left
+.
+...
+
+(unrelated: $mod2 = Control)
+
+This config is not accepted however. And if I try to combine them it will behave the same, but create workspace "1 to output right".</description><pubDate>Fri, 26 Apr 2013 22:24:32 +0000</pubDate><guid>https://faq.i3wm.org/question/1709/multiple-commands-to-a-keybind/</guid></item><item><title>Answer by limeyd for &lt;p&gt;I am wanting to have a seperate "stack" of workspaces for each monitor. To do this, I need to run two commands by the same keybind. Along the lines of this&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+1 workspace 1
+bindsym $mod+1 move workspace to output right
+.
+...&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod2+1 workspace 11
+bindsym $mod2+1 move workspace to output left
+.
+...&lt;/p&gt;
+
+&lt;p&gt;(unrelated: $mod2 = Control)&lt;/p&gt;
+
+&lt;p&gt;This config is not accepted however. And if I try to combine them it will behave the same, but create workspace "1 to output right".&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1709/multiple-commands-to-a-keybind/?answer=3785#post-id-3785</link><description>Why not use i3-msg 
+
+bindsym $mod2+1 exec "i3-msg workspace 1 &amp;&amp; i3-msg move workspace to output DFP10"
+</description><pubDate>Fri, 09 May 2014 22:55:43 +0000</pubDate><guid>https://faq.i3wm.org/question/1709/multiple-commands-to-a-keybind/?answer=3785#post-id-3785</guid></item><item><title>Comment by tasinet for &lt;p&gt;Why not use i3-msg &lt;/p&gt;
+
+&lt;p&gt;bindsym $mod2+1 exec "i3-msg workspace 1 &amp;amp;&amp;amp; i3-msg move workspace to output DFP10"&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1709/multiple-commands-to-a-keybind/?comment=5131#comment-5131</link><description>Most of the times, this is the wrong thing to do. You're in "i3-msg" context already, and opening a shell, to call i3-msg (twice, in this case).</description><pubDate>Sun, 07 Dec 2014 17:46:31 +0000</pubDate><guid>https://faq.i3wm.org/question/1709/multiple-commands-to-a-keybind/?comment=5131#comment-5131</guid></item><item><title>Answer by konni for &lt;p&gt;I am wanting to have a seperate "stack" of workspaces for each monitor. To do this, I need to run two commands by the same keybind. Along the lines of this&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+1 workspace 1
+bindsym $mod+1 move workspace to output right
+.
+...&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod2+1 workspace 11
+bindsym $mod2+1 move workspace to output left
+.
+...&lt;/p&gt;
+
+&lt;p&gt;(unrelated: $mod2 = Control)&lt;/p&gt;
+
+&lt;p&gt;This config is not accepted however. And if I try to combine them it will behave the same, but create workspace "1 to output right".&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1709/multiple-commands-to-a-keybind/?answer=1711#post-id-1711</link><description>separate commands by ;
+
+bindsym $mod+1 workspace 1; move workspace to output right
+
+bindsym $mod2+1 workspace 11; move workspace to output left</description><pubDate>Fri, 26 Apr 2013 23:04:18 +0000</pubDate><guid>https://faq.i3wm.org/question/1709/multiple-commands-to-a-keybind/?answer=1711#post-id-1711</guid></item><item><title>Answer by Luye for &lt;p&gt;I am wanting to have a seperate "stack" of workspaces for each monitor. To do this, I need to run two commands by the same keybind. Along the lines of this&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod+1 workspace 1
+bindsym $mod+1 move workspace to output right
+.
+...&lt;/p&gt;
+
+&lt;p&gt;bindsym $mod2+1 workspace 11
+bindsym $mod2+1 move workspace to output left
+.
+...&lt;/p&gt;
+
+&lt;p&gt;(unrelated: $mod2 = Control)&lt;/p&gt;
+
+&lt;p&gt;This config is not accepted however. And if I try to combine them it will behave the same, but create workspace "1 to output right".&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1709/multiple-commands-to-a-keybind/?answer=1712#post-id-1712</link><description>Thanks, that worked nicely. I'm getting the functionality I was wanting, however workspace 1 and 11 still gets misnamed when I switch away from them despite working as intended.
+
+Not sure if this is a bug or if i messed something up.
+
+    # switch to workspace on left monitor
+    bindsym $mod2+1 workspace 1; move workspace to output DFP10
+    bindsym $mod2+2 workspace 2; move workspace to output DFP10
+    bindsym $mod2+3 workspace 3; move workspace to output DFP10
+    bindsym $mod2+4 workspace 4; move workspace to output DFP10
+    bindsym $mod2+5 workspace 5; move workspace to output DFP10
+    bindsym $mod2+6 workspace 6; move workspace to output DFP10
+    bindsym $mod2+7 workspace 7; move workspace to output DFP10
+    bindsym $mod2+8 workspace 8; move workspace to output DFP10
+    bindsym $mod2+9 workspace 9; move workspace to output DFP10
+    bindsym $mod2+0 workspace 0; move workspace to output DFP10
+    
+    # switch to workspace on right monitor
+    bindsym $mod+1 workspace 11; move workspace to output DFP11
+    bindsym $mod+2 workspace 12; move workspace to output DFP11
+    bindsym $mod+3 workspace 13; move workspace to output DFP11
+    bindsym $mod+4 workspace 14; move workspace to output DFP11
+    bindsym $mod+5 workspace 15; move workspace to output DFP11
+    bindsym $mod+6 workspace 16; move workspace to output DFP11
+    bindsym $mod+7 workspace 17; move workspace to output DFP11
+    bindsym $mod+8 workspace 18; move workspace to output DFP11
+    bindsym $mod+9 workspace 19; move workspace to output DFP11
+    bindsym $mod+0 workspace 20; move workspace to output DFP11
+
+EDIT: No sorry, even more bizzare. First workspace on the right monitor is named "1; move workspace to output DFP10". This is with workspace 1 still working as intended on the left monitor. It appears it occurs on alternate key presses i.e pressing Mod1+1 twice will toggle the phantom on and off.</description><pubDate>Sat, 27 Apr 2013 14:09:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1709/multiple-commands-to-a-keybind/?answer=1712#post-id-1712</guid></item></channel></rss>

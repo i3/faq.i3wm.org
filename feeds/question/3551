@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3551/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 26 Mar 2014 04:26:27 +0000</lastBuildDate><item><title>I want every n-th window appear on next empty workspace</title><link>https://faq.i3wm.org/question/3551/i-want-every-n-th-window-appear-on-next-empty-workspace/</link><description>Let's say i want not to have more than 3 windows on a workspace. And if 4-th window appears it should open on next free workspace and focused. How to implement that?</description><pubDate>Sat, 22 Mar 2014 10:31:09 +0000</pubDate><guid>https://faq.i3wm.org/question/3551/i-want-every-n-th-window-appear-on-next-empty-workspace/</guid></item><item><title>Answer by joepd for &lt;p&gt;Let's say i want not to have more than 3 windows on a workspace. And if 4-th window appears it should open on next free workspace and focused. How to implement that?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3551/i-want-every-n-th-window-appear-on-next-empty-workspace/?answer=3552#post-id-3552</link><description>Gain some understanding about [IPC](http://i3wm.org/docs/ipc.html), and pick your favorite language that has a [i3 IPC library](http://i3wm.org/docs/ipc.html#_see_also_existing_libraries) listed here. </description><pubDate>Sat, 22 Mar 2014 11:31:57 +0000</pubDate><guid>https://faq.i3wm.org/question/3551/i-want-every-n-th-window-appear-on-next-empty-workspace/?answer=3552#post-id-3552</guid></item><item><title>Answer by TonyC for &lt;p&gt;Let's say i want not to have more than 3 windows on a workspace. And if 4-th window appears it should open on next free workspace and focused. How to implement that?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3551/i-want-every-n-th-window-appear-on-next-empty-workspace/?answer=3574#post-id-3574</link><description>This is not difficult with the new [ipc project](https://github.com/acrisci/i3ipc-glib). This uses the [JavaScript](https://github.com/acrisci/i3ipc-gjs) version but the same API exists in many languages. The latest version of this script can be found [here](https://github.com/acrisci/i3ipc-gjs/blob/master/examples/max-windows-on-ws.js).
+
+    #!/usr/bin/env gjs
+
+    /*
+       This example shows how to define a maximum number of windows per workspace.
+       If a window is opened and the workspace has more than the defined number of
+       maximum children containers, the new window will open on the next available
+       workspace.
+
+       https://faq.i3wm.org/question/3551/i-want-every-n-th-window-appear-on-next-empty-workspace/
+    */
+
+    const i3ipc = imports.gi.i3ipc
+
+    let conn = new i3ipc.Connection;
+
+    const MAX_WINDOWS = 3;
+
+    conn.on('window::new', function(conn, e) {
+        let win = conn.get_tree().find_focused();
+        let ws = win.workspace();
+
+        if (ws.nodes.length &gt; MAX_WINDOWS) {
+            win.command('move to workspace next, focus');
+        }
+    });
+
+    conn.main();</description><pubDate>Wed, 26 Mar 2014 04:26:27 +0000</pubDate><guid>https://faq.i3wm.org/question/3551/i-want-every-n-th-window-appear-on-next-empty-workspace/?answer=3574#post-id-3574</guid></item></channel></rss>

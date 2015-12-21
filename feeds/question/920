@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/920/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 08 Jan 2013 22:34:21 +0000</lastBuildDate><item><title>Shared config for multiple dmenu scripts</title><link>https://faq.i3wm.org/question/920/shared-config-for-multiple-dmenu-scripts/</link><description>With the release of [i3-dmenu-desktop](http://code.stapelberg.de/git/i3/tree/i3-dmenu-desktop), my collection of daily used dmenu-scripts has grown again. And I like to have 'em vertical, with a limited number of lines, case-insensitive, and with some particular colors (and have the [patches](http://tools.suckless.org/dmenu/patches/) installed when needed). But what I am looking for, is to control these settings from one place. 
+
+Have I missed a patch that listens to environment variables? Or is there a way around those? </description><pubDate>Wed, 19 Dec 2012 00:30:27 +0000</pubDate><guid>https://faq.i3wm.org/question/920/shared-config-for-multiple-dmenu-scripts/</guid></item><item><title>Answer by f8l for &lt;p&gt;With the release of &lt;a href="http://code.stapelberg.de/git/i3/tree/i3-dmenu-desktop"&gt;i3-dmenu-desktop&lt;/a&gt;, my collection of daily used dmenu-scripts has grown again. And I like to have 'em vertical, with a limited number of lines, case-insensitive, and with some particular colors (and have the &lt;a href="http://tools.suckless.org/dmenu/patches/"&gt;patches&lt;/a&gt; installed when needed). But what I am looking for, is to control these settings from one place. &lt;/p&gt;
+
+&lt;p&gt;Have I missed a patch that listens to environment variables? Or is there a way around those? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/920/shared-config-for-multiple-dmenu-scripts/?answer=986#post-id-986</link><description>Since i3 uses sh to execute commands, you can use command substitution within commands as a workaround. I have tested it with the following within the i3's configuration file:
+&gt; 
+1. `set $font -misc-fixed-medium-r-normal-*-15-140-75-75-c-90-iso10646-1
+`
+2. `set $dmc $(&lt;/tmp/dmenu.conf)
+`
+3. `exec --no-startup-id echo '-b -fn $font' &gt; /tmp/dmenu.conf
+`
+4. `bindsym $Mod1+x exec /usr/bin/dmenu_run $dmc
+`
+5. `bindsym $Mod1+m exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu -i $dmc"
+`
+
+Let me explain the above:
+&gt; 
+1. Set a variable for a font. I do it to illustrate, that variables can be used in dmenu parameter string.
+2. Set a variable (or call it a macro) for inserting dmenu parameter string stored in `/tmp/dmenu.conf`.
+If you want to use `ENVARIABLE` environment variable instead, edit this line to something like
+`set $dmc $(echo $ENVARIABLE)`
+and omit the following line.
+3. Save desired dmenu parameter string to a file. Note that previously set variables can be used. Omit this line if you already have the dmenu parameter string saved somewhere (you'll have to modify the previous line). When omitting this line, you can't use variables inside the dmenu parameter string any more.
+4. Simple example of using the configuration variable.
+5. More complex example. You can add more parameters (`-i` was added here), as well as use the config as a parameter of another command (just remember to use quotation marks ‹"› – using apostrophes ‹'› would result in executing `i3-dmenu-desktop --dmenu='/usr/bin/dmenu -i $(&lt;/tmp/dmenu.conf)'` by the shell and `$(&lt;/tmp/dmenu.conf)` is not a valid dmenu parameter)</description><pubDate>Sat, 05 Jan 2013 21:27:23 +0000</pubDate><guid>https://faq.i3wm.org/question/920/shared-config-for-multiple-dmenu-scripts/?answer=986#post-id-986</guid></item><item><title>Comment by joepd for &lt;p&gt;Since i3 uses sh to execute commands, you can use command substitution within commands as a workaround. I have tested it with the following within the i3's configuration file:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+  &lt;li&gt;&lt;code&gt;set $font -misc-fixed-medium-r-normal-*-15-140-75-75-c-90-iso10646-1
+&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;set $dmc $(&amp;lt;/tmp/dmenu.conf)
+&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;exec --no-startup-id echo '-b -fn $font' &amp;gt; /tmp/dmenu.conf
+&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;bindsym $Mod1+x exec /usr/bin/dmenu_run $dmc
+&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;bindsym $Mod1+m exec --no-startup-id i3-dmenu-desktop --dmenu="/usr/bin/dmenu -i $dmc"
+&lt;/code&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Let me explain the above:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+  &lt;li&gt;Set a variable for a font. I do it to illustrate, that variables can be used in dmenu parameter string.&lt;/li&gt;
+  &lt;li&gt;Set a variable (or call it a macro) for inserting dmenu parameter string stored in &lt;code&gt;/tmp/dmenu.conf&lt;/code&gt;.
+  If you want to use &lt;code&gt;ENVARIABLE&lt;/code&gt; environment variable instead, edit this line to something like
+  &lt;code&gt;set $dmc $(echo $ENVARIABLE)&lt;/code&gt;
+  and omit the following line.&lt;/li&gt;
+  &lt;li&gt;Save desired dmenu parameter string to a file. Note that previously set variables can be used. Omit this line if you already have the dmenu parameter string saved somewhere (you'll have to modify the previous line). When omitting this line, you can't use variables inside the dmenu parameter string any more.&lt;/li&gt;
+  &lt;li&gt;Simple example of using the configuration variable.&lt;/li&gt;
+  &lt;li&gt;More complex example. You can add more parameters (&lt;code&gt;-i&lt;/code&gt; was added here), as well as use the config as a parameter of another command (just remember to use quotation marks ‹"› – using apostrophes ‹'› would result in executing &lt;code&gt;i3-dmenu-desktop --dmenu='/usr/bin/dmenu -i $(&amp;lt;/tmp/dmenu.conf)'&lt;/code&gt; by the shell and &lt;code&gt;$(&amp;lt;/tmp/dmenu.conf)&lt;/code&gt; is not a valid dmenu parameter)&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+</title><link>https://faq.i3wm.org/question/920/shared-config-for-multiple-dmenu-scripts/?comment=998#comment-998</link><description>Excellent! And as a bonus, some nifty usage of sh. Thanks for sharing your tricks :) </description><pubDate>Tue, 08 Jan 2013 22:34:21 +0000</pubDate><guid>https://faq.i3wm.org/question/920/shared-config-for-multiple-dmenu-scripts/?comment=998#comment-998</guid></item></channel></rss>

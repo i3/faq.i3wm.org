@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6299/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 30 Jul 2015 15:30:50 +0000</lastBuildDate><item><title>repeat or history for dmenu commands</title><link>https://faq.i3wm.org/question/6299/repeat-or-history-for-dmenu-commands/</link><description> In shell you can use up/down arrows to access previously run commands. How can I have the similar behavior:
+$mod + D, then up/down arrows to select comamnd, and maybe edit before re-run the command
+
+</description><pubDate>Wed, 15 Jul 2015 12:29:26 +0000</pubDate><guid>https://faq.i3wm.org/question/6299/repeat-or-history-for-dmenu-commands/</guid></item><item><title>Answer by oberon for &lt;p&gt;In shell you can use up/down arrows to access previously run commands. How can I have the similar behavior:
+$mod + D, then up/down arrows to select comamnd, and maybe edit before re-run the command&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6299/repeat-or-history-for-dmenu-commands/?answer=6367#post-id-6367</link><description>Here's another script, not only assessing recency but also, if an app should be run in the background or in the terminal:
+https://github.com/manjaro/packages-community/blob/master/dmenu-manjaro/dmenu_recency </description><pubDate>Thu, 30 Jul 2015 15:30:50 +0000</pubDate><guid>https://faq.i3wm.org/question/6299/repeat-or-history-for-dmenu-commands/?answer=6367#post-id-6367</guid></item><item><title>Answer by Adaephon for &lt;p&gt;In shell you can use up/down arrows to access previously run commands. How can I have the similar behavior:
+$mod + D, then up/down arrows to select comamnd, and maybe edit before re-run the command&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6299/repeat-or-history-for-dmenu-commands/?answer=6308#post-id-6308</link><description>The default for **$mod+d** currently is `dmenu_run` which utilizes `dmenu` for prompting.
+
+In `dmenu` you can navigate the choises with either **Left**/**Right** for the (default) single-lined interface or **Up**/**Down** for the multi-line interface (with parameter `-l NUMBER_OF_LINES`). **Tab** pulls the selected choice and it can then be edited.
+
+In order to have a history of recent commands you can modify `dmenu_run` to also save and display previous choices. I use the following script instead of `dmenu_run` (which I named `emenu_run`):
+&lt;pre&gt;
+#!/bin/sh
+cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
+histsize=50
+if [ -d "$cachedir" ]; then
+	cache=$cachedir/emenu
+    hist=$cachedir/emenu_hist
+else
+	cache=$HOME/.emenu_cache # if no xdg dir, fall back to dotfile in ~
+	hist=$HOME/.emenu_cache_hist # if no xdg dir, fall back to dotfile in ~
+fi
+if [ ! -e "$hist" ]; then
+    touch "$hist"
+    echo foo
+fi
+cmd=$(
+	IFS=:
+	if stest -dqr -n "$cache" $PATH; then
+        (tac "$hist" ; stest -flx $PATH | sort -u | tee "$cache" ) | dmenu "$@"
+	else
+        (tac "$hist"; cat "$cache") | dmenu "$@"
+	fi
+    ) 
+
+#echo "$cmd" | ${SHELL:-"/bin/sh"} &amp;
+i3-msg "exec $cmd"
+
+sed -i -e "/^${cmd}$/d;${histsize}q" "$hist"
+echo "$cmd" &gt;&gt; "$hist"
+&lt;/pre&gt;
+
+This saves the last 50 choices (edit `histsize=50` for more or less) alongside the normal cache file and presents them first in order of recentness. It also uses `i3-msg exec …` instead of just passing it to a shell, which allows for applications that support it (unfortunatelly not all do) to appear on the workspace on which they were called.</description><pubDate>Thu, 16 Jul 2015 09:01:57 +0000</pubDate><guid>https://faq.i3wm.org/question/6299/repeat-or-history-for-dmenu-commands/?answer=6308#post-id-6308</guid></item><item><title>Answer by biocyberman for &lt;p&gt;In shell you can use up/down arrows to access previously run commands. How can I have the similar behavior:
+$mod + D, then up/down arrows to select comamnd, and maybe edit before re-run the command&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6299/repeat-or-history-for-dmenu-commands/?answer=6300#post-id-6300</link><description> For future viewers, I found rofi: https://github.com/DaveDavenport/rofi and I am very happy with it.</description><pubDate>Wed, 15 Jul 2015 13:36:54 +0000</pubDate><guid>https://faq.i3wm.org/question/6299/repeat-or-history-for-dmenu-commands/?answer=6300#post-id-6300</guid></item></channel></rss>

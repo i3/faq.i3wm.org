@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2867/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 13 Jan 2014 16:19:33 +0000</lastBuildDate><item><title>How do I make Firefox open a private browsing window on another workspace?</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/</link><description>I've figured I can assign a private window to another workspace by loading Firefox with the private window option, but I was wondering if there is a way to do it by selecting the private window option in the Firefox menu. 
+
+The private window will always have '(Private Browsing)' on it, so I was wondering if I can get that using regex or something.</description><pubDate>Mon, 11 Nov 2013 14:52:42 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/</guid></item><item><title>Answer by cee for &lt;p&gt;I've figured I can assign a private window to another workspace by loading Firefox with the private window option, but I was wondering if there is a way to do it by selecting the private window option in the Firefox menu. &lt;/p&gt;
+
+&lt;p&gt;The private window will always have '(Private Browsing)' on it, so I was wondering if I can get that using regex or something.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?answer=2869#post-id-2869</link><description>You could try something like that:&lt;br/&gt;
+
+`assign [class="Firefox" title="(?i)Private Browsing"] 5`&lt;br/&gt;
+
+This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;
+
+PS:&lt;br/&gt;
+**xprop** (on linux commandline) gives information about the name/class etc. of any given x-window.
+
+
+</description><pubDate>Mon, 11 Nov 2013 15:14:30 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?answer=2869#post-id-2869</guid></item><item><title>Comment by cee for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2908#comment-2908</link><description>Did you try again? I am not a regex-guru, but I think it should be matching. (?i) is not necessary. You could try to just match 'Private' (keep class="Firefox") to see if something changes.</description><pubDate>Thu, 14 Nov 2013 06:33:40 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2908#comment-2908</guid></item><item><title>Comment by joepd for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3205#comment-3205</link><description>OK, paste the logs somewhere :) </description><pubDate>Sun, 12 Jan 2014 08:19:00 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3205#comment-3205</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2870#comment-2870</link><description>That doesn't work. </description><pubDate>Mon, 11 Nov 2013 16:07:48 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2870#comment-2870</guid></item><item><title>Comment by cee for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2884#comment-2884</link><description>I don't have firefox installed so I couldn't check my answer. Maybe you could post the output from xprop so we could see the difference between a 'normal' firefox' window and a 'private browsing' one. There's a regex for everything as long as the title is distinctive.</description><pubDate>Tue, 12 Nov 2013 07:17:29 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2884#comment-2884</guid></item><item><title>Comment by cee for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2871#comment-2871</link><description>What does not work?
+I edited the answer: s/workspace 5/5/</description><pubDate>Mon, 11 Nov 2013 17:05:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2871#comment-2871</guid></item><item><title>Comment by Adaephon for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3215#comment-3215</link><description>"Private Browsing" is not part of the initial title, Firefox adds it later. At first the title is only 'Mozilla Firefox'. If it works sometimes, it possibly depends on how fast Firefox changes the title (I'm not sure when `assign` grabs the attributes of new windows).</description><pubDate>Mon, 13 Jan 2014 10:48:32 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3215#comment-3215</guid></item><item><title>Comment by joepd for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3200#comment-3200</link><description>This one works flawlessly for me: 
+
+    assign [title=".*Private.*"] "Firefox Window 4" 
+
+Also, the one Cee provided in your first of three questions about this topic works excellent. 
+
+I suspect you have a directive earlier in your config that matches this window. The first match wins. </description><pubDate>Sun, 12 Jan 2014 07:48:59 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3200#comment-3200</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2892#comment-2892</link><description>http://pastebin.com/5HvTKbXS
+</description><pubDate>Tue, 12 Nov 2013 11:52:14 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2892#comment-2892</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2880#comment-2880</link><description>Sorry, I should've given you a longer answer. The workspace bit is not the problem. It does work when I change 'title' to 'id' but then it sends normal Firefox windows there too. Maybe I need a more specific regex or is there something else I'm missing? </description><pubDate>Mon, 11 Nov 2013 23:26:29 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2880#comment-2880</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2915#comment-2915</link><description>Sorry, it doesn't work. Thanks anyway.</description><pubDate>Fri, 15 Nov 2013 03:35:17 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2915#comment-2915</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3216#comment-3216</link><description>Thanks heaps for your help, Adaephon!</description><pubDate>Mon, 13 Jan 2014 11:28:19 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3216#comment-3216</guid></item><item><title>Comment by joepd for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3203#comment-3203</link><description>If my previous comment does not help, please post your debug log somewhere (http://i3wm.org/docs/debugging.html). </description><pubDate>Sun, 12 Jan 2014 08:02:14 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3203#comment-3203</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3204#comment-3204</link><description>Well even though I know I've assigned it nowhere else, I've put it at the start of the config just to be sure and it still doesn't work. 
+
+Cee's command works in a terminal (with a '.' put in the middle of 'Private Browsing'), but it still doesn't work in the config either way.</description><pubDate>Sun, 12 Jan 2014 08:06:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3204#comment-3204</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3206#comment-3206</link><description>http://pastebin.com/ZNMbHdd3
+</description><pubDate>Sun, 12 Jan 2014 08:58:11 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3206#comment-3206</guid></item><item><title>Comment by cee for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2916#comment-2916</link><description>I have to be sorry. I really don't get it why it does not work. I use the following in my config: 
+for_window [class="Thunderbird" instance="Mail"] border none
+xprop: WM_CLASS(STRING) = "Mail", "Thunderbird"
+This does start Thunderbird main window without border while all sub windows do have one.</description><pubDate>Fri, 15 Nov 2013 09:10:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=2916#comment-2916</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;You could try something like that:&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;assign [class="Firefox" title="(?i)Private Browsing"] 5&lt;/code&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This should assign any Private Browsing window from Firefox to workspace 5. Of course you can choose any workspace you want.&lt;br/&gt;
+(?i) will make the regex match case insensitive. Maybe you have to play with the class/title parameters a little.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;PS:&lt;br/&gt;
+&lt;strong&gt;xprop&lt;/strong&gt; (on linux commandline) gives information about the name/class etc. of any given x-window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3209#comment-3209</link><description>Sometimes it works and assigns it properly, but it usually doesn't. I can't see what I'm doing differently the times it does work.</description><pubDate>Sun, 12 Jan 2014 10:14:50 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?comment=3209#comment-3209</guid></item><item><title>Answer by TonyC for &lt;p&gt;I've figured I can assign a private window to another workspace by loading Firefox with the private window option, but I was wondering if there is a way to do it by selecting the private window option in the Firefox menu. &lt;/p&gt;
+
+&lt;p&gt;The private window will always have '(Private Browsing)' on it, so I was wondering if I can get that using regex or something.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?answer=3224#post-id-3224</link><description>Use the [for_window](http://i3wm.org/docs/userguide.html#_arbitrary_commands_for_specific_windows_for_window) command in your config. Whenever a window meets the selection criteria, it will execute the command.
+
+    for_window [title=".*\(Private Browsing\).*"] move to workspace "8:Christmas Shopping"</description><pubDate>Mon, 13 Jan 2014 16:19:33 +0000</pubDate><guid>https://faq.i3wm.org/question/2867/how-do-i-make-firefox-open-a-private-browsing-window-on-another-workspace/?answer=3224#post-id-3224</guid></item></channel></rss>

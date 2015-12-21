@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3586/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 29 Mar 2014 08:47:38 +0000</lastBuildDate><item><title>Floating windows with for_window</title><link>https://faq.i3wm.org/question/3586/floating-windows-with-for_window/</link><description>I'm trying to float all GNOME system config windows using `for_window`, but it doesn't seem to have any effect:
+
+`~/.i3/config`:
+
+    for_window[class="gnome-control-center"] floating enable
+
+Running `xprop` on the control center window yields
+   
+    WM_CLASS(STRING) = "gnome-control-center", "Gnome-control-center"
+
+Restarting i3 and launching `gnome-control-center` doesn't change anything, as the control center is still tiled. I've also tried floating `gnome-terminal`, just for testing with
+
+    for_window [class="gnome-terminal"] floating enable
+
+to no effect.
+
+Interestingly, the example in the user's guide with `xterm` works. Is it a GNOME-related issue?
+
+I'm running i3 4.7.2 on Ubuntu 13.10, installed via the repo listed on the site (`deb http//debian.sur5r.net/i3/ saucy universe`) (I can't publish links so I left the ':' out of the source here).</description><pubDate>Fri, 28 Mar 2014 16:05:02 +0000</pubDate><guid>https://faq.i3wm.org/question/3586/floating-windows-with-for_window/</guid></item><item><title>Answer by joepd for &lt;p&gt;I'm trying to float all GNOME system config windows using &lt;code&gt;for_window&lt;/code&gt;, but it doesn't seem to have any effect:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window[class="gnome-control-center"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Running &lt;code&gt;xprop&lt;/code&gt; on the control center window yields&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WM_CLASS(STRING) = "gnome-control-center", "Gnome-control-center"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Restarting i3 and launching &lt;code&gt;gnome-control-center&lt;/code&gt; doesn't change anything, as the control center is still tiled. I've also tried floating &lt;code&gt;gnome-terminal&lt;/code&gt;, just for testing with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="gnome-terminal"] floating enable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to no effect.&lt;/p&gt;
+
+&lt;p&gt;Interestingly, the example in the user's guide with &lt;code&gt;xterm&lt;/code&gt; works. Is it a GNOME-related issue?&lt;/p&gt;
+
+&lt;p&gt;I'm running i3 4.7.2 on Ubuntu 13.10, installed via the repo listed on the site (&lt;code&gt;deb http//debian.sur5r.net/i3/ saucy universe&lt;/code&gt;) (I can't publish links so I left the ':' out of the source here).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3586/floating-windows-with-for_window/?answer=3590#post-id-3590</link><description>The userguide says: 
+
+&gt; The first part of the WM_CLASS is the
+&gt; instance ("irssi" in this example),
+&gt; the second part is the class ("URxvt"
+&gt; in this example).
+&gt; 
+&gt; Should you have any problems with
+&gt; assignments, make sure to check the i3
+&gt; logfile first (see
+&gt; http://i3wm.org/docs/debugging.html).
+&gt; It includes more details about the
+&gt; matching process and the window’s
+&gt; actual class, instance and title when
+&gt; starting up.
+
+So, try this as a matcher: ``"Gnome-control-center"``. </description><pubDate>Sat, 29 Mar 2014 08:47:38 +0000</pubDate><guid>https://faq.i3wm.org/question/3586/floating-windows-with-for_window/?answer=3590#post-id-3590</guid></item></channel></rss>

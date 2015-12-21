@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1676/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 24 Apr 2013 18:34:14 +0000</lastBuildDate><item><title>Shortcuts not working on non-English layouts</title><link>https://faq.i3wm.org/question/1676/shortcuts-not-working-on-non-english-layouts/</link><description>Hi,
+
+If I change keyboard layout with `setxkbmap uk` (or any non-English layout) all i3 and all other shortcuts get broken. Even Ctrl+D not passed to the terminal.
+
+What is the right way to change keyboard layout?</description><pubDate>Sun, 21 Apr 2013 12:39:28 +0000</pubDate><guid>https://faq.i3wm.org/question/1676/shortcuts-not-working-on-non-english-layouts/</guid></item><item><title>Answer by tab3 for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;If I change keyboard layout with &lt;code&gt;setxkbmap uk&lt;/code&gt; (or any non-English layout) all i3 and all other shortcuts get broken. Even Ctrl+D not passed to the terminal.&lt;/p&gt;
+
+&lt;p&gt;What is the right way to change keyboard layout?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1676/shortcuts-not-working-on-non-english-layouts/?answer=1697#post-id-1697</link><description>The problem was not with i3 itself but rather with `setxkbmap` options. Working solution for multiple layout would be to include the following line in `~/.i3/config`:
+
+`exec setxkbmap -option grp:alt_shift_toggle "us,ua" -option grp_led:caps`
+
+Also, a Ruby script to get current language (e.g. to display in i3 bar):
+
+    def lang
+      case `xset -q | grep -A 0 LED | cut -c59-67`
+      when /^0+$/
+        'En'
+      when /1/
+        'Uk'
+      end
+    end</description><pubDate>Wed, 24 Apr 2013 18:34:14 +0000</pubDate><guid>https://faq.i3wm.org/question/1676/shortcuts-not-working-on-non-english-layouts/?answer=1697#post-id-1697</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;If I change keyboard layout with &lt;code&gt;setxkbmap uk&lt;/code&gt; (or any non-English layout) all i3 and all other shortcuts get broken. Even Ctrl+D not passed to the terminal.&lt;/p&gt;
+
+&lt;p&gt;What is the right way to change keyboard layout?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1676/shortcuts-not-working-on-non-english-layouts/?answer=1677#post-id-1677</link><description>The right way is to change your layout, delete your config, then run i3-config-wizard to generate a new one based on your layout.
+
+If you frequently switch layouts, the other option is to use bindcode instead of bindsym and not use keysyms (that change with layouts) in your config at all.</description><pubDate>Sun, 21 Apr 2013 12:46:00 +0000</pubDate><guid>https://faq.i3wm.org/question/1676/shortcuts-not-working-on-non-english-layouts/?answer=1677#post-id-1677</guid></item></channel></rss>

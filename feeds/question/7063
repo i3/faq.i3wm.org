@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7063/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 27 Oct 2015 18:03:16 +0000</lastBuildDate><item><title>Moving a leaf to another container</title><link>https://faq.i3wm.org/question/7063/moving-a-leaf-to-another-container/</link><description> I am in this situation, where the "desktop container" has four children (leaves):
+
+ 1. Window One
+ 2. Window Two
+ 3. Window Three
+ 4. Window Four
+
+How can I make it have two children, having Window One and Two inside a Vertical split, and the same for Windows Three and Four?
+
+With pictures, I want to go from this: [Picture 1](http://imgur.com/bP56OMM)
+![from-this](http://imgur.com/bP56OMM)
+
+to this: [Picture 2](http://imgur.com/m2rdUs3) ![to-this](http://imgur.com/m2rdUs3)
+
+Making Windows Two and Four floating and drag'n'dropping on the titlebars of One and Three would be a nice feature I suppose.</description><pubDate>Tue, 27 Oct 2015 00:44:20 +0000</pubDate><guid>https://faq.i3wm.org/question/7063/moving-a-leaf-to-another-container/</guid></item><item><title>Answer by i3convert for &lt;p&gt;I am in this situation, where the "desktop container" has four children (leaves):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Window One&lt;/li&gt;
+&lt;li&gt;Window Two&lt;/li&gt;
+&lt;li&gt;Window Three&lt;/li&gt;
+&lt;li&gt;Window Four&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;How can I make it have two children, having Window One and Two inside a Vertical split, and the same for Windows Three and Four?&lt;/p&gt;
+
+&lt;p&gt;With pictures, I want to go from this: &lt;a href="http://imgur.com/bP56OMM"&gt;Picture 1&lt;/a&gt;
+&lt;img alt="from-this" src="http://imgur.com/bP56OMM"/&gt;&lt;/p&gt;
+
+&lt;p&gt;to this: &lt;a href="http://imgur.com/m2rdUs3"&gt;Picture 2&lt;/a&gt; &lt;img alt="to-this" src="http://imgur.com/m2rdUs3"/&gt;&lt;/p&gt;
+
+&lt;p&gt;Making Windows Two and Four floating and drag'n'dropping on the titlebars of One and Three would be a nice feature I suppose.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7063/moving-a-leaf-to-another-container/?answer=7064#post-id-7064</link><description>(I'll use standard keybindings and specify corresponding i3 commands.)
+
+You can do this as follows:
+
+ 1. Repeat `$mod+Left` until you focus Window One (command `focus left`)
+ 2. Press `$mod+v` to split in vertical orientation (command `split v`)
+ 3. Press `$mod+Right` to focus Window Two (command `focus right`)
+ 4. Press `$mod+Shift+Left` to move Window Two left, which will put it under Window One (command `move left`)
+
+Then you can repeat this with Windows 3 and 4.</description><pubDate>Tue, 27 Oct 2015 02:16:03 +0000</pubDate><guid>https://faq.i3wm.org/question/7063/moving-a-leaf-to-another-container/?answer=7064#post-id-7064</guid></item><item><title>Comment by constantine for &lt;p&gt;(I'll use standard keybindings and specify corresponding i3 commands.)&lt;/p&gt;
+
+&lt;p&gt;You can do this as follows:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Repeat &lt;code&gt;$mod+Left&lt;/code&gt; until you focus Window One (command &lt;code&gt;focus left&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+v&lt;/code&gt; to split in vertical orientation (command &lt;code&gt;split v&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+Right&lt;/code&gt; to focus Window Two (command &lt;code&gt;focus right&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;$mod+Shift+Left&lt;/code&gt; to move Window Two left, which will put it under Window One (command &lt;code&gt;move left&lt;/code&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Then you can repeat this with Windows 3 and 4.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7063/moving-a-leaf-to-another-container/?comment=7074#comment-7074</link><description>Wow! At last, I have finally made it! And now I can also put 2 on top of 1 in the vertical split by focusing 1 and then `$mod+Left` and `$mod+Right`. Thanks!</description><pubDate>Tue, 27 Oct 2015 18:03:16 +0000</pubDate><guid>https://faq.i3wm.org/question/7063/moving-a-leaf-to-another-container/?comment=7074#comment-7074</guid></item></channel></rss>

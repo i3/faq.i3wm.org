@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6412/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 09 Aug 2015 23:47:03 +0000</lastBuildDate><item><title>focus nagbar with keyboard</title><link>https://faq.i3wm.org/question/6412/focus-nagbar-with-keyboard/</link><description> Hi,
+
+i3wm generally lets users park their mouse, because it works nicely with keybinds. Is there a way to access the nagbar also without a mouse? I would like to press a nagbar button with Return or close it with Esc and focus and unfocus it from keyboard. Is there a way?</description><pubDate>Sun, 09 Aug 2015 01:52:42 +0000</pubDate><guid>https://faq.i3wm.org/question/6412/focus-nagbar-with-keyboard/</guid></item><item><title>Answer by oberon for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;i3wm generally lets users park their mouse, because it works nicely with keybinds. Is there a way to access the nagbar also without a mouse? I would like to press a nagbar button with Return or close it with Esc and focus and unfocus it from keyboard. Is there a way?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6412/focus-nagbar-with-keyboard/?answer=6414#post-id-6414</link><description>Afaik this is not possible, but what you can definitely do is display a message of your liking in the statusbar by entering the 'system mode' and then trigger certain actions by predefined keys. Those you can assign with a simple script like [**THIS**](https://github.com/manjaro/packages-community/blob/master/i3exit/i3exit)
+
+In your **~.i3/config** you can use somehting like:
+
+    # Set shut down, restart and locking features
+    bindsym $mod+0 mode "$mode_system"
+    set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+    mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    }</description><pubDate>Sun, 09 Aug 2015 23:47:03 +0000</pubDate><guid>https://faq.i3wm.org/question/6412/focus-nagbar-with-keyboard/?answer=6414#post-id-6414</guid></item></channel></rss>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1716/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 01 May 2013 17:51:38 +0000</lastBuildDate><item><title>switch focus to given con_id via ipc command</title><link>https://faq.i3wm.org/question/1716/switch-focus-to-given-con_id-via-ipc-command/</link><description>Hi,
+
+I'm currently trying to switch the focused window by sending a COMMAND to the ipc interface:
+
+    [con_id="135748312"] focus
+
+The COMMAND returns [{"success":true}], but does not switch the window.
+
+I've tried the same with i3-msg, and this is also not switching:
+
+    i3-msg '[con_id="135748312"] focus'
+
+Any ideas on that?</description><pubDate>Sun, 28 Apr 2013 12:45:54 +0000</pubDate><guid>https://faq.i3wm.org/question/1716/switch-focus-to-given-con_id-via-ipc-command/</guid></item><item><title>Answer by badboy_ for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm currently trying to switch the focused window by sending a COMMAND to the ipc interface:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[con_id="135748312"] focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The COMMAND returns [{"success":true}], but does not switch the window.&lt;/p&gt;
+
+&lt;p&gt;I've tried the same with i3-msg, and this is also not switching:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg '[con_id="135748312"] focus'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any ideas on that?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1716/switch-focus-to-given-con_id-via-ipc-command/?answer=1717#post-id-1717</link><description>You're sure you got the right id? (How did you get the id?)
+Picking a random id from `i3-msg -t get_tree | json | grep '"id"'`, then doing the `i3-msg "[con_id=...] focus` thing works for me.</description><pubDate>Sun, 28 Apr 2013 12:52:34 +0000</pubDate><guid>https://faq.i3wm.org/question/1716/switch-focus-to-given-con_id-via-ipc-command/?answer=1717#post-id-1717</guid></item><item><title>Answer by visit for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I'm currently trying to switch the focused window by sending a COMMAND to the ipc interface:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[con_id="135748312"] focus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The COMMAND returns [{"success":true}], but does not switch the window.&lt;/p&gt;
+
+&lt;p&gt;I've tried the same with i3-msg, and this is also not switching:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg '[con_id="135748312"] focus'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any ideas on that?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1716/switch-focus-to-given-con_id-via-ipc-command/?answer=1719#post-id-1719</link><description>This was the issue. I used the value of window, not id. Thanks!</description><pubDate>Sun, 28 Apr 2013 15:42:05 +0000</pubDate><guid>https://faq.i3wm.org/question/1716/switch-focus-to-given-con_id-via-ipc-command/?answer=1719#post-id-1719</guid></item><item><title>Comment by badboy_ for &lt;p&gt;This was the issue. I used the value of window, not id. Thanks!&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1716/switch-focus-to-given-con_id-via-ipc-command/?comment=1740#comment-1740</link><description>You can then use `i3-msg "[id=...] focus"`</description><pubDate>Wed, 01 May 2013 17:51:38 +0000</pubDate><guid>https://faq.i3wm.org/question/1716/switch-focus-to-given-con_id-via-ipc-command/?comment=1740#comment-1740</guid></item></channel></rss>

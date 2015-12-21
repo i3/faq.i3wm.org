@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6235/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 03 Jul 2015 13:55:46 +0000</lastBuildDate><item><title>Chromium GUI hangs after closing lid</title><link>https://faq.i3wm.org/question/6235/chromium-gui-hangs-after-closing-lid/</link><description> I recently installed i3 on a laptop running Linux Mint 17.1 Cinnamon edition. Chromium still works fine in Cinnamon.
+
+Now with i3, after closing the lid (which is set to suspend the computer in Cinnamon's settings) and then logging back in, the Chromium window doesn't update unless I click on something or move the mouse around a lot. The program itself isn't hanging, just the GUI - If I click a link it won't look like anything happened, but several seconds later the window will refresh and the new page will be there. Chromium is the only program affected this way.
+
+If I use `Ctrl`+`Alt`+`F1` to go to a virtual terminal and then `Ctrl`+`Alt`+`F8` to return to X, the problem goes away. Running the command `xrefresh` does not. I have added `exec --no-startup-id cinnamon-settings-daemon` to my i3 config. I haven't added anything to i3's config to control suspending the computer - I assume that is coming from cinnamon-settings-daemon.
+
+ In trying to figure out what is causing this issue I also tried suspending the laptop with `pm-suspend` instead of closing the lid. This did not trigger the issue.
+
+Where should I look to figure out the cause of this behavior?</description><pubDate>Thu, 02 Jul 2015 08:08:04 +0000</pubDate><guid>https://faq.i3wm.org/question/6235/chromium-gui-hangs-after-closing-lid/</guid></item><item><title>Answer by Serp_C for &lt;p&gt;I recently installed i3 on a laptop running Linux Mint 17.1 Cinnamon edition. Chromium still works fine in Cinnamon.&lt;/p&gt;
+
+&lt;p&gt;Now with i3, after closing the lid (which is set to suspend the computer in Cinnamon's settings) and then logging back in, the Chromium window doesn't update unless I click on something or move the mouse around a lot. The program itself isn't hanging, just the GUI - If I click a link it won't look like anything happened, but several seconds later the window will refresh and the new page will be there. Chromium is the only program affected this way.&lt;/p&gt;
+
+&lt;p&gt;If I use &lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;Alt&lt;/code&gt;+&lt;code&gt;F1&lt;/code&gt; to go to a virtual terminal and then &lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;Alt&lt;/code&gt;+&lt;code&gt;F8&lt;/code&gt; to return to X, the problem goes away. Running the command &lt;code&gt;xrefresh&lt;/code&gt; does not. I have added &lt;code&gt;exec --no-startup-id cinnamon-settings-daemon&lt;/code&gt; to my i3 config. I haven't added anything to i3's config to control suspending the computer - I assume that is coming from cinnamon-settings-daemon.&lt;/p&gt;
+
+&lt;p&gt;In trying to figure out what is causing this issue I also tried suspending the laptop with &lt;code&gt;pm-suspend&lt;/code&gt; instead of closing the lid. This did not trigger the issue.&lt;/p&gt;
+
+&lt;p&gt;Where should I look to figure out the cause of this behavior?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6235/chromium-gui-hangs-after-closing-lid/?answer=6249#post-id-6249</link><description>For the time being, I have found a hacky workaround. I found that `xrandr -o inverted; xrandr -o normal` fixes the issue similar to using `Ctrl`+`Alt`+`F1` did. I put those commands in a script to be run whenever the computer resumes from suspend. So now I have a file ` /usr/lib/pm-utils/sleep.d/99ZZ_myresumefix` that looks like this:
+
+    #!/bin/sh
+    # fix issue of chromium gui delaying and only periodically refreshing
+    
+    case "$1" in
+    	resume) 
+    		xrandr -o inverted; xrandr -o normal
+    		;;
+    esac
+
+    exit 0
+
+
+Then I rebooted, and it seems to work now.
+
+**EDIT**: 
+If you lock the screen when you suspend, the above script will refresh the screen while it is still locked, before the Chromium window appears so this won't solve the problem. Instead, since I use Cinnamon's settings to lock the screen on suspend, I added the following to my i3 config:
+
+    exec dbus-monitor --session "type='signal',interface='org.cinnamon.ScreenSaver'" | ( while true; do read X; if echo $X | grep "boolean false" &amp;&gt; /dev/null; then xrandr -o inverted; xrandr -o normal; fi done )
+
+What this does is start a process that watches dbus for a message that means the screen has been unlocked, then runs the same xrandr commands from the previous script. For more information look [here](http://askubuntu.com/questions/429716/how-to-run-a-command-or-script-at-screen-lock-unlock) and [here](http://askubuntu.com/questions/204073/how-to-run-script-after-resume-and-after-unlocking-screen)</description><pubDate>Fri, 03 Jul 2015 13:55:46 +0000</pubDate><guid>https://faq.i3wm.org/question/6235/chromium-gui-hangs-after-closing-lid/?answer=6249#post-id-6249</guid></item><item><title>Answer by Airblader for &lt;p&gt;I recently installed i3 on a laptop running Linux Mint 17.1 Cinnamon edition. Chromium still works fine in Cinnamon.&lt;/p&gt;
+
+&lt;p&gt;Now with i3, after closing the lid (which is set to suspend the computer in Cinnamon's settings) and then logging back in, the Chromium window doesn't update unless I click on something or move the mouse around a lot. The program itself isn't hanging, just the GUI - If I click a link it won't look like anything happened, but several seconds later the window will refresh and the new page will be there. Chromium is the only program affected this way.&lt;/p&gt;
+
+&lt;p&gt;If I use &lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;Alt&lt;/code&gt;+&lt;code&gt;F1&lt;/code&gt; to go to a virtual terminal and then &lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;Alt&lt;/code&gt;+&lt;code&gt;F8&lt;/code&gt; to return to X, the problem goes away. Running the command &lt;code&gt;xrefresh&lt;/code&gt; does not. I have added &lt;code&gt;exec --no-startup-id cinnamon-settings-daemon&lt;/code&gt; to my i3 config. I haven't added anything to i3's config to control suspending the computer - I assume that is coming from cinnamon-settings-daemon.&lt;/p&gt;
+
+&lt;p&gt;In trying to figure out what is causing this issue I also tried suspending the laptop with &lt;code&gt;pm-suspend&lt;/code&gt; instead of closing the lid. This did not trigger the issue.&lt;/p&gt;
+
+&lt;p&gt;Where should I look to figure out the cause of this behavior?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6235/chromium-gui-hangs-after-closing-lid/?answer=6236#post-id-6236</link><description>I have the same thing with Chrome. The window is just black until I do something like click on it. 
+
+It never bothered me, but if you want it fixed, report a bug against Chromium.  </description><pubDate>Thu, 02 Jul 2015 09:44:23 +0000</pubDate><guid>https://faq.i3wm.org/question/6235/chromium-gui-hangs-after-closing-lid/?answer=6236#post-id-6236</guid></item><item><title>Comment by Serp_C for &lt;p&gt;I have the same thing with Chrome. The window is just black until I do something like click on it. &lt;/p&gt;
+
+&lt;p&gt;It never bothered me, but if you want it fixed, report a bug against Chromium.  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6235/chromium-gui-hangs-after-closing-lid/?comment=6248#comment-6248</link><description>I'm not entirely convinced it's a Chromium bug since the problem only appeared after I started using i3.</description><pubDate>Fri, 03 Jul 2015 13:50:14 +0000</pubDate><guid>https://faq.i3wm.org/question/6235/chromium-gui-hangs-after-closing-lid/?comment=6248#comment-6248</guid></item></channel></rss>

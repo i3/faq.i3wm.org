@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/279/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 03 Jul 2014 10:38:03 +0000</lastBuildDate><item><title>how do you use i3 comfortably?</title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/</link><description>Hi i've been using wmii integrated into gnome for a lot of years and now i've switched to i3 integrated into lxde/lubuntu. I've discovered that i3 is able to show applets in his own bar, so that i dont need the panel anymore and now i am thinking about using i3 on its own, but i don't know if it would be smart. i basically need all basic desktop functionality like auto-mount, nm-applet etc. what would i need to do to make all this working? How do you use i3 comfortably? Is it possible to integrate a shutdownbutton/session-manager into i3bar?
+sorry i am a noob in regard to configuring this all on my own?</description><pubDate>Tue, 17 Jul 2012 21:48:21 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/</guid></item><item><title>Answer by Klaas for &lt;p&gt;Hi i've been using wmii integrated into gnome for a lot of years and now i've switched to i3 integrated into lxde/lubuntu. I've discovered that i3 is able to show applets in his own bar, so that i dont need the panel anymore and now i am thinking about using i3 on its own, but i don't know if it would be smart. i basically need all basic desktop functionality like auto-mount, nm-applet etc. what would i need to do to make all this working? How do you use i3 comfortably? Is it possible to integrate a shutdownbutton/session-manager into i3bar?
+sorry i am a noob in regard to configuring this all on my own?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=343#post-id-343</link><description>I'm running i3 as the window manager for Gnome 3 using my Archlinux User package (find it here: https://aur.archlinux.org/packages.php?ID=58675 ) It basically adds a couple of Xsessions, Gnome-Sessions and an additional script. This allows me to start up a Gnome session using i3 as a window manager on login. The Gnome-Session runs a script to start i3 that registers i3 with the gnome session manager as otherwise Gnome 3 will crash after ~30 seconds.
+You can easily download the Tarball from the AUR and use it in any other distribution.
+
+Quitting i3 will not log you out then, so register a couple of keybindings, e.g.:
+
+    # gnome logout
+    bindsym $mod+Shift+X exec gnome-session-quit --logout
+
+    # gnome poweroff menu including suspend, etc.
+    bindsym $mod+Mod1+x exec gnome-session-quit --power-off
+
+This will not get you auto-mount and a logout button in the bar. However, the first is managed by udev/udisks(2) (see https://wiki.archlinux.org/index.php/Udev#UDisks ). That is completely independent of i3 and should be installed/configured in any ubuntu distro I think.
+For the logout button I'd argue that a keyboard shortcut would be enough...
+
+</description><pubDate>Mon, 13 Aug 2012 14:17:29 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=343#post-id-343</guid></item><item><title>Comment by ab5tract for &lt;p&gt;I'm running i3 as the window manager for Gnome 3 using my Archlinux User package (find it here: &lt;a href="https://aur.archlinux.org/packages.php?ID=58675"&gt;https://aur.archlinux.org/packages.ph...&lt;/a&gt; ) It basically adds a couple of Xsessions, Gnome-Sessions and an additional script. This allows me to start up a Gnome session using i3 as a window manager on login. The Gnome-Session runs a script to start i3 that registers i3 with the gnome session manager as otherwise Gnome 3 will crash after ~30 seconds.
+You can easily download the Tarball from the AUR and use it in any other distribution.&lt;/p&gt;
+
+&lt;p&gt;Quitting i3 will not log you out then, so register a couple of keybindings, e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# gnome logout
+bindsym $mod+Shift+X exec gnome-session-quit --logout
+
+# gnome poweroff menu including suspend, etc.
+bindsym $mod+Mod1+x exec gnome-session-quit --power-off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will not get you auto-mount and a logout button in the bar. However, the first is managed by udev/udisks(2) (see &lt;a href="https://wiki.archlinux.org/index.php/Udev#UDisks"&gt;https://wiki.archlinux.org/index.php/...&lt;/a&gt; ). That is completely independent of i3 and should be installed/configured in any ubuntu distro I think.
+For the logout button I'd argue that a keyboard shortcut would be enough...&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?comment=344#comment-344</link><description>I've found that this method is more complicated for little or no gain in terms of my workflow.
+
+You are right that auto-mount is a udisks domain, but I had some serious issues using the vanilla upstream stack (through Arch) without running `gnome-settings-daemon` in the past.</description><pubDate>Tue, 14 Aug 2012 09:26:09 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?comment=344#comment-344</guid></item><item><title>Answer by ab5tract for &lt;p&gt;Hi i've been using wmii integrated into gnome for a lot of years and now i've switched to i3 integrated into lxde/lubuntu. I've discovered that i3 is able to show applets in his own bar, so that i dont need the panel anymore and now i am thinking about using i3 on its own, but i don't know if it would be smart. i basically need all basic desktop functionality like auto-mount, nm-applet etc. what would i need to do to make all this working? How do you use i3 comfortably? Is it possible to integrate a shutdownbutton/session-manager into i3bar?
+sorry i am a noob in regard to configuring this all on my own?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=342#post-id-342</link><description>For what it's worth, running i3 with "DE enhanced" goodness seems quite a bit easier than it used to be.
+
+Myself, I use (and recommend) people start i3 through GDM (this is on a system with GNOME already installed running properly). From there, the only magic necessary should be to add this (or similar) into your `.i3/config`:
+
+    exec /usr/libexec/gnome-settings-daemon
+
+Now laptop media keys (brightness, volume) should work, in addition to Gtk themes and other GNOME stuff. Your mileage may vary, and I do remember from previous approaches to the problem that individual subsystems would have to be `exec'd` individually, i.e. the power subsystem.
+
+EDIT: I can now confirm that the power subsystem works without any extra effort once the `gnome-settings-daemon` is started. This is when logging in through GDM (Fedora 17).</description><pubDate>Mon, 13 Aug 2012 09:10:01 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=342#post-id-342</guid></item><item><title>Comment by blueyed for &lt;p&gt;For what it's worth, running i3 with "DE enhanced" goodness seems quite a bit easier than it used to be.&lt;/p&gt;
+
+&lt;p&gt;Myself, I use (and recommend) people start i3 through GDM (this is on a system with GNOME already installed running properly). From there, the only magic necessary should be to add this (or similar) into your &lt;code&gt;.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec /usr/libexec/gnome-settings-daemon
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now laptop media keys (brightness, volume) should work, in addition to Gtk themes and other GNOME stuff. Your mileage may vary, and I do remember from previous approaches to the problem that individual subsystems would have to be &lt;code&gt;exec'd&lt;/code&gt; individually, i.e. the power subsystem.&lt;/p&gt;
+
+&lt;p&gt;EDIT: I can now confirm that the power subsystem works without any extra effort once the &lt;code&gt;gnome-settings-daemon&lt;/code&gt; is started. This is when logging in through GDM (Fedora 17).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?comment=3417#comment-3417</link><description>This also works with Lightdm on Ubuntu.</description><pubDate>Mon, 24 Feb 2014 13:14:48 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?comment=3417#comment-3417</guid></item><item><title>Answer by mloskot for &lt;p&gt;Hi i've been using wmii integrated into gnome for a lot of years and now i've switched to i3 integrated into lxde/lubuntu. I've discovered that i3 is able to show applets in his own bar, so that i dont need the panel anymore and now i am thinking about using i3 on its own, but i don't know if it would be smart. i basically need all basic desktop functionality like auto-mount, nm-applet etc. what would i need to do to make all this working? How do you use i3 comfortably? Is it possible to integrate a shutdownbutton/session-manager into i3bar?
+sorry i am a noob in regard to configuring this all on my own?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=281#post-id-281</link><description>&gt; i basically need all basic desktop
+&gt; functionality like auto-mount
+
+Try one of fully-featured file managers like [PCManFM](https://wiki.archlinux.org/index.php/PCManFM) with volume handling features as well as desktop.
+
+You also may check the [What is recommended file manager for i3wm?](http://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/).
+
+&gt; nm-applet etc
+
+[How can I use NetworkManager with i3?](http://faq.i3wm.org/question/2/how-can-i-use-networkmanager-with-i3/)
+
+&gt; How do you use i3 comfortably? 
+
+It's a fairly general question, so the answer will be a bit general too. Here is my approach:
+
+1. First and the foremost, read the [i3 User's Guide](http://i3wm.org/docs/userguide.html).
+2. Understand what a [tiling window manager](http://en.wikipedia.org/wiki/Tiling_window_manager) and accept it or it will be tough to get used to i3. I used to use GNOME for decade or longer. Anyone who comes from floating windows manager shoujdl expect to give some effort to adjust workflow, habbits and preferences, undoubtly.
+3. Understand i3 is not [DE](http://en.wikipedia.org/wiki/Desktop_environment), but [WM](http://en.wikipedia.org/wiki/Window_manager), only WM.
+4. Review your expectations if that is what you are looking for.
+5. Read what others say about i3, how they use i3 (e.g. Arch Linux forum [i3 thread](https://bbs.archlinux.org/viewtopic.php?id=99064)).
+6. Learn about i3 configuration file.
+7. Scan GitHub for people's i3 config files (see what interesting people do, look for inspiration, mine is here [~/.config/i3/config](https://github.com/mloskot/archlinux-config/blob/master/home/mloskot/.config/i3/config)).
+8. Learn key shortcuts.
+9. Take it slow, give it time. Don't expect to get everything perfect immediately.
+10. Don't try to *unnaturally* bend i3 to fit your preferences, rather try find how to use native features of i3 to perform what you want. You may find that i3-way is quicker, efficient, better than what you are used to.
+
+&gt; Is it possible to integrate a shutdownbutton/session-manager into i3bar?
+
+I don't use it myself, but you may find some hints here: [How do i suspend,lockscreen and logout?](http://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/)
+
+&gt; sorry i am a noob in regard to configuring this all on my own?
+
+No problem, I'm i3 newbie too. Although, if you want to use i3, you will have to read the User's Guide for sure :-)
+
+
+p.s. Use of punctuation and paragraphs is usually a very good idea.</description><pubDate>Tue, 17 Jul 2012 22:18:15 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=281#post-id-281</guid></item><item><title>Comment by bruno.braga for &lt;blockquote&gt;
+  &lt;p&gt;i basically need all basic desktop
+  functionality like auto-mount&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Try one of fully-featured file managers like &lt;a href="https://wiki.archlinux.org/index.php/PCManFM"&gt;PCManFM&lt;/a&gt; with volume handling features as well as desktop.&lt;/p&gt;
+
+&lt;p&gt;You also may check the &lt;a href="http://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/"&gt;What is recommended file manager for i3wm?&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;nm-applet etc&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href="http://faq.i3wm.org/question/2/how-can-i-use-networkmanager-with-i3/"&gt;How can I use NetworkManager with i3?&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;How do you use i3 comfortably? &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It's a fairly general question, so the answer will be a bit general too. Here is my approach:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;First and the foremost, read the &lt;a href="http://i3wm.org/docs/userguide.html"&gt;i3 User's Guide&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Understand what a &lt;a href="http://en.wikipedia.org/wiki/Tiling_window_manager"&gt;tiling window manager&lt;/a&gt; and accept it or it will be tough to get used to i3. I used to use GNOME for decade or longer. Anyone who comes from floating windows manager shoujdl expect to give some effort to adjust workflow, habbits and preferences, undoubtly.&lt;/li&gt;
+&lt;li&gt;Understand i3 is not &lt;a href="http://en.wikipedia.org/wiki/Desktop_environment"&gt;DE&lt;/a&gt;, but &lt;a href="http://en.wikipedia.org/wiki/Window_manager"&gt;WM&lt;/a&gt;, only WM.&lt;/li&gt;
+&lt;li&gt;Review your expectations if that is what you are looking for.&lt;/li&gt;
+&lt;li&gt;Read what others say about i3, how they use i3 (e.g. Arch Linux forum &lt;a href="https://bbs.archlinux.org/viewtopic.php?id=99064"&gt;i3 thread&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Learn about i3 configuration file.&lt;/li&gt;
+&lt;li&gt;Scan GitHub for people's i3 config files (see what interesting people do, look for inspiration, mine is here &lt;a href="https://github.com/mloskot/archlinux-config/blob/master/home/mloskot/.config/i3/config"&gt;~/.config/i3/config&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Learn key shortcuts.&lt;/li&gt;
+&lt;li&gt;Take it slow, give it time. Don't expect to get everything perfect immediately.&lt;/li&gt;
+&lt;li&gt;Don't try to &lt;em&gt;unnaturally&lt;/em&gt; bend i3 to fit your preferences, rather try find how to use native features of i3 to perform what you want. You may find that i3-way is quicker, efficient, better than what you are used to.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Is it possible to integrate a shutdownbutton/session-manager into i3bar?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I don't use it myself, but you may find some hints here: &lt;a href="http://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/"&gt;How do i suspend,lockscreen and logout?&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;sorry i am a noob in regard to configuring this all on my own?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;No problem, I'm i3 newbie too. Although, if you want to use i3, you will have to read the User's Guide for sure :-)&lt;/p&gt;
+
+&lt;p&gt;p.s. Use of punctuation and paragraphs is usually a very good idea.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?comment=283#comment-283</link><description>Very good comments!</description><pubDate>Wed, 18 Jul 2012 03:39:49 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?comment=283#comment-283</guid></item><item><title>Answer by loblik for &lt;p&gt;Hi i've been using wmii integrated into gnome for a lot of years and now i've switched to i3 integrated into lxde/lubuntu. I've discovered that i3 is able to show applets in his own bar, so that i dont need the panel anymore and now i am thinking about using i3 on its own, but i don't know if it would be smart. i basically need all basic desktop functionality like auto-mount, nm-applet etc. what would i need to do to make all this working? How do you use i3 comfortably? Is it possible to integrate a shutdownbutton/session-manager into i3bar?
+sorry i am a noob in regard to configuring this all on my own?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=285#post-id-285</link><description>I think there is nothing like best i3 setup. It all depends on what you do most of the time.
+
+I just wanted to mention that it also depends on applications you use. Window manager
+is just a tool to help you manage your apps. But it can't help it if application itself is badly
+designed.
+
+Personally i don't understand why so many people tend to use applications like filemanagers
+from big DEs in i3. I think this is a step back. I think these apps just don't fit in i3 world.
+So i would recommend you to use applications which are designed with similar aims like i3 itself (minimalistic, keyboard driven, etc.). 
+
+I use a lot of terminal apps and many times i found them superior to their big brothers from 
+huge enviroments. And now my workflow is lightning fast compared to times when i was chasing the mouse pointer in gnome.
+
+Of course this is just my point of view. I just wanted to say that application matters too
+not just WM.</description><pubDate>Wed, 18 Jul 2012 04:55:17 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=285#post-id-285</guid></item><item><title>Answer by majkinetor for &lt;p&gt;Hi i've been using wmii integrated into gnome for a lot of years and now i've switched to i3 integrated into lxde/lubuntu. I've discovered that i3 is able to show applets in his own bar, so that i dont need the panel anymore and now i am thinking about using i3 on its own, but i don't know if it would be smart. i basically need all basic desktop functionality like auto-mount, nm-applet etc. what would i need to do to make all this working? How do you use i3 comfortably? Is it possible to integrate a shutdownbutton/session-manager into i3bar?
+sorry i am a noob in regard to configuring this all on my own?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=3987#post-id-3987</link><description>I know this is old, but for the sake of completeness, you should use i3 native options to shutdown, restart, etc. computer. Config like this will sufice:
+
+    mode  "(s)leep (h)ybernate (p)owersave (r)estart shut(d)own" {
+    
+            bindsym s exec sudo pm-suspend; mode "default"
+            bindsym h exec sudo pm-hibernate; mode "default"
+            bindsym p exec sudo pm-powersave; mode "default"
+            bindsym d exec sudo 'shutdown -h now'; mode "default"
+            bindsym r exec sudo 'shutdown -r now'; mode "default"
+    
+            bindsym Return mode "default"
+            bindsym Escape mode "default"
+    }
+    bindsym $mod+n mode "(s)leep (h)ybernate (p)owersave (r)estart shut(d)own" 
+
+This will allow you to press ALT+n (or whatever is your mod key) and choose shortcut key for desired operation. This requires sudo rights to execute specific commands without asking for password (edit sudoers):
+
+    Cmnd_Alias   POWER = /sbin/shutdown, /sbin/reboot, /sbin/halt, /usr/sbin/pm-*
+    YOUR_USER ALL=NOPASSWD: POWER
+
+</description><pubDate>Sat, 14 Jun 2014 21:12:01 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=3987#post-id-3987</guid></item><item><title>Answer by Hibou57 for &lt;p&gt;Hi i've been using wmii integrated into gnome for a lot of years and now i've switched to i3 integrated into lxde/lubuntu. I've discovered that i3 is able to show applets in his own bar, so that i dont need the panel anymore and now i am thinking about using i3 on its own, but i don't know if it would be smart. i basically need all basic desktop functionality like auto-mount, nm-applet etc. what would i need to do to make all this working? How do you use i3 comfortably? Is it possible to integrate a shutdownbutton/session-manager into i3bar?
+sorry i am a noob in regard to configuring this all on my own?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=4109#post-id-4109</link><description>To complete the answers already given, a blog article about useful i3 configurations:
+[Gnome 3 to i3 (ninjaducks.in)](http://ninjaducks.in/hacking/gnome-3-to-i-3/).
+
+Especially for:
+
+ * Volume Control
+ * Screen Lock
+</description><pubDate>Thu, 03 Jul 2014 10:38:03 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=4109#post-id-4109</guid></item><item><title>Answer by phairland for &lt;p&gt;Hi i've been using wmii integrated into gnome for a lot of years and now i've switched to i3 integrated into lxde/lubuntu. I've discovered that i3 is able to show applets in his own bar, so that i dont need the panel anymore and now i am thinking about using i3 on its own, but i don't know if it would be smart. i basically need all basic desktop functionality like auto-mount, nm-applet etc. what would i need to do to make all this working? How do you use i3 comfortably? Is it possible to integrate a shutdownbutton/session-manager into i3bar?
+sorry i am a noob in regard to configuring this all on my own?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=3993#post-id-3993</link><description>This is for automount, hope the code is self-explanatory:
+
+    bindsym $mod+u mode "USB Mount Umount"
+    mode "USB Mount Umount" {
+    bindsym m exec zsh -i -c 'udiskie &amp;', mode "default"
+    bindsym u exec zsh -i -c 'pumount -D /media/*', mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+
+</description><pubDate>Sun, 15 Jun 2014 13:11:35 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=3993#post-id-3993</guid></item><item><title>Answer by ANOKNUSA for &lt;p&gt;Hi i've been using wmii integrated into gnome for a lot of years and now i've switched to i3 integrated into lxde/lubuntu. I've discovered that i3 is able to show applets in his own bar, so that i dont need the panel anymore and now i am thinking about using i3 on its own, but i don't know if it would be smart. i basically need all basic desktop functionality like auto-mount, nm-applet etc. what would i need to do to make all this working? How do you use i3 comfortably? Is it possible to integrate a shutdownbutton/session-manager into i3bar?
+sorry i am a noob in regard to configuring this all on my own?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=3994#post-id-3994</link><description>I'm guessing this is unlikely to be a popular answer---it's not going to be informative, and isn't really an answer to the question---but to be frank, you can make your system do anything you want it to as long as you *actually want to make* the system do it. All the things mentioned in the first post are conveniences; so long as you convince yourself that they are necessities, that you really *need* them, you're stuck with them. A salient example: Most users of tiling window managers do almost everything with a keyboard. Anything you can do with a mouse in any desktop environment can also be accomplished with a keyboard if you know how to do it, and in this day and age you can learn how to do it with relative ease.
+
+Questions like "How can I use *x* comfortably?" basically amount to asking how one can make one set of tools function like another, fundamentally different set. It is an unavoidable fact that using i3 "comfortably" necessitates changing the way you interact with your computer; whether you think the new way is better than the old is something only you can determine, but the only way to really make that determination is give both the new and old ways of doing things a fair chance. Learn how to use dmenu (it can launch programs, execute shutdown/sleep/etc.); learn how to arrange, focus and resize windows using the keyboard; learn how to use workspaces efficiently; learn how to configure networks manually. Personally I'm unsure why i3 contains a system tray, since "minimizing" windows is a concept that doesn't exist in tiling window managers and most tilers have urgency hints anyway. At a guess, I'd say the i3 system tray exists because some applications are just broken and minimize to the tray instead of closing on command.</description><pubDate>Sun, 15 Jun 2014 21:19:11 +0000</pubDate><guid>https://faq.i3wm.org/question/279/how-do-you-use-i3-comfortably/?answer=3994#post-id-3994</guid></item></channel></rss>

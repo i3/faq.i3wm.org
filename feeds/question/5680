@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5680/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 02 Apr 2015 00:01:54 +0000</lastBuildDate><item><title>keymapping not getting configured at startup</title><link>https://faq.i3wm.org/question/5680/keymapping-not-getting-configured-at-startup/</link><description>Hi.
+
+I am running Ubuntu 14.04.
+
+I am using Caps Lock as the mod key, so I put the following line in my .i3/config file:
+
+     #maps caps lock to Mod4
+     exec --no-startup-id xmodmap ~/.Xmodmap
+
+The file .Xmodmap file referenced here contains the following lines:
+
+    clear Lock
+    keycode 66 = Hyper_L
+    add Mod4 = Hyper_L
+
+I can manually set the mapping by executing 'xmodmap .Xmodmap' on the command line each time I start an i3 session. However, it is never configured automatically.
+
+Is there a solution to this problem?
+
+**edit**: if I can't use both setxkbmap and xmodmap at the same time, how can I set my keyboard to a particular layout, and have the Caps lock mapped to Mod4? 
+</description><pubDate>Sun, 29 Mar 2015 19:19:23 +0000</pubDate><guid>https://faq.i3wm.org/question/5680/keymapping-not-getting-configured-at-startup/</guid></item><item><title>Comment by drpyser for &lt;p&gt;Hi.&lt;/p&gt;
+
+&lt;p&gt;I am running Ubuntu 14.04.&lt;/p&gt;
+
+&lt;p&gt;I am using Caps Lock as the mod key, so I put the following line in my .i3/config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; #maps caps lock to Mod4
+ exec --no-startup-id xmodmap ~/.Xmodmap
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The file .Xmodmap file referenced here contains the following lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add Mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I can manually set the mapping by executing 'xmodmap .Xmodmap' on the command line each time I start an i3 session. However, it is never configured automatically.&lt;/p&gt;
+
+&lt;p&gt;Is there a solution to this problem?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;edit&lt;/strong&gt;: if I can't use both setxkbmap and xmodmap at the same time, how can I set my keyboard to a particular layout, and have the Caps lock mapped to Mod4? &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5680/keymapping-not-getting-configured-at-startup/?comment=5717#comment-5717</link><description>Yep, thanks. However, is it possible for me to both set my keyboard to a particular layout (such as with setxkbmap), and modify the mapping of a particular key? </description><pubDate>Tue, 31 Mar 2015 22:18:44 +0000</pubDate><guid>https://faq.i3wm.org/question/5680/keymapping-not-getting-configured-at-startup/?comment=5717#comment-5717</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hi.&lt;/p&gt;
+
+&lt;p&gt;I am running Ubuntu 14.04.&lt;/p&gt;
+
+&lt;p&gt;I am using Caps Lock as the mod key, so I put the following line in my .i3/config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; #maps caps lock to Mod4
+ exec --no-startup-id xmodmap ~/.Xmodmap
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The file .Xmodmap file referenced here contains the following lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add Mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I can manually set the mapping by executing 'xmodmap .Xmodmap' on the command line each time I start an i3 session. However, it is never configured automatically.&lt;/p&gt;
+
+&lt;p&gt;Is there a solution to this problem?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;edit&lt;/strong&gt;: if I can't use both setxkbmap and xmodmap at the same time, how can I set my keyboard to a particular layout, and have the Caps lock mapped to Mod4? &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5680/keymapping-not-getting-configured-at-startup/?comment=5714#comment-5714</link><description>Is it possible, that there is some other program started that makes keyboard settings? `setxkbmap`, `gnome-settings-daemon`, etc.? Like in [this question](https://faq.i3wm.org/question/5606/using-setxkbmap-to-disabple-capslock/)</description><pubDate>Tue, 31 Mar 2015 19:35:49 +0000</pubDate><guid>https://faq.i3wm.org/question/5680/keymapping-not-getting-configured-at-startup/?comment=5714#comment-5714</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hi.&lt;/p&gt;
+
+&lt;p&gt;I am running Ubuntu 14.04.&lt;/p&gt;
+
+&lt;p&gt;I am using Caps Lock as the mod key, so I put the following line in my .i3/config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; #maps caps lock to Mod4
+ exec --no-startup-id xmodmap ~/.Xmodmap
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The file .Xmodmap file referenced here contains the following lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear Lock
+keycode 66 = Hyper_L
+add Mod4 = Hyper_L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I can manually set the mapping by executing 'xmodmap .Xmodmap' on the command line each time I start an i3 session. However, it is never configured automatically.&lt;/p&gt;
+
+&lt;p&gt;Is there a solution to this problem?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;edit&lt;/strong&gt;: if I can't use both setxkbmap and xmodmap at the same time, how can I set my keyboard to a particular layout, and have the Caps lock mapped to Mod4? &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5680/keymapping-not-getting-configured-at-startup/?comment=5720#comment-5720</link><description>Yes, it is possible. You just have to make sure to run `setxkbmap` before `xmodmap`. For that I would suggest putting everything into a script and than just run this single script from the i3 config. </description><pubDate>Thu, 02 Apr 2015 00:01:54 +0000</pubDate><guid>https://faq.i3wm.org/question/5680/keymapping-not-getting-configured-at-startup/?comment=5720#comment-5720</guid></item></channel></rss>

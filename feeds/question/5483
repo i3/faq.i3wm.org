@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5483/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 17 Feb 2015 10:11:38 +0000</lastBuildDate><item><title>How can I list all Xorg and i3 keybindings currently in effect?</title><link>https://faq.i3wm.org/question/5483/how-can-i-list-all-xorg-and-i3-keybindings-currently-in-effect/</link><description>I'd like to start doing some customization of Xorg and i3, but I don't want to clobber any existing keybindings. Is it possible to force Xorg or i3 to list all keybindings currently in effect? I've read about and experimented with xbindkeys, but it seems to be about only SETTING the keybindings. I know there is a user guide for i3 and I've been reading it, but I think my distro packagers may have set up some keybindings in i3 and/or Xorg that I'm not yet aware of, so I'd like to be able to have a complete list of keybindings currently in memory. Any way to do that?</description><pubDate>Mon, 16 Feb 2015 03:14:15 +0000</pubDate><guid>https://faq.i3wm.org/question/5483/how-can-i-list-all-xorg-and-i3-keybindings-currently-in-effect/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I'd like to start doing some customization of Xorg and i3, but I don't want to clobber any existing keybindings. Is it possible to force Xorg or i3 to list all keybindings currently in effect? I've read about and experimented with xbindkeys, but it seems to be about only SETTING the keybindings. I know there is a user guide for i3 and I've been reading it, but I think my distro packagers may have set up some keybindings in i3 and/or Xorg that I'm not yet aware of, so I'd like to be able to have a complete list of keybindings currently in memory. Any way to do that?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5483/how-can-i-list-all-xorg-and-i3-keybindings-currently-in-effect/?answer=5492#post-id-5492</link><description>There is no central instance where you can query all key bindings ("in memory"). It always depends on the programs that are currently running, some of which may be designed to grab keys globally (e.g. `xbindkey`, and also *i3* itself). Which keys are bound depends on the programs and can probably only be viewed in the respective configurations.
+
+
+i3
+--
+
+*i3* grabs only the key bindings defined in its configuration file. *i3* takes the first - and only the first - file it finds from this list:
+
+1. `$XDG_CONFIG_HOME/i3/config` (defaults to `~/.config/i3/config` if `XDG_CONFIG_HOME` is unset)
+2. `$XDG_CONFIG_DIRS/i3/config` (defaults to `/etc/xdg/i3/config` if `XDG_CONFIG_DIRS` is unset)
+3. `~/.i3/config`
+4. `/etc/i3/config`
+
+If your config file is `~/.config/i3/config`, running `grep -e '^[^#]*bind' ~/.config/i3/config` should get you a list of used bindings. 
+
+
+X11
+---
+
+*X11* by default only binds **Ctrl+Alt+Fn** (with **Fn** being some function key) for switching to virtual consoles and **Shift+Insert** for pasting text from the clipboard.
+
+ Unfortunatelly the case where other bindings may be defined is not as clear cut as with *i3*. Other bindings probably may be defined in `/etc/X11/xorg.conf` or in files in `/etc/X11/xorg.conf.d`. But Debian-based distributions also do some configuration in `/etc/defaults/keyboard`. Some distributions (used to?) define settings in `/etc/udev/rules.d/`. And some settings can also be altered with programs.</description><pubDate>Tue, 17 Feb 2015 10:11:38 +0000</pubDate><guid>https://faq.i3wm.org/question/5483/how-can-i-list-all-xorg-and-i3-keybindings-currently-in-effect/?answer=5492#post-id-5492</guid></item></channel></rss>

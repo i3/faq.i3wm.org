@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6989/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 24 Oct 2015 22:06:28 +0000</lastBuildDate><item><title>Resize issue with urxvt</title><link>https://faq.i3wm.org/question/6989/resize-issue-with-urxvt/</link><description>When the urxvt terminal is resized (for example by adding new windows), it cuts off the output of the terminal. Here is a video demonstrating this:
+
+https://vid.me/IdNG
+
+I create some lengthy output by executing `for i in {1..10} ; do echo $TERM ; done` and then I add new terminal windows in the vertical split container. After adding the 4th terminal window, the bottom border of the first window overlaps with the content of the window and cuts off the overlapping portion. When I return to this window, the content remains cut off and no prompt is visible until I press a key. The second half of the video demonstrates that this problem is not present with xterm.
+
+How can this problem be solved?
+
+ - i3 config: http://pastie.org/private/x8qy84dm3ed72forzpl8ww
+ - No custom ``.Xdefaults`` or ``.Xresources`` config used
+</description><pubDate>Mon, 19 Oct 2015 23:07:55 +0000</pubDate><guid>https://faq.i3wm.org/question/6989/resize-issue-with-urxvt/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;When the urxvt terminal is resized (for example by adding new windows), it cuts off the output of the terminal. Here is a video demonstrating this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://vid.me/IdNG"&gt;https://vid.me/IdNG&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I create some lengthy output by executing &lt;code&gt;for i in {1..10} ; do echo $TERM ; done&lt;/code&gt; and then I add new terminal windows in the vertical split container. After adding the 4th terminal window, the bottom border of the first window overlaps with the content of the window and cuts off the overlapping portion. When I return to this window, the content remains cut off and no prompt is visible until I press a key. The second half of the video demonstrates that this problem is not present with xterm.&lt;/p&gt;
+
+&lt;p&gt;How can this problem be solved?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;i3 config: &lt;a href="http://pastie.org/private/x8qy84dm3ed72forzpl8ww"&gt;http://pastie.org/private/x8qy84dm3ed...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;No custom &lt;code&gt;.Xdefaults&lt;/code&gt; or &lt;code&gt;.Xresources&lt;/code&gt; config used&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/6989/resize-issue-with-urxvt/?comment=6994#comment-6994</link><description>Here - http://superuser.com/questions/442589/xmonad-urxvt-issue-text-disappears-after-resizing - is a workaround. Although I would replace `$LINE` by a number that is greater than the maximum of lines fitting on your screen,  if you often close and reopen terminals in the same container.</description><pubDate>Tue, 20 Oct 2015 18:43:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6989/resize-issue-with-urxvt/?comment=6994#comment-6994</guid></item><item><title>Comment by Airblader for &lt;p&gt;When the urxvt terminal is resized (for example by adding new windows), it cuts off the output of the terminal. Here is a video demonstrating this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://vid.me/IdNG"&gt;https://vid.me/IdNG&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I create some lengthy output by executing &lt;code&gt;for i in {1..10} ; do echo $TERM ; done&lt;/code&gt; and then I add new terminal windows in the vertical split container. After adding the 4th terminal window, the bottom border of the first window overlaps with the content of the window and cuts off the overlapping portion. When I return to this window, the content remains cut off and no prompt is visible until I press a key. The second half of the video demonstrates that this problem is not present with xterm.&lt;/p&gt;
+
+&lt;p&gt;How can this problem be solved?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;i3 config: &lt;a href="http://pastie.org/private/x8qy84dm3ed72forzpl8ww"&gt;http://pastie.org/private/x8qy84dm3ed...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;No custom &lt;code&gt;.Xdefaults&lt;/code&gt; or &lt;code&gt;.Xresources&lt;/code&gt; config used&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/6989/resize-issue-with-urxvt/?comment=6991#comment-6991</link><description>That's a problem in urxvt, not i3, so I suggest you report it there.</description><pubDate>Tue, 20 Oct 2015 08:41:54 +0000</pubDate><guid>https://faq.i3wm.org/question/6989/resize-issue-with-urxvt/?comment=6991#comment-6991</guid></item><item><title>Answer by stardoggchamp for &lt;p&gt;When the urxvt terminal is resized (for example by adding new windows), it cuts off the output of the terminal. Here is a video demonstrating this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://vid.me/IdNG"&gt;https://vid.me/IdNG&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I create some lengthy output by executing &lt;code&gt;for i in {1..10} ; do echo $TERM ; done&lt;/code&gt; and then I add new terminal windows in the vertical split container. After adding the 4th terminal window, the bottom border of the first window overlaps with the content of the window and cuts off the overlapping portion. When I return to this window, the content remains cut off and no prompt is visible until I press a key. The second half of the video demonstrates that this problem is not present with xterm.&lt;/p&gt;
+
+&lt;p&gt;How can this problem be solved?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;i3 config: &lt;a href="http://pastie.org/private/x8qy84dm3ed72forzpl8ww"&gt;http://pastie.org/private/x8qy84dm3ed...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;No custom &lt;code&gt;.Xdefaults&lt;/code&gt; or &lt;code&gt;.Xresources&lt;/code&gt; config used&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/6989/resize-issue-with-urxvt/?answer=7039#post-id-7039</link><description>As pointed out by Airblader this is an urxvt issue. The workaround posted by Adaephon didn't really work that well for me. Therefore I had a look at the source code of urxvt and  posted a patch for this issue on the urxvt mailing list:
+
+http://lists.schmorp.de/pipermail/rxvt-unicode/2015q4/002196.html
+
+Besides the issue mentioned here, this also fixes some other resizing problems of urxvt.</description><pubDate>Sat, 24 Oct 2015 22:06:28 +0000</pubDate><guid>https://faq.i3wm.org/question/6989/resize-issue-with-urxvt/?answer=7039#post-id-7039</guid></item><item><title>Answer by Airblader for &lt;p&gt;When the urxvt terminal is resized (for example by adding new windows), it cuts off the output of the terminal. Here is a video demonstrating this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://vid.me/IdNG"&gt;https://vid.me/IdNG&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I create some lengthy output by executing &lt;code&gt;for i in {1..10} ; do echo $TERM ; done&lt;/code&gt; and then I add new terminal windows in the vertical split container. After adding the 4th terminal window, the bottom border of the first window overlaps with the content of the window and cuts off the overlapping portion. When I return to this window, the content remains cut off and no prompt is visible until I press a key. The second half of the video demonstrates that this problem is not present with xterm.&lt;/p&gt;
+
+&lt;p&gt;How can this problem be solved?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;i3 config: &lt;a href="http://pastie.org/private/x8qy84dm3ed72forzpl8ww"&gt;http://pastie.org/private/x8qy84dm3ed...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;No custom &lt;code&gt;.Xdefaults&lt;/code&gt; or &lt;code&gt;.Xresources&lt;/code&gt; config used&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/6989/resize-issue-with-urxvt/?answer=6993#post-id-6993</link><description>Just a test  answer
+
+chmod 755</description><pubDate>Tue, 20 Oct 2015 15:11:29 +0000</pubDate><guid>https://faq.i3wm.org/question/6989/resize-issue-with-urxvt/?answer=6993#post-id-6993</guid></item></channel></rss>

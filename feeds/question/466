@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/466/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 11 Sep 2012 09:36:58 +0000</lastBuildDate><item><title>Regarding workspace info, con_mark and scratchpad</title><link>https://faq.i3wm.org/question/466/regarding-workspace-info-con_mark-and-scratchpad/</link><description>I have a few questions -
+
+1) Say I have a *xterm* in the scratchpad and it remains open in say *workspace 1*. When I want to access it from *workspace 2*, currently I am moving to the previous workspace, toggling the *xterm* back to scratchpad and opening it again in *workspace 2*. Is there a way for the *scratchpad xterm* to move back to scratchpad if open else where and reappear in the current workspace?
+
+2) How do you mark a browser using *con_mark*?
+
+3) How do you find out the workspace of a marked window? Or for that matter the workspace of any window that matches a criteria?
+
+I would like to apologize if the **documentation** or the **FAQ** already covers this, but I could not locate it.
+
+Thanks for any help.</description><pubDate>Tue, 11 Sep 2012 08:32:06 +0000</pubDate><guid>https://faq.i3wm.org/question/466/regarding-workspace-info-con_mark-and-scratchpad/</guid></item><item><title>Answer by joepd for &lt;p&gt;I have a few questions -&lt;/p&gt;
+
+&lt;p&gt;1) Say I have a &lt;em&gt;xterm&lt;/em&gt; in the scratchpad and it remains open in say &lt;em&gt;workspace 1&lt;/em&gt;. When I want to access it from &lt;em&gt;workspace 2&lt;/em&gt;, currently I am moving to the previous workspace, toggling the &lt;em&gt;xterm&lt;/em&gt; back to scratchpad and opening it again in &lt;em&gt;workspace 2&lt;/em&gt;. Is there a way for the &lt;em&gt;scratchpad xterm&lt;/em&gt; to move back to scratchpad if open else where and reappear in the current workspace?&lt;/p&gt;
+
+&lt;p&gt;2) How do you mark a browser using &lt;em&gt;con_mark&lt;/em&gt;?&lt;/p&gt;
+
+&lt;p&gt;3) How do you find out the workspace of a marked window? Or for that matter the workspace of any window that matches a criteria?&lt;/p&gt;
+
+&lt;p&gt;I would like to apologize if the &lt;strong&gt;documentation&lt;/strong&gt; or the &lt;strong&gt;FAQ&lt;/strong&gt; already covers this, but I could not locate it.&lt;/p&gt;
+
+&lt;p&gt;Thanks for any help.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/466/regarding-workspace-info-con_mark-and-scratchpad/?answer=467#post-id-467</link><description>As for question 2: Have a look at the man-page for i3-input. This is an explicit example over there (albeit with a mark of 1 character long). Bind it to a key to have it work on the currently focused window. 
+
+Questions 1 and 3 seem a bit too complicated for i3-input, as there are no possibilities for if-statements, and for advanced input, like a dynamically generated list of workspaces. You can use the IPC interface and the existing libraries to do this. 
+
+You might want to have a look at the winmenu example of [i3-py](https://github.com/ziberna/i3-py) It uses dmenu to have you 'jump' to a window. [This version](https://github.com/joepvd/i3-py/blob/master/examples/winmenu.py) has support for marks, as in it will display them. If you type something that cannot be matched to a window, it will mark the currently focused window with what you just typed. </description><pubDate>Tue, 11 Sep 2012 08:53:17 +0000</pubDate><guid>https://faq.i3wm.org/question/466/regarding-workspace-info-con_mark-and-scratchpad/?answer=467#post-id-467</guid></item><item><title>Comment by spordha for &lt;p&gt;As for question 2: Have a look at the man-page for i3-input. This is an explicit example over there (albeit with a mark of 1 character long). Bind it to a key to have it work on the currently focused window. &lt;/p&gt;
+
+&lt;p&gt;Questions 1 and 3 seem a bit too complicated for i3-input, as there are no possibilities for if-statements, and for advanced input, like a dynamically generated list of workspaces. You can use the IPC interface and the existing libraries to do this. &lt;/p&gt;
+
+&lt;p&gt;You might want to have a look at the winmenu example of &lt;a href="https://github.com/ziberna/i3-py"&gt;i3-py&lt;/a&gt; It uses dmenu to have you 'jump' to a window. &lt;a href="https://github.com/joepvd/i3-py/blob/master/examples/winmenu.py"&gt;This version&lt;/a&gt; has support for marks, as in it will display them. If you type something that cannot be matched to a window, it will mark the currently focused window with what you just typed. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/466/regarding-workspace-info-con_mark-and-scratchpad/?comment=469#comment-469</link><description>Sorry, got it now. I just created a keybinding with the i3-input command. Thanks a lot for the help.</description><pubDate>Tue, 11 Sep 2012 09:29:56 +0000</pubDate><guid>https://faq.i3wm.org/question/466/regarding-workspace-info-con_mark-and-scratchpad/?comment=469#comment-469</guid></item><item><title>Comment by joepd for &lt;p&gt;As for question 2: Have a look at the man-page for i3-input. This is an explicit example over there (albeit with a mark of 1 character long). Bind it to a key to have it work on the currently focused window. &lt;/p&gt;
+
+&lt;p&gt;Questions 1 and 3 seem a bit too complicated for i3-input, as there are no possibilities for if-statements, and for advanced input, like a dynamically generated list of workspaces. You can use the IPC interface and the existing libraries to do this. &lt;/p&gt;
+
+&lt;p&gt;You might want to have a look at the winmenu example of &lt;a href="https://github.com/ziberna/i3-py"&gt;i3-py&lt;/a&gt; It uses dmenu to have you 'jump' to a window. &lt;a href="https://github.com/joepvd/i3-py/blob/master/examples/winmenu.py"&gt;This version&lt;/a&gt; has support for marks, as in it will display them. If you type something that cannot be matched to a window, it will mark the currently focused window with what you just typed. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/466/regarding-workspace-info-con_mark-and-scratchpad/?comment=470#comment-470</link><description>Thanks, I improved the answer :) </description><pubDate>Tue, 11 Sep 2012 09:36:58 +0000</pubDate><guid>https://faq.i3wm.org/question/466/regarding-workspace-info-con_mark-and-scratchpad/?comment=470#comment-470</guid></item><item><title>Comment by spordha for &lt;p&gt;As for question 2: Have a look at the man-page for i3-input. This is an explicit example over there (albeit with a mark of 1 character long). Bind it to a key to have it work on the currently focused window. &lt;/p&gt;
+
+&lt;p&gt;Questions 1 and 3 seem a bit too complicated for i3-input, as there are no possibilities for if-statements, and for advanced input, like a dynamically generated list of workspaces. You can use the IPC interface and the existing libraries to do this. &lt;/p&gt;
+
+&lt;p&gt;You might want to have a look at the winmenu example of &lt;a href="https://github.com/ziberna/i3-py"&gt;i3-py&lt;/a&gt; It uses dmenu to have you 'jump' to a window. &lt;a href="https://github.com/joepvd/i3-py/blob/master/examples/winmenu.py"&gt;This version&lt;/a&gt; has support for marks, as in it will display them. If you type something that cannot be matched to a window, it will mark the currently focused window with what you just typed. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/466/regarding-workspace-info-con_mark-and-scratchpad/?comment=468#comment-468</link><description>It might sound a bit silly but my problem is where to type the command given in the example in "i3-input".  When I type the command in a terminal it seems to mark that terminal. But for a non-terminal window, I am not sure what to do.</description><pubDate>Tue, 11 Sep 2012 09:14:50 +0000</pubDate><guid>https://faq.i3wm.org/question/466/regarding-workspace-info-con_mark-and-scratchpad/?comment=468#comment-468</guid></item></channel></rss>

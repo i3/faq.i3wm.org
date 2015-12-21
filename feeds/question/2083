@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2083/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 29 Jun 2013 12:41:47 +0000</lastBuildDate><item><title>Can't do any thing after start i3</title><link>https://faq.i3wm.org/question/2083/cant-do-any-thing-after-start-i3/</link><description>This morning I'm having troubles with i3:
+
+ - can't open a terminal window with `$mod+Enter`,
+ - can't open start any program with dmenu (`$mod+d`)
+ - can't close i3 since the exit bar won't show up.
+
+When I try any action the mouse change to a clock for some time.
+
+Some information of my machine that will help:
+
+    $ uname -r
+    3.9.7-1-ARCH
+    $ X -version
+    X.Org X Server 1.14.1
+    ...
+    $ i3 --version
+    i3 version 4.5.1 ...
+
+The i3 log show
+
+    i3 4.5.1 ...
+    Parsing configfile ...
+    deciding for version 4 ...
+    [libi3] libi3/font.c
+    Used number 1 for workspace with name 1
+    Starting bar process: ...
+    executing: i3bar ...
+    startup id = i3/dmenu_run ...
+    executing: dmenu_run
+    Not a managed window, ignoring UnmapNotify event</description><pubDate>Mon, 24 Jun 2013 14:11:01 +0000</pubDate><guid>https://faq.i3wm.org/question/2083/cant-do-any-thing-after-start-i3/</guid></item><item><title>Answer by smiszym for &lt;p&gt;This morning I'm having troubles with i3:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;can't open a terminal window with &lt;code&gt;$mod+Enter&lt;/code&gt;,&lt;/li&gt;
+&lt;li&gt;can't open start any program with dmenu (&lt;code&gt;$mod+d&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;can't close i3 since the exit bar won't show up.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When I try any action the mouse change to a clock for some time.&lt;/p&gt;
+
+&lt;p&gt;Some information of my machine that will help:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ uname -r
+3.9.7-1-ARCH
+$ X -version
+X.Org X Server 1.14.1
+...
+$ i3 --version
+i3 version 4.5.1 ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The i3 log show&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3 4.5.1 ...
+Parsing configfile ...
+deciding for version 4 ...
+[libi3] libi3/font.c
+Used number 1 for workspace with name 1
+Starting bar process: ...
+executing: i3bar ...
+startup id = i3/dmenu_run ...
+executing: dmenu_run
+Not a managed window, ignoring UnmapNotify event
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/2083/cant-do-any-thing-after-start-i3/?answer=2112#post-id-2112</link><description>I had the same problem and after a while I noticed that I haven't got `xterm` installed. Try installing `xterm` using your favourite package manager, such as pacman or apt. It helped in my case. Maybe you should also install `dmenu` to have `$mod+d` working.</description><pubDate>Sat, 29 Jun 2013 12:41:47 +0000</pubDate><guid>https://faq.i3wm.org/question/2083/cant-do-any-thing-after-start-i3/?answer=2112#post-id-2112</guid></item><item><title>Answer by raniere for &lt;p&gt;This morning I'm having troubles with i3:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;can't open a terminal window with &lt;code&gt;$mod+Enter&lt;/code&gt;,&lt;/li&gt;
+&lt;li&gt;can't open start any program with dmenu (&lt;code&gt;$mod+d&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;can't close i3 since the exit bar won't show up.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When I try any action the mouse change to a clock for some time.&lt;/p&gt;
+
+&lt;p&gt;Some information of my machine that will help:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ uname -r
+3.9.7-1-ARCH
+$ X -version
+X.Org X Server 1.14.1
+...
+$ i3 --version
+i3 version 4.5.1 ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The i3 log show&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3 4.5.1 ...
+Parsing configfile ...
+deciding for version 4 ...
+[libi3] libi3/font.c
+Used number 1 for workspace with name 1
+Starting bar process: ...
+executing: i3bar ...
+startup id = i3/dmenu_run ...
+executing: dmenu_run
+Not a managed window, ignoring UnmapNotify event
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/2083/cant-do-any-thing-after-start-i3/?answer=2085#post-id-2085</link><description>The `SHELL` environment variable cause this problem. After I set it to `/bin/bash` i3 back to work.</description><pubDate>Mon, 24 Jun 2013 16:32:03 +0000</pubDate><guid>https://faq.i3wm.org/question/2083/cant-do-any-thing-after-start-i3/?answer=2085#post-id-2085</guid></item></channel></rss>

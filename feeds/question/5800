@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5800/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 17 Apr 2015 06:03:28 +0000</lastBuildDate><item><title>Switching tabs by keyboard</title><link>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/</link><description>Hi,
+
+I would like to configure alt-1 key to switch focus to the first window on the current workspace, alt-2 to second and so alt-N to Nth window.
+
+The idea is, I would like to use several xterms in tab-view being able to switch them like tabs in gnome-terminal by alt-1...N keys. Currently, I can only configure key-binding for switching next/prev tabs.
+
+If I can switch tabs/windows like this, I would appreciate to be able to hide the "tab" panel. Even if it is just 10pixel hight, it's IMO waste of my screen space ;-)
+
+I spent some time investigating the i3 source code and it should not be a big problem to implement the "alt-N feature" by myself. But I would like to avoid of doing something what somebody has already done before.
+
+thx
+
+
+---
+Ok, this is how I handle workspaces/terminals.
+
+My favorite terminal is at: (can't tell you, since "Could not post, because your karma is insufficient to publish links"). It was implemented by the friend of my. I've just changed it slightly. I switch workspaces by F1..F9 keys, I have browser on F4, F1-F3 and F5-F9 are terminals. Each terminal has tabs which I can switch by alt-[number]. You can imegine a 2D matrix. F* keys switches X-axes, alt-* switches Y-axes. So, I can edit, build and debug different project on each workspace.
+
+I'm thinking why I need a special terminal for this if I can use just a basic xterm (which is btw. one of the fastest terminal) and i3 could provide me with everything else I need.
+
+And yes, I want to hide the tab-bar. I know my terminal is xterm, so why should I have this written in the tab-bar? It is useless information, 1 or 2 useful terminal lines are wasted.</description><pubDate>Thu, 16 Apr 2015 10:21:34 +0000</pubDate><guid>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I would like to configure alt-1 key to switch focus to the first window on the current workspace, alt-2 to second and so alt-N to Nth window.&lt;/p&gt;
+
+&lt;p&gt;The idea is, I would like to use several xterms in tab-view being able to switch them like tabs in gnome-terminal by alt-1...N keys. Currently, I can only configure key-binding for switching next/prev tabs.&lt;/p&gt;
+
+&lt;p&gt;If I can switch tabs/windows like this, I would appreciate to be able to hide the "tab" panel. Even if it is just 10pixel hight, it's IMO waste of my screen space ;-)&lt;/p&gt;
+
+&lt;p&gt;I spent some time investigating the i3 source code and it should not be a big problem to implement the "alt-N feature" by myself. But I would like to avoid of doing something what somebody has already done before.&lt;/p&gt;
+
+&lt;p&gt;thx&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Ok, this is how I handle workspaces/terminals.&lt;/p&gt;
+
+&lt;p&gt;My favorite terminal is at: (can't tell you, since "Could not post, because your karma is insufficient to publish links"). It was implemented by the friend of my. I've just changed it slightly. I switch workspaces by F1..F9 keys, I have browser on F4, F1-F3 and F5-F9 are terminals. Each terminal has tabs which I can switch by alt-[number]. You can imegine a 2D matrix. F* keys switches X-axes, alt-* switches Y-axes. So, I can edit, build and debug different project on each workspace.&lt;/p&gt;
+
+&lt;p&gt;I'm thinking why I need a special terminal for this if I can use just a basic xterm (which is btw. one of the fastest terminal) and i3 could provide me with everything else I need.&lt;/p&gt;
+
+&lt;p&gt;And yes, I want to hide the tab-bar. I know my terminal is xterm, so why should I have this written in the tab-bar? It is useless information, 1 or 2 useful terminal lines are wasted.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5801#comment-5801</link><description>If I understand correctly, you want to have exactly one - tabbed - container on the current workspace. With only one terminal visible at a time. And if possible you want to get rid of the title bar. Why not just run each terminal on its own workspace, bound to Alt+N and set `border none`?</description><pubDate>Thu, 16 Apr 2015 13:38:45 +0000</pubDate><guid>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5801#comment-5801</guid></item><item><title>Comment by smrt28 for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I would like to configure alt-1 key to switch focus to the first window on the current workspace, alt-2 to second and so alt-N to Nth window.&lt;/p&gt;
+
+&lt;p&gt;The idea is, I would like to use several xterms in tab-view being able to switch them like tabs in gnome-terminal by alt-1...N keys. Currently, I can only configure key-binding for switching next/prev tabs.&lt;/p&gt;
+
+&lt;p&gt;If I can switch tabs/windows like this, I would appreciate to be able to hide the "tab" panel. Even if it is just 10pixel hight, it's IMO waste of my screen space ;-)&lt;/p&gt;
+
+&lt;p&gt;I spent some time investigating the i3 source code and it should not be a big problem to implement the "alt-N feature" by myself. But I would like to avoid of doing something what somebody has already done before.&lt;/p&gt;
+
+&lt;p&gt;thx&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Ok, this is how I handle workspaces/terminals.&lt;/p&gt;
+
+&lt;p&gt;My favorite terminal is at: (can't tell you, since "Could not post, because your karma is insufficient to publish links"). It was implemented by the friend of my. I've just changed it slightly. I switch workspaces by F1..F9 keys, I have browser on F4, F1-F3 and F5-F9 are terminals. Each terminal has tabs which I can switch by alt-[number]. You can imegine a 2D matrix. F* keys switches X-axes, alt-* switches Y-axes. So, I can edit, build and debug different project on each workspace.&lt;/p&gt;
+
+&lt;p&gt;I'm thinking why I need a special terminal for this if I can use just a basic xterm (which is btw. one of the fastest terminal) and i3 could provide me with everything else I need.&lt;/p&gt;
+
+&lt;p&gt;And yes, I want to hide the tab-bar. I know my terminal is xterm, so why should I have this written in the tab-bar? It is useless information, 1 or 2 useful terminal lines are wasted.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5803#comment-5803</link><description>I modified the post to explain.</description><pubDate>Thu, 16 Apr 2015 14:10:26 +0000</pubDate><guid>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5803#comment-5803</guid></item><item><title>Answer by airblader for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I would like to configure alt-1 key to switch focus to the first window on the current workspace, alt-2 to second and so alt-N to Nth window.&lt;/p&gt;
+
+&lt;p&gt;The idea is, I would like to use several xterms in tab-view being able to switch them like tabs in gnome-terminal by alt-1...N keys. Currently, I can only configure key-binding for switching next/prev tabs.&lt;/p&gt;
+
+&lt;p&gt;If I can switch tabs/windows like this, I would appreciate to be able to hide the "tab" panel. Even if it is just 10pixel hight, it's IMO waste of my screen space ;-)&lt;/p&gt;
+
+&lt;p&gt;I spent some time investigating the i3 source code and it should not be a big problem to implement the "alt-N feature" by myself. But I would like to avoid of doing something what somebody has already done before.&lt;/p&gt;
+
+&lt;p&gt;thx&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;Ok, this is how I handle workspaces/terminals.&lt;/p&gt;
+
+&lt;p&gt;My favorite terminal is at: (can't tell you, since "Could not post, because your karma is insufficient to publish links"). It was implemented by the friend of my. I've just changed it slightly. I switch workspaces by F1..F9 keys, I have browser on F4, F1-F3 and F5-F9 are terminals. Each terminal has tabs which I can switch by alt-[number]. You can imegine a 2D matrix. F* keys switches X-axes, alt-* switches Y-axes. So, I can edit, build and debug different project on each workspace.&lt;/p&gt;
+
+&lt;p&gt;I'm thinking why I need a special terminal for this if I can use just a basic xterm (which is btw. one of the fastest terminal) and i3 could provide me with everything else I need.&lt;/p&gt;
+
+&lt;p&gt;And yes, I want to hide the tab-bar. I know my terminal is xterm, so why should I have this written in the tab-bar? It is useless information, 1 or 2 useful terminal lines are wasted.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?answer=5802#post-id-5802</link><description>Please refer to https://github.com/i3/i3/issues/1214 for a feature request that is fairly similar. You'll also find a script there using the IPC. The latter is the way I'd suggest for now. 
+
+If you want this natively in i3, please voice that on github. If your feature differs from the issue I mentioned above, please open a new issue first and get feedback on it before starting to implement anything. </description><pubDate>Thu, 16 Apr 2015 13:45:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?answer=5802#post-id-5802</guid></item><item><title>Comment by airblader for &lt;p&gt;Please refer to &lt;a href="https://github.com/i3/i3/issues/1214"&gt;https://github.com/i3/i3/issues/1214&lt;/a&gt; for a feature request that is fairly similar. You'll also find a script there using the IPC. The latter is the way I'd suggest for now. &lt;/p&gt;
+
+&lt;p&gt;If you want this natively in i3, please voice that on github. If your feature differs from the issue I mentioned above, please open a new issue first and get feedback on it before starting to implement anything. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5806#comment-5806</link><description>This is due to the migration to Github a few months ago. I'm not sure if Michael still has the attachments. You might wanna explicitly tag him in your comment and ask if it's available from the old system still. </description><pubDate>Thu, 16 Apr 2015 16:53:21 +0000</pubDate><guid>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5806#comment-5806</guid></item><item><title>Comment by smrt28 for &lt;p&gt;Please refer to &lt;a href="https://github.com/i3/i3/issues/1214"&gt;https://github.com/i3/i3/issues/1214&lt;/a&gt; for a feature request that is fairly similar. You'll also find a script there using the IPC. The latter is the way I'd suggest for now. &lt;/p&gt;
+
+&lt;p&gt;If you want this natively in i3, please voice that on github. If your feature differs from the issue I mentioned above, please open a new issue first and get feedback on it before starting to implement anything. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5817#comment-5817</link><description>don't worry, since this is must-have feature for me, my enthusiasm persists ;-)</description><pubDate>Fri, 17 Apr 2015 06:03:28 +0000</pubDate><guid>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5817#comment-5817</guid></item><item><title>Comment by hes for &lt;p&gt;Please refer to &lt;a href="https://github.com/i3/i3/issues/1214"&gt;https://github.com/i3/i3/issues/1214&lt;/a&gt; for a feature request that is fairly similar. You'll also find a script there using the IPC. The latter is the way I'd suggest for now. &lt;/p&gt;
+
+&lt;p&gt;If you want this natively in i3, please voice that on github. If your feature differs from the issue I mentioned above, please open a new issue first and get feedback on it before starting to implement anything. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5805#comment-5805</link><description>Am I missing something?  Last post by i3bot in that issue thread says, "I attached a short script in python for that. . . ", but I don't see any attachment or indication of where to find that script.</description><pubDate>Thu, 16 Apr 2015 16:38:29 +0000</pubDate><guid>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5805#comment-5805</guid></item><item><title>Comment by smrt28 for &lt;p&gt;Please refer to &lt;a href="https://github.com/i3/i3/issues/1214"&gt;https://github.com/i3/i3/issues/1214&lt;/a&gt; for a feature request that is fairly similar. You'll also find a script there using the IPC. The latter is the way I'd suggest for now. &lt;/p&gt;
+
+&lt;p&gt;If you want this natively in i3, please voice that on github. If your feature differs from the issue I mentioned above, please open a new issue first and get feedback on it before starting to implement anything. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5804#comment-5804</link><description>thanks, this is what I was searching for.</description><pubDate>Thu, 16 Apr 2015 14:14:13 +0000</pubDate><guid>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5804#comment-5804</guid></item><item><title>Comment by airblader for &lt;p&gt;Please refer to &lt;a href="https://github.com/i3/i3/issues/1214"&gt;https://github.com/i3/i3/issues/1214&lt;/a&gt; for a feature request that is fairly similar. You'll also find a script there using the IPC. The latter is the way I'd suggest for now. &lt;/p&gt;
+
+&lt;p&gt;If you want this natively in i3, please voice that on github. If your feature differs from the issue I mentioned above, please open a new issue first and get feedback on it before starting to implement anything. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5807#comment-5807</link><description>Failing that – you were eager to implement this in i3, so I'm sure you could write a similar script using the IPC :)</description><pubDate>Thu, 16 Apr 2015 16:53:47 +0000</pubDate><guid>https://faq.i3wm.org/question/5800/switching-tabs-by-keyboard/?comment=5807#comment-5807</guid></item></channel></rss>

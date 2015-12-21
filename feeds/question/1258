@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1258/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 04 Feb 2014 19:39:16 +0000</lastBuildDate><item><title>i3bar/i3status: Is it possible to have Caps-Lock and Num-Lock indicator ?</title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/</link><description>Question is in the title :)
+
+Cheers,
+
+Sylvain
+
+EDIT: an i3status wrapper can be found here: github.com/syl20bnr/i3status-keyboard-leds</description><pubDate>Mon, 25 Feb 2013 21:40:00 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/</guid></item><item><title>Answer by Michael for &lt;p&gt;Question is in the title :)&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Sylvain&lt;/p&gt;
+
+&lt;p&gt;EDIT: an i3status wrapper can be found here: github.com/syl20bnr/i3status-keyboard-leds&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?answer=1265#post-id-1265</link><description>No, there is no such feature built in. My computer has LEDs for that. Also, in my keyboard layout, I don’t have caps lock. If you want such an indicator, you have to wrap i3status with a custom script, see its manpage.</description><pubDate>Wed, 27 Feb 2013 22:33:02 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?answer=1265#post-id-1265</guid></item><item><title>Comment by frakturfreak for &lt;p&gt;No, there is no such feature built in. My computer has LEDs for that. Also, in my keyboard layout, I don’t have caps lock. If you want such an indicator, you have to wrap i3status with a custom script, see its manpage.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=1710#comment-1710</link><description>And what about pressing both shift keys? Should be the same.</description><pubDate>Fri, 26 Apr 2013 22:54:52 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=1710#comment-1710</guid></item><item><title>Answer by MeanEYE for &lt;p&gt;Question is in the title :)&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Sylvain&lt;/p&gt;
+
+&lt;p&gt;EDIT: an i3status wrapper can be found here: github.com/syl20bnr/i3status-keyboard-leds&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?answer=1316#post-id-1316</link><description>It's not an easy way to achieve this, but it's not impossible either. You can use `xset` command. If you issue the following command:
+
+    $ xset q
+    Keyboard Control:
+      auto repeat:  on    key click percent:  0    LED mask:  00000000
+      XKB indicators:
+        00: Caps Lock:   off    01: Num Lock:    off    02: Scroll Lock: off
+      ...
+
+As you can see you have `LED mask` which is bitmask of active flags, or you can parse strings from `00: Caps Lock: off`.
+
+So, what you need to do is make a wrapper script. You can see how this is [done here](http://i3wm.org/i3status/manpage.html#_external_scripts_programs_with_i3status).
+
+After you have a wrapper script then configure your i3 status command to point to your script directly and that's about it. You combine output of `i3status` with strings you parse.</description><pubDate>Tue, 05 Mar 2013 15:30:21 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?answer=1316#post-id-1316</guid></item><item><title>Comment by syl20bnr for &lt;p&gt;It's not an easy way to achieve this, but it's not impossible either. You can use &lt;code&gt;xset&lt;/code&gt; command. If you issue the following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xset q
+Keyboard Control:
+  auto repeat:  on    key click percent:  0    LED mask:  00000000
+  XKB indicators:
+    00: Caps Lock:   off    01: Num Lock:    off    02: Scroll Lock: off
+  ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see you have &lt;code&gt;LED mask&lt;/code&gt; which is bitmask of active flags, or you can parse strings from &lt;code&gt;00: Caps Lock: off&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, what you need to do is make a wrapper script. You can see how this is &lt;a href="http://i3wm.org/i3status/manpage.html#_external_scripts_programs_with_i3status"&gt;done here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After you have a wrapper script then configure your i3 status command to point to your script directly and that's about it. You combine output of &lt;code&gt;i3status&lt;/code&gt; with strings you parse.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=1337#comment-1337</link><description>Thank you for your great support. The result script is here: https://github.com/syl20bnr/i3status-keyboard-leds</description><pubDate>Thu, 07 Mar 2013 05:33:02 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=1337#comment-1337</guid></item><item><title>Comment by MeanEYE for &lt;p&gt;It's not an easy way to achieve this, but it's not impossible either. You can use &lt;code&gt;xset&lt;/code&gt; command. If you issue the following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ xset q
+Keyboard Control:
+  auto repeat:  on    key click percent:  0    LED mask:  00000000
+  XKB indicators:
+    00: Caps Lock:   off    01: Num Lock:    off    02: Scroll Lock: off
+  ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see you have &lt;code&gt;LED mask&lt;/code&gt; which is bitmask of active flags, or you can parse strings from &lt;code&gt;00: Caps Lock: off&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, what you need to do is make a wrapper script. You can see how this is &lt;a href="http://i3wm.org/i3status/manpage.html#_external_scripts_programs_with_i3status"&gt;done here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After you have a wrapper script then configure your i3 status command to point to your script directly and that's about it. You combine output of &lt;code&gt;i3status&lt;/code&gt; with strings you parse.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=1586#comment-1586</link><description>Awesome. :D</description><pubDate>Mon, 08 Apr 2013 20:21:08 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=1586#comment-1586</guid></item><item><title>Answer by demil133 for &lt;p&gt;Question is in the title :)&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Sylvain&lt;/p&gt;
+
+&lt;p&gt;EDIT: an i3status wrapper can be found here: github.com/syl20bnr/i3status-keyboard-leds&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?answer=1703#post-id-1703</link><description>I've got this on my `~/.i3/config`:
+
+    # Enable/disable caps mode
+    mode "caps" {
+            bindsym Caps_Lock mode "default"
+    }
+    bindsym Caps_Lock mode "caps"
+    
+    # Enable/disable numeric keyboard 
+    mode "num" {
+            bindsym Num_Lock mode "default"
+    }
+    bindsym Num_Lock mode "num"
+
+This will show an indicator like the "resize" one if you press `$mod+r`
+
+
+for me this disables some keybindings I've got on my numeric keyboard so that I can use it for it's original purpose</description><pubDate>Fri, 26 Apr 2013 01:35:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?answer=1703#post-id-1703</guid></item><item><title>Comment by massysett for &lt;p&gt;I've got this on my &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Enable/disable caps mode
+mode "caps" {
+        bindsym Caps_Lock mode "default"
+}
+bindsym Caps_Lock mode "caps"
+
+# Enable/disable numeric keyboard 
+mode "num" {
+        bindsym Num_Lock mode "default"
+}
+bindsym Num_Lock mode "num"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will show an indicator like the "resize" one if you press &lt;code&gt;$mod+r&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;for me this disables some keybindings I've got on my numeric keyboard so that I can use it for it's original purpose&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=3367#comment-3367</link><description>Been wanting this for ages, thanks.</description><pubDate>Tue, 04 Feb 2014 19:39:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=3367#comment-3367</guid></item><item><title>Comment by syl20bnr for &lt;p&gt;I've got this on my &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Enable/disable caps mode
+mode "caps" {
+        bindsym Caps_Lock mode "default"
+}
+bindsym Caps_Lock mode "caps"
+
+# Enable/disable numeric keyboard 
+mode "num" {
+        bindsym Num_Lock mode "default"
+}
+bindsym Num_Lock mode "num"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will show an indicator like the "resize" one if you press &lt;code&gt;$mod+r&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;for me this disables some keybindings I've got on my numeric keyboard so that I can use it for it's original purpose&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=2308#comment-2308</link><description>Nice trick! Although it seems to be buggy if num lock and caps lock are both activated.</description><pubDate>Tue, 30 Jul 2013 02:53:56 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=2308#comment-2308</guid></item><item><title>Answer by syl20bnr for &lt;p&gt;Question is in the title :)&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Sylvain&lt;/p&gt;
+
+&lt;p&gt;EDIT: an i3status wrapper can be found here: github.com/syl20bnr/i3status-keyboard-leds&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?answer=1317#post-id-1317</link><description>Thank you, I will try to do this and post the result.</description><pubDate>Tue, 05 Mar 2013 15:32:51 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?answer=1317#post-id-1317</guid></item><item><title>Comment by MeanEYE for &lt;p&gt;Thank you, I will try to do this and post the result.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=1322#comment-1322</link><description>To save you some time wandering around, you can easily cut strings with `cut` and `tr` in shell.</description><pubDate>Tue, 05 Mar 2013 15:37:40 +0000</pubDate><guid>https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/?comment=1322#comment-1322</guid></item></channel></rss>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1774/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 12 Oct 2013 14:37:51 +0000</lastBuildDate><item><title>Rename workspace with i3-input using numbers and text</title><link>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/</link><description>Hi ! 
+
+As described in the user guide, I added the following binding to rename workspaces:
+bindsym $mod+r exec i3-input -F 'rename workspace to %s' -P 'New name: '
+
+But I cannot use a number as preffix in order to take advantage of selecting workspaces with the i3 command workspace + number since i3-input would delete every whitespace.
+
+e.g: "2: Music" would be named "2:Music" and bindsym $mod+2 workspace 2 wouldn't select that workspace.
+
+What can I do ? 
+
+Thanks in advance!</description><pubDate>Thu, 09 May 2013 12:26:29 +0000</pubDate><guid>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/</guid></item><item><title>Answer by ndemou for &lt;p&gt;Hi ! &lt;/p&gt;
+
+&lt;p&gt;As described in the user guide, I added the following binding to rename workspaces:
+bindsym $mod+r exec i3-input -F 'rename workspace to %s' -P 'New name: '&lt;/p&gt;
+
+&lt;p&gt;But I cannot use a number as preffix in order to take advantage of selecting workspaces with the i3 command workspace + number since i3-input would delete every whitespace.&lt;/p&gt;
+
+&lt;p&gt;e.g: "2: Music" would be named "2:Music" and bindsym $mod+2 workspace 2 wouldn't select that workspace.&lt;/p&gt;
+
+&lt;p&gt;What can I do ? &lt;/p&gt;
+
+&lt;p&gt;Thanks in advance!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/?answer=1851#post-id-1851</link><description>If you've read the accepted answer and the link and still don't get it (like I did see my PS bellow) then here it is in black and white:
+
+this keybinding will take you to the workspace having a name **starting with** 1
+
+    bindsym $mod+1 workspace number 1
+
+whereas this will take you to the workspace **named "1"** (nothing more nothing less)
+
+    bindsym $mod+1 workspace 1
+
+There's a good chance you have the later syntax in your config.
+
+So, to give you the big picture, if you want to work with named workspaces you must:
+
+ 1. define a keybinding like this in your config (I chose $mod+n from re**N**ame because $mod+r was allready taken for **R**esize): 
+
+    **bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '** (unimportant details regarding this command in notes [1],[2])
+ 
+ 1. make sure that your config has bindings with the *number* keyword for switching to your workspaces (i.e. lines like this:  **bindsym $mod+1 workspace *number* 1** and not like this: **bindsym $mod+1 workspace 1**)
+
+Notes:
+------
+ 1: the user guide omits the double quotes around %s but they *are* needed (names with spaces will be truncated if you don't use them -- maybe other bad things will happen). 
+ 
+ 2: super-geeks can also directly execute commands like this: **i3-msg 'rename workspace 1 to "1: foo"'** in order to rename a workspace.  
+
+----------
+
+
+PS
+I can't tell you how bad I felt after trying and retrying for many minutes to rename and access my workspaces with $mod+&lt;num&gt;. Either it was a silly moment or the guide and the syntax begs for misunderstandings. In (my _very_ biased opinion at the moment) it's more of the later :). It seems that this particular topic (working with named workspaces) of the otherwise excellent user guide is full of traps:
+
+ 1. $mod+r is presented as an example both for
+    resizing clients and for renaming
+    workspaces  
+ 1. the keybinding command that uses i3-input omits " around %s. As a result renaming to anything containing spaces fails. The examples always have spaces in the names.
+ 1. the topic of this thread
+</description><pubDate>Mon, 20 May 2013 13:50:41 +0000</pubDate><guid>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/?answer=1851#post-id-1851</guid></item><item><title>Comment by majkinetor for &lt;p&gt;If you've read the accepted answer and the link and still don't get it (like I did see my PS bellow) then here it is in black and white:&lt;/p&gt;
+
+&lt;p&gt;this keybinding will take you to the workspace having a name &lt;strong&gt;starting with&lt;/strong&gt; 1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1 workspace number 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;whereas this will take you to the workspace &lt;strong&gt;named "1"&lt;/strong&gt; (nothing more nothing less)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+1 workspace 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There's a good chance you have the later syntax in your config.&lt;/p&gt;
+
+&lt;p&gt;So, to give you the big picture, if you want to work with named workspaces you must:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;define a keybinding like this in your config (I chose $mod+n from re&lt;strong&gt;N&lt;/strong&gt;ame because $mod+r was allready taken for &lt;strong&gt;R&lt;/strong&gt;esize): &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '&lt;/strong&gt; (unimportant details regarding this command in notes [1],[2])&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;make sure that your config has bindings with the &lt;em&gt;number&lt;/em&gt; keyword for switching to your workspaces (i.e. lines like this:  &lt;strong&gt;bindsym $mod+1 workspace &lt;em&gt;number&lt;/em&gt; 1&lt;/strong&gt; and not like this: &lt;strong&gt;bindsym $mod+1 workspace 1&lt;/strong&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;Notes:&lt;/h2&gt;
+
+&lt;p&gt;1: the user guide omits the double quotes around %s but they &lt;em&gt;are&lt;/em&gt; needed (names with spaces will be truncated if you don't use them -- maybe other bad things will happen). &lt;/p&gt;
+
+&lt;p&gt;2: super-geeks can also directly execute commands like this: &lt;strong&gt;i3-msg 'rename workspace 1 to "1: foo"'&lt;/strong&gt; in order to rename a workspace.  &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;PS
+I can't tell you how bad I felt after trying and retrying for many minutes to rename and access my workspaces with $mod+&amp;lt;num&amp;gt;. Either it was a silly moment or the guide and the syntax begs for misunderstandings. In (my &lt;em&gt;very&lt;/em&gt; biased opinion at the moment) it's more of the later :). It seems that this particular topic (working with named workspaces) of the otherwise excellent user guide is full of traps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;$mod+r is presented as an example both for
+resizing clients and for renaming
+workspaces  &lt;/li&gt;
+&lt;li&gt;the keybinding command that uses i3-input omits " around %s. As a result renaming to anything containing spaces fails. The examples always have spaces in the names.&lt;/li&gt;
+&lt;li&gt;the topic of this thread&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/?comment=2699#comment-2699</link><description>great answer. How can I get it to display the number of the currently focused workspace by default. Lets say I am on workspace "2: www" and I want to rename it to "2: editor". When I press hotkey I want prompt to deafult to "2: " since that is the prefix I would always want </description><pubDate>Sat, 12 Oct 2013 14:37:51 +0000</pubDate><guid>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/?comment=2699#comment-2699</guid></item><item><title>Answer by badboy_ for &lt;p&gt;Hi ! &lt;/p&gt;
+
+&lt;p&gt;As described in the user guide, I added the following binding to rename workspaces:
+bindsym $mod+r exec i3-input -F 'rename workspace to %s' -P 'New name: '&lt;/p&gt;
+
+&lt;p&gt;But I cannot use a number as preffix in order to take advantage of selecting workspaces with the i3 command workspace + number since i3-input would delete every whitespace.&lt;/p&gt;
+
+&lt;p&gt;e.g: "2: Music" would be named "2:Music" and bindsym $mod+2 workspace 2 wouldn't select that workspace.&lt;/p&gt;
+
+&lt;p&gt;What can I do ? &lt;/p&gt;
+
+&lt;p&gt;Thanks in advance!&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/?answer=1779#post-id-1779</link><description>Short answer: `workspace number X`
+
+More: &lt;https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/&gt;</description><pubDate>Thu, 09 May 2013 21:41:48 +0000</pubDate><guid>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/?answer=1779#post-id-1779</guid></item><item><title>Comment by joepd for &lt;p&gt;Short answer: &lt;code&gt;workspace number X&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;More: &lt;a href="https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/"&gt;https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/?comment=1782#comment-1782</link><description>You are not the only one reading over the keyword 'Number' :) </description><pubDate>Fri, 10 May 2013 05:53:53 +0000</pubDate><guid>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/?comment=1782#comment-1782</guid></item><item><title>Comment by emanuel for &lt;p&gt;Short answer: &lt;code&gt;workspace number X&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;More: &lt;a href="https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/"&gt;https://faq.i3wm.org/question/1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts/&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/?comment=1780#comment-1780</link><description>Oh .. I feel terrible ! I read the entire i3 user guide and the answer was under my nose..thanks buddy.</description><pubDate>Fri, 10 May 2013 01:08:01 +0000</pubDate><guid>https://faq.i3wm.org/question/1774/rename-workspace-with-i3-input-using-numbers-and-text/?comment=1780#comment-1780</guid></item></channel></rss>

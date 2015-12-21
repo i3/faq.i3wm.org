@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/378/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 26 Aug 2012 20:03:26 +0000</lastBuildDate><item><title>Start urxvt in a scratchpad</title><link>https://faq.i3wm.org/question/378/start-urxvt-in-a-scratchpad/</link><description>Hello, I googled this solution which does not work for me:
+
+urxvt -e "i3-msg 'border 1pixel'; i3-msg move scratchpad"
+
+When I try it in the "exec" command within the i3 config, it does not work. If I try to run this manually from a different terminal, it just pops up for a fraction of second and it disappears.
+
+How to properly do this?</description><pubDate>Sun, 26 Aug 2012 19:44:42 +0000</pubDate><guid>https://faq.i3wm.org/question/378/start-urxvt-in-a-scratchpad/</guid></item><item><title>Answer by loblik for &lt;p&gt;Hello, I googled this solution which does not work for me:&lt;/p&gt;
+
+&lt;p&gt;urxvt -e "i3-msg 'border 1pixel'; i3-msg move scratchpad"&lt;/p&gt;
+
+&lt;p&gt;When I try it in the "exec" command within the i3 config, it does not work. If I try to run this manually from a different terminal, it just pops up for a fraction of second and it disappears.&lt;/p&gt;
+
+&lt;p&gt;How to properly do this?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/378/start-urxvt-in-a-scratchpad/?answer=380#post-id-380</link><description>Try add this line to your i3 config.
+
+    for_window [instance="urxvt_scratchpad"] move to scratchpad, border 1pixel
+
+And then run urxvt like this.
+
+    urxvt -name urxvt_scratchpad
+
+</description><pubDate>Sun, 26 Aug 2012 20:03:26 +0000</pubDate><guid>https://faq.i3wm.org/question/378/start-urxvt-in-a-scratchpad/?answer=380#post-id-380</guid></item></channel></rss>

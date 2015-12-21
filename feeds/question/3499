@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3499/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 09 Mar 2014 17:40:50 +0000</lastBuildDate><item><title>How to use KDE cursors in i3?</title><link>https://faq.i3wm.org/question/3499/how-to-use-kde-cursors-in-i3/</link><description>Is there anyway for me to tell i3 to use KDE's oxygen theme for my mouse cursor?</description><pubDate>Sun, 09 Mar 2014 08:16:22 +0000</pubDate><guid>https://faq.i3wm.org/question/3499/how-to-use-kde-cursors-in-i3/</guid></item><item><title>Answer by TonyC for &lt;p&gt;Is there anyway for me to tell i3 to use KDE's oxygen theme for my mouse cursor?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3499/how-to-use-kde-cursors-in-i3/?answer=3500#post-id-3500</link><description>You can configure your Xcursor theme in a dotfile, usually `~/.Xresources` ([more info](https://wiki.archlinux.org/index.php/x_resources#Xcursor_resources)).
+
+Then after you install the cursor theme with your package manager, add a line like this:
+
+    ! cursor
+    Xcursor.theme: FlatbedCursors.Black.Regular
+
+And a line to your xorg startup file (like `~/.xinitrc`) to source it like this:
+
+    xrdb ~/.Xresources &amp;
+
+And then restart your X server.</description><pubDate>Sun, 09 Mar 2014 09:18:11 +0000</pubDate><guid>https://faq.i3wm.org/question/3499/how-to-use-kde-cursors-in-i3/?answer=3500#post-id-3500</guid></item><item><title>Comment by annoyed for &lt;p&gt;You can configure your Xcursor theme in a dotfile, usually &lt;code&gt;~/.Xresources&lt;/code&gt; (&lt;a href="https://wiki.archlinux.org/index.php/x_resources#Xcursor_resources"&gt;more info&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Then after you install the cursor theme with your package manager, add a line like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;! cursor
+Xcursor.theme: FlatbedCursors.Black.Regular
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And a line to your xorg startup file (like &lt;code&gt;~/.xinitrc&lt;/code&gt;) to source it like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrdb ~/.Xresources &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then restart your X server.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3499/how-to-use-kde-cursors-in-i3/?comment=3501#comment-3501</link><description>It's not quite working for me. I ran "echo 'Xcursor.theme: Oxygen\_White' | xrdb -" and my cursor stayed on the default. However, running "xrdb -query Xcursor.theme" now gives the output: "Xcursor.theme:  Oxygen\_White"
+I have the theme installed in "/usr/share/icons/Oxygen_White".</description><pubDate>Sun, 09 Mar 2014 17:40:50 +0000</pubDate><guid>https://faq.i3wm.org/question/3499/how-to-use-kde-cursors-in-i3/?comment=3501#comment-3501</guid></item></channel></rss>

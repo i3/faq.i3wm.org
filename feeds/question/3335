@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3335/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 05 Feb 2014 12:34:54 +0000</lastBuildDate><item><title>i3bar random JSON UTF-8 error w/ conky</title><link>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/</link><description>Hi,
+
+randomly (sometimes 5 Minutes, sometimes 5 hours after bootup), my i3bar, which gets its input from conky an runs on Arch, fails, returning the following in red:
+
+    Error: could not parse JSON (lexical error: invalid bytes in utf8 string.)
+
+To get it to work again, I simply have to restart i3.
+
+I tried googleing quite a while, but I didn't find anything helpful for this case… I don't have any special characters like a degree symbol in my conkyrc, my system's completely on UTF-8. The thing that is so creepy about it is the fact that this happens really randomly and I don't even know by what this is caused or how to reproduce it.
+
+For example, today, it happened for the first time 2 hours after bootup, then again 3 minutes after restarting and ever since then, it runs stable.
+
+I tried disabling every conky element I've got in my rc seperately, but none of them seems to be the cause, it's still happing…
+
+Anyone who has a guess where this might come from? Thank you!
+
+Edit: So here's a part of the strace output, don't know if this is the relevant section:
+
+    read(0, 0x9f8512, 62)                   = -1 EAGAIN (Resource temporarily unavailable)
+    write(2, "[i3bar] Could not parse JSON input (code = 2, message = lexical error: invalid bytes in UTF8 string.): [{\"full_text\":\"CPU:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0},{\"full_text\":\"1%,1.40GHz\",\"separator\":false,\"separator_block_width\":9},{\"full_text\":\"MEM:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0},{\"full_text\":\"6;0%,484MiB\",\"separator\":false,\"separator_block_width\":9},
+
+and so it goes on… Any ideas?</description><pubDate>Sun, 02 Feb 2014 10:24:22 +0000</pubDate><guid>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/</guid></item><item><title>Comment by idrei for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;randomly (sometimes 5 Minutes, sometimes 5 hours after bootup), my i3bar, which gets its input from conky an runs on Arch, fails, returning the following in red:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Error: could not parse JSON (lexical error: invalid bytes in utf8 string.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To get it to work again, I simply have to restart i3.&lt;/p&gt;
+
+&lt;p&gt;I tried googleing quite a while, but I didn't find anything helpful for this case… I don't have any special characters like a degree symbol in my conkyrc, my system's completely on UTF-8. The thing that is so creepy about it is the fact that this happens really randomly and I don't even know by what this is caused or how to reproduce it.&lt;/p&gt;
+
+&lt;p&gt;For example, today, it happened for the first time 2 hours after bootup, then again 3 minutes after restarting and ever since then, it runs stable.&lt;/p&gt;
+
+&lt;p&gt;I tried disabling every conky element I've got in my rc seperately, but none of them seems to be the cause, it's still happing…&lt;/p&gt;
+
+&lt;p&gt;Anyone who has a guess where this might come from? Thank you!&lt;/p&gt;
+
+&lt;p&gt;Edit: So here's a part of the strace output, don't know if this is the relevant section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;read(0, 0x9f8512, 62)                   = -1 EAGAIN (Resource temporarily unavailable)
+write(2, "[i3bar] Could not parse JSON input (code = 2, message = lexical error: invalid bytes in UTF8 string.): [{\"full_text\":\"CPU:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0},{\"full_text\":\"1%,1.40GHz\",\"separator\":false,\"separator_block_width\":9},{\"full_text\":\"MEM:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0},{\"full_text\":\"6;0%,484MiB\",\"separator\":false,\"separator_block_width\":9},
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and so it goes on… Any ideas?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3338#comment-3338</link><description>Ok thank you, I'm now waiting till it fails again, and then, you'll get the strace-output.</description><pubDate>Sun, 02 Feb 2014 10:42:50 +0000</pubDate><guid>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3338#comment-3338</guid></item><item><title>Comment by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;randomly (sometimes 5 Minutes, sometimes 5 hours after bootup), my i3bar, which gets its input from conky an runs on Arch, fails, returning the following in red:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Error: could not parse JSON (lexical error: invalid bytes in utf8 string.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To get it to work again, I simply have to restart i3.&lt;/p&gt;
+
+&lt;p&gt;I tried googleing quite a while, but I didn't find anything helpful for this case… I don't have any special characters like a degree symbol in my conkyrc, my system's completely on UTF-8. The thing that is so creepy about it is the fact that this happens really randomly and I don't even know by what this is caused or how to reproduce it.&lt;/p&gt;
+
+&lt;p&gt;For example, today, it happened for the first time 2 hours after bootup, then again 3 minutes after restarting and ever since then, it runs stable.&lt;/p&gt;
+
+&lt;p&gt;I tried disabling every conky element I've got in my rc seperately, but none of them seems to be the cause, it's still happing…&lt;/p&gt;
+
+&lt;p&gt;Anyone who has a guess where this might come from? Thank you!&lt;/p&gt;
+
+&lt;p&gt;Edit: So here's a part of the strace output, don't know if this is the relevant section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;read(0, 0x9f8512, 62)                   = -1 EAGAIN (Resource temporarily unavailable)
+write(2, "[i3bar] Could not parse JSON input (code = 2, message = lexical error: invalid bytes in UTF8 string.): [{\"full_text\":\"CPU:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0},{\"full_text\":\"1%,1.40GHz\",\"separator\":false,\"separator_block_width\":9},{\"full_text\":\"MEM:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0},{\"full_text\":\"6;0%,484MiB\",\"separator\":false,\"separator_block_width\":9},
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and so it goes on… Any ideas?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3336#comment-3336</link><description>strace i3bar to see what it’s choking on. I.e.: strace -f -p $(pidof i3bar) -s 2048</description><pubDate>Sun, 02 Feb 2014 10:27:03 +0000</pubDate><guid>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3336#comment-3336</guid></item><item><title>Comment by idrei for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;randomly (sometimes 5 Minutes, sometimes 5 hours after bootup), my i3bar, which gets its input from conky an runs on Arch, fails, returning the following in red:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Error: could not parse JSON (lexical error: invalid bytes in utf8 string.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To get it to work again, I simply have to restart i3.&lt;/p&gt;
+
+&lt;p&gt;I tried googleing quite a while, but I didn't find anything helpful for this case… I don't have any special characters like a degree symbol in my conkyrc, my system's completely on UTF-8. The thing that is so creepy about it is the fact that this happens really randomly and I don't even know by what this is caused or how to reproduce it.&lt;/p&gt;
+
+&lt;p&gt;For example, today, it happened for the first time 2 hours after bootup, then again 3 minutes after restarting and ever since then, it runs stable.&lt;/p&gt;
+
+&lt;p&gt;I tried disabling every conky element I've got in my rc seperately, but none of them seems to be the cause, it's still happing…&lt;/p&gt;
+
+&lt;p&gt;Anyone who has a guess where this might come from? Thank you!&lt;/p&gt;
+
+&lt;p&gt;Edit: So here's a part of the strace output, don't know if this is the relevant section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;read(0, 0x9f8512, 62)                   = -1 EAGAIN (Resource temporarily unavailable)
+write(2, "[i3bar] Could not parse JSON input (code = 2, message = lexical error: invalid bytes in UTF8 string.): [{\"full_text\":\"CPU:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0},{\"full_text\":\"1%,1.40GHz\",\"separator\":false,\"separator_block_width\":9},{\"full_text\":\"MEM:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0},{\"full_text\":\"6;0%,484MiB\",\"separator\":false,\"separator_block_width\":9},
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and so it goes on… Any ideas?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3339#comment-3339</link><description>Ehm… the output's kinda endless, is there something I should look for in detail? It's curious: this time, it took about half and an hour till this happend… Btw. I let conky refresh every second, don't know if this is relevant, perhaps it isn't, but what do I know.</description><pubDate>Sun, 02 Feb 2014 15:38:54 +0000</pubDate><guid>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3339#comment-3339</guid></item><item><title>Answer by idrei for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;randomly (sometimes 5 Minutes, sometimes 5 hours after bootup), my i3bar, which gets its input from conky an runs on Arch, fails, returning the following in red:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Error: could not parse JSON (lexical error: invalid bytes in utf8 string.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To get it to work again, I simply have to restart i3.&lt;/p&gt;
+
+&lt;p&gt;I tried googleing quite a while, but I didn't find anything helpful for this case… I don't have any special characters like a degree symbol in my conkyrc, my system's completely on UTF-8. The thing that is so creepy about it is the fact that this happens really randomly and I don't even know by what this is caused or how to reproduce it.&lt;/p&gt;
+
+&lt;p&gt;For example, today, it happened for the first time 2 hours after bootup, then again 3 minutes after restarting and ever since then, it runs stable.&lt;/p&gt;
+
+&lt;p&gt;I tried disabling every conky element I've got in my rc seperately, but none of them seems to be the cause, it's still happing…&lt;/p&gt;
+
+&lt;p&gt;Anyone who has a guess where this might come from? Thank you!&lt;/p&gt;
+
+&lt;p&gt;Edit: So here's a part of the strace output, don't know if this is the relevant section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;read(0, 0x9f8512, 62)                   = -1 EAGAIN (Resource temporarily unavailable)
+write(2, "[i3bar] Could not parse JSON input (code = 2, message = lexical error: invalid bytes in UTF8 string.): [{\"full_text\":\"CPU:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0},{\"full_text\":\"1%,1.40GHz\",\"separator\":false,\"separator_block_width\":9},{\"full_text\":\"MEM:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0},{\"full_text\":\"6;0%,484MiB\",\"separator\":false,\"separator_block_width\":9},
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and so it goes on… Any ideas?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?answer=3341#post-id-3341</link><description>Sorry I have to answer myself but there seems to be no other way… Anyway, I took two logs with strace, one good, one bad, and there the exactely same until it comes to this line:
+
+    read(0, 0x1102690, 896)                 = -1 EAGAIN (Resource temporarily unavailable)
+
+After that line, the good, where everthing's fine looks like the following:
+
+    poll([{fd=5, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=5, revents=POLLOUT}])
+    writev(5, 
+    [{"F\0\5\0\4\0\300\0\5\0\300\0\0\ […]
+
+… and the bad, where it fails, looks like:
+
+    write(2, "[i3bar] Could not parse JSON input (code = 2, message = lexical error: invalid bytes in UTF8 string.): [ 
+    {\"full_text\":\"CPU:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0}, […]
+
+When it finally comes to writev in the bad one, there are things like `!!!\377!!!\377F` which doesn't seem to be there in the good one…
+
+But I still cannot see why all this is happening. :(
+
+</description><pubDate>Sun, 02 Feb 2014 17:40:48 +0000</pubDate><guid>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?answer=3341#post-id-3341</guid></item><item><title>Comment by idrei for &lt;p&gt;Sorry I have to answer myself but there seems to be no other way… Anyway, I took two logs with strace, one good, one bad, and there the exactely same until it comes to this line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;read(0, 0x1102690, 896)                 = -1 EAGAIN (Resource temporarily unavailable)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After that line, the good, where everthing's fine looks like the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poll([{fd=5, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=5, revents=POLLOUT}])
+writev(5, 
+[{"F\0\5\0\4\0\300\0\5\0\300\0\0\ […]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;… and the bad, where it fails, looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;write(2, "[i3bar] Could not parse JSON input (code = 2, message = lexical error: invalid bytes in UTF8 string.): [ 
+{\"full_text\":\"CPU:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0}, […]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When it finally comes to writev in the bad one, there are things like &lt;code&gt;!!!\377!!!\377F&lt;/code&gt; which doesn't seem to be there in the good one…&lt;/p&gt;
+
+&lt;p&gt;But I still cannot see why all this is happening. :(&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3359#comment-3359</link><description>So? Does no answer mean I should better write a bugreport for this??</description><pubDate>Tue, 04 Feb 2014 08:54:12 +0000</pubDate><guid>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3359#comment-3359</guid></item><item><title>Comment by idrei for &lt;p&gt;Sorry I have to answer myself but there seems to be no other way… Anyway, I took two logs with strace, one good, one bad, and there the exactely same until it comes to this line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;read(0, 0x1102690, 896)                 = -1 EAGAIN (Resource temporarily unavailable)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After that line, the good, where everthing's fine looks like the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poll([{fd=5, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=5, revents=POLLOUT}])
+writev(5, 
+[{"F\0\5\0\4\0\300\0\5\0\300\0\0\ […]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;… and the bad, where it fails, looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;write(2, "[i3bar] Could not parse JSON input (code = 2, message = lexical error: invalid bytes in UTF8 string.): [ 
+{\"full_text\":\"CPU:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0}, […]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When it finally comes to writev in the bad one, there are things like &lt;code&gt;!!!\377!!!\377F&lt;/code&gt; which doesn't seem to be there in the good one…&lt;/p&gt;
+
+&lt;p&gt;But I still cannot see why all this is happening. :(&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3373#comment-3373</link><description>Done: bugs.i3wm.org/report/ticket/1175</description><pubDate>Wed, 05 Feb 2014 12:34:54 +0000</pubDate><guid>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3373#comment-3373</guid></item><item><title>Comment by TonyC for &lt;p&gt;Sorry I have to answer myself but there seems to be no other way… Anyway, I took two logs with strace, one good, one bad, and there the exactely same until it comes to this line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;read(0, 0x1102690, 896)                 = -1 EAGAIN (Resource temporarily unavailable)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After that line, the good, where everthing's fine looks like the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;poll([{fd=5, events=POLLIN|POLLOUT}], 1, 4294967295) = 1 ([{fd=5, revents=POLLOUT}])
+writev(5, 
+[{"F\0\5\0\4\0\300\0\5\0\300\0\0\ […]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;… and the bad, where it fails, looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;write(2, "[i3bar] Could not parse JSON input (code = 2, message = lexical error: invalid bytes in UTF8 string.): [ 
+{\"full_text\":\"CPU:\",\"color\":\"#606060\",\"separator\":false,\"separator_block_width\":0}, […]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When it finally comes to writev in the bad one, there are things like &lt;code&gt;!!!\377!!!\377F&lt;/code&gt; which doesn't seem to be there in the good one…&lt;/p&gt;
+
+&lt;p&gt;But I still cannot see why all this is happening. :(&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3370#comment-3370</link><description>It's possible this is a bug in the bar. Write a bug report and I'll look into it.</description><pubDate>Wed, 05 Feb 2014 00:29:18 +0000</pubDate><guid>https://faq.i3wm.org/question/3335/i3bar-random-json-utf-8-error-w-conky/?comment=3370#comment-3370</guid></item></channel></rss>

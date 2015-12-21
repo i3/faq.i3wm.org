@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5383/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 23 Jan 2015 11:38:05 +0000</lastBuildDate><item><title>i3 ignores mod4 (windows key) when in VNC session</title><link>https://faq.i3wm.org/question/5383/i3-ignores-mod4-windows-key-when-in-vnc-session/</link><description>I run i3 in my laptop and a server. I use mod4(the windows/super key) as my modifier in both of them. When connecting from my laptop via VNC I can't use mod4as i3's modifier (it's just like not pressing it). 
+</description><pubDate>Fri, 23 Jan 2015 11:15:23 +0000</pubDate><guid>https://faq.i3wm.org/question/5383/i3-ignores-mod4-windows-key-when-in-vnc-session/</guid></item><item><title>Answer by ndemou for &lt;p&gt;I run i3 in my laptop and a server. I use mod4(the windows/super key) as my modifier in both of them. When connecting from my laptop via VNC I can't use mod4as i3's modifier (it's just like not pressing it). &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5383/i3-ignores-mod4-windows-key-when-in-vnc-session/?answer=5384#post-id-5384</link><description>First make sure that your local session is not capturing away the shortcuts from your remote session. I like using this trick: faq.i3wm.org/question/1679/toggle-i3s-listening-behavior/ on my local session but you can also use whatever method your vnc client provides (e.g. Remmina has a keyboard icon that when pressed will send all all keys directly to your remote session)
+
+Then at the remote server make sure that xev reports key events when pressing and releasing the windows key. Run `xev` from a terminal, make sure your mouse pointer rests on xev's window and hit the windows/super key. You should see something like this:
+
+    KeyPress event, serial 27, synthetic
+    NO, window 0x2000001,
+        root 0x25, subw 0x0, time 378034015, (-1,97), root:(515,117),
+        state 0x0, keycode 89 (keysym 0xffeb, Super_L), same_screen YES,
+        XLookupString gives 0 bytes: 
+        XmbLookupString gives 0 bytes: 
+        XFilterEvent returns: False
+
+Take note of the description of the key next to its keysym: `Super_L` in this case.
+
+Next run `xmodmap -pm` and look at the line starting with mod4. Next to mod4 it will print what ever key is bind to mod4. If everything is OK you should see this line among the output:
+
+    mod4        Super_L (0x59) 
+
+But since you're reading these lines it probably displays nothing next to mod4 or it displays some other key (e.g. Meta_L). To fix it run these two commands:
+
+    xmodmap -e "clear mod4"  # un-bind mod4 from what ever other key
+    xmodmap -e "add Mod4 = Super_L" # &lt;--- again replace Super_L with whatever xev gave you
+</description><pubDate>Fri, 23 Jan 2015 11:38:05 +0000</pubDate><guid>https://faq.i3wm.org/question/5383/i3-ignores-mod4-windows-key-when-in-vnc-session/?answer=5384#post-id-5384</guid></item></channel></rss>

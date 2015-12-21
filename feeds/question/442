@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/442/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 12 Sep 2012 08:27:18 +0000</lastBuildDate><item><title>wireless not showing correct information on i3status</title><link>https://faq.i3wm.org/question/442/wireless-not-showing-correct-information-on-i3status/</link><description>For some reason my wireless always shows up as "down" in i3bar. Here's my $HOME/i3status.conf:
+
+    order += "ipv6"
+    order += "disk /home"
+    order += "run_watch DHCP"
+    order += "run_watch VPN"
+    order += "wireless wlan0"
+    order += "ethernet em1"
+    order += "volume master"
+    order += "battery 0"
+    order += "load"
+    order += "time"
+    
+    wireless wlan0 {
+            format_up = "W: (%quality at %essid) %ip"
+            format_down = "W: down"
+    }
+
+and ifconfig:
+
+    wlan0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+
+Anything else I could try?
+</description><pubDate>Sat, 08 Sep 2012 03:08:04 +0000</pubDate><guid>https://faq.i3wm.org/question/442/wireless-not-showing-correct-information-on-i3status/</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;For some reason my wireless always shows up as "down" in i3bar. Here's my $HOME/i3status.conf:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;order += "ipv6"
+order += "disk /home"
+order += "run_watch DHCP"
+order += "run_watch VPN"
+order += "wireless wlan0"
+order += "ethernet em1"
+order += "volume master"
+order += "battery 0"
+order += "load"
+order += "time"
+
+wireless wlan0 {
+        format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and ifconfig:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wlan0: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1500
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Anything else I could try?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/442/wireless-not-showing-correct-information-on-i3status/?answer=481#post-id-481</link><description>Do you need root to access ifconfig stuff? (debian for example). If so, you will need to run it with root privileges.</description><pubDate>Tue, 11 Sep 2012 22:22:42 +0000</pubDate><guid>https://faq.i3wm.org/question/442/wireless-not-showing-correct-information-on-i3status/?answer=481#post-id-481</guid></item><item><title>Answer by bapt for &lt;p&gt;For some reason my wireless always shows up as "down" in i3bar. Here's my $HOME/i3status.conf:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;order += "ipv6"
+order += "disk /home"
+order += "run_watch DHCP"
+order += "run_watch VPN"
+order += "wireless wlan0"
+order += "ethernet em1"
+order += "volume master"
+order += "battery 0"
+order += "load"
+order += "time"
+
+wireless wlan0 {
+        format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and ifconfig:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wlan0: flags=4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1500
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Anything else I could try?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/442/wireless-not-showing-correct-information-on-i3status/?answer=443#post-id-443</link><description>Can you give the whole ifconfig wlan0 output ?</description><pubDate>Sat, 08 Sep 2012 10:07:00 +0000</pubDate><guid>https://faq.i3wm.org/question/442/wireless-not-showing-correct-information-on-i3status/?answer=443#post-id-443</guid></item><item><title>Comment by lzap for &lt;p&gt;Can you give the whole ifconfig wlan0 output ?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/442/wireless-not-showing-correct-information-on-i3status/?comment=483#comment-483</link><description>Hey Og, it works for me. I keep it turned off and when I turn it on, it appears in the i3bar. Can you try to turn it off and on?</description><pubDate>Wed, 12 Sep 2012 08:27:18 +0000</pubDate><guid>https://faq.i3wm.org/question/442/wireless-not-showing-correct-information-on-i3status/?comment=483#comment-483</guid></item><item><title>Comment by omaciel for &lt;p&gt;Can you give the whole ifconfig wlan0 output ?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/442/wireless-not-showing-correct-information-on-i3status/?comment=444#comment-444</link><description>$ ifconfig wlan0
+wlan0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 192.168.1.15  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::a288:b4ff:fec1:7700  prefixlen 64  scopeid 0x20&lt;link&gt;
+        ether ******  txqueuelen 1000  (Ethernet)
+        RX pac</description><pubDate>Sat, 08 Sep 2012 15:27:07 +0000</pubDate><guid>https://faq.i3wm.org/question/442/wireless-not-showing-correct-information-on-i3status/?comment=444#comment-444</guid></item></channel></rss>

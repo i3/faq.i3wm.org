@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3724/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 24 Apr 2014 19:57:35 +0000</lastBuildDate><item><title>How to make a window/container smaller then the workspace size?</title><link>https://faq.i3wm.org/question/3724/how-to-make-a-windowcontainer-smaller-then-the-workspace-size/</link><description>I've got a large monitor, and when I have just one open terminal window, I don't want it to occupy the whole monitor, I want it to take say only half of it. How can I do that? The best workaround so far I found is to open two terminal windows, one of which is used only as a space holder.</description><pubDate>Thu, 24 Apr 2014 12:35:43 +0000</pubDate><guid>https://faq.i3wm.org/question/3724/how-to-make-a-windowcontainer-smaller-then-the-workspace-size/</guid></item><item><title>Answer by KJ44 for &lt;p&gt;I've got a large monitor, and when I have just one open terminal window, I don't want it to occupy the whole monitor, I want it to take say only half of it. How can I do that? The best workaround so far I found is to open two terminal windows, one of which is used only as a space holder.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3724/how-to-make-a-windowcontainer-smaller-then-the-workspace-size/?answer=3728#post-id-3728</link><description>Make a (tabbed) terminal floating and use the scratchpad so you can bring it up over any workspace as needed.
+
+    # Scratchpad terminal.
+    # Using a custom title string with criteria is deliberate and keeps things simple. 
+    exec --no-startup-id terminator -l KJ -T "Life is beautiful."
+    for_window [instance="terminator" title="Life"] floating enable, move scratchpad, scratchpad show;
+    for_window [instance="terminator" title="Life"] resize grow left 300, resize grow right 300, resize grow down 150, resize grow up 100, move scratchpad;
+    bindsym Menu  [instance="terminator" title="Life"] scratchpad show
+    bindsym Print [instance="terminator" title="Life"] scratchpad show
+
+</description><pubDate>Thu, 24 Apr 2014 19:52:44 +0000</pubDate><guid>https://faq.i3wm.org/question/3724/how-to-make-a-windowcontainer-smaller-then-the-workspace-size/?answer=3728#post-id-3728</guid></item><item><title>Comment by KJ44 for &lt;p&gt;Make a (tabbed) terminal floating and use the scratchpad so you can bring it up over any workspace as needed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Scratchpad terminal.
+# Using a custom title string with criteria is deliberate and keeps things simple. 
+exec --no-startup-id terminator -l KJ -T "Life is beautiful."
+for_window [instance="terminator" title="Life"] floating enable, move scratchpad, scratchpad show;
+for_window [instance="terminator" title="Life"] resize grow left 300, resize grow right 300, resize grow down 150, resize grow up 100, move scratchpad;
+bindsym Menu  [instance="terminator" title="Life"] scratchpad show
+bindsym Print [instance="terminator" title="Life"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3724/how-to-make-a-windowcontainer-smaller-then-the-workspace-size/?comment=3729#comment-3729</link><description>I bind to both Menu and Print because Menu on a desktop keyboard and Print on my Thinkpad are in similar positions, hence I don't disturb my "muscle memory".</description><pubDate>Thu, 24 Apr 2014 19:57:35 +0000</pubDate><guid>https://faq.i3wm.org/question/3724/how-to-make-a-windowcontainer-smaller-then-the-workspace-size/?comment=3729#comment-3729</guid></item><item><title>Answer by badboy_ for &lt;p&gt;I've got a large monitor, and when I have just one open terminal window, I don't want it to occupy the whole monitor, I want it to take say only half of it. How can I do that? The best workaround so far I found is to open two terminal windows, one of which is used only as a space holder.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3724/how-to-make-a-windowcontainer-smaller-then-the-workspace-size/?answer=3725#post-id-3725</link><description>In i3 that would be the way to go. Another would be to use a floating window (I don't really recommend it). i3 is specifically designed to always use the whole screen.</description><pubDate>Thu, 24 Apr 2014 12:36:53 +0000</pubDate><guid>https://faq.i3wm.org/question/3724/how-to-make-a-windowcontainer-smaller-then-the-workspace-size/?answer=3725#post-id-3725</guid></item></channel></rss>

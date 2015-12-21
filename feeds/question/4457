@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4457/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 13 Aug 2014 15:29:26 +0000</lastBuildDate><item><title>ssh permission denied in i3</title><link>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/</link><description>sshd and ssh-agent are running.
+
+ssh works fine when running from regular desktop (Linux Mint 17 Cinnamon) and public/private keys are in `~/.ssh`, but when trying to connect under i3, I get `Permission denied (publickey,keyboard-interactive).`</description><pubDate>Tue, 12 Aug 2014 21:49:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/</guid></item><item><title>Comment by cee for &lt;p&gt;sshd and ssh-agent are running.&lt;/p&gt;
+
+&lt;p&gt;ssh works fine when running from regular desktop (Linux Mint 17 Cinnamon) and public/private keys are in &lt;code&gt;~/.ssh&lt;/code&gt;, but when trying to connect under i3, I get &lt;code&gt;Permission denied (publickey,keyboard-interactive).&lt;/code&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/?comment=4464#comment-4464</link><description>This probably has nothing to do with i3 anyway.</description><pubDate>Wed, 13 Aug 2014 06:27:49 +0000</pubDate><guid>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/?comment=4464#comment-4464</guid></item><item><title>Answer by cee for &lt;p&gt;sshd and ssh-agent are running.&lt;/p&gt;
+
+&lt;p&gt;ssh works fine when running from regular desktop (Linux Mint 17 Cinnamon) and public/private keys are in &lt;code&gt;~/.ssh&lt;/code&gt;, but when trying to connect under i3, I get &lt;code&gt;Permission denied (publickey,keyboard-interactive).&lt;/code&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/?answer=4463#post-id-4463</link><description>What permissions do you have in ~/.ssh?
+It should be:
+
+&gt; drwx------ (700) for ~/.ssh
+&gt; 
+&gt; -rw------- (600) for private keys
+&gt; 
+&gt; -rw-r--r-- (644) for public keys
+
+What exactly are you trying? Connecting from i3 to another Device, or vice-versa?
+</description><pubDate>Wed, 13 Aug 2014 06:26:16 +0000</pubDate><guid>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/?answer=4463#post-id-4463</guid></item><item><title>Comment by jatcheson for &lt;p&gt;What permissions do you have in ~/.ssh?
+It should be:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;drwx------ (700) for ~/.ssh&lt;/p&gt;
+  
+  &lt;p&gt;-rw------- (600) for private keys&lt;/p&gt;
+  
+  &lt;p&gt;-rw-r--r-- (644) for public keys&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;What exactly are you trying? Connecting from i3 to another Device, or vice-versa?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/?comment=4468#comment-4468</link><description>Okay, I found the solution. I had given my keys specific names (such as `mycomputer-key` and `mycomputer-key.pub`) instead of default `id_rsa` and `id_rsa.pub`. Renaming just the private key to `id_rsa` I am now permitted to connect.</description><pubDate>Wed, 13 Aug 2014 08:05:00 +0000</pubDate><guid>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/?comment=4468#comment-4468</guid></item><item><title>Comment by jatcheson for &lt;p&gt;What permissions do you have in ~/.ssh?
+It should be:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;drwx------ (700) for ~/.ssh&lt;/p&gt;
+  
+  &lt;p&gt;-rw------- (600) for private keys&lt;/p&gt;
+  
+  &lt;p&gt;-rw-r--r-- (644) for public keys&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;What exactly are you trying? Connecting from i3 to another Device, or vice-versa?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/?comment=4467#comment-4467</link><description>The permissions match what I have.
+
+I am trying to connect from i3 to another Device (`gnome-keyring-d` also appears to be running).</description><pubDate>Wed, 13 Aug 2014 07:57:28 +0000</pubDate><guid>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/?comment=4467#comment-4467</guid></item><item><title>Comment by Adaephon for &lt;p&gt;What permissions do you have in ~/.ssh?
+It should be:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;drwx------ (700) for ~/.ssh&lt;/p&gt;
+  
+  &lt;p&gt;-rw------- (600) for private keys&lt;/p&gt;
+  
+  &lt;p&gt;-rw-r--r-- (644) for public keys&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;What exactly are you trying? Connecting from i3 to another Device, or vice-versa?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/?comment=4471#comment-4471</link><description>In case of keys with non-standard names you can use `ssh-add` to make them known to the `ssh-agent`: `ssh-add mycomputer-key`. In fact, I use this line to add all of my keys: `for k in ~/.ssh/*.pub; do ssh-add "${k%.pub}"; done`. </description><pubDate>Wed, 13 Aug 2014 15:29:26 +0000</pubDate><guid>https://faq.i3wm.org/question/4457/ssh-permission-denied-in-i3/?comment=4471#comment-4471</guid></item></channel></rss>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/507/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 19 Sep 2012 14:25:22 +0000</lastBuildDate><item><title>unforseen result of sequential execution</title><link>https://faq.i3wm.org/question/507/unforseen-result-of-sequential-execution/</link><description>Hi all,
+
+i use
+
+    i3 version 4.2 (2012-04-25, branch "release-4.2")
+
+and i am very happy with it. Many thanks to the developers for this great software and that they make it freely available. Now to my question.
+
+To define a workspace on startup i followed fhaun's [auto-start-for-i3](https://github.com/fhaun/config-misc/blob/master/i3-stuff/auto-start-for-i3) script. Unfortunately it doesn't work for me as expected. After some debugging efforts i figured out what cause the strange behavior. 
+
+With the following bash script i want to illustrate this:
+
+**test_startup.sh**:
+
+    #!/bin/bash
+    i3-msg workspace "[t]ools"
+    for i in {1..4} ; do
+        galculator --class "galculator-${i}" &amp;
+    done
+
+If i execute this script from a running `i3` session via `rxvt` `i3` switches to workspace `[t]ools` and four instances of `galculator` are opened on this workspace subsequently. Just as expected. Whereas `galculator` stands for an arbitrary x-client.
+
+If at the contrary i execute this script via the built in `exec` command for example by invoking `i3-input`:
+
+    exec test_startup.sh
+
+the first instance of `galculator` is opened on the workspace from that i invoked `i3-input` and after that `i3` switches to workspace `[t]ools` and the remaining instances of `galculator` are opened. So only three instances of `galculator` are on `[t]ools`. This means that the above line added to `~/.i3/config` yields the same result.
+
+Is it a bug, that the two approaches to execute `test_startup.sh` yields different results? Or is there anything wrong in my reasoning and i haven't considered a important point yet?
+
+Thanks for your time and with best regards
+
+-----------------
+
+## Appendix 1 (19.09.2012) ##
+
+
+I managed to install the latest version of the `next` branch but the results are still unsatisfactory.
+
+The instructions with which i want to define a workspace on startup looks like this (i placed the code in the shell script `test_startup.sh` and test it via `i3-input` with `exec test_startup.sh`):
+
+    i3-msg workspace "test"
+    i3-msg exec thunar
+    i3-msg split v
+    i3-msg exec galculator
+    i3-msg exec urxvt
+
+Unfortunately `split v` seems to be a global setting for the workspace `test` and all windows are arranged vertically no matter where i place this command, even if this command is appended to the last line.
+
+Furthermore if i mix `i3-msg split v` and `i3-msg split h` instructions only the last one is crucial for the arrangement of the windows.
+
+Is there a way to achieve the desired behavior i.e. have an arbitrary arrangement of windows on a specific workspace during startup?</description><pubDate>Mon, 17 Sep 2012 12:31:20 +0000</pubDate><guid>https://faq.i3wm.org/question/507/unforseen-result-of-sequential-execution/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi all,&lt;/p&gt;
+
+&lt;p&gt;i use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3 version 4.2 (2012-04-25, branch "release-4.2")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and i am very happy with it. Many thanks to the developers for this great software and that they make it freely available. Now to my question.&lt;/p&gt;
+
+&lt;p&gt;To define a workspace on startup i followed fhaun's &lt;a href="https://github.com/fhaun/config-misc/blob/master/i3-stuff/auto-start-for-i3"&gt;auto-start-for-i3&lt;/a&gt; script. Unfortunately it doesn't work for me as expected. After some debugging efforts i figured out what cause the strange behavior. &lt;/p&gt;
+
+&lt;p&gt;With the following bash script i want to illustrate this:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;test_startup.sh&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+i3-msg workspace "[t]ools"
+for i in {1..4} ; do
+    galculator --class "galculator-${i}" &amp;amp;
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If i execute this script from a running &lt;code&gt;i3&lt;/code&gt; session via &lt;code&gt;rxvt&lt;/code&gt; &lt;code&gt;i3&lt;/code&gt; switches to workspace &lt;code&gt;[t]ools&lt;/code&gt; and four instances of &lt;code&gt;galculator&lt;/code&gt; are opened on this workspace subsequently. Just as expected. Whereas &lt;code&gt;galculator&lt;/code&gt; stands for an arbitrary x-client.&lt;/p&gt;
+
+&lt;p&gt;If at the contrary i execute this script via the built in &lt;code&gt;exec&lt;/code&gt; command for example by invoking &lt;code&gt;i3-input&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec test_startup.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the first instance of &lt;code&gt;galculator&lt;/code&gt; is opened on the workspace from that i invoked &lt;code&gt;i3-input&lt;/code&gt; and after that &lt;code&gt;i3&lt;/code&gt; switches to workspace &lt;code&gt;[t]ools&lt;/code&gt; and the remaining instances of &lt;code&gt;galculator&lt;/code&gt; are opened. So only three instances of &lt;code&gt;galculator&lt;/code&gt; are on &lt;code&gt;[t]ools&lt;/code&gt;. This means that the above line added to &lt;code&gt;~/.i3/config&lt;/code&gt; yields the same result.&lt;/p&gt;
+
+&lt;p&gt;Is it a bug, that the two approaches to execute &lt;code&gt;test_startup.sh&lt;/code&gt; yields different results? Or is there anything wrong in my reasoning and i haven't considered a important point yet?&lt;/p&gt;
+
+&lt;p&gt;Thanks for your time and with best regards&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;h2&gt;Appendix 1 (19.09.2012)&lt;/h2&gt;
+
+&lt;p&gt;I managed to install the latest version of the &lt;code&gt;next&lt;/code&gt; branch but the results are still unsatisfactory.&lt;/p&gt;
+
+&lt;p&gt;The instructions with which i want to define a workspace on startup looks like this (i placed the code in the shell script &lt;code&gt;test_startup.sh&lt;/code&gt; and test it via &lt;code&gt;i3-input&lt;/code&gt; with &lt;code&gt;exec test_startup.sh&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg workspace "test"
+i3-msg exec thunar
+i3-msg split v
+i3-msg exec galculator
+i3-msg exec urxvt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unfortunately &lt;code&gt;split v&lt;/code&gt; seems to be a global setting for the workspace &lt;code&gt;test&lt;/code&gt; and all windows are arranged vertically no matter where i place this command, even if this command is appended to the last line.&lt;/p&gt;
+
+&lt;p&gt;Furthermore if i mix &lt;code&gt;i3-msg split v&lt;/code&gt; and &lt;code&gt;i3-msg split h&lt;/code&gt; instructions only the last one is crucial for the arrangement of the windows.&lt;/p&gt;
+
+&lt;p&gt;Is there a way to achieve the desired behavior i.e. have an arbitrary arrangement of windows on a specific workspace during startup?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/507/unforseen-result-of-sequential-execution/?answer=510#post-id-510</link><description>When using i3’s exec command, startup-notifications are used. They are the only way with which you can ensure that applications are placed on that workspace on which they are started (unless you use assignments/`for_window`, but that’s a permanent configuration).
+
+Therefore, here is how you would ensure that (a startup-notification-respecting) application is launched on workspace 3:
+
+    i3-msg workspace 3
+    i3-msg exec firefox
+
+Note that you should upgrade to the latest git version of the "next" branch which contains a fix that might be relevant for this to work with some applications (http://c.i3wm.org/32d4dbf)</description><pubDate>Mon, 17 Sep 2012 15:05:34 +0000</pubDate><guid>https://faq.i3wm.org/question/507/unforseen-result-of-sequential-execution/?answer=510#post-id-510</guid></item><item><title>Comment by nichtleiter for &lt;p&gt;When using i3’s exec command, startup-notifications are used. They are the only way with which you can ensure that applications are placed on that workspace on which they are started (unless you use assignments/&lt;code&gt;for_window&lt;/code&gt;, but that’s a permanent configuration).&lt;/p&gt;
+
+&lt;p&gt;Therefore, here is how you would ensure that (a startup-notification-respecting) application is launched on workspace 3:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg workspace 3
+i3-msg exec firefox
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you should upgrade to the latest git version of the "next" branch which contains a fix that might be relevant for this to work with some applications (&lt;a href="http://c.i3wm.org/32d4dbf"&gt;http://c.i3wm.org/32d4dbf&lt;/a&gt;)&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/507/unforseen-result-of-sequential-execution/?comment=527#comment-527</link><description>Unfortunately the results are still unsatisfactory. I appended a more detailed explanation to my original post.</description><pubDate>Wed, 19 Sep 2012 14:25:22 +0000</pubDate><guid>https://faq.i3wm.org/question/507/unforseen-result-of-sequential-execution/?comment=527#comment-527</guid></item></channel></rss>

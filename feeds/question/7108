@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7108/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 31 Oct 2015 08:44:57 +0000</lastBuildDate><item><title>i3bar and conky =&gt; using ifs from conky in JSON?</title><link>https://faq.i3wm.org/question/7108/i3bar-and-conky-using-ifs-from-conky-in-json/</link><description> Hello,
+
+I want to make a wlan notification using conky. The code below results in 
+
+&lt;code&gt;"Error: Could not parse JSON (parse error: invalid object key (must be a string))" &lt;/code&gt;
+
+ According to http://i3wm.org/docs/i3bar-protocol.html the syntax and that should work, so i assume the error is caused by the ifs from conky. 
+
+I want one single block, with the strings "WLAN" (in e.g. gray) and "1" if the wlan interface is up and "0" when its down. (in red, respecively green)
+
+How could i make this work? 
+
+**EDIT:** I use instead of this approach now a seperate block for both strings, but with  &lt;code&gt;"separator": false&lt;/code&gt;
+
+
+My conkyrc:
+
+	out_to_x no
+	own_window no
+	out_to_console yes
+	background no
+	max_text_width 0
+	total_run_times 0
+	if_up_strictness address
+	use_spacer left
+	override_utf8_locale no
+	cpu_avg_samples 2
+	TEXT
+	[
+		{ # &lt;-- caused error
+			{
+				"full_text": "WLAN: ",
+				"color": "\#432355"
+			},
+
+			{
+				"full_text":
+				${if_up wlan0}
+					"1 ",
+				${else}
+					"0 ",
+				${endif}
+
+				"color":
+				${if_up wlan0}
+					"\#009900"
+				${else}
+					"\#990000"
+				${endif}
+			}
+		}, # &lt;--- caused error
+	],
+</description><pubDate>Fri, 30 Oct 2015 15:51:43 +0000</pubDate><guid>https://faq.i3wm.org/question/7108/i3bar-and-conky-using-ifs-from-conky-in-json/</guid></item><item><title>Comment by toogley for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I want to make a wlan notification using conky. The code below results in &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;"Error: Could not parse JSON (parse error: invalid object key (must be a string))" &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;According to &lt;a href="http://i3wm.org/docs/i3bar-protocol.html"&gt;http://i3wm.org/docs/i3bar-protocol.html&lt;/a&gt; the syntax and that should work, so i assume the error is caused by the ifs from conky. &lt;/p&gt;
+
+&lt;p&gt;I want one single block, with the strings "WLAN" (in e.g. gray) and "1" if the wlan interface is up and "0" when its down. (in red, respecively green)&lt;/p&gt;
+
+&lt;p&gt;How could i make this work? &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT:&lt;/strong&gt; I use instead of this approach now a seperate block for both strings, but with  &lt;code&gt;"separator": false&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;My conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+total_run_times 0
+if_up_strictness address
+use_spacer left
+override_utf8_locale no
+cpu_avg_samples 2
+TEXT
+[
+    { # &amp;lt;-- caused error
+        {
+            "full_text": "WLAN: ",
+            "color": "\#432355"
+        },
+
+        {
+            "full_text":
+            ${if_up wlan0}
+                "1 ",
+            ${else}
+                "0 ",
+            ${endif}
+
+            "color":
+            ${if_up wlan0}
+                "\#009900"
+            ${else}
+                "\#990000"
+            ${endif}
+        }
+    }, # &amp;lt;--- caused error
+],
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7108/i3bar-and-conky-using-ifs-from-conky-in-json/?comment=7117#comment-7117</link><description>Ah, thanks. It didn't liked the the big { } i've marked</description><pubDate>Sat, 31 Oct 2015 08:44:57 +0000</pubDate><guid>https://faq.i3wm.org/question/7108/i3bar-and-conky-using-ifs-from-conky-in-json/?comment=7117#comment-7117</guid></item><item><title>Comment by i3convert for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I want to make a wlan notification using conky. The code below results in &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;"Error: Could not parse JSON (parse error: invalid object key (must be a string))" &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;According to &lt;a href="http://i3wm.org/docs/i3bar-protocol.html"&gt;http://i3wm.org/docs/i3bar-protocol.html&lt;/a&gt; the syntax and that should work, so i assume the error is caused by the ifs from conky. &lt;/p&gt;
+
+&lt;p&gt;I want one single block, with the strings "WLAN" (in e.g. gray) and "1" if the wlan interface is up and "0" when its down. (in red, respecively green)&lt;/p&gt;
+
+&lt;p&gt;How could i make this work? &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT:&lt;/strong&gt; I use instead of this approach now a seperate block for both strings, but with  &lt;code&gt;"separator": false&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;My conkyrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+total_run_times 0
+if_up_strictness address
+use_spacer left
+override_utf8_locale no
+cpu_avg_samples 2
+TEXT
+[
+    { # &amp;lt;-- caused error
+        {
+            "full_text": "WLAN: ",
+            "color": "\#432355"
+        },
+
+        {
+            "full_text":
+            ${if_up wlan0}
+                "1 ",
+            ${else}
+                "0 ",
+            ${endif}
+
+            "color":
+            ${if_up wlan0}
+                "\#009900"
+            ${else}
+                "\#990000"
+            ${endif}
+        }
+    }, # &amp;lt;--- caused error
+],
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/7108/i3bar-and-conky-using-ifs-from-conky-in-json/?comment=7109#comment-7109</link><description>Run only conky and see if its output is a correct JSON.</description><pubDate>Fri, 30 Oct 2015 16:21:58 +0000</pubDate><guid>https://faq.i3wm.org/question/7108/i3bar-and-conky-using-ifs-from-conky-in-json/?comment=7109#comment-7109</guid></item></channel></rss>

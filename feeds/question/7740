@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7740/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 17 Dec 2015 17:17:49 +0000</lastBuildDate><item><title>Friendly names to workspaces don't work with "move container"</title><link>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/</link><description>Note: there is a relevant question ("1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts") whose link I cannot post since I don't have enough karma. However, that question seems to address only the part about directly switching to a workspace, not moving a container to a workspace.
+
+I frequently rename my workspaces in an ad-hoc manner to easily see the names of the programs running in each workspace (and know where to switch). E.g. I have names like: "1: web, 2: code, 3: dbvis, 4: email" etc. These friendly names are prefixed with a number so that bindings like the following: 
+
+    # switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+
+... do in fact work. What doesn't work however is bindings for the `move container to workspace` commands. E.g. the following don't work:
+
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+
+Instead, when I press `$mod+Shift+1` a new workspace named "1" is created (alongside the already existing workspace 
+"1: web") and the window is moved there.
+</description><pubDate>Thu, 17 Dec 2015 13:08:22 +0000</pubDate><guid>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/</guid></item><item><title>Answer by Airblader for &lt;p&gt;Note: there is a relevant question ("1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts") whose link I cannot post since I don't have enough karma. However, that question seems to address only the part about directly switching to a workspace, not moving a container to a workspace.&lt;/p&gt;
+
+&lt;p&gt;I frequently rename my workspaces in an ad-hoc manner to easily see the names of the programs running in each workspace (and know where to switch). E.g. I have names like: "1: web, 2: code, 3: dbvis, 4: email" etc. These friendly names are prefixed with a number so that bindings like the following: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;... do in fact work. What doesn't work however is bindings for the &lt;code&gt;move container to workspace&lt;/code&gt; commands. E.g. the following don't work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Instead, when I press &lt;code&gt;$mod+Shift+1&lt;/code&gt; a new workspace named "1" is created (alongside the already existing workspace 
+"1: web") and the window is moved there.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/?answer=7742#post-id-7742</link><description>Why would the syntax for moving be different from switching? Just use 
+
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3</description><pubDate>Thu, 17 Dec 2015 14:19:27 +0000</pubDate><guid>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/?answer=7742#post-id-7742</guid></item><item><title>Answer by basletic for &lt;p&gt;Note: there is a relevant question ("1657/add-friendly-name-to-workspace-but-keep-numbers-for-shortcuts") whose link I cannot post since I don't have enough karma. However, that question seems to address only the part about directly switching to a workspace, not moving a container to a workspace.&lt;/p&gt;
+
+&lt;p&gt;I frequently rename my workspaces in an ad-hoc manner to easily see the names of the programs running in each workspace (and know where to switch). E.g. I have names like: "1: web, 2: code, 3: dbvis, 4: email" etc. These friendly names are prefixed with a number so that bindings like the following: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;... do in fact work. What doesn't work however is bindings for the &lt;code&gt;move container to workspace&lt;/code&gt; commands. E.g. the following don't work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Instead, when I press &lt;code&gt;$mod+Shift+1&lt;/code&gt; a new workspace named "1" is created (alongside the already existing workspace 
+"1: web") and the window is moved there.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/?answer=7744#post-id-7744</link><description>This works as expected:
+
+    # switch to workspace
+    bindsym $mod+1 workspace number 1: web
+    bindsym $mod+2 workspace number 2: code
+
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1: web
+    bindsym $mod+Shift+2 move container to workspace 2: code; workspace 2: code
+
+Note that `$mod+Shift+2` will both move container to workspace 2 and go to workspace 2.</description><pubDate>Thu, 17 Dec 2015 14:42:30 +0000</pubDate><guid>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/?answer=7744#post-id-7744</guid></item><item><title>Comment by basletic for &lt;p&gt;This works as expected:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+1 workspace number 1: web
+bindsym $mod+2 workspace number 2: code
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1: web
+bindsym $mod+Shift+2 move container to workspace 2: code; workspace 2: code
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that &lt;code&gt;$mod+Shift+2&lt;/code&gt; will both move container to workspace 2 and go to workspace 2.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/?comment=7746#comment-7746</link><description>@Airblader Indeed, it might not work in dynamical 'scenario'.</description><pubDate>Thu, 17 Dec 2015 17:17:49 +0000</pubDate><guid>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/?comment=7746#comment-7746</guid></item><item><title>Comment by Airblader for &lt;p&gt;This works as expected:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# switch to workspace
+bindsym $mod+1 workspace number 1: web
+bindsym $mod+2 workspace number 2: code
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1: web
+bindsym $mod+Shift+2 move container to workspace 2: code; workspace 2: code
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that &lt;code&gt;$mod+Shift+2&lt;/code&gt; will both move container to workspace 2 and go to workspace 2.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/?comment=7745#comment-7745</link><description>This won't work with dynamically renamed workspaces, though.</description><pubDate>Thu, 17 Dec 2015 16:21:16 +0000</pubDate><guid>https://faq.i3wm.org/question/7740/friendly-names-to-workspaces-dont-work-with-move-container/?comment=7745#comment-7745</guid></item></channel></rss>

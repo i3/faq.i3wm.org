@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1537/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 26 Dec 2013 12:38:05 +0000</lastBuildDate><item><title>show title of focused window in status bar</title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/</link><description>Is possible to get the title of the focused window displayed with `i3status`?
+
+**Update:**
+
+With a script like the one highlighted by @mschaefer and the hint in faq.i3wm.org/question/854/how-to-force-status-bar-update/ I've been able to get the title of the focused window in the statusbar.
+
+The bar is updated when focus is changed having the refresh ratio to 5 secs in `~/.i3status`.
+
+I like to have tiled windows without titlebar and I think this behaiour is cool in such configurations (like `dwm` does for instance)
+
+If someone is interested, here are the relevant bits that I have in my `~/.i3/config`:
+
+    bindsym $mod+h focus left; exec killall -USR1 i3status
+    bindsym $mod+j focus down; exec killall -USR1 i3status
+    bindsym $mod+k focus up; exec killall -USR1 i3status
+    bindsym $mod+l focus right; exec killall -USR1 i3status</description><pubDate>Thu, 04 Apr 2013 01:12:01 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/</guid></item><item><title>Answer by mschaefer for &lt;p&gt;Is possible to get the title of the focused window displayed with &lt;code&gt;i3status&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With a script like the one highlighted by &lt;a href="/users/395/mschaefer/"&gt;@mschaefer&lt;/a&gt; and the hint in faq.i3wm.org/question/854/how-to-force-status-bar-update/ I've been able to get the title of the focused window in the statusbar.&lt;/p&gt;
+
+&lt;p&gt;The bar is updated when focus is changed having the refresh ratio to 5 secs in &lt;code&gt;~/.i3status&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I like to have tiled windows without titlebar and I think this behaiour is cool in such configurations (like &lt;code&gt;dwm&lt;/code&gt; does for instance)&lt;/p&gt;
+
+&lt;p&gt;If someone is interested, here are the relevant bits that I have in my &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+h focus left; exec killall -USR1 i3status
+bindsym $mod+j focus down; exec killall -USR1 i3status
+bindsym $mod+k focus up; exec killall -USR1 i3status
+bindsym $mod+l focus right; exec killall -USR1 i3status
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?answer=1539#post-id-1539</link><description>You can try an external script, see &lt;code&gt;man i3status&lt;/code&gt; which has a section "EXTERNAL SCRIPTS/PROGRAMS WITH I3STATUS". Create the following as e.g. ~/mystatus.sh:
+&lt;pre&gt;
+#!/bin/bash
+i3status | while :
+do
+    read line
+    id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
+    name=$(xprop -id $id | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
+    echo "$name | $line" || exit 1
+done
+&lt;/pre&gt;
+Make it executable and run ~/mystatus.sh instead of i3status in your i3 config file.
+
+Please notice that this approach may give you a very long status bar, since the entire window title (e.g. the title of your browser) will be used. Maybe you have a closer look at &lt;code&gt;xprop&lt;/code&gt; to filter out something different.</description><pubDate>Thu, 04 Apr 2013 08:41:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?answer=1539#post-id-1539</guid></item><item><title>Comment by pau for &lt;p&gt;You can try an external script, see &lt;code&gt;man i3status&lt;/code&gt; which has a section "EXTERNAL SCRIPTS/PROGRAMS WITH I3STATUS". Create the following as e.g. ~/mystatus.sh:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/bash
+i3status | while :
+do
+    read line
+    id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
+    name=$(xprop -id $id | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
+    echo "$name | $line" || exit 1
+done
+&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and run ~/mystatus.sh instead of i3status in your i3 config file.&lt;/p&gt;
+
+&lt;p&gt;Please notice that this approach may give you a very long status bar, since the entire window title (e.g. the title of your browser) will be used. Maybe you have a closer look at &lt;code&gt;xprop&lt;/code&gt; to filter out something different.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=1544#comment-1544</link><description>Your answer is correct. Just waiting for an improvement to mark it as solved.
+Maybe I must create another question for that? In that case I will create the new one and mark yours as correct</description><pubDate>Thu, 04 Apr 2013 18:13:29 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=1544#comment-1544</guid></item><item><title>Comment by pau for &lt;p&gt;You can try an external script, see &lt;code&gt;man i3status&lt;/code&gt; which has a section "EXTERNAL SCRIPTS/PROGRAMS WITH I3STATUS". Create the following as e.g. ~/mystatus.sh:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/bash
+i3status | while :
+do
+    read line
+    id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
+    name=$(xprop -id $id | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
+    echo "$name | $line" || exit 1
+done
+&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and run ~/mystatus.sh instead of i3status in your i3 config file.&lt;/p&gt;
+
+&lt;p&gt;Please notice that this approach may give you a very long status bar, since the entire window title (e.g. the title of your browser) will be used. Maybe you have a closer look at &lt;code&gt;xprop&lt;/code&gt; to filter out something different.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=1545#comment-1545</link><description>I'm sorry, that question is currently solved  at http://faq.i3wm.org/question/854/how-to-force-status-bar-update/, so this is solved as well. Thank you again!</description><pubDate>Thu, 04 Apr 2013 18:37:09 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=1545#comment-1545</guid></item><item><title>Comment by pau for &lt;p&gt;You can try an external script, see &lt;code&gt;man i3status&lt;/code&gt; which has a section "EXTERNAL SCRIPTS/PROGRAMS WITH I3STATUS". Create the following as e.g. ~/mystatus.sh:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/bash
+i3status | while :
+do
+    read line
+    id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
+    name=$(xprop -id $id | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
+    echo "$name | $line" || exit 1
+done
+&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and run ~/mystatus.sh instead of i3status in your i3 config file.&lt;/p&gt;
+
+&lt;p&gt;Please notice that this approach may give you a very long status bar, since the entire window title (e.g. the title of your browser) will be used. Maybe you have a closer look at &lt;code&gt;xprop&lt;/code&gt; to filter out something different.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=1542#comment-1542</link><description>Thank you! That works well. I didn't know a way to get the active window. I was using `xprop` just to get the `WM_NAME` and `WM_CLASS` of a pointed window :p</description><pubDate>Thu, 04 Apr 2013 18:07:49 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=1542#comment-1542</guid></item><item><title>Comment by pau for &lt;p&gt;You can try an external script, see &lt;code&gt;man i3status&lt;/code&gt; which has a section "EXTERNAL SCRIPTS/PROGRAMS WITH I3STATUS". Create the following as e.g. ~/mystatus.sh:&lt;/p&gt;
+
+&lt;pre&gt;#!/bin/bash
+i3status | while :
+do
+    read line
+    id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
+    name=$(xprop -id $id | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
+    echo "$name | $line" || exit 1
+done
+&lt;/pre&gt;
+
+&lt;p&gt;Make it executable and run ~/mystatus.sh instead of i3status in your i3 config file.&lt;/p&gt;
+
+&lt;p&gt;Please notice that this approach may give you a very long status bar, since the entire window title (e.g. the title of your browser) will be used. Maybe you have a closer look at &lt;code&gt;xprop&lt;/code&gt; to filter out something different.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=1543#comment-1543</link><description>The length of the text can be truncated easily through shell scripting, so I'm not worried about it. The only issue is that the refresh rate of the status bar is about 4 seconds. Is there a way to force the refresh when certain actions (like when changing window focus) happens?</description><pubDate>Thu, 04 Apr 2013 18:12:43 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=1543#comment-1543</guid></item><item><title>Answer by Julien Jehannet for &lt;p&gt;Is possible to get the title of the focused window displayed with &lt;code&gt;i3status&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With a script like the one highlighted by &lt;a href="/users/395/mschaefer/"&gt;@mschaefer&lt;/a&gt; and the hint in faq.i3wm.org/question/854/how-to-force-status-bar-update/ I've been able to get the title of the focused window in the statusbar.&lt;/p&gt;
+
+&lt;p&gt;The bar is updated when focus is changed having the refresh ratio to 5 secs in &lt;code&gt;~/.i3status&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I like to have tiled windows without titlebar and I think this behaiour is cool in such configurations (like &lt;code&gt;dwm&lt;/code&gt; does for instance)&lt;/p&gt;
+
+&lt;p&gt;If someone is interested, here are the relevant bits that I have in my &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+h focus left; exec killall -USR1 i3status
+bindsym $mod+j focus down; exec killall -USR1 i3status
+bindsym $mod+k focus up; exec killall -USR1 i3status
+bindsym $mod+l focus right; exec killall -USR1 i3status
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?answer=3082#post-id-3082</link><description>Another way to achieve it:
+
+    # the dynamic status bar
+    bar {
+     	status_command echo '{"version":1}[[],'; xtitle -s -f '[{"full_text": "%s"}],'
+    }
+    # next bar when modkey pressed
+    bar {
+     	mode hide
+         ...
+    }
+
+The xtitle binary is a tiny app that you find in github *(sorry, insufficient karma to publish links...)*
+</description><pubDate>Wed, 18 Dec 2013 23:43:56 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?answer=3082#post-id-3082</guid></item><item><title>Comment by mschaefer for &lt;p&gt;Another way to achieve it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# the dynamic status bar
+bar {
+    status_command echo '{"version":1}[[],'; xtitle -s -f '[{"full_text": "%s"}],'
+}
+# next bar when modkey pressed
+bar {
+    mode hide
+     ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The xtitle binary is a tiny app that you find in github &lt;em&gt;(sorry, insufficient karma to publish links...)&lt;/em&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=3103#comment-3103</link><description>Okay, it seems that libxcb-util0-dev, libxcb-icccm4-dev and libxcb-ewmh-dev are sufficient</description><pubDate>Thu, 26 Dec 2013 12:38:05 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=3103#comment-3103</guid></item><item><title>Comment by mschaefer for &lt;p&gt;Another way to achieve it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# the dynamic status bar
+bar {
+    status_command echo '{"version":1}[[],'; xtitle -s -f '[{"full_text": "%s"}],'
+}
+# next bar when modkey pressed
+bar {
+    mode hide
+     ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The xtitle binary is a tiny app that you find in github &lt;em&gt;(sorry, insufficient karma to publish links...)&lt;/em&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=3102#comment-3102</link><description>https://github.com/baskerville/xtitle however, for me there are some dependencies missing, something from the source packages of xcb, but I don't find any references which packages I have to install (using Linux Mint, there are several libxcb-???-dev packages)</description><pubDate>Thu, 26 Dec 2013 12:35:31 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?comment=3102#comment-3102</guid></item><item><title>Answer by DocOC for &lt;p&gt;Is possible to get the title of the focused window displayed with &lt;code&gt;i3status&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With a script like the one highlighted by &lt;a href="/users/395/mschaefer/"&gt;@mschaefer&lt;/a&gt; and the hint in faq.i3wm.org/question/854/how-to-force-status-bar-update/ I've been able to get the title of the focused window in the statusbar.&lt;/p&gt;
+
+&lt;p&gt;The bar is updated when focus is changed having the refresh ratio to 5 secs in &lt;code&gt;~/.i3status&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I like to have tiled windows without titlebar and I think this behaiour is cool in such configurations (like &lt;code&gt;dwm&lt;/code&gt; does for instance)&lt;/p&gt;
+
+&lt;p&gt;If someone is interested, here are the relevant bits that I have in my &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+h focus left; exec killall -USR1 i3status
+bindsym $mod+j focus down; exec killall -USR1 i3status
+bindsym $mod+k focus up; exec killall -USR1 i3status
+bindsym $mod+l focus right; exec killall -USR1 i3status
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?answer=2457#post-id-2457</link><description>The following is a link to a couple scripts (one in perl, the other in python), which allow you to add whatever you want to the status bar, without losing colors. 
+
+http://code.stapelberg.de/git/i3status/tree/contrib
+
+Edit them to fit your needs, put them somewhere in your $PATH, and replace the status_command line in your ~/.i3/config with:
+
+status_command i3status | wrapper.pl
+
+
+I have mine set to show the current window title, and the state of the moc music daemon, and what song is playing currently, and truncate both those outputs to 70 characters max, so they don't format strangely when you have a very long window title. You could add anything else you want, and set the colors for each item. You will need a little perl or python knowledge. 
+
+Also, on the subject of having the window title update when you switch to a new window - a better solution is to edit your ~/.i3status.conf and set
+
+interval = 1
+
+These scripts were originally posted on the faq in the following post:
+https://faq.i3wm.org/question/459/external-scriptsprograms-in-i3status-without-loosing-colors/</description><pubDate>Thu, 29 Aug 2013 14:55:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?answer=2457#post-id-2457</guid></item><item><title>Answer by Philippe for &lt;p&gt;Is possible to get the title of the focused window displayed with &lt;code&gt;i3status&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With a script like the one highlighted by &lt;a href="/users/395/mschaefer/"&gt;@mschaefer&lt;/a&gt; and the hint in faq.i3wm.org/question/854/how-to-force-status-bar-update/ I've been able to get the title of the focused window in the statusbar.&lt;/p&gt;
+
+&lt;p&gt;The bar is updated when focus is changed having the refresh ratio to 5 secs in &lt;code&gt;~/.i3status&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I like to have tiled windows without titlebar and I think this behaiour is cool in such configurations (like &lt;code&gt;dwm&lt;/code&gt; does for instance)&lt;/p&gt;
+
+&lt;p&gt;If someone is interested, here are the relevant bits that I have in my &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+h focus left; exec killall -USR1 i3status
+bindsym $mod+j focus down; exec killall -USR1 i3status
+bindsym $mod+k focus up; exec killall -USR1 i3status
+bindsym $mod+l focus right; exec killall -USR1 i3status
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?answer=2449#post-id-2449</link><description>Here is another version if you use JSON output (output_format = i3bar in your .i3status.conf)
+
+    #!/bin/bash
+    /usr/bin/i3status | (read line &amp;&amp; echo $line &amp;&amp; read line &amp;&amp; echo $line &amp;&amp; while :
+    do
+      read line
+      id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
+      if [ x$id != x ]; then
+        name=$(xprop -id $id | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
+        name=${name//\\/\\\\}
+        name=${name//\"/\\\"}
+        dat="[{\"name\":\"title\",\"full_text\":\"$name\"},"
+        echo "${line/[/$dat}" || exit 1
+      else
+        echo "$line" || exit 1
+      fi
+    done)
+
+I fixed the case when no window is focused (id is empty and xprop prints help message) and I escaped the characters in the title to be json-compatible. I did not escape control sequences, they will probably make i3bar stop processing the json and print errors if a title contains one of them.</description><pubDate>Wed, 28 Aug 2013 21:31:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1537/show-title-of-focused-window-in-status-bar/?answer=2449#post-id-2449</guid></item></channel></rss>

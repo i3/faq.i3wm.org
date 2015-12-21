@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4981/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 06 Dec 2014 22:40:02 +0000</lastBuildDate><item><title>Assign conky to screen</title><link>https://faq.i3wm.org/question/4981/assign-conky-to-screen/</link><description>Hello, I have two conkys that are started from i3 config. Right now, the conkys are placed on my first screen, how can I place them on my second screen? I assigned workspaces 1-5 to first screen and 6-10 to second screen (the one I want to have my conkys placed)</description><pubDate>Thu, 20 Nov 2014 18:34:01 +0000</pubDate><guid>https://faq.i3wm.org/question/4981/assign-conky-to-screen/</guid></item><item><title>Answer by cee for &lt;p&gt;Hello, I have two conkys that are started from i3 config. Right now, the conkys are placed on my first screen, how can I place them on my second screen? I assigned workspaces 1-5 to first screen and 6-10 to second screen (the one I want to have my conkys placed)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4981/assign-conky-to-screen/?answer=5003#post-id-5003</link><description>You can assign any application or specific window to a certain workspace. Use `xprop` to get class-name, instance and title for your program.  
+
+    assign [class="Conky" title="whatever"] workspace 1
+
+I highly recommend to use variable names for your workspaces to reduce typos.
+You can see an examle on my [github](https://github.com/andreatta/config/blob/master/i3/config)</description><pubDate>Sun, 23 Nov 2014 20:27:01 +0000</pubDate><guid>https://faq.i3wm.org/question/4981/assign-conky-to-screen/?answer=5003#post-id-5003</guid></item><item><title>Comment by foo for &lt;p&gt;You can assign any application or specific window to a certain workspace. Use &lt;code&gt;xprop&lt;/code&gt; to get class-name, instance and title for your program.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Conky" title="whatever"] workspace 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I highly recommend to use variable names for your workspaces to reduce typos.
+You can see an examle on my &lt;a href="https://github.com/andreatta/config/blob/master/i3/config"&gt;github&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4981/assign-conky-to-screen/?comment=5004#comment-5004</link><description>I have `own_window_type override` in my conkyrc, so conky does not run as own window but is drawed over my background. Therefore I was not able to find out the window class using xprop because it seems there is no window class. </description><pubDate>Sun, 23 Nov 2014 20:54:00 +0000</pubDate><guid>https://faq.i3wm.org/question/4981/assign-conky-to-screen/?comment=5004#comment-5004</guid></item><item><title>Comment by cee for &lt;p&gt;You can assign any application or specific window to a certain workspace. Use &lt;code&gt;xprop&lt;/code&gt; to get class-name, instance and title for your program.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;assign [class="Conky" title="whatever"] workspace 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I highly recommend to use variable names for your workspaces to reduce typos.
+You can see an examle on my &lt;a href="https://github.com/andreatta/config/blob/master/i3/config"&gt;github&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4981/assign-conky-to-screen/?comment=5005#comment-5005</link><description>Oh, I see.. That makes it a lot more difficult.</description><pubDate>Sun, 23 Nov 2014 21:38:57 +0000</pubDate><guid>https://faq.i3wm.org/question/4981/assign-conky-to-screen/?comment=5005#comment-5005</guid></item><item><title>Answer by Michael for &lt;p&gt;Hello, I have two conkys that are started from i3 config. Right now, the conkys are placed on my first screen, how can I place them on my second screen? I assigned workspaces 1-5 to first screen and 6-10 to second screen (the one I want to have my conkys placed)&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4981/assign-conky-to-screen/?answer=5124#post-id-5124</link><description>Since you stated in a comment that you’re specifying `own_window_type override` in your conkyrc, you’ll need to fix this within conky, or with a third-party tool that influences the conky window, perhaps `xdotool`.
+
+The reason is that the override hint entirely bypasses the window manager, i3 literally must not (and will not) manage that window :).</description><pubDate>Sat, 06 Dec 2014 22:40:02 +0000</pubDate><guid>https://faq.i3wm.org/question/4981/assign-conky-to-screen/?answer=5124#post-id-5124</guid></item></channel></rss>

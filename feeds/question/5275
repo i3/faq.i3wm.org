@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5275/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 28 Dec 2014 18:49:28 +0000</lastBuildDate><item><title>SIGINT is not delivered to processed launched from dmenu</title><link>https://faq.i3wm.org/question/5275/sigint-is-not-delivered-to-processed-launched-from-dmenu/</link><description>Hello!
+
+I've found strange behavior of processes launched from `dmenu`.
+Here are the steps to reproduce:
+1. Launch `sleep 1000000` using `dmenu`. The key combination for `dmenu` is `Win-D` on my system. I believe `Alt-D` is the default one.
+2. Execute `pgrep sleep` from shell to get a pid for process launched in step 1.
+3. Execute `kill -2 $(pgrep sleep)`.
+4. Nothing happened. The `sleep 1000000` process is still running.
+
+`kill -2` is working perfectly when I run `sleep 1000000` process from shell.
+
+What kind of magic is done by `dmenu` to block `SIGINT` from being delivered to processes? Is there any way to disable it?
+
+PS. I'm using `i3` metapackage of version `4.7.2-1` in Ubuntu 14.0.4.
+
+Further investigation shows that `dmenu` isn't guilty. I've created `sleep-999999` script with `sleep 999999 &amp;` and put `exec sleep-999999` on a hotkey in `~/.i3/config`. This setup reproduces strange behavior described formerly.</description><pubDate>Sun, 28 Dec 2014 17:37:05 +0000</pubDate><guid>https://faq.i3wm.org/question/5275/sigint-is-not-delivered-to-processed-launched-from-dmenu/</guid></item><item><title>Answer by sergej for &lt;p&gt;Hello!&lt;/p&gt;
+
+&lt;p&gt;I've found strange behavior of processes launched from &lt;code&gt;dmenu&lt;/code&gt;.
+Here are the steps to reproduce:
+1. Launch &lt;code&gt;sleep 1000000&lt;/code&gt; using &lt;code&gt;dmenu&lt;/code&gt;. The key combination for &lt;code&gt;dmenu&lt;/code&gt; is &lt;code&gt;Win-D&lt;/code&gt; on my system. I believe &lt;code&gt;Alt-D&lt;/code&gt; is the default one.
+2. Execute &lt;code&gt;pgrep sleep&lt;/code&gt; from shell to get a pid for process launched in step 1.
+3. Execute &lt;code&gt;kill -2 $(pgrep sleep)&lt;/code&gt;.
+4. Nothing happened. The &lt;code&gt;sleep 1000000&lt;/code&gt; process is still running.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;kill -2&lt;/code&gt; is working perfectly when I run &lt;code&gt;sleep 1000000&lt;/code&gt; process from shell.&lt;/p&gt;
+
+&lt;p&gt;What kind of magic is done by &lt;code&gt;dmenu&lt;/code&gt; to block &lt;code&gt;SIGINT&lt;/code&gt; from being delivered to processes? Is there any way to disable it?&lt;/p&gt;
+
+&lt;p&gt;PS. I'm using &lt;code&gt;i3&lt;/code&gt; metapackage of version &lt;code&gt;4.7.2-1&lt;/code&gt; in Ubuntu 14.0.4.&lt;/p&gt;
+
+&lt;p&gt;Further investigation shows that &lt;code&gt;dmenu&lt;/code&gt; isn't guilty. I've created &lt;code&gt;sleep-999999&lt;/code&gt; script with &lt;code&gt;sleep 999999 &amp;amp;&lt;/code&gt; and put &lt;code&gt;exec sleep-999999&lt;/code&gt; on a hotkey in &lt;code&gt;~/.i3/config&lt;/code&gt;. This setup reproduces strange behavior described formerly.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5275/sigint-is-not-delivered-to-processed-launched-from-dmenu/?answer=5276#post-id-5276</link><description>The answer is here: git.savannah.gnu.org/cgit/bash.git/tree/jobs.c#n1728
+
+`bash` masks out `SIGINT` for background processes.</description><pubDate>Sun, 28 Dec 2014 18:49:28 +0000</pubDate><guid>https://faq.i3wm.org/question/5275/sigint-is-not-delivered-to-processed-launched-from-dmenu/?answer=5276#post-id-5276</guid></item></channel></rss>

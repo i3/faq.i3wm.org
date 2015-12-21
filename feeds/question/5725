@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5725/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 07 Apr 2015 14:21:58 +0000</lastBuildDate><item><title>Any ideas how to change the font size for a urxvt terminal opened on a specific display or workspace?</title><link>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/</link><description>I would like to use a different font size in my terminal if it is opened on an external display. Is this possible somehow?</description><pubDate>Thu, 02 Apr 2015 13:06:33 +0000</pubDate><guid>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/</guid></item><item><title>Answer by i3convert for &lt;p&gt;I would like to use a different font size in my terminal if it is opened on an external display. Is this possible somehow?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?answer=5726#post-id-5726</link><description>Solution sketch (assuming that urxvt is your terminal):
+
+ 1. Create two copies of `.Xresources` with different font sizes.
+ 2. Write a script that figures out which display you are on. To this end, you can process the output of `i3-msg -t get_workspaces`.
+ 3. Write another script that first, based on the output of the previous script, executes `xrdb /path/.Xresources-with-specific-font-size` (which loads a specific configuration) and then runs `urxvt`.
+
+I hope you know how to write scripts (it's never too late to learn!). If not, I hope someone else fills out the gaps.</description><pubDate>Thu, 02 Apr 2015 14:32:32 +0000</pubDate><guid>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?answer=5726#post-id-5726</guid></item><item><title>Comment by g-eorge for &lt;p&gt;Solution sketch (assuming that urxvt is your terminal):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create two copies of &lt;code&gt;.Xresources&lt;/code&gt; with different font sizes.&lt;/li&gt;
+&lt;li&gt;Write a script that figures out which display you are on. To this end, you can process the output of &lt;code&gt;i3-msg -t get_workspaces&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Write another script that first, based on the output of the previous script, executes &lt;code&gt;xrdb /path/.Xresources-with-specific-font-size&lt;/code&gt; (which loads a specific configuration) and then runs &lt;code&gt;urxvt&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I hope you know how to write scripts (it's never too late to learn!). If not, I hope someone else fills out the gaps.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?comment=5746#comment-5746</link><description>Great idea, I'll try that out. Thanks!</description><pubDate>Sat, 04 Apr 2015 11:32:44 +0000</pubDate><guid>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?comment=5746#comment-5746</guid></item><item><title>Answer by topernic for &lt;p&gt;I would like to use a different font size in my terminal if it is opened on an external display. Is this possible somehow?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?answer=5731#post-id-5731</link><description>Launch with options. See 'man urxvt'
+urxvt -fn "xft:Bitstream Vera Sans Mono:pixelsize=15"</description><pubDate>Fri, 03 Apr 2015 20:03:14 +0000</pubDate><guid>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?answer=5731#post-id-5731</guid></item><item><title>Comment by g-eorge for &lt;p&gt;Launch with options. See 'man urxvt'
+urxvt -fn "xft:Bitstream Vera Sans Mono:pixelsize=15"&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?comment=5745#comment-5745</link><description>Thanks for the tip, I'll look into that.</description><pubDate>Sat, 04 Apr 2015 11:30:29 +0000</pubDate><guid>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?comment=5745#comment-5745</guid></item><item><title>Comment by i3convert for &lt;p&gt;Launch with options. See 'man urxvt'
+urxvt -fn "xft:Bitstream Vera Sans Mono:pixelsize=15"&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?comment=5744#comment-5744</link><description>Nice! I didn't know that there was a command line switch. He probably still needs an additional script to figure out what display he is on.</description><pubDate>Sat, 04 Apr 2015 01:42:20 +0000</pubDate><guid>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?comment=5744#comment-5744</guid></item><item><title>Answer by g-eorge for &lt;p&gt;I would like to use a different font size in my terminal if it is opened on an external display. Is this possible somehow?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?answer=5750#post-id-5750</link><description>Here's the solution I went with for my system which has a hidpi display on eDP1. It uses a combination of both previous answers, since I suspect that updating the Xresources would change settings for all displays, instead of just the current one (haven't tested that though).
+
+`term_for_display.sh` - a script to open a terminal differently on a particular display
+    
+    #!/bin/bash
+
+    hidpi_display="eDP1"
+    current_display=$(get_display.py)
+
+    if [ "$current_display" != "$hidpi_display" ]; then 
+      urxvt -fn "xft:Terminus:pixelsize=18,style=Regular"
+    else
+      urxvt
+    fi
+
+`get_display.py` - a script to find the name of the current display
+
+    #!/usr/bin/env python
+
+    import json
+    from subprocess import check_output
+
+    out = check_output(["i3-msg", "-t", "get_workspaces"])
+    workspaces = json.loads(out.decode("utf-8"))
+    focused_workspace = filter(lambda x: x["focused"], workspaces)
+    print(next(focused_workspace)["output"])
+
+`.i3/config` - run the new script to open a terminal
+
+    bindsym Mod1+Return exec --no-startup-id /path/to/term_for_display.sh</description><pubDate>Tue, 07 Apr 2015 14:21:02 +0000</pubDate><guid>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?answer=5750#post-id-5750</guid></item><item><title>Comment by g-eorge for &lt;p&gt;Here's the solution I went with for my system which has a hidpi display on eDP1. It uses a combination of both previous answers, since I suspect that updating the Xresources would change settings for all displays, instead of just the current one (haven't tested that though).&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;term_for_display.sh&lt;/code&gt; - a script to open a terminal differently on a particular display&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+hidpi_display="eDP1"
+current_display=$(get_display.py)
+
+if [ "$current_display" != "$hidpi_display" ]; then 
+  urxvt -fn "xft:Terminus:pixelsize=18,style=Regular"
+else
+  urxvt
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;get_display.py&lt;/code&gt; - a script to find the name of the current display&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+
+import json
+from subprocess import check_output
+
+out = check_output(["i3-msg", "-t", "get_workspaces"])
+workspaces = json.loads(out.decode("utf-8"))
+focused_workspace = filter(lambda x: x["focused"], workspaces)
+print(next(focused_workspace)["output"])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;.i3/config&lt;/code&gt; - run the new script to open a terminal&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod1+Return exec --no-startup-id /path/to/term_for_display.sh
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?comment=5751#comment-5751</link><description>Thanks to previous posters. Sorry I don't have enough points to upvote or accept answers!</description><pubDate>Tue, 07 Apr 2015 14:21:58 +0000</pubDate><guid>https://faq.i3wm.org/question/5725/any-ideas-how-to-change-the-font-size-for-a-urxvt-terminal-opened-on-a-specific-display-or-workspace/?comment=5751#comment-5751</guid></item></channel></rss>

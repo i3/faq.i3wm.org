@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2749/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 13 Jan 2015 20:13:40 +0000</lastBuildDate><item><title>How to change the font size of the terminal?</title><link>https://faq.i3wm.org/question/2749/how-to-change-the-font-size-of-the-terminal/</link><description>The font size of my terminal is still very small. I changed the font size in the .i3/config file and I also tried to adjust the gtk2 font size, but nothing has changed in the terminal.
+
+Any idea how I can change it?</description><pubDate>Sun, 20 Oct 2013 12:28:13 +0000</pubDate><guid>https://faq.i3wm.org/question/2749/how-to-change-the-font-size-of-the-terminal/</guid></item><item><title>Comment by Michael for &lt;p&gt;The font size of my terminal is still very small. I changed the font size in the .i3/config file and I also tried to adjust the gtk2 font size, but nothing has changed in the terminal.&lt;/p&gt;
+
+&lt;p&gt;Any idea how I can change it?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2749/how-to-change-the-font-size-of-the-terminal/?comment=2778#comment-2778</link><description>You should tell us _which_ terminal you use. Note that i3-sensible-terminal is just a wrapper script that will execute the first terminal emulator it finds on your machine.</description><pubDate>Thu, 24 Oct 2013 18:38:32 +0000</pubDate><guid>https://faq.i3wm.org/question/2749/how-to-change-the-font-size-of-the-terminal/?comment=2778#comment-2778</guid></item><item><title>Answer by Flugsio for &lt;p&gt;The font size of my terminal is still very small. I changed the font size in the .i3/config file and I also tried to adjust the gtk2 font size, but nothing has changed in the terminal.&lt;/p&gt;
+
+&lt;p&gt;Any idea how I can change it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2749/how-to-change-the-font-size-of-the-terminal/?answer=2750#post-id-2750</link><description>Put something like this in .Xresources or it might be named .Xdefaults
+
+    Xft.dpi: 96.0
+    Xft.hinting: true
+    Xft.hintstyle: hintslight
+    Xft.antialias: true
+    Xft.rgba: rgb
+    
+    *font:        xft:ubuntu mono:size=13:style=medium:antialias=true
+    *boldFont:    xft:ubuntu mono:size=13:style=medium:antialias=true
+
+Then merge the new settings (or restart x) and open a new terminal.
+
+    xrdb -merge .Xresources
+
+</description><pubDate>Sun, 20 Oct 2013 13:52:05 +0000</pubDate><guid>https://faq.i3wm.org/question/2749/how-to-change-the-font-size-of-the-terminal/?answer=2750#post-id-2750</guid></item><item><title>Comment by kynan for &lt;p&gt;Put something like this in .Xresources or it might be named .Xdefaults&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Xft.dpi: 96.0
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.antialias: true
+Xft.rgba: rgb
+
+*font:        xft:ubuntu mono:size=13:style=medium:antialias=true
+*boldFont:    xft:ubuntu mono:size=13:style=medium:antialias=true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then merge the new settings (or restart x) and open a new terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xrdb -merge .Xresources
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/2749/how-to-change-the-font-size-of-the-terminal/?comment=5334#comment-5334</link><description>As far as I can tell this has no effect for me, I still need to set the DPI manually with `xrandr --dpi 96` every time.</description><pubDate>Tue, 13 Jan 2015 20:13:40 +0000</pubDate><guid>https://faq.i3wm.org/question/2749/how-to-change-the-font-size-of-the-terminal/?comment=5334#comment-5334</guid></item><item><title>Answer by jk121960 for &lt;p&gt;The font size of my terminal is still very small. I changed the font size in the .i3/config file and I also tried to adjust the gtk2 font size, but nothing has changed in the terminal.&lt;/p&gt;
+
+&lt;p&gt;Any idea how I can change it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2749/how-to-change-the-font-size-of-the-terminal/?answer=2783#post-id-2783</link><description>depending upon which terminal you also may have a config file for it, I use lxterminal as it seems to resize with some curses apps better when tiling. It has a config file and I just set it in there</description><pubDate>Thu, 24 Oct 2013 19:10:58 +0000</pubDate><guid>https://faq.i3wm.org/question/2749/how-to-change-the-font-size-of-the-terminal/?answer=2783#post-id-2783</guid></item></channel></rss>

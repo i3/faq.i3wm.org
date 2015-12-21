@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1456/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 22 Mar 2013 00:34:15 +0000</lastBuildDate><item><title>i3 ipc with libanyevent</title><link>https://faq.i3wm.org/question/1456/i3-ipc-with-libanyevent/</link><description>Currently, I am working on small script for my i3 configuration, which needs to react to the workspace-focus event. At this point, I need both, the old and the current workspace, which should be saved in the eventhandler arguments. But when I try the following snippet with perl and libanyevent, the old and the current workspace objects are identical. Any suggestion why this might be the case?
+
+    #!/usr/bin/perl
+    use strict;
+    use warnings;
+    use AnyEvent::I3 qw(:all);
+    use EV;
+    use Data::Dumper;
+    
+    my $i3 = i3("~/.i3/ipc.sock");
+    
+    $i3-&gt;connect-&gt;recv or die "Error connecting";
+    
+    my %handler = (
+    	workspace =&gt; sub {
+    		my ($msg) = @_;
+    		if (($msg-&gt;{'change'} eq 'focus')) {
+    			print Dumper($msg);
+    		}
+    	}
+    );
+    
+    $i3-&gt;subscribe(\%handler)-&gt;recv;
+    
+    EV::loop;
+
+I am running the latest i3 (v4.5.1) and anyevent-i3 (v0.15). 
+
+Thanks!
+
+P.S.: So, I looked into it a bit further, and have to correct myself. The old and current object in the event argument are updated correctly, but are handled seperately for each output monitor. So the old workspace is assigned to the workspace, which was previously focused on the newly focused ouput, and the current workspace refers to the workspace that is now focused on that output. Is this the desired behaviour? I assumed, old would refer to the previously focused workspace across all outputs.</description><pubDate>Thu, 21 Mar 2013 13:20:54 +0000</pubDate><guid>https://faq.i3wm.org/question/1456/i3-ipc-with-libanyevent/</guid></item><item><title>Answer by Michael for &lt;p&gt;Currently, I am working on small script for my i3 configuration, which needs to react to the workspace-focus event. At this point, I need both, the old and the current workspace, which should be saved in the eventhandler arguments. But when I try the following snippet with perl and libanyevent, the old and the current workspace objects are identical. Any suggestion why this might be the case?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/perl
+use strict;
+use warnings;
+use AnyEvent::I3 qw(:all);
+use EV;
+use Data::Dumper;
+
+my $i3 = i3("~/.i3/ipc.sock");
+
+$i3-&amp;gt;connect-&amp;gt;recv or die "Error connecting";
+
+my %handler = (
+    workspace =&amp;gt; sub {
+        my ($msg) = @_;
+        if (($msg-&amp;gt;{'change'} eq 'focus')) {
+            print Dumper($msg);
+        }
+    }
+);
+
+$i3-&amp;gt;subscribe(\%handler)-&amp;gt;recv;
+
+EV::loop;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I am running the latest i3 (v4.5.1) and anyevent-i3 (v0.15). &lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;P.S.: So, I looked into it a bit further, and have to correct myself. The old and current object in the event argument are updated correctly, but are handled seperately for each output monitor. So the old workspace is assigned to the workspace, which was previously focused on the newly focused ouput, and the current workspace refers to the workspace that is now focused on that output. Is this the desired behaviour? I assumed, old would refer to the previously focused workspace across all outputs.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1456/i3-ipc-with-libanyevent/?answer=1461#post-id-1461</link><description>This sounds like a bug, please report it at https://github.com/i3/i3/issues</description><pubDate>Thu, 21 Mar 2013 21:09:42 +0000</pubDate><guid>https://faq.i3wm.org/question/1456/i3-ipc-with-libanyevent/?answer=1461#post-id-1461</guid></item><item><title>Comment by vandannen for &lt;p&gt;This sounds like a bug, please report it at &lt;a href="https://github.com/i3/i3/issues"&gt;https://github.com/i3/i3/issues&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1456/i3-ipc-with-libanyevent/?comment=1463#comment-1463</link><description>ok, I reported the issue, attached is the oneline change that would need to be done: https://github.com/i3/i3/issues/990</description><pubDate>Fri, 22 Mar 2013 00:34:15 +0000</pubDate><guid>https://faq.i3wm.org/question/1456/i3-ipc-with-libanyevent/?comment=1463#comment-1463</guid></item></channel></rss>

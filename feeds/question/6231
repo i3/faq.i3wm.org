@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6231/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 02 Jul 2015 05:38:40 +0000</lastBuildDate><item><title>splitting a full screen window</title><link>https://faq.i3wm.org/question/6231/splitting-a-full-screen-window/</link><description>How do I split a fullscreen window and fill the empty window with one in the list? For example  say I have a fullscreen terminal open. Now I want to read some document in firefox. Firefox is running in another non-visible window. I want to bring the firefox window to the front and split my container so the terminal takes 1/2 the screen anf firefox the other half. Basically I want my fullscreen window to be become one window in a  container that can hold 2 windows.</description><pubDate>Thu, 02 Jul 2015 01:14:52 +0000</pubDate><guid>https://faq.i3wm.org/question/6231/splitting-a-full-screen-window/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;How do I split a fullscreen window and fill the empty window with one in the list? For example  say I have a fullscreen terminal open. Now I want to read some document in firefox. Firefox is running in another non-visible window. I want to bring the firefox window to the front and split my container so the terminal takes 1/2 the screen anf firefox the other half. Basically I want my fullscreen window to be become one window in a  container that can hold 2 windows.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6231/splitting-a-full-screen-window/?answer=6234#post-id-6234</link><description>It is possible, but not in a straight forward way. A simpler solution by far would be to not use fullscreen at all and put the terminal on its own workspace (with horizontal split layout)  and move the firefox window there when needed. 
+
+----
+
+But, if you want to keep using fullscreen, here we go:
+
+1. While it is possible to call the `split &lt;horizontal|vertical&gt;` on a fullscreen window, its effects (creation of a new surrounding container with the chosen layout) will not be placed on the fullscreen window, but on the currently invisible tiled layer. So, in order to split a fullscreen window and actually have the new split container in fullscreen we need to leave fullscreen, split the container and put the newly created parent container into fullscreen. With *i3's* command chaining this can be done in one go:
+
+        fullscreen disable, split horizontal, focus parent, fullscreen enable, focus child
+
+2. We need a method to put a specific window into that new split. For that we can adapt the answer to the question [Move any container directly where the last split was done](https://faq.i3wm.org/question/3355/move-any-container-directly-where-the-last-split-was-done/?answer=3358#post-id-3358).
+
+ We can move the wanted window into this split via scratchpad. In the linked answer it was just the current window that was marked and intended to be moved into another (not focused) split, which is obviously not the way to go here. Here the currently focused container is the intended destination, but the window to move is neither focused nor even visible. If you want to only ever move Firefox that way, you can just use the `class` criterium to select it. The minimal way to put a Firefox window into the same container as the current window would be:
+
+        [class="^Firefox$"] move scratchpad, scratchpad show, floating disable
+
+     Unfortunately, this will leave fullscreen mode when calling `scratchpad show`. To resolve this, we need to put it back into fullscreen:
+
+        [class="^Firefox$"] move scratchpad; scratchpad show, floating disable; focus parent; fullscreen enable; focus child
+
+If we want to do this in one go, you can combine both commands:
+
+    fullscreen disable, split horizontal; [class="^Firefox$"] move scratchpad; scratchpad show, floating disable; focus parent; fullscreen enable; focus child
+
+In order to pull different windows into the split we obviously need to change the criterium. For interactive use, we could even utilize `dmenu` (calling `dmenu` does not end fullcreen) or adapt some answer from [this question](https://faq.i3wm.org/question/228/how-do-i-find-an-app-buried-in-some-workspace-by-its-title/).</description><pubDate>Thu, 02 Jul 2015 05:38:40 +0000</pubDate><guid>https://faq.i3wm.org/question/6231/splitting-a-full-screen-window/?answer=6234#post-id-6234</guid></item><item><title>Answer by i3convert for &lt;p&gt;How do I split a fullscreen window and fill the empty window with one in the list? For example  say I have a fullscreen terminal open. Now I want to read some document in firefox. Firefox is running in another non-visible window. I want to bring the firefox window to the front and split my container so the terminal takes 1/2 the screen anf firefox the other half. Basically I want my fullscreen window to be become one window in a  container that can hold 2 windows.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6231/splitting-a-full-screen-window/?answer=6232#post-id-6232</link><description>The functionality you are asking for is not offered by i3. Only one window can be in the fullscreen mode in a given workspace.
+
+What you can do instead is keeping all windows in an auxiliary workspace and moving them to your main workspace whenever you need them. You can also remove their borders (`border none`) and hide the status bar (`bar mode hide`) to make them use almost all space.</description><pubDate>Thu, 02 Jul 2015 05:04:02 +0000</pubDate><guid>https://faq.i3wm.org/question/6231/splitting-a-full-screen-window/?answer=6232#post-id-6232</guid></item></channel></rss>

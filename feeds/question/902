@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/902/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 14 Dec 2012 20:11:58 +0000</lastBuildDate><item><title>text editing shortcuts</title><link>https://faq.i3wm.org/question/902/text-editing-shortcuts/</link><description>Hi,
+
+Is it possible to configure `i3wm` using `bindsym` to have some custom text editing behaviours.
+
+ie :
+
+    bindsym Control+a go_to_beginning_of_line
+    bindsym Control+Shift+a select_all
+    bindsym Control+e go_to_end_of_line
+
+I'd like to know if such functions (`go_to_beginning_of_line`, `select_all`, `go_to_end_of_line`) are provided by `i3wm` or ̀ X11` or...</description><pubDate>Fri, 14 Dec 2012 14:12:10 +0000</pubDate><guid>https://faq.i3wm.org/question/902/text-editing-shortcuts/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;Is it possible to configure &lt;code&gt;i3wm&lt;/code&gt; using &lt;code&gt;bindsym&lt;/code&gt; to have some custom text editing behaviours.&lt;/p&gt;
+
+&lt;p&gt;ie :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Control+a go_to_beginning_of_line
+bindsym Control+Shift+a select_all
+bindsym Control+e go_to_end_of_line
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'd like to know if such functions (&lt;code&gt;go_to_beginning_of_line&lt;/code&gt;, &lt;code&gt;select_all&lt;/code&gt;, &lt;code&gt;go_to_end_of_line&lt;/code&gt;) are provided by &lt;code&gt;i3wm&lt;/code&gt; or ̀ X11` or...&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/902/text-editing-shortcuts/?answer=904#post-id-904</link><description>Having a global binding for Ctrl+a seems like it could clash with other legitimate bindings and create confusion, but that’s your call.
+
+i3 itself does not offer generating key presses, so you will have to use xdotool or something like that to generate a “Home” keypress to go to the beginning:
+
+    bindsym Control+a exec --no-startup-id xdotool key Home
+
+That of course requires that the program supports the “Home” key, which most probably do…</description><pubDate>Fri, 14 Dec 2012 20:11:58 +0000</pubDate><guid>https://faq.i3wm.org/question/902/text-editing-shortcuts/?answer=904#post-id-904</guid></item></channel></rss>

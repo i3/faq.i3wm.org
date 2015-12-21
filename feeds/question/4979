@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4979/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 21 Nov 2014 07:24:16 +0000</lastBuildDate><item><title>cycling through active workspaces</title><link>https://faq.i3wm.org/question/4979/cycling-through-active-workspaces/</link><description>Is there a way to cycle through active workspaces? For example, if I have the following workspaces active:
+
+     [1]  [2]  [4]  [6]
+
+I'd like to have a key bound to a command that would display workspaces 1, 2, 4, and 6 in sequence; then cycle back to workspace 1.
+
+I'm familiar with the workspace `back_and_forth` command and use it frequently.
+
+**Update:**
+
+I used @cee's recommendation, but bound the keys in the following manner so there is no conflict with the default cursor key assignments:
+
+    # Cycle through active workspaces
+    bindsym $mod+Tab workspace next
+    bindsym $mod+Shift+Tab workspace prev
+
+</description><pubDate>Thu, 20 Nov 2014 13:38:36 +0000</pubDate><guid>https://faq.i3wm.org/question/4979/cycling-through-active-workspaces/</guid></item><item><title>Answer by cee for &lt;p&gt;Is there a way to cycle through active workspaces? For example, if I have the following workspaces active:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; [1]  [2]  [4]  [6]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'd like to have a key bound to a command that would display workspaces 1, 2, 4, and 6 in sequence; then cycle back to workspace 1.&lt;/p&gt;
+
+&lt;p&gt;I'm familiar with the workspace &lt;code&gt;back_and_forth&lt;/code&gt; command and use it frequently.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I used &lt;a href="/users/498/cee/"&gt;@cee&lt;/a&gt;'s recommendation, but bound the keys in the following manner so there is no conflict with the default cursor key assignments:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Cycle through active workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/4979/cycling-through-active-workspaces/?answer=4983#post-id-4983</link><description>You can use
+
+    bindsym Mod4+Right workspace next
+    bindsym Mod4+Left workspace prev
+
+to cycle through your open workspaces with Windowskey and arrow left|right.</description><pubDate>Thu, 20 Nov 2014 21:57:40 +0000</pubDate><guid>https://faq.i3wm.org/question/4979/cycling-through-active-workspaces/?answer=4983#post-id-4983</guid></item><item><title>Comment by Adaephon for &lt;p&gt;You can use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Right workspace next
+bindsym Mod4+Left workspace prev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to cycle through your open workspaces with Windowskey and arrow left|right.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4979/cycling-through-active-workspaces/?comment=4986#comment-4986</link><description>@Jeff Bauer: Thank you, but no, that is not necessary: It is already there, in section [6.5 Changing (named) workspaces/moving to workspaces](http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces). </description><pubDate>Fri, 21 Nov 2014 07:24:16 +0000</pubDate><guid>https://faq.i3wm.org/question/4979/cycling-through-active-workspaces/?comment=4986#comment-4986</guid></item><item><title>Comment by Jeff Bauer for &lt;p&gt;You can use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Right workspace next
+bindsym Mod4+Left workspace prev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to cycle through your open workspaces with Windowskey and arrow left|right.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4979/cycling-through-active-workspaces/?comment=4984#comment-4984</link><description>@cee: Works, thanks.  I checked the User's Guide and didn't see a description for this command.  Should I file a documentation ticket?</description><pubDate>Thu, 20 Nov 2014 22:37:29 +0000</pubDate><guid>https://faq.i3wm.org/question/4979/cycling-through-active-workspaces/?comment=4984#comment-4984</guid></item></channel></rss>

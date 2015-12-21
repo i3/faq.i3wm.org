@@ -1,0 +1,1961 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns="http://www.w3.org/1999/xhtml"> <head> <title>What is recommended file manager for i3wm? - i3 FAQ</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <meta http-equiv="X-UA-Compatible" content="IE=EDGE" /> <meta name="description" content="I&#39;m looking for suggestions of i3-friendly file manager which fits well into the i3wm philosophy lightweight with no or very few dependencies possibly fully-featured easily or exclusively operated with keyboard preferably graphical For console, I consider Midnight Commander superior, but it&#39;s always good to learn about alternatives. EDIT: Certainly, console itself is a very capable file manager what has been pointed in answers below. I should have clarified the question is about dedicated file management applications." /> <meta name="keywords" content="file-manager,browser,application,i3,faq,questions,question" /> <meta name="referrer" content="always" /> <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" /> <link rel="shortcut icon" href="../../../m/default/media/images/favicon.gif%3Fv=2" /> <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="RSS feed from i3 FAQ"
+            href="../../../feeds/rss/index.html"
+        /> <link href="../../../m/default/media/style/style.css%3Fv=2.css" rel="stylesheet" type="text/css" /> <link href="../../../m/default/media/fa-4.3.0/css/font-awesome.css%3Fv=2.css" rel="stylesheet" type="text/css" /> <link href="../../../m/default/media/bootstrap/css/bootstrap.css%3Fv=2.css" rel="stylesheet" type="text/css" /> <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&amp;subset=latin-ext" rel="stylesheet" type="text/css" /> <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&amp;subset=cyrillic-ext" rel="stylesheet" type="text/css" /> <link rel="canonical" href="../what-is-recommended-file-manager-for-i3wm.1.html" /> <link rel="stylesheet" type="text/css" href="../../../m/default/media/wmd/wmd.css%3Fv=2.css" /> <script type="text/javascript" src="../../../m/default/media/jslib/modernizr.custom.js%3Fv=2"></script> <script type="text/javascript">
+    var askbot = {};
+    askbot['data'] = {};
+    askbot['data']['userIsAuthenticated'] = false;
+    askbot['data']['languageCode'] = 'en';
+    
+        askbot['data']['userReputation'] = 0;
+        askbot['data']['userEmail'] = null;
+        askbot['data']['userIsReadOnly'] = false;//in principle we allow anon users to start posting
+    
+    askbot['urls'] = {};
+    askbot['settings'] = {};
+    askbot['messages'] = {};
+</script> <script type="text/javascript" src="../../../jsi18n/index.html"></script> <script type="text/javascript">
+        /*<![CDATA[*/
+        //below is pure cross-browser javascript, no jQuery
+        askbot['data']['userIsThreadModerator'] = false;
+        askbot['data']['oldestAnswerId'] = 93;
+        askbot['data']['threadIsClosed'] = false;
+        
+            askbot['settings']['readOnlyModeEnabled'] = true;
+        
+        (function(){
+
+            var hasClass = function(node, selector) {
+                var classes = (" " + node.className + " ").split(' ');
+                for (var i = 0; i < classes.length; i++) {
+                    if (classes[i] === selector) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            var findClosestParentByClassName = function(node, className) {
+                if (hasClass(node, className)) {
+                    return node;
+                }
+                if (node.nodeName === 'BODY') {
+                    return false;
+                } else {
+                    return findClosestParentByClassName(node.parentNode, className);
+                }
+            };
+
+            var findChildrenByClassName = function(node, className) {
+                var nodes = [];
+                var walk = function(node) {
+                    if (hasClass(node, className)) {
+                        nodes.push(node);
+                    }
+                    if (node.childNodes) {
+                        for (var i=0; i < node.childNodes.length; i++) {
+                            walk(node.childNodes[i]);
+                        }
+                    }
+                };
+                walk(node);
+                return nodes;
+            };
+
+            var getTextContent = function(node) {
+                var text = node.innerText || node.textContent;
+                if (text === undefined) {
+                    return '';
+                } else {
+                    return text;
+                }
+            };
+
+            var hasAttribute = function(node, attrName) {
+                if (node.hasAttribute) {
+                    return node.hasAttribute(attrName);
+                } else {
+                    return (!(!(node.getAttribute(attrName))));
+                }
+            };
+
+            var findChildByAttribute = function(node, attrName, attrVal) {
+                var children = node.childNodes;
+                for (var i = 0; i < children.length; i++) {
+                    var child = children[i];
+                    if (child.getAttribute(attrName) === attrVal) {
+                        return child;
+                    }
+                };
+                return null;
+            };
+
+            var postIsComment = function(postId) {
+                if (document.getElementById('comment-' + postId)) {
+                    return true;
+                }
+                return false;
+            };
+
+            var postIsQuestion = function(postId) {
+                var content = document.getElementById('post-id-' + postId);
+                if (content) {
+                    if (findClosestParentByClassName(content, 'question')) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            var removeNode = function(node) {
+                node.parentNode.removeChild(node);
+            };
+
+            var trim = function(text) {
+                return text.replace(/^\s+|\s+$/g, '');
+            };
+
+            var data = askbot['data'];
+            var isAuthorOfPost = function(post_id) {
+                return (data['user_posts'] && data['user_posts'][post_id]);
+            };
+
+            if (data['userIsAuthenticated']){
+                var votes = {};
+                
+                data['user_votes'] = votes;
+                var posts = {};
+                
+                data['user_posts'] = posts;
+            }
+
+            function render_vote_buttons(post_type, post_id){
+                var upvote_btn = document.getElementById(
+                    post_type + '-img-upvote-' + post_id
+                );
+                var downvote_btn = document.getElementById(
+                    post_type + '-img-downvote-' + post_id
+                );
+                if (data['userIsAuthenticated']){
+                    if (post_id in data['user_votes']){
+                        var vote = data['user_votes'][post_id];
+                        if (vote == -1){
+                            var btn = downvote_btn;
+                        } else if (vote == 1){
+                            var btn = upvote_btn;
+                        } else {
+                            return;
+                        }
+                        if (post_type == 'comment'){
+                            btn.className = btn.className + ' upvoted';
+                        } else {
+                            btn.className = btn.className + ' on';
+                        }
+                    }
+                }
+            }
+
+            function hide_convert_answer_links(post_id){
+                var id1 = 'post-' + post_id + '-convert';//for repost as Q comment
+                var repostAsQuestionComment = document.getElementById(id1);
+                var id2 = 'post-' + post_id + '-repost-as-comment-under-previous-answer';
+                var repostAsPrevAnsComment = document.getElementById(id2);
+                var extraOptsList = repostAsQuestionComment.parentNode;
+                var extraOpts = extraOptsList.parentNode;
+
+                var isAuthenticated = data['userIsAuthenticated'];
+                var isMod = data['userIsAdminOrMod'];
+                if (isAuthenticated && (isMod || isAuthorOfPost(post_id))) {
+                    //still may need to hide because answer may be too long
+                    var answer_id = 'post-id-' + post_id;
+                    var answer_container = document.getElementById(answer_id);
+                    var answerBody = findChildrenByClassName(answer_container, 'post-body')[0];
+                    //todo: this is not reliable
+                    var answerBodyNodes = answerBody.childNodes;
+                    var answerElement = answerBodyNodes[answerBodyNodes.length - 1];
+                    if (trim(getTextContent(answerElement)).length > askbot['data']['maxCommentLength']) {
+                        repostAsQuestionComment.parentNode.removeChild(repostAsQuestionComment);
+                        repostAsPrevAnsComment.parentNode.removeChild(repostAsPrevAnsComment);
+                    } else if (parseInt(post_id) === data['oldestAnswerId']) {
+                        repostAsPrevAnsComment.parentNode.removeChild(repostAsPrevAnsComment);
+                    }
+                } else {
+                    repostAsQuestionComment.parentNode.removeChild(repostAsQuestionComment);
+                    repostAsPrevAnsComment.parentNode.removeChild(repostAsPrevAnsComment);
+                }
+
+                //if the whole control is empty - remove it
+                if (extraOptsList.getElementsByTagName('li').length === 0) {
+                    extraOpts.parentNode.removeChild(extraOpts);
+                }
+            }
+
+            function hidePublishAnswerLink(postId) {
+                if (data['userIsThreadModerator'] === false) {
+                    //hide publish/unpublish answer links
+                    var answerId = 'post-' + postId + '-publish';
+                    var pubBtn = document.getElementById(answerId);
+                    if (pubBtn) {
+                        removeNode(pubBtn);
+                    }
+                }
+            }
+
+            function remove_all_controls(post_id) {
+                var deleteBtn = document.getElementById('post-' + post_id + '-delete');
+                var controls = deleteBtn.parentNode;
+                if (controls.className == 'comment-content') {
+                    removeNode(deleteBtn);
+                    var convertLinks = findChildrenByClassName(controls, 'convert-comment');
+                    if (convertLinks.length) {
+                        removeNode(convertLinks[0]);
+                    }
+                    var editLinks = findChildrenByClassName(controls, 'edit');
+                    if (editLinks.length) {
+                        removeNode(editLinks[0]);
+                    }
+                } else {
+                    var buttons = controls.childNodes;
+                    var numButtons = buttons.length;
+                    for (var i = numButtons - 1; i >= 0; i--) {
+                        removeNode(buttons[i]);
+                    }
+                }
+            };
+
+            function render_post_controls(post_id, is_wiki){
+
+                //in this case remove all post controls
+                if (askbot['settings']['readOnlyModeEnabled'] === true) {
+                    remove_all_controls(post_id);
+                    return;
+                }
+
+                var deleteBtn = document.getElementById('post-' + post_id + '-delete');
+                var controls = deleteBtn.parentNode;
+                var mergeBtn = findChildrenByClassName(controls, 'question-merge');
+                if (mergeBtn.length === 1 && data['userIsThreadModerator'] === false) {
+                    removeNode(mergeBtn[0]);
+                }
+
+                if (data['userIsAdminOrMod']) {
+                    return;//all remaining functions stay on
+                }
+
+                
+
+                if (data['user_posts'] && post_id in data['user_posts']){
+                    if (postIsQuestion(post_id) && 10) {
+                        if (data['userReputation'] < 1) {
+                            if (!data['userIsAdminOrMod']) {
+                                removeNode(deleteBtn);
+                            }
+                        }
+                    }
+                    //todo: remove edit button from older comments
+                    return;
+                }
+
+                if (//maybe remove "delete" button
+                    (data['userReputation'] <
+                    200) || data['userIsReadOnly']
+                ) {
+                    removeNode(deleteBtn);
+                }
+
+                var canFlagPosts = data['userReputation'] >= 20;
+                var flags = findChildrenByClassName(controls, 'question-flag');
+                if (flags.length > 0 && !canFlagPosts) {
+                    for (var i = 0; i < flags.length; i++) {
+                        removeNode(flags[i]);
+                    }
+                }
+                var closeBtn = findChildrenByClassName(controls, 'question-close');
+                if (
+                    closeBtn.length === 1 &&
+                    (
+                        (data['userReputation'] < 200) ||
+                        data['userIsReadOnly']
+                    )
+                ) {
+                    removeNode(closeBtn[0]);
+                }
+                var enoughRep = (data['userReputation'] >= 200 ||
+                        (is_wiki && data['userReputation'] >= 100));
+                if (//maybe remove "edit" button
+                    !enoughRep || data['userIsReadOnly']//only authors edit comments
+                ){
+                    var editBtns = findChildrenByClassName(controls, 'js-edit');
+                    if (editBtns.length) {
+                        removeNode(editBtns[0]);
+                    }
+                }
+                if (//maybe remove retag button
+                    (data['userReputation'] <
+                    50) ||
+                    data['userIsReadOnly']
+                ){
+                    var retagBtn = document.getElementById('retag');
+                    if (retagBtn) {
+                        retagBtn.parentNode.removeChild(retagBtn);
+                    }
+                }
+            }
+
+            function render_add_answer_button(){
+                var add_answer_btn = document.getElementById('add-answer-btn');
+                if (askbot['data']['userIsAuthenticated']){
+                    if (askbot['data']['userId'] == 22){
+                        add_answer_btn.className += ' answer-own-question';
+                        add_answer_btn.setAttribute(
+                            'value',
+                            'Answer Your Own Question'
+                        )
+                    } else {
+                        add_answer_btn.setAttribute(
+                           'value',
+                           'Post Your Answer'
+                        )
+                    }
+                } else {
+                    add_answer_btn.setAttribute(
+                        'value',
+                        'Login/Signup to Post'
+                    );
+                }
+            }
+
+            function hide_convert_links() {
+                var isAuthenticated = data['userIsAuthenticated'];
+                var isMod = data['userIsAdminOrMod'];
+                if (isAuthenticated && isMod) {
+                    return;
+                }
+                var convertForms = findChildrenByClassName(document, 'convert-comment');
+                for (var i = 0; i < convertForms.length; i++) {
+                    //get comment id
+                    var form = convertForms[i];
+                    var idInput = findChildByAttribute(form, 'name', 'comment_id');
+                    var commentId = idInput.getAttribute('value');
+                    if (! isAuthorOfPost(commentId) ) {
+                        form.setAttribute('style', 'display:none;');
+                    }
+                }
+            }
+
+            askbot['functions'] = askbot['functions'] || {};
+            askbot['functions']['renderPostVoteButtons'] = render_vote_buttons;
+            askbot['functions']['renderPostControls'] = render_post_controls;
+            askbot['functions']['renderAddAnswerButton'] = render_add_answer_button;
+            askbot['functions']['hideConvertLinks'] = hide_convert_links;
+            askbot['functions']['hideConvertAnswerLinks'] = hide_convert_answer_links;
+            askbot['functions']['hidePublishAnswerLink'] = hidePublishAnswerLink;
+        })();
+        /*]]>*/
+    </script> </head> <body class="two-col question-page anon lang-en"> <div class="notify" style="display:none"> <div class="content-wrapper"> <a id="closeNotify" onclick="notify.close(true)"></a> </div> </div> <div id="custom-header"> <div style="border: 2px solid red; margin: 2em; padding: 1em">The i3 FAQ has migrated to <a href="https://www.reddit.com/r/i3wm/">https://www.reddit.com/r/i3wm/</a>. All content here is read-only.</div> </div> <!-- template header.html --> <div 
+    id="header"
+    class="without-logo"
+> <div class="content-wrapper"> <div id="userToolsNav"> <a href="https://faq.i3wm.org/account/signin/?next=/question/92/what-is-recommended-file-manager-for-i3wm/">Hi there! Please sign in</a> <a class="help" href="../../../help/index.html" title="help">help</a> </div> <div id="metaNav"> <a 
+  id="navTags"
+  href="https://faq.i3wm.org/tags/"
+  
+>tags</a> <a 
+  id="navUsers"
+  href="../../../users/index.html"
+  
+>users</a> <a 
+  id="navBadges"
+  href="../../../badges/index.html"
+  
+>badges</a> </div> <div class="clean"></div> </div> <div class="content-wrapper system-messages">
+            The i3 FAQ has migrated to https://www.reddit.com/r/i3wm/. All content here is read-only.
+        </div> </div> <!-- end template header.html --> <!-- template secondary_header.html --> <div id="secondaryHeader"> <div class="content-wrapper"> <form
+            
+                action="../../5172/exit-i3-dialog/index.html" id="searchForm"
+            
+            class="scopes-True-True-False"
+            method="get"> <table width="100%"> <tr> <td width="1"><a id="homeButton" href="../../5172/exit-i3-dialog/index.html"><i class="fa fa-home"></i></a></td> <td width="1"><div id="scopeNav"> <a class="scope-selector "
+            href="../../../questions/scope:all/sort:activity-desc/page:1/index.html"
+        >ALL</a> <a class="scope-selector "
+            href="../../../questions/scope:unanswered/sort:answers-asc/page:1/index.html"
+        >UNANSWERED</a> </div></td> <td width="*" class="search-bar"> <div 
+    id="searchBar"
+    class="search-bar"
+><input 
+        class="searchInput" 
+        type="text" 
+        autocomplete="off"
+        value="" 
+        name="query" 
+        placeholder="search or ask your question"
+        id="keywords"
+    /><input type="submit" value="" name="search" class="searchBtn" /><input type="button"
+        value="X"
+        name="reset_query"
+        class="cancelSearchBtn"
+        
+            style="display: none;"
+        
+    /></div> </td> <td width="1"> <a
+        id="askButton"
+        class="button"
+        href="../../../questions/ask/index.html"
+        >
+            Ask Your Question
+        </a> </td> </tr> </table> </form> </div> </div> <div class="content-wrapper"> <div id="ContentLeft"> <div class="post js-question" data-post-id="92"> <div class="vote-buttons"> <div id="question-img-upvote-92"
+    class="question-img-upvote post-vote upvote"> </div> <div 
+    id="question-vote-number-92"
+    class="vote-number"
+    title="current number of votes"
+>3</div> <div
+    id="question-img-downvote-92"
+    class="question-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('question', '92');
+</script> <a class="twitter-share icon"
+        title="Share this content on twitter"
+    ></a> <a class="facebook-share icon"
+        title="Share this content on facebook"
+    ></a> <a class="linkedin-share icon"
+        title="Share this content on linkedin"
+    ></a> <a class="identica-share icon"
+        title="Share this content on identica"
+    ></a> <g:plusone size="small" count="false"></g:plusone> </div> <div id="post-id-92" class="post-content"> <h1><a href="../what-is-recommended-file-manager-for-i3wm.1.html">What is recommended file manager for i3wm?</a></h1> <ul id="question-tags"
+    class="tags post-tags tags"
+> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:activity-desc/tags:file-manager/page:1/"
+            
+            data-tag-name="file-manager"
+        >file-manager</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:activity-desc/tags:browser/page:1/"
+            
+            data-tag-name="browser"
+        >browser</a></div> </li> <li> <div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:activity-desc/tags:application/page:1/"
+            
+            data-tag-name="application"
+        >application</a></div> </li> </ul> <div class="clearfix"></div> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/questions/92/revisions/"
+        
+        >asked <strong><abbr class="timeago" title="2012-06-08 00:52:51 +0000">
+        2012-06-08 00:52:51 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/22/mloskot/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/8dbfbbc4e48afe0caa43412a8c03ef07?s=32&amp;d=identicon&amp;r=PG"
+    title="mloskot" 
+    alt="mloskot gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/22/mloskot/index.html">mloskot</a> <br/> <span class="reputation-score">167</span> <span class="badges" title="mloskot has 5 gold badges, 7 silver badges and 14 bronze badges"> <span class='badge1'>&#9679;</span><span class="badgecount">5</span> <span class='badge2'>&#9679;</span><span class="badgecount">7</span> <span class='badge3'>&#9679;</span><span class="badgecount">14</span> </span> <a 
+            href="http://mateusz.loskot.net/"
+            title="mloskot's website is http://mateusz.loskot.net/"
+            
+        >
+        http://mateusz.loskot.net...
+        </a> </div> </div> </div> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/questions/92/revisions/"
+        
+        >updated <strong><abbr class="timeago" title="2012-06-08 09:28:01 +0000">
+        2012-06-08 09:28:01 +0000
+    </abbr></strong></a> </p> </div> </div> <p>I'm looking for suggestions of i3-friendly file manager which</p> <ul> <li>fits well into the i3wm philosophy</li> <li>lightweight</li> <li>with no or very few dependencies</li> <li>possibly fully-featured</li> <li>easily or exclusively operated with keyboard</li> <li>preferably graphical</li> </ul> <p>For console, I consider Midnight Commander superior, but it's always good to learn about alternatives.</p> <p>EDIT:
+Certainly, console itself is a very capable file manager what has been pointed in answers below. I should have clarified the question is about dedicated file management applications.</p> </div> <div id="question-controls" class="post-controls"> <a id="post-92-edit" class="question-edit" href="../../../questions/92/edit/index.html">edit</a> <a id="retag" class="question-retag" href="../../../questions/92/retag/index.html">retag</a> <span
+        id="question-offensive-flag-92" class="offensive-flag"
+        title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+    > <a class="question-flag">flag offensive</a> </span> <a class="question-close" href="../../../questions/92/close/index.html">close</a> <a class="question-merge">merge</a> <a
+    id="post-92-delete"
+    class="question-delete"
+>delete</a> <script type="text/javascript">
+    askbot['functions']['renderPostControls']('92');
+</script> </div> <div class="comments empty ordering-forward" 
+        data-parent-post-type="question"
+        data-parent-post-id="92"
+    ><div class="content"></div><div class="controls"><a class="js-open-editor-btn">add a comment</a></div></div> </div> </div> <div class="clean"></div> <div class="tabBar tabBar-answer"> <h2 id="questionCount">
+        14 answers
+    </h2> <div class="tabsA"> <span class="label">
+                    Sort by »
+                    </span> <a id="oldest" href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=oldest#sort-top"
+        ><span>oldest</span></a> <a id="latest" href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=latest#sort-top"
+        ><span>newest</span></a> <a id="votes" href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes#sort-top"
+        ><span>most voted</span></a> </div> </div> <div class="clean"></div> <div class="pager"> <div 
+            class="paginator"
+            style="float:left"
+            data-num-pages="2"
+        ><span class="prev"
+            style="display: none"
+        ><a href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes&amp;page=None#sort-top" 
+            title="previous"
+        >&laquo; previous</a></span><span class="first-page-nav"
+            style="display: none"
+        ><span class="page first-page"
+                data-page="1"
+            ><a href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes&amp;page=1#sort-top" >1</a></span><span class="leading-sep">...</span></span><span class="main-pages-nav"><span class="curr page" 
+                    data-page="1"
+                    title="current page"
+                ><a>1</a></span><span class="page"
+                    data-page="2"
+                ><a href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes&amp;page=2#sort-top"
+                    title="page 2"
+                >2</a></span></span><span class="last-page-nav"
+            style="display: none"
+        ><span class="trailing-sep">...</span><span class="page last-page" data-page="2"><a href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes&amp;page=2#sort-top"
+                    title="page 2"
+                >2</a></span></span><span class="next"
+            
+        ><a href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes&amp;page=2#sort-top"
+                title="next page"
+        >next &raquo;</a></span></div> </div> <div class="clean"></div> <a name="96"></a> <div
+    id="post-id-96"
+    data-post-id="96"
+    class="post answer   "
+> <div class="vote-buttons"> <div id="answer-img-upvote-96"
+    class="answer-img-upvote post-vote upvote"> </div> <div 
+    id="answer-vote-number-96"
+    class="vote-number"
+    title="current number of votes"
+>10</div> <div
+    id="answer-img-downvote-96"
+    class="answer-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('answer', '96');
+</script> <div
+    id="answer-img-accept-96"
+    class="answer-img-accept"
+    
+        title="mark this answer as correct (click again to undo)"
+    
+></div> </div> <div class="post-content"> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/96/revisions/"
+        
+        >answered <strong><abbr class="timeago" title="2012-06-08 15:07:34 +0000">
+        2012-06-08 15:07:34 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/6/miguel/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/c13afb92251dc36839338cb74f02163f?s=32&amp;d=identicon&amp;r=PG"
+    title="miguel" 
+    alt="miguel gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/6/miguel/index.html">miguel</a> <br/> <span class="reputation-score">131</span> <span class="badges" title="miguel has 2 gold badges, 2 silver badges and 7 bronze badges"> <span class='badge1'>&#9679;</span><span class="badgecount">2</span> <span class='badge2'>&#9679;</span><span class="badgecount">2</span> <span class='badge3'>&#9679;</span><span class="badgecount">7</span> </span> </div> </div> </div> </div> <p><a href="http://nongnu.org/ranger/">Ranger</a> is a curses-based file manager with vi key bindings that has many features and performs most common tasks very quickly.</p> </div> <div class="answer-controls post-controls"> <span id='post-96-edit' class="action-link"> <a class="question-edit" href="../../../answers/96/edit/index.html">edit</a> </span> <span 
+    id="answer-offensive-flag-96"
+    class="action-link offensive-flag"
+    title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+> <a class="question-flag">flag offensive</a> </span> <span id='post-96-delete' class="action-link delete-post"> <a class="question-delete"
+    >delete</a> </span> <span class="action-link"> <a  class="permant-link"
+        href="index.html%3Fanswer=96.html#post-id-96"
+        title="permanent link">
+        link
+    </a> </span> <span class="action-link dropdown-toggle">more
+<ul class="dropdown-menu"> <li id='post-96-convert'> <form 
+            class="answer-convert"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-question/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="96"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a question comment"
+            /> </form> </li> <li id='post-96-repost-as-comment-under-previous-answer'> <form class="answer-convert repost-as-comment-under-previous-answer"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-previous-answer/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="96"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a comment under older answer"
+            /> </form> </li> </ul> </span> <script type="text/javascript">
+    askbot['functions']['hideConvertAnswerLinks']('96');
+    askbot['functions']['hidePublishAnswerLink']('96');
+    askbot['functions']['renderPostControls']('96');
+</script> </div> <h2 class="comment-title">Comments</h2><div class="clean"></div><div class="comments ordering-forward" 
+        data-parent-post-type="answer"
+        data-parent-post-id="96"
+    ><div class="content"><div class="comment js-comment" data-comment-id="227"><div class="comment-votes"><div 
+                id="comment-img-upvote-227" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '227');
+            </script></div><div class="comment-content"><div id="post-227-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>Ranger is always the recommended answer to anything :)</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/55/lkraav/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/b94389c50b70d4ef8bda8663b7428fe1?s=16&amp;d=identicon&amp;r=PG"
+    title="lkraav" 
+    alt="lkraav gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/55/lkraav/index.html"
+                >lkraav</a><span class="age">&nbsp;(<abbr class="timeago" title="2012-07-08 20:24:01 +0000">
+        2012-07-08 20:24:01 +0000
+    </abbr>)</span><a 
+                    id="post-227-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="227" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('227');
+    </script><div class="comment js-comment" data-comment-id="684"><div class="comment-votes"><div 
+                id="comment-img-upvote-684" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '684');
+            </script></div><div class="comment-content"><div id="post-684-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>Y like this: tilda + tmux + ranger</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/145/bitozoid/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/b373dcacb8192af7c09633a6571575de?s=16&amp;d=identicon&amp;r=PG"
+    title="bitozoid" 
+    alt="bitozoid gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/145/bitozoid/index.html"
+                >bitozoid</a><span class="age">&nbsp;(<abbr class="timeago" title="2012-10-23 11:12:13 +0000">
+        2012-10-23 11:12:13 +0000
+    </abbr>)</span><a 
+                    id="post-684-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="684" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('684');
+    </script><div class="comment js-comment" data-comment-id="1636"><div class="comment-votes"><div 
+                id="comment-img-upvote-1636" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '1636');
+            </script></div><div class="comment-content"><div id="post-1636-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>Thanks for the suggestion. Didn't know about it and it's such an amazing file manager.</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/451/tblups/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/ba2f115f4b47bede29cf9f22b63a416e?s=16&amp;d=identicon&amp;r=PG"
+    title="tblups" 
+    alt="tblups gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/451/tblups/index.html"
+                >tblups</a><span class="age">&nbsp;(<abbr class="timeago" title="2013-04-14 14:21:32 +0000">
+        2013-04-14 14:21:32 +0000
+    </abbr>)</span><a 
+                    id="post-1636-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="1636" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('1636');
+    </script><div class="comment js-comment" data-comment-id="3969"><div class="comment-votes"><div 
+                id="comment-img-upvote-3969" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '3969');
+            </script></div><div class="comment-content"><div id="post-3969-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>I use ranger too</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/1150/triplc/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/194904e3b5b469c9110ad26a547422a4?s=16&amp;d=identicon&amp;r=PG"
+    title="triplc" 
+    alt="triplc gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/1150/triplc/index.html"
+                >triplc</a><span class="age">&nbsp;(<abbr class="timeago" title="2014-06-13 01:56:38 +0000">
+        2014-06-13 01:56:38 +0000
+    </abbr>)</span><a 
+                    id="post-3969-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="3969" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('3969');
+    </script><div class="comment js-comment" data-comment-id="5572"><div class="comment-votes"><div 
+                id="comment-img-upvote-5572" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '5572');
+            </script></div><div class="comment-content"><div id="post-5572-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>Does Ranger handle mounting flash drives?  I use PCManFM and it does that.  </p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/24842/zwl/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/e047beb9dd851ba0db6dc566c170184e?s=16&amp;d=identicon&amp;r=PG"
+    title="zwl" 
+    alt="zwl gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/24842/zwl/index.html"
+                >zwl</a><span class="age">&nbsp;(<abbr class="timeago" title="2015-03-05 17:58:43 +0000">
+        2015-03-05 17:58:43 +0000
+    </abbr>)</span><a 
+                    id="post-5572-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="5572" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('5572');
+    </script></div><div class="controls"><a class="hidden js-open-editor-btn">add a comment</a><a class="js-load-comments-btn">
+            
+                see more comments
+            
+        </a></div></div> </div> <div class="clean"></div> </div> <div class="clean"></div> <a name="93"></a> <div
+    id="post-id-93"
+    data-post-id="93"
+    class="post answer   "
+> <div class="vote-buttons"> <div id="answer-img-upvote-93"
+    class="answer-img-upvote post-vote upvote"> </div> <div 
+    id="answer-vote-number-93"
+    class="vote-number"
+    title="current number of votes"
+>3</div> <div
+    id="answer-img-downvote-93"
+    class="answer-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('answer', '93');
+</script> <div
+    id="answer-img-accept-93"
+    class="answer-img-accept"
+    
+        title="mark this answer as correct (click again to undo)"
+    
+></div> </div> <div class="post-content"> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/93/revisions/"
+        
+        >answered <strong><abbr class="timeago" title="2012-06-08 04:31:49 +0000">
+        2012-06-08 04:31:49 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/13/joepd/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/1963a99976e879530fdc9f60a762593a?s=32&amp;d=identicon&amp;r=PG"
+    title="joepd" 
+    alt="joepd gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/13/joepd/index.html">joepd</a> <br/> <span class="reputation-score">1398</span> <span class="badges" title="joepd has 10 gold badges, 22 silver badges and 46 bronze badges"> <span class='badge1'>&#9679;</span><span class="badgecount">10</span> <span class='badge2'>&#9679;</span><span class="badgecount">22</span> <span class='badge3'>&#9679;</span><span class="badgecount">46</span> </span> <a 
+            href="http://joepvd.github.io/"
+            title="joepd's website is http://joepvd.github.io/"
+            
+        >
+        http://joepvd.github.io/
+        </a> </div> </div> </div> </div> <p>BASH/ZSH ;)</p> </div> <div class="answer-controls post-controls"> <span id='post-93-edit' class="action-link"> <a class="question-edit" href="../../../answers/93/edit/index.html">edit</a> </span> <span 
+    id="answer-offensive-flag-93"
+    class="action-link offensive-flag"
+    title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+> <a class="question-flag">flag offensive</a> </span> <span id='post-93-delete' class="action-link delete-post"> <a class="question-delete"
+    >delete</a> </span> <span class="action-link"> <a  class="permant-link"
+        href="index.html%3Fanswer=93.html#post-id-93"
+        title="permanent link">
+        link
+    </a> </span> <span class="action-link dropdown-toggle">more
+<ul class="dropdown-menu"> <li id='post-93-convert'> <form 
+            class="answer-convert"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-question/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="93"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a question comment"
+            /> </form> </li> <li id='post-93-repost-as-comment-under-previous-answer'> <form class="answer-convert repost-as-comment-under-previous-answer"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-previous-answer/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="93"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a comment under older answer"
+            /> </form> </li> </ul> </span> <script type="text/javascript">
+    askbot['functions']['hideConvertAnswerLinks']('93');
+    askbot['functions']['hidePublishAnswerLink']('93');
+    askbot['functions']['renderPostControls']('93');
+</script> </div> <div class="comments empty ordering-forward" 
+        data-parent-post-type="answer"
+        data-parent-post-id="93"
+    ><div class="content"></div><div class="controls"><a class="js-open-editor-btn">add a comment</a></div></div> </div> <div class="clean"></div> </div> <div class="clean"></div> <a name="2470"></a> <div
+    id="post-id-2470"
+    data-post-id="2470"
+    class="post answer   "
+> <div class="vote-buttons"> <div id="answer-img-upvote-2470"
+    class="answer-img-upvote post-vote upvote"> </div> <div 
+    id="answer-vote-number-2470"
+    class="vote-number"
+    title="current number of votes"
+>3</div> <div
+    id="answer-img-downvote-2470"
+    class="answer-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('answer', '2470');
+</script> <div
+    id="answer-img-accept-2470"
+    class="answer-img-accept"
+    
+        title="mark this answer as correct (click again to undo)"
+    
+></div> </div> <div class="post-content"> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/2470/revisions/"
+        
+        >answered <strong><abbr class="timeago" title="2013-09-01 13:14:58 +0000">
+        2013-09-01 13:14:58 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/656/phairland/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/ca0f135b41490cb0136b78785480b913?s=32&amp;d=identicon&amp;r=PG"
+    title="phairland" 
+    alt="phairland gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/656/phairland/index.html">phairland</a> <br/> <span class="reputation-score">598</span> <span class="badges" title="phairland has 9 gold badges, 26 silver badges and 31 bronze badges"> <span class='badge1'>&#9679;</span><span class="badgecount">9</span> <span class='badge2'>&#9679;</span><span class="badgecount">26</span> <span class='badge3'>&#9679;</span><span class="badgecount">31</span> </span> </div> </div> </div> </div> <p>I use double commander as well.</p> </div> <div class="answer-controls post-controls"> <span id='post-2470-edit' class="action-link"> <a class="question-edit" href="../../../answers/2470/edit/index.html">edit</a> </span> <span 
+    id="answer-offensive-flag-2470"
+    class="action-link offensive-flag"
+    title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+> <a class="question-flag">flag offensive</a> </span> <span id='post-2470-delete' class="action-link delete-post"> <a class="question-delete"
+    >delete</a> </span> <span class="action-link"> <a  class="permant-link"
+        href="index.html%3Fanswer=2470.html#post-id-2470"
+        title="permanent link">
+        link
+    </a> </span> <span class="action-link dropdown-toggle">more
+<ul class="dropdown-menu"> <li id='post-2470-convert'> <form 
+            class="answer-convert"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-question/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="2470"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a question comment"
+            /> </form> </li> <li id='post-2470-repost-as-comment-under-previous-answer'> <form class="answer-convert repost-as-comment-under-previous-answer"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-previous-answer/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="2470"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a comment under older answer"
+            /> </form> </li> </ul> </span> <script type="text/javascript">
+    askbot['functions']['hideConvertAnswerLinks']('2470');
+    askbot['functions']['hidePublishAnswerLink']('2470');
+    askbot['functions']['renderPostControls']('2470');
+</script> </div> <div class="comments empty ordering-forward" 
+        data-parent-post-type="answer"
+        data-parent-post-id="2470"
+    ><div class="content"></div><div class="controls"><a class="js-open-editor-btn">add a comment</a></div></div> </div> <div class="clean"></div> </div> <div class="clean"></div> <a name="117"></a> <div
+    id="post-id-117"
+    data-post-id="117"
+    class="post answer   "
+> <div class="vote-buttons"> <div id="answer-img-upvote-117"
+    class="answer-img-upvote post-vote upvote"> </div> <div 
+    id="answer-vote-number-117"
+    class="vote-number"
+    title="current number of votes"
+>3</div> <div
+    id="answer-img-downvote-117"
+    class="answer-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('answer', '117');
+</script> <div
+    id="answer-img-accept-117"
+    class="answer-img-accept"
+    
+        title="mark this answer as correct (click again to undo)"
+    
+></div> </div> <div class="post-content"> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/117/revisions/"
+        
+        >answered <strong><abbr class="timeago" title="2012-06-11 20:39:09 +0000">
+        2012-06-11 20:39:09 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/31/sysadamin/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/29e646b47e1efb9af383b0d9c8091edc?s=32&amp;d=identicon&amp;r=PG"
+    title="sysadamin" 
+    alt="sysadamin gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/31/sysadamin/index.html">sysadamin</a> <br/> <span class="reputation-score">31</span> <span class="badges" title="sysadamin has one silver badge and 3 bronze badges"> <span class='badge2'>&#9679;</span><span class="badgecount">1</span> <span class='badge3'>&#9679;</span><span class="badgecount">3</span> </span> </div> </div> </div> </div> <p>i like vifm. <a href="http://vifm.sourceforge.net/">http://vifm.sourceforge.net/</a></p> <p>console based, nicer-looking than MC, and vim keybindings.</p> </div> <div class="answer-controls post-controls"> <span id='post-117-edit' class="action-link"> <a class="question-edit" href="../../../answers/117/edit/index.html">edit</a> </span> <span 
+    id="answer-offensive-flag-117"
+    class="action-link offensive-flag"
+    title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+> <a class="question-flag">flag offensive</a> </span> <span id='post-117-delete' class="action-link delete-post"> <a class="question-delete"
+    >delete</a> </span> <span class="action-link"> <a  class="permant-link"
+        href="index.html%3Fanswer=117.html#post-id-117"
+        title="permanent link">
+        link
+    </a> </span> <span class="action-link dropdown-toggle">more
+<ul class="dropdown-menu"> <li id='post-117-convert'> <form 
+            class="answer-convert"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-question/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="117"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a question comment"
+            /> </form> </li> <li id='post-117-repost-as-comment-under-previous-answer'> <form class="answer-convert repost-as-comment-under-previous-answer"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-previous-answer/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="117"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a comment under older answer"
+            /> </form> </li> </ul> </span> <script type="text/javascript">
+    askbot['functions']['hideConvertAnswerLinks']('117');
+    askbot['functions']['hidePublishAnswerLink']('117');
+    askbot['functions']['renderPostControls']('117');
+</script> </div> <div class="comments empty ordering-forward" 
+        data-parent-post-type="answer"
+        data-parent-post-id="117"
+    ><div class="content"></div><div class="controls"><a class="js-open-editor-btn">add a comment</a></div></div> </div> <div class="clean"></div> </div> <div class="clean"></div> <a name="132"></a> <div
+    id="post-id-132"
+    data-post-id="132"
+    class="post answer   "
+> <div class="vote-buttons"> <div id="answer-img-upvote-132"
+    class="answer-img-upvote post-vote upvote"> </div> <div 
+    id="answer-vote-number-132"
+    class="vote-number"
+    title="current number of votes"
+>2</div> <div
+    id="answer-img-downvote-132"
+    class="answer-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('answer', '132');
+</script> <div
+    id="answer-img-accept-132"
+    class="answer-img-accept"
+    
+        title="mark this answer as correct (click again to undo)"
+    
+></div> </div> <div class="post-content"> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/132/revisions/"
+        
+        >answered <strong><abbr class="timeago" title="2012-06-15 05:57:47 +0000">
+        2012-06-15 05:57:47 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/12/atsutane/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/56c28f57abeb9ab9fd4c43b054872ad0?s=32&amp;d=identicon&amp;r=PG"
+    title="Atsutane" 
+    alt="Atsutane gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/12/atsutane/index.html">Atsutane</a> <img class="flag" 
+            
+            src="../../../m/default/media/images/flags/de.gif%3Fv=2" 
+            alt="flag of Germany"
+            title="Atsutane is from Germany"
+        /> <br/> <span class="reputation-score">21</span> <span class="badges" title="Atsutane has 4 bronze badges"> <span class='badge3'>&#9679;</span><span class="badgecount">4</span> </span> <a 
+            href="http://atsutane.freethoughts.de/"
+            title="Atsutane's website is http://atsutane.freethoughts.de/"
+            
+            rel="nofollow"
+            
+        >
+        http://atsutane.freethoug...
+        </a> </div> </div> </div> </div> <p><a href="http://roscidus.com/desktop/ROX-Filer">ROX</a> is a lightweight GTK2 Filemanager, I use it on every of my machines.</p> </div> <div class="answer-controls post-controls"> <span id='post-132-edit' class="action-link"> <a class="question-edit" href="../../../answers/132/edit/index.html">edit</a> </span> <span 
+    id="answer-offensive-flag-132"
+    class="action-link offensive-flag"
+    title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+> <a class="question-flag">flag offensive</a> </span> <span id='post-132-delete' class="action-link delete-post"> <a class="question-delete"
+    >delete</a> </span> <span class="action-link"> <a  class="permant-link"
+        href="index.html%3Fanswer=132.html#post-id-132"
+        title="permanent link">
+        link
+    </a> </span> <span class="action-link dropdown-toggle">more
+<ul class="dropdown-menu"> <li id='post-132-convert'> <form 
+            class="answer-convert"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-question/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="132"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a question comment"
+            /> </form> </li> <li id='post-132-repost-as-comment-under-previous-answer'> <form class="answer-convert repost-as-comment-under-previous-answer"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-previous-answer/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="132"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a comment under older answer"
+            /> </form> </li> </ul> </span> <script type="text/javascript">
+    askbot['functions']['hideConvertAnswerLinks']('132');
+    askbot['functions']['hidePublishAnswerLink']('132');
+    askbot['functions']['renderPostControls']('132');
+</script> </div> <h2 class="comment-title">Comments</h2><div class="clean"></div><div class="comments ordering-forward" 
+        data-parent-post-type="answer"
+        data-parent-post-id="132"
+    ><div class="content"><div class="comment js-comment" data-comment-id="1564"><div class="comment-votes"><div 
+                id="comment-img-upvote-1564" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '1564');
+            </script></div><div class="comment-content"><div id="post-1564-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>I just tried this one tonight and indeed it fits well in a tilling window manager. The pinboard feature is nice to have kind of a desktop on one workplace only. You may have a bar on all workplace and below the i3bar with the panel feature. The overall is indeed light‑weight.</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/437/hibou57/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/802519119c22d99b4dae2dbe7fb9e565?s=16&amp;d=identicon&amp;r=PG"
+    title="Hibou57" 
+    alt="Hibou57 gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/437/hibou57/index.html"
+                >Hibou57</a><span class="age">&nbsp;(<abbr class="timeago" title="2013-04-05 22:28:50 +0000">
+        2013-04-05 22:28:50 +0000
+    </abbr>)</span><a 
+                    id="post-1564-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="1564" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('1564');
+    </script></div><div class="controls"><a class="js-open-editor-btn">add a comment</a></div></div> </div> <div class="clean"></div> </div> <div class="clean"></div> <a name="147"></a> <div
+    id="post-id-147"
+    data-post-id="147"
+    class="post answer   "
+> <div class="vote-buttons"> <div id="answer-img-upvote-147"
+    class="answer-img-upvote post-vote upvote"> </div> <div 
+    id="answer-vote-number-147"
+    class="vote-number"
+    title="current number of votes"
+>2</div> <div
+    id="answer-img-downvote-147"
+    class="answer-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('answer', '147');
+</script> <div
+    id="answer-img-accept-147"
+    class="answer-img-accept"
+    
+        title="mark this answer as correct (click again to undo)"
+    
+></div> </div> <div class="post-content"> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/147/revisions/"
+        
+        >answered <strong><abbr class="timeago" title="2012-06-19 20:56:21 +0000">
+        2012-06-19 20:56:21 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/14/meaneye/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/6cbe61df123f7ef6e916d16b87ca141f?s=32&amp;d=identicon&amp;r=PG"
+    title="MeanEYE" 
+    alt="MeanEYE gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/14/meaneye/index.html">MeanEYE</a> <br/> <span class="reputation-score">77</span> <span class="badges" title="MeanEYE has one gold badge, one silver badge and 9 bronze badges"> <span class='badge1'>&#9679;</span><span class="badgecount">1</span> <span class='badge2'>&#9679;</span><span class="badgecount">1</span> <span class='badge3'>&#9679;</span><span class="badgecount">9</span> </span> </div> </div> </div> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/147/revisions/"
+        
+        >updated <strong><abbr class="timeago" title="2012-06-19 20:57:03 +0000">
+        2012-06-19 20:57:03 +0000
+    </abbr></strong></a> </p> </div> </div> <p>I am using my own <a href="http://code.google.com/p/sunflower-fm/">file manager</a>. Give it a shot. You might like it. :p</p> <p><img alt="image description" src="http://img713.imageshack.us/img713/3218/sunflowerpreview.png"/></p> </div> <div class="answer-controls post-controls"> <span id='post-147-edit' class="action-link"> <a class="question-edit" href="../../../answers/147/edit/index.html">edit</a> </span> <span 
+    id="answer-offensive-flag-147"
+    class="action-link offensive-flag"
+    title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+> <a class="question-flag">flag offensive</a> </span> <span id='post-147-delete' class="action-link delete-post"> <a class="question-delete"
+    >delete</a> </span> <span class="action-link"> <a  class="permant-link"
+        href="index.html%3Fanswer=147.html#post-id-147"
+        title="permanent link">
+        link
+    </a> </span> <span class="action-link dropdown-toggle">more
+<ul class="dropdown-menu"> <li id='post-147-convert'> <form 
+            class="answer-convert"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-question/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="147"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a question comment"
+            /> </form> </li> <li id='post-147-repost-as-comment-under-previous-answer'> <form class="answer-convert repost-as-comment-under-previous-answer"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-previous-answer/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="147"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a comment under older answer"
+            /> </form> </li> </ul> </span> <script type="text/javascript">
+    askbot['functions']['hideConvertAnswerLinks']('147');
+    askbot['functions']['hidePublishAnswerLink']('147');
+    askbot['functions']['renderPostControls']('147');
+</script> </div> <h2 class="comment-title">Comments</h2><div class="clean"></div><div class="comments ordering-forward" 
+        data-parent-post-type="answer"
+        data-parent-post-id="147"
+    ><div class="content"><div class="comment js-comment" data-comment-id="157"><div class="comment-votes"><div 
+                id="comment-img-upvote-157" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '157');
+            </script></div><div class="comment-content"><div id="post-157-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>Thanks! Despite I'm a bit sceptical about Python, your project looks very interesting. I'm going to give it a try. EDIT: After 5 minutes with Sunflower, it leaped to the first place on my list of the GUI twin panel file managers. Great work!</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/22/mloskot/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/8dbfbbc4e48afe0caa43412a8c03ef07?s=16&amp;d=identicon&amp;r=PG"
+    title="mloskot" 
+    alt="mloskot gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/22/mloskot/index.html"
+                >mloskot</a><span class="age">&nbsp;(<abbr class="timeago" title="2012-06-24 12:57:37 +0000">
+        2012-06-24 12:57:37 +0000
+    </abbr>)</span><a 
+                    id="post-157-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="157" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('157');
+    </script><div class="comment js-comment" data-comment-id="163"><div class="comment-votes"><div 
+                id="comment-img-upvote-163" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '163');
+            </script></div><div class="comment-content"><div id="post-163-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p><a href="../../../users/22/mloskot/index.html">@mloskot</a> Thanks, glad you like it. It's still a work in progress and features are still missing, but it's being worked on. If you need a feature, just make a new enhancement request on our issues list and have patience. :D</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/14/meaneye/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/6cbe61df123f7ef6e916d16b87ca141f?s=16&amp;d=identicon&amp;r=PG"
+    title="MeanEYE" 
+    alt="MeanEYE gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/14/meaneye/index.html"
+                >MeanEYE</a><span class="age">&nbsp;(<abbr class="timeago" title="2012-06-25 17:39:56 +0000">
+        2012-06-25 17:39:56 +0000
+    </abbr>)</span><a 
+                    id="post-163-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="163" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('163');
+    </script><div class="comment js-comment" data-comment-id="5378"><div class="comment-votes"><div 
+                id="comment-img-upvote-5378" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '5378');
+            </script></div><div class="comment-content"><div id="post-5378-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>Wow! Missing features like doing dishes and walking the dog right? That thing looks fast, nicely laid out and incredibly intuitive. Nice work!</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/24751/theraven/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/39c72569abace3705cfaab61cf594d0b?s=16&amp;d=identicon&amp;r=PG"
+    title="TheRaven" 
+    alt="TheRaven gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/24751/theraven/index.html"
+                >TheRaven</a><span class="age">&nbsp;(<abbr class="timeago" title="2015-01-22 17:14:03 +0000">
+        2015-01-22 17:14:03 +0000
+    </abbr>)</span><a 
+                    id="post-5378-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="5378" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('5378');
+    </script></div><div class="controls"><a class="js-open-editor-btn">add a comment</a></div></div> </div> <div class="clean"></div> </div> <div class="clean"></div> <a name="3903"></a> <div
+    id="post-id-3903"
+    data-post-id="3903"
+    class="post answer   "
+> <div class="vote-buttons"> <div id="answer-img-upvote-3903"
+    class="answer-img-upvote post-vote upvote"> </div> <div 
+    id="answer-vote-number-3903"
+    class="vote-number"
+    title="current number of votes"
+>2</div> <div
+    id="answer-img-downvote-3903"
+    class="answer-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('answer', '3903');
+</script> <div
+    id="answer-img-accept-3903"
+    class="answer-img-accept"
+    
+        title="mark this answer as correct (click again to undo)"
+    
+></div> </div> <div class="post-content"> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/3903/revisions/"
+        
+        >answered <strong><abbr class="timeago" title="2014-06-01 16:53:55 +0000">
+        2014-06-01 16:53:55 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/1062/x3map/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/2a84ae6951d86856c9c7385a54e8ab8a?s=32&amp;d=identicon&amp;r=PG"
+    title="x3map" 
+    alt="x3map gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/1062/x3map/index.html">x3map</a> <br/> <span class="reputation-score">21</span> <span class="badges" title="x3map has 2 silver badges and 3 bronze badges"> <span class='badge2'>&#9679;</span><span class="badgecount">2</span> <span class='badge3'>&#9679;</span><span class="badgecount">3</span> </span> </div> </div> </div> </div> <p>Total Commander under wine !!!</p> </div> <div class="answer-controls post-controls"> <span id='post-3903-edit' class="action-link"> <a class="question-edit" href="../../../answers/3903/edit/index.html">edit</a> </span> <span 
+    id="answer-offensive-flag-3903"
+    class="action-link offensive-flag"
+    title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+> <a class="question-flag">flag offensive</a> </span> <span id='post-3903-delete' class="action-link delete-post"> <a class="question-delete"
+    >delete</a> </span> <span class="action-link"> <a  class="permant-link"
+        href="index.html%3Fanswer=3903.html#post-id-3903"
+        title="permanent link">
+        link
+    </a> </span> <span class="action-link dropdown-toggle">more
+<ul class="dropdown-menu"> <li id='post-3903-convert'> <form 
+            class="answer-convert"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-question/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="3903"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a question comment"
+            /> </form> </li> <li id='post-3903-repost-as-comment-under-previous-answer'> <form class="answer-convert repost-as-comment-under-previous-answer"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-previous-answer/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="3903"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a comment under older answer"
+            /> </form> </li> </ul> </span> <script type="text/javascript">
+    askbot['functions']['hideConvertAnswerLinks']('3903');
+    askbot['functions']['hidePublishAnswerLink']('3903');
+    askbot['functions']['renderPostControls']('3903');
+</script> </div> <div class="comments empty ordering-forward" 
+        data-parent-post-type="answer"
+        data-parent-post-id="3903"
+    ><div class="content"></div><div class="controls"><a class="js-open-editor-btn">add a comment</a></div></div> </div> <div class="clean"></div> </div> <div class="clean"></div> <a name="99"></a> <div
+    id="post-id-99"
+    data-post-id="99"
+    class="post answer   "
+> <div class="vote-buttons"> <div id="answer-img-upvote-99"
+    class="answer-img-upvote post-vote upvote"> </div> <div 
+    id="answer-vote-number-99"
+    class="vote-number"
+    title="current number of votes"
+>2</div> <div
+    id="answer-img-downvote-99"
+    class="answer-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('answer', '99');
+</script> <div
+    id="answer-img-accept-99"
+    class="answer-img-accept"
+    
+        title="mark this answer as correct (click again to undo)"
+    
+></div> </div> <div class="post-content"> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/99/revisions/"
+        
+        >answered <strong><abbr class="timeago" title="2012-06-09 06:06:02 +0000">
+        2012-06-09 06:06:02 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/19/brunobraga/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/41857e6755fe87df2b64cd838273e2c7?s=32&amp;d=identicon&amp;r=PG"
+    title="bruno.braga" 
+    alt="bruno.braga gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/19/brunobraga/index.html">bruno.braga</a> <img class="flag" 
+            
+            src="../../../m/default/media/images/flags/au.gif%3Fv=2" 
+            alt="flag of Australia"
+            title="bruno.braga is from Australia"
+        /> <br/> <span class="reputation-score">836</span> <span class="badges" title="bruno.braga has 13 gold badges, 21 silver badges and 39 bronze badges"> <span class='badge1'>&#9679;</span><span class="badgecount">13</span> <span class='badge2'>&#9679;</span><span class="badgecount">21</span> <span class='badge3'>&#9679;</span><span class="badgecount">39</span> </span> <a 
+            href="http://brunobraga.net/"
+            title="bruno.braga's website is http://brunobraga.net/"
+            
+        >
+        http://brunobraga.net/
+        </a> </div> </div> </div> </div> <p>People might criticize me here, but if you need all that (full-featured), why don't just stick with nautilus? At least for personal use (thumbnails of files, images and videos, etc), it has everything I need.</p> <p>But I agree that the i3wm philosophy might be more toward the terminal-ish styles people shared here (at work I also rely on old ls/cp/rm/mv commands too).</p> </div> <div class="answer-controls post-controls"> <span id='post-99-edit' class="action-link"> <a class="question-edit" href="../../../answers/99/edit/index.html">edit</a> </span> <span 
+    id="answer-offensive-flag-99"
+    class="action-link offensive-flag"
+    title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+> <a class="question-flag">flag offensive</a> </span> <span id='post-99-delete' class="action-link delete-post"> <a class="question-delete"
+    >delete</a> </span> <span class="action-link"> <a  class="permant-link"
+        href="index.html%3Fanswer=99.html#post-id-99"
+        title="permanent link">
+        link
+    </a> </span> <span class="action-link dropdown-toggle">more
+<ul class="dropdown-menu"> <li id='post-99-convert'> <form 
+            class="answer-convert"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-question/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="99"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a question comment"
+            /> </form> </li> <li id='post-99-repost-as-comment-under-previous-answer'> <form class="answer-convert repost-as-comment-under-previous-answer"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-previous-answer/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="99"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a comment under older answer"
+            /> </form> </li> </ul> </span> <script type="text/javascript">
+    askbot['functions']['hideConvertAnswerLinks']('99');
+    askbot['functions']['hidePublishAnswerLink']('99');
+    askbot['functions']['renderPostControls']('99');
+</script> </div> <h2 class="comment-title">Comments</h2><div class="clean"></div><div class="comments ordering-forward" 
+        data-parent-post-type="answer"
+        data-parent-post-id="99"
+    ><div class="content"><div class="comment js-comment" data-comment-id="105"><div class="comment-votes"><div 
+                id="comment-img-upvote-105" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '105');
+            </script></div><div class="comment-content"><div id="post-105-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>I prefer using keyboard than mouse, thus I indicated the i3wm philosophy. Nautilus is fully-featured, but it is not even close to what I consider as file management ergonomy. Ideal combination of GUI with keyboard and features is Total Commander, but it's Windows-only. MC is close, but misses GUI.</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/22/mloskot/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/8dbfbbc4e48afe0caa43412a8c03ef07?s=16&amp;d=identicon&amp;r=PG"
+    title="mloskot" 
+    alt="mloskot gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/22/mloskot/index.html"
+                >mloskot</a><span class="age">&nbsp;(<abbr class="timeago" title="2012-06-09 15:56:58 +0000">
+        2012-06-09 15:56:58 +0000
+    </abbr>)</span><a 
+                    id="post-105-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="105" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('105');
+    </script><div class="comment js-comment" data-comment-id="109"><div class="comment-votes"><div 
+                id="comment-img-upvote-109" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '109');
+            </script></div><div class="comment-content"><div id="post-109-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>Might sound odd, but I almost never use mouse, even under nautilus...</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/19/brunobraga/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/41857e6755fe87df2b64cd838273e2c7?s=16&amp;d=identicon&amp;r=PG"
+    title="bruno.braga" 
+    alt="bruno.braga gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/19/brunobraga/index.html"
+                >bruno.braga</a><span class="age">&nbsp;(<abbr class="timeago" title="2012-06-10 09:37:31 +0000">
+        2012-06-10 09:37:31 +0000
+    </abbr>)</span><a 
+                    id="post-109-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="109" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('109');
+    </script><div class="comment js-comment" data-comment-id="305"><div class="comment-votes"><div 
+                id="comment-img-upvote-305" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '305');
+            </script></div><div class="comment-content"><div id="post-305-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>If nautilus doesn't cut it, you could give krusader a try.</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/75/brox/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/8fd343b381ce6d67f003fdd63b8cc83e?s=16&amp;d=identicon&amp;r=PG"
+    title="BroX" 
+    alt="BroX gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/75/brox/index.html"
+                >BroX</a><span class="age">&nbsp;(<abbr class="timeago" title="2012-07-27 22:16:17 +0000">
+        2012-07-27 22:16:17 +0000
+    </abbr>)</span><a 
+                    id="post-305-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="305" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('305');
+    </script></div><div class="controls"><a class="js-open-editor-btn">add a comment</a></div></div> </div> <div class="clean"></div> </div> <div class="clean"></div> <a name="106"></a> <div
+    id="post-id-106"
+    data-post-id="106"
+    class="post answer   "
+> <div class="vote-buttons"> <div id="answer-img-upvote-106"
+    class="answer-img-upvote post-vote upvote"> </div> <div 
+    id="answer-vote-number-106"
+    class="vote-number"
+    title="current number of votes"
+>2</div> <div
+    id="answer-img-downvote-106"
+    class="answer-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('answer', '106');
+</script> <div
+    id="answer-img-accept-106"
+    class="answer-img-accept"
+    
+        title="mark this answer as correct (click again to undo)"
+    
+></div> </div> <div class="post-content"> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/106/revisions/"
+        
+        >answered <strong><abbr class="timeago" title="2012-06-09 17:53:10 +0000">
+        2012-06-09 17:53:10 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/28/polaris202/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/95c93d310a52cb98ff25012666ce26b6?s=32&amp;d=identicon&amp;r=PG"
+    title="polaris202" 
+    alt="polaris202 gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/28/polaris202/index.html">polaris202</a> <br/> <span class="reputation-score">21</span> <span class="badges" title="polaris202 has 2 bronze badges"> <span class='badge3'>&#9679;</span><span class="badgecount">2</span> </span> </div> </div> </div> </div> <p>Try <a href="http://www.obsession.se/gentoo/">gentoo</a>. It's graphical, lightweight, fully-featured. You can configure your favorite keybord shortcuts and much much more. And you don't need Gnome or some like that installed, just GTK.</p> </div> <div class="answer-controls post-controls"> <span id='post-106-edit' class="action-link"> <a class="question-edit" href="../../../answers/106/edit/index.html">edit</a> </span> <span 
+    id="answer-offensive-flag-106"
+    class="action-link offensive-flag"
+    title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+> <a class="question-flag">flag offensive</a> </span> <span id='post-106-delete' class="action-link delete-post"> <a class="question-delete"
+    >delete</a> </span> <span class="action-link"> <a  class="permant-link"
+        href="index.html%3Fanswer=106.html#post-id-106"
+        title="permanent link">
+        link
+    </a> </span> <span class="action-link dropdown-toggle">more
+<ul class="dropdown-menu"> <li id='post-106-convert'> <form 
+            class="answer-convert"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-question/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="106"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a question comment"
+            /> </form> </li> <li id='post-106-repost-as-comment-under-previous-answer'> <form class="answer-convert repost-as-comment-under-previous-answer"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-previous-answer/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="106"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a comment under older answer"
+            /> </form> </li> </ul> </span> <script type="text/javascript">
+    askbot['functions']['hideConvertAnswerLinks']('106');
+    askbot['functions']['hidePublishAnswerLink']('106');
+    askbot['functions']['renderPostControls']('106');
+</script> </div> <h2 class="comment-title">Comments</h2><div class="clean"></div><div class="comments ordering-forward" 
+        data-parent-post-type="answer"
+        data-parent-post-id="106"
+    ><div class="content"><div class="comment js-comment" data-comment-id="336"><div class="comment-votes"><div 
+                id="comment-img-upvote-336" 
+                class="upvote js-score"
+            ></div><script type="text/javascript">
+                askbot['functions']['renderPostVoteButtons']('comment', '336');
+            </script></div><div class="comment-content"><div id="post-336-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"><p>o thanks  this is pretty awesome.</p></div><div class="comment-controls"><a class="js-avatar-box"
+    href="../../../users/87/c1b3rh4ck/index.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="https://www.gravatar.com/avatar/b815541780fb0fc003dd4e8556fb6115?s=16&amp;d=identicon&amp;r=PG"
+    title="c1b3rh4ck" 
+    alt="c1b3rh4ck gravatar image" 
+/></a><a 
+                    class="author"
+                    href="../../../users/87/c1b3rh4ck/index.html"
+                >c1b3rh4ck</a><span class="age">&nbsp;(<abbr class="timeago" title="2012-08-12 18:36:37 +0000">
+        2012-08-12 18:36:37 +0000
+    </abbr>)</span><a 
+                    id="post-336-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr"><input type="hidden" value="336" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><script type="text/javascript">
+        askbot['functions']['hideConvertLinks']();
+        askbot['functions']['renderPostControls']('336');
+    </script></div><div class="controls"><a class="js-open-editor-btn">add a comment</a></div></div> </div> <div class="clean"></div> </div> <div class="clean"></div> <a name="94"></a> <div
+    id="post-id-94"
+    data-post-id="94"
+    class="post answer   "
+> <div class="vote-buttons"> <div id="answer-img-upvote-94"
+    class="answer-img-upvote post-vote upvote"> </div> <div 
+    id="answer-vote-number-94"
+    class="vote-number"
+    title="current number of votes"
+>2</div> <div
+    id="answer-img-downvote-94"
+    class="answer-img-downvote post-vote downvote"> </div> <script type="text/javascript">
+    askbot['functions']['renderPostVoteButtons']('answer', '94');
+</script> <div
+    id="answer-img-accept-94"
+    class="answer-img-accept"
+    
+        title="mark this answer as correct (click again to undo)"
+    
+></div> </div> <div class="post-content"> <div class="post-body"> <div class="post-update-info-container"> <div class='post-update-info'> <p style="line-height:12px;"> <a 
+        
+            href="https://faq.i3wm.org/answers/94/revisions/"
+        
+        >answered <strong><abbr class="timeago" title="2012-06-08 07:29:04 +0000">
+        2012-06-08 07:29:04 +0000
+    </abbr></strong></a> </p> <div class="user-card"> <a class="js-avatar-box"
+    href="../../../users/1/michael/index.html"
+><img class="js-avatar gravatar" 
+    width="32" height="32"
+    src="https://www.gravatar.com/avatar/72e2aeb0ccfd576606a329bf3e2ae8ef?s=32&amp;d=identicon&amp;r=PG"
+    title="Michael" 
+    alt="Michael gravatar image" 
+/></a> <div class="user-info"> <a href="../../../users/1/michael/index.html">Michael</a> <br/> <span class="reputation-score">3081</span> <span class="badges" title="Michael has 13 gold badges, 28 silver badges and 50 bronze badges"> <span class='badge1'>&#9679;</span><span class="badgecount">13</span> <span class='badge2'>&#9679;</span><span class="badgecount">28</span> <span class='badge3'>&#9679;</span><span class="badgecount">50</span> </span> <a 
+            href="http://i3wm.org/"
+            title="Michael's website is http://i3wm.org/"
+            
+        >
+        http://i3wm.org/
+        </a> </div> </div> </div> </div> <p>I know people who are using pcmanfm or thunar or mc on the console. I dislike all file managers I know of, so I just stick with a shell and ls/cd/rm.</p> </div> <div class="answer-controls post-controls"> <span id='post-94-edit' class="action-link"> <a class="question-edit" href="../../../answers/94/edit/index.html">edit</a> </span> <span 
+    id="answer-offensive-flag-94"
+    class="action-link offensive-flag"
+    title="report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+> <a class="question-flag">flag offensive</a> </span> <span id='post-94-delete' class="action-link delete-post"> <a class="question-delete"
+    >delete</a> </span> <span class="action-link"> <a  class="permant-link"
+        href="index.html%3Fanswer=94.html#post-id-94"
+        title="permanent link">
+        link
+    </a> </span> <span class="action-link dropdown-toggle">more
+<ul class="dropdown-menu"> <li id='post-94-convert'> <form 
+            class="answer-convert"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-question/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="94"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a question comment"
+            /> </form> </li> <li id='post-94-repost-as-comment-under-previous-answer'> <form class="answer-convert repost-as-comment-under-previous-answer"
+            action="https://faq.i3wm.org/answer/repost-as-comment-under-previous-answer/"
+            method="post"
+        > <input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <input type="hidden" name="answer_id" value="94"/> <input 
+                type="submit"
+                class="link"
+                value="repost as a comment under older answer"
+            /> </form> </li> </ul> </span> <script type="text/javascript">
+    askbot['functions']['hideConvertAnswerLinks']('94');
+    askbot['functions']['hidePublishAnswerLink']('94');
+    askbot['functions']['renderPostControls']('94');
+</script> </div> <div class="comments empty ordering-forward" 
+        data-parent-post-type="answer"
+        data-parent-post-id="94"
+    ><div class="content"></div><div class="controls"><a class="js-open-editor-btn">add a comment</a></div></div> </div> <div class="clean"></div> </div> <div class="clean"></div> <div class="pager"> <div 
+            class="paginator"
+            style="float:left"
+            data-num-pages="2"
+        ><span class="prev"
+            style="display: none"
+        ><a href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes&amp;page=None#sort-top" 
+            title="previous"
+        >&laquo; previous</a></span><span class="first-page-nav"
+            style="display: none"
+        ><span class="page first-page"
+                data-page="1"
+            ><a href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes&amp;page=1#sort-top" >1</a></span><span class="leading-sep">...</span></span><span class="main-pages-nav"><span class="curr page" 
+                    data-page="1"
+                    title="current page"
+                ><a>1</a></span><span class="page"
+                    data-page="2"
+                ><a href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes&amp;page=2#sort-top"
+                    title="page 2"
+                >2</a></span></span><span class="last-page-nav"
+            style="display: none"
+        ><span class="trailing-sep">...</span><span class="page last-page" data-page="2"><a href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes&amp;page=2#sort-top"
+                    title="page 2"
+                >2</a></span></span><span class="next"
+            
+        ><a href="https://faq.i3wm.org/question/92/what-is-recommended-file-manager-for-i3wm/?sort=votes&amp;page=2#sort-top"
+                title="next page"
+        >next &raquo;</a></span></div> </div> <div class="clean"></div> <form
+        id="fmanswer"
+        action="https://faq.i3wm.org/questions/92/answer/"
+        method="post"
+        ><input type='hidden' name='csrfmiddlewaretoken' value='W2kIaaiNEypCRNv9KLSqfUW3qw4ldNPr' /> <div style="clear:both"></div> </form> </div> <div id="ContentRight"> <div class="box vote-buttons"> <h2>Question Tools</h2> <button class="js-follow-question button large"
+        data-is-on="false"
+        data-off-prompt-text="Unfollow"
+        data-on-prompt-text="Follow"
+        data-on-state-text="Following"
+        data-off-state-text="Follow"
+        data-toggle-url="/toggle-follow-question/"
+    >
+        
+            Follow
+        
+    </button> <div class="clearfix"></div> <div class="js-question-follower-count">
+        
+        
+            1 follower
+        
+    </div> <div class="notify-sidebar"> <p class="rss"> <a
+                href="../../../feeds/question/92"
+                title="subscribe to the rss feed"
+                >subscribe to rss feed</a> </p> </div> </div> <div class="clearfix"></div> <div class="box statsWidget"> <div class="clearfix"></div> <h2>Stats</h2> <p>
+        Asked: <strong><abbr class="timeago" title="2012-06-08 00:52:51 +0000">
+        2012-06-08 00:52:51 +0000
+    </abbr></strong> </p> <p> 
+        Seen: <strong>29,801 times</strong> </p> <p>
+        Last updated: <strong title="2015-09-08 17:48:22.535261">Sep 08</strong> </p> </div> <div class="box"> <h2>Related questions</h2> <div class="questions-related"> <p> <a href="../../6076/dont-let-applications-grab-full-keyboard-input/index.html">Don&#39;t let applications grab full keyboard input</a> </p> <p> <a href="../../4612/dragging-web-browser-tab-to-another-screen/index.html">dragging web browser tab to another screen</a> </p> <p> <a href="../../5874/window-does-not-disappear-when-closing-app.1.html">Window does not disappear when closing app</a> </p> <p> <a href="../../5816/firefox-default-workspace-and-dialogs/index.html">Firefox, default workspace and dialogs</a> </p> <p> <a href="../../7282/force-fullscreen-video-to-floating-window.1.html">Force fullscreen video to floating window</a> </p> <p> <a href="../../4717/x-file-manager-with-nice-keyboard-shortcuts.1.html">x file manager with nice keyboard shortcuts</a> </p> </div> </div> </div> </div> <!-- template footer.html --> <div id="ground"> <div class="content-wrapper"> <div class="copyright"> <a href="http://creativecommons.org/licenses/by-sa/3.0/legalcode"> <img
+                            class="license-logo"
+                            src="../../../m/default/media/images/cc-by-sa.png%3Fv=2"
+                            title="cc-by-sa"
+                            alt="cc-by-sa"
+                        /> </a>
+                
+                Copyright i3, 2012 Content on this site is licensed under a <a href="http://creativecommons.org/licenses/by-sa/3.0/legalcode">Creative Commons Attribution Share Alike 3.0</a> license.
+
+            </div> <div class="footer-links" > <a href="../../../about/index.html">about</a><span class="link-separator"> |</span> <a href="../../../faq/index.html">faq</a><span class="link-separator"> |</span> <a href="../../../help/index.html" title="help">help</a> <span class="link-separator"> |</span> <a href="../../../privacy/index.html">privacy policy</a><span class="link-separator"> |</span> <a href="../../../terms/index.html">terms of service</a><span class="link-separator"> |</span> <a href=
+                        
+                            "https://github.com/i3/i3.github.io/issues"
+                            target="_blank">
+                        
+                        give feedback
+                    </a> </div> <div class="powered-link"> <a href="http://askbot.com" target="_blank">
+                Powered by Askbot version 0.7.52
+            </a> </div> <div class="clean"></div> </div> </div> <!-- end template footer.html --> <div id="no-javascript"> <noscript class="noscript">
+        Please note: i3 FAQ requires javascript to work properly, please enable javascript in your browser, <a href="https://www.google.com/support/bin/answer.py?answer=23852">here is how</a> </noscript> <script type="text/javascript">
+        //IE fix to hide the red margin
+        var noscript = document.getElementsByTagName('noscript')[0];
+        noscript.style.padding = '0px';
+        noscript.style.backgroundColor = 'transparent';
+    </script> </div> <script type="text/javascript">
+    askbot['urls']['mark_read_message'] = '/messages/markread/';
+    askbot['urls']['get_tags_by_wildcard'] = '/get-tags-by-wildcard/';
+    askbot['urls']['get_tag_list'] = '/get-tag-list/';
+    askbot['urls']['follow_user'] = '/followit/follow/user/{{userId}}/';
+    askbot['urls']['unfollow_user'] = '/followit/unfollow/user/{{userId}}/';
+    askbot['urls']['user_signin'] = '/account/signin/';
+    askbot['urls']['getEditor'] = '/get-editor/';
+    
+    askbot['urls']['apiGetQuestions'] = '/api/get_questions/';
+    askbot['urls']['ask'] = '/questions/ask/';
+	askbot['urls']['questions'] = '/questions/';
+    askbot['settings']['groupsEnabled'] = false;
+    askbot['settings']['static_url'] = '/m/';
+    askbot['settings']['minSearchWordLength'] = 4;
+    askbot['settings']['mathjaxEnabled'] = false;
+    askbot['settings']['sharingSuffixText'] = '';
+    askbot['settings']['errorPlacement'] = 'after-label';
+    askbot['data']['maxCommentLength'] = 300;
+    askbot['settings']['editorType'] = 'markdown';
+    askbot['settings']['commentsEditorType'] = 'plain-text';
+    askbot['messages']['askYourQuestion'] = 'Ask Your Question';
+    askbot['messages']['questionSingular'] = 'question';
+    askbot['messages']['answerSingular'] = 'answer';
+    askbot['messages']['acceptOwnAnswer'] = 'accept or unaccept your own answer';
+    askbot['messages']['followQuestions'] = 'follow questions';
+    
+        askbot['settings']['allowedUploadFileTypes'] = [
+            "jpg", "jpeg", "gif", "bmp", "png", "tiff"
+        ];
+    
+    askbot['data']['haveFlashNotifications'] = false;
+    askbot['data']['activeTab'] = 'questions';
+    askbot['settings']['csrfCookieName'] = '_csrf';
+    
+        askbot['data']['searchUrl'] = '';
+    
+</script> <script type="text/javascript" src="../../../m/default/media/jslib/jquery-1.7.2.min.js%3Fv=2"></script> <script type="text/javascript" src="../../../m/default/media/bootstrap/js/bootstrap.js%3Fv=2"></script> <!-- History.js --> <script type='text/javascript' src="../../../m/default/media/jslib/jquery.history.js%3Fv=2"></script> <!-- Utils.js --> <script type='text/javascript' src="../../../m/default/media/js/utils.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/q_sutils.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/wrapped_element.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/wait_icon.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/paginator.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/limited_width_image.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/one_shot_form.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/link.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/widget.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/tipped_input.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/flash_alert.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/alert_box.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/simple_content.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/simple_control.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/post_expander.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/edit_link.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/comment_convert_link.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/delete_icon.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/modal_dialog.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/file_upload_dialog.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/text_property_editor.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/two_state_toggle.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/dropdown_select.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/box_item_content.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/select_box_item.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/select_box.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/group_dropdown.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/tag.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/perms_hover_card.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/show_perms_trigger.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/autocompleter.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/js/utils/lang_nav.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/jslib/se_hilite.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/jslib/json.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/jslib/jquery-fieldselection.js%3Fv=2"></script> <script type='text/javascript' src="../../../m/default/media/jslib/timeago.js%3Fv=2"></script> <!-- End Utils.js --> <script type="text/javascript" src="../../../m/default/media/js/live_search.js%3Fv=2"></script> <script type="text/javascript">
+    /*<![CDATA[*/
+    $('.mceStatusbar').remove();//a hack to remove the tinyMCE status bar
+    $(document).ready(function(){
+        // focus input on the search bar endcomment
+        var activeTab = askbot['data']['activeTab'];
+        if (inArray(activeTab, ['users', 'questions', 'tags', 'badges'])) {
+            var searchInput = $('#keywords');
+        } else if (activeTab === 'ask') {
+            var searchInput = $('#id_title');
+        } else {
+            var searchInput = undefined;
+            animateHashes();
+        }
+
+        if (searchInput) {
+            searchInput.focus();
+            putCursorAtEnd(searchInput);
+        }
+
+        var haveFullTextSearchTab = inArray(activeTab, ['questions', 'badges', 'ask']);
+        var haveUserProfilePage = $('body').hasClass('user-profile-page');
+        if ((haveUserProfilePage || haveFullTextSearchTab) && searchInput && searchInput.length) {
+            var search = new FullTextSearch();
+            askbot['controllers'] = askbot['controllers'] || {};
+            askbot['controllers']['fullTextSearch'] = search;
+            search.setSearchUrl(askbot['data']['searchUrl']);
+            if (activeTab === 'ask') {
+                search.setAskButtonEnabled(false);
+            }
+            search.decorate(searchInput);
+        } else if (activeTab === 'tags') {
+            var search = new TagSearch();
+            search.decorate(searchInput);
+        }
+
+        if (askbot['data']['userIsAdminOrMod']) {
+            $('body').addClass('admin');
+        }
+        if (askbot['settings']['groupsEnabled']) {
+            askbot['urls']['add_group'] = "/add-group/";
+            var group_dropdown = new GroupDropdown();
+            $('.groups-dropdown').append(group_dropdown.getElement());
+        }
+        var userRep = $('#userToolsNav .reputation');
+        if (userRep.length) {
+            var showPermsTrigger = new ShowPermsTrigger();
+            showPermsTrigger.decorate(userRep);
+        }
+    });
+    if (askbot['data']['haveFlashNotifications']) {
+        $('#validate_email_alert').click(function(){notify.close(true)})
+        notify.show();
+    }
+
+    var langNav = $('.lang-nav');
+    if (langNav.length) {
+        var nav = new LangNav();
+        nav.decorate(langNav);
+    }
+
+    $('abbr.timeago').timeago();
+    /*]]>*/
+</script> <div class="js-templates" style="display: none;"><div class="comment js-comment" data-comment-id="0"><div class="comment-votes"><div 
+                id="comment-img-upvote-0" 
+                class="upvote js-score"
+            ></div></div><div class="comment-content"><div id="post-0-delete" class="comment-delete"><span class="js-delete-icon" title="delete this comment"></span></div><div class="comment-body"></div><div class="comment-controls"><a class="js-avatar-box"
+    href="index.html%3Fanswer=106.html"
+><img class="js-avatar gravatar" 
+    width="16" height="16"
+    src="index.html%3Fanswer=106.html"
+    title="" 
+    alt=" gravatar image" 
+/></a><a 
+                    class="author"
+                    href="index.html%3Fanswer=106.html"
+                ></a><span class="age">&nbsp;(<abbr class="timeago" title="2015-12-20 19:43:30 +0000">
+        2015-12-20 19:43:30 +0000
+    </abbr>)</span><a 
+                    id="post-0-edit"
+                    class="js-edit"
+                >edit</a><form 
+                    action="https://faq.i3wm.org/comment/convert/"
+                    method="POST"
+                    accept-charset="utf-8"
+                    class='convert-comment'
+                ><input type="hidden" name="csrfmiddlewaretoken" value="None"><input type="hidden" value="0" name="comment_id"><input type="submit" value="convert to answer"></form></div></div></div><div class="js-simple-editor"><textarea></textarea></div><div class="js-tag "><a
+            class="js-tag-name"
+            rel="tag"
+            
+            href="https://faq.i3wm.org/questions/scope:all/sort:activity-desc/tags:none/page:1/"
+            
+            data-tag-name="none"
+        >none</a></div></div> <script type='text/javascript'>
+        
+        askbot['urls']['postComments'] = '/post_comments/';
+        askbot['urls']['editComment'] = '/edit_comment/';
+        askbot['urls']['deleteComment'] = '/comment/delete/';
+        askbot['urls']['convertComment'] = '/comment/convert/';
+        askbot['urls']['getComment'] = '/comment/get-text/';
+        askbot['urls']['saveDraftAnswer'] = '/save-draft-answer/';
+        askbot['urls']['vote_url'] = '/vote'
+        askbot['urls']['user_signin'] = '/account/signin/';
+        askbot['urls']['swap_question_with_answer'] = '/swap-question-with-answer/';
+        askbot['urls']['upvote_comment'] = '/comment/upvote/';
+        askbot['urls']['delete_post'] = '/post/delete/';
+        askbot['urls']['get_html_template'] = '/get-html-template/';
+        askbot['urls']['getGroupsList'] = '/get-groups-list/';
+        askbot['urls']['publishAnswer'] = '/answer/publish/';
+        askbot['urls']['apiV1Questions'] = '/api/v1/questions/';
+        askbot['urls']['mergeQuestions'] = '/merge-questions/';
+        
+        askbot['data']['questionAuthorId'] = 22;
+        askbot['data']['answersSortTab'] = 'votes';
+        askbot['data']['questionId'] = 92;
+        askbot['data']['threadSlug'] = 'what-is-recommended-file-manager-for-i3wm';
+        askbot['messages']['addComment'] = 'add a comment';
+        askbot['messages']['userNamePrompt'] = 'User name:';
+        askbot['messages']['userEmailPrompt'] = 'Email address:';
+        askbot['messages']['mergeQuestions'] = 'Merge duplicate questions';
+        askbot['messages']['enterDuplicateQuestionId'] = 'Enter duplicate question ID';
+        
+            askbot['messages']['readOnlyMessage'] = "The i3 FAQ has migrated to https://www.reddit.com/r/i3wm/. All content here is read-only.";
+        
+        askbot['settings']['saveCommentOnEnter'] = false;
+        askbot['settings']['tagSource'] = 'user-input';
+        askbot['settings']['enableSharingGoogle'] = true;
+        askbot['settings']['enableEmailAlerts'] = false;
+    </script> <script type="text/javascript">
+    
+    askbot['settings']['tagsAreRequired'] = false
+    askbot['settings']['maxTagLength'] = 20;
+    askbot['messages']['maxTagLength'] = "each tag must be shorter than 20 characters";
+    askbot['settings']['maxTagsPerPost'] = 5;
+    askbot['messages']['maxTagsPerPost'] = "please use 5 tags or less";
+    askbot['messages']['tagLimits'] = "please use up to 5 tags, less than 20 characters each";
+    askbot['urls']['upload'] = '/upload/';
+    askbot['settings']['minTitleLength'] = 10;
+    askbot['settings']['minQuestionBodyLength'] = 10;
+    askbot['settings']['minAnswerBodyLength'] = 10;
+    askbot['settings']['minCommentBodyLength'] = 10;
+    askbot['settings']['tag_editor'] = '{\u0022tag_forbidden_first_chars\u0022: \u0022#\u0022, \u0022max_tag_length\u0022: 20, \u0022tag_regex\u0022: \u0022^\u005C\u005Cw[\u005C\u005Cw+.#\u002D]+$\u0022, \u0022max_tags_per_post\u0022: 5, \u0022messages\u0022: {\u0022wrong_first_char\u0022: \u0022# is not a valid character at the beginning of tags, use only letters and numbers\u0022, \u0022wrong_chars\u0022: \u0022please use letters, numbers and characters \u005C\u0022\u002D+.#\u005C\u0022\u0022, \u0022required\u0022: \u0022tags are required\u0022}, \u0022tags_are_required\u0022: false, \u0022force_lowercase_tags\u0022: false}';
+    askbot['settings']['tinyMCEPlugins'] = JSON.parse('[]');
+</script> <script type='text/javascript'>
+    (function() {
+        askbot['settings']['commentsReversed'] = false;
+        //make images always fit the screen
+        var images = $('.question-page .post-body img');
+        //these breakpoints must match those in css
+        //for explanation see utils.js:LimitedWidthImage
+        var breakpoints = [
+            [980, undefined],
+            [800, 55]
+        ];
+        var maxWidth = 685;
+        images.each(function(idx, item) {
+            var img = new LimitedWidthImage(breakpoints, maxWidth);
+            img.decorate($(item));
+        });
+    })();
+</script> <script type="text/javascript" src="../../../m/default/media/jslib/editor.js%3Fv=2"></script> <script type="text/javascript" src="../../../m/default/media/bootstrap/js/bootstrap.js%3Fv=2"></script> <script type="text/javascript" src="../../../m/default/media/wmd/Markdown.Converter.js%3Fv=2"></script> <script type="text/javascript" src="../../../m/default/media/wmd/Markdown.Sanitizer.js%3Fv=2"></script> <script type="text/javascript" src="../../../m/default/media/wmd/askbot_converter.js%3Fv=2"></script> <script type="text/javascript" src="../../../m/default/media/wmd/wmd.js%3Fv=2"></script> <script type="text/javascript" src="../../../m/default/media/jslib/jquery.validate.min.js%3Fv=2"></script> <script type="text/javascript" src="../../../m/default/media/jslib/prettify.js%3Fv=2"></script> <script type="text/javascript" src="../../../m/default/media/js/post.js%3Fv=2"></script> <script type="text/javascript">
+    // define reputation needs for comments
+    askbot['urls']['getPostHtml'] = '/get-post-html/';
+    askbot['urls']['retag'] = "/questions/92/retag/";
+
+    
+    
+    askbot['settings']['commentAvatarSize'] = 16;
+
+    $(document).ready(function(){
+        $("#nav_questions").attr('className',"on");
+        $("#" + askbot['data']['answersSortTab']).attr('className',"on");
+
+        Vote.init(
+            askbot['data']['questionId'],
+            askbot['data']['threadSlug'],
+            askbot['data']['questionAuthorId'],
+            askbot['data']['userId']
+        );
+
+        if ((askbot['data']['threadIsClosed'] === false) && askbot['data']['userIsAuthenticated']) {
+            initEditor();
+        }
+
+        lanai.highlightSyntax();
+        $('#btLogin').bind('click', function(){
+            window.location.href='/account/signin/';
+        });
+        if (window.location.hash === 'fmanswer'){
+            $('#fmanswer textarea').focus();
+        }
+
+        if (askbot['settings']['enableSharingGoogle']) {
+            $.getScript("//apis.google.com/js/plusone.js");
+        }
+
+        if (askbot['data']['userId'] === askbot['data']['questionAuthorId']) {
+            $("#fmanswer_button").click(function() {
+                $("#fmanswer").show();
+                $("#fmanswer_button").hide();
+            });
+        }
+
+        if (askbot['data']['userIsAuthenticated']) {
+            var draftHandler = new DraftAnswer();
+            draftHandler.setThreadId(22);
+            draftHandler.decorate($('body'));
+        }
+
+        var expanders = $('.expander');
+        expanders.each(function(idx, item) {
+            var expanderElement = $(item);
+            var post = expanderElement.closest('.post,.comment');
+            if (post.length === 1) {
+                var expander = new PostExpander();
+                expander.setPostId(post.data('postId'));
+                expander.decorate(expanderElement);
+            }
+        });
+
+        var followBtn = $('.js-follow-question');
+        if (followBtn.length) {
+            var toggle = new TwoStateToggle();
+            toggle.setPostData({'question_id': 92 });
+            toggle.decorate(followBtn);
+            followBtn.bind('askbot.two-state-toggle.success', updateQuestionFollowerCount);
+        }
+    });
+
+    $(window).bind('hashchange', animate_hashes);
+
+    function animate_hashes(){
+      var id_value = window.location.hash;
+      if (id_value != ""){
+        var previous_color = $(id_value).css('background-color');
+        $(id_value).css('backgroundColor', '#FFF8C6');
+        $(id_value).animate(
+            {backgroundColor: '#ff7f2a'}, 1000
+        ).animate({backgroundColor: '#FFF8C6'}, 1000, function(){
+            $(id_value).css('backgroundColor', previous_color);
+        });
+      }
+    }
+
+
+    function initEditor(){
+        $('#editor').TextAreaResizer();
+        //highlight code synctax when editor has new text
+        $("#editor").typeWatch({highlight: false, wait: 3000,
+                         captureLength: 5, callback: lanai.highlightSyntax});
+
+        var display = true;
+        var txt = "[hide preview]";
+        $('#pre-collapse').text(txt);
+        $('#pre-collapse').bind('click', function(){
+            txt = display ? "[show preview]" : "[hide preview]";
+            display = !display;
+            $('#previewer').toggle();
+            $('#pre-collapse').text(txt);
+        });
+        setupFormValidation(
+            $("#fmanswer"),
+            CPValidator.getAnswerFormRules(),
+            CPValidator.getAnswerFormMessages()
+        );
+    }
+    (function() {
+        var editorBox = $('.folded-editor');
+        if (editorBox.length) {
+            var foldedEditor = new FoldedEditor();
+            foldedEditor.decorate(editorBox);
+        }
+    })();
+</script> <script type="text/javascript">
+            for (url_name in askbot['urls']){
+                askbot['urls'][url_name] = cleanUrl(askbot['urls'][url_name]);
+            }
+        </script> </body> </html>

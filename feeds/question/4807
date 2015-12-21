@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4807/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 21 Oct 2014 09:50:51 +0000</lastBuildDate><item><title>how to define a command to kill all terminals in current workspace</title><link>https://faq.i3wm.org/question/4807/how-to-define-a-command-to-kill-all-terminals-in-current-workspace/</link><description>Sometimes I want to kill all terminals in one workspace. When there are only terminals in the workspace, I keep pressing kill windows's hotkey repeatly.
+
+Is there a programmable interface to define such command myself? Find windows matching some condition (class/title/on-workspace), then run some action on them (e.g. kill them).</description><pubDate>Tue, 21 Oct 2014 01:28:01 +0000</pubDate><guid>https://faq.i3wm.org/question/4807/how-to-define-a-command-to-kill-all-terminals-in-current-workspace/</guid></item><item><title>Answer by TonyC for &lt;p&gt;Sometimes I want to kill all terminals in one workspace. When there are only terminals in the workspace, I keep pressing kill windows's hotkey repeatly.&lt;/p&gt;
+
+&lt;p&gt;Is there a programmable interface to define such command myself? Find windows matching some condition (class/title/on-workspace), then run some action on them (e.g. kill them).&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4807/how-to-define-a-command-to-kill-all-terminals-in-current-workspace/?answer=4808#post-id-4808</link><description>You could write a script, such as with [i3ipc-glib](https://github.com/acrisci/i3ipc-glib), like this:
+
+    from gi.repository import i3ipc
+
+    i3 = i3ipc.Connection()
+
+    for con in i3.get_tree().find_focused().workspace().find_classed('URxvt'):
+        con.command('kill')
+ </description><pubDate>Tue, 21 Oct 2014 02:56:24 +0000</pubDate><guid>https://faq.i3wm.org/question/4807/how-to-define-a-command-to-kill-all-terminals-in-current-workspace/?answer=4808#post-id-4808</guid></item><item><title>Comment by sylecn for &lt;p&gt;You could write a script, such as with &lt;a href="https://github.com/acrisci/i3ipc-glib"&gt;i3ipc-glib&lt;/a&gt;, like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from gi.repository import i3ipc
+
+i3 = i3ipc.Connection()
+
+for con in i3.get_tree().find_focused().workspace().find_classed('URxvt'):
+    con.command('kill')
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4807/how-to-define-a-command-to-kill-all-terminals-in-current-workspace/?comment=4810#comment-4810</link><description>That's the kind of information I was looking for. Thanks.</description><pubDate>Tue, 21 Oct 2014 09:50:51 +0000</pubDate><guid>https://faq.i3wm.org/question/4807/how-to-define-a-command-to-kill-all-terminals-in-current-workspace/?comment=4810#comment-4810</guid></item></channel></rss>

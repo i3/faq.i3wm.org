@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/203/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 15 Oct 2015 12:57:08 +0000</lastBuildDate><item><title>How to set the urgency hint in a shell</title><link>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/</link><description>Michael gives a great talk about i3 on Google Tech Talks and tells about the urgency hint in a shell. However, no information is given how to actually do that - whenever a process is complete, I want to set the urgency hint in that shell, just as shown in the talk.
+
+The time link to the presentation: http://www.youtube.com/watch?v=QnYN2CTb1hM&amp;t=25m48s</description><pubDate>Wed, 04 Jul 2012 12:14:08 +0000</pubDate><guid>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/</guid></item><item><title>Answer by Felicitus for &lt;p&gt;Michael gives a great talk about i3 on Google Tech Talks and tells about the urgency hint in a shell. However, no information is given how to actually do that - whenever a process is complete, I want to set the urgency hint in that shell, just as shown in the talk.&lt;/p&gt;
+
+&lt;p&gt;The time link to the presentation: &lt;a href="http://www.youtube.com/watch?v=QnYN2CTb1hM&amp;amp;t=25m48s"&gt;http://www.youtube.com/watch?v=QnYN2C...&lt;/a&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?answer=205#post-id-205</link><description>Here's a complete guide:
+
+# Setting urgency hints in i3
+
+You need the following settings in your i3 config to have the workspace indicator go red and draw a red border around your windows which have the urgency hint set:
+
+    client.urgent #2f343a #900000 #ffffff #900000
+    
+    bar {
+            colors {
+                    urgent_workspace   #2f343a #900000 #ffffff
+            }
+    }
+
+# Setting urgency hints in your terminal emulator
+
+According to kempurpy, only urxvt and terminator support this. As I only use urxvt, I needed to set the following in my Xdefaults:
+
+    urxvt*urgentOnBell:       true
+
+# Setting urgency hints in your shell
+
+urxvt will now set the urgency hint whenever a bell is encountered; to do that with bash, I simply use the following alias:
+
+    alias enable_alert='PS1="$PS1\a"'
+
+I now can make any shell an alerting shell by simply typing "enable_alert".
+
+# Putting it all together
+
+ - reload i3 or restart it to have the new configuration active
+ - Make sure your .Xdefaults are in place, you can use xrdb to load the new file:
+
+    xrdb ~/.Xdefaults
+ - Set PS1 to output the bell
+
+Hint: If you are using debian, and using urxvt*urgentOnBell in your config as well as x-terminal-emulator (which is called by i3-sensible-terminal) - that won't work. In that case, use x-terminal-emulator*urgentOnBell or *.URxvt.urgentOnBell.</description><pubDate>Wed, 04 Jul 2012 13:02:21 +0000</pubDate><guid>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?answer=205#post-id-205</guid></item><item><title>Comment by joek1010 for &lt;p&gt;Here's a complete guide:&lt;/p&gt;
+
+&lt;h1&gt;Setting urgency hints in i3&lt;/h1&gt;
+
+&lt;p&gt;You need the following settings in your i3 config to have the workspace indicator go red and draw a red border around your windows which have the urgency hint set:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;client.urgent #2f343a #900000 #ffffff #900000
+
+bar {
+        colors {
+                urgent_workspace   #2f343a #900000 #ffffff
+        }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;Setting urgency hints in your terminal emulator&lt;/h1&gt;
+
+&lt;p&gt;According to kempurpy, only urxvt and terminator support this. As I only use urxvt, I needed to set the following in my Xdefaults:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;urxvt*urgentOnBell:       true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;Setting urgency hints in your shell&lt;/h1&gt;
+
+&lt;p&gt;urxvt will now set the urgency hint whenever a bell is encountered; to do that with bash, I simply use the following alias:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias enable_alert='PS1="$PS1\a"'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I now can make any shell an alerting shell by simply typing "enable_alert".&lt;/p&gt;
+
+&lt;h1&gt;Putting it all together&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;reload i3 or restart it to have the new configuration active&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Make sure your .Xdefaults are in place, you can use xrdb to load the new file:&lt;/p&gt;
+
+&lt;p&gt;xrdb ~/.Xdefaults&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Set PS1 to output the bell&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hint: If you are using debian, and using urxvt&lt;em&gt;urgentOnBell in your config as well as x-terminal-emulator (which is called by i3-sensible-terminal) - that won't work. In that case, use x-terminal-emulator&lt;/em&gt;urgentOnBell or *.URxvt.urgentOnBell.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?comment=2622#comment-2622</link><description>If you add the bell to PS1 it looks like it will raise urgent whenever the terminal is resized (which is annoying with a tiling window manager). I've found that appending it to PROMPT_COMMAND (when using bash) works better.</description><pubDate>Fri, 27 Sep 2013 22:59:13 +0000</pubDate><guid>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?comment=2622#comment-2622</guid></item><item><title>Answer by TonyC for &lt;p&gt;Michael gives a great talk about i3 on Google Tech Talks and tells about the urgency hint in a shell. However, no information is given how to actually do that - whenever a process is complete, I want to set the urgency hint in that shell, just as shown in the talk.&lt;/p&gt;
+
+&lt;p&gt;The time link to the presentation: &lt;a href="http://www.youtube.com/watch?v=QnYN2CTb1hM&amp;amp;t=25m48s"&gt;http://www.youtube.com/watch?v=QnYN2C...&lt;/a&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?answer=3633#post-id-3633</link><description>1. Set `URxvt.urgentOnBell` in your .Xresources file
+2. Start a long-running command
+3. Type `ctrl+t`
+4. Do something else for awhile...
+5. Urgent!</description><pubDate>Wed, 09 Apr 2014 10:56:00 +0000</pubDate><guid>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?answer=3633#post-id-3633</guid></item><item><title>Comment by onse for &lt;ol&gt;
+&lt;li&gt;Set &lt;code&gt;URxvt.urgentOnBell&lt;/code&gt; in your .Xresources file&lt;/li&gt;
+&lt;li&gt;Start a long-running command&lt;/li&gt;
+&lt;li&gt;Type &lt;code&gt;ctrl+t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Do something else for awhile...&lt;/li&gt;
+&lt;li&gt;Urgent!&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?comment=6951#comment-6951</link><description>This also works for xterm, given that you added `XTerm*bellIsUrgent: true` to your `.Xresources`.</description><pubDate>Thu, 15 Oct 2015 12:57:08 +0000</pubDate><guid>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?comment=6951#comment-6951</guid></item><item><title>Comment by Flimm for &lt;ol&gt;
+&lt;li&gt;Set &lt;code&gt;URxvt.urgentOnBell&lt;/code&gt; in your .Xresources file&lt;/li&gt;
+&lt;li&gt;Start a long-running command&lt;/li&gt;
+&lt;li&gt;Type &lt;code&gt;ctrl+t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Do something else for awhile...&lt;/li&gt;
+&lt;li&gt;Urgent!&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?comment=5086#comment-5086</link><description>This only applies to urxvt</description><pubDate>Wed, 03 Dec 2014 00:36:34 +0000</pubDate><guid>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?comment=5086#comment-5086</guid></item><item><title>Answer by Tucos for &lt;p&gt;Michael gives a great talk about i3 on Google Tech Talks and tells about the urgency hint in a shell. However, no information is given how to actually do that - whenever a process is complete, I want to set the urgency hint in that shell, just as shown in the talk.&lt;/p&gt;
+
+&lt;p&gt;The time link to the presentation: &lt;a href="http://www.youtube.com/watch?v=QnYN2CTb1hM&amp;amp;t=25m48s"&gt;http://www.youtube.com/watch?v=QnYN2C...&lt;/a&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?answer=204#post-id-204</link><description>The simplest way is to have the terminal emulator set urgent on bell (how to do so depends on the TE) and then to include a bell character (\a) in your prompt. As the urgency hint is ignored for focused windows, this won't bother you with short processes.</description><pubDate>Wed, 04 Jul 2012 12:22:21 +0000</pubDate><guid>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?answer=204#post-id-204</guid></item><item><title>Answer by gauthier for &lt;p&gt;Michael gives a great talk about i3 on Google Tech Talks and tells about the urgency hint in a shell. However, no information is given how to actually do that - whenever a process is complete, I want to set the urgency hint in that shell, just as shown in the talk.&lt;/p&gt;
+
+&lt;p&gt;The time link to the presentation: &lt;a href="http://www.youtube.com/watch?v=QnYN2CTb1hM&amp;amp;t=25m48s"&gt;http://www.youtube.com/watch?v=QnYN2C...&lt;/a&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?answer=5183#post-id-5183</link><description>This is working in my Ubuntu with XMonad, in gnome-terminal, bash:
+
+1. install `xdotool`
+
+2. build [seturgent](https://github.com/hiltjo/seturgent)
+
+3. create `~/bin/pid-urgent`, make sure `~/bin` is in your `$PATH`, and make the script executable:
+
+        #!/bin/bash
+        # --any and --name present only as a work-around, see: https://github.com/jordansissel/xdotool/issues/14
+        ids=$(xdotool search --any --pid "$1" --name "dummy")
+    
+        for id in $ids; do
+            seturgent "$id"
+        done
+
+4. Set the the shell variable `PROMPT_COMMAND='pid-urgent $PPID'` at login. (I would like to be able to set it only for the next prompt, but that will be for another time.)
+
+Support for several bash children to the same terminal is bad. In my setup, there is only one `gnome-terminal` running, even if I start several terminal windows. Popping up the urgent window goes to the first terminal I opened.
+
+</description><pubDate>Mon, 15 Dec 2014 15:23:51 +0000</pubDate><guid>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?answer=5183#post-id-5183</guid></item><item><title>Comment by Adaephon for &lt;p&gt;This is working in my Ubuntu with XMonad, in gnome-terminal, bash:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;install &lt;code&gt;xdotool&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;build &lt;a href="https://github.com/hiltjo/seturgent"&gt;seturgent&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;create &lt;code&gt;~/bin/pid-urgent&lt;/code&gt;, make sure &lt;code&gt;~/bin&lt;/code&gt; is in your &lt;code&gt;$PATH&lt;/code&gt;, and make the script executable:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+# --any and --name present only as a work-around, see: https://github.com/jordansissel/xdotool/issues/14
+ids=$(xdotool search --any --pid "$1" --name "dummy")
+
+for id in $ids; do
+    seturgent "$id"
+done
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Set the the shell variable &lt;code&gt;PROMPT_COMMAND='pid-urgent $PPID'&lt;/code&gt; at login. (I would like to be able to set it only for the next prompt, but that will be for another time.)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Support for several bash children to the same terminal is bad. In my setup, there is only one &lt;code&gt;gnome-terminal&lt;/code&gt; running, even if I start several terminal windows. Popping up the urgent window goes to the first terminal I opened.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?comment=5186#comment-5186</link><description>Step 4 will probably only work if the shell is a `bash`. For `zsh` you'll have to edit the `precmd` hook function, either directly or by using `add-zsh-hook`.</description><pubDate>Mon, 15 Dec 2014 20:35:23 +0000</pubDate><guid>https://faq.i3wm.org/question/203/how-to-set-the-urgency-hint-in-a-shell/?comment=5186#comment-5186</guid></item></channel></rss>

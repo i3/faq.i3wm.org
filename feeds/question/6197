@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6197/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 05 Jul 2015 20:43:19 +0000</lastBuildDate><item><title>Set the split on the top or on the left of the current window</title><link>https://faq.i3wm.org/question/6197/set-the-split-on-the-top-or-on-the-left-of-the-current-window/</link><description> Hi,
+
+By default, i3wm can divide a screen horizontally or vertically.
+With the correct key binding, you mark the split respectively on the right, or on the bottom of the current window.
+I often need to split horizontally a window, but not on the right side : on the left side !
+I do it classically, but I have to move the new window on the left side.
+It's too much effort for me (i3wm makes me very, very lazy ^^).
+
+Is it already possible, with a second bind key ($win+Shift+v for example), to split on the left side or on the top of the current window ? 
+If not, could we imagine this improvement in a future version ?
+</description><pubDate>Thu, 25 Jun 2015 11:41:22 +0000</pubDate><guid>https://faq.i3wm.org/question/6197/set-the-split-on-the-top-or-on-the-left-of-the-current-window/</guid></item><item><title>Answer by Spheerys for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;By default, i3wm can divide a screen horizontally or vertically.
+With the correct key binding, you mark the split respectively on the right, or on the bottom of the current window.
+I often need to split horizontally a window, but not on the right side : on the left side !
+I do it classically, but I have to move the new window on the left side.
+It's too much effort for me (i3wm makes me very, very lazy ^^).&lt;/p&gt;
+
+&lt;p&gt;Is it already possible, with a second bind key ($win+Shift+v for example), to split on the left side or on the top of the current window ? 
+If not, could we imagine this improvement in a future version ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6197/set-the-split-on-the-top-or-on-the-left-of-the-current-window/?answer=6253#post-id-6253</link><description> For information (and to support this feature), I have opened an issue on the Github repository : https://github.com/i3/i3/issues/1767</description><pubDate>Sun, 05 Jul 2015 20:43:19 +0000</pubDate><guid>https://faq.i3wm.org/question/6197/set-the-split-on-the-top-or-on-the-left-of-the-current-window/?answer=6253#post-id-6253</guid></item><item><title>Answer by Airblader for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;By default, i3wm can divide a screen horizontally or vertically.
+With the correct key binding, you mark the split respectively on the right, or on the bottom of the current window.
+I often need to split horizontally a window, but not on the right side : on the left side !
+I do it classically, but I have to move the new window on the left side.
+It's too much effort for me (i3wm makes me very, very lazy ^^).&lt;/p&gt;
+
+&lt;p&gt;Is it already possible, with a second bind key ($win+Shift+v for example), to split on the left side or on the top of the current window ? 
+If not, could we imagine this improvement in a future version ?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6197/set-the-split-on-the-top-or-on-the-left-of-the-current-window/?answer=6199#post-id-6199</link><description>There is no built-in command for this, no. In some cases this would do:
+
+    bindsym $win+Shift+v focus up, split v
+    bindsym $win+Shift+h focus left, split h
+
+But it won't work in all scenarios, e.g., it won't work if you only have one window open on a workspace. And it'll even "break" if you use multiple monitors.
+
+As for adding this as a feature, you should file a feature request on Github.</description><pubDate>Thu, 25 Jun 2015 11:48:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6197/set-the-split-on-the-top-or-on-the-left-of-the-current-window/?answer=6199#post-id-6199</guid></item><item><title>Comment by Airblader for &lt;p&gt;There is no built-in command for this, no. In some cases this would do:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $win+Shift+v focus up, split v
+bindsym $win+Shift+h focus left, split h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it won't work in all scenarios, e.g., it won't work if you only have one window open on a workspace. And it'll even "break" if you use multiple monitors.&lt;/p&gt;
+
+&lt;p&gt;As for adding this as a feature, you should file a feature request on Github.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6197/set-the-split-on-the-top-or-on-the-left-of-the-current-window/?comment=6202#comment-6202</link><description>I meant that my proposed workaround won't work in those cases. If properly implemented, it will (and of course HAS TO) work in such cases.</description><pubDate>Thu, 25 Jun 2015 12:50:43 +0000</pubDate><guid>https://faq.i3wm.org/question/6197/set-the-split-on-the-top-or-on-the-left-of-the-current-window/?comment=6202#comment-6202</guid></item><item><title>Comment by Spheerys for &lt;p&gt;There is no built-in command for this, no. In some cases this would do:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $win+Shift+v focus up, split v
+bindsym $win+Shift+h focus left, split h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But it won't work in all scenarios, e.g., it won't work if you only have one window open on a workspace. And it'll even "break" if you use multiple monitors.&lt;/p&gt;
+
+&lt;p&gt;As for adding this as a feature, you should file a feature request on Github.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6197/set-the-split-on-the-top-or-on-the-left-of-the-current-window/?comment=6201#comment-6201</link><description>"it won't work if you only have one window open on a workspace."
+-&gt; I don't know why it won't works if you have only one window on a workspace. The split will be marked and the next openned window will go where you want...
+
+"you should file a feature request on Github"
+--&gt; I will :)</description><pubDate>Thu, 25 Jun 2015 12:40:47 +0000</pubDate><guid>https://faq.i3wm.org/question/6197/set-the-split-on-the-top-or-on-the-left-of-the-current-window/?comment=6201#comment-6201</guid></item></channel></rss>

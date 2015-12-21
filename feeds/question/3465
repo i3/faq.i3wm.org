@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3465/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 05 Mar 2014 09:35:38 +0000</lastBuildDate><item><title>Tabs in scratchpad</title><link>https://faq.i3wm.org/question/3465/tabs-in-scratchpad/</link><description>In normal tiled windows it's possible to create tabs by pressing Mod+h, Mod+e and then opening a new window. So I have for example two tiles, one left and one right and multiple tabs on the left one.
+
+Is that possible in the scratchpad too? That would be really cool.</description><pubDate>Mon, 03 Mar 2014 10:51:43 +0000</pubDate><guid>https://faq.i3wm.org/question/3465/tabs-in-scratchpad/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;In normal tiled windows it's possible to create tabs by pressing Mod+h, Mod+e and then opening a new window. So I have for example two tiles, one left and one right and multiple tabs on the left one.&lt;/p&gt;
+
+&lt;p&gt;Is that possible in the scratchpad too? That would be really cool.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3465/tabs-in-scratchpad/?answer=3466#post-id-3466</link><description>Like vandannen said in [his answer](https://faq.i3wm.org/question/3465/tabs-in-scratchpad/?answer=3467#post-id-3467), it is possible if you use `move scratchpad` on an entire container.
+
+But some problems (crashes) I experienced, when starting to modify this floating container, including moving windows outside of it, lead me to believe that this is not an intended or at least well testet feature.
+
+I also doubt that this will ever change. The only reason i3 even has floating windows is because there are some applications that do not work well with arbitrary window sizes and dialogs. 
+
+Scratchpads are essentially floating windows with some extra functionality for hiding and retrieving. 
+
+-----
+**An alternative:**
+
+Not exactly what you want, but you can have multiple scratchpad windows, they will be shown alternately on `scratchpad show`: *show A -&gt; hide A -&gt; show B -&gt; hide B -&gt; show A ...*</description><pubDate>Mon, 03 Mar 2014 14:12:53 +0000</pubDate><guid>https://faq.i3wm.org/question/3465/tabs-in-scratchpad/?answer=3466#post-id-3466</guid></item><item><title>Answer by vandannen for &lt;p&gt;In normal tiled windows it's possible to create tabs by pressing Mod+h, Mod+e and then opening a new window. So I have for example two tiles, one left and one right and multiple tabs on the left one.&lt;/p&gt;
+
+&lt;p&gt;Is that possible in the scratchpad too? That would be really cool.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3465/tabs-in-scratchpad/?answer=3467#post-id-3467</link><description>afaik, any container can be floating (or moved to scratchpad). so if you are asking for a way to have a tabbed container in the scratchpad, this might work for you: 
+
+focus a window in the container which should be moved to scratchpad, then: `focus parent` and afterwards `move scratchpad`.</description><pubDate>Mon, 03 Mar 2014 20:31:24 +0000</pubDate><guid>https://faq.i3wm.org/question/3465/tabs-in-scratchpad/?answer=3467#post-id-3467</guid></item><item><title>Comment by Adaephon for &lt;p&gt;afaik, any container can be floating (or moved to scratchpad). so if you are asking for a way to have a tabbed container in the scratchpad, this might work for you: &lt;/p&gt;
+
+&lt;p&gt;focus a window in the container which should be moved to scratchpad, then: &lt;code&gt;focus parent&lt;/code&gt; and afterwards &lt;code&gt;move scratchpad&lt;/code&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3465/tabs-in-scratchpad/?comment=3475#comment-3475</link><description>Ok, that works. But you really shouldn't start moving windows out of the floating container. My i3 just crashed - twice - to the point it couldn't even restart, while trying out the workings of that. </description><pubDate>Wed, 05 Mar 2014 09:35:38 +0000</pubDate><guid>https://faq.i3wm.org/question/3465/tabs-in-scratchpad/?comment=3475#comment-3475</guid></item></channel></rss>

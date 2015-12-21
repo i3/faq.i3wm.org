@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6460/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 19 Aug 2015 11:09:11 +0000</lastBuildDate><item><title>move caja to scratchpad on start</title><link>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/</link><description>Hi, I am new to i3, so please be patient :)
+
+I use caja (file manager from Mate) and want it to be ready from the start of i3. I can do this by using this config:
+
+    for_window [instance="caja"] move window to scratchpad
+    exec --no-startup-id i3-msg 'workspace 0; exec caja; workspace 1'
+    bindsym $mod+e [instance="caja"] scratchpad show
+
+But if i want to open a new caja window (so i have 2 different caja windows, one in scratchpad one in workspace), it will be sent to the scratchpad instead (so now i have 2 caja windows in scratchpad). So how do I fix this?
+
+I tried several options included vim-like mark, but it is not working on startup. (it is working with bindsysm, but i want to mark it automatically). I tried something like this:
+
+    for_window [con_mark="^test$"] move window to scratchpad
+    exec --no-startup-id i3-msg 'workspace 0; exec caja, mark test; workspace 1'
+    bindsym $mod+e [con_mark="^test$"] scratchpad show
+
+and several other options, but nothing works. caja has --name options, but it is not working. When i check it with xprop, the class still WM_CLASS(STRING) = "caja", "Caja". Thanks for all your help.</description><pubDate>Wed, 19 Aug 2015 03:39:59 +0000</pubDate><guid>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/</guid></item><item><title>Comment by chili for &lt;p&gt;Hi, I am new to i3, so please be patient :)&lt;/p&gt;
+
+&lt;p&gt;I use caja (file manager from Mate) and want it to be ready from the start of i3. I can do this by using this config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="caja"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja; workspace 1'
+bindsym $mod+e [instance="caja"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But if i want to open a new caja window (so i have 2 different caja windows, one in scratchpad one in workspace), it will be sent to the scratchpad instead (so now i have 2 caja windows in scratchpad). So how do I fix this?&lt;/p&gt;
+
+&lt;p&gt;I tried several options included vim-like mark, but it is not working on startup. (it is working with bindsysm, but i want to mark it automatically). I tried something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [con_mark="^test$"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja, mark test; workspace 1'
+bindsym $mod+e [con_mark="^test$"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and several other options, but nothing works. caja has --name options, but it is not working. When i check it with xprop, the class still WM_CLASS(STRING) = "caja", "Caja". Thanks for all your help.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6477#comment-6477</link><description>it has, but same like the --name, it is not working at all.</description><pubDate>Wed, 19 Aug 2015 11:09:11 +0000</pubDate><guid>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6477#comment-6477</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hi, I am new to i3, so please be patient :)&lt;/p&gt;
+
+&lt;p&gt;I use caja (file manager from Mate) and want it to be ready from the start of i3. I can do this by using this config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="caja"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja; workspace 1'
+bindsym $mod+e [instance="caja"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But if i want to open a new caja window (so i have 2 different caja windows, one in scratchpad one in workspace), it will be sent to the scratchpad instead (so now i have 2 caja windows in scratchpad). So how do I fix this?&lt;/p&gt;
+
+&lt;p&gt;I tried several options included vim-like mark, but it is not working on startup. (it is working with bindsysm, but i want to mark it automatically). I tried something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [con_mark="^test$"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja, mark test; workspace 1'
+bindsym $mod+e [con_mark="^test$"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and several other options, but nothing works. caja has --name options, but it is not working. When i check it with xprop, the class still WM_CLASS(STRING) = "caja", "Caja". Thanks for all your help.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6474#comment-6474</link><description>Does Caja perchance have a `--class=CLASS` command line argument?</description><pubDate>Wed, 19 Aug 2015 10:48:15 +0000</pubDate><guid>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6474#comment-6474</guid></item><item><title>Comment by chili for &lt;p&gt;Hi, I am new to i3, so please be patient :)&lt;/p&gt;
+
+&lt;p&gt;I use caja (file manager from Mate) and want it to be ready from the start of i3. I can do this by using this config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="caja"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja; workspace 1'
+bindsym $mod+e [instance="caja"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But if i want to open a new caja window (so i have 2 different caja windows, one in scratchpad one in workspace), it will be sent to the scratchpad instead (so now i have 2 caja windows in scratchpad). So how do I fix this?&lt;/p&gt;
+
+&lt;p&gt;I tried several options included vim-like mark, but it is not working on startup. (it is working with bindsysm, but i want to mark it automatically). I tried something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [con_mark="^test$"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja, mark test; workspace 1'
+bindsym $mod+e [con_mark="^test$"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and several other options, but nothing works. caja has --name options, but it is not working. When i check it with xprop, the class still WM_CLASS(STRING) = "caja", "Caja". Thanks for all your help.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6472#comment-6472</link><description>@Adaephon oh i forgot to explain about moving to workspace 0 first. It is because if i do all of that only on workspace 1, after caja is sent to the scratchpad, the focus is not come back to workspace 1. so i need to do $mod+1 again to bring the focus to workspace 1.</description><pubDate>Wed, 19 Aug 2015 10:08:04 +0000</pubDate><guid>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6472#comment-6472</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hi, I am new to i3, so please be patient :)&lt;/p&gt;
+
+&lt;p&gt;I use caja (file manager from Mate) and want it to be ready from the start of i3. I can do this by using this config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="caja"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja; workspace 1'
+bindsym $mod+e [instance="caja"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But if i want to open a new caja window (so i have 2 different caja windows, one in scratchpad one in workspace), it will be sent to the scratchpad instead (so now i have 2 caja windows in scratchpad). So how do I fix this?&lt;/p&gt;
+
+&lt;p&gt;I tried several options included vim-like mark, but it is not working on startup. (it is working with bindsysm, but i want to mark it automatically). I tried something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [con_mark="^test$"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja, mark test; workspace 1'
+bindsym $mod+e [con_mark="^test$"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and several other options, but nothing works. caja has --name options, but it is not working. When i check it with xprop, the class still WM_CLASS(STRING) = "caja", "Caja". Thanks for all your help.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6468#comment-6468</link><description>Aside from that, scratchpads are available on all workspaces, so switching to "workspace 0", starting caja and then switching to "workspace 1" does not really make sense.</description><pubDate>Wed, 19 Aug 2015 07:39:49 +0000</pubDate><guid>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6468#comment-6468</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hi, I am new to i3, so please be patient :)&lt;/p&gt;
+
+&lt;p&gt;I use caja (file manager from Mate) and want it to be ready from the start of i3. I can do this by using this config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="caja"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja; workspace 1'
+bindsym $mod+e [instance="caja"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But if i want to open a new caja window (so i have 2 different caja windows, one in scratchpad one in workspace), it will be sent to the scratchpad instead (so now i have 2 caja windows in scratchpad). So how do I fix this?&lt;/p&gt;
+
+&lt;p&gt;I tried several options included vim-like mark, but it is not working on startup. (it is working with bindsysm, but i want to mark it automatically). I tried something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [con_mark="^test$"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja, mark test; workspace 1'
+bindsym $mod+e [con_mark="^test$"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and several other options, but nothing works. caja has --name options, but it is not working. When i check it with xprop, the class still WM_CLASS(STRING) = "caja", "Caja". Thanks for all your help.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6467#comment-6467</link><description>The reason the second try does not work is that i3 does not wait after `exec caja` for a window to appear before running `mark test`, so unless caja starts exceptionally fast, `mark test` will run long before the window appears, thus marking something else.</description><pubDate>Wed, 19 Aug 2015 07:30:24 +0000</pubDate><guid>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6467#comment-6467</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi, I am new to i3, so please be patient :)&lt;/p&gt;
+
+&lt;p&gt;I use caja (file manager from Mate) and want it to be ready from the start of i3. I can do this by using this config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [instance="caja"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja; workspace 1'
+bindsym $mod+e [instance="caja"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But if i want to open a new caja window (so i have 2 different caja windows, one in scratchpad one in workspace), it will be sent to the scratchpad instead (so now i have 2 caja windows in scratchpad). So how do I fix this?&lt;/p&gt;
+
+&lt;p&gt;I tried several options included vim-like mark, but it is not working on startup. (it is working with bindsysm, but i want to mark it automatically). I tried something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [con_mark="^test$"] move window to scratchpad
+exec --no-startup-id i3-msg 'workspace 0; exec caja, mark test; workspace 1'
+bindsym $mod+e [con_mark="^test$"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and several other options, but nothing works. caja has --name options, but it is not working. When i check it with xprop, the class still WM_CLASS(STRING) = "caja", "Caja". Thanks for all your help.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?answer=6469#post-id-6469</link><description> As your Caja seems to be uncooperative in regards to the `--name` argument, there is probably no clean solution.
+
+You could try the following:
+
+    exec caja
+    exec --no-startup-id  "sleep 2; i3-msg '[instance=caja] mark cajascratch, move scratchpad'"
+    bindsym $mod+e [con_mark="^cajascratch$"] scratchpad show
+
+Both `exec` statements are run at i3 startup. The first starts caja, the second one waits for two seconds and than marks and moves the Caja window scratchpad.  
+The mark is used as criterion for `show scratchpad` as to not interfere  with other Caja windows. 
+
+**Note**: The quoting for the second `exec` statement has to be just so. The outer quotes need to be double quotes because single quotes have no special meaning in the i3 configuration and then `;` and `,` would be parsed for the configuration. The inner single quotes are needed because `[]` might be special to the shell used for running the `exec` statements. And finally, there can be no double quotes around the criterion string because they would be parsed together with the outer double quotes.</description><pubDate>Wed, 19 Aug 2015 09:11:13 +0000</pubDate><guid>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?answer=6469#post-id-6469</guid></item><item><title>Comment by chili for &lt;p&gt;As your Caja seems to be uncooperative in regards to the &lt;code&gt;--name&lt;/code&gt; argument, there is probably no clean solution.&lt;/p&gt;
+
+&lt;p&gt;You could try the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec caja
+exec --no-startup-id  "sleep 2; i3-msg '[instance=caja] mark cajascratch, move scratchpad'"
+bindsym $mod+e [con_mark="^cajascratch$"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Both &lt;code&gt;exec&lt;/code&gt; statements are run at i3 startup. The first starts caja, the second one waits for two seconds and than marks and moves the Caja window scratchpad. &lt;br/&gt;
+The mark is used as criterion for &lt;code&gt;show scratchpad&lt;/code&gt; as to not interfere  with other Caja windows. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The quoting for the second &lt;code&gt;exec&lt;/code&gt; statement has to be just so. The outer quotes need to be double quotes because single quotes have no special meaning in the i3 configuration and then &lt;code&gt;;&lt;/code&gt; and &lt;code&gt;,&lt;/code&gt; would be parsed for the configuration. The inner single quotes are needed because &lt;code&gt;[]&lt;/code&gt; might be special to the shell used for running the &lt;code&gt;exec&lt;/code&gt; statements. And finally, there can be no double quotes around the criterion string because they would be parsed together with the outer double quotes.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6473#comment-6473</link><description>Thanks!! Even tough the waiting time still bothering me, but I think this is the only workaround for now. I also exec the caja on other workspace so i can do something on workspace 1 immediately.</description><pubDate>Wed, 19 Aug 2015 10:39:40 +0000</pubDate><guid>https://faq.i3wm.org/question/6460/move-caja-to-scratchpad-on-start/?comment=6473#comment-6473</guid></item></channel></rss>

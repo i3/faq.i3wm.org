@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/451/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 14 Jun 2014 23:59:17 +0000</lastBuildDate><item><title>Dynamically change workspace name with ease</title><link>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/</link><description>I want to change workspace names dynamically(rename workspaces without touching config files), and I have a script to do so(see [this blog post](http://userbound.com/blog/Naming-Workspaces-in-i3/)). &lt;s&gt; can execute this script through dmenu\_run with a name as an argument to change the current workspace name, but I woulud rather not type in the name of the script. &lt;/s&gt;(Dmenu, not dmenu_run allows for graphical input conversion to stdout.)
+
+Is there anyway I can 'inject' text (the script name and a space) into dmenu\_run and have it open waiting for input, or is there a better way to dynamically change workspace names?
+</description><pubDate>Sun, 09 Sep 2012 07:13:54 +0000</pubDate><guid>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/</guid></item><item><title>Answer by Azrathud for &lt;p&gt;I want to change workspace names dynamically(rename workspaces without touching config files), and I have a script to do so(see &lt;a href="http://userbound.com/blog/Naming-Workspaces-in-i3/"&gt;this blog post&lt;/a&gt;). &lt;s&gt; can execute this script through dmenu_run with a name as an argument to change the current workspace name, but I woulud rather not type in the name of the script. &lt;/s&gt;(Dmenu, not dmenu_run allows for graphical input conversion to stdout.)&lt;/p&gt;
+
+&lt;p&gt;Is there anyway I can 'inject' text (the script name and a space) into dmenu_run and have it open waiting for input, or is there a better way to dynamically change workspace names?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?answer=536#post-id-536</link><description>&lt;s&gt;Okay, so I have created a solution.
+
+First download [workspace.rb](http://azrathud.com/data/workspace.rb)(taken from the blog, [Userbound](http://userbound.com/blog/Naming-Workspaces-in-i3/)). You will need ruby to run this script.
+
+    
+
+
+----------
+
+
+####workspace.rb
+
+    #!/usr/bin/ruby
+        require 'json'
+        JSON.parse(%x[i3-msg -t get_workspaces]).each do |workspace|
+                if (workspace['focused']) then
+                        number = workspace['name'].split(/:/)[0]
+                        newName = "#{number}: #{ARGV[0].chomp}"
+                        %x[i3-msg 'rename workspace "#{workspace['name']}" to "#{newName}"']
+                        %x[i3-msg 'bindsym Mod4+#{number} workspace "#{newName}"']
+                end
+        end
+
+All it does is read from i3 and send messages to i3, so it can rename a workspace. 
+
+Then, download my [script](http://azrathud.com/data/rename.sh). 
+
+-------
+
+####rename.sh
+
+    #!/bin/bash
+    # Rename current workspace
+
+    # deafult name and imput
+    name=$(echo -e "workspace" | dmenu)
+
+    ruby $HOME/scripts/wm-scripts/i3scripts/workspace.rb "$name"
+
+It gets input gained from dmenu(with a default of 'workspace'), and then supplies that input into the ruby script.
+
+Make sure you change the line **... $HOME/scripts/wm-scripts/i3scripts/workspace.rb ...** to point to wherever you have saved workspace.rb
+
+Now, go into your .i3 config and bind the script to a key in i3, and then reload your config(there is a shortcut for this reload by in the default config).
+
+-------
+
+####.i3/config
+
+    #rename workspace
+    bindsym Mod4+Shift+v exec /home/azrathud/scripts/wm-scripts/i3scripts/rename.sh
+
+There you have dynamic workspace naming.
+
+Note: see joepd's post about possible i3 workspace binding issues.&lt;/s&gt;
+
+This behavior was weird. Apparently when I named my workspaces `number 1`, etc. I could rename them using `i3-msg bindkey ...`, but then other functions of i3 stopped working. Sorry for the confusion. Apparently shortcuts cannot be rebinded at runtime.</description><pubDate>Sat, 22 Sep 2012 04:48:54 +0000</pubDate><guid>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?answer=536#post-id-536</guid></item><item><title>Comment by Azrathud for &lt;p&gt;&lt;s&gt;Okay, so I have created a solution.&lt;/s&gt;&lt;/p&gt;&lt;s&gt;
+
+&lt;p&gt;First download &lt;a href="http://azrathud.com/data/workspace.rb"&gt;workspace.rb&lt;/a&gt;(taken from the blog, &lt;a href="http://userbound.com/blog/Naming-Workspaces-in-i3/"&gt;Userbound&lt;/a&gt;). You will need ruby to run this script.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;h4&gt;workspace.rb&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/ruby
+    require 'json'
+    JSON.parse(%x[i3-msg -t get_workspaces]).each do |workspace|
+            if (workspace['focused']) then
+                    number = workspace['name'].split(/:/)[0]
+                    newName = "#{number}: #{ARGV[0].chomp}"
+                    %x[i3-msg 'rename workspace "#{workspace['name']}" to "#{newName}"']
+                    %x[i3-msg 'bindsym Mod4+#{number} workspace "#{newName}"']
+            end
+    end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All it does is read from i3 and send messages to i3, so it can rename a workspace. &lt;/p&gt;
+
+&lt;p&gt;Then, download my &lt;a href="http://azrathud.com/data/rename.sh"&gt;script&lt;/a&gt;. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;h4&gt;rename.sh&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+# Rename current workspace
+
+# deafult name and imput
+name=$(echo -e "workspace" | dmenu)
+
+ruby $HOME/scripts/wm-scripts/i3scripts/workspace.rb "$name"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It gets input gained from dmenu(with a default of 'workspace'), and then supplies that input into the ruby script.&lt;/p&gt;
+
+&lt;p&gt;Make sure you change the line &lt;strong&gt;... $HOME/scripts/wm-scripts/i3scripts/workspace.rb ...&lt;/strong&gt; to point to wherever you have saved workspace.rb&lt;/p&gt;
+
+&lt;p&gt;Now, go into your .i3 config and bind the script to a key in i3, and then reload your config(there is a shortcut for this reload by in the default config).&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;h4&gt;.i3/config&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;#rename workspace
+bindsym Mod4+Shift+v exec /home/azrathud/scripts/wm-scripts/i3scripts/rename.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There you have dynamic workspace naming.&lt;/p&gt;
+
+&lt;/s&gt;&lt;p&gt;&lt;s&gt;Note: see joepd's post about possible i3 workspace binding issues.&lt;/s&gt;&lt;/p&gt;
+
+&lt;p&gt;This behavior was weird. Apparently when I named my workspaces &lt;code&gt;number 1&lt;/code&gt;, etc. I could rename them using &lt;code&gt;i3-msg bindkey ...&lt;/code&gt;, but then other functions of i3 stopped working. Sorry for the confusion. Apparently shortcuts cannot be rebinded at runtime.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?comment=539#comment-539</link><description>See above. I tried to find a workaround, but to no avail.</description><pubDate>Sat, 22 Sep 2012 21:53:26 +0000</pubDate><guid>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?comment=539#comment-539</guid></item><item><title>Comment by Michael for &lt;p&gt;&lt;s&gt;Okay, so I have created a solution.&lt;/s&gt;&lt;/p&gt;&lt;s&gt;
+
+&lt;p&gt;First download &lt;a href="http://azrathud.com/data/workspace.rb"&gt;workspace.rb&lt;/a&gt;(taken from the blog, &lt;a href="http://userbound.com/blog/Naming-Workspaces-in-i3/"&gt;Userbound&lt;/a&gt;). You will need ruby to run this script.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;h4&gt;workspace.rb&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/ruby
+    require 'json'
+    JSON.parse(%x[i3-msg -t get_workspaces]).each do |workspace|
+            if (workspace['focused']) then
+                    number = workspace['name'].split(/:/)[0]
+                    newName = "#{number}: #{ARGV[0].chomp}"
+                    %x[i3-msg 'rename workspace "#{workspace['name']}" to "#{newName}"']
+                    %x[i3-msg 'bindsym Mod4+#{number} workspace "#{newName}"']
+            end
+    end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All it does is read from i3 and send messages to i3, so it can rename a workspace. &lt;/p&gt;
+
+&lt;p&gt;Then, download my &lt;a href="http://azrathud.com/data/rename.sh"&gt;script&lt;/a&gt;. &lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;h4&gt;rename.sh&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+# Rename current workspace
+
+# deafult name and imput
+name=$(echo -e "workspace" | dmenu)
+
+ruby $HOME/scripts/wm-scripts/i3scripts/workspace.rb "$name"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It gets input gained from dmenu(with a default of 'workspace'), and then supplies that input into the ruby script.&lt;/p&gt;
+
+&lt;p&gt;Make sure you change the line &lt;strong&gt;... $HOME/scripts/wm-scripts/i3scripts/workspace.rb ...&lt;/strong&gt; to point to wherever you have saved workspace.rb&lt;/p&gt;
+
+&lt;p&gt;Now, go into your .i3 config and bind the script to a key in i3, and then reload your config(there is a shortcut for this reload by in the default config).&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;h4&gt;.i3/config&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;#rename workspace
+bindsym Mod4+Shift+v exec /home/azrathud/scripts/wm-scripts/i3scripts/rename.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There you have dynamic workspace naming.&lt;/p&gt;
+
+&lt;/s&gt;&lt;p&gt;&lt;s&gt;Note: see joepd's post about possible i3 workspace binding issues.&lt;/s&gt;&lt;/p&gt;
+
+&lt;p&gt;This behavior was weird. Apparently when I named my workspaces &lt;code&gt;number 1&lt;/code&gt;, etc. I could rename them using &lt;code&gt;i3-msg bindkey ...&lt;/code&gt;, but then other functions of i3 stopped working. Sorry for the confusion. Apparently shortcuts cannot be rebinded at runtime.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?comment=537#comment-537</link><description>The `i3-msg bindsym …` does not actually work.</description><pubDate>Sat, 22 Sep 2012 10:49:08 +0000</pubDate><guid>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?comment=537#comment-537</guid></item><item><title>Answer by majkinetor for &lt;p&gt;I want to change workspace names dynamically(rename workspaces without touching config files), and I have a script to do so(see &lt;a href="http://userbound.com/blog/Naming-Workspaces-in-i3/"&gt;this blog post&lt;/a&gt;). &lt;s&gt; can execute this script through dmenu_run with a name as an argument to change the current workspace name, but I woulud rather not type in the name of the script. &lt;/s&gt;(Dmenu, not dmenu_run allows for graphical input conversion to stdout.)&lt;/p&gt;
+
+&lt;p&gt;Is there anyway I can 'inject' text (the script name and a space) into dmenu_run and have it open waiting for input, or is there a better way to dynamically change workspace names?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?answer=3989#post-id-3989</link><description>Here is how I did in bash
+    
+    num=`i3-msg -t get_workspaces | grep -o "{[^{]*\"focused\":true" | awk -F '[:,]' '{print $2}'`
+    cmd="rename workspace to \"$num: %s\""
+    i3-input -F "$cmd" -P
+    
+    title=`i3-msg -t get_workspaces | grep -o "{[^{]*\"name\":[^{]*\"focused\":true" | awk -F'"' '{print $6}'`
+    sed -i "s/set \$w$num.*/set \$w$num workspace $title/" ~/.i3/config  
+    
+    i3-msg reload
+
+
+</description><pubDate>Sat, 14 Jun 2014 23:59:17 +0000</pubDate><guid>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?answer=3989#post-id-3989</guid></item><item><title>Answer by joepd for &lt;p&gt;I want to change workspace names dynamically(rename workspaces without touching config files), and I have a script to do so(see &lt;a href="http://userbound.com/blog/Naming-Workspaces-in-i3/"&gt;this blog post&lt;/a&gt;). &lt;s&gt; can execute this script through dmenu_run with a name as an argument to change the current workspace name, but I woulud rather not type in the name of the script. &lt;/s&gt;(Dmenu, not dmenu_run allows for graphical input conversion to stdout.)&lt;/p&gt;
+
+&lt;p&gt;Is there anyway I can 'inject' text (the script name and a space) into dmenu_run and have it open waiting for input, or is there a better way to dynamically change workspace names?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?answer=452#post-id-452</link><description>I am not sure if I understand your question correctly, but aren't you confusing dmenu with dmenu_run? If so, running 
+
+    less $(which dmenu_run)
+
+will clear out any confusion. 
+
+As for your question, this probably is what you are looking for: 
+
+    #!/bin/sh
+    result=$(cat FileWithNewlineSeparatedItems | dmenu)
+    yourscript "${result}"
+
+</description><pubDate>Sun, 09 Sep 2012 08:34:23 +0000</pubDate><guid>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?answer=452#post-id-452</guid></item><item><title>Comment by Azrathud for &lt;p&gt;I am not sure if I understand your question correctly, but aren't you confusing dmenu with dmenu_run? If so, running &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;less $(which dmenu_run)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will clear out any confusion. &lt;/p&gt;
+
+&lt;p&gt;As for your question, this probably is what you are looking for: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+result=$(cat FileWithNewlineSeparatedItems | dmenu)
+yourscript "${result}"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?comment=503#comment-503</link><description>I was confusing dmenu_run with dmenu.
+
+So here's what I have so far:
+
+
+
+./i3/config
+
+    ...
+    bindsym Mod4+Shift+n exec /home/azrathud/.i3/rename.sh
+    ...
+
+
+
+rename.sh
+    
+    #!/bin/bash
+    # Rename current workspace
+
+    # deafult name and imput
+    name=$(echo -e "workspace" | dmenu)
+
+    ruby $HOME/.i3/workspace.rb "$name"
+
+
+
+workspace.rb
+
+    #!/usr/bin/ruby
+    require 'json'
+    JSON.parse(%x[i3-msg -t get_workspaces]).each do |workspace|
+            if (workspace['focused']) then
+                    number = workspace['name'].split(/:/)[0]
+                    newName = "#{number}: #{ARGV[0].chomp}"
+                    %x[i3-msg 'rename workspace "#{workspace['name']}" to "#{newName}"']
+                    %x[i3-msg 'bindsym Mod4+#{number} workspace "#{newName}"']
+            end
+    end
+
+
+My problem now is that when I do modify the workspace name, I cannot use the Mod+{0-9} shortcuts to go back to it, only by clicking.
+</description><pubDate>Mon, 17 Sep 2012 04:27:45 +0000</pubDate><guid>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?comment=503#comment-503</guid></item><item><title>Comment by Azrathud for &lt;p&gt;I am not sure if I understand your question correctly, but aren't you confusing dmenu with dmenu_run? If so, running &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;less $(which dmenu_run)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will clear out any confusion. &lt;/p&gt;
+
+&lt;p&gt;As for your question, this probably is what you are looking for: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+result=$(cat FileWithNewlineSeparatedItems | dmenu)
+yourscript "${result}"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?comment=535#comment-535</link><description>That did it. Thank you for all the help. My config was like:
+
+    ...
+    # switch to workspace
+    bindsym Mod4+1 workspace 1
+    ...
+    
+and so I changed it to 
+
+    ...
+    # switch to workspace
+    bindsym Mod4+1 workspace number 1
+    ...
+
+I'm going to post the final solution.
+</description><pubDate>Sat, 22 Sep 2012 04:07:31 +0000</pubDate><guid>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?comment=535#comment-535</guid></item><item><title>Comment by joepd for &lt;p&gt;I am not sure if I understand your question correctly, but aren't you confusing dmenu with dmenu_run? If so, running &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;less $(which dmenu_run)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will clear out any confusion. &lt;/p&gt;
+
+&lt;p&gt;As for your question, this probably is what you are looking for: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+result=$(cat FileWithNewlineSeparatedItems | dmenu)
+yourscript "${result}"
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?comment=519#comment-519</link><description>I suspect you have your bindsyms setup wrong, ie referring to the workspace name in stead of the workspace number. This works for me: 
+
+    i3-msg 'rename workspace "7: mail" to "7: email"' 
+    i3-msg 'workspace number 7'</description><pubDate>Tue, 18 Sep 2012 12:12:04 +0000</pubDate><guid>https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/?comment=519#comment-519</guid></item></channel></rss>

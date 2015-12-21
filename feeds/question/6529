@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6529/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 30 Aug 2015 13:10:03 +0000</lastBuildDate><item><title>Add full screen hook.</title><link>https://faq.i3wm.org/question/6529/add-full-screen-hook/</link><description> I use a dzen2 bar as my status bar. when any app goes fullscreen, the bar is still displayed.
+Something like 
+&gt; xdotool search --onlyvisible  --name dzen\ title windowunmap %@ || xdotool search --name dzen\ title windowmap %@
+
+can toggle the visibility of bar. I want to know if there is anyway for this to be executed automatically when an app goes fullscreen. I am not talking about $mod+f, but when app goes fullscreen on pressing the internal shortcut like F11 or something.
+  </description><pubDate>Sun, 30 Aug 2015 10:08:34 +0000</pubDate><guid>https://faq.i3wm.org/question/6529/add-full-screen-hook/</guid></item><item><title>Comment by Airblader for &lt;p&gt;I use a dzen2 bar as my status bar. when any app goes fullscreen, the bar is still displayed.
+Something like &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;xdotool search --onlyvisible  --name dzen\ title windowunmap %@ || xdotool search --name dzen\ title windowmap %@&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;can toggle the visibility of bar. I want to know if there is anyway for this to be executed automatically when an app goes fullscreen. I am not talking about $mod+f, but when app goes fullscreen on pressing the internal shortcut like F11 or something.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6529/add-full-screen-hook/?comment=6532#comment-6532</link><description>Unless it uses override redirect, no window should be on top of a fullscreen window. If this is the case this might be a bug.</description><pubDate>Sun, 30 Aug 2015 13:10:03 +0000</pubDate><guid>https://faq.i3wm.org/question/6529/add-full-screen-hook/?comment=6532#comment-6532</guid></item><item><title>Answer by gurkensalat for &lt;p&gt;I use a dzen2 bar as my status bar. when any app goes fullscreen, the bar is still displayed.
+Something like &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;xdotool search --onlyvisible  --name dzen\ title windowunmap %@ || xdotool search --name dzen\ title windowmap %@&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;can toggle the visibility of bar. I want to know if there is anyway for this to be executed automatically when an app goes fullscreen. I am not talking about $mod+f, but when app goes fullscreen on pressing the internal shortcut like F11 or something.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6529/add-full-screen-hook/?answer=6530#post-id-6530</link><description>You can try [i3subscribe](https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/):
+
+    i3subscribe window | grep window:fullscreen_mode | \
+    while read -r line; do
+        xdotool search --onlyvisible --name dzen\ title windowunmap %@ || xdotool search --name dzen\ title windowmap %@
+    done
+</description><pubDate>Sun, 30 Aug 2015 10:19:39 +0000</pubDate><guid>https://faq.i3wm.org/question/6529/add-full-screen-hook/?answer=6530#post-id-6530</guid></item></channel></rss>

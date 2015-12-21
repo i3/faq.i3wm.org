@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1096/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 11 Mar 2013 22:02:12 +0000</lastBuildDate><item><title>Cannot pipe conky colors to i3bar using JSON, status doesn't get updated</title><link>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/</link><description>I did exactly as it says in the documentation. I've struggled with this for two days many hours in a row. I have no experience with JSON so I don't know what I can do to fix it.
+I have the ~/.i3/conkyi3bar.sh which looks like this:
+
+    #!/bin/sh
+    
+    echo '{ "version": 1 }'
+    echo '['
+    echo '[],'
+    exec conky -c $HOME/.i3/conkyi3rc
+And this is the TEXT part from the conky script:
+
+    TEXT
+    [
+    {
+      "full_text": "K: $kernel",
+        "color": "\#BFBFBF"
+    },
+    {
+      "full_text": "A: $machine",
+      "color": "\#BFBFBF"
+    },
+    {
+      "full_text": "U: $uptime",
+      "color": "\#BFBFBF"
+    },
+    {
+      "full_text": "CU0: ${cpu cpu1}%",
+      "color":
+        ${if_match ${cpu cpu1}&gt;60}"\#FF0000"
+        ${else}"\#BFBFBF"
+        ${endif}
+    },
+    {
+      "full_text": "CU1: ${cpu cpu2}%",
+      "color":
+        ${if_match ${cpu cpu2}&gt;60}"\#FF0000"
+        ${else}"\#BFBFBF"
+        ${endif}
+    },
+    {
+      "full_text": "C0:${hwmon 1 temp 2}°C",
+      "color":
+        ${if_match ${hwmon 1 temp 2}&gt;45}"\#FF0000"
+        ${else}"\#BFBFBF"
+        ${endif}
+    },
+    {
+      "full_text": "C1:${hwmon 1 temp 3}°C",
+      "color":
+        ${if_match ${hwmon 1 temp 3}&gt;45}"\#FF0000"
+        ${else}"\#BFBFBF"
+        ${endif}
+    },
+    {
+      "full_text": "M: $memeasyfree / $memperc%",
+      "color":
+        ${if_match ${memperc}&gt;70}"\#FF0000"
+        ${else}"\#BFBFBF"
+        ${endif}
+    }
+    ]
+I wrote it like this to be easy to read (for me). At first I thought it may be the syntax, but I tried many ways. It made no difference. Without using the JSON protocol, the conky status gets piped without any problems, but I have to give up on colors. Maybe someone who knows JSON or the i3bar protocol better, can spot an error in my configs. I need a little help.
+
+I'm using ArchLinux 64 bit with i3-git compiled yesterday in the hope that there will be something that can be fixed this way.</description><pubDate>Sun, 20 Jan 2013 00:34:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/</guid></item><item><title>Answer by Michael for &lt;p&gt;I did exactly as it says in the documentation. I've struggled with this for two days many hours in a row. I have no experience with JSON so I don't know what I can do to fix it.
+I have the ~/.i3/conkyi3bar.sh which looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+
+echo '{ "version": 1 }'
+echo '['
+echo '[],'
+exec conky -c $HOME/.i3/conkyi3rc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this is the TEXT part from the conky script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;TEXT
+[
+{
+  "full_text": "K: $kernel",
+    "color": "\#BFBFBF"
+},
+{
+  "full_text": "A: $machine",
+  "color": "\#BFBFBF"
+},
+{
+  "full_text": "U: $uptime",
+  "color": "\#BFBFBF"
+},
+{
+  "full_text": "CU0: ${cpu cpu1}%",
+  "color":
+    ${if_match ${cpu cpu1}&amp;gt;60}"\#FF0000"
+    ${else}"\#BFBFBF"
+    ${endif}
+},
+{
+  "full_text": "CU1: ${cpu cpu2}%",
+  "color":
+    ${if_match ${cpu cpu2}&amp;gt;60}"\#FF0000"
+    ${else}"\#BFBFBF"
+    ${endif}
+},
+{
+  "full_text": "C0:${hwmon 1 temp 2}°C",
+  "color":
+    ${if_match ${hwmon 1 temp 2}&amp;gt;45}"\#FF0000"
+    ${else}"\#BFBFBF"
+    ${endif}
+},
+{
+  "full_text": "C1:${hwmon 1 temp 3}°C",
+  "color":
+    ${if_match ${hwmon 1 temp 3}&amp;gt;45}"\#FF0000"
+    ${else}"\#BFBFBF"
+    ${endif}
+},
+{
+  "full_text": "M: $memeasyfree / $memperc%",
+  "color":
+    ${if_match ${memperc}&amp;gt;70}"\#FF0000"
+    ${else}"\#BFBFBF"
+    ${endif}
+}
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I wrote it like this to be easy to read (for me). At first I thought it may be the syntax, but I tried many ways. It made no difference. Without using the JSON protocol, the conky status gets piped without any problems, but I have to give up on colors. Maybe someone who knows JSON or the i3bar protocol better, can spot an error in my configs. I need a little help.&lt;/p&gt;
+
+&lt;p&gt;I'm using ArchLinux 64 bit with i3-git compiled yesterday in the hope that there will be something that can be fixed this way.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/?answer=1100#post-id-1100</link><description>You are missing a trailing comma in the last line of your conky configuration.
+
+See the example in http://i3wm.org/docs/i3bar-protocol.html#_the_protocol — i3bar expects an infinite array of status lines, and JSON array elements are separated by commas from each other.</description><pubDate>Tue, 22 Jan 2013 06:29:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/?answer=1100#post-id-1100</guid></item><item><title>Comment by virtualeyes for &lt;p&gt;You are missing a trailing comma in the last line of your conky configuration.&lt;/p&gt;
+
+&lt;p&gt;See the example in &lt;a href="http://i3wm.org/docs/i3bar-protocol.html"&gt;http://i3wm.org/docs/i3bar-protocol.h...&lt;/a&gt;&lt;em&gt;the&lt;/em&gt;protocol — i3bar expects an infinite array of status lines, and JSON array elements are separated by commas from each other.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/?comment=1371#comment-1371</link><description>Had perfect static colored Conky text, now it actually works ;-)</description><pubDate>Mon, 11 Mar 2013 22:02:12 +0000</pubDate><guid>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/?comment=1371#comment-1371</guid></item><item><title>Comment by dkeg for &lt;p&gt;You are missing a trailing comma in the last line of your conky configuration.&lt;/p&gt;
+
+&lt;p&gt;See the example in &lt;a href="http://i3wm.org/docs/i3bar-protocol.html"&gt;http://i3wm.org/docs/i3bar-protocol.h...&lt;/a&gt;&lt;em&gt;the&lt;/em&gt;protocol — i3bar expects an infinite array of status lines, and JSON array elements are separated by commas from each other.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/?comment=1156#comment-1156</link><description>This was also helpful for me to find a solution to the same issue.  Thank you!</description><pubDate>Tue, 29 Jan 2013 12:51:15 +0000</pubDate><guid>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/?comment=1156#comment-1156</guid></item><item><title>Comment by naq for &lt;p&gt;You are missing a trailing comma in the last line of your conky configuration.&lt;/p&gt;
+
+&lt;p&gt;See the example in &lt;a href="http://i3wm.org/docs/i3bar-protocol.html"&gt;http://i3wm.org/docs/i3bar-protocol.h...&lt;/a&gt;&lt;em&gt;the&lt;/em&gt;protocol — i3bar expects an infinite array of status lines, and JSON array elements are separated by commas from each other.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/?comment=1104#comment-1104</link><description>Thank you.</description><pubDate>Tue, 22 Jan 2013 06:51:11 +0000</pubDate><guid>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/?comment=1104#comment-1104</guid></item><item><title>Comment by naq for &lt;p&gt;You are missing a trailing comma in the last line of your conky configuration.&lt;/p&gt;
+
+&lt;p&gt;See the example in &lt;a href="http://i3wm.org/docs/i3bar-protocol.html"&gt;http://i3wm.org/docs/i3bar-protocol.h...&lt;/a&gt;&lt;em&gt;the&lt;/em&gt;protocol — i3bar expects an infinite array of status lines, and JSON array elements are separated by commas from each other.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/?comment=1103#comment-1103</link><description>Thank you for replying Michael. I've read the docs and I tried putting a comma and didn't work. Now after you posted the answer and narrowed it down confirming me that that's the problem, I tried again and I realized that the comma had to be after the last ], not }, and so I did that and it works.</description><pubDate>Tue, 22 Jan 2013 06:51:01 +0000</pubDate><guid>https://faq.i3wm.org/question/1096/cannot-pipe-conky-colors-to-i3bar-using-json-status-doesnt-get-updated/?comment=1103#comment-1103</guid></item></channel></rss>

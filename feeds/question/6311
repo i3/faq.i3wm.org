@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6311/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 18 Jul 2015 11:13:12 +0000</lastBuildDate><item><title>Applets missing</title><link>https://faq.i3wm.org/question/6311/applets-missing/</link><description>After an absence of a couple of months using i3, no applets are anymore in my status bar. Even when I start them manually (like nm-applet) they do not appear. I already tried resizing my status bar from what I read in other threads but this didn't help.
+Any ideas? </description><pubDate>Thu, 16 Jul 2015 21:16:01 +0000</pubDate><guid>https://faq.i3wm.org/question/6311/applets-missing/</guid></item><item><title>Answer by i3convert for &lt;p&gt;After an absence of a couple of months using i3, no applets are anymore in my status bar. Even when I start them manually (like nm-applet) they do not appear. I already tried resizing my status bar from what I read in other threads but this didn't help.
+Any ideas? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6311/applets-missing/?answer=6312#post-id-6312</link><description>What is likely to be missing is the **system tray**. In your config file, in the i3bar configuration section (`bar { ... }`), search for the `tray_output` directive. This directive specifies if the system tray should be displayed and on what output.
+
+You may want to experiment a little bit. In particular you can try the following if you find a directive
+
+ - `tray_output none`: Try deleting it.
+ - `tray_output primary`: Make sure the current screen is primary by running `xrandr --output &lt;output&gt; --primary`, where `&lt;output&gt;` is your current output. 
+ - `tray_output &lt;output&gt;`, where `&lt;output&gt;` is not your current output: Modify it to your current output.
+
+More information can be found in the i3 User's Guide in [Section 5.8. Tray Output](https://i3wm.org/docs/userguide.html#_tray_output).</description><pubDate>Fri, 17 Jul 2015 04:47:51 +0000</pubDate><guid>https://faq.i3wm.org/question/6311/applets-missing/?answer=6312#post-id-6312</guid></item><item><title>Comment by nielsk for &lt;p&gt;What is likely to be missing is the &lt;strong&gt;system tray&lt;/strong&gt;. In your config file, in the i3bar configuration section (&lt;code&gt;bar { ... }&lt;/code&gt;), search for the &lt;code&gt;tray_output&lt;/code&gt; directive. This directive specifies if the system tray should be displayed and on what output.&lt;/p&gt;
+
+&lt;p&gt;You may want to experiment a little bit. In particular you can try the following if you find a directive&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;tray_output none&lt;/code&gt;: Try deleting it.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tray_output primary&lt;/code&gt;: Make sure the current screen is primary by running &lt;code&gt;xrandr --output &amp;lt;output&amp;gt; --primary&lt;/code&gt;, where &lt;code&gt;&amp;lt;output&amp;gt;&lt;/code&gt; is your current output. &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tray_output &amp;lt;output&amp;gt;&lt;/code&gt;, where &lt;code&gt;&amp;lt;output&amp;gt;&lt;/code&gt; is not your current output: Modify it to your current output.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;More information can be found in the i3 User's Guide in &lt;a href="https://i3wm.org/docs/userguide.html#_tray_output"&gt;Section 5.8. Tray Output&lt;/a&gt;.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6311/applets-missing/?comment=6320#comment-6320</link><description>Thanks a lot. For whatever reason my primary output wasn't set correctly. I guess the switch to lightdm some time ago might be the reason for the problem</description><pubDate>Sat, 18 Jul 2015 11:13:12 +0000</pubDate><guid>https://faq.i3wm.org/question/6311/applets-missing/?comment=6320#comment-6320</guid></item><item><title>Answer by nielsk for &lt;p&gt;After an absence of a couple of months using i3, no applets are anymore in my status bar. Even when I start them manually (like nm-applet) they do not appear. I already tried resizing my status bar from what I read in other threads but this didn't help.
+Any ideas? &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6311/applets-missing/?answer=6319#post-id-6319</link><description>Thanks a lot. For whatever reason my primary output wasn't set correctly. I guess the switch to lightdm some time ago might be the reason for the problem </description><pubDate>Sat, 18 Jul 2015 11:12:47 +0000</pubDate><guid>https://faq.i3wm.org/question/6311/applets-missing/?answer=6319#post-id-6319</guid></item></channel></rss>

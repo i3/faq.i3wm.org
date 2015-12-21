@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2487/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 09 Sep 2013 05:12:46 +0000</lastBuildDate><item><title>How can I get info on windows open?</title><link>https://faq.i3wm.org/question/2487/how-can-i-get-info-on-windows-open/</link><description>I used to use wmctrl to get information about windows open. It shows information one line per window, for example:
+
+    0x009900   gvim - Gvim         config (~/.i3/config) - GVIM
+    0x350001   firefox - Navigator Google - Mozilla Firefox
+    0x430000   xterm - Xterm       user@home
+
+How I do get similar info in i3?
+
+Thank you.
+
+</description><pubDate>Fri, 06 Sep 2013 06:04:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2487/how-can-i-get-info-on-windows-open/</guid></item><item><title>Comment by mschaefer for &lt;p&gt;I used to use wmctrl to get information about windows open. It shows information one line per window, for example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;0x009900   gvim - Gvim         config (~/.i3/config) - GVIM
+0x350001   firefox - Navigator Google - Mozilla Firefox
+0x430000   xterm - Xterm       user@home
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How I do get similar info in i3?&lt;/p&gt;
+
+&lt;p&gt;Thank you.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2487/how-can-i-get-info-on-windows-open/?comment=2491#comment-2491</link><description>don't know if it helps, but xprop can at least give you these information by a click onto the desired window.</description><pubDate>Fri, 06 Sep 2013 09:11:55 +0000</pubDate><guid>https://faq.i3wm.org/question/2487/how-can-i-get-info-on-windows-open/?comment=2491#comment-2491</guid></item><item><title>Answer by joepd for &lt;p&gt;I used to use wmctrl to get information about windows open. It shows information one line per window, for example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;0x009900   gvim - Gvim         config (~/.i3/config) - GVIM
+0x350001   firefox - Navigator Google - Mozilla Firefox
+0x430000   xterm - Xterm       user@home
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How I do get similar info in i3?&lt;/p&gt;
+
+&lt;p&gt;Thank you.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2487/how-can-i-get-info-on-windows-open/?answer=2492#post-id-2492</link><description>Have a look at [Inter Process Communication](http://i3wm.org/docs/ipc.html‎). i3-msg is a basic way of getting info in a json encoded string: 
+
+`i3-msg -t get_tree | json_pp`
+
+You can parse the output with some json tool. 
+
+Alternatively, with some libraries in a selection of languages you can work directly with this output. </description><pubDate>Fri, 06 Sep 2013 11:12:36 +0000</pubDate><guid>https://faq.i3wm.org/question/2487/how-can-i-get-info-on-windows-open/?answer=2492#post-id-2492</guid></item><item><title>Comment by phairland for &lt;p&gt;Have a look at &lt;a href="http://i3wm.org/docs/ipc.html‎"&gt;Inter Process Communication&lt;/a&gt;. i3-msg is a basic way of getting info in a json encoded string: &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;i3-msg -t get_tree | json_pp&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You can parse the output with some json tool. &lt;/p&gt;
+
+&lt;p&gt;Alternatively, with some libraries in a selection of languages you can work directly with this output. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2487/how-can-i-get-info-on-windows-open/?comment=2495#comment-2495</link><description>Thanks. I just wanted to avoid the parsing, and have something more human readable.</description><pubDate>Fri, 06 Sep 2013 16:38:11 +0000</pubDate><guid>https://faq.i3wm.org/question/2487/how-can-i-get-info-on-windows-open/?comment=2495#comment-2495</guid></item><item><title>Answer by Michael for &lt;p&gt;I used to use wmctrl to get information about windows open. It shows information one line per window, for example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;0x009900   gvim - Gvim         config (~/.i3/config) - GVIM
+0x350001   firefox - Navigator Google - Mozilla Firefox
+0x430000   xterm - Xterm       user@home
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How I do get similar info in i3?&lt;/p&gt;
+
+&lt;p&gt;Thank you.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2487/how-can-i-get-info-on-windows-open/?answer=2501#post-id-2501</link><description>`xwininfo` is a window-manager independent tool to give you information like this.</description><pubDate>Mon, 09 Sep 2013 05:12:46 +0000</pubDate><guid>https://faq.i3wm.org/question/2487/how-can-i-get-info-on-windows-open/?answer=2501#post-id-2501</guid></item></channel></rss>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2999/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 26 Feb 2015 02:16:13 +0000</lastBuildDate><item><title>wine in ubuntu on i3</title><link>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/</link><description>i don't know how to open the .exe applications that i use through the wine program on my ubuntu computer when i'm using i3. the dmenu shows a number of things which contain the word wine, but none of them opened.
+thanks for any help anyone can offer</description><pubDate>Sat, 30 Nov 2013 23:17:31 +0000</pubDate><guid>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/</guid></item><item><title>Comment by geo909 for &lt;p&gt;i don't know how to open the .exe applications that i use through the wine program on my ubuntu computer when i'm using i3. the dmenu shows a number of things which contain the word wine, but none of them opened.
+thanks for any help anyone can offer&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3003#comment-3003</link><description>Consider capitalizing and adding some tags, like `wine` and `dmenu`. I cannot edit your question due to my low carma.</description><pubDate>Sun, 01 Dec 2013 11:17:35 +0000</pubDate><guid>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3003#comment-3003</guid></item><item><title>Answer by geo909 for &lt;p&gt;i don't know how to open the .exe applications that i use through the wine program on my ubuntu computer when i'm using i3. the dmenu shows a number of things which contain the word wine, but none of them opened.
+thanks for any help anyone can offer&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?answer=3001#post-id-3001</link><description>*EDIT: I added Answer 2, check that one first.*
+
+
+----------
+**Answer 1**
+
+I don't have wine so I haven't tried it, but the following should work. Not sure if there's a simpler way. For every windows program `appname.exe` you need to run, create a file `appname`
+like so:
+
+    #!/bin/bash 
+    # File appname
+    wine "C:\Program Files\appname\appname.exe"
+
+Of course, you should make sure that you put the correct path name to your `appname.exe.`. Then move this newly created file to `/usr/bin`:
+
+`sudo mv appname /usr/bin`
+
+Now `appname` should appear in dmenu. In fact you should be able to run any script or manually installed program from dmenu this way. Furthermore this should give a command `appname` in the terminal, too.
+
+----------
+**Answer 2**
+
+Sorry, this is also not tested, but I just read the following lines in `~/.i3/config`:
+
+    # There also is the (new) i3-dmenu-desktop which only displays applications
+    # shipping a .desktop file. It is a wrapper around dmenu, so you need that
+    # installed.
+    # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+Unless I'm missing something, the above suggests that _if_ wine creates menu items automatically (again, I don't know), you should be able to access them from i3-dmenu-desktop.
+
+
+So, do the following. 
+
+ - &lt;strike&gt;`sudo apt-get install i3-dmenu-desktop` in case this is not installed by default in ubuntu; I don't have ubuntu, so I don't know&lt;/strike&gt;
+ - Fire up dmenu with mod+d and run `i3-dmenu-desktop`; an identical-looking dmenu will appear on the top bar
+ - Start typing the name of your windows application. If it doesn't appear, forget about this answer. If it appears, then go back to your `~/.i3/config`, comment the line about dmenu_run and uncomment the line about i3-dmenu-desktop. That is, your config file should now read:
+
+        # start dmenu (a program launcher)
+        # bindsym $mod+d exec dmenu_run
+        # There also is the (new) i3-dmenu-desktop which only displays 
+        # shipping a .desktop file. It is a wrapper around dmenu, so you need that
+        # installed.
+        bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+If that works and you want to further tweak things around, there's a program called `j4-dmenu-desktop` which claims to do the same thigs as i3-dmenu-desktop but much faster.
+
+</description><pubDate>Sun, 01 Dec 2013 09:58:02 +0000</pubDate><guid>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?answer=3001#post-id-3001</guid></item><item><title>Comment by bondorky for &lt;p&gt;&lt;em&gt;EDIT: I added Answer 2, check that one first.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer 1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I don't have wine so I haven't tried it, but the following should work. Not sure if there's a simpler way. For every windows program &lt;code&gt;appname.exe&lt;/code&gt; you need to run, create a file &lt;code&gt;appname&lt;/code&gt;
+like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash 
+# File appname
+wine "C:\Program Files\appname\appname.exe"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course, you should make sure that you put the correct path name to your &lt;code&gt;appname.exe.&lt;/code&gt;. Then move this newly created file to &lt;code&gt;/usr/bin&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo mv appname /usr/bin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now &lt;code&gt;appname&lt;/code&gt; should appear in dmenu. In fact you should be able to run any script or manually installed program from dmenu this way. Furthermore this should give a command &lt;code&gt;appname&lt;/code&gt; in the terminal, too.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer 2&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Sorry, this is also not tested, but I just read the following lines in &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unless I'm missing something, the above suggests that &lt;em&gt;if&lt;/em&gt; wine creates menu items automatically (again, I don't know), you should be able to access them from i3-dmenu-desktop.&lt;/p&gt;
+
+&lt;p&gt;So, do the following. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strike&gt;&lt;code&gt;sudo apt-get install i3-dmenu-desktop&lt;/code&gt; in case this is not installed by default in ubuntu; I don't have ubuntu, so I don't know&lt;/strike&gt;&lt;/li&gt;
+&lt;li&gt;Fire up dmenu with mod+d and run &lt;code&gt;i3-dmenu-desktop&lt;/code&gt;; an identical-looking dmenu will appear on the top bar&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Start typing the name of your windows application. If it doesn't appear, forget about this answer. If it appears, then go back to your &lt;code&gt;~/.i3/config&lt;/code&gt;, comment the line about dmenu_run and uncomment the line about i3-dmenu-desktop. That is, your config file should now read:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# start dmenu (a program launcher)
+# bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays 
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If that works and you want to further tweak things around, there's a program called &lt;code&gt;j4-dmenu-desktop&lt;/code&gt; which claims to do the same thigs as i3-dmenu-desktop but much faster.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3023#comment-3023</link><description>i tried all three .exe files to end the path, one at a time, but still nothing appeared in the dmenu, i checked and the file is a bourne again shellscript and is in /usr/bin. the folder that has the .exe files also has a dozen other files, mostly .dll and .pyd, one .qm one .dat. thanks for trying</description><pubDate>Fri, 06 Dec 2013 03:48:41 +0000</pubDate><guid>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3023#comment-3023</guid></item><item><title>Comment by bondorky for &lt;p&gt;&lt;em&gt;EDIT: I added Answer 2, check that one first.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer 1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I don't have wine so I haven't tried it, but the following should work. Not sure if there's a simpler way. For every windows program &lt;code&gt;appname.exe&lt;/code&gt; you need to run, create a file &lt;code&gt;appname&lt;/code&gt;
+like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash 
+# File appname
+wine "C:\Program Files\appname\appname.exe"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course, you should make sure that you put the correct path name to your &lt;code&gt;appname.exe.&lt;/code&gt;. Then move this newly created file to &lt;code&gt;/usr/bin&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo mv appname /usr/bin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now &lt;code&gt;appname&lt;/code&gt; should appear in dmenu. In fact you should be able to run any script or manually installed program from dmenu this way. Furthermore this should give a command &lt;code&gt;appname&lt;/code&gt; in the terminal, too.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer 2&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Sorry, this is also not tested, but I just read the following lines in &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unless I'm missing something, the above suggests that &lt;em&gt;if&lt;/em&gt; wine creates menu items automatically (again, I don't know), you should be able to access them from i3-dmenu-desktop.&lt;/p&gt;
+
+&lt;p&gt;So, do the following. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strike&gt;&lt;code&gt;sudo apt-get install i3-dmenu-desktop&lt;/code&gt; in case this is not installed by default in ubuntu; I don't have ubuntu, so I don't know&lt;/strike&gt;&lt;/li&gt;
+&lt;li&gt;Fire up dmenu with mod+d and run &lt;code&gt;i3-dmenu-desktop&lt;/code&gt;; an identical-looking dmenu will appear on the top bar&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Start typing the name of your windows application. If it doesn't appear, forget about this answer. If it appears, then go back to your &lt;code&gt;~/.i3/config&lt;/code&gt;, comment the line about dmenu_run and uncomment the line about i3-dmenu-desktop. That is, your config file should now read:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# start dmenu (a program launcher)
+# bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays 
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If that works and you want to further tweak things around, there's a program called &lt;code&gt;j4-dmenu-desktop&lt;/code&gt; which claims to do the same thigs as i3-dmenu-desktop but much faster.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3029#comment-3029</link><description>i found a way to open the wine programs with the terminal, so now i can use them while using i3.</description><pubDate>Tue, 10 Dec 2013 06:08:53 +0000</pubDate><guid>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3029#comment-3029</guid></item><item><title>Comment by bondorky for &lt;p&gt;&lt;em&gt;EDIT: I added Answer 2, check that one first.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer 1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I don't have wine so I haven't tried it, but the following should work. Not sure if there's a simpler way. For every windows program &lt;code&gt;appname.exe&lt;/code&gt; you need to run, create a file &lt;code&gt;appname&lt;/code&gt;
+like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash 
+# File appname
+wine "C:\Program Files\appname\appname.exe"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course, you should make sure that you put the correct path name to your &lt;code&gt;appname.exe.&lt;/code&gt;. Then move this newly created file to &lt;code&gt;/usr/bin&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo mv appname /usr/bin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now &lt;code&gt;appname&lt;/code&gt; should appear in dmenu. In fact you should be able to run any script or manually installed program from dmenu this way. Furthermore this should give a command &lt;code&gt;appname&lt;/code&gt; in the terminal, too.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer 2&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Sorry, this is also not tested, but I just read the following lines in &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unless I'm missing something, the above suggests that &lt;em&gt;if&lt;/em&gt; wine creates menu items automatically (again, I don't know), you should be able to access them from i3-dmenu-desktop.&lt;/p&gt;
+
+&lt;p&gt;So, do the following. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strike&gt;&lt;code&gt;sudo apt-get install i3-dmenu-desktop&lt;/code&gt; in case this is not installed by default in ubuntu; I don't have ubuntu, so I don't know&lt;/strike&gt;&lt;/li&gt;
+&lt;li&gt;Fire up dmenu with mod+d and run &lt;code&gt;i3-dmenu-desktop&lt;/code&gt;; an identical-looking dmenu will appear on the top bar&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Start typing the name of your windows application. If it doesn't appear, forget about this answer. If it appears, then go back to your &lt;code&gt;~/.i3/config&lt;/code&gt;, comment the line about dmenu_run and uncomment the line about i3-dmenu-desktop. That is, your config file should now read:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# start dmenu (a program launcher)
+# bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays 
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If that works and you want to further tweak things around, there's a program called &lt;code&gt;j4-dmenu-desktop&lt;/code&gt; which claims to do the same thigs as i3-dmenu-desktop but much faster.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3021#comment-3021</link><description>thanks, i couldn't summon up i3-dmenu-desktop with a terminal, and i finally had time and much to my neophyte's delight was able to create a file such as you described, but was unsure what .exe to use to end the path, i need to experiment a little more, thank you again</description><pubDate>Fri, 06 Dec 2013 02:18:21 +0000</pubDate><guid>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3021#comment-3021</guid></item><item><title>Comment by bondorky for &lt;p&gt;&lt;em&gt;EDIT: I added Answer 2, check that one first.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer 1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I don't have wine so I haven't tried it, but the following should work. Not sure if there's a simpler way. For every windows program &lt;code&gt;appname.exe&lt;/code&gt; you need to run, create a file &lt;code&gt;appname&lt;/code&gt;
+like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash 
+# File appname
+wine "C:\Program Files\appname\appname.exe"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course, you should make sure that you put the correct path name to your &lt;code&gt;appname.exe.&lt;/code&gt;. Then move this newly created file to &lt;code&gt;/usr/bin&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo mv appname /usr/bin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now &lt;code&gt;appname&lt;/code&gt; should appear in dmenu. In fact you should be able to run any script or manually installed program from dmenu this way. Furthermore this should give a command &lt;code&gt;appname&lt;/code&gt; in the terminal, too.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer 2&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Sorry, this is also not tested, but I just read the following lines in &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unless I'm missing something, the above suggests that &lt;em&gt;if&lt;/em&gt; wine creates menu items automatically (again, I don't know), you should be able to access them from i3-dmenu-desktop.&lt;/p&gt;
+
+&lt;p&gt;So, do the following. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strike&gt;&lt;code&gt;sudo apt-get install i3-dmenu-desktop&lt;/code&gt; in case this is not installed by default in ubuntu; I don't have ubuntu, so I don't know&lt;/strike&gt;&lt;/li&gt;
+&lt;li&gt;Fire up dmenu with mod+d and run &lt;code&gt;i3-dmenu-desktop&lt;/code&gt;; an identical-looking dmenu will appear on the top bar&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Start typing the name of your windows application. If it doesn't appear, forget about this answer. If it appears, then go back to your &lt;code&gt;~/.i3/config&lt;/code&gt;, comment the line about dmenu_run and uncomment the line about i3-dmenu-desktop. That is, your config file should now read:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# start dmenu (a program launcher)
+# bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays 
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If that works and you want to further tweak things around, there's a program called &lt;code&gt;j4-dmenu-desktop&lt;/code&gt; which claims to do the same thigs as i3-dmenu-desktop but much faster.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3005#comment-3005</link><description>thank you 'geo909' for such a quick and thorough response. i tried to install i3-dmenu-desktop but the terminal was unable to locate the package, so i've started to implement your first idea. i'll try to work on it some more tomorrow, thanks again for the help</description><pubDate>Mon, 02 Dec 2013 05:51:52 +0000</pubDate><guid>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3005#comment-3005</guid></item><item><title>Comment by geo909 for &lt;p&gt;&lt;em&gt;EDIT: I added Answer 2, check that one first.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer 1&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I don't have wine so I haven't tried it, but the following should work. Not sure if there's a simpler way. For every windows program &lt;code&gt;appname.exe&lt;/code&gt; you need to run, create a file &lt;code&gt;appname&lt;/code&gt;
+like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash 
+# File appname
+wine "C:\Program Files\appname\appname.exe"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course, you should make sure that you put the correct path name to your &lt;code&gt;appname.exe.&lt;/code&gt;. Then move this newly created file to &lt;code&gt;/usr/bin&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo mv appname /usr/bin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now &lt;code&gt;appname&lt;/code&gt; should appear in dmenu. In fact you should be able to run any script or manually installed program from dmenu this way. Furthermore this should give a command &lt;code&gt;appname&lt;/code&gt; in the terminal, too.&lt;/p&gt;
+
+&lt;hr/&gt;
+
+&lt;p&gt;&lt;strong&gt;Answer 2&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Sorry, this is also not tested, but I just read the following lines in &lt;code&gt;~/.i3/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unless I'm missing something, the above suggests that &lt;em&gt;if&lt;/em&gt; wine creates menu items automatically (again, I don't know), you should be able to access them from i3-dmenu-desktop.&lt;/p&gt;
+
+&lt;p&gt;So, do the following. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strike&gt;&lt;code&gt;sudo apt-get install i3-dmenu-desktop&lt;/code&gt; in case this is not installed by default in ubuntu; I don't have ubuntu, so I don't know&lt;/strike&gt;&lt;/li&gt;
+&lt;li&gt;Fire up dmenu with mod+d and run &lt;code&gt;i3-dmenu-desktop&lt;/code&gt;; an identical-looking dmenu will appear on the top bar&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Start typing the name of your windows application. If it doesn't appear, forget about this answer. If it appears, then go back to your &lt;code&gt;~/.i3/config&lt;/code&gt;, comment the line about dmenu_run and uncomment the line about i3-dmenu-desktop. That is, your config file should now read:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# start dmenu (a program launcher)
+# bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays 
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If that works and you want to further tweak things around, there's a program called &lt;code&gt;j4-dmenu-desktop&lt;/code&gt; which claims to do the same thigs as i3-dmenu-desktop but much faster.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3007#comment-3007</link><description>Btw, are you sure `i3-dmenu-desktop` is not installed already by default with i3? You could try to skip the first step of answer 2 and try to just run `i3-dmenu-desktop` from the original dmenu or a terminal.</description><pubDate>Mon, 02 Dec 2013 16:50:12 +0000</pubDate><guid>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?comment=3007#comment-3007</guid></item><item><title>Answer by bondorky for &lt;p&gt;i don't know how to open the .exe applications that i use through the wine program on my ubuntu computer when i'm using i3. the dmenu shows a number of things which contain the word wine, but none of them opened.
+thanks for any help anyone can offer&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?answer=5539#post-id-5539</link><description>the method i originally found to open .exe apps using wine on i3 was to open a terminal and type 'wine' and then the location of the .exe, for example
+ 
+wine ~/documents/larousse/setup.exe.
+
+this works fine, but what i find to be a little easier is to use the pcman file manager to open the folder that contains the .exe, right click on the .exe, choose 'open with wine windows program loader', and go through the installation process. after that in the side panel in pcmanfm on the left is a 'applications' option, which has a full menu for the computer, and the wine programs are listed under 'other'. i don't know if this would work in other file managers or not, or if it's dependant on ubuntu, in which case the terminal method would probably still work. </description><pubDate>Thu, 26 Feb 2015 02:16:13 +0000</pubDate><guid>https://faq.i3wm.org/question/2999/wine-in-ubuntu-on-i3/?answer=5539#post-id-5539</guid></item></channel></rss>

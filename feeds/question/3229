@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3229/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 14 Jan 2014 10:24:17 +0000</lastBuildDate><item><title>Switch focus between monitors</title><link>https://faq.i3wm.org/question/3229/switch-focus-between-monitors/</link><description>Is there any way to switch focus between two monitors, without having to manually switch to the numbered workspace you want to to go?</description><pubDate>Tue, 14 Jan 2014 08:13:13 +0000</pubDate><guid>https://faq.i3wm.org/question/3229/switch-focus-between-monitors/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Is there any way to switch focus between two monitors, without having to manually switch to the numbered workspace you want to to go?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3229/switch-focus-between-monitors/?answer=3231#post-id-3231</link><description>You can use the command `focus output &lt;left|right|down|up&gt;|output&gt;` for that (see [User's Guide, Section 6.4](http://i3wm.org/docs/userguide.html#_focusing_moving_containers)).
+
+I myself use this:
+
+    bindsym Mod4+dead_circumflex focus output left
+
+There is a wrap around so it seems to toggle between my two monitors.
+
+You can also target a specific output by issuing its name:
+
+    bindsym Mod4+Control+1 focus output DP-1
+
+You can use `xrandr` on the command line to get the names of your outputs.</description><pubDate>Tue, 14 Jan 2014 09:56:58 +0000</pubDate><guid>https://faq.i3wm.org/question/3229/switch-focus-between-monitors/?answer=3231#post-id-3231</guid></item><item><title>Comment by FSund for &lt;p&gt;You can use the command &lt;code&gt;focus output &amp;lt;left|right|down|up&amp;gt;|output&amp;gt;&lt;/code&gt; for that (see &lt;a href="http://i3wm.org/docs/userguide.html#_focusing_moving_containers"&gt;User's Guide, Section 6.4&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;I myself use this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+dead_circumflex focus output left
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There is a wrap around so it seems to toggle between my two monitors.&lt;/p&gt;
+
+&lt;p&gt;You can also target a specific output by issuing its name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym Mod4+Control+1 focus output DP-1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can use &lt;code&gt;xrandr&lt;/code&gt; on the command line to get the names of your outputs.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3229/switch-focus-between-monitors/?comment=3232#comment-3232</link><description>Thanks a lot, this was exactly what I was looking for. I've read parts of the User's Guide, but didn't think of searching for "focus"...</description><pubDate>Tue, 14 Jan 2014 10:24:17 +0000</pubDate><guid>https://faq.i3wm.org/question/3229/switch-focus-between-monitors/?comment=3232#comment-3232</guid></item><item><title>Answer by paramnesioid for &lt;p&gt;Is there any way to switch focus between two monitors, without having to manually switch to the numbered workspace you want to to go?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3229/switch-focus-between-monitors/?answer=3230#post-id-3230</link><description>If you have python and i3-py then you can use the script below. 
+
+Save it as output.py or something, and then run it by typing &lt;code&gt;python /wherever/youve/saved/the/script/output.py --output 0&lt;/code&gt; or &lt;code&gt;--output 1&lt;/code&gt;
+
+To add it to your i3 config just put 'bindsym [shortcut] exec' in front of the line above.
+
+&lt;pre&gt;
+#!/usr/bin/python2.7
+
+import i3
+import argparse
+
+parser = argparse.ArgumentParser(description='i3 output switcher')
+parser.add_argument('-o','--output', required=True)
+
+args = vars(parser.parse_args())
+
+outputs = i3.get_outputs()
+
+if args['output'] == '0': i3.workspace(outputs[0]['current_workspace'])
+if args['output'] == '1': i3.workspace(outputs[1]['current_workspace'])
+&lt;/pre&gt;</description><pubDate>Tue, 14 Jan 2014 09:37:47 +0000</pubDate><guid>https://faq.i3wm.org/question/3229/switch-focus-between-monitors/?answer=3230#post-id-3230</guid></item></channel></rss>

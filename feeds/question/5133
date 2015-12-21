@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5133/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 07 Dec 2014 18:48:02 +0000</lastBuildDate><item><title>Multiple keybindings per bindsym command?</title><link>https://faq.i3wm.org/question/5133/multiple-keybindings-per-bindsym-command/</link><description>I'm a lazy, lazy (lazy) man. 
+
+I'm so lazy that I sometimes forget to lift my finger off of $mod when I enter a mode, so I like my bindings to cover both $key and $mod+$key.
+
+My config therefore repeats a a bit bit:
+
+    set $mode_resize "RESIZE [←]width- [→]width+ [↑]height+ [↓]height-"
+    bindsym $mod+r mode $mode_resize
+    mode $mode_resize {
+        bindsym Up          resize grow     height  10 px or 10 ppt
+        bindsym $mod+Up     resize grow     height  10 px or 10 ppt
+
+        bindsym Down        resize shrink   height  10 px or 10 ppt
+        bindsym $mod+Down   resize shrink   height  10 px or 10 ppt
+
+        bindsym Left        resize shrink   width   10 px or 10 ppt
+        bindsym $mod+Left   resize shrink   width   10 px or 10 ppt
+
+        bindsym Right       resize grow     width   10 px or 10 ppt
+        bindsym $mod+Right  resize grow     width   10 px or 10 ppt
+
+        ...
+
+I don't mind too much, as I keep things aligned so I can edit multiple lines painlessly in vim, but:
+
+**Is there a way for a single bindsym command to bind to 2 symbols? Some form of `bindsym {Right,$mod+Right} command`?**</description><pubDate>Sun, 07 Dec 2014 18:36:24 +0000</pubDate><guid>https://faq.i3wm.org/question/5133/multiple-keybindings-per-bindsym-command/</guid></item><item><title>Answer by Michael for &lt;p&gt;I'm a lazy, lazy (lazy) man. &lt;/p&gt;
+
+&lt;p&gt;I'm so lazy that I sometimes forget to lift my finger off of $mod when I enter a mode, so I like my bindings to cover both $key and $mod+$key.&lt;/p&gt;
+
+&lt;p&gt;My config therefore repeats a a bit bit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set $mode_resize "RESIZE [←]width- [→]width+ [↑]height+ [↓]height-"
+bindsym $mod+r mode $mode_resize
+mode $mode_resize {
+    bindsym Up          resize grow     height  10 px or 10 ppt
+    bindsym $mod+Up     resize grow     height  10 px or 10 ppt
+
+    bindsym Down        resize shrink   height  10 px or 10 ppt
+    bindsym $mod+Down   resize shrink   height  10 px or 10 ppt
+
+    bindsym Left        resize shrink   width   10 px or 10 ppt
+    bindsym $mod+Left   resize shrink   width   10 px or 10 ppt
+
+    bindsym Right       resize grow     width   10 px or 10 ppt
+    bindsym $mod+Right  resize grow     width   10 px or 10 ppt
+
+    ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don't mind too much, as I keep things aligned so I can edit multiple lines painlessly in vim, but:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Is there a way for a single bindsym command to bind to 2 symbols? Some form of &lt;code&gt;bindsym {Right,$mod+Right} command&lt;/code&gt;?&lt;/strong&gt;&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5133/multiple-keybindings-per-bindsym-command/?answer=5134#post-id-5134</link><description>No. I also think we’ll want to keep it that way to keep the configuration file (and its parser) simple. Logic for not repeating yourself too often is consciously pushed out of the config mechanism itself, in this case either into your editor or, if you really wanted to, a shell script or other wrapper around the configuration file :).</description><pubDate>Sun, 07 Dec 2014 18:41:51 +0000</pubDate><guid>https://faq.i3wm.org/question/5133/multiple-keybindings-per-bindsym-command/?answer=5134#post-id-5134</guid></item><item><title>Comment by tasinet for &lt;p&gt;No. I also think we’ll want to keep it that way to keep the configuration file (and its parser) simple. Logic for not repeating yourself too often is consciously pushed out of the config mechanism itself, in this case either into your editor or, if you really wanted to, a shell script or other wrapper around the configuration file :).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5133/multiple-keybindings-per-bindsym-command/?comment=5135#comment-5135</link><description>Thanks for the prompt reply! No worries, I was just wondering if I was missing something.</description><pubDate>Sun, 07 Dec 2014 18:48:02 +0000</pubDate><guid>https://faq.i3wm.org/question/5133/multiple-keybindings-per-bindsym-command/?comment=5135#comment-5135</guid></item></channel></rss>

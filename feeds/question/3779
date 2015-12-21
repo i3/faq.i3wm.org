@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3779/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 08 May 2014 17:21:33 +0000</lastBuildDate><item><title>How to disable shortcuts in fullscreen app?</title><link>https://faq.i3wm.org/question/3779/how-to-disable-shortcuts-in-fullscreen-app/</link><description>Hello, how can I disable some or all shotcuts in fullscreen app?
+i.e.: games</description><pubDate>Wed, 07 May 2014 12:03:24 +0000</pubDate><guid>https://faq.i3wm.org/question/3779/how-to-disable-shortcuts-in-fullscreen-app/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hello, how can I disable some or all shotcuts in fullscreen app?
+i.e.: games&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3779/how-to-disable-shortcuts-in-fullscreen-app/?answer=3781#post-id-3781</link><description>You can use a `mode` to achieve that:
+
+    mode "passthrough" {
+        bindsym Mod4+Escape mode "default"
+    }
+    bindsym Mod4+Escape mode "passthrough"
+
+Pressing **Mod4**+**Escape** will enter the mode *"passthrough"* in which only **Mod4**+**Escape** will be available as binding to return to the *"default"* mode. 
+
+If you want to enter the mode automatically you could then use a short wrapper script, `passthrough.sh`:
+
+    #!/bin/sh
+    i3-msg 'mode "passthrough"'
+    "$@"
+    i3-msg 'mode "default"'
+
+Instead of `game -option1 -option2` you then can use `passthrough.sh game -option1 -option2` to start the game.</description><pubDate>Thu, 08 May 2014 10:43:40 +0000</pubDate><guid>https://faq.i3wm.org/question/3779/how-to-disable-shortcuts-in-fullscreen-app/?answer=3781#post-id-3781</guid></item><item><title>Comment by KJ44 for &lt;p&gt;You can use a &lt;code&gt;mode&lt;/code&gt; to achieve that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mode "passthrough" {
+    bindsym Mod4+Escape mode "default"
+}
+bindsym Mod4+Escape mode "passthrough"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Pressing &lt;strong&gt;Mod4&lt;/strong&gt;+&lt;strong&gt;Escape&lt;/strong&gt; will enter the mode &lt;em&gt;"passthrough"&lt;/em&gt; in which only &lt;strong&gt;Mod4&lt;/strong&gt;+&lt;strong&gt;Escape&lt;/strong&gt; will be available as binding to return to the &lt;em&gt;"default"&lt;/em&gt; mode. &lt;/p&gt;
+
+&lt;p&gt;If you want to enter the mode automatically you could then use a short wrapper script, &lt;code&gt;passthrough.sh&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+i3-msg 'mode "passthrough"'
+"$@"
+i3-msg 'mode "default"'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Instead of &lt;code&gt;game -option1 -option2&lt;/code&gt; you then can use &lt;code&gt;passthrough.sh game -option1 -option2&lt;/code&gt; to start the game.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3779/how-to-disable-shortcuts-in-fullscreen-app/?comment=3783#comment-3783</link><description>This is a powerful technique. If you're familiar with Emacs and how it uses Ctrl-z and z, I'm interested in how I can use the mouse with one hand (my left) and unmodified keys with the other (my right). Modes in i3 are cool.</description><pubDate>Thu, 08 May 2014 17:21:33 +0000</pubDate><guid>https://faq.i3wm.org/question/3779/how-to-disable-shortcuts-in-fullscreen-app/?comment=3783#comment-3783</guid></item></channel></rss>

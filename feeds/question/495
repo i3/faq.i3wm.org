@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/495/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 14 Sep 2012 19:50:54 +0000</lastBuildDate><item><title>Focus left/right with fixed outputs.</title><link>https://faq.i3wm.org/question/495/focus-leftright-with-fixed-outputs/</link><description>Here's the output from my xrandr:
+
+    [marcos ~/.i3]$ xrandr 
+    Screen 0: minimum 8 x 8, current 3600 x 1080, maximum 16384 x 16384
+    VGA-0 connected 1680x1050+1920+0 (normal left inverted right x axis y axis) 495mm x 291mm
+       1680x1050      60.0*+
+       1600x1200      60.0  
+       1280x1024      75.0     60.0  
+       1280x960       60.0  
+       1152x864       75.0  
+       1024x768       75.0     70.1     60.0  
+       800x600        75.0     72.2     60.3     56.2  
+       640x480        75.0     72.8     59.9  
+    LVDS-0 connected (normal left inverted right x axis y axis)
+       1600x900       59.9 +   50.0  
+    HDMI-0 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 510mm x 290mm
+       1920x1080      60.0*+   59.9     50.0     30.0     30.0     25.0  
+       1680x1050      60.0  
+       1280x1024      60.0  
+       1280x960       60.0  
+       1280x720       60.0     59.9     50.0  
+       1152x864       60.0  
+       1024x768       60.0  
+       800x600        60.3  
+       720x576        50.0  
+       720x480        59.9  
+       640x480        59.9     59.9  
+
+With this configuration I can move between windows on both displays with focus left/right. However, I would like to change the settings to have the VGA-0 display sit at the bottom of the virtual space and not the top.
+After I issue a:
+
+    [marcos ~/.i3]$ xrandr --output VGA-0 --auto --pos 1920x30
+
+The outputs are exactly like I want them, but now I can't switch windows with focus left/right.
+
+Any workaround or explanation?</description><pubDate>Fri, 14 Sep 2012 17:04:36 +0000</pubDate><guid>https://faq.i3wm.org/question/495/focus-leftright-with-fixed-outputs/</guid></item><item><title>Answer by Michael for &lt;p&gt;Here's the output from my xrandr:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[marcos ~/.i3]$ xrandr 
+Screen 0: minimum 8 x 8, current 3600 x 1080, maximum 16384 x 16384
+VGA-0 connected 1680x1050+1920+0 (normal left inverted right x axis y axis) 495mm x 291mm
+   1680x1050      60.0*+
+   1600x1200      60.0  
+   1280x1024      75.0     60.0  
+   1280x960       60.0  
+   1152x864       75.0  
+   1024x768       75.0     70.1     60.0  
+   800x600        75.0     72.2     60.3     56.2  
+   640x480        75.0     72.8     59.9  
+LVDS-0 connected (normal left inverted right x axis y axis)
+   1600x900       59.9 +   50.0  
+HDMI-0 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 510mm x 290mm
+   1920x1080      60.0*+   59.9     50.0     30.0     30.0     25.0  
+   1680x1050      60.0  
+   1280x1024      60.0  
+   1280x960       60.0  
+   1280x720       60.0     59.9     50.0  
+   1152x864       60.0  
+   1024x768       60.0  
+   800x600        60.3  
+   720x576        50.0  
+   720x480        59.9  
+   640x480        59.9     59.9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this configuration I can move between windows on both displays with focus left/right. However, I would like to change the settings to have the VGA-0 display sit at the bottom of the virtual space and not the top.
+After I issue a:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[marcos ~/.i3]$ xrandr --output VGA-0 --auto --pos 1920x30
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The outputs are exactly like I want them, but now I can't switch windows with focus left/right.&lt;/p&gt;
+
+&lt;p&gt;Any workaround or explanation?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/495/focus-leftright-with-fixed-outputs/?answer=496#post-id-496</link><description>This is a very similar issue to https://github.com/i3/i3/issues/771. You could open a separate ticket so that we don’t forget about it.</description><pubDate>Fri, 14 Sep 2012 19:50:54 +0000</pubDate><guid>https://faq.i3wm.org/question/495/focus-leftright-with-fixed-outputs/?answer=496#post-id-496</guid></item></channel></rss>

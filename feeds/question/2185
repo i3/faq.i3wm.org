@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2185/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 17 Aug 2014 12:32:48 +0000</lastBuildDate><item><title>&lt;Eclipse, some another app&gt;'s splashscreen / toolbar / dialog does not display in floating mode. How to fix?</title><link>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/</link><description>When starting an application in i3, a splashscreen, toolbar, dialog looks odd because it isn't displayed in floating mode. How to fix?</description><pubDate>Fri, 12 Jul 2013 02:28:33 +0000</pubDate><guid>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/</guid></item><item><title>Answer by joepd for &lt;p&gt;When starting an application in i3, a splashscreen, toolbar, dialog looks odd because it isn't displayed in floating mode. How to fix?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?answer=2192#post-id-2192</link><description>To be more precise what one should report/fix, the misbehaving application is directly requesting to get a specific size. i3 (and any tiling window manager) will normally ignore this request, as this only makes sense in a floating window manager environment. 
+
+To convince i3 that a window needs to be floating (except for the workaround of some regular expression on the window title or window class), the window tells the window manager that it is a special kind of window. This is done with the Freedesktop standard [Extended Window Manager Hints](http://standards.freedesktop.org/wm-spec/wm-spec-latest.html#idp6304176). i3 currently honors the following requests to for being treated as floating windows: 
+
+    _NET_WM_WINDOW_TYPE_DIALOG
+    _NET_WM_WINDOW_TYPE_UTILITY
+    _NET_WM_WINDOW_TYPE_TOOLBAR
+    _NET_WM_WINDOW_TYPE_SPLASH
+
+_Edited to add:_ With [this commit](http://code.stapelberg.de/git/i3/commit/?id=0c7a76c2f158597905fb9a27d979310f57b4141f), a new window manager hint is honored. 
+
+&gt; Handle the `_NET_REQUEST_FRAME_EXTENTS`
+&gt; ClientMessage (java compat) 
+&gt; 
+&gt; This
+&gt; ClientMessage can be used to estimate
+&gt; how big the window will be before
+&gt; opening it. Java always sends the
+&gt; ClientMessage and checks the atom that
+&gt; should be set by the window manager,
+&gt; but it seems that the fallback code
+&gt; path has a race condition.
+&gt; 
+&gt; Let’s see if the situation gets better
+&gt; with this change. I have been running
+&gt; this patch for about two weeks and
+&gt; have not seen any issues with it.
+</description><pubDate>Fri, 12 Jul 2013 05:55:47 +0000</pubDate><guid>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?answer=2192#post-id-2192</guid></item><item><title>Comment by ack006 for &lt;p&gt;To be more precise what one should report/fix, the misbehaving application is directly requesting to get a specific size. i3 (and any tiling window manager) will normally ignore this request, as this only makes sense in a floating window manager environment. &lt;/p&gt;
+
+&lt;p&gt;To convince i3 that a window needs to be floating (except for the workaround of some regular expression on the window title or window class), the window tells the window manager that it is a special kind of window. This is done with the Freedesktop standard &lt;a href="http://standards.freedesktop.org/wm-spec/wm-spec-latest.html#idp6304176"&gt;Extended Window Manager Hints&lt;/a&gt;. i3 currently honors the following requests to for being treated as floating windows: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_WINDOW_TYPE_DIALOG
+_NET_WM_WINDOW_TYPE_UTILITY
+_NET_WM_WINDOW_TYPE_TOOLBAR
+_NET_WM_WINDOW_TYPE_SPLASH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Edited to add:&lt;/em&gt; With &lt;a href="http://code.stapelberg.de/git/i3/commit/?id=0c7a76c2f158597905fb9a27d979310f57b4141f"&gt;this commit&lt;/a&gt;, a new window manager hint is honored. &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Handle the &lt;code&gt;_NET_REQUEST_FRAME_EXTENTS&lt;/code&gt;
+  ClientMessage (java compat) &lt;/p&gt;
+  
+  &lt;p&gt;This
+  ClientMessage can be used to estimate
+  how big the window will be before
+  opening it. Java always sends the
+  ClientMessage and checks the atom that
+  should be set by the window manager,
+  but it seems that the fallback code
+  path has a race condition.&lt;/p&gt;
+  
+  &lt;p&gt;Let’s see if the situation gets better
+  with this change. I have been running
+  this patch for about two weeks and
+  have not seen any issues with it.&lt;/p&gt;
+&lt;/blockquote&gt;
+</title><link>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?comment=2196#comment-2196</link><description>Thanks *a lot* for this very helpful explanation! Let's go bug hunting ;-)</description><pubDate>Fri, 12 Jul 2013 12:56:11 +0000</pubDate><guid>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?comment=2196#comment-2196</guid></item><item><title>Comment by joepd for &lt;p&gt;To be more precise what one should report/fix, the misbehaving application is directly requesting to get a specific size. i3 (and any tiling window manager) will normally ignore this request, as this only makes sense in a floating window manager environment. &lt;/p&gt;
+
+&lt;p&gt;To convince i3 that a window needs to be floating (except for the workaround of some regular expression on the window title or window class), the window tells the window manager that it is a special kind of window. This is done with the Freedesktop standard &lt;a href="http://standards.freedesktop.org/wm-spec/wm-spec-latest.html#idp6304176"&gt;Extended Window Manager Hints&lt;/a&gt;. i3 currently honors the following requests to for being treated as floating windows: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_WINDOW_TYPE_DIALOG
+_NET_WM_WINDOW_TYPE_UTILITY
+_NET_WM_WINDOW_TYPE_TOOLBAR
+_NET_WM_WINDOW_TYPE_SPLASH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Edited to add:&lt;/em&gt; With &lt;a href="http://code.stapelberg.de/git/i3/commit/?id=0c7a76c2f158597905fb9a27d979310f57b4141f"&gt;this commit&lt;/a&gt;, a new window manager hint is honored. &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Handle the &lt;code&gt;_NET_REQUEST_FRAME_EXTENTS&lt;/code&gt;
+  ClientMessage (java compat) &lt;/p&gt;
+  
+  &lt;p&gt;This
+  ClientMessage can be used to estimate
+  how big the window will be before
+  opening it. Java always sends the
+  ClientMessage and checks the atom that
+  should be set by the window manager,
+  but it seems that the fallback code
+  path has a race condition.&lt;/p&gt;
+  
+  &lt;p&gt;Let’s see if the situation gets better
+  with this change. I have been running
+  this patch for about two weeks and
+  have not seen any issues with it.&lt;/p&gt;
+&lt;/blockquote&gt;
+</title><link>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?comment=2198#comment-2198</link><description>Do as you wish :)</description><pubDate>Fri, 12 Jul 2013 14:55:13 +0000</pubDate><guid>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?comment=2198#comment-2198</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;To be more precise what one should report/fix, the misbehaving application is directly requesting to get a specific size. i3 (and any tiling window manager) will normally ignore this request, as this only makes sense in a floating window manager environment. &lt;/p&gt;
+
+&lt;p&gt;To convince i3 that a window needs to be floating (except for the workaround of some regular expression on the window title or window class), the window tells the window manager that it is a special kind of window. This is done with the Freedesktop standard &lt;a href="http://standards.freedesktop.org/wm-spec/wm-spec-latest.html#idp6304176"&gt;Extended Window Manager Hints&lt;/a&gt;. i3 currently honors the following requests to for being treated as floating windows: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_WINDOW_TYPE_DIALOG
+_NET_WM_WINDOW_TYPE_UTILITY
+_NET_WM_WINDOW_TYPE_TOOLBAR
+_NET_WM_WINDOW_TYPE_SPLASH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Edited to add:&lt;/em&gt; With &lt;a href="http://code.stapelberg.de/git/i3/commit/?id=0c7a76c2f158597905fb9a27d979310f57b4141f"&gt;this commit&lt;/a&gt;, a new window manager hint is honored. &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Handle the &lt;code&gt;_NET_REQUEST_FRAME_EXTENTS&lt;/code&gt;
+  ClientMessage (java compat) &lt;/p&gt;
+  
+  &lt;p&gt;This
+  ClientMessage can be used to estimate
+  how big the window will be before
+  opening it. Java always sends the
+  ClientMessage and checks the atom that
+  should be set by the window manager,
+  but it seems that the fallback code
+  path has a race condition.&lt;/p&gt;
+  
+  &lt;p&gt;Let’s see if the situation gets better
+  with this change. I have been running
+  this patch for about two weeks and
+  have not seen any issues with it.&lt;/p&gt;
+&lt;/blockquote&gt;
+</title><link>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?comment=2314#comment-2314</link><description>It is the correct thing, but still the annoying problem will be there... just use the for_window in the i3 config and move on... unless you have the patience to report this bug to every package you see with this problem (personally, my for_window is already quite big) </description><pubDate>Wed, 31 Jul 2013 23:55:58 +0000</pubDate><guid>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?comment=2314#comment-2314</guid></item><item><title>Comment by ack006 for &lt;p&gt;To be more precise what one should report/fix, the misbehaving application is directly requesting to get a specific size. i3 (and any tiling window manager) will normally ignore this request, as this only makes sense in a floating window manager environment. &lt;/p&gt;
+
+&lt;p&gt;To convince i3 that a window needs to be floating (except for the workaround of some regular expression on the window title or window class), the window tells the window manager that it is a special kind of window. This is done with the Freedesktop standard &lt;a href="http://standards.freedesktop.org/wm-spec/wm-spec-latest.html#idp6304176"&gt;Extended Window Manager Hints&lt;/a&gt;. i3 currently honors the following requests to for being treated as floating windows: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;_NET_WM_WINDOW_TYPE_DIALOG
+_NET_WM_WINDOW_TYPE_UTILITY
+_NET_WM_WINDOW_TYPE_TOOLBAR
+_NET_WM_WINDOW_TYPE_SPLASH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Edited to add:&lt;/em&gt; With &lt;a href="http://code.stapelberg.de/git/i3/commit/?id=0c7a76c2f158597905fb9a27d979310f57b4141f"&gt;this commit&lt;/a&gt;, a new window manager hint is honored. &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Handle the &lt;code&gt;_NET_REQUEST_FRAME_EXTENTS&lt;/code&gt;
+  ClientMessage (java compat) &lt;/p&gt;
+  
+  &lt;p&gt;This
+  ClientMessage can be used to estimate
+  how big the window will be before
+  opening it. Java always sends the
+  ClientMessage and checks the atom that
+  should be set by the window manager,
+  but it seems that the fallback code
+  path has a race condition.&lt;/p&gt;
+  
+  &lt;p&gt;Let’s see if the situation gets better
+  with this change. I have been running
+  this patch for about two weeks and
+  have not seen any issues with it.&lt;/p&gt;
+&lt;/blockquote&gt;
+</title><link>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?comment=2197#comment-2197</link><description>Do you mind if I change the question to be more generic (so that others can quickly find your answer)? This way people can report bugs more precisely, without need for workarounds or WM switch just because their bread'n'butter application has a misbehaving toolbar or dialog :-)</description><pubDate>Fri, 12 Jul 2013 13:07:19 +0000</pubDate><guid>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?comment=2197#comment-2197</guid></item><item><title>Answer by ack006 for &lt;p&gt;When starting an application in i3, a splashscreen, toolbar, dialog looks odd because it isn't displayed in floating mode. How to fix?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?answer=2186#post-id-2186</link><description>By getting the developers to fix their bug! ;-)
+The application should set the correct hints for the window so that window managers can do the right thing.
+
+For a quick workaround (don't forget to report a bug upstream!), use `xprop` or the output of the script in [this answer](https://faq.i3wm.org/question/2172/how-do-i-find-the-criteria-for-use-with-i3-config-commands-like-for_window-eg-to-force-splashscreens-and-dialogs-to-show-in-floating-mode/) to make a list of criteria matching the offending window, then add the following directive to ${HOME}/.i3.config :
+
+    for_window [&lt;list of criteria&gt;] floating enable
+
+A list of known temporary workarounds:
+
+    # Eclipse splashscreen
+    for_window [class="Eclipse" title="^Eclipse( SDK )?$"] floating enable
+
+    # Orca screen reader "flat review" tool (also disable border so it doesn't cover the item being reviewed)
+    for_window [class="Orca" title="orca"] floating enable border none</description><pubDate>Fri, 12 Jul 2013 02:30:50 +0000</pubDate><guid>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?answer=2186#post-id-2186</guid></item><item><title>Answer by cee for &lt;p&gt;When starting an application in i3, a splashscreen, toolbar, dialog looks odd because it isn't displayed in floating mode. How to fix?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?answer=2315#post-id-2315</link><description>I am currently developing a *Qt* application and was searching for how to make it floating in i3.
+
+The Qt way:&lt;br/&gt;
+this-&gt;setWindowFlags(Qt::Dialog);
+
+
+Some of the other flags I tried had the same effect...&lt;br/&gt;
+More info:
+[official Qt doc](http://doc-snapshot.qt-project.org/qt5-stable/qtcore/qt.html#WindowType-enum)
+
+</description><pubDate>Thu, 01 Aug 2013 00:46:19 +0000</pubDate><guid>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?answer=2315#post-id-2315</guid></item><item><title>Answer by ruisselet for &lt;p&gt;When starting an application in i3, a splashscreen, toolbar, dialog looks odd because it isn't displayed in floating mode. How to fix?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?answer=4506#post-id-4506</link><description>In Java, one way to request a Window to be floating is to use:
+
+    Window.setType(Window.Type.POPUP);
+
+This works with i3 (tested with version 4.7). Interestingly Window.Type.UTILITY does not give a floating window.
+
+Note that this requires Java 1.7. Anybody knows if there are other ways?
+
+Complete example code:
+
+    public class Splash {
+        public static void main(String[] args) throws InterruptedException {
+            javax.swing.JFrame frame = new javax.swing.JFrame();
+    
+            // This hints the Window Manager to display the window as floating
+            frame.setType(java.awt.Window.Type.POPUP);
+    
+            frame.setPreferredSize(new java.awt.Dimension(300, 200));
+    
+            // Add some content
+            frame.add(new javax.swing.JLabel("Window type: " + frame.getType(), javax.swing.JLabel.CENTER));
+    
+            frame.pack();
+    
+            // Center the window
+            frame.setLocationRelativeTo(null);
+    
+            // Show the window
+            frame.setVisible(true);
+    
+            Thread.sleep(2000);
+            System.exit(0);
+        }
+    }
+</description><pubDate>Sun, 17 Aug 2014 12:32:48 +0000</pubDate><guid>https://faq.i3wm.org/question/2185/eclipse-some-another-apps-splashscreen-toolbar-dialog-does-not-display-in-floating-mode-how-to-fix/?answer=4506#post-id-4506</guid></item></channel></rss>

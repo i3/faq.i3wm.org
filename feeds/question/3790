@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3790/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 13 May 2014 15:31:45 +0000</lastBuildDate><item><title>Hotkey for opening floating terminal</title><link>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/</link><description>Is there any way to make a hotkey that opens a terminal in floating mode? 
+
+I have `$mod Mod4` set to open regular terminals (which are tiled/non-floating by default), and would like to have for example `$mod+shift Mod4` open a terminal in floating mode.</description><pubDate>Mon, 12 May 2014 07:39:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/</guid></item><item><title>Answer by KJ44 for &lt;p&gt;Is there any way to make a hotkey that opens a terminal in floating mode? &lt;/p&gt;
+
+&lt;p&gt;I have &lt;code&gt;$mod Mod4&lt;/code&gt; set to open regular terminals (which are tiled/non-floating by default), and would like to have for example &lt;code&gt;$mod+shift Mod4&lt;/code&gt; open a terminal in floating mode.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?answer=3795#post-id-3795</link><description>Here's a worked example of what badboy_ suggested
+
+    # Scratchpad terminal.
+    # https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/
+    # Using a custom title string with criteria is deliberate and keeps things simple.
+    exec --no-startup-id terminator -l KJ -T "Life is beautiful."
+    for_window [instance="terminator" title="Life"] floating enable, move scratchpad, scratchpad show;
+    for_window [instance="terminator" title="Life"] resize grow left 300, resize grow right 300, resize grow down 150, resize grow up 100, move scratchpad;
+    bindsym Menu  [instance="terminator" title="Life"] scratchpad show
+    bindsym Print [instance="terminator" title="Life"] scratchpad show</description><pubDate>Mon, 12 May 2014 17:20:37 +0000</pubDate><guid>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?answer=3795#post-id-3795</guid></item><item><title>Comment by KJ44 for &lt;p&gt;Here's a worked example of what badboy_ suggested&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Scratchpad terminal.
+# https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/
+# Using a custom title string with criteria is deliberate and keeps things simple.
+exec --no-startup-id terminator -l KJ -T "Life is beautiful."
+for_window [instance="terminator" title="Life"] floating enable, move scratchpad, scratchpad show;
+for_window [instance="terminator" title="Life"] resize grow left 300, resize grow right 300, resize grow down 150, resize grow up 100, move scratchpad;
+bindsym Menu  [instance="terminator" title="Life"] scratchpad show
+bindsym Print [instance="terminator" title="Life"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?comment=3810#comment-3810</link><description>Thanks Adaephon for the floating enable correction. Regarding the absolute setting of floating window size, see https://faq.i3wm.org/question/3727/how-to-resize-container-to-a-predefined-size/</description><pubDate>Tue, 13 May 2014 15:31:45 +0000</pubDate><guid>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?comment=3810#comment-3810</guid></item><item><title>Comment by FSund for &lt;p&gt;Here's a worked example of what badboy_ suggested&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Scratchpad terminal.
+# https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/
+# Using a custom title string with criteria is deliberate and keeps things simple.
+exec --no-startup-id terminator -l KJ -T "Life is beautiful."
+for_window [instance="terminator" title="Life"] floating enable, move scratchpad, scratchpad show;
+for_window [instance="terminator" title="Life"] resize grow left 300, resize grow right 300, resize grow down 150, resize grow up 100, move scratchpad;
+bindsym Menu  [instance="terminator" title="Life"] scratchpad show
+bindsym Print [instance="terminator" title="Life"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?comment=3805#comment-3805</link><description>Thanks, this worked well. I removed the resize commands, since my terminal seems to have a weird size at startup, but I never restart my machine anyway, so I'll just resize the terminal manually when needed. They should implement a "set size" command, in addition to the resize command.</description><pubDate>Tue, 13 May 2014 07:49:04 +0000</pubDate><guid>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?comment=3805#comment-3805</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Here's a worked example of what badboy_ suggested&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Scratchpad terminal.
+# https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/
+# Using a custom title string with criteria is deliberate and keeps things simple.
+exec --no-startup-id terminator -l KJ -T "Life is beautiful."
+for_window [instance="terminator" title="Life"] floating enable, move scratchpad, scratchpad show;
+for_window [instance="terminator" title="Life"] resize grow left 300, resize grow right 300, resize grow down 150, resize grow up 100, move scratchpad;
+bindsym Menu  [instance="terminator" title="Life"] scratchpad show
+bindsym Print [instance="terminator" title="Life"] scratchpad show
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?comment=3803#comment-3803</link><description>`floating enable` should not ne be necessary, as `move scratchpad` automatically enables floating. </description><pubDate>Tue, 13 May 2014 07:20:57 +0000</pubDate><guid>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?comment=3803#comment-3803</guid></item><item><title>Answer by badboy_ for &lt;p&gt;Is there any way to make a hotkey that opens a terminal in floating mode? &lt;/p&gt;
+
+&lt;p&gt;I have &lt;code&gt;$mod Mod4&lt;/code&gt; set to open regular terminals (which are tiled/non-floating by default), and would like to have for example &lt;code&gt;$mod+shift Mod4&lt;/code&gt; open a terminal in floating mode.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?answer=3791#post-id-3791</link><description>There are different solutions:
+
+1. You could use the [scratchpad](http://i3wm.org/docs/userguide.html#_scratchpad), and use a script to check if a scratchpad terminal is already opened or open one.
+2. Give your terminal a special instance name and use [for_window](http://i3wm.org/docs/userguide.html#_arbitrary_commands_for_specific_windows_for_window) to make it floating</description><pubDate>Mon, 12 May 2014 08:00:28 +0000</pubDate><guid>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?answer=3791#post-id-3791</guid></item><item><title>Comment by FSund for &lt;p&gt;There are different solutions:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;You could use the &lt;a href="http://i3wm.org/docs/userguide.html#_scratchpad"&gt;scratchpad&lt;/a&gt;, and use a script to check if a scratchpad terminal is already opened or open one.&lt;/li&gt;
+&lt;li&gt;Give your terminal a special instance name and use &lt;a href="http://i3wm.org/docs/userguide.html#_arbitrary_commands_for_specific_windows_for_window"&gt;for_window&lt;/a&gt; to make it floating&lt;/li&gt;
+&lt;/ol&gt;
+</title><link>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?comment=3792#comment-3792</link><description>Interesting, I've never heard of the scratchpad before. I'll do some testing!</description><pubDate>Mon, 12 May 2014 08:05:20 +0000</pubDate><guid>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?comment=3792#comment-3792</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Is there any way to make a hotkey that opens a terminal in floating mode? &lt;/p&gt;
+
+&lt;p&gt;I have &lt;code&gt;$mod Mod4&lt;/code&gt; set to open regular terminals (which are tiled/non-floating by default), and would like to have for example &lt;code&gt;$mod+shift Mod4&lt;/code&gt; open a terminal in floating mode.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?answer=3793#post-id-3793</link><description>With `xterm`, `roxterm` and probably most other gtk-based terminal emulators you can change the class of the window with `--class CLASSNAME`. Use this to separate between floating and tiled windows:
+
+    for_window [class="FXTerm"] floating enable
+    bindsym $mod+Mod4 exec xterm
+    bindsym $mod+Shift+Mod4 exec xterm --class FXTerm
+
+(This may also work with some other terminal emulators, but probably not with `rxvt`)
+
+In i3 *floating* is an attribute that can be attributed to a window only after it has been created. It cannot be passed as parameter to `exec` and chaining `exec` and `floating enable` in a single command is unreliable because of timing issues.
+
+`for_window` can be used execute commands for a certain windows (depending on their title, class or a few other parameters). Aside from changing the class, you could set a title, but many shell configurations try to change the terminal title, so there could be some timing issues there.
+
+Changing the class has the possible drawback (advantage?) that some X Resources (usually defined in `~/.Xresources` or `~/.Xdefaults`) may have to be changed to work with the new class.</description><pubDate>Mon, 12 May 2014 08:51:56 +0000</pubDate><guid>https://faq.i3wm.org/question/3790/hotkey-for-opening-floating-terminal/?answer=3793#post-id-3793</guid></item></channel></rss>

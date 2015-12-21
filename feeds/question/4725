@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4725/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 13 Oct 2014 07:43:06 +0000</lastBuildDate><item><title>Workspace name dialog</title><link>https://faq.i3wm.org/question/4725/workspace-name-dialog/</link><description>Hello,
+
+I think, it's possible to create a dialog, which will be shown when new workspace is created.
+
+It will just show the focused text field, where you can write name for your workspace, and this name will be shown in the i3bar next to the number of workspace.
+
+It would be much easier to navigate between workspaces if they're named, and it would be easier to name workspace when you opening it.
+
+Also, there could be another dialog in the i3 to rename currently opened workspace.
+
+Who knows how to do it?</description><pubDate>Sat, 11 Oct 2014 13:22:25 +0000</pubDate><guid>https://faq.i3wm.org/question/4725/workspace-name-dialog/</guid></item><item><title>Answer by Michael for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I think, it's possible to create a dialog, which will be shown when new workspace is created.&lt;/p&gt;
+
+&lt;p&gt;It will just show the focused text field, where you can write name for your workspace, and this name will be shown in the i3bar next to the number of workspace.&lt;/p&gt;
+
+&lt;p&gt;It would be much easier to navigate between workspaces if they're named, and it would be easier to name workspace when you opening it.&lt;/p&gt;
+
+&lt;p&gt;Also, there could be another dialog in the i3 to rename currently opened workspace.&lt;/p&gt;
+
+&lt;p&gt;Who knows how to do it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4725/workspace-name-dialog/?answer=4726#post-id-4726</link><description>See [the userguide](http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces):
+
+    bindsym $mod+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+</description><pubDate>Sat, 11 Oct 2014 13:31:06 +0000</pubDate><guid>https://faq.i3wm.org/question/4725/workspace-name-dialog/?answer=4726#post-id-4726</guid></item><item><title>Comment by Michael for &lt;p&gt;See &lt;a href="http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces"&gt;the userguide&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4725/workspace-name-dialog/?comment=4740#comment-4740</link><description>If your workspace name starts with a number, the `workspace number` command will find it, e.g. `workspace number 1` switches to “1: web”. This is also documented in the userguide, so please read that closely.</description><pubDate>Mon, 13 Oct 2014 07:43:06 +0000</pubDate><guid>https://faq.i3wm.org/question/4725/workspace-name-dialog/?comment=4740#comment-4740</guid></item><item><title>Comment by NonGrate for &lt;p&gt;See &lt;a href="http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces"&gt;the userguide&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym $mod+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/4725/workspace-name-dialog/?comment=4727#comment-4727</link><description>Thanks a lot! And is there possibility to access renamed workspaces relatively to the number they had?</description><pubDate>Sat, 11 Oct 2014 13:44:42 +0000</pubDate><guid>https://faq.i3wm.org/question/4725/workspace-name-dialog/?comment=4727#comment-4727</guid></item><item><title>Answer by lasers for &lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I think, it's possible to create a dialog, which will be shown when new workspace is created.&lt;/p&gt;
+
+&lt;p&gt;It will just show the focused text field, where you can write name for your workspace, and this name will be shown in the i3bar next to the number of workspace.&lt;/p&gt;
+
+&lt;p&gt;It would be much easier to navigate between workspaces if they're named, and it would be easier to name workspace when you opening it.&lt;/p&gt;
+
+&lt;p&gt;Also, there could be another dialog in the i3 to rename currently opened workspace.&lt;/p&gt;
+
+&lt;p&gt;Who knows how to do it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4725/workspace-name-dialog/?answer=4728#post-id-4728</link><description>See 6.5.2. Renaming workspaces on
+
+     http://i3wm.org/docs/userguide.html#_changing_named_workspaces_moving_to_workspaces 
+
+You could bind i3-input or make your own script using dmenu or zenity (for input). There are probably few on the web too if you can find them. Here's an example for i3-input.
+
+    bindsym $mod+z exec i3-input ; mode "default"
+
+Launch i3-input and type this. `rename workspace to web`
+
+This is useful because you can do more than just renaming a workspace.</description><pubDate>Sat, 11 Oct 2014 13:49:10 +0000</pubDate><guid>https://faq.i3wm.org/question/4725/workspace-name-dialog/?answer=4728#post-id-4728</guid></item></channel></rss>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3829/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 18 May 2014 06:26:59 +0000</lastBuildDate><item><title>Conky on desktop</title><link>https://faq.i3wm.org/question/3829/conky-on-desktop/</link><description>Is it possible to show Conky directly on the desktop and not in a new window?
+
+I only found ways to show it in the i3bar, not on the desktop.</description><pubDate>Fri, 16 May 2014 14:29:32 +0000</pubDate><guid>https://faq.i3wm.org/question/3829/conky-on-desktop/</guid></item><item><title>Answer by blendi for &lt;p&gt;Is it possible to show Conky directly on the desktop and not in a new window?&lt;/p&gt;
+
+&lt;p&gt;I only found ways to show it in the i3bar, not on the desktop.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3829/conky-on-desktop/?answer=3840#post-id-3840</link><description>put this in ur conky config:
+
+    own_window yes
+    own_window_class Conky
+    own_window_type override
+
+if conky flickers put this in ur config:
+
+    double_buffer yes
+
+her is a complete example file:
+
+    # conky config battery indicator
+    alignment top_left
+    background no
+    border_width 1
+    cpu_avg_samples 2
+    default_color white
+    default_outline_color white
+    default_shade_color white
+    draw_borders no
+    draw_graph_borders yes
+    draw_outline no
+    draw_shades no
+    use_xft yes
+    xftfont DejaVu Sans Mono:size=20
+    gap_x 25
+    gap_y 25
+    minimum_size 5 5
+    net_avg_samples 2
+    double_buffer yes
+    out_to_console no
+    out_to_stderr no
+    extra_newline no
+    own_window yes
+    own_window_class Conky
+    own_window_type override
+    stippled_borders 0
+    update_interval 1.0
+    uppercase no
+    use_spacer none
+    show_graph_scale no
+    show_graph_range no
+
+
+    TEXT
+    ${battery BAT1} ${battery_bar BAT1} ${battery_short BAT1}
+
+</description><pubDate>Sun, 18 May 2014 06:26:59 +0000</pubDate><guid>https://faq.i3wm.org/question/3829/conky-on-desktop/?answer=3840#post-id-3840</guid></item><item><title>Answer by Man from Mars for &lt;p&gt;Is it possible to show Conky directly on the desktop and not in a new window?&lt;/p&gt;
+
+&lt;p&gt;I only found ways to show it in the i3bar, not on the desktop.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3829/conky-on-desktop/?answer=3837#post-id-3837</link><description>Since windows are always opened full screen you'd never be able to see a conky window, unless you make all open windows floating (which breaks the basic concept of a tiling wm).
+I know this is not a direct answer to your question (already tried Conky's documentation? There should be something like own_window or window_root option) but your purpose is not very "compatible" with this kind of wm.</description><pubDate>Sat, 17 May 2014 19:22:01 +0000</pubDate><guid>https://faq.i3wm.org/question/3829/conky-on-desktop/?answer=3837#post-id-3837</guid></item></channel></rss>

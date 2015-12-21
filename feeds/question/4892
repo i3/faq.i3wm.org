@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4892/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 30 Oct 2014 22:01:18 +0000</lastBuildDate><item><title>Associate all displays to a single i3 workspace</title><link>https://faq.i3wm.org/question/4892/associate-all-displays-to-a-single-i3-workspace/</link><description>I'm new to i3 and I really like i3 so far, but I want to be able to associate all displays to single workspaces.  
+
+When I switch from workspace 1 to workspace 2, I want all my displays to be on the new workspace.  All displays should switch together.  
+
+I want this
+
+`application -&gt; display -&gt; workspace`
+
+instead of the way it currently works 
+
+`application -&gt; workspace -&gt; display`.
+
+
+I tried using 'fake-outputs', but the problem with that is that tiling does not work properly causing windows to be split across screens.  
+
+
+I saw this question here, but it's old and didn't provide a usable solution.  
+(couldn't post a link so here's the end of the url: force-one-i3-instanceworkspace-across-multiple-monitors)
+
+I've been using ssokolow's quicktile for years on gnome systems and I would like to switch to i3 if I can get this to work.  </description><pubDate>Thu, 30 Oct 2014 21:50:14 +0000</pubDate><guid>https://faq.i3wm.org/question/4892/associate-all-displays-to-a-single-i3-workspace/</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;I'm new to i3 and I really like i3 so far, but I want to be able to associate all displays to single workspaces.  &lt;/p&gt;
+
+&lt;p&gt;When I switch from workspace 1 to workspace 2, I want all my displays to be on the new workspace.  All displays should switch together.  &lt;/p&gt;
+
+&lt;p&gt;I want this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;application -&amp;gt; display -&amp;gt; workspace&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;instead of the way it currently works &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;application -&amp;gt; workspace -&amp;gt; display&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I tried using 'fake-outputs', but the problem with that is that tiling does not work properly causing windows to be split across screens.  &lt;/p&gt;
+
+&lt;p&gt;I saw this question here, but it's old and didn't provide a usable solution. &lt;br/&gt;
+(couldn't post a link so here's the end of the url: force-one-i3-instanceworkspace-across-multiple-monitors)&lt;/p&gt;
+
+&lt;p&gt;I've been using ssokolow's quicktile for years on gnome systems and I would like to switch to i3 if I can get this to work.  &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4892/associate-all-displays-to-a-single-i3-workspace/?answer=4893#post-id-4893</link><description>It is trivial to make key bindings that switch both workspaces at once. Basically you just bind a binding to multiple commands separated by commas.
+
+bindsym $mod+1 workspace 1a, workspace 1b
+
+bindsym $mod+2 workspace 2a, workspace 2b
+
+...
+
+bindsym $mod+n workspace na, workspace nb
+
+you are then free to assign a given app to a given workspace on the a or b side
+
+You might want to consider giving the i3 way of managing multiple monitors a try though.  I thought the same as you until I started using it.</description><pubDate>Thu, 30 Oct 2014 22:01:18 +0000</pubDate><guid>https://faq.i3wm.org/question/4892/associate-all-displays-to-a-single-i3-workspace/?answer=4893#post-id-4893</guid></item></channel></rss>

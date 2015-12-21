@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/744/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 05 Jan 2013 17:32:49 +0000</lastBuildDate><item><title>i3 on Ubuntu precise via VNC server</title><link>https://faq.i3wm.org/question/744/i3-on-ubuntu-precise-via-vnc-server/</link><description>I'm trying to setup a VNC server on a remote machine to use i3 as the windows manager. I am running this on Ubunut 12.04 (Precise) and I've tried installing the i3 package, and also compiling from source, but I can't get it to work.
+
+i3 complains that XKB is not supported by X-server, and I'm now out of ideas on how to fix this. Any help is appreciated.
+
+Thanks,</description><pubDate>Fri, 09 Nov 2012 21:17:06 +0000</pubDate><guid>https://faq.i3wm.org/question/744/i3-on-ubuntu-precise-via-vnc-server/</guid></item><item><title>Answer by f8l for &lt;p&gt;I'm trying to setup a VNC server on a remote machine to use i3 as the windows manager. I am running this on Ubunut 12.04 (Precise) and I've tried installing the i3 package, and also compiling from source, but I can't get it to work.&lt;/p&gt;
+
+&lt;p&gt;i3 complains that XKB is not supported by X-server, and I'm now out of ideas on how to fix this. Any help is appreciated.&lt;/p&gt;
+
+&lt;p&gt;Thanks,&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/744/i3-on-ubuntu-precise-via-vnc-server/?answer=985#post-id-985</link><description>Try to use x11vnc. It opens an existing display and allows VNC connections to it.
+You can just run `x11vnc` to share your current X session,
+or start another X server and connect to it, for example:
+
+&gt; `cookie=$(mktemp)`
+&gt; &lt;br /&gt;
+&gt; `xvfb-run -f "$cookie" -s '-screen 0 1280x800x24' -n 3 i3 &amp;`
+&gt; &lt;br /&gt;
+&gt; `x11vnc -auth "$cookie" -display :3`
+
+You can use „`sh .xsession`” instead of „`i3`” if you defined your .xsession file.
+
+Disclamer: I'm new here and this is my first answer. Comments welcome.</description><pubDate>Sat, 05 Jan 2013 17:32:49 +0000</pubDate><guid>https://faq.i3wm.org/question/744/i3-on-ubuntu-precise-via-vnc-server/?answer=985#post-id-985</guid></item></channel></rss>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4182/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 09 Jul 2014 21:05:04 +0000</lastBuildDate><item><title>How to correctly implement the i3bar protocol?</title><link>https://faq.i3wm.org/question/4182/how-to-correctly-implement-the-i3bar-protocol/</link><description>I've done a ruby script that works, but sometimes it hits a delay (the same as my sleep line) and only then, the status is drawn. If the sleep is set to 10 seconds, sometimes the bar will wait 10 seconds before the text is drawn.
+
+I've tried using the verbose mode but no errors are showed.
+
+I know it's not a ruby thing, since it happens too with the provided script at:
+
+&lt;code&gt;[http://code.stapelberg.de/git/i3/tree/contrib/trivial-bar-script.sh?h=next](http://code.stapelberg.de/git/i3/tree/contrib/trivial-bar-script.sh?h=next)&lt;/code&gt;
+
+Change the delay from 1 to 10 seconds, and it will hit the delay randomly after a restart. Just keep restarting i3 and it will happen.
+
+Because of this, programs like dropbox won't launch, because the tray is not active when it's launched (it's somehow sleeping).
+
+I've also seen that I can skip that delay by changing workspaces, as events are generated the bar is forced to be drawn. May be I should try generating an event but I don't know how.
+
+Any help would be great.</description><pubDate>Wed, 09 Jul 2014 20:21:13 +0000</pubDate><guid>https://faq.i3wm.org/question/4182/how-to-correctly-implement-the-i3bar-protocol/</guid></item><item><title>Comment by Michael for &lt;p&gt;I've done a ruby script that works, but sometimes it hits a delay (the same as my sleep line) and only then, the status is drawn. If the sleep is set to 10 seconds, sometimes the bar will wait 10 seconds before the text is drawn.&lt;/p&gt;
+
+&lt;p&gt;I've tried using the verbose mode but no errors are showed.&lt;/p&gt;
+
+&lt;p&gt;I know it's not a ruby thing, since it happens too with the provided script at:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&lt;a href="http://code.stapelberg.de/git/i3/tree/contrib/trivial-bar-script.sh?h=next"&gt;http://code.stapelberg.de/git/i3/tree/contrib/trivial-bar-script.sh?h=next&lt;/a&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Change the delay from 1 to 10 seconds, and it will hit the delay randomly after a restart. Just keep restarting i3 and it will happen.&lt;/p&gt;
+
+&lt;p&gt;Because of this, programs like dropbox won't launch, because the tray is not active when it's launched (it's somehow sleeping).&lt;/p&gt;
+
+&lt;p&gt;I've also seen that I can skip that delay by changing workspaces, as events are generated the bar is forced to be drawn. May be I should try generating an event but I don't know how.&lt;/p&gt;
+
+&lt;p&gt;Any help would be great.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4182/how-to-correctly-implement-the-i3bar-protocol/?comment=4186#comment-4186</link><description>Sounds like an i3bar bug then. Can you file a ticket at http://bugs.i3wm.org and include the output of `strace -f -o /tmp/strace.log -tt -s 2048 i3bar --bar_id=bar-0` (only include logfiles where you could reproduce the problem, keep the logfiles as short as possible)?</description><pubDate>Wed, 09 Jul 2014 21:05:04 +0000</pubDate><guid>https://faq.i3wm.org/question/4182/how-to-correctly-implement-the-i3bar-protocol/?comment=4186#comment-4186</guid></item><item><title>Comment by tigrezno for &lt;p&gt;I've done a ruby script that works, but sometimes it hits a delay (the same as my sleep line) and only then, the status is drawn. If the sleep is set to 10 seconds, sometimes the bar will wait 10 seconds before the text is drawn.&lt;/p&gt;
+
+&lt;p&gt;I've tried using the verbose mode but no errors are showed.&lt;/p&gt;
+
+&lt;p&gt;I know it's not a ruby thing, since it happens too with the provided script at:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&lt;a href="http://code.stapelberg.de/git/i3/tree/contrib/trivial-bar-script.sh?h=next"&gt;http://code.stapelberg.de/git/i3/tree/contrib/trivial-bar-script.sh?h=next&lt;/a&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Change the delay from 1 to 10 seconds, and it will hit the delay randomly after a restart. Just keep restarting i3 and it will happen.&lt;/p&gt;
+
+&lt;p&gt;Because of this, programs like dropbox won't launch, because the tray is not active when it's launched (it's somehow sleeping).&lt;/p&gt;
+
+&lt;p&gt;I've also seen that I can skip that delay by changing workspaces, as events are generated the bar is forced to be drawn. May be I should try generating an event but I don't know how.&lt;/p&gt;
+
+&lt;p&gt;Any help would be great.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4182/how-to-correctly-implement-the-i3bar-protocol/?comment=4183#comment-4183</link><description>Here is my script: http://pastebin.com/NUG7xR8K</description><pubDate>Wed, 09 Jul 2014 20:26:27 +0000</pubDate><guid>https://faq.i3wm.org/question/4182/how-to-correctly-implement-the-i3bar-protocol/?comment=4183#comment-4183</guid></item></channel></rss>

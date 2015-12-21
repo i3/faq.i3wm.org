@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4019/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 09 Oct 2014 19:00:45 +0000</lastBuildDate><item><title>i3status: Cannot read temperature from second cpu</title><link>https://faq.i3wm.org/question/4019/i3status-cannot-read-temperature-from-second-cpu/</link><description>I have a laptop with an Intel Core 2 Duo cpu. I have the following in my i3status config file:
+
+    order += "cpu_temperature 0"
+    order += "cpu_temperature 1"
+and later on:
+
+    cpu_temperature 0{
+            format = "%degrees °C"
+            path="/sys/devices/platform/coretemp.0/temp2_input"
+            max_threshold=75
+    }
+    
+    cpu_temperature 1{
+            format = "%degrees °C"
+            path="/sys/devices/platform/coretemp.0/temp3_input"
+            max_threshold=75
+    }
+
+When I go and check those paths myself and cat the files I get two different temperatures. If I compare those with the output of the "sensors" command, I see that these are indeed the temperatures of the two cores. However the i3status bar shows two identical temperatures corresponding to the first core.
+
+Any ideas what I am doing wrong here?
+
+</description><pubDate>Fri, 20 Jun 2014 04:50:29 +0000</pubDate><guid>https://faq.i3wm.org/question/4019/i3status-cannot-read-temperature-from-second-cpu/</guid></item><item><title>Comment by Man from Mars for &lt;p&gt;I have a laptop with an Intel Core 2 Duo cpu. I have the following in my i3status config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;order += "cpu_temperature 0"
+order += "cpu_temperature 1"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and later on:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cpu_temperature 0{
+        format = "%degrees °C"
+        path="/sys/devices/platform/coretemp.0/temp2_input"
+        max_threshold=75
+}
+
+cpu_temperature 1{
+        format = "%degrees °C"
+        path="/sys/devices/platform/coretemp.0/temp3_input"
+        max_threshold=75
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I go and check those paths myself and cat the files I get two different temperatures. If I compare those with the output of the "sensors" command, I see that these are indeed the temperatures of the two cores. However the i3status bar shows two identical temperatures corresponding to the first core.&lt;/p&gt;
+
+&lt;p&gt;Any ideas what I am doing wrong here?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4019/i3status-cannot-read-temperature-from-second-cpu/?comment=4033#comment-4033</link><description>Same for me. I can't recall if this happened after an update or an edit to the i3status.conf. By the way, I have the same lines as yours. cat-ing the values (taken straight from the i3status.conf) shows different values for each CPU as expected.</description><pubDate>Tue, 24 Jun 2014 21:15:01 +0000</pubDate><guid>https://faq.i3wm.org/question/4019/i3status-cannot-read-temperature-from-second-cpu/?comment=4033#comment-4033</guid></item><item><title>Answer by canu7 for &lt;p&gt;I have a laptop with an Intel Core 2 Duo cpu. I have the following in my i3status config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;order += "cpu_temperature 0"
+order += "cpu_temperature 1"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and later on:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cpu_temperature 0{
+        format = "%degrees °C"
+        path="/sys/devices/platform/coretemp.0/temp2_input"
+        max_threshold=75
+}
+
+cpu_temperature 1{
+        format = "%degrees °C"
+        path="/sys/devices/platform/coretemp.0/temp3_input"
+        max_threshold=75
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When I go and check those paths myself and cat the files I get two different temperatures. If I compare those with the output of the "sensors" command, I see that these are indeed the temperatures of the two cores. However the i3status bar shows two identical temperatures corresponding to the first core.&lt;/p&gt;
+
+&lt;p&gt;Any ideas what I am doing wrong here?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4019/i3status-cannot-read-temperature-from-second-cpu/?answer=4720#post-id-4720</link><description>It's a bug. Was fixed in commmit [26faed4c2f2c23f17b0c9170a4a72bb018931ed8](http://code.stapelberg.de/git/i3status/commit/?id=26faed4c2f2c23f17b0c9170a4a72bb018931ed8), not yet released under any version number.</description><pubDate>Thu, 09 Oct 2014 19:00:45 +0000</pubDate><guid>https://faq.i3wm.org/question/4019/i3status-cannot-read-temperature-from-second-cpu/?answer=4720#post-id-4720</guid></item></channel></rss>

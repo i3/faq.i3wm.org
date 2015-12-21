@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4780/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 18 Oct 2014 17:34:42 +0000</lastBuildDate><item><title>Strange behaviour when resizing windows</title><link>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/</link><description>When I have to windows next to each other sometimes I need to make one bigger.
+After pressing Mod+r to resize windows say left and right, when I press the right arrow the window opens up left and when I press the left arrow then it closes up right.
+This should be when you press the left arrow it shoul dopen up left and right arrow it should open up right.
+Then somehow it switches to the right directin after a few uses, to change again when I need to resize the windows on a new seesion or desktop.
+
+Anyone noticed this? Is there a way to make i3 bahave the right way when resizing windows all the time?
+
+Thanks </description><pubDate>Thu, 16 Oct 2014 19:18:02 +0000</pubDate><guid>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;When I have to windows next to each other sometimes I need to make one bigger.
+After pressing Mod+r to resize windows say left and right, when I press the right arrow the window opens up left and when I press the left arrow then it closes up right.
+This should be when you press the left arrow it shoul dopen up left and right arrow it should open up right.
+Then somehow it switches to the right directin after a few uses, to change again when I need to resize the windows on a new seesion or desktop.&lt;/p&gt;
+
+&lt;p&gt;Anyone noticed this? Is there a way to make i3 bahave the right way when resizing windows all the time?&lt;/p&gt;
+
+&lt;p&gt;Thanks &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?answer=4790#post-id-4790</link><description>The default bindings are set such that *up* and *left* shrink windows by 10 percantage points in *height* and *width* respectively. *down* and *right* grow windows. 
+
+    mode "resize" {
+        # [...]
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+        # [...]
+    }
+
+For example: if the window takes up 25 % of the available width in a container, growing it by 10 ppt will make it take up 35 % (with all other windows shrunken equally). If the window is the left most window in a container it will (and really can) only grow to the right. If the window does not border on the edge of the container (in direction of resizing) it will grow in both directions.
+
+----
+
+That being said, it is only the default setting. You actually can tell the `resize` command to grow and shrink in a specific direction. You just have to use `left` or `right` instead of `width` and `up` or `down` instead of `height`. So you could add something like that to your i3 configuration:
+
+    mode "resize" {
+        # [...]
+        bindsym Left        resize grow left 10 px or 10 ppt
+        bindsym Shift+Left  resize shrink left 10 px or 10 ppt
+        bindsym Down        resize grow down 10 px or 10 ppt
+        bindsym Shift+Down  resize shrink down 10 px or 10 ppt
+        bindsym Up          resize grow up 10 px or 10 ppt
+        bindsym Shift+Up    resize shrink up 10 px or 10 ppt
+        bindsym Right       resize grow right 10 px or 10 ppt
+        bindsym Shift+Right resize shrink rigth 10 px or 10 ppt
+        # [...]
+    }
+
+`resize grow left` moves the left border to the left or rather outwards. `resize shrink left` moves the left border to the right (!) or rather inwards. (So with `resize` the keywords `left`, `up`, `down` and `right` really indicate borders with `grow` and `shrink` indicating direction.)
+
+(You may want to experiment a bit to find bindings that feel natural. While pressing *Up* to move the top border of a window upwards is quite intuitive, pressing *Shift+Up* to pull the top border down might not be. Perhaps *Shift+Down* or separate modes for growing and shrinking would be better.)</description><pubDate>Fri, 17 Oct 2014 07:02:30 +0000</pubDate><guid>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?answer=4790#post-id-4790</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;When I have to windows next to each other sometimes I need to make one bigger.
+After pressing Mod+r to resize windows say left and right, when I press the right arrow the window opens up left and when I press the left arrow then it closes up right.
+This should be when you press the left arrow it shoul dopen up left and right arrow it should open up right.
+Then somehow it switches to the right directin after a few uses, to change again when I need to resize the windows on a new seesion or desktop.&lt;/p&gt;
+
+&lt;p&gt;Anyone noticed this? Is there a way to make i3 bahave the right way when resizing windows all the time?&lt;/p&gt;
+
+&lt;p&gt;Thanks &lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?answer=4781#post-id-4781</link><description>left and right and up and down in this contexts are shrinking and growing horizontally and vertically not resizing in that direction.  It isn't working wrong its working differently.</description><pubDate>Thu, 16 Oct 2014 19:28:50 +0000</pubDate><guid>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?answer=4781#post-id-4781</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;left and right and up and down in this contexts are shrinking and growing horizontally and vertically not resizing in that direction.  It isn't working wrong its working differently.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?comment=4786#comment-4786</link><description>Windows grow or shrink to take up more or less space. i3 doesn't understand contextual directions. A window either gets bigger or smaller, and the keys which grow or shrink the window are always the same.</description><pubDate>Fri, 17 Oct 2014 04:17:56 +0000</pubDate><guid>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?comment=4786#comment-4786</guid></item><item><title>Comment by jr88er for &lt;p&gt;left and right and up and down in this contexts are shrinking and growing horizontally and vertically not resizing in that direction.  It isn't working wrong its working differently.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?comment=4789#comment-4789</link><description>Thanks for your answers I suppose I have to accept this feature as programmer inteded.</description><pubDate>Fri, 17 Oct 2014 06:52:22 +0000</pubDate><guid>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?comment=4789#comment-4789</guid></item><item><title>Comment by jr88er for &lt;p&gt;left and right and up and down in this contexts are shrinking and growing horizontally and vertically not resizing in that direction.  It isn't working wrong its working differently.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?comment=4788#comment-4788</link><description>The keys that grow or shrink the window are not the same. If the active window is on the ringht handside and after Mod+r I press left arrow the window shrinks, the left border moves to the right. I personally find that strange every text editor you use left arrow pressed means the cursor moves left.</description><pubDate>Fri, 17 Oct 2014 06:46:31 +0000</pubDate><guid>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?comment=4788#comment-4788</guid></item><item><title>Comment by jr88er for &lt;p&gt;left and right and up and down in this contexts are shrinking and growing horizontally and vertically not resizing in that direction.  It isn't working wrong its working differently.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?comment=4783#comment-4783</link><description>Thanks for the answer, I wasn't aware that this is how it's meant to behave. If I wanted to get windows shrinking left or right and the arrows correspond to the movement direction, how would I achieve this in i3?</description><pubDate>Thu, 16 Oct 2014 21:42:23 +0000</pubDate><guid>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?comment=4783#comment-4783</guid></item><item><title>Comment by ANOKNUSA for &lt;p&gt;left and right and up and down in this contexts are shrinking and growing horizontally and vertically not resizing in that direction.  It isn't working wrong its working differently.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?comment=4798#comment-4798</link><description>You're thinking about this incorrectly. Arrange three windows horizontally---left, right and center. Focus the center window and resize it horizontally. Notice what happens. That function---growing/shrinking a window from the center---is done with one keypress, regardless of window position.</description><pubDate>Sat, 18 Oct 2014 17:34:42 +0000</pubDate><guid>https://faq.i3wm.org/question/4780/strange-behaviour-when-resizing-windows/?comment=4798#comment-4798</guid></item></channel></rss>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1177/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 30 Sep 2014 09:31:53 +0000</lastBuildDate><item><title>Set window to fixed (percentage) size</title><link>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/</link><description>Dear all,
+
+Is there a way to change the size of a window to a certain percentage of its parent container? I'd like shortcuts to swap between a window width of 70%/30% and 30%/70% of the parent container.
+I've only come across the resize grow/shrink commands, but those don't take into account the current size.
+
+best regards,
+Tom</description><pubDate>Fri, 01 Feb 2013 08:50:30 +0000</pubDate><guid>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/</guid></item><item><title>Answer by Michael for &lt;p&gt;Dear all,&lt;/p&gt;
+
+&lt;p&gt;Is there a way to change the size of a window to a certain percentage of its parent container? I'd like shortcuts to swap between a window width of 70%/30% and 30%/70% of the parent container.
+I've only come across the resize grow/shrink commands, but those don't take into account the current size.&lt;/p&gt;
+
+&lt;p&gt;best regards,
+Tom&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?answer=1182#post-id-1182</link><description>As you figured out, there is currently no way to do that (as of i3 v4.4).
+
+You can write a simple script which uses the IPC interface (see http://i3wm.org/docs/ipc.html) and then sends the necessary commands based on the current percentages.</description><pubDate>Sun, 03 Feb 2013 12:59:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?answer=1182#post-id-1182</guid></item><item><title>Answer by Tom Francart for &lt;p&gt;Dear all,&lt;/p&gt;
+
+&lt;p&gt;Is there a way to change the size of a window to a certain percentage of its parent container? I'd like shortcuts to swap between a window width of 70%/30% and 30%/70% of the parent container.
+I've only come across the resize grow/shrink commands, but those don't take into account the current size.&lt;/p&gt;
+
+&lt;p&gt;best regards,
+Tom&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?answer=1199#post-id-1199</link><description>Thanks for your response, Michael!
+
+I wrote the following very simple script (pardon my language, it's my first attempt at python):
+
+    import i3
+    import sys
+    
+    targetwidth = float(sys.argv[1])
+    
+    # get currently focused window
+    current = i3.filter(nodes=[], focused=True)
+    currentsize = current[0]['percent'] * 100;
+    
+    d = int(targetwidth - currentsize)
+    
+    if d&gt;0:
+        i3.resize("grow width" + str(d) + " px or " + str(d) + " ppt");
+    else:
+        i3.resize("shrink width" + str(-d) + " px or " + str(-d) + " ppt");
+
+While this works nicely, I'm confused by the px and ppt syntax. The manual states the following:
+
+
+    resize &lt;grow|shrink&gt; &lt;direction&gt; [&lt;px&gt; px] [or &lt;ppt&gt; ppt]
+    
+... The optional pixel argument specifies by how many pixels a floating container should be grown or shrunk (the default is 10 pixels). The ppt argument means percentage points and specifies by how many percentage points a tiling container should be grown or shrunk (the default is 10 percentage points).
+
+The way I understand this, is that for a tiling container, the px argument will be ignored and vice versa. This however does not seem to be the case. 
+
+    i3-msg resize grow width 5 px
+Grows my tiling window by what appears to be 5%.
+
+    i3-msg resize grow width 5 ppt
+Does not have any effect
+
+While if I use
+
+    i3-msg resize grow width &lt;anynumber&gt; px 5 ppt
+
+anynumer seems to be ignored.
+
+Perhaps this could be clarified in the user manual?</description><pubDate>Wed, 06 Feb 2013 16:01:10 +0000</pubDate><guid>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?answer=1199#post-id-1199</guid></item><item><title>Comment by Tom Francart for &lt;p&gt;Thanks for your response, Michael!&lt;/p&gt;
+
+&lt;p&gt;I wrote the following very simple script (pardon my language, it's my first attempt at python):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import i3
+import sys
+
+targetwidth = float(sys.argv[1])
+
+# get currently focused window
+current = i3.filter(nodes=[], focused=True)
+currentsize = current[0]['percent'] * 100;
+
+d = int(targetwidth - currentsize)
+
+if d&amp;gt;0:
+    i3.resize("grow width" + str(d) + " px or " + str(d) + " ppt");
+else:
+    i3.resize("shrink width" + str(-d) + " px or " + str(-d) + " ppt");
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While this works nicely, I'm confused by the px and ppt syntax. The manual states the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;resize &amp;lt;grow|shrink&amp;gt; &amp;lt;direction&amp;gt; [&amp;lt;px&amp;gt; px] [or &amp;lt;ppt&amp;gt; ppt]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;... The optional pixel argument specifies by how many pixels a floating container should be grown or shrunk (the default is 10 pixels). The ppt argument means percentage points and specifies by how many percentage points a tiling container should be grown or shrunk (the default is 10 percentage points).&lt;/p&gt;
+
+&lt;p&gt;The way I understand this, is that for a tiling container, the px argument will be ignored and vice versa. This however does not seem to be the case. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg resize grow width 5 px
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Grows my tiling window by what appears to be 5%.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg resize grow width 5 ppt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Does not have any effect&lt;/p&gt;
+
+&lt;p&gt;While if I use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg resize grow width &amp;lt;anynumber&amp;gt; px 5 ppt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;anynumer seems to be ignored.&lt;/p&gt;
+
+&lt;p&gt;Perhaps this could be clarified in the user manual?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?comment=1201#comment-1201</link><description>Correct me if I'm wrong, but is the explanation in the manual compatible with the fact that "i3-msg resize grow width 5 px" grows a tiling window by 5 ppt? </description><pubDate>Thu, 07 Feb 2013 15:15:09 +0000</pubDate><guid>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?comment=1201#comment-1201</guid></item><item><title>Comment by Michael for &lt;p&gt;Thanks for your response, Michael!&lt;/p&gt;
+
+&lt;p&gt;I wrote the following very simple script (pardon my language, it's my first attempt at python):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import i3
+import sys
+
+targetwidth = float(sys.argv[1])
+
+# get currently focused window
+current = i3.filter(nodes=[], focused=True)
+currentsize = current[0]['percent'] * 100;
+
+d = int(targetwidth - currentsize)
+
+if d&amp;gt;0:
+    i3.resize("grow width" + str(d) + " px or " + str(d) + " ppt");
+else:
+    i3.resize("shrink width" + str(-d) + " px or " + str(-d) + " ppt");
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While this works nicely, I'm confused by the px and ppt syntax. The manual states the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;resize &amp;lt;grow|shrink&amp;gt; &amp;lt;direction&amp;gt; [&amp;lt;px&amp;gt; px] [or &amp;lt;ppt&amp;gt; ppt]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;... The optional pixel argument specifies by how many pixels a floating container should be grown or shrunk (the default is 10 pixels). The ppt argument means percentage points and specifies by how many percentage points a tiling container should be grown or shrunk (the default is 10 percentage points).&lt;/p&gt;
+
+&lt;p&gt;The way I understand this, is that for a tiling container, the px argument will be ignored and vice versa. This however does not seem to be the case. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg resize grow width 5 px
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Grows my tiling window by what appears to be 5%.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg resize grow width 5 ppt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Does not have any effect&lt;/p&gt;
+
+&lt;p&gt;While if I use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg resize grow width &amp;lt;anynumber&amp;gt; px 5 ppt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;anynumer seems to be ignored.&lt;/p&gt;
+
+&lt;p&gt;Perhaps this could be clarified in the user manual?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?comment=1204#comment-1204</link><description>Well, you are sending a wrong command, so behavior is somewhat undefined (preferably it should error out clearly, though). In case you feel strongly about this, feel free to submit a patch to http://cr.i3wm.org/ or file a bug report at http://bugs.i3wm.org/</description><pubDate>Sun, 10 Feb 2013 14:51:08 +0000</pubDate><guid>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?comment=1204#comment-1204</guid></item><item><title>Comment by Michael for &lt;p&gt;Thanks for your response, Michael!&lt;/p&gt;
+
+&lt;p&gt;I wrote the following very simple script (pardon my language, it's my first attempt at python):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import i3
+import sys
+
+targetwidth = float(sys.argv[1])
+
+# get currently focused window
+current = i3.filter(nodes=[], focused=True)
+currentsize = current[0]['percent'] * 100;
+
+d = int(targetwidth - currentsize)
+
+if d&amp;gt;0:
+    i3.resize("grow width" + str(d) + " px or " + str(d) + " ppt");
+else:
+    i3.resize("shrink width" + str(-d) + " px or " + str(-d) + " ppt");
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While this works nicely, I'm confused by the px and ppt syntax. The manual states the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;resize &amp;lt;grow|shrink&amp;gt; &amp;lt;direction&amp;gt; [&amp;lt;px&amp;gt; px] [or &amp;lt;ppt&amp;gt; ppt]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;... The optional pixel argument specifies by how many pixels a floating container should be grown or shrunk (the default is 10 pixels). The ppt argument means percentage points and specifies by how many percentage points a tiling container should be grown or shrunk (the default is 10 percentage points).&lt;/p&gt;
+
+&lt;p&gt;The way I understand this, is that for a tiling container, the px argument will be ignored and vice versa. This however does not seem to be the case. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg resize grow width 5 px
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Grows my tiling window by what appears to be 5%.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg resize grow width 5 ppt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Does not have any effect&lt;/p&gt;
+
+&lt;p&gt;While if I use&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg resize grow width &amp;lt;anynumber&amp;gt; px 5 ppt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;anynumer seems to be ignored.&lt;/p&gt;
+
+&lt;p&gt;Perhaps this could be clarified in the user manual?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?comment=1200#comment-1200</link><description>The syntax of the resize command already is clarified in the git version: http://build.i3wm.org/docs/userguide.html#resizingconfig</description><pubDate>Thu, 07 Feb 2013 15:06:44 +0000</pubDate><guid>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?comment=1200#comment-1200</guid></item><item><title>Answer by ticcky for &lt;p&gt;Dear all,&lt;/p&gt;
+
+&lt;p&gt;Is there a way to change the size of a window to a certain percentage of its parent container? I'd like shortcuts to swap between a window width of 70%/30% and 30%/70% of the parent container.
+I've only come across the resize grow/shrink commands, but those don't take into account the current size.&lt;/p&gt;
+
+&lt;p&gt;best regards,
+Tom&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?answer=4684#post-id-4684</link><description>Here's my workaround for floating windows to resize window to 400x800px:
+
+    for_window [title="Tasks.*"] floating enable; resize shrink width 10000px; resize grow width 400px; resize shrink height 10000px; resize grow height 800px;</description><pubDate>Tue, 30 Sep 2014 09:31:53 +0000</pubDate><guid>https://faq.i3wm.org/question/1177/set-window-to-fixed-percentage-size/?answer=4684#post-id-4684</guid></item></channel></rss>

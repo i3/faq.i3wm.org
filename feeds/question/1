@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 24 Sep 2014 02:54:10 +0000</lastBuildDate><item><title>How can I get rid of the nautilus desktop window?</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/</link><description>When using i3 within a GNOME session, starting nautilus (the file manager), nautilus will also start a window containing the desktop icons. This window is just a normal, managed window in i3.
+
+To disable the nautilus desktop window, use:
+
+    $ gsettings set org.gnome.desktop.background show-desktop-icons false
+
+On older systems, you can try:
+
+    gconftool-2 \                                                                   
+    --type bool \             
+    --set /apps/nautilus/preferences/show_desktop false
+</description><pubDate>Mon, 04 Jun 2012 13:07:44 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/</guid></item><item><title>Comment by Yannick for &lt;p&gt;When using i3 within a GNOME session, starting nautilus (the file manager), nautilus will also start a window containing the desktop icons. This window is just a normal, managed window in i3.&lt;/p&gt;
+
+&lt;p&gt;To disable the nautilus desktop window, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gsettings set org.gnome.desktop.background show-desktop-icons false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On older systems, you can try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gconftool-2 \                                                                   
+--type bool \             
+--set /apps/nautilus/preferences/show_desktop false
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=2642#comment-2642</link><description>@Michael Wouldn't your answer be more clear if it was an actual accepted answer ? Nevertheless, thanks for the tip! It worked for me.</description><pubDate>Fri, 04 Oct 2013 15:35:42 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=2642#comment-2642</guid></item><item><title>Comment by Kretortex for &lt;p&gt;When using i3 within a GNOME session, starting nautilus (the file manager), nautilus will also start a window containing the desktop icons. This window is just a normal, managed window in i3.&lt;/p&gt;
+
+&lt;p&gt;To disable the nautilus desktop window, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gsettings set org.gnome.desktop.background show-desktop-icons false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On older systems, you can try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gconftool-2 \                                                                   
+--type bool \             
+--set /apps/nautilus/preferences/show_desktop false
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=1594#comment-1594</link><description>hasn't fixed it for me :-(</description><pubDate>Tue, 09 Apr 2013 13:29:29 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=1594#comment-1594</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;When using i3 within a GNOME session, starting nautilus (the file manager), nautilus will also start a window containing the desktop icons. This window is just a normal, managed window in i3.&lt;/p&gt;
+
+&lt;p&gt;To disable the nautilus desktop window, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gsettings set org.gnome.desktop.background show-desktop-icons false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On older systems, you can try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gconftool-2 \                                                                   
+--type bool \             
+--set /apps/nautilus/preferences/show_desktop false
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?answer=42#post-id-42</link><description>I also found that very annoying, and to type every time (from terminal) "nautilus --no-desktop" is a pain. Some things you can do about it (if you want to keep using nautilus):
+
+(a) create a bash alias: 
+    
+    # add this to your ~/.bash_aliases file
+    alias N='nautilus --no-desktop&amp;'
+
+This works, but still you would need a terminal to execute this (and all nautilus output dirts your terminal). So, what I do it:
+
+(b) create a bash script and place it in your $PATH:
+
+create the file, let's say: nautilus2 or n2autilus in /usr/local/bin:
+    
+    #!/bin/bash
+    nautilus --no-desktop
+
+I like the n2autilus, because it is quick to access through the dmenu_run ($mod+d, then type n2, enter, and you are done).
+</description><pubDate>Wed, 06 Jun 2012 00:27:54 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?answer=42#post-id-42</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;I also found that very annoying, and to type every time (from terminal) "nautilus --no-desktop" is a pain. Some things you can do about it (if you want to keep using nautilus):&lt;/p&gt;
+
+&lt;p&gt;(a) create a bash alias: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# add this to your ~/.bash_aliases file
+alias N='nautilus --no-desktop&amp;amp;'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This works, but still you would need a terminal to execute this (and all nautilus output dirts your terminal). So, what I do it:&lt;/p&gt;
+
+&lt;p&gt;(b) create a bash script and place it in your $PATH:&lt;/p&gt;
+
+&lt;p&gt;create the file, let's say: nautilus2 or n2autilus in /usr/local/bin:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+nautilus --no-desktop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I like the n2autilus, because it is quick to access through the dmenu_run ($mod+d, then type n2, enter, and you are done).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=54#comment-54</link><description>Sorry Michael, it actually worked!
+Don't know why (maybe I did something wrong last time), but it did not work for me before. I think I only used gconftool instead of gsettings (the latter is the one that worked for me).
+Thanks for correcting it!</description><pubDate>Wed, 06 Jun 2012 08:25:38 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=54#comment-54</guid></item><item><title>Comment by Michael for &lt;p&gt;I also found that very annoying, and to type every time (from terminal) "nautilus --no-desktop" is a pain. Some things you can do about it (if you want to keep using nautilus):&lt;/p&gt;
+
+&lt;p&gt;(a) create a bash alias: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# add this to your ~/.bash_aliases file
+alias N='nautilus --no-desktop&amp;amp;'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This works, but still you would need a terminal to execute this (and all nautilus output dirts your terminal). So, what I do it:&lt;/p&gt;
+
+&lt;p&gt;(b) create a bash script and place it in your $PATH:&lt;/p&gt;
+
+&lt;p&gt;create the file, let's say: nautilus2 or n2autilus in /usr/local/bin:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+nautilus --no-desktop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I like the n2autilus, because it is quick to access through the dmenu_run ($mod+d, then type n2, enter, and you are done).&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=46#comment-46</link><description>Doesn’t the permanent solution I posted work?</description><pubDate>Wed, 06 Jun 2012 04:26:29 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=46#comment-46</guid></item><item><title>Answer by luisca for &lt;p&gt;When using i3 within a GNOME session, starting nautilus (the file manager), nautilus will also start a window containing the desktop icons. This window is just a normal, managed window in i3.&lt;/p&gt;
+
+&lt;p&gt;To disable the nautilus desktop window, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gsettings set org.gnome.desktop.background show-desktop-icons false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On older systems, you can try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gconftool-2 \                                                                   
+--type bool \             
+--set /apps/nautilus/preferences/show_desktop false
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?answer=4678#post-id-4678</link><description>This has stopped working on Ubuntu 14.04.
+
+[UPDATED]
+Muhuahha, of course, after a couple of months suffering this, as soon as I post a question in a public forum, I find the answer myself. The problem is the new Ubuntu includes a fork of Nautilus called Nemo (just found out) and the config for nemo is different.
+
+$ gsettings set org.nemo.desktop show-desktop-icons false
+
+will do the trick.</description><pubDate>Wed, 24 Sep 2014 02:54:10 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?answer=4678#post-id-4678</guid></item><item><title>Answer by kenda for &lt;p&gt;When using i3 within a GNOME session, starting nautilus (the file manager), nautilus will also start a window containing the desktop icons. This window is just a normal, managed window in i3.&lt;/p&gt;
+
+&lt;p&gt;To disable the nautilus desktop window, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gsettings set org.gnome.desktop.background show-desktop-icons false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On older systems, you can try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gconftool-2 \                                                                   
+--type bool \             
+--set /apps/nautilus/preferences/show_desktop false
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?answer=9#post-id-9</link><description>I guess this is more a comment than an answer, but I can't find a comment box..
+
+My question: Is this somehow applicable to XFCE and their desktop window?</description><pubDate>Mon, 04 Jun 2012 15:22:15 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?answer=9#post-id-9</guid></item><item><title>Comment by kenda for &lt;p&gt;I guess this is more a comment than an answer, but I can't find a comment box..&lt;/p&gt;
+
+&lt;p&gt;My question: Is this somehow applicable to XFCE and their desktop window?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=17#comment-17</link><description>Hm, when I'm logged out I see the comment link, but not if I'm logged in :/</description><pubDate>Mon, 04 Jun 2012 15:55:17 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=17#comment-17</guid></item><item><title>Comment by kenda for &lt;p&gt;I guess this is more a comment than an answer, but I can't find a comment box..&lt;/p&gt;
+
+&lt;p&gt;My question: Is this somehow applicable to XFCE and their desktop window?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=19#comment-19</link><description>The desktop window appears because I start a full "xfce4-session" from i3.</description><pubDate>Mon, 04 Jun 2012 15:57:30 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=19#comment-19</guid></item><item><title>Comment by Michael for &lt;p&gt;I guess this is more a comment than an answer, but I can't find a comment box..&lt;/p&gt;
+
+&lt;p&gt;My question: Is this somehow applicable to XFCE and their desktop window?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=11#comment-11</link><description>There is a "post a comment" link on the bottom of each question/answer. Also, can you elaborate on when XFCE opens its desktop window? When i start thunar (the file manager), I only get a thunar window.</description><pubDate>Mon, 04 Jun 2012 15:40:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=11#comment-11</guid></item><item><title>Comment by kenda for &lt;p&gt;I guess this is more a comment than an answer, but I can't find a comment box..&lt;/p&gt;
+
+&lt;p&gt;My question: Is this somehow applicable to XFCE and their desktop window?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=38#comment-38</link><description>I already used this setup, so this doesn't work for me. I also tried the blank background option without success. Is there a way in i3 to ignore/hide windows?</description><pubDate>Tue, 05 Jun 2012 15:37:08 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=38#comment-38</guid></item><item><title>Comment by Tucos for &lt;p&gt;I guess this is more a comment than an answer, but I can't find a comment box..&lt;/p&gt;
+
+&lt;p&gt;My question: Is this somehow applicable to XFCE and their desktop window?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=72#comment-72</link><description>With XFCE i think you can get rid of xfdesktop by killing it and saving the session (or simply by removing it from the session in the session manager, if that's possible these days).</description><pubDate>Wed, 06 Jun 2012 21:52:16 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=72#comment-72</guid></item><item><title>Comment by Michael for &lt;p&gt;I guess this is more a comment than an answer, but I can't find a comment box..&lt;/p&gt;
+
+&lt;p&gt;My question: Is this somehow applicable to XFCE and their desktop window?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=21#comment-21</link><description>Thanks for the hint, I lowered the karma requirements for commenting.</description><pubDate>Mon, 04 Jun 2012 16:01:12 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=21#comment-21</guid></item><item><title>Comment by Michael for &lt;p&gt;I guess this is more a comment than an answer, but I can't find a comment box..&lt;/p&gt;
+
+&lt;p&gt;My question: Is this somehow applicable to XFCE and their desktop window?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=22#comment-22</link><description>I found this: `Under "Desktop", let Xfce manage the desktop, but under Behaviour set the Desktop Icons to "None". This way, Xfce will control your wallpaper, etc., allowing you to have random lists, different wallpapers for different screens for multi-head setups, etc.` — can you try it?</description><pubDate>Mon, 04 Jun 2012 16:05:00 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=22#comment-22</guid></item><item><title>Comment by Michael for &lt;p&gt;I guess this is more a comment than an answer, but I can't find a comment box..&lt;/p&gt;
+
+&lt;p&gt;My question: Is this somehow applicable to XFCE and their desktop window?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=39#comment-39</link><description>Nope, there is no way in i3 to ignore/hide windows.</description><pubDate>Tue, 05 Jun 2012 15:56:51 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=39#comment-39</guid></item><item><title>Comment by Michael for &lt;p&gt;I guess this is more a comment than an answer, but I can't find a comment box..&lt;/p&gt;
+
+&lt;p&gt;My question: Is this somehow applicable to XFCE and their desktop window?&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=12#comment-12</link><description>There is a "post a comment" link on the bottom of each question/answer.</description><pubDate>Mon, 04 Jun 2012 15:40:55 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?comment=12#comment-12</guid></item><item><title>Answer by MeanEYE for &lt;p&gt;When using i3 within a GNOME session, starting nautilus (the file manager), nautilus will also start a window containing the desktop icons. This window is just a normal, managed window in i3.&lt;/p&gt;
+
+&lt;p&gt;To disable the nautilus desktop window, use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gsettings set org.gnome.desktop.background show-desktop-icons false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On older systems, you can try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gconftool-2 \                                                                   
+--type bool \             
+--set /apps/nautilus/preferences/show_desktop false
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?answer=27#post-id-27</link><description>Starting `nautilus` with `--no-desktop` also does the trick but this is not the permanent solution.</description><pubDate>Mon, 04 Jun 2012 20:14:15 +0000</pubDate><guid>https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window/?answer=27#post-id-27</guid></item></channel></rss>

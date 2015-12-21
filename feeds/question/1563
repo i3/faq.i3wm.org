@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1563/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 07 Apr 2013 11:20:29 +0000</lastBuildDate><item><title>Latest i3 version in Debian Stable</title><link>https://faq.i3wm.org/question/1563/latest-i3-version-in-debian-stable/</link><description>Hi,
+
+I've got a question about getting the latest version of i3 in Debian Stable. i3 Homepage says:
+
+&gt; **You are using Debian stable**
+&gt; 
+&gt; The latest version of i3 will be in
+&gt; Debian testing quite soon. The version
+&gt; in Debian stable can be old, however
+&gt; (we cannot update it after stable has
+&gt; been released). The best way is to add
+&gt; Debian testing and tell apt to prefer
+&gt; Debian stable. You should not use our
+&gt; repository.
+
+Now I was wondering what you exactly mean with "The best way is to add Debian testing and tell apt to prefer Debian stable"?
+I'm fairly new to Debian and if that's a dumb question I'm really sorry about that, but I just don't get it.
+Does it mean I should add backports? That I'd understand but why should I tell apt to use stable then? How do I do that anyway?
+
+Again sorry if I'm just being dumb - any kind of help would be highly appreciated, thanks alot.
+</description><pubDate>Fri, 05 Apr 2013 16:58:42 +0000</pubDate><guid>https://faq.i3wm.org/question/1563/latest-i3-version-in-debian-stable/</guid></item><item><title>Answer by sur5r for &lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;I've got a question about getting the latest version of i3 in Debian Stable. i3 Homepage says:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;You are using Debian stable&lt;/strong&gt;&lt;/p&gt;
+  
+  &lt;p&gt;The latest version of i3 will be in
+  Debian testing quite soon. The version
+  in Debian stable can be old, however
+  (we cannot update it after stable has
+  been released). The best way is to add
+  Debian testing and tell apt to prefer
+  Debian stable. You should not use our
+  repository.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now I was wondering what you exactly mean with "The best way is to add Debian testing and tell apt to prefer Debian stable"?
+I'm fairly new to Debian and if that's a dumb question I'm really sorry about that, but I just don't get it.
+Does it mean I should add backports? That I'd understand but why should I tell apt to use stable then? How do I do that anyway?&lt;/p&gt;
+
+&lt;p&gt;Again sorry if I'm just being dumb - any kind of help would be highly appreciated, thanks alot.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/1563/latest-i3-version-in-debian-stable/?answer=1566#post-id-1566</link><description>As Debian is currently in freeze, new versions tend to show up in experimental only. Also, the current version is not in the backports repository.
+
+Until wheezy is released, you can use my repository which contains the released version of i3 for stable and testing as well as the supported Ubuntu releases.
+
+You can follow the instructions for stable Ubuntu packages on 
+[i3: Debian and Ubuntu repositories](http://i3wm.org/docs/repositories.html), Section 2.1 but replacing "universe" with "main":
+
+    # echo "deb http://debian.sur5r.net/i3/ $(lsb_release -c -s) universe" &gt;&gt; /etc/apt/sources.list
+    # apt-get update
+    # apt-get --allow-unauthenticated install sur5r-keyring
+    # apt-get update
+    # apt-get install i3</description><pubDate>Sat, 06 Apr 2013 11:16:48 +0000</pubDate><guid>https://faq.i3wm.org/question/1563/latest-i3-version-in-debian-stable/?answer=1566#post-id-1566</guid></item><item><title>Comment by AJ for &lt;p&gt;As Debian is currently in freeze, new versions tend to show up in experimental only. Also, the current version is not in the backports repository.&lt;/p&gt;
+
+&lt;p&gt;Until wheezy is released, you can use my repository which contains the released version of i3 for stable and testing as well as the supported Ubuntu releases.&lt;/p&gt;
+
+&lt;p&gt;You can follow the instructions for stable Ubuntu packages on 
+&lt;a href="http://i3wm.org/docs/repositories.html"&gt;i3: Debian and Ubuntu repositories&lt;/a&gt;, Section 2.1 but replacing "universe" with "main":&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# echo "deb http://debian.sur5r.net/i3/ $(lsb_release -c -s) universe" &amp;gt;&amp;gt; /etc/apt/sources.list
+# apt-get update
+# apt-get --allow-unauthenticated install sur5r-keyring
+# apt-get update
+# apt-get install i3
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/1563/latest-i3-version-in-debian-stable/?comment=1576#comment-1576</link><description>Thanks for the answer, sur5r.</description><pubDate>Sun, 07 Apr 2013 11:20:29 +0000</pubDate><guid>https://faq.i3wm.org/question/1563/latest-i3-version-in-debian-stable/?comment=1576#comment-1576</guid></item></channel></rss>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/7497/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sun, 29 Nov 2015 13:57:43 +0000</lastBuildDate><item><title>Lemonbar with I3 - original i3 bar pops up on the bottom - hide?</title><link>https://faq.i3wm.org/question/7497/lemonbar-with-i3-original-i3-bar-pops-up-on-the-bottom-hide/</link><description>I have just set up Lemonbar with my i3 setup, replacing the original i3bar. However, the I3bar pops up at the bottom of my screen - opposite the Lemonbar - but with no content except workspaces. 
+
+ My status command is just 
+
+    bar {
+           status_command ~/.i3/lemonbar/i3_lemonbar.sh
+       }
+
+Shouldn't I only have the Lemonbar, or am I doing something wrong? How do I get rid of i3bar?
+
+Thanks
+
+</description><pubDate>Sun, 29 Nov 2015 02:21:33 +0000</pubDate><guid>https://faq.i3wm.org/question/7497/lemonbar-with-i3-original-i3-bar-pops-up-on-the-bottom-hide/</guid></item><item><title>Answer by Airblader for &lt;p&gt;I have just set up Lemonbar with my i3 setup, replacing the original i3bar. However, the I3bar pops up at the bottom of my screen - opposite the Lemonbar - but with no content except workspaces. &lt;/p&gt;
+
+&lt;p&gt;My status command is just &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bar {
+       status_command ~/.i3/lemonbar/i3_lemonbar.sh
+   }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Shouldn't I only have the Lemonbar, or am I doing something wrong? How do I get rid of i3bar?&lt;/p&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/7497/lemonbar-with-i3-original-i3-bar-pops-up-on-the-bottom-hide/?answer=7499#post-id-7499</link><description>Yes, you're doing it very wrong. Remove the entire bar block from your config, because a bar block starts an i3bar instance. The status command only defines what data to feed to i3bar, but you want to remove it altogether. 
+
+Instead, just start your lemonbar script via exec.  </description><pubDate>Sun, 29 Nov 2015 13:57:43 +0000</pubDate><guid>https://faq.i3wm.org/question/7497/lemonbar-with-i3-original-i3-bar-pops-up-on-the-bottom-hide/?answer=7499#post-id-7499</guid></item></channel></rss>

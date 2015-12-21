@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/1477/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 24 Oct 2013 20:49:07 +0000</lastBuildDate><item><title>i3 and nvidia-driver, ---force-xinerama dont work!</title><link>https://faq.i3wm.org/question/1477/i3-and-nvidia-driver-force-xinerama-dont-work/</link><description>After installing nvidia binary driver:
+
+     Name           : nvidia
+    Version        : 313.26-2
+    URL            : http://www.nvidia.com/
+    Licenses       : custom
+    Groups         : None
+    Provides       : None
+    Depends On     : linux&gt;=3.8  linux&lt;3.9  nvidia-utils=313.26
+
+i3 dont starts (I see only cursor and wallpaper). 
+.xinitrc:
+
+    exec i3 --force-xinerama -V &gt;&gt; ~/.i3/i3log 2&gt;&amp;1
+.i3log:
+
+    03/24/2013 05:06:51 AM - i3 4.5.1 (2013-03-18, branch "tags/4.5.1") starting
+    03/24/2013 05:06:51 AM - Parsing configfile /home/sp/.i3/config
+    deciding for version 4 due to this line: # i3 config file (v4)
+    03/24/2013 05:06:51 AM - [libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    03/24/2013 05:06:51 AM - Used number 1 for workspace with name 1
+    03/24/2013 05:06:51 AM - auto-starting ~/.scr/start
+    03/24/2013 05:06:51 AM - startup id = i3/~|.scr|start/1282-0-archbang_TIME0
+    03/24/2013 05:06:51 AM - executing: ~/.scr/start
+    03/24/2013 05:06:51 AM - Starting bar process: i3bar --bar_id=bar-rqmgqz --socket="/run/user/1000/i3/ipc-socket.1282"
+    03/24/2013 05:06:51 AM - executing: i3bar --bar_id=bar-rqmgqz --socket="/run/user/1000/i3/ipc-socket.1282"
+    03/24/2013 05:06:51 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:07:29 AM - startup id = i3/lxterminal/1282-1-archbang_TIME1142212
+    03/24/2013 05:07:29 AM - executing: lxterminal
+    03/24/2013 05:07:29 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:07:30 AM - startup id = i3/lxterminal/1282-2-archbang_TIME1142524
+    03/24/2013 05:07:30 AM - executing: lxterminal
+    03/24/2013 05:07:30 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:07:30 AM - startup id = i3/dmenu_run/1282-3-archbang_TIME1142868
+    03/24/2013 05:07:30 AM - executing: dmenu_run
+    03/24/2013 05:07:30 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:07:51 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:08:05 AM - startup id = i3/dmenu_run/1282-4-archbang_TIME1177436
+    03/24/2013 05:08:05 AM - executing: dmenu_run
+    03/24/2013 05:08:05 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:08:05 AM - startup id = i3/lxterminal/1282-5-archbang_TIME1177676
+    03/24/2013 05:08:05 AM - executing: lxterminal
+    03/24/2013 05:08:05 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:08:29 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:08:30 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:08:30 AM - Not a managed window, ignoring UnmapNotify event
+    XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0.0"
+          after 174 requests (174 known processed) with 0 events remaining.
+    03/24/2013 05:09:19 AM - ERROR: Using Xinerama instead of RandR. This option should be avoided at all cost because it does not refresh the list of screens, so you cannot configure displays at runtime. Please check if your driver really does not support RandR and disable this option as soon as you can.
+    03/24/2013 05:09:19 AM - i3 4.5.1 (2013-03-18, branch "tags/4.5.1") starting
+    03/24/2013 05:09:19 AM - Parsing configfile /home/sp/.i3/config
+    deciding for version 4 due to this line: # i3 config file (v4)
+    03/24/2013 05:09:19 AM - [libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    03/24/2013 05:09:19 AM - Used number 1 for workspace with name 1
+    03/24/2013 05:09:19 AM - auto-starting ~/.scr/start
+    03/24/2013 05:09:19 AM - startup id = i3/~|.scr|start/1421-0-archbang_TIME0
+    03/24/2013 05:09:19 AM - executing: ~/.scr/start
+    03/24/2013 05:09:19 AM - Starting bar process: i3bar --bar_id=bar-gqrjqc --socket="/run/user/1000/i3/ipc-socket.1421"
+    03/24/2013 05:09:19 AM - executing: i3bar --bar_id=bar-gqrjqc --socket="/run/user/1000/i3/ipc-socket.1421"
+    03/24/2013 05:09:19 AM - Not a managed window, ignoring UnmapNotify event
+    XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0.0"
+          after 169 requests (169 known processed) with 0 events remaining.
+    03/24/2013 05:09:34 AM - ERROR: Using Xinerama instead of RandR. This option should be avoided at all cost because it does not refresh the list of screens, so you cannot configure displays at runtime. Please check if your driver really does not support RandR and disable this option as soon as you can.
+    03/24/2013 05:09:34 AM - i3 4.5.1 (2013-03-18, branch "tags/4.5.1") starting
+    03/24/2013 05:09:34 AM - Parsing configfile /home/sp/.i3/config
+    deciding for version 4 due to this line: # i3 config file (v4)
+    03/24/2013 05:09:34 AM - [libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    03/24/2013 05:09:34 AM - Used number 1 for workspace with name 1
+    03/24/2013 05:09:34 AM - auto-starting ~/.scr/start
+    03/24/2013 05:09:34 AM - startup id = i3/~|.scr|start/1441-0-archbang_TIME0
+    03/24/2013 05:09:34 AM - executing: ~/.scr/start
+    03/24/2013 05:09:34 AM - Starting bar process: i3bar --bar_id=bar-irtcxt --socket="/run/user/1000/i3/ipc-socket.1441"
+    03/24/2013 05:09:34 AM - executing: i3bar --bar_id=bar-irtcxt --socket="/run/user/1000/i3/ipc-socket.1441"
+    03/24/2013 05:09:34 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:09:36 AM - startup id = i3/lxterminal/1441-1-archbang_TIME1269340
+    03/24/2013 05:09:36 AM - executing: lxterminal
+    03/24/2013 05:09:36 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:09:38 AM - startup id = i3/lxterminal/1441-2-archbang_TIME1270692
+    03/24/2013 05:09:38 AM - executing: lxterminal
+    03/24/2013 05:09:38 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:10:34 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:10:36 AM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 05:10:38 AM - Not a managed window, ignoring UnmapNotify event
+    XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0.0"
+          after 172 requests (171 known processed) with 0 events remaining.
+    03/24/2013 07:09:05 PM - ERROR: Using Xinerama instead of RandR. This option should be avoided at all cost because it does not refresh the list of screens, so you cannot configure displays at runtime. Please check if your driver really does not support RandR and disable this option as soon as you can.
+    03/24/2013 07:09:05 PM - i3 4.5.1 (2013-03-18, branch "tags/4.5.1") starting
+    03/24/2013 07:09:05 PM - Parsing configfile /home/sp/.i3/config
+    deciding for version 4 due to this line: # i3 config file (v4)
+    03/24/2013 07:09:05 PM - [libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    03/24/2013 07:09:05 PM - Used number 1 for workspace with name 1
+    03/24/2013 07:09:05 PM - auto-starting ~/.scr/start
+    03/24/2013 07:09:05 PM - startup id = i3/~|.scr|start/521-0-archbang_TIME0
+    03/24/2013 07:09:05 PM - executing: ~/.scr/start
+    03/24/2013 07:09:05 PM - Starting bar process: i3bar --bar_id=bar-dfrozs --socket="/run/user/1000/i3/ipc-socket.521"
+    03/24/2013 07:09:05 PM - executing: i3bar --bar_id=bar-dfrozs --socket="/run/user/1000/i3/ipc-socket.521"
+    03/24/2013 07:09:05 PM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 07:09:09 PM - startup id = i3/lxterminal/521-1-archbang_TIME282759
+    03/24/2013 07:09:09 PM - executing: lxterminal
+    03/24/2013 07:09:09 PM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 07:09:10 PM - startup id = i3/lxterminal/521-2-archbang_TIME284087
+    03/24/2013 07:09:10 PM - executing: lxterminal
+    03/24/2013 07:09:10 PM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 07:09:10 PM - startup id = i3/lxterminal/521-3-archbang_TIME284359
+    03/24/2013 07:09:10 PM - executing: lxterminal
+    03/24/2013 07:09:10 PM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 07:09:11 PM - startup id = i3/lxterminal/521-4-archbang_TIME284583
+    03/24/2013 07:09:11 PM - executing: lxterminal
+    03/24/2013 07:09:11 PM - Not a managed window, ignoring UnmapNotify event
+    03/24/2013 07:09:12 PM - startup id = i3/lxterminal/521-5-archbang_TIME285895
+    03/24/2013 07:09:12 PM - executing: lxterminal
+    03/24/2013 07:09:12 PM - Not a managed window, ignoring UnmapNotify event
+    XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0.0"
+          after 174 requests (174 known processed) with 0 events remaining.
+
+i3 successfully stars without nvidia driver with this config.
+Adding force_xinerama yes to config did nothing.
+
+nvidia-settings:
+
+[http://imgur.com/NCVDukA.png](http://imgur.com/NCVDukA.png)
+
+xorg log: 
+
+[http://pastebin.com/HTCSaWUN]( http://pastebin.com/HTCSaWUN) </description><pubDate>Sun, 24 Mar 2013 11:36:30 +0000</pubDate><guid>https://faq.i3wm.org/question/1477/i3-and-nvidia-driver-force-xinerama-dont-work/</guid></item><item><title>Comment by Michael for &lt;div class="snippet"&gt;&lt;p&gt;After installing nvidia binary driver:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Name           : nvidia
+Version        : 313.26-2
+URL            : http://www.nvidia.com/
+Licenses       : custom
+Groups         : None
+Provides       : None
+Depends On     : linux&amp;gt;=3.8  linux&amp;lt;3.9  nvidia-utils=313.26
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;i3 dont starts (I see only cursor and wallpaper). 
+.xinitrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3 --force-xinerama -V &amp;gt;&amp;gt; ~/.i3/i3log 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;.i3log:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;03/24/2013 05:06:51 AM - i3 4.5.1 (2013-03-18, branch "tags/4.5.1") starting
+03/24/2013 05:06:51 AM - Parsing configfile /home/sp/.i3/config
+deciding for version 4 due to this line: # i3 config file (v4)
+03/24/2013 05:06:51 AM - [libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+03/24/2013 05:06:51 AM - Used number 1 for workspace with name 1
+03/24/2013 05:06:51 AM - auto-starting ~/.scr/start
+03/24/2013 05:06:51 AM - startup id = i3/~|.scr|start/1282-0-archbang_TIME0
+03/24/2013 05:06:51 AM - executing: ~/.scr/start
+03/24/2013 05:06:51 AM - Starting bar process: i3bar --bar_id=bar-rqmgqz --socket="/run/user/1000/i3/ipc-socket.1282"
+03/24/2013 05:06:51 AM - executing: i3bar --bar_id=bar-rqmgqz --socket="/run/user/1000/i3/ipc-socket.1282"
+03/24/2013 05:06:51 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:07:29 AM - startup id = i3/lxterminal/1282-1-archbang_TIME1142212
+03/24/2013 05:07:29 AM - executing: lxterminal
+03/24/2013 05:07:29 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:07:30 AM - startup id = i3/lxterminal/1282-2-archbang_TIME1142524
+03/24/2013 05:07:30 AM - executing: lxterminal
+03/24/2013 05:07:30 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:07:30 AM - startup id = i3/dmenu_run/1282-3-archbang_TIME1142868
+03/24/2013 05:07:30 AM - executing: dmenu_run
+03/24/2013 05:07:30 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:07:51 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:08:05 AM - startup id = i3/dmenu_run/1282-4-archbang_TIME1177436
+03/24/2013 05:08:05 AM - executing: dmenu_run
+03/24/2013 05:08:05 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:08:05 AM - startup id = i3/lxterminal/1282-5-archbang_TIME1177676
+03/24/2013 05:08:05 AM - executing: lxterminal
+03/24/2013 05:08:05 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:08:29 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:08:30 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:08:30 AM - Not a managed window, ignoring UnmapNotify event
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0.0"
+      after 174 requests (174 known processed) with 0 events remaining.
+03/24/2013 05:09:19 AM - ERROR: Using Xinerama instead of RandR. This option should be avoided at all cost because it does not refresh the list of screens, so you cannot configure displays at runtime ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</title><link>https://faq.i3wm.org/question/1477/i3-and-nvidia-driver-force-xinerama-dont-work/?comment=2785#comment-2785</link><description>The log has no indication of anything going wrong. Also, the FAQ is not a place to report bugs. Please open a bug at http://bugs.i3wm.org/ if the problem persists.</description><pubDate>Thu, 24 Oct 2013 20:49:07 +0000</pubDate><guid>https://faq.i3wm.org/question/1477/i3-and-nvidia-driver-force-xinerama-dont-work/?comment=2785#comment-2785</guid></item><item><title>Answer by jk121960 for &lt;div class="snippet"&gt;&lt;p&gt;After installing nvidia binary driver:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Name           : nvidia
+Version        : 313.26-2
+URL            : http://www.nvidia.com/
+Licenses       : custom
+Groups         : None
+Provides       : None
+Depends On     : linux&amp;gt;=3.8  linux&amp;lt;3.9  nvidia-utils=313.26
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;i3 dont starts (I see only cursor and wallpaper). 
+.xinitrc:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec i3 --force-xinerama -V &amp;gt;&amp;gt; ~/.i3/i3log 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;.i3log:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;03/24/2013 05:06:51 AM - i3 4.5.1 (2013-03-18, branch "tags/4.5.1") starting
+03/24/2013 05:06:51 AM - Parsing configfile /home/sp/.i3/config
+deciding for version 4 due to this line: # i3 config file (v4)
+03/24/2013 05:06:51 AM - [libi3] libi3/font.c Using X font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+03/24/2013 05:06:51 AM - Used number 1 for workspace with name 1
+03/24/2013 05:06:51 AM - auto-starting ~/.scr/start
+03/24/2013 05:06:51 AM - startup id = i3/~|.scr|start/1282-0-archbang_TIME0
+03/24/2013 05:06:51 AM - executing: ~/.scr/start
+03/24/2013 05:06:51 AM - Starting bar process: i3bar --bar_id=bar-rqmgqz --socket="/run/user/1000/i3/ipc-socket.1282"
+03/24/2013 05:06:51 AM - executing: i3bar --bar_id=bar-rqmgqz --socket="/run/user/1000/i3/ipc-socket.1282"
+03/24/2013 05:06:51 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:07:29 AM - startup id = i3/lxterminal/1282-1-archbang_TIME1142212
+03/24/2013 05:07:29 AM - executing: lxterminal
+03/24/2013 05:07:29 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:07:30 AM - startup id = i3/lxterminal/1282-2-archbang_TIME1142524
+03/24/2013 05:07:30 AM - executing: lxterminal
+03/24/2013 05:07:30 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:07:30 AM - startup id = i3/dmenu_run/1282-3-archbang_TIME1142868
+03/24/2013 05:07:30 AM - executing: dmenu_run
+03/24/2013 05:07:30 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:07:51 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:08:05 AM - startup id = i3/dmenu_run/1282-4-archbang_TIME1177436
+03/24/2013 05:08:05 AM - executing: dmenu_run
+03/24/2013 05:08:05 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:08:05 AM - startup id = i3/lxterminal/1282-5-archbang_TIME1177676
+03/24/2013 05:08:05 AM - executing: lxterminal
+03/24/2013 05:08:05 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:08:29 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:08:30 AM - Not a managed window, ignoring UnmapNotify event
+03/24/2013 05:08:30 AM - Not a managed window, ignoring UnmapNotify event
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0.0"
+      after 174 requests (174 known processed) with 0 events remaining.
+03/24/2013 05:09:19 AM - ERROR: Using Xinerama instead of RandR. This option should be avoided at all cost because it does not refresh the list of screens, so you cannot configure displays at runtime ...&lt;/code&gt;&lt;/pre&gt;&lt;span class="expander"&gt; &lt;a&gt;(more)&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; </title><link>https://faq.i3wm.org/question/1477/i3-and-nvidia-driver-force-xinerama-dont-work/?answer=2784#post-id-2784</link><description>Maybe it is overkill but I put in .xinitrc and the config file and it seems to work fine. </description><pubDate>Thu, 24 Oct 2013 19:17:35 +0000</pubDate><guid>https://faq.i3wm.org/question/1477/i3-and-nvidia-driver-force-xinerama-dont-work/?answer=2784#post-id-2784</guid></item></channel></rss>

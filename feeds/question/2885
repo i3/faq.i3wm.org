@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2885/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 01 Oct 2015 08:20:52 +0000</lastBuildDate><item><title>Disable titlebar completely</title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/</link><description>Hi there,
+
+I would like to get rid of the title-bars completely. I work mostly by workspaces and I don't want to see any title, don't wanna hear, don't wanna read.
+
+I know of border none assignation and read about bb command but the first is useless in my case and I'm yet to figure out how to use bb command in config if that is even possible in this case.
+
+Maybe with a script?
+
+Thanks</description><pubDate>Tue, 12 Nov 2013 07:30:36 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Hi there,&lt;/p&gt;
+
+&lt;p&gt;I would like to get rid of the title-bars completely. I work mostly by workspaces and I don't want to see any title, don't wanna hear, don't wanna read.&lt;/p&gt;
+
+&lt;p&gt;I know of border none assignation and read about bb command but the first is useless in my case and I'm yet to figure out how to use bb command in config if that is even possible in this case.&lt;/p&gt;
+
+&lt;p&gt;Maybe with a script?&lt;/p&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2897#comment-2897</link><description>`bb` is no longer a command in i3 since version 4.0. Use `border none` instead.</description><pubDate>Tue, 12 Nov 2013 19:51:43 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2897#comment-2897</guid></item><item><title>Comment by cee for &lt;p&gt;Hi there,&lt;/p&gt;
+
+&lt;p&gt;I would like to get rid of the title-bars completely. I work mostly by workspaces and I don't want to see any title, don't wanna hear, don't wanna read.&lt;/p&gt;
+
+&lt;p&gt;I know of border none assignation and read about bb command but the first is useless in my case and I'm yet to figure out how to use bb command in config if that is even possible in this case.&lt;/p&gt;
+
+&lt;p&gt;Maybe with a script?&lt;/p&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2887#comment-2887</link><description>Good question. I have configured my system with 'bindsym $mod+b border toggle', but it would still be awesome to set a default behavior What.</description><pubDate>Tue, 12 Nov 2013 08:51:10 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2887#comment-2887</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Hi there,&lt;/p&gt;
+
+&lt;p&gt;I would like to get rid of the title-bars completely. I work mostly by workspaces and I don't want to see any title, don't wanna hear, don't wanna read.&lt;/p&gt;
+
+&lt;p&gt;I know of border none assignation and read about bb command but the first is useless in my case and I'm yet to figure out how to use bb command in config if that is even possible in this case.&lt;/p&gt;
+
+&lt;p&gt;Maybe with a script?&lt;/p&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?answer=2889#post-id-2889</link><description>Add this to your configuration (replace any existing `new_window` if necessary):
+
+    new_window 1pixel
+
+See [here](http://i3wm.org/docs/userguide.html#_border_style_for_new_windows) for more information.
+
+This will set borders on new windows to 1pixel if they are in a split container. In stacked or tabbed containers the title bar(s) will still be shown if there is more than one window in the container. </description><pubDate>Tue, 12 Nov 2013 10:11:16 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?answer=2889#post-id-2889</guid></item><item><title>Comment by Adaephon for &lt;p&gt;Add this to your configuration (replace any existing &lt;code&gt;new_window&lt;/code&gt; if necessary):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See &lt;a href="http://i3wm.org/docs/userguide.html#_border_style_for_new_windows"&gt;here&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;p&gt;This will set borders on new windows to 1pixel if they are in a split container. In stacked or tabbed containers the title bar(s) will still be shown if there is more than one window in the container. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2896#comment-2896</link><description>No I do not use this myself, but I tested it before posting. And it works just like calling `border 1pixel` on every new window would, it removes the title bar. At least on windows in split containers. It seems that tabbed and stacked containers keep their title bar(s) no matter what you set.</description><pubDate>Tue, 12 Nov 2013 19:48:56 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2896#comment-2896</guid></item><item><title>Comment by gulver for &lt;p&gt;Add this to your configuration (replace any existing &lt;code&gt;new_window&lt;/code&gt; if necessary):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See &lt;a href="http://i3wm.org/docs/userguide.html#_border_style_for_new_windows"&gt;here&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;p&gt;This will set borders on new windows to 1pixel if they are in a split container. In stacked or tabbed containers the title bar(s) will still be shown if there is more than one window in the container. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2893#comment-2893</link><description>Same here problem with cee. I've tried both already; Is this solution something you are making use of or ever observed as correctly working?</description><pubDate>Tue, 12 Nov 2013 12:41:46 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2893#comment-2893</guid></item><item><title>Comment by gulver for &lt;p&gt;Add this to your configuration (replace any existing &lt;code&gt;new_window&lt;/code&gt; if necessary):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See &lt;a href="http://i3wm.org/docs/userguide.html#_border_style_for_new_windows"&gt;here&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;p&gt;This will set borders on new windows to 1pixel if they are in a split container. In stacked or tabbed containers the title bar(s) will still be shown if there is more than one window in the container. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2903#comment-2903</link><description>It doesn't completely disables titlebar yet that's as close as it gets till a new release comes. I'll mark this as solved to thank you.</description><pubDate>Wed, 13 Nov 2013 13:42:34 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2903#comment-2903</guid></item><item><title>Comment by cee for &lt;p&gt;Add this to your configuration (replace any existing &lt;code&gt;new_window&lt;/code&gt; if necessary):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See &lt;a href="http://i3wm.org/docs/userguide.html#_border_style_for_new_windows"&gt;here&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;p&gt;This will set borders on new windows to 1pixel if they are in a split container. In stacked or tabbed containers the title bar(s) will still be shown if there is more than one window in the container. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2891#comment-2891</link><description>I have set 'new\_window none' on top of my config (the only place in the whole file) and also set 'new\_float none'. It does not seem to change anything. Any new window is shown with 'normal' border.
+i3 version 4.6</description><pubDate>Tue, 12 Nov 2013 10:33:24 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=2891#comment-2891</guid></item><item><title>Comment by paramnesioid for &lt;p&gt;Add this to your configuration (replace any existing &lt;code&gt;new_window&lt;/code&gt; if necessary):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;new_window 1pixel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See &lt;a href="http://i3wm.org/docs/userguide.html#_border_style_for_new_windows"&gt;here&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;p&gt;This will set borders on new windows to 1pixel if they are in a split container. In stacked or tabbed containers the title bar(s) will still be shown if there is more than one window in the container. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=3122#comment-3122</link><description>Thanks heaps, Adaephon!</description><pubDate>Sat, 28 Dec 2013 07:08:04 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=3122#comment-3122</guid></item><item><title>Answer by paramnesioid for &lt;p&gt;Hi there,&lt;/p&gt;
+
+&lt;p&gt;I would like to get rid of the title-bars completely. I work mostly by workspaces and I don't want to see any title, don't wanna hear, don't wanna read.&lt;/p&gt;
+
+&lt;p&gt;I know of border none assignation and read about bb command but the first is useless in my case and I'm yet to figure out how to use bb command in config if that is even possible in this case.&lt;/p&gt;
+
+&lt;p&gt;Maybe with a script?&lt;/p&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?answer=3123#post-id-3123</link><description>This works for me: `for_window [class="^.*"] border pixel 1`</description><pubDate>Sat, 28 Dec 2013 07:12:54 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?answer=3123#post-id-3123</guid></item><item><title>Answer by TonyC for &lt;p&gt;Hi there,&lt;/p&gt;
+
+&lt;p&gt;I would like to get rid of the title-bars completely. I work mostly by workspaces and I don't want to see any title, don't wanna hear, don't wanna read.&lt;/p&gt;
+
+&lt;p&gt;I know of border none assignation and read about bb command but the first is useless in my case and I'm yet to figure out how to use bb command in config if that is even possible in this case.&lt;/p&gt;
+
+&lt;p&gt;Maybe with a script?&lt;/p&gt;
+
+&lt;p&gt;Thanks&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?answer=2911#post-id-2911</link><description>It's a little hacky, but you can get this by setting your font size to zero
+
+    font pango:DejaVu Sans Mono 0
+
+which renders a ~5px titlebar with no text. For me, that is better than having the titlebar completely disabled because you get an indication of the active window.</description><pubDate>Thu, 14 Nov 2013 14:42:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?answer=2911#post-id-2911</guid></item><item><title>Comment by YetAnotherAccount for &lt;p&gt;It's a little hacky, but you can get this by setting your font size to zero&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;font pango:DejaVu Sans Mono 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which renders a ~5px titlebar with no text. For me, that is better than having the titlebar completely disabled because you get an indication of the active window.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=6761#comment-6761</link><description>This disables the bottom bar as well</description><pubDate>Thu, 01 Oct 2015 08:20:52 +0000</pubDate><guid>https://faq.i3wm.org/question/2885/disable-titlebar-completely/?comment=6761#comment-6761</guid></item></channel></rss>

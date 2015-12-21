@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/2002/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 18 Jun 2013 14:19:48 +0000</lastBuildDate><item><title>Why is 'for_window' not accessible from i3-msg?</title><link>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/</link><description>I'd like to have a configuration line like
+
+    i3-msg 'for_window [class="URxvt" instance="scratch"] move scratchpad; exec urxvtc -name scratch'
+
+in my *.i3/config*, but trying it interactively with i3-msg, it didn't like **for_window** at all
+
+    ERROR: Your command: for_window [instance="scratch"] move scratchpad
+    ERROR:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ERROR: Expected one of these tokens: &lt;end&gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'
+    [{"success":false,"parse_error":true,"error":"Expected one of these tokens: &lt;end&gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'","input":"for_window [instance=\"scratch\"] move scratchpad","errorposition":"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}]
+
+</description><pubDate>Wed, 12 Jun 2013 17:53:44 +0000</pubDate><guid>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/</guid></item><item><title>Answer by bruno.braga for &lt;p&gt;I'd like to have a configuration line like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg 'for_window [class="URxvt" instance="scratch"] move scratchpad; exec urxvtc -name scratch'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in my &lt;em&gt;.i3/config&lt;/em&gt;, but trying it interactively with i3-msg, it didn't like &lt;strong&gt;for_window&lt;/strong&gt; at all&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: Your command: for_window [instance="scratch"] move scratchpad
+ERROR:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR: Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'
+[{"success":false,"parse_error":true,"error":"Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'","input":"for_window [instance=\"scratch\"] move scratchpad","errorposition":"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}]
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/?answer=2040#post-id-2040</link><description>I didn't understand why you need to use i3-msg within i3 config file. Why don't you just call it directly:
+
+    for_window [class="URxvt" instance="scratch"] move scratchpad 
+    exec urxvtc -name scratch
+
+If you need to access i3 while it is running already (let's say, integrating with another application), then i3-msg will come handy.
+</description><pubDate>Sun, 16 Jun 2013 23:36:03 +0000</pubDate><guid>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/?answer=2040#post-id-2040</guid></item><item><title>Comment by Steffen Hoenig for &lt;p&gt;I didn't understand why you need to use i3-msg within i3 config file. Why don't you just call it directly:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="URxvt" instance="scratch"] move scratchpad 
+exec urxvtc -name scratch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you need to access i3 while it is running already (let's say, integrating with another application), then i3-msg will come handy.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/?comment=2043#comment-2043</link><description>because somehow it doesn't work like this in my config, only as two separate commands in the shell or concatenated with a sleep() command, may be there is a timing issue?</description><pubDate>Mon, 17 Jun 2013 08:41:07 +0000</pubDate><guid>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/?comment=2043#comment-2043</guid></item><item><title>Comment by bruno.braga for &lt;p&gt;I didn't understand why you need to use i3-msg within i3 config file. Why don't you just call it directly:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for_window [class="URxvt" instance="scratch"] move scratchpad 
+exec urxvtc -name scratch
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you need to access i3 while it is running already (let's say, integrating with another application), then i3-msg will come handy.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/?comment=2052#comment-2052</link><description>could be... I have a problem like this with synergy, so I call a bash script from the config, and in the bash I run the sleep, then the command I wish to execute (sleep directly in the config does not work either).</description><pubDate>Tue, 18 Jun 2013 14:19:48 +0000</pubDate><guid>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/?comment=2052#comment-2052</guid></item><item><title>Answer by V0id for &lt;p&gt;I'd like to have a configuration line like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;i3-msg 'for_window [class="URxvt" instance="scratch"] move scratchpad; exec urxvtc -name scratch'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in my &lt;em&gt;.i3/config&lt;/em&gt;, but trying it interactively with i3-msg, it didn't like &lt;strong&gt;for_window&lt;/strong&gt; at all&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: Your command: for_window [instance="scratch"] move scratchpad
+ERROR:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR: Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'
+[{"success":false,"parse_error":true,"error":"Expected one of these tokens: &amp;lt;end&amp;gt;, '[', 'move', 'exec', 'exit', 'restart', 'reload', 'border', 'layout', 'append_layout', 'workspace', 'focus', 'kill', 'open', 'fullscreen', 'split', 'floating', 'mark', 'resize', 'rename', 'nop', 'scratchpad', 'mode'","input":"for_window [instance=\"scratch\"] move scratchpad","errorposition":"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}]
+&lt;/code&gt;&lt;/pre&gt;
+ </title><link>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/?answer=2003#post-id-2003</link><description>Remove the `for_window`. It is used to define behaviors for windows matching a given criteria. Here you only want to perform an action.</description><pubDate>Wed, 12 Jun 2013 18:04:24 +0000</pubDate><guid>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/?answer=2003#post-id-2003</guid></item><item><title>Comment by Steffen Hoenig for &lt;p&gt;Remove the &lt;code&gt;for_window&lt;/code&gt;. It is used to define behaviors for windows matching a given criteria. Here you only want to perform an action.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/?comment=2005#comment-2005</link><description>Interestingly, it works without for_window, but only one command by one. Maybe there is a timing issue.</description><pubDate>Thu, 13 Jun 2013 09:35:41 +0000</pubDate><guid>https://faq.i3wm.org/question/2002/why-is-for_window-not-accessible-from-i3-msg/?comment=2005#comment-2005</guid></item></channel></rss>

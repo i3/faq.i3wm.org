@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3726/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 25 Apr 2014 05:16:14 +0000</lastBuildDate><item><title>Workspace output multiple values</title><link>https://faq.i3wm.org/question/3726/workspace-output-multiple-values/</link><description>I'm trying to bind workspace 5 to output VGA1 and DP1 too. (I have display port at home and vga at work)
+
+I currently have this, but the second entry obviously overwrites the first one so when I plugin the VGA monitor it gets workspace 2.
+
+    workspace 5 output VGA1
+    workspace 5 output DP1
+
+What would be the best way to do it?
+
+</description><pubDate>Thu, 24 Apr 2014 13:36:08 +0000</pubDate><guid>https://faq.i3wm.org/question/3726/workspace-output-multiple-values/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;I'm trying to bind workspace 5 to output VGA1 and DP1 too. (I have display port at home and vga at work)&lt;/p&gt;
+
+&lt;p&gt;I currently have this, but the second entry obviously overwrites the first one so when I plugin the VGA monitor it gets workspace 2.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;workspace 5 output VGA1
+workspace 5 output DP1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What would be the best way to do it?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/3726/workspace-output-multiple-values/?answer=3731#post-id-3731</link><description>There is no builtin feature to do this. But with some scripting it should not be too difficult.
+
+First set a variable in your configuration file for the output(s) and reference it in your `workspace` definitions:
+
+    set $OUTPUT1 LVDS
+    set $OUTPUT2 VGA1
+
+    workspace 1 output $OUTPUT1
+    workspace 5 output $OUTPUT2
+
+Then you need a script that changes the variable definitions for you and reloads the configuration
+
+    #!/bin/bash
+    OUT2=$(xrandr | awk '/(VGA1|DP1)/ connected/{print $1}')
+    OUT2=${OUT2:-LVDS}
+    sed 's/^set\s\s*$OUTPUT2\s.*/set $OUTPUT2 '$OUT2'/' -i "${HOME}/.i3/config"
+    i3-msg reload
+    
+Now you can set a keybinding for this script.
+
+-----
+
+**WARNING: UNTESTED**
+
+You could even run this script directly from your configuration file
+
+    exec --no-startup-id /path/to/outputcheck.sh
+
+As `exec` statements are not executed when reloading the configuration it should not lead to an endless loop. I am assuming that the statements are also only run after i3 has fully parsed the configuration file (for the first time) and reloading can thus be done without risk, but I am not sure.</description><pubDate>Fri, 25 Apr 2014 05:16:14 +0000</pubDate><guid>https://faq.i3wm.org/question/3726/workspace-output-multiple-values/?answer=3731#post-id-3731</guid></item></channel></rss>

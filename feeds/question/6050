@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6050/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Wed, 03 Jun 2015 03:19:52 +0000</lastBuildDate><item><title>Is it possible to match criteria on floating state?</title><link>https://faq.i3wm.org/question/6050/is-it-possible-to-match-criteria-on-floating-state/</link><description> I'd like to configure key binds that are only active for windows that are in floating mode, but I can't seem to find any good way to write something like:
+
+```
+bindsym Mod4+x [floating=true] kill
+```
+
+Am I missing some other way of achieving this, or would it be possible to add such a critera option?</description><pubDate>Mon, 01 Jun 2015 06:08:57 +0000</pubDate><guid>https://faq.i3wm.org/question/6050/is-it-possible-to-match-criteria-on-floating-state/</guid></item><item><title>Answer by i3convert for &lt;p&gt;I'd like to configure key binds that are only active for windows that are in floating mode, but I can't seem to find any good way to write something like:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+bindsym Mod4+x [floating=true] kill
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Am I missing some other way of achieving this, or would it be possible to add such a critera option?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6050/is-it-possible-to-match-criteria-on-floating-state/?answer=6057#post-id-6057</link><description>You could use
+
+    bindsym Mod4+x exec --no-startup-id your_script.sh
+
+where `your_script.sh` parses the output of `i3-msg -t get_tree` to find out what state the focused window is. It then issues a specific command depending on whether the window is floating.
+</description><pubDate>Wed, 03 Jun 2015 03:19:52 +0000</pubDate><guid>https://faq.i3wm.org/question/6050/is-it-possible-to-match-criteria-on-floating-state/?answer=6057#post-id-6057</guid></item><item><title>Answer by Airblader for &lt;p&gt;I'd like to configure key binds that are only active for windows that are in floating mode, but I can't seem to find any good way to write something like:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+bindsym Mod4+x [floating=true] kill
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Am I missing some other way of achieving this, or would it be possible to add such a critera option?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6050/is-it-possible-to-match-criteria-on-floating-state/?answer=6051#post-id-6051</link><description>Command criteria don't support this, but you can subscribe to the [window](http://i3wm.org/docs/ipc.html#_window_event) event and then trigger a command. For this you can use, for example, [i3subscribe](https://faq.i3wm.org/question/5721/how-do-i-subscribe-to-i3-events-using-bash-easily/).</description><pubDate>Mon, 01 Jun 2015 06:45:03 +0000</pubDate><guid>https://faq.i3wm.org/question/6050/is-it-possible-to-match-criteria-on-floating-state/?answer=6051#post-id-6051</guid></item></channel></rss>

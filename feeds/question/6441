@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6441/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 17 Aug 2015 04:22:37 +0000</lastBuildDate><item><title>how to make i3 fill the screen</title><link>https://faq.i3wm.org/question/6441/how-to-make-i3-fill-the-screen/</link><description> I'm trying to use i3 in a VM, but for some reason I can't make it fill the screen: after startx, i3 comes up in 1024x768 mode (with black bands on both sides), I can then change the actual screen resolution with "xrandr -x 1920x1200", but the i3 window continues to cover only a 1024x768 area in the top left of the screen.
+
+I've also adjusted the grub setting to set the console in 1920x1200 mode, but as soon as I start xorg, it falls back to 1024x768. There's no xorg.conf file, as far as I can tell.
+
+Stock Ubuntu 15.04, minimal server intall + i3 + xorg, running under Parallels (with tools installed) on Mac OSX 10.10.4.
+
+Any tips/pointers would be very much appreciated!
+
+-jcw</description><pubDate>Thu, 13 Aug 2015 22:11:27 +0000</pubDate><guid>https://faq.i3wm.org/question/6441/how-to-make-i3-fill-the-screen/</guid></item><item><title>Comment by SpicyCat for &lt;p&gt;I'm trying to use i3 in a VM, but for some reason I can't make it fill the screen: after startx, i3 comes up in 1024x768 mode (with black bands on both sides), I can then change the actual screen resolution with "xrandr -x 1920x1200", but the i3 window continues to cover only a 1024x768 area in the top left of the screen.&lt;/p&gt;
+
+&lt;p&gt;I've also adjusted the grub setting to set the console in 1920x1200 mode, but as soon as I start xorg, it falls back to 1024x768. There's no xorg.conf file, as far as I can tell.&lt;/p&gt;
+
+&lt;p&gt;Stock Ubuntu 15.04, minimal server intall + i3 + xorg, running under Parallels (with tools installed) on Mac OSX 10.10.4.&lt;/p&gt;
+
+&lt;p&gt;Any tips/pointers would be very much appreciated!&lt;/p&gt;
+
+&lt;p&gt;-jcw&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6441/how-to-make-i3-fill-the-screen/?comment=6450#comment-6450</link><description>Have you installed Guest Additions? https://www.virtualbox.org/manual/ch04.html#idp46785384343968</description><pubDate>Mon, 17 Aug 2015 04:22:37 +0000</pubDate><guid>https://faq.i3wm.org/question/6441/how-to-make-i3-fill-the-screen/?comment=6450#comment-6450</guid></item><item><title>Answer by jcw for &lt;p&gt;I'm trying to use i3 in a VM, but for some reason I can't make it fill the screen: after startx, i3 comes up in 1024x768 mode (with black bands on both sides), I can then change the actual screen resolution with "xrandr -x 1920x1200", but the i3 window continues to cover only a 1024x768 area in the top left of the screen.&lt;/p&gt;
+
+&lt;p&gt;I've also adjusted the grub setting to set the console in 1920x1200 mode, but as soon as I start xorg, it falls back to 1024x768. There's no xorg.conf file, as far as I can tell.&lt;/p&gt;
+
+&lt;p&gt;Stock Ubuntu 15.04, minimal server intall + i3 + xorg, running under Parallels (with tools installed) on Mac OSX 10.10.4.&lt;/p&gt;
+
+&lt;p&gt;Any tips/pointers would be very much appreciated!&lt;/p&gt;
+
+&lt;p&gt;-jcw&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6441/how-to-make-i3-fill-the-screen/?answer=6442#post-id-6442</link><description> Apologies for answering my own question: one workaround is to edit "/usr/share/X11/xorg.conf.d/40-prltools.conf", and add  "1920x1200" as first value on the "Modes" line. Then, X comes up in 1920x1200 right away, and i3 adopts that.
+
+Maybe there's a cleaner solution which doesn't hack things like this, but this works for now.</description><pubDate>Thu, 13 Aug 2015 22:43:27 +0000</pubDate><guid>https://faq.i3wm.org/question/6441/how-to-make-i3-fill-the-screen/?answer=6442#post-id-6442</guid></item></channel></rss>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/346/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Tue, 13 Nov 2012 23:10:59 +0000</lastBuildDate><item><title>How can I use i3 in Gnome 2 DE?</title><link>https://faq.i3wm.org/question/346/how-can-i-use-i3-in-gnome-2-de/</link><description>Answering my own question here. Thanks to mue @ #i3 on ircd.twice-irc.de for the help.
+
+I am using:
+
+ - RHEL 6.3
+ - Gnome 2.28.2
+ - i3 4.0.1</description><pubDate>Thu, 16 Aug 2012 02:15:21 +0000</pubDate><guid>https://faq.i3wm.org/question/346/how-can-i-use-i3-in-gnome-2-de/</guid></item><item><title>Comment by Michael for &lt;p&gt;Answering my own question here. Thanks to mue @ #i3 on ircd.twice-irc.de for the help.&lt;/p&gt;
+
+&lt;p&gt;I am using:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;RHEL 6.3&lt;/li&gt;
+&lt;li&gt;Gnome 2.28.2&lt;/li&gt;
+&lt;li&gt;i3 4.0.1&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/346/how-can-i-use-i3-in-gnome-2-de/?comment=348#comment-348</link><description>FYI: I edited your question to have the answer in an actual answer, not in the question :)</description><pubDate>Thu, 16 Aug 2012 10:07:43 +0000</pubDate><guid>https://faq.i3wm.org/question/346/how-can-i-use-i3-in-gnome-2-de/?comment=348#comment-348</guid></item><item><title>Answer by Michael for &lt;p&gt;Answering my own question here. Thanks to mue @ #i3 on ircd.twice-irc.de for the help.&lt;/p&gt;
+
+&lt;p&gt;I am using:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;RHEL 6.3&lt;/li&gt;
+&lt;li&gt;Gnome 2.28.2&lt;/li&gt;
+&lt;li&gt;i3 4.0.1&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/346/how-can-i-use-i3-in-gnome-2-de/?answer=347#post-id-347</link><description>Answering this question explicitly, since people might not even be opening questions that do not have an answer (plus search engines use this kind of information, too):
+
+Set the windowmanager to i3 using gconf:
+
+    gconftool-2 -s /desktop/gnome/session/required_components/windowmanager i3 --type string
+
+Disable nautilus’s desktop mode (causes problems with i3):
+
+    gconftool-2 -s /apps/nautilus/preferences/show_desktop false --type boolean
+
+Also, make sure that you either use i3 &gt;= v4.2 (which ships with `/usr/share/applications/i3.desktop`), or create `~/.local/share/applications/i3.desktop`:
+
+    [Desktop Entry]
+    Type=Application
+    Encoding=UTF-8
+    Name=i3
+    Comment=improved dynamic tiling window manager
+    Exec=i3
+    X-GNOME-WMName=i3
+    X-GNOME-Autostart-Phase=WindowManager
+    X-GNOME-Provides=windowmanager
+    X-GNOME-Autostart-Notify=false</description><pubDate>Thu, 16 Aug 2012 10:06:30 +0000</pubDate><guid>https://faq.i3wm.org/question/346/how-can-i-use-i3-in-gnome-2-de/?answer=347#post-id-347</guid></item><item><title>Comment by ks for &lt;p&gt;Answering this question explicitly, since people might not even be opening questions that do not have an answer (plus search engines use this kind of information, too):&lt;/p&gt;
+
+&lt;p&gt;Set the windowmanager to i3 using gconf:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gconftool-2 -s /desktop/gnome/session/required_components/windowmanager i3 --type string
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Disable nautilus’s desktop mode (causes problems with i3):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gconftool-2 -s /apps/nautilus/preferences/show_desktop false --type boolean
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, make sure that you either use i3 &amp;gt;= v4.2 (which ships with &lt;code&gt;/usr/share/applications/i3.desktop&lt;/code&gt;), or create &lt;code&gt;~/.local/share/applications/i3.desktop&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=i3
+Comment=improved dynamic tiling window manager
+Exec=i3
+X-GNOME-WMName=i3
+X-GNOME-Autostart-Phase=WindowManager
+X-GNOME-Provides=windowmanager
+X-GNOME-Autostart-Notify=false
+&lt;/code&gt;&lt;/pre&gt;
+</title><link>https://faq.i3wm.org/question/346/how-can-i-use-i3-in-gnome-2-de/?comment=752#comment-752</link><description>I am not sure why this fails on my gnome install. I'm able to run "awesome" wm following this setup, but i3 always fails with an error saying "Failed to load session "i3" " ... Any comments? I am not sure which log to look for errors regrading this.</description><pubDate>Tue, 13 Nov 2012 23:10:59 +0000</pubDate><guid>https://faq.i3wm.org/question/346/how-can-i-use-i3-in-gnome-2-de/?comment=752#comment-752</guid></item></channel></rss>

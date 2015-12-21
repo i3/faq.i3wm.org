@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5974/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 09 May 2015 15:33:40 +0000</lastBuildDate><item><title>i3status, hide module if down</title><link>https://faq.i3wm.org/question/5974/i3status-hide-module-if-down/</link><description>I would like to hide a module if is down (or if not a mount point for disks), for example, if wireless is down I have this:
+
+    1.8 GB  Use: 88.1% | W: down | E: 192.168.1.5 (1000 Mbit/s)
+
+I can set `format_down` to empty string, but in that case, the output is not so nice:
+    
+    1.8 GB  Use: 88.1% |  | E: 192.168.1.5 (1000 Mbit/s)
+
+Ideally I would like to have this
+
+    1.8 GB  Use: 88.1% | E: 192.168.1.5 (1000 Mbit/s)
+
+Is it possible?</description><pubDate>Fri, 08 May 2015 17:52:59 +0000</pubDate><guid>https://faq.i3wm.org/question/5974/i3status-hide-module-if-down/</guid></item><item><title>Answer by Airblader for &lt;p&gt;I would like to hide a module if is down (or if not a mount point for disks), for example, if wireless is down I have this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.8 GB  Use: 88.1% | W: down | E: 192.168.1.5 (1000 Mbit/s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I can set &lt;code&gt;format_down&lt;/code&gt; to empty string, but in that case, the output is not so nice:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.8 GB  Use: 88.1% |  | E: 192.168.1.5 (1000 Mbit/s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ideally I would like to have this&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.8 GB  Use: 88.1% | E: 192.168.1.5 (1000 Mbit/s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is it possible?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5974/i3status-hide-module-if-down/?answer=5976#post-id-5976</link><description>Force the output to be json. It will use a newer protocol version in which empty blocks are ignored. 
+
+The output format can be set in the general section.  </description><pubDate>Sat, 09 May 2015 00:15:52 +0000</pubDate><guid>https://faq.i3wm.org/question/5974/i3status-hide-module-if-down/?answer=5976#post-id-5976</guid></item><item><title>Comment by i3convert for &lt;p&gt;Force the output to be json. It will use a newer protocol version in which empty blocks are ignored. &lt;/p&gt;
+
+&lt;p&gt;The output format can be set in the general section.  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/5974/i3status-hide-module-if-down/?comment=5978#comment-5978</link><description>That's a good one!</description><pubDate>Sat, 09 May 2015 15:33:40 +0000</pubDate><guid>https://faq.i3wm.org/question/5974/i3status-hide-module-if-down/?comment=5978#comment-5978</guid></item><item><title>Answer by i3convert for &lt;p&gt;I would like to hide a module if is down (or if not a mount point for disks), for example, if wireless is down I have this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.8 GB  Use: 88.1% | W: down | E: 192.168.1.5 (1000 Mbit/s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I can set &lt;code&gt;format_down&lt;/code&gt; to empty string, but in that case, the output is not so nice:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.8 GB  Use: 88.1% |  | E: 192.168.1.5 (1000 Mbit/s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ideally I would like to have this&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.8 GB  Use: 88.1% | E: 192.168.1.5 (1000 Mbit/s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Is it possible?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5974/i3status-hide-module-if-down/?answer=5975#post-id-5975</link><description>The simplest solution is to create a wrapper (say, `/home/your-name/bin/wrapper.sh`) that replaces `|  |` with `|`, i.e., removes the unnecessary field:
+
+    #!/bin/bash
+    i3status | sed 's/|  |/|/g'
+
+Now in the config file use `wrapper.sh` instead of `i3status`.
+</description><pubDate>Fri, 08 May 2015 19:04:13 +0000</pubDate><guid>https://faq.i3wm.org/question/5974/i3status-hide-module-if-down/?answer=5975#post-id-5975</guid></item></channel></rss>

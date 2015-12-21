@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/6027/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Mon, 01 Jun 2015 06:47:56 +0000</lastBuildDate><item><title>bindsym not working -- command works fine in terminal</title><link>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/</link><description>I have set this keybind in order to switch layouts with $mod+space(duh!). However, while the command works fine when run in rxvt with bash, it doesnt seem to work with the keybind. $SHELL is /bin/bash and I have disabled the other $mod+space keybind so overlapping keybinds is not the problem.
+ 
+    bindsym  $mod+space exec "setxkbmap -layout $([[ $(setxkbmap -query | awk '/layout/{ print $2 }') == us ]] &amp;&amp; echo 'gr' || echo 'us')"
+
+Running version 4.8 on Jessie.</description><pubDate>Fri, 29 May 2015 13:58:47 +0000</pubDate><guid>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/</guid></item><item><title>Answer by Airblader for &lt;p&gt;I have set this keybind in order to switch layouts with $mod+space(duh!). However, while the command works fine when run in rxvt with bash, it doesnt seem to work with the keybind. $SHELL is /bin/bash and I have disabled the other $mod+space keybind so overlapping keybinds is not the problem.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bindsym  $mod+space exec "setxkbmap -layout $([[ $(setxkbmap -query | awk '/layout/{ print $2 }') == us ]] &amp;amp;&amp;amp; echo 'gr' || echo 'us')"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Running version 4.8 on Jessie.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?answer=6028#post-id-6028</link><description>I'm assuming the dollar signs are a problem since they will be interpreted as a variable. 
+
+For scripts like this I'd usually just suggest to move it into a dedicated script and then simply execute that script from your config.  </description><pubDate>Fri, 29 May 2015 14:25:55 +0000</pubDate><guid>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?answer=6028#post-id-6028</guid></item><item><title>Comment by Airblader for &lt;p&gt;I'm assuming the dollar signs are a problem since they will be interpreted as a variable. &lt;/p&gt;
+
+&lt;p&gt;For scripts like this I'd usually just suggest to move it into a dedicated script and then simply execute that script from your config.  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?comment=6052#comment-6052</link><description>It's not really "the i3 way", but being a software developer, I actually think it's a whole lot cleaner to not put tons of shell scripts into a plain text configuration file. Just keep them in a specific directory and they're neatly organized. :)</description><pubDate>Mon, 01 Jun 2015 06:47:56 +0000</pubDate><guid>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?comment=6052#comment-6052</guid></item><item><title>Comment by kousu for &lt;p&gt;I'm assuming the dollar signs are a problem since they will be interpreted as a variable. &lt;/p&gt;
+
+&lt;p&gt;For scripts like this I'd usually just suggest to move it into a dedicated script and then simply execute that script from your config.  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?comment=6048#comment-6048</link><description>I've been doing that, but it bugs me that my config is getting scattered across shell scripts. But if that's the i3 way I can adapt :)</description><pubDate>Mon, 01 Jun 2015 05:20:48 +0000</pubDate><guid>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?comment=6048#comment-6048</guid></item><item><title>Comment by Airblader for &lt;p&gt;I'm assuming the dollar signs are a problem since they will be interpreted as a variable. &lt;/p&gt;
+
+&lt;p&gt;For scripts like this I'd usually just suggest to move it into a dedicated script and then simply execute that script from your config.  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?comment=6041#comment-6041</link><description>I think you can escape a dollar sign by doing `$$`. Dollar signs are special because they denote variables in the config. As the docs state,there is no plans of changing this. It makes sense to put complicated commands into separate, dedicated scripts anyway. Maintaining quoted versions is horrible.</description><pubDate>Sun, 31 May 2015 20:45:38 +0000</pubDate><guid>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?comment=6041#comment-6041</guid></item><item><title>Comment by kousu for &lt;p&gt;I'm assuming the dollar signs are a problem since they will be interpreted as a variable. &lt;/p&gt;
+
+&lt;p&gt;For scripts like this I'd usually just suggest to move it into a dedicated script and then simply execute that script from your config.  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?comment=6040#comment-6040</link><description>Why does i3 do this? If I don't use syntax, I can get around i3's internal layer of quoting usually with
+```
+exec bash -c "[comands here]"
+```
+but if my commands include [, $, or some other set of things I haven't worked out it gives an error, points at them, and doesn't explain why.</description><pubDate>Sun, 31 May 2015 20:02:29 +0000</pubDate><guid>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?comment=6040#comment-6040</guid></item><item><title>Comment by nk for &lt;p&gt;I'm assuming the dollar signs are a problem since they will be interpreted as a variable. &lt;/p&gt;
+
+&lt;p&gt;For scripts like this I'd usually just suggest to move it into a dedicated script and then simply execute that script from your config.  &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?comment=6029#comment-6029</link><description>Ah that was the problem, thanks :)</description><pubDate>Fri, 29 May 2015 14:34:43 +0000</pubDate><guid>https://faq.i3wm.org/question/6027/bindsym-not-working-command-works-fine-in-terminal/?comment=6029#comment-6029</guid></item></channel></rss>

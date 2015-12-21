@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/5163/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Thu, 22 Jan 2015 15:40:46 +0000</lastBuildDate><item><title>Switch to Urgent Workspace</title><link>https://faq.i3wm.org/question/5163/switch-to-urgent-workspace/</link><description>Is it possible that whenever an urgent flag appears from an application, meaning the workspace where the application is from becomes red or flagged, i3 will automatically switch to that workspace/application?</description><pubDate>Fri, 12 Dec 2014 06:18:14 +0000</pubDate><guid>https://faq.i3wm.org/question/5163/switch-to-urgent-workspace/</guid></item><item><title>Answer by Adaephon for &lt;p&gt;Is it possible that whenever an urgent flag appears from an application, meaning the workspace where the application is from becomes red or flagged, i3 will automatically switch to that workspace/application?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5163/switch-to-urgent-workspace/?answer=5376#post-id-5376</link><description>Yes, it is (somewhat) possible, but [as Michael Rose wrote](https://faq.i3wm.org/question/5163/switch-to-urgent-workspace/?answer=5164#post-id-5164) probably not a good idea.
+
+If you add
+
+    for_window [urgent="latest"] focus
+
+to your `~/.i3/config`, then *i3* will automatically focus a window once it becomes urgent. 
+
+You could also combine criteria if you only want to focus certain applications:
+
+    for_window [urgent="latest" class="XTerm"] focus
+
+----
+**Note**: There seem to be some cases where these - both single and multiple criteria - do not work reliably, but I am unsure what may be the cause. It may be a problem specific to my setup as for me `[urgent="latest"] focus` sometimes focuses windows, that are not even urgent anymore (although they once were).
+</description><pubDate>Thu, 22 Jan 2015 15:40:46 +0000</pubDate><guid>https://faq.i3wm.org/question/5163/switch-to-urgent-workspace/?answer=5376#post-id-5376</guid></item><item><title>Answer by TheRaven for &lt;p&gt;Is it possible that whenever an urgent flag appears from an application, meaning the workspace where the application is from becomes red or flagged, i3 will automatically switch to that workspace/application?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5163/switch-to-urgent-workspace/?answer=5371#post-id-5371</link><description>Bouncing around work-spaces, etc. in an unmanaged fashion is certainly not the way to go, but the idea does have its merits. If user defined precedence levels were an option then, like interrupts there would be a manageable environment. In addition to the precedence management, also user configurable, application processes could be paused until focus is returned.
+
+Case:
+Jim wants to play some Doom, but is waiting on a critical eMail notification about a friend's health. Jim sets the game's process management to pause when it loses focus and assigns a process priority of 1 above the general default of 0. Jim intuitively sets his eMail manager at a process priority of 2 so that it takes focus from any system below it. Now, when Jim gets an eMail the mail manager takes focus due to its priority the game process(es) pause as it loses focus; Jim reads his eMail then closes the eMail manager and returns to the game. Because the game now has focus again it resumes normally.
+
+One consideration when returning to a paused process(es) is delay the execution of the thread a bit in order to let the user get settled in. The delay could use a user defined counter set to their tastes and enjoy a win win scenario.
+
+The aforementioned services are quality, professional grade considerations and would serve well to round off i3 nicely.
+
+Thanks for the inspiration and hope my suggestions inspire you all here at the i3 group &amp; user group as much.</description><pubDate>Thu, 22 Jan 2015 13:16:30 +0000</pubDate><guid>https://faq.i3wm.org/question/5163/switch-to-urgent-workspace/?answer=5371#post-id-5371</guid></item><item><title>Answer by Michael Rose for &lt;p&gt;Is it possible that whenever an urgent flag appears from an application, meaning the workspace where the application is from becomes red or flagged, i3 will automatically switch to that workspace/application?&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/5163/switch-to-urgent-workspace/?answer=5164#post-id-5164</link><description>This is actually a horrible idea as getting an email or message on irc will for example take you out of your game.  Instead you can set up a key binding to take you to the urgent workspace.
+
+https://faq.i3wm.org/question/853/how-to-jump-to-urgent-workspace/</description><pubDate>Fri, 12 Dec 2014 06:57:33 +0000</pubDate><guid>https://faq.i3wm.org/question/5163/switch-to-urgent-workspace/?answer=5164#post-id-5164</guid></item></channel></rss>

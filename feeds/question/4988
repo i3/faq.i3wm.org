@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/4988/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Fri, 21 Nov 2014 10:50:54 +0000</lastBuildDate><item><title>system-config-printer root permissions (policykit?)</title><link>https://faq.i3wm.org/question/4988/system-config-printer-root-permissions-policykit/</link><description>Running system-config-printer in a regular user account on debian does raise an exception when I use the unlock button (it in order to modify/add printers):
+
+    (system-config-printer.py:10425): WARNING **: Couldn't register with accessibility bus: Did not receive a reply. Possible causes include: the remote application did not send a reply, the message bus security policy blocked the reply, the reply timeout expired, or the network connection was broken.
+    enter code here
+
+    (system-config-printer.py:10425): Gtk-WARNING **: Error acquiring permission: Failed to acquire permission for action-id org.opensuse.cupspkhelper.mechanism.all-edit
+
+My Login-Manager is lightdm.
+
+In another FAQ [FAQ question root](https://faq.i3wm.org/question/123/automatic-question-for-root/) policykit was mentioned. 
+
+Any help for further analysis or improvements appreciated.</description><pubDate>Fri, 21 Nov 2014 09:00:31 +0000</pubDate><guid>https://faq.i3wm.org/question/4988/system-config-printer-root-permissions-policykit/</guid></item><item><title>Comment by cee for &lt;p&gt;Running system-config-printer in a regular user account on debian does raise an exception when I use the unlock button (it in order to modify/add printers):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(system-config-printer.py:10425): WARNING **: Couldn't register with accessibility bus: Did not receive a reply. Possible causes include: the remote application did not send a reply, the message bus security policy blocked the reply, the reply timeout expired, or the network connection was broken.
+enter code here
+
+(system-config-printer.py:10425): Gtk-WARNING **: Error acquiring permission: Failed to acquire permission for action-id org.opensuse.cupspkhelper.mechanism.all-edit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My Login-Manager is lightdm.&lt;/p&gt;
+
+&lt;p&gt;In another FAQ &lt;a href="https://faq.i3wm.org/question/123/automatic-question-for-root/"&gt;FAQ question root&lt;/a&gt; policykit was mentioned. &lt;/p&gt;
+
+&lt;p&gt;Any help for further analysis or improvements appreciated.&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4988/system-config-printer-root-permissions-policykit/?comment=4991#comment-4991</link><description>Can you take a look at `system-config-printer.py`? The WARNING seems to be on line 10425. My file has only 2198 lines.</description><pubDate>Fri, 21 Nov 2014 10:46:08 +0000</pubDate><guid>https://faq.i3wm.org/question/4988/system-config-printer-root-permissions-policykit/?comment=4991#comment-4991</guid></item><item><title>Answer by cee for &lt;p&gt;Running system-config-printer in a regular user account on debian does raise an exception when I use the unlock button (it in order to modify/add printers):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(system-config-printer.py:10425): WARNING **: Couldn't register with accessibility bus: Did not receive a reply. Possible causes include: the remote application did not send a reply, the message bus security policy blocked the reply, the reply timeout expired, or the network connection was broken.
+enter code here
+
+(system-config-printer.py:10425): Gtk-WARNING **: Error acquiring permission: Failed to acquire permission for action-id org.opensuse.cupspkhelper.mechanism.all-edit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My Login-Manager is lightdm.&lt;/p&gt;
+
+&lt;p&gt;In another FAQ &lt;a href="https://faq.i3wm.org/question/123/automatic-question-for-root/"&gt;FAQ question root&lt;/a&gt; policykit was mentioned. &lt;/p&gt;
+
+&lt;p&gt;Any help for further analysis or improvements appreciated.&lt;/p&gt;
+ </title><link>https://faq.i3wm.org/question/4988/system-config-printer-root-permissions-policykit/?answer=4989#post-id-4989</link><description>Do you belong to the right group?
+
+On my Arch-Linux `/var/spool/cups` is owned by = `root:lp`.
+Therefore either I need to be root (sudo) or belong to group lp to execute cups magic.
+
+EDIT:  
+[Link to Arch Wiki entry about cups with some trouble-shooting tips.](https://wiki.archlinux.org/index.php/CUPS)</description><pubDate>Fri, 21 Nov 2014 09:08:03 +0000</pubDate><guid>https://faq.i3wm.org/question/4988/system-config-printer-root-permissions-policykit/?answer=4989#post-id-4989</guid></item><item><title>Comment by cee for &lt;p&gt;Do you belong to the right group?&lt;/p&gt;
+
+&lt;p&gt;On my Arch-Linux &lt;code&gt;/var/spool/cups&lt;/code&gt; is owned by = &lt;code&gt;root:lp&lt;/code&gt;.
+Therefore either I need to be root (sudo) or belong to group lp to execute cups magic.&lt;/p&gt;
+
+&lt;p&gt;EDIT: &lt;br/&gt;
+&lt;a href="https://wiki.archlinux.org/index.php/CUPS"&gt;Link to Arch Wiki entry about cups with some trouble-shooting tips.&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4988/system-config-printer-root-permissions-policykit/?comment=4992#comment-4992</link><description>This thread https://bbs.archlinux.org/viewtopic.php?id=116736 could also be related to your problem.</description><pubDate>Fri, 21 Nov 2014 10:50:54 +0000</pubDate><guid>https://faq.i3wm.org/question/4988/system-config-printer-root-permissions-policykit/?comment=4992#comment-4992</guid></item><item><title>Comment by peterN for &lt;p&gt;Do you belong to the right group?&lt;/p&gt;
+
+&lt;p&gt;On my Arch-Linux &lt;code&gt;/var/spool/cups&lt;/code&gt; is owned by = &lt;code&gt;root:lp&lt;/code&gt;.
+Therefore either I need to be root (sudo) or belong to group lp to execute cups magic.&lt;/p&gt;
+
+&lt;p&gt;EDIT: &lt;br/&gt;
+&lt;a href="https://wiki.archlinux.org/index.php/CUPS"&gt;Link to Arch Wiki entry about cups with some trouble-shooting tips.&lt;/a&gt;&lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/4988/system-config-printer-root-permissions-policykit/?comment=4990#comment-4990</link><description>thx for your feedback. Yes, I am member of lp group plus the lpadmin group that is refered to in cups. running /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 by itself runs into the first exeception mentioned im my original post</description><pubDate>Fri, 21 Nov 2014 10:35:24 +0000</pubDate><guid>https://faq.i3wm.org/question/4988/system-config-printer-root-permissions-policykit/?comment=4990#comment-4990</guid></item></channel></rss>

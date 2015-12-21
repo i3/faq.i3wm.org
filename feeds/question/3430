@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>i3 FAQ - Individual question feed</title><link>https://faq.i3wm.org/questions/</link><description>Frequently asked questions and answers about the i3 window manager</description><atom:link href="http://faq.i3wm.org/feeds/question/3430/" rel="self"></atom:link><language>en</language><copyright>Copyright i3, 2012</copyright><lastBuildDate>Sat, 08 Mar 2014 18:51:09 +0000</lastBuildDate><item><title>how much of EWMH does i3 support?</title><link>https://faq.i3wm.org/question/3430/how-much-of-ewmh-does-i3-support/</link><description>I have problems starting a graphical programs, and I got the answer, that it may have to do with i3 not supporting EWMH.
+
+So, now my question: How much of EWMH does i3 support?
+
+References:
+
+* github issue: https://github.com/zsx/r3/issues/2
+* EWMH:         http://standards.freedesktop.org/wm-spec/wm-spec-latest.html</description><pubDate>Wed, 26 Feb 2014 15:52:24 +0000</pubDate><guid>https://faq.i3wm.org/question/3430/how-much-of-ewmh-does-i3-support/</guid></item><item><title>Comment by TonyC for &lt;p&gt;I have problems starting a graphical programs, and I got the answer, that it may have to do with i3 not supporting EWMH.&lt;/p&gt;
+
+&lt;p&gt;So, now my question: How much of EWMH does i3 support?&lt;/p&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;github issue: &lt;a href="https://github.com/zsx/r3/issues/2"&gt;https://github.com/zsx/r3/issues/2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;EWMH:         &lt;a href="http://standards.freedesktop.org/wm-spec/wm-spec-latest.html"&gt;http://standards.freedesktop.org/wm-s...&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</title><link>https://faq.i3wm.org/question/3430/how-much-of-ewmh-does-i3-support/?comment=3496#comment-3496</link><description>i3 supports as much of EWMH as people find useful enough to implement</description><pubDate>Sat, 08 Mar 2014 18:51:09 +0000</pubDate><guid>https://faq.i3wm.org/question/3430/how-much-of-ewmh-does-i3-support/?comment=3496#comment-3496</guid></item><item><title>Answer by joepd for &lt;p&gt;I have problems starting a graphical programs, and I got the answer, that it may have to do with i3 not supporting EWMH.&lt;/p&gt;
+
+&lt;p&gt;So, now my question: How much of EWMH does i3 support?&lt;/p&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;github issue: &lt;a href="https://github.com/zsx/r3/issues/2"&gt;https://github.com/zsx/r3/issues/2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;EWMH:         &lt;a href="http://standards.freedesktop.org/wm-spec/wm-spec-latest.html"&gt;http://standards.freedesktop.org/wm-s...&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ </title><link>https://faq.i3wm.org/question/3430/how-much-of-ewmh-does-i3-support/?answer=3462#post-id-3462</link><description>i3 supports some EWMH. To find out which are likely supported, you can make yourself a quick list with the following list in the source directory: 
+
+    grep -Eor '_NET_[^ ]+' .
+
+As for the bug, you are referring to, it looks like the software wants to know the height of the title bars et cetera. i3 takes the perspective that this is none of the business of programs. i3 is the benovolent dictator for this kind of information, and apparently does not see any benefit in sharing its knowledge through the EWMH. This would only be of benefit for applications that pretend to be their own window manager. The _i3 way_ of getting this type of info is through IPC-calls. 
+
+That being said, it could very well be that if you provide a patch to support EWMH-hints that you need, that it might be accepted. It could be wise to discuss concrete hints on the mailing list before making work in vein. 
+</description><pubDate>Sat, 01 Mar 2014 11:49:52 +0000</pubDate><guid>https://faq.i3wm.org/question/3430/how-much-of-ewmh-does-i3-support/?answer=3462#post-id-3462</guid></item><item><title>Comment by TonyC for &lt;p&gt;i3 supports some EWMH. To find out which are likely supported, you can make yourself a quick list with the following list in the source directory: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep -Eor '_NET_[^ ]+' .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As for the bug, you are referring to, it looks like the software wants to know the height of the title bars et cetera. i3 takes the perspective that this is none of the business of programs. i3 is the benovolent dictator for this kind of information, and apparently does not see any benefit in sharing its knowledge through the EWMH. This would only be of benefit for applications that pretend to be their own window manager. The &lt;em&gt;i3 way&lt;/em&gt; of getting this type of info is through IPC-calls. &lt;/p&gt;
+
+&lt;p&gt;That being said, it could very well be that if you provide a patch to support EWMH-hints that you need, that it might be accepted. It could be wise to discuss concrete hints on the mailing list before making work in vein. &lt;/p&gt;
+</title><link>https://faq.i3wm.org/question/3430/how-much-of-ewmh-does-i3-support/?comment=3495#comment-3495</link><description>i3 supports _NET\_REQUEST\_FRAME\_EXTENTS client messages for that</description><pubDate>Sat, 08 Mar 2014 18:44:45 +0000</pubDate><guid>https://faq.i3wm.org/question/3430/how-much-of-ewmh-does-i3-support/?comment=3495#comment-3495</guid></item></channel></rss>
